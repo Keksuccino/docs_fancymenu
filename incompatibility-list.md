@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2023-12-21T09:38:10.367Z
+date: 2023-12-21T09:38:48.096Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -19,7 +19,7 @@ If that's the case, it will be written after the mod name in the list below.
 Thank you very much!**
 
 
-## [FORGE] Incompatible Mods
+## Forge Mods
 
 - OptiFine (works for the most part, but you should use [these alternatives](https://fm.keksuccino.dev/en/wiki/general/verified/optifine-alternatives) instead)
 - [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
@@ -53,7 +53,7 @@ Thank you very much!**
 - [BetterFPS](https://www.curseforge.com/minecraft/mc-mods/betterfps) (Buttons and menus of this mod aren't customizable)
 - [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Custom buttons added to menus with FancyMenu aren't clickable via Controllable's "Virtual Mouse" feature)
 
-## [FABRIC] Incompatible Mods
+## Fabric Mods
 
 - OptiFine (works for the most part, but you should use [these alternatives](https://fm.keksuccino.dev/en/wiki/general/verified/optifine-alternatives) instead)
 - [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (Works fine in most cases, but if you experience a duplicated or uncustomizable Mods button, change your Mod Menu button settings to "Adjacent": Main Menu > Mods > Mod Menu > Mods Button: Adjacent)
