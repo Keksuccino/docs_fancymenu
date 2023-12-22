@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T03:08:42.011Z
+date: 2023-12-22T03:09:02.680Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -95,6 +95,8 @@ Holding down **O** shows the anchor point overlay if its visibility is set to **
 The arrow keys can be used to navigate the cursor in the text.
 
 # In Menus
+
+<br>
 
 ## CTRL + ALT + C
 
