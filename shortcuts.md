@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:51:33.829Z
+date: 2023-12-22T02:53:07.282Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -42,8 +42,13 @@ This also works from one layout to another, so you can copy elements in layout A
 
 Quickly **save** the layout.
 
+## CTRL + Z
 
+**Undo** the last action.
 
+## CTRL + Y
 
+**Redo** a previously undone action.
 
+## 
 
