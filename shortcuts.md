@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:50:16.244Z
+date: 2023-12-22T02:51:33.829Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -27,18 +27,20 @@ The arrow keys can be used to **move** selected elements with maximum precision.
 
 ## CTRL + A
 
-Select all elements at once by pressing **CTRL + A**.
+Select all elements at once.
 
 ## CTRL + C
 
-Copy all selected elements to the clipboard by pressing **CTRL + C**.
+Copy all selected elements to the clipboard.
 
 ## CTRL + V
 
 Paste all elements currently in the clipboard.
 This also works from one layout to another, so you can copy elements in layout A and paste them to layout B.
 
-## 
+## CTRL + S
+
+Quickly **save** the layout.
 
 
 
