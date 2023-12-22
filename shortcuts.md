@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:54:33.765Z
+date: 2023-12-22T02:58:08.960Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -53,6 +53,10 @@ Quickly **save** the layout.
 ## CTRL + G
 
 Quickly toggle the **grid**.
+
+## O
+
+Holding down **O** shows the anchor point overlay if its visibility is set to **Show On Key Press** in **Window -> Anchor Overlay Visibility**.
 
 ## DEL
 
