@@ -2,7 +2,7 @@
 title: Open GUIs by Command
 description: How to open Vanilla and Custom GUIs via command.
 published: true
-date: 2023-12-22T05:50:27.215Z
+date: 2023-12-22T08:35:10.808Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:50:27.215Z
@@ -16,9 +16,9 @@ You can even open GUIs for **other players** when installing FancyMenu on both *
 
 # 1. Opening GUIs by Command
 
-To open a GUI, just use the command `/openguiscreen <menu_identifier> <target_player>`.
+To open a GUI, just use the command `/openguiscreen <screen_identifier> <target_player>`.
 
-Replace `<menu_identifier>` with the actual menu identifier of the GUI you want to open.
+Replace `<screen_identifier>` with the actual menu identifier of the GUI you want to open.
 This can be the identifier of your Custom GUI (made with FancyMenu) or the normal menu identifier of a Vanilla/mod GUI.
 
 To get the **menu identifier of Vanilla/mod GUIs**, open the menu you want to know the identifier of and enable FancyMenu's **debug overlay** via **Customization -> Debug Overlay**, then you can click on the identifier shown as first line to copy it to your clipboard.
