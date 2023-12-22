@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:58:47.045Z
+date: 2023-12-22T02:59:23.343Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -64,7 +64,15 @@ Holding down **O** shows the anchor point overlay if its visibility is set to **
 
 # Text Editor
 
+<br>
 
+## CTRL + Z
+
+**Undo** the last action.
+
+## CTRL + Y
+
+**Redo** a previously undone action.
 
 
 
