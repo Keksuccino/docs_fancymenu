@@ -1,8 +1,8 @@
 ---
-title: OptiFine Alternatifes
+title: OptiFine Alternatives
 description: Alternatives to OptiFine.
 published: true
-date: 2023-12-22T04:00:02.270Z
+date: 2023-12-22T04:01:31.281Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T04:00:02.270Z
