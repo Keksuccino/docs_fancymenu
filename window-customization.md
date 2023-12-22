@@ -2,7 +2,7 @@
 title: Window Icon & Title
 description: How to change the window icon and title.
 published: true
-date: 2023-12-22T03:47:58.818Z
+date: 2023-12-22T03:50:06.995Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T03:47:58.818Z
@@ -24,3 +24,8 @@ To set a custom icon for the Minecraft window, navigate to **Customization -> Se
 - Icons need to have at least **1 transparent pixel** to not look glitched (MC/LWJGL bug)
 - You need to set valid files for all 3 icon versions (16x16, 32x32, macOS) to enable the custom icon toggle
 
+# Custom Title
+
+To set a custom title for the Minecraft window, nacigate to **Customization -> Settings -> Custom Window Title** in the **menu bar**.
+
+![window_title](https://github.com/Keksuccino/FancyMenu/assets/35544624/06ecd207-c2d2-4f7c-83f4-18d94c66c5ff)
