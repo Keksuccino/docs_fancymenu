@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:59:23.343Z
+date: 2023-12-22T03:00:41.835Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -35,7 +35,7 @@ Copy all selected elements to the clipboard.
 
 ## CTRL + V
 
-Paste all elements currently in the clipboard.
+Paste all elements that are currently in the clipboard.
 This also works from one layout to another, so you can copy elements in layout A and paste them to layout B.
 
 ## CTRL + S
@@ -65,6 +65,14 @@ Holding down **O** shows the anchor point overlay if its visibility is set to **
 # Text Editor
 
 <br>
+
+## CTRL + C
+
+Copy the selected text to the clipboard.
+
+## CTRL + V
+
+Paste text that's currently in the clipboard.
 
 ## CTRL + Z
 
