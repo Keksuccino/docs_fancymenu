@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:53:07.282Z
+date: 2023-12-22T02:54:33.765Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -50,5 +50,18 @@ Quickly **save** the layout.
 
 **Redo** a previously undone action.
 
-## 
+## CTRL + G
+
+Quickly toggle the **grid**.
+
+## DEL
+
+**Delete** a selected element.
+
+
+
+
+
+
+
 
