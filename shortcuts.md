@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T02:58:08.960Z
+date: 2023-12-22T02:58:47.045Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -60,7 +60,10 @@ Holding down **O** shows the anchor point overlay if its visibility is set to **
 
 ## DEL
 
-**Delete** a selected element.
+**Delete** all selected elements.
+
+# Text Editor
+
 
 
 
