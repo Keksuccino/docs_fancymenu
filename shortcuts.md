@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T03:09:02.680Z
+date: 2023-12-22T03:10:08.326Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -106,4 +106,8 @@ Toggle the visibility of FancyMenu's **menu bar** at the top of menus.
 
 **Reload** FancyMenu.
 This includes a full resource/asset reload and most caches get cleared.
+
+## CTRL + ALT + D
+
+Toggle the visibility of FancyMenu's **debug overlay**.
 
