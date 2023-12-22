@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2023-12-22T03:01:01.856Z
+date: 2023-12-22T03:05:46.459Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T02:46:48.709Z
@@ -82,9 +82,17 @@ Holding down **O** shows the anchor point overlay if its visibility is set to **
 
 **Redo** a previously undone action.
 
+## CTRL + A
 
+**Select** the full text.
 
+## CTRL # U
 
+**Cut** the selected text.
+
+## Arrow Keys
+
+The arrow keys can be used to navigate the cursor in the text.
 
 
 
