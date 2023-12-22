@@ -2,7 +2,7 @@
 title: FancyMenu in Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2023-12-22T05:28:46.511Z
+date: 2023-12-22T05:30:01.508Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -19,7 +19,7 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 
 Including a FancyMenu setup in a modpack is nothing more than copying a config folder.
 
-All you need to do is copy the `/config/fancymenu/` folder from your old Minecract instance to the `config` directory of your modpack, so in other words you simply include FancyMenu's config folder, which is something almost all modpack systems can do by default, so just google how to include mod configs in your modpack system (CurseForge, Modrinth, etc.).
+All you need to do is copy the `/config/fancymenu/` folder from your Minecraft instance to the `config` directory of your modpack, so in other words you simply include FancyMenu's config folder, which is something almost all modpack systems can do by default, so just google how to include mod configs in your modpack system (CurseForge, Modrinth, etc.).
 
 That's it. Nothing more you need to do.
 
