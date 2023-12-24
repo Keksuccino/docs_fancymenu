@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T05:35:49.572Z
+date: 2023-12-24T05:46:33.973Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -80,8 +80,19 @@ Text that should appear as [hyperlink](https://google.com) needs to get wrapped 
 So if you want to make `example text content` clickable and open `https://example-website.net`, do this:
 `[example text content](https://example-website.net)`
 
+## Images
 
+Markdown supports displaying images in text content.
 
+FancyMenu supports Minecraft resources, local resources and web resources in Markdown.
 
+To add an image, start a text line with `![](`, then the [URL, Resource Location or Path to the resource](/resources) and then `)`.
 
+So to show the Web resource `https://example-website.net/image.png`, do this:
+`![](https://example-website.net/image.png)`
+
+Images can also be **hyperlinks** by wrapping the whole image text line in a **hyperlink** like that:
+`[![](https://example-website.net/image.png)](https://example-website.net)`
+
+## 
 
