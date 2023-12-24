@@ -2,17 +2,11 @@
 title: * Resources
 description: How resources work in FancyMenu. Covers resource locations, local resources and web resources.
 published: true
-date: 2023-12-24T02:13:30.590Z
+date: 2023-12-24T02:21:58.237Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:12:20.794Z
 ---
-
-# WIP ----
-
-- Resource Locations explained
-- Web & Local resources explained
-
 
 # Resources
 
@@ -45,7 +39,11 @@ FancyMenu only allows loading local resources stored in `/config/fancymenu/asset
 
 This also makes it really easy to [ship local resource with your modpacks](./modpacks), since most modpack systems (CurseForge, Modrinth, etc.) support shipping mod config folders by default.
 
+# Web Resources
 
+When you need to dynamically change resources without the need to update your modpack, **web** resources would be the best option.
 
+A web resource is basically just the **URL** to a file stored on a server, so let's say `https://example-domain.net/image.png`.
 
-
+Make sure to always use **DIRECT URLs**, which means URLs that end with the resource's **file name and extension**, just like the example URL above.
+Using non-direct URLs hurts performance and is more likely to fail.
