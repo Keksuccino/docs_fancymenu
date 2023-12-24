@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2023-12-24T08:17:21.433Z
+date: 2023-12-24T08:18:48.474Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -138,16 +138,8 @@ FancyMenu also allows you to localize images and basically every element you wan
 To do this, you will need to use **loading requirements**.
 The **Is Game Language** requirement to be more specific.
 
-You can set loading requirements to every element in a layout or even layouts itself.
+The **Is Game Language** requirement allows you to show elements or layouts only if a specific game language is set, so you can, for example, make two Image elements that contains text and localize that image to a version with Japanese text when the language is set to Japanese or a version with English text, if the language is set to English.
 
 To set loading requirements to an **element**, right-click it and click on **Loading Requirements**.
 
 To set loading requirements to **whole layouts**, right-click the layout editor background and click on **Loading Requirements [Layout-Wide]**.
-
-![](https://user-images.githubusercontent.com/35544624/134397174-b086ef00-b526-4c7c-9c5d-674c15cad5db.png)
-
-Click on the first button to **enable** the requirement and then write the correct language code you want to check for in the text box.
-
-If you want to know the correct language code (aka. local code) for a language, check out [this Minecraft wiki page](https://minecraft.fandom.com/wiki/Language).
-
-The **Is Game Language** requirement allows you to show elements or layouts only if a specific game language is set, so you can, for example, make two Image elements that contains text and localize that image to a version with Japanese text when the language is set to Japanese or a version with English text, if the language is set to English.
