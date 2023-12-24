@@ -2,19 +2,16 @@
 title: Open GUIs by Command
 description: How to open Vanilla and Custom GUIs via command.
 published: true
-date: 2023-12-24T08:45:35.900Z
+date: 2023-12-24T08:46:33.400Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:50:27.215Z
 ---
 
-# Open GUIs by Command
+# Opening GUIs by Command
 
 FancyMenu comes with a command that lets you open Vanilla and Custom GUIs via command.
-
 You can even open GUIs for **other players** when installing FancyMenu on both **client and server**.
-
-# Opening GUIs by Command
 
 To open a GUI, just use the command `/openguiscreen <screen_identifier> <target_player>`.
 
