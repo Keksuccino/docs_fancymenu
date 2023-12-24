@@ -2,7 +2,7 @@
 title: * Resources
 description: How resources work in FancyMenu. Covers resource locations, local resources and web resources.
 published: true
-date: 2023-12-24T02:06:52.072Z
+date: 2023-12-24T02:13:30.590Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:12:20.794Z
@@ -36,5 +36,16 @@ So the correct resource location to the `image.png` resource would be:
 
 > **Fun fact**: Since Minecraft has most of its resources stored in `/assets/minecraft/`, the **namespace** of most Minecraft resources is `minecraft`.
 {.is-info}
+
+# Local Resources
+
+The easiest way to load resources is to simply use local files stored on the client (and in most cases shipped with modpacks).
+
+FancyMenu only allows loading local resources stored in `/config/fancymenu/assets/`, so make sure to store all your resources there!
+
+This also makes it really easy to [ship local resource with your modpacks](./modpacks), since most modpack systems (CurseForge, Modrinth, etc.) support shipping mod config folders by default.
+
+
+
 
 
