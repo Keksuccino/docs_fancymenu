@@ -2,7 +2,7 @@
 title: Open GUIs by Command
 description: How to open Vanilla and Custom GUIs via command.
 published: true
-date: 2023-12-24T08:42:16.324Z
+date: 2023-12-24T08:45:35.900Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:50:27.215Z
@@ -28,4 +28,6 @@ To get the **menu identifier of Vanilla/mod GUIs**, open the menu you want to kn
 Leave the `<target_player>` argument empty to open the GUI for your client or choose a player (or multiple players) to open the GUI for.
 Keep in mind that the other player needs to have FancyMenu installed on their client.
 
+# Closing GUIs by Command
 
+In the rare case you need it, there's also a `/closeguiscreen` command that closes the current screen.
