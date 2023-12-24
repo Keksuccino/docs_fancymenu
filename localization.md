@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2023-12-24T08:11:53.381Z
+date: 2023-12-24T08:17:21.433Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -131,19 +131,18 @@ Well, and that's basically it. The placeholder should get replaced with the actu
 
 Keep in mind that the placeholder will always localize the text content to the current game language.
 
-# 2. How to Localize Non-Text Elements
-
-*Ha! Bold of you to assume you can only localize boring text elements!*
+# 2. Non-Text Content (Images, etc.)
 
 FancyMenu also allows you to localize images and basically every element you want.
 
-To do this, you will need to use **visibility requirements**.
-The **Is Game Language** requirement, to be more specific.
+To do this, you will need to use **loading requirements**.
+The **Is Game Language** requirement to be more specific.
 
-Every element in your layout has its own visibility requirements.
-To access the visibility requirements of an element, **right-click** the element and click on **Visibility Requirements**.
+You can set loading requirements to every element in a layout or even layouts itself.
 
-Now use the arrow buttons to switch to the **Is Game Language** requirement.
+To set loading requirements to an **element**, right-click it and click on **Loading Requirements**.
+
+To set loading requirements to **whole layouts**, right-click the layout editor background and click on **Loading Requirements [Layout-Wide]**.
 
 ![](https://user-images.githubusercontent.com/35544624/134397174-b086ef00-b526-4c7c-9c5d-674c15cad5db.png)
 
@@ -151,9 +150,4 @@ Click on the first button to **enable** the requirement and then write the corre
 
 If you want to know the correct language code (aka. local code) for a language, check out [this Minecraft wiki page](https://minecraft.fandom.com/wiki/Language).
 
-You can choose between **Show If** and **Show If Not**. The first one will show the element **if** the game language is set to the choosen language and the second one will show the element if the language is **not** set to the choosen one.
-
-In our case, we just need the **Show If** mode.
-
-Now you can show, for example, a specific image for English and another one for German or other languages.
-That way you can show an element with maybe some localized parts in it (like text) for the correct game language.
+The **Is Game Language** requirement allows you to show elements or layouts only if a specific game language is set, so you can, for example, make two Image elements that contains text and localize that image to a version with Japanese text when the language is set to Japanese or a version with English text, if the language is set to English.
