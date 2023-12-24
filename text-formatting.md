@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T06:07:14.763Z
+date: 2023-12-24T06:14:15.686Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -42,6 +42,44 @@ A valid HEX color for green is `#77fc03`, so to show text in this color, do this
 This will show `this text is green!` as `#77fc03` (green).
 
 Make sure that the HEX color is starting with `#`!
+
+## Text Alignment
+
+You can align text lines by starting a line with the specific alignment formatting code, then nothing else, then the text lines you want to show with that specific alignment and then the alignment code again on an extra line.
+
+All text content is **left-aligned by default**, so there are only formatting codes for **centered** and **right-aligned**.
+
+### Centered
+
+To center text lines, use the formatting code `^^^`.
+
+Example:
+```
+This text is not centered.
+
+^^^
+This text is centered.
+This text is also centered.
+^^^
+
+This text is not centered anymore.
+```
+
+### Right-Aligned
+
+To show text lines as right-aligned, use the formatting code `|||`.
+
+Example:
+```
+This text is not right-aligned.
+
+|||
+This text is right-aligned.
+This text is also right-aligned.
+|||
+
+This text is not right-aligned anymore.
+```
 
 ## Headlines
 
@@ -146,3 +184,5 @@ A line of text containing a single-line code block looks like that:
 Multi-line code blocks wrap multiple lines in one big code block and start with a line that only contains \`\`\` then the text content and then \`\`\` again:
 
 ![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+
+
