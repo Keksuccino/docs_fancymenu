@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T05:25:57.491Z
+date: 2023-12-24T05:35:49.572Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -52,14 +52,33 @@ Example:
 
 ## Bold
 
-Add `**` before and after the text that should be bold.
+Add `**` before and after text to make it look **bold**.
 
 Example:
 `**bold text content**`
 
 ## Italic
 
-Add `_` OR `*` before and after text to make it look _italic_.
+Add `_` OR `*` before and after text to make it look *italic*.
+
+Example:
+`*italic text content*`
+
+## Strikethrough
+
+Add `~` before and after text to make it look ~~strikethrough~~.
+
+Example:
+`~strikethrough text content~`
+
+## Hyperlinks
+
+You can add hyperlinks to text content that open a website when clicked.
+
+Text that should appear as [hyperlink](https://google.com) needs to get wrapped in `[ ]`, followed by the actual link wrapped in `( )`.
+
+So if you want to make `example text content` clickable and open `https://example-website.net`, do this:
+`[example text content](https://example-website.net)`
 
 
 
