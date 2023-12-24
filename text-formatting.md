@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T03:25:19.605Z
+date: 2023-12-24T03:26:22.308Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -22,20 +22,6 @@ For example, to make text look bold, you add `**` before and after the bold text
 **Some bold text that's very bold.**
 
 FancyMenu's Markdown even has some special stuff that makes it even more powerful!
-
-## Headlines
-
-To show **a line of text** as headline (bigger and underlined), add `# ` (very big), `## ` (big) or `### ` (small) before the text line.
-
-Example:
-`## Big Headline`
-
-## Bold
-
-Add `**` before and after the text that should be bold.
-
-Example:
-`**bold text content**`
 
 ## Fonts
 
@@ -57,7 +43,21 @@ This will show `this text is green!` as `#77fc03` (green).
 
 Make sure that the HEX color is starting with `#`!
 
+## Headlines
 
+To show **a line of text** as headline (bigger and underlined), add `# ` (very big), `## ` (big) or `### ` (small) before the text line.
+
+Example:
+`## Big Headline`
+
+## Bold
+
+Add `**` before and after the text that should be bold.
+
+Example:
+`**bold text content**`
+
+## 
 
 
 
