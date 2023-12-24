@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2023-12-24T07:59:54.994Z
+date: 2023-12-24T08:11:53.381Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -21,7 +21,7 @@ The following documentation focuses on how to load localizations via FancyMenu's
 
 The **Localize Text** placeholder works with keys from both FancyMenu's and Minecraft's localization systems.
 
-## Adding Localizations via FancyMenu
+## Adding Text Localizations via FancyMenu
 <br>
 
 ### Localization Directory
@@ -70,10 +70,9 @@ Now you can open and edit `.local` files with your normal text editor.
 ### Localization File Content
 
 You just created your first localization file (**English US**).
-This means, when the game language is set to English US, your text elements will be localized to the content in the `en_us.local` file (and in the case of this specific file, it will also get used if you don't have a localization file for the current game language).
+This means when the game language is set to English US, your text elements will be localized to the content in the `en_us.local` file (and in the case of this specific file, it will also get used if you don't have a localization file for the current game language).
 
-But the file is still empty, so none of your text elements can get any content from this file.
-Lets change this.
+But the file is still empty, so none of your text elements can get any content from it. Lets change this.
 
 Open your `en_us.local` file with a text editor.
 
@@ -93,7 +92,7 @@ Now you have your first (and most important) localization file ready to use.
 
 ### Adding More Languages
 
-But your currently only have one language, so it's not really localization, right?
+Now you have your text content localized to English, but well, it's **only** localized to English, so it's not really localized yet, right?
 
 Well, no problem! Just like you've created and edited your `en_us.local` file, you can now make files for other languages!
 
@@ -108,47 +107,29 @@ You always need to use the **correct language code** for the localization file a
 
 If you want to know the correct language code (aka. local code) for a language, check out [this Minecraft wiki page](https://minecraft.fandom.com/wiki/Language).
 
-Now I will add the exact same values as in the `en_us.local` file to my new `de_de.local` file, but will translate the values to German.
+Now I will add the exact same localizations as in the `en_us.local` file to my new `de_de.local` file, but will translate everything to German.
 
-Make sure to **only translate the value** and **not the key**.
+Make sure to **only translate the value** and **not the key**!
 
 ![](https://user-images.githubusercontent.com/35544624/134391225-0e44e7bc-b8bf-4f98-a5bc-d4564ba92686.png)
 
-Now you have your default `en_us.local` file and one or more other localization files with the same values for other languages.
+Now you have your default `en_us.local` file and one or more other localization files with the same content, but in different languages.
 
 You can edit these files later to add more values or to edit existing ones.
 
-## 1.2. Use Your Localizations
+## Using Text Localizations
 
 Your localization files are ready now, so lets see if they work.
 
-To use your localizations in text elements, you just need to edit the content of a text element (like button labels, normal text, etc.) and click on the little PLUS (+) button at the right side of the text edit box and click on **Advanced -> Localize Text**.
+To use your localizations in text-based elements, you just need to edit the content of a text-based element (like labels of Button elements or Text elements) and click on the **Placeholders** button on the top-right side of the text editor. If there is no such buttton in the editor, then the text content you're editing does **not support** placeholders.
 
-![](https://user-images.githubusercontent.com/35544624/218220965-76b79586-1945-4179-9845-254275f5e6d5.png)
+Search for the **Localize Text** placeholder and click on it to paste it to your text content.
 
-This will add a new placeholder text value to your text edit box.
+Now replace the `localization.key` part of the placeholder with one of your own localization keys.
 
-![](https://user-images.githubusercontent.com/35544624/218220967-a26bfed3-1074-42f2-a94c-e2e69efe7d2e.png)
+Well, and that's basically it. The placeholder should get replaced with the actual localized content when not in the text editor.
 
-Now just replace `localization.key` with one of your own localization keys from your localization files.
-
-![](https://user-images.githubusercontent.com/35544624/218221194-bb686d86-3dc0-4bbd-b142-186ef8c8f4cc.png)
-
-You can also add normal text to the element.
-
-![](https://user-images.githubusercontent.com/35544624/218221289-2c71cb02-42c5-48b7-acc7-089c5fcf8b35.png)
-
-Text elements with placeholder values will look a bit special in the editor, but they will look normal in the actual menu later.
-
-![](https://user-images.githubusercontent.com/35544624/218221392-b89286a8-406a-40e0-a85b-88e9cff48e17.png)
-
-![](https://user-images.githubusercontent.com/35544624/134394901-1a09e605-1498-47f2-b11d-061ba53ebdde.png)
-
-And now you can switch the language to one of your other supported languages and see if the value changes to the new language.
-
-![](https://user-images.githubusercontent.com/35544624/134395496-1e9cb636-d45f-4cc8-9a42-bc56eda5c016.png)
-
-And that's basically it. No other special things to know. Not too difficult, right?
+Keep in mind that the placeholder will always localize the text content to the current game language.
 
 # 2. How to Localize Non-Text Elements
 
