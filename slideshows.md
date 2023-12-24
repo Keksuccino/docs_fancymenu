@@ -2,7 +2,7 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2023-12-24T09:28:40.536Z
+date: 2023-12-24T09:29:35.833Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T09:02:04.247Z
@@ -45,7 +45,7 @@ In my example, `image_1.jpg` would be displayed first and `image_2.jpg` after.
 
 ## Adding Content to the Properties File
 
-At the beginning, you've created an empty `properties.txt` file in your slideshow folder.
+At the beginning you've created an empty `properties.txt` file in your slideshow folder.
 This file needs to be filled with some important stuff now.
 
 Every slideshow properties file should look like this:
