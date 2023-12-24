@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T05:46:33.973Z
+date: 2023-12-24T06:06:15.385Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -94,5 +94,55 @@ So to show the Web resource `https://example-website.net/image.png`, do this:
 Images can also be **hyperlinks** by wrapping the whole image text line in a **hyperlink** like that:
 `[![](https://example-website.net/image.png)](https://example-website.net)`
 
-## 
+## Quote
 
+To format text as a quote, start a text line with `> `.
+This will format all following lines as quote until it finds an **empty** line.
+
+Example:
+```
+This will not look like a quote.
+
+> This will look like a quote.
+This will also look like a quote.
+
+This will not look like a quote anymore.
+```
+
+## Bullet Lists
+
+To show text as a bullet list like that:
+- Entry 1
+- Entry 2
+  - Sub-Entry
+
+You simply need to start a line with `- `.
+
+Example:
+```
+- Entry 1
+- Entry 2
+  - Sub-Entry
+```
+
+## Separation Line
+
+To add a separation line to your text that has the width of a whole text line, simply start a line with `---` and then add nothing else.
+
+It will then look something like that:
+
+---
+
+## Code Blocks
+
+Code blocks can help you display text as **plain text** without Markdown trying to format it, or simply to display text in a code-like style without auto-wrapping text lines.
+
+A single-line code block (between other text) starts and ends with \` , which is actually really difficult to show in a Markdown text..
+
+A line of text containing a single-line code block looks like that:
+
+![single_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/e78fd38b-7b1a-4f00-9b11-797d964b3b43)
+
+Multi-line code blocks wrap multiple lines in one big code block and start with a line that only contains \`\`\` then the text content and then \`\`\` again:
+
+![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
