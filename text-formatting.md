@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T03:20:40.263Z
+date: 2023-12-24T03:25:19.605Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -45,6 +45,18 @@ A valid font included in the base game is `uniform`, so to display text in the `
 `%!!uniform%this is a custom font%!!%`
 
 This will display `this is a custom font` in the `uniform` font.
+
+## Text Color (HEX)
+
+Showing text in a specific HEX color is possible by adding `%<HEX_color>%` before the text and `%#%` after.
+
+A valid HEX color for green is `#77fc03`, so to show text in this color, do this:
+`%#77fc03%this text is green!%#%`
+
+This will show `this text is green!` as `#77fc03` (green).
+
+Make sure that the HEX color is starting with `#`!
+
 
 
 
