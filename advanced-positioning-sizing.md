@@ -2,7 +2,7 @@
 title: Advanced Positioning & Sizing
 description: How to use Advanced Positioning and Sizing of elements.
 published: true
-date: 2023-12-24T08:32:46.076Z
+date: 2023-12-24T08:33:23.512Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:32:46.076Z
@@ -15,7 +15,6 @@ Advanced positoning/sizing allows you to have **full control over the position a
 # Toggling Advanced Positioning/Sizing Mode
 
 To **enable** andvanced positioning/sizing for an element, **right-click** it and click on **Advanced Positioning** or **Advanced Sizing**.
-
 The element will automatically switch to the advanced mode when you set an advanced position or size value.
 
 To **disable** it and switch back to normal positioning/sizing, **clear all positioning/sizing values**.
