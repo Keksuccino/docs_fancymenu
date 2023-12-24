@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T06:06:15.385Z
+date: 2023-12-24T06:07:14.763Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -135,7 +135,7 @@ It will then look something like that:
 
 ## Code Blocks
 
-Code blocks can help you display text as **plain text** without Markdown trying to format it, or simply to display text in a code-like style without auto-wrapping text lines.
+Code blocks can help you display text as `plain text` without Markdown trying to format it, or simply to display text in a code-like style without auto-wrapping of text lines.
 
 A single-line code block (between other text) starts and ends with \` , which is actually really difficult to show in a Markdown text..
 
