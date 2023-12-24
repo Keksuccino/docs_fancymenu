@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2023-12-24T08:18:48.474Z
+date: 2023-12-24T08:18:55.347Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -131,7 +131,7 @@ Well, and that's basically it. The placeholder should get replaced with the actu
 
 Keep in mind that the placeholder will always localize the text content to the current game language.
 
-# 2. Non-Text Content (Images, etc.)
+# Non-Text Content (Images, etc.)
 
 FancyMenu also allows you to localize images and basically every element you want.
 
