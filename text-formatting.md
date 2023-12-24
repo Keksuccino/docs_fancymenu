@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T06:14:15.686Z
+date: 2023-12-24T06:16:44.756Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -131,6 +131,9 @@ So to show the Web resource `https://example-website.net/image.png`, do this:
 
 Images can also be **hyperlinks** by wrapping the whole image text line in a **hyperlink** like that:
 `[![](https://example-website.net/image.png)](https://example-website.net)`
+
+> Local resources need to be in `/config/fancymenu/assets/` !
+{.is-warning}
 
 ## Quote
 
