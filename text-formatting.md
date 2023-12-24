@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T02:58:26.343Z
+date: 2023-12-24T03:20:40.263Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -21,16 +21,34 @@ FancyMenu's **Text elements** have full Markdown support, which means you can fo
 For example, to make text look bold, you add `**` before and after the bold text, so `**Some bold text that's very bold.**` will look like that:
 **Some bold text that's very bold.**
 
+FancyMenu's Markdown even has some special stuff that makes it even more powerful!
+
 ## Headlines
+
 To show **a line of text** as headline (bigger and underlined), add `# ` (very big), `## ` (big) or `### ` (small) before the text line.
 
 Example:
 `## Big Headline`
 
 ## Bold
+
 Add `**` before and after the text that should be bold.
 
 Example:
 `**bold text content**`
 
-## 
+## Fonts
+
+You can show text in a custom font loaded via resource pack by adding `%!!<font_name>%` before the text and `%!!%` after.
+
+A valid font included in the base game is `uniform`, so to display text in the `uniform` font, do this:
+`%!!uniform%this is a custom font%!!%`
+
+This will display `this is a custom font` in the `uniform` font.
+
+
+
+
+
+
+
