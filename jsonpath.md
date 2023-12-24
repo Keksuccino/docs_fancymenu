@@ -1,8 +1,8 @@
 ---
 title: JsonPath
-description: How to use Jayway JsonPath.
+description: How to use Jayway JsonPath in the JSON Parser placeholder.
 published: true
-date: 2023-12-24T01:34:54.059Z
+date: 2023-12-24T01:36:43.194Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T01:34:54.059Z
