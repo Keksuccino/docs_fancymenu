@@ -1,8 +1,8 @@
 ---
-title: Text Formatting
+title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-23T10:10:33.171Z
+date: 2023-12-24T01:40:01.495Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
