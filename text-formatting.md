@@ -2,7 +2,7 @@
 title: * Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T03:26:39.472Z
+date: 2023-12-24T05:24:52.342Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -57,7 +57,9 @@ Add `**` before and after the text that should be bold.
 Example:
 `**bold text content**`
 
-## 
+## Italic
+
+Add `_` OR `*` before and after text to make it look _italic_.
 
 
 
