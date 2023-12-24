@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2023-12-24T08:19:32.505Z
+date: 2023-12-24T08:20:27.143Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -22,9 +22,6 @@ The following documentation focuses on how to load localizations via FancyMenu's
 The **Localize Text** placeholder works with keys from both FancyMenu's and Minecraft's localization systems.
 
 ## Adding Text Localizations
-<br>
-
-### Localization Directory
 
 To add your own localization files, you first need to create a localization directory in `.minecraft/config/fancymenu/custom_locals/`.
 This directory should have a unique name, like your username.
