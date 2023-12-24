@@ -2,7 +2,7 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2023-12-24T09:27:58.489Z
+date: 2023-12-24T09:28:40.536Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T09:02:04.247Z
@@ -15,7 +15,7 @@ FancyMenu allows you to add slideshows and display them in menus and as menu bac
 > **IMPORTANT**: If you're on Windows, don't forget to turn on [file extensions](https://cdn.discordapp.com/attachments/795308330746511390/801561308012347482/unknown.png), because otherwise you will not be able to see important parts of file names later!
 {.is-warning}
 
-# Adding a Slideshow
+# Making a Slideshow
 
 Every slideshow has to be in its own folder **inside** the slideshows directory located at `/config/fancymenu/slideshows/`.
 
