@@ -1,8 +1,8 @@
 ---
-title: Background Panoramas
+title: Panoramas
 description: How to make and use custom background panoramas.
 published: true
-date: 2023-12-24T08:58:58.169Z
+date: 2024-01-20T05:22:55.950Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:58:58.169Z
