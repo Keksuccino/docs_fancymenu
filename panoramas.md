@@ -2,13 +2,13 @@
 title: Panoramas
 description: How to make and use custom background panoramas.
 published: true
-date: 2024-01-20T05:22:55.950Z
+date: 2024-01-20T05:23:12.203Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:58:58.169Z
 ---
 
-# Background Panoramas
+# Cubic Panoramas
 
 FancyMenu supports loading custom 6-image panorama cubes as background for menus.
 
