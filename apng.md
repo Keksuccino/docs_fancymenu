@@ -1,8 +1,8 @@
 ---
-title: APNGs (Animated PNGs)
+title: Animated PNG Images (APNGs)
 description: How to make FancyMenu-compatible APNG images.
 published: true
-date: 2024-01-22T02:45:15.784Z
+date: 2024-01-22T02:45:50.406Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-22T02:45:15.784Z
