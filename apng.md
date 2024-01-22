@@ -2,7 +2,7 @@
 title: Animated PNG Images (APNGs)
 description: How to make FancyMenu-compatible APNG images.
 published: true
-date: 2024-01-22T04:25:33.897Z
+date: 2024-01-22T04:38:35.291Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-22T02:45:15.784Z
@@ -60,3 +60,8 @@ In the save menu, make sure to:
 
 Now you can copy your APNG file to `/config/fancymenu/assets/`. Then you will be able to use it for nearly everything that accepts images.
 
+> It is **really important** that the APNG file name ends with `.apng`!
+> FancyMenu will not be able to identify the image as APNG if it's not ending with `.apng`.
+{.is-warning}
+
+![screentogif_use_apng](https://github.com/Keksuccino/FancyMenu/assets/35544624/2322da62-4013-451e-9a8b-3df0bf92df54)
