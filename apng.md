@@ -2,7 +2,7 @@
 title: Animated PNG Images (APNGs)
 description: How to make FancyMenu-compatible APNG images.
 published: true
-date: 2024-01-22T02:45:50.406Z
+date: 2024-01-22T04:09:41.402Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-22T02:45:15.784Z
@@ -20,4 +20,11 @@ It needs **uncompressed** APNGs that are **not interlaced**.
 You would be surprised how difficult it is to find a good APNG editor, especially with options to disable compression and interlacing.
 
 A great choice for an editor is [ScreenToGif](https://www.screentogif.com/), which is actually a tool to record GIFs and APNGs of your screen, but it's also great to make normal APNGs by skipping the record part and directly loading into the editor!
+
+## Open The Editor
+
+The first thing you see after opening [ScreenToGif](https://www.screentogif.com/) is this screen. Click on **Editor** here.
+
+![screentogif_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/a8d34313-b841-4fb6-bf3a-ff02c39792cb)
+
 
