@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2024-01-25T12:31:49.300Z
+date: 2024-01-25T12:34:49.242Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T04:18:27.484Z
@@ -12,7 +12,7 @@ dateCreated: 2023-12-21T04:18:27.484Z
 
 Just a little reminder that this is the documentation for **FancyMenu v3**.
 
-If you're looking for the v2 documentation, please go to [the FMv2 wiki](https://fm.keksuccino.dev) instead.
+If you're looking for the v2 documentation, please go to [the FMv2 documentation](https://fm.keksuccino.dev) instead.
 
 
 # Getting Started
