@@ -2,7 +2,7 @@
 title: Custom GUIs
 description: How to add a new GUI screen to the game.
 published: true
-date: 2024-01-30T08:26:08.730Z
+date: 2024-01-30T08:26:46.175Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-30T08:26:08.730Z
@@ -43,5 +43,5 @@ The last part is to give normal users access to your GUI. The easiest way to do 
 
 # Opening the GUI via Command
 
-You can also open your custom GUI via an [in-game command](./commands).
+You can also open your custom GUI via an [in-game command](./commands#openguiscreen).
 This even allows you to remotely open the GUI for other users!
