@@ -2,7 +2,7 @@
 title: Panoramas
 description: How to make and use custom background panoramas.
 published: true
-date: 2024-01-20T05:23:12.203Z
+date: 2024-01-31T02:50:18.512Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:58:58.169Z
@@ -26,7 +26,7 @@ After watching the video, you will notice that creating these panoramas can be a
 To save you some time, maybe think about using a mod that creates them for you.
 You can find some of them by searching for `minecraft panorama mod`, but one of them is [Panoramica](https://www.curseforge.com/minecraft/mc-mods/panoramica) (made by me).
 
-# Preparing The Panorama
+# Preparing the Panorama
 
 After you got your 6 panorama images, you'll need to move them to the right place!
 
@@ -101,12 +101,12 @@ The last step is **optional** and can be skipped if you don't want an overlay ov
 If you want to add a vignette or other types of overlays to your panorama, you can add one named 'overlay.png'.
 Keep in mind that only PNG is supported for the overlay and that the file name always needs to be 'overlay.png'!
 
-### Checking Everything a Last Time
+### Checking Everything Again
 
 You should now have a folder located at `.minecraft/config/fancymenu/panoramas`, containing a `properties.txt` file, another folder named `panorama` and maybe an overlay named `overlay.png`.
 
 ![2](https://user-images.githubusercontent.com/35544624/100791920-29340080-341a-11eb-8e26-98a7fd2ad7eb.png)
 
-# Using The Panorama
+# Using the Panorama
 
 After (re)starting the game or reloading FancyMenu via **Customization -> Reload FancyMenu**, you should now be able to set your panorama as menu background. To do this, right-click the layout editor background and click on **Menu Background**.
