@@ -2,7 +2,7 @@
 title: Randomize Layouts
 description: How to randomize full layouts or parts of it.
 published: true
-date: 2024-02-08T05:42:41.613Z
+date: 2024-02-08T05:49:43.241Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-08T05:19:14.757Z
@@ -46,3 +46,13 @@ If you only want the system to pick a random layout of the group **once per game
 <br>
 
 <img width="305" alt="Screenshot_9" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/355e49eb-73b0-4646-aeb2-c6f113f6ce3b">
+
+## Example Scenario
+
+Lets say you want to randomize the background of the Title Screen.
+
+To do that you need to make **one layout per background** and _**ONLY**_ change the background for these layouts and enable the random mode with correct random group identifier.
+
+In this example we use the random group identifier **10**. This identifier needs to get set for every layout of this random layout group.
+
+The easiest way to do that is by preparing a layout with the correct random group identifier and then just use **Save As**. Change the background every time you save the layout under a new name, then you will end up with a bunch of layouts with different backgrounds and one of these layouts will get picked every time you open the screen or once per game session.
