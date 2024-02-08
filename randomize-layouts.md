@@ -2,7 +2,7 @@
 title: Randomize Layouts
 description: How to randomize full layouts or parts of it.
 published: true
-date: 2024-02-08T05:52:58.525Z
+date: 2024-02-08T05:53:37.409Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-08T05:19:14.757Z
@@ -20,7 +20,7 @@ There's a feature in FancyMenu that allows you to make a group of layouts and th
 
 ## Random Mode
 
-To randomize layouts you need to enable the **Random Mode** for every layout that should be a possible pick for the randomization. To do that, **right-click** the editor background and search for the **Random Mode** entry.
+To randomize layouts you need to enable the **Random Mode** for every layout that should be a possible pick for the randomization. To do that, **right-click** the **editor background** and search for the **Random Mode** entry.
 
 <br>
 
