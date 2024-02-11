@@ -2,7 +2,7 @@
 title: Animated PNGs (APNGs)
 description: How to make FancyMenu-compatible APNG images.
 published: true
-date: 2024-01-22T04:48:26.907Z
+date: 2024-02-11T07:29:09.139Z
 tags: 
 editor: markdown
 dateCreated: 2024-01-22T02:45:15.784Z
@@ -12,7 +12,7 @@ dateCreated: 2024-01-22T02:45:15.784Z
 
 APNGs are an animated version of PNG images, making it possible to have the same features as with a GIF, but in full, lossless PNG quality!
 
-FancyMenu has built-in APNG support, but it's a bit picky about it.
+FancyMenu has built-in APNG support, but it's a bit picky about what APNGs are supported.
 It needs **uncompressed** APNGs that are **not interlaced**.
 
 # Making APNG Animations
