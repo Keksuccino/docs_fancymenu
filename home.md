@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2024-02-15T01:48:08.361Z
+date: 2024-02-15T02:40:27.627Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T04:18:27.484Z
@@ -71,7 +71,7 @@ It doesn't matter if the element is a custom element added by you or a Vanilla e
 
 Every element in FancyMenu is connected to an **anchor point**.
 
-Anchor points are necessary for calculating an element's position and if used correctly, they prevent elements from overlapping each other, going out-of-screen or just move to the wrong place when resizing the window.
+Anchor points are necessary for calculating an element's position and if used correctly, they prevent elements from overlapping each other, going out-of-screen or move to the wrong place when resizing the window.
 
 They are the origin point from where the element's position is getting calculated.
 
