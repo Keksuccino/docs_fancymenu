@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-02-17T03:40:33.362Z
+date: 2024-02-17T03:56:59.377Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -52,6 +52,7 @@ Thank you very much!**
 - [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 - [BetterFPS](https://www.curseforge.com/minecraft/mc-mods/betterfps) (Buttons and menus of this mod aren't customizable)
 - [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Custom buttons added to menus with FancyMenu aren't clickable via Controllable's "Virtual Mouse" feature)
+- [Debugify](https://www.curseforge.com/minecraft/mc-mods/debugify) (Only incompatible in 1.18.2. Can be fixed by using [Modern Debugify](https://www.curseforge.com/minecraft/mc-mods/modern-debugify) instead.)
 
 ## Fabric Mods
 
