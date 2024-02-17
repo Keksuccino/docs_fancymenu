@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2023-12-21T09:38:48.096Z
+date: 2024-02-17T03:40:33.362Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -21,7 +21,7 @@ Thank you very much!**
 
 ## Forge Mods
 
-- OptiFine (works for the most part, but you should use [these alternatives](https://fm.keksuccino.dev/en/wiki/general/verified/optifine-alternatives) instead)
+- OptiFine (works for the most part, but you should use [these alternatives](./optifine-alternatives) instead)
 - [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
 - [Pack Menu](https://www.curseforge.com/minecraft/mc-mods/packmenu)
 - [Main Menu Scale Mod](https://www.curseforge.com/minecraft/mc-mods/main-menu-scale)
