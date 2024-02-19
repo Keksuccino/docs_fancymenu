@@ -2,7 +2,7 @@
 title: OptiFine Alternatives
 description: Alternatives to OptiFine.
 published: true
-date: 2024-02-19T04:33:17.564Z
+date: 2024-02-19T04:43:14.612Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T04:00:02.270Z
@@ -18,11 +18,13 @@ They are much more stable and don't break everything.
 
 ## Forge
 
-- [Rubidium (Performance)](https://www.curseforge.com/minecraft/mc-mods/rubidium)
-- [Oculus (Shaders)](https://www.curseforge.com/minecraft/mc-mods/oculus)
+- [Rubidium](https://www.curseforge.com/minecraft/mc-mods/rubidium) (Performance)
+- [Oculus](https://www.curseforge.com/minecraft/mc-mods/oculus) (Shaders)
+- [Capes](https://www.curseforge.com/minecraft/mc-mods/capes) (Lets you use OptiFine capes without having it installed)
 
 ## Fabric
 
-- [Sodium (Performance)](https://www.curseforge.com/minecraft/mc-mods/sodium)
-- [Lithium (More Performance)](https://modrinth.com/mod/lithium)
-- [Iris (Shaders)](https://www.curseforge.com/minecraft/mc-mods/irisshaders)
+- [Sodium](https://www.curseforge.com/minecraft/mc-mods/sodium) (Performance)
+- [Lithium](https://modrinth.com/mod/lithium) (More Performance)
+- [Iris](https://www.curseforge.com/minecraft/mc-mods/irisshaders) (Shaders)
+- [Capes](https://www.curseforge.com/minecraft/mc-mods/capes) (Lets you use OptiFine capes without having it installed)
