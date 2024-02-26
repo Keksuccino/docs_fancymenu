@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T09:50:29.666Z
+date: 2024-02-26T09:56:51.707Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -132,3 +132,8 @@ After that I added the cycle button and made it cycle the variable value from `1
 
 <br>
 <img width="609" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/9f2052b1-8d3d-4a35-884a-4a234e63d5e5">
+
+And that's it. Now save the layout, leave the editor and check if the cycle button is working correctly.
+
+<br>
+<img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/430c2369-a43f-4d0f-9203-3fdb1b9eae2c">
