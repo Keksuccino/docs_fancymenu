@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T09:40:23.289Z
+date: 2024-02-26T09:50:29.666Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -128,4 +128,7 @@ I added 3 images. The first image is visible when the variable value is `1`, the
 <br>
 <img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/731c13cf-6f81-470b-8e1b-cba264ffbe05">
 
-After that I added the cycle button and made it cycle the variable values 
+After that I added the cycle button and made it cycle the variable value from `1` to `2` to `3` to `1`.
+
+<br>
+<img width="609" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/9f2052b1-8d3d-4a35-884a-4a234e63d5e5">
