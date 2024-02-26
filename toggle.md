@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T05:15:29.222Z
+date: 2024-02-26T05:52:56.310Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -52,6 +52,36 @@ Now we need to add a new Button element.
 After adding, right-click it and click on **Edit Action Script**.
 This will open the button's Manage Action Script screen.
 
+Click on **Add IF Statement**, add the **Is Variable Value** requirement to it and set the requirement's mode to **OPPOSITE**.
 
+<br>
+<img width="520" alt="Screenshot_5" src="https://gist.github.com/assets/35544624/a024ea21-2244-4ca6-b44b-1a80f7936b8f">
 
+Now click on **Edit Requirement Value**, just like you did with the element before and just input the exact same variable name and value to check for.
+
+<br>
+<img width="500" alt="Screenshot_2" src="https://gist.github.com/assets/35544624/a1f356e9-7f96-4d8b-87b0-51f05898409a">
+
+Because we set the requirement mode to **OPPOSITE**, it will now check if the variable value is NOT `true`, which is exactly what we want.
+
+Back in the Edit Action Script screen you will now see the IF statement we just added.
+
+<br>
+<img width="495" alt="Screenshot_6" src="https://gist.github.com/assets/35544624/6ac8444c-ca15-43ff-a633-df63e76e7433">
+
+Now click on **Add Action**, search for the **Set Variable Value** action, select it and then click on **Edit Action Value**.
+
+<br>
+<img width="494" alt="Screenshot_7" src="https://gist.github.com/assets/35544624/8568e539-b4d0-49bd-89c4-4659ee71754c">
+
+As action value, input your variable name first and the value you want to set it to after. Separate name and value by `:`.
+In this case we want to set our value to `true`, because this action later gets executed when the value is NOT `true`.
+
+<br>
+<img width="496" alt="Screenshot_8" src="https://gist.github.com/assets/35544624/fab440ad-b335-4751-9651-4bb0b65bc968">
+
+Now append the action to the IF statement by grabbing and moving it over the IF statement, so it only gets executed when our variable's value is NOT `true`.
+
+<br>
+<img width="496" alt="Screenshot_8" src="https://gist.github.com/assets/35544624/d1ac3ea9-44d7-4ad6-a4b2-455b21f6d1c4">
 
