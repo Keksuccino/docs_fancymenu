@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T07:58:40.033Z
+date: 2024-02-26T08:33:06.081Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -31,7 +31,7 @@ After creating the variable, set its value to `true`.
 
 ## The Element
 
-First lets add the element you want to toggle on/off.
+The next step is to add the element you want to toggle on/off.
 
 <br>
 <img width="270" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/317460fc-310b-4941-ab9a-b56490c5ebb9">
