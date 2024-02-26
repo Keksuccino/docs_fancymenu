@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T07:33:24.733Z
+date: 2024-02-26T07:58:40.033Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -17,6 +17,17 @@ Well, that's no problem! You can make it so your users can toggle on/off parts o
 # Toggle On/Off
 
 To toggle, for example, the visibility of an element by clicking a button, you just need to use a variable that gets set on button click and the element you want to toggle needs to check in its loading requirements if said variable has the correct value.
+
+## The Variable
+
+The first thing is creating the variable you will use to store the visibility state of the element you want to toggle.
+
+To add a new variable, navigate to the **Customization** tab in the menu bar and click on **Variables -> Manage Variables**, then add a new variable with a **unique** name! Make sure to use a really **unique** name that isn't used already.
+
+After creating the variable, set its value to `true`.
+
+<br>
+<img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/1e29be13-e601-4669-8fa2-d78db945b07f">
 
 ## The Element
 
