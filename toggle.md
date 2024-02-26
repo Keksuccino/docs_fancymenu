@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T05:52:56.310Z
+date: 2024-02-26T07:33:24.733Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -84,4 +84,27 @@ Now append the action to the IF statement by grabbing and moving it over the IF 
 
 <br>
 <img width="496" alt="Screenshot_8" src="https://gist.github.com/assets/35544624/d1ac3ea9-44d7-4ad6-a4b2-455b21f6d1c4">
+
+After doing that, select the IF statement and then click on **Append ELSE Statement**.
+
+Now add another **Set Variable Value** action, but instead of setting the variable value to `true`, set it to `false`.
+
+<br>
+<img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/d05400dc-b9b7-4c1a-8657-9e34939ed599">
+
+Now append the second action to the ELSE statement, so it gets executed if the variable value IS `true`.
+
+<br>
+<img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/3191a1cc-c5c2-4cf1-a620-23bdbe639bf2">
+
+And that's it! Feels like lots of steps the first time, but it's actually a pretty easy and quick thing to do once you got used to it.
+
+Now you can save your layout, leave the editor and press the button to see if it works!
+
+<br>
+<img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/e9a87aca-ba0f-4ce6-a39e-1e1d3796c9e3">
+
+Feel free to use the same variable for other elements, so you **toggle multiple elements at once** by pressing the button.
+
+You can even toggle whole layouts by using the **Layout-Wide Loading Requirements**. To configure layout-wide requirements, right-click the editor background. Just make sure to add the button to another layout, not the one you want to toggle.
 
