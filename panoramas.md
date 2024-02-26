@@ -2,7 +2,7 @@
 title: Panoramas
 description: How to make and use custom background panoramas.
 published: true
-date: 2024-02-26T11:15:12.338Z
+date: 2024-02-26T11:15:30.752Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:58:58.169Z
@@ -82,7 +82,7 @@ Using too big or small values here will break the panorama. Just play around wit
 The vertical angle at which the panorama is viewed.
 The default angle is `25.0`.
 
-### start_rotation
+#### start_rotation
 The rotation angle (horizontal) at which the panorama should start. Value between 0 and 360.
 
 ### Panorama Image Folder
