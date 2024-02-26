@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T09:13:40.675Z
+date: 2024-02-26T09:31:51.226Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -121,5 +121,9 @@ You can even toggle whole layouts by using the **Layout-Wide Loading Requirement
 
 Other than toggling between two values, cycling through values needs the action script to be able to cycle between more than two values.
 
-The action script logic is really similar to the toggle logic, so I will keep it really short here.
+The action script logic is really similar to the one used for toggling, so I will keep it really short here. Make sure to also read the part about toggling.
 
+I added 3 images. The first image is visible when the variable value is `1`, the second one if the value is `2` and the third one if the value is `3`.
+
+<br>
+<img width="494" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/731c13cf-6f81-470b-8e1b-cba264ffbe05">
