@@ -2,7 +2,7 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T08:38:57.455Z
+date: 2024-02-26T09:13:40.675Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-26T05:08:33.154Z
@@ -116,4 +116,10 @@ Now you can save your layout, leave the editor and press the button to see if it
 Feel free to use the same variable for other elements, so you **toggle multiple elements at once** by pressing the button.
 
 You can even toggle whole layouts by using the **Layout-Wide Loading Requirements**. To configure layout-wide requirements, right-click the editor background. Just make sure to add the button to another layout, not the one you want to toggle.
+
+# Cycle Through
+
+Other than toggling between two values, cycling through values needs the action script to be able to cycle between more than two values.
+
+The action script logic is really similar to the toggle logic, so I will keep it really short here.
 
