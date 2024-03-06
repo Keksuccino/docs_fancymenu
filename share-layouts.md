@@ -1,8 +1,8 @@
 ---
-title: Share Layouts
+title: Share/Export Layouts
 description: How to share layouts with others.
 published: true
-date: 2024-02-25T08:48:10.310Z
+date: 2024-03-06T02:21:07.983Z
 tags: import, export, setup, design, menu
 editor: markdown
 dateCreated: 2024-02-25T08:39:23.269Z
