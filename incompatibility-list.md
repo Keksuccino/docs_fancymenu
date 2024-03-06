@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-02-19T11:32:17.773Z
+date: 2024-03-06T04:07:09.872Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -54,6 +54,7 @@ Thank you very much!**
 - [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Custom buttons added to menus with FancyMenu aren't clickable via Controllable's "Virtual Mouse" feature)
 - [Debugify](https://www.curseforge.com/minecraft/mc-mods/debugify) (Only incompatible in 1.18.2. Can be fixed by using [Modern Debugify](https://www.curseforge.com/minecraft/mc-mods/modern-debugify) instead.)
 - [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Crash on startup)
+- [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Crash)
 
 ## Fabric Mods
 
@@ -74,6 +75,7 @@ Thank you very much!**
 - [Replay Mod](https://www.replaymod.com/download/) (Works when setting `mainMenuButton` from `DEFAULT` to `BIG` in `.minecraft/config/replaymod.json`)
 - [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Seems to break animations, makes backgrounds translucent and probably more)
 - [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
+- [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Crash)
 
 ----------
 
