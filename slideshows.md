@@ -2,7 +2,7 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2023-12-24T09:29:35.833Z
+date: 2024-04-08T04:11:17.568Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T09:02:04.247Z
@@ -61,6 +61,7 @@ slideshow-meta {
    y = 0
    duration = 5.0
    fadespeed = 12.0
+   randomize = false
 }
 ```
 Only the variables inside the `slideshow-meta` section can be changed!
@@ -90,6 +91,10 @@ Suppports decimal values!
 The speed of the fade animation when switching to the next image.
 This value is a speed multiplicator. For example, `1.0` is default speed, `2.0` doubles the speed and `0.5` will make it half as fast as default.
 Negative values are not supported.
+
+### randomize
+
+If the slideshow images should play in random order (`true`) or not (`false`).
 
 # Using the Slideshow
 
