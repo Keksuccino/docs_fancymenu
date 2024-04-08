@@ -2,7 +2,7 @@
 title: Menu Background Music
 description: How to customize the music played in menus.
 published: true
-date: 2024-03-07T04:34:08.380Z
+date: 2024-04-08T05:57:30.700Z
 tags: 
 editor: markdown
 dateCreated: 2024-03-07T04:34:08.380Z
@@ -16,13 +16,27 @@ It's possible to replace Minecraft's default menu background music with custom t
 
 The first thing you need to do is disabling Minecraft's default menu music, so it doesn't overlap with the custom tracks we want to play in menus.
 
-To do that, go to FancyMenu's menu bar at the top of menus and click on **Customization -> Settings** and disable **Play Vanilla Menu in Music**.
+## Globally
+
+If you want no music in menus at all, this is the easiest way to do that.
+
+To globally disable the Vanilla menu music, go to FancyMenu's menu bar at the top of screens and click on **Customization -> Settings** and disable **Play Vanilla Menu in Music**.
 
 <br>
 <img width="600" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/d829a35e-f23f-42a9-ad79-193de73b499b">
 
 > Disabling Minecraft's default music will disable it in every screen, not just the current one.
 {.is-info}
+
+## Per Screen
+
+If you want more control over where Vanilla menus music should play, you should use the **Music Controller** element. This element gets added to layouts like every other element by **right-clicking the editor background** and then clicking on **New Element -> Music Controller**.
+
+By **right-clicking** the element you can customize what types of music that plays in menus should be disabled (normal menu music and world music that keeps playing in screens that don't pause the game, like the Inventory screen).
+
+> This element supports **loading requirements**, so you have even more control over when Vanilla music should play!
+{.is-info}
+
 
 # Adding Custom Music
 
