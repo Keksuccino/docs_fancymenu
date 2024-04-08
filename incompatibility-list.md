@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-04-06T08:47:59.524Z
+date: 2024-04-08T05:37:39.817Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -76,6 +76,7 @@ Thank you very much!**
 - [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Seems to break animations, makes backgrounds translucent and probably more)
 - [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
+- [DungeonZ](https://www.curseforge.com/minecraft/mc-mods/dungeonz) (Crash)
 
 ----------
 
