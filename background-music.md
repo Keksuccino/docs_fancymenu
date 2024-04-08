@@ -2,7 +2,7 @@
 title: Menu Background Music
 description: How to customize the music played in menus.
 published: true
-date: 2024-04-08T05:57:30.700Z
+date: 2024-04-08T06:00:11.024Z
 tags: 
 editor: markdown
 dateCreated: 2024-03-07T04:34:08.380Z
@@ -10,11 +10,11 @@ dateCreated: 2024-03-07T04:34:08.380Z
 
 # Menu Background Music
 
-It's possible to replace Minecraft's default menu background music with custom tracks.
+It's possible to replace Minecraft's default menu background music with custom tracks or just disable the normal Vanilla music that plays in menus.
 
 # Disabling Vanilla Music
 
-The first thing you need to do is disabling Minecraft's default menu music, so it doesn't overlap with the custom tracks we want to play in menus.
+FancyMenu has multiple ways to disable Vanilla menu music. This can be useful if you plan to play other audio tracks in screens or if you just don't want music to play at all in some screens.
 
 ## Globally
 
