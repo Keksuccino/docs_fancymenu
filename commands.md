@@ -2,7 +2,7 @@
 title: Commands
 description: FancyMenu's commands and how to use them.
 published: true
-date: 2023-12-24T08:44:25.178Z
+date: 2024-04-10T07:58:29.650Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:44:25.178Z
@@ -19,6 +19,8 @@ It can even remotely open GUIs for other players when FancyMenu is installed on 
 
 For a more in-detail description of this command, take a look at the [Open GUIs by Command](/opengui-command) page.
 
+**Usage:** `/openguiscreen <screen_identifier> <target_player>`
+
 ## /closeguiscreen
 
 The `/closeguiscreen` command lets you close the current GUI.
@@ -29,11 +31,15 @@ Well yes, but actually no.
 This command is useful for when using mods that trigger commands on specific actions.
 So yes, this command is absolutely useless when using it without other mods, but can be really helpful if you have the right mods installed!
 
-**Usage:** `/closeguiscreen`
+**Usage:** `/closeguiscreen <target_player>`
 
 ## /fmvariable
 
 The `/fmvariable` command allows you to set and get FancyMenu variables.
+
+To execute this command as another player on servers, you can use the `/execute as` Vanilla command.
+So lets say you want to execute the `/fmvariable` command as the player `ExamplePlayer`. In that case you would type:
+`/execute as ExamplePlayer run fmvariable...`.
 
 **Usage:** `/fmvariable <get_or_set> <variable_name> [<set_to_value>] [<send_chat_feedback>]`
 
