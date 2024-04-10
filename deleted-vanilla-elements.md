@@ -1,8 +1,8 @@
 ---
-title: Bring Back Deleted Vanilla Elements
+title: Recover Deleted Vanilla Elements
 description: How to make deleted/hidden Vanilla elements (buttons, sliders, etc.) visible again.
 published: true
-date: 2024-04-10T07:49:18.855Z
+date: 2024-04-10T07:49:54.771Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-10T07:49:18.855Z
