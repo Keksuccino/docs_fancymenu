@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-01-25T07:06:09.998Z
+date: 2024-04-10T07:36:20.872Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -28,6 +28,8 @@ But please keep in mind that old legacy setups made in FancyMenu v2 (even if con
 # Disabling the Menu Bar
 
 You surely don't want to keep FancyMenu's menu bar visible in your modpack, so you should disable it. This can be done directly in FancyMenu via **Customization -> Hide Menu Bar** or manually by changing `show_customization_overlay` to `false` in FancyMenu's `/config/fancymenu/options.txt` file.
+
+The menu bar will then not appear when the modpack user starts the modpack for the first time.
 
 ![disable_menu_bar](https://github.com/Keksuccino/FancyMenu/assets/35544624/9d7ef973-e583-4c2d-aed3-8be40b53a94f)
 
