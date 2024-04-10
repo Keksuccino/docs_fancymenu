@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-04-08T05:37:39.817Z
+date: 2024-04-10T00:05:31.930Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -55,6 +55,7 @@ Thank you very much!**
 - [Debugify](https://www.curseforge.com/minecraft/mc-mods/debugify) (Only incompatible in 1.18.2. Can be fixed by using [Modern Debugify](https://www.curseforge.com/minecraft/mc-mods/modern-debugify) instead.)
 - [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Crash on startup)
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
+- [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
 
 ## Fabric Mods
 
@@ -77,6 +78,7 @@ Thank you very much!**
 - [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
 - [DungeonZ](https://www.curseforge.com/minecraft/mc-mods/dungeonz) (Crash)
+- [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
 
 ----------
 
