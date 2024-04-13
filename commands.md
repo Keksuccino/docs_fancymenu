@@ -2,7 +2,7 @@
 title: Commands
 description: FancyMenu's commands and how to use them.
 published: true
-date: 2024-04-10T07:58:29.650Z
+date: 2024-04-13T02:04:41.590Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T08:44:25.178Z
@@ -11,6 +11,9 @@ dateCreated: 2023-12-24T08:44:25.178Z
 # Commands
 
 FancyMenu adds some commands to the game that can be very useful when combining them with other mods like FTB Quests.
+
+> FancyMenu needs to be on the **SERVER** (and client) to use commands in Multiplayer!
+{.is-warning}
 
 ## /openguiscreen
 
