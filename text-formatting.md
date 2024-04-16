@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2023-12-24T06:37:29.487Z
+date: 2024-04-16T09:33:06.434Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -204,7 +204,7 @@ Minecraft's text component system is pretty powerful for **single-line** text co
 In Vanilla Minecraft you can use it in the `/tellraw` and `/title` commands (and probably other places).
 It is formatted text serialized to JSON, so you can add formatting attributes to text content.
 
-To learn more about text components in detail, please take a look at [this Minecraft wiki page]().
+To learn more about text components in detail, please take a look at [this Minecraft wiki page](https://minecraft.wiki/w/Formatting_codes).
 
 To make FancyMenu detect a button label as **text component**, set nothing but the serialized component text as label, just like that:
 `{"text":"Button Label Text","font":"uniform"}`
