@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2024-02-15T02:40:27.627Z
+date: 2024-04-21T04:33:35.370Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T04:18:27.484Z
@@ -51,11 +51,19 @@ This will open the **layout editor** where you can add elements to the layout an
 
 ![new_layout_current](https://github.com/Keksuccino/FancyMenu/assets/35544624/065c3dd7-b3df-4501-b721-118ed819a93f)
 
+## Editing the Layout
+
+Most customization options can be accessed by **right-clicking the editor background**.
+Doing that will open a context menu with lots of options, like customizing the **menu backround** or **adding elements** to the layout.
+
+<br>
+<img width="300" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/853c8084-eaf3-42d3-875e-c386f0eebdee">
+
 ## Adding Elements to Layouts
 
 To add a new element to your layout, **right-click** the background of the editor.
 
-This will open a context menu with lots of options, but for now you're just interested in the last one, so you click on **New Element** and choose one of the many types of elements.
+In the context menu that opens, click on **New Element** and choose one of the many types of elements.
 
 ![add_element](https://github.com/Keksuccino/FancyMenu/assets/35544624/865a66c5-76a6-404d-b746-d57802b1c12f)
 
