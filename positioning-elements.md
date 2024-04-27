@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-04-20T09:49:13.361Z
+date: 2024-04-27T08:44:17.439Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
@@ -23,7 +23,7 @@ You can see the anchor point an element is connected to when dragging it. This w
 
 ![anchor_points](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
 
-# Move Elements with Vanilla Elements
+# Anchor Elements to Vanilla Elements
 
 **Elements itself can also work as an anchor point for other elements!** Just hover an element while dragging another and the dragged element's anchor point will get changed to the hovered element.
 
