@@ -2,7 +2,7 @@
 title: Animations
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T08:49:37.486Z
+date: 2024-05-04T09:11:01.221Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -39,4 +39,59 @@ Now you should have a folder called `fancymenu_animation` and in this folder are
 
 <br>
 <img width="700" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/e29f6666-ee4a-4d79-b7e2-1b640f40ce78">
+
+## The Metadata JSON
+
+This is the file that tells FancyMenu how it should handle your FMA texture.
+It contains information such as the frame times (how long a frame is visible) and the loop count.
+
+Please open the `metadata.json` file with a text editor.
+
+Copy this text to the file:
+
+```json
+{
+  "loop_count": 0,
+  "frame_time": 41,
+  "frame_time_intro": 41,
+  "custom_frame_times": {
+  },
+  "custom_frame_times_intro": {
+  }
+}
+```
+
+This is the basic template of how the file should look like.
+Now you can customize it to your liking.
+
+### `loop_count`
+
+This is to control how many times the texture should loop (restart it's animation).
+
+Setting this to `0` means it will loop indefinitely. It will *never stop*.
+
+Everything bigger than `0` means how many times the texture plays. So for example, setting the value to `1` means the texture will only play once, then stops at the last frame, `2` means it will play two times, then stop at the last frame *and so on*.
+
+### `frame_time`
+
+This is the universal frame time in **milliseconds** for the frames of the animated texture.
+Frame time means how long the frame is visible before the animation goes to the next frame.
+
+### `frame_time_intro`
+
+This is basically the same as `frame_time`, but for the **intro** frames of your animated texture.
+You will learn more about this **optional** feature later.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
