@@ -1,8 +1,8 @@
 ---
-title: Animations
+title: Animations (FMA)
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T10:05:06.730Z
+date: 2024-05-04T10:07:09.225Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
