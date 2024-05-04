@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-04-10T07:36:56.929Z
+date: 2024-05-04T10:29:39.822Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -25,11 +25,13 @@ That's it. Nothing more you need to do.
 
 But please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside of FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets.
 
-# Disabling the Menu Bar
+# Disabling the Menu Bar and Hotkeys
 
-You surely don't want to keep FancyMenu's menu bar visible in your modpack, so you should disable it. This can be done directly in FancyMenu via **Customization -> Hide Menu Bar** or manually by changing `show_customization_overlay` to `false` in FancyMenu's `/config/fancymenu/options.txt` file.
+You surely don't want to keep FancyMenu's menu bar visible in your modpack, so you should disable it. But since people can still press the hotkey to make it visible again, let's do something a little bit more *aggressive*.
 
-The menu bar will then not appear when the modpack user starts the modpack for the first time, as long as you include the `options.txt` file in the modpack along with all other files of the `fancymenu` folder.
+Navigate to `/config/fancymenu/options.txt` and open the file in a text editor.
 
-![disable_menu_bar](https://github.com/Keksuccino/FancyMenu/assets/35544624/9d7ef973-e583-4c2d-aed3-8be40b53a94f)
+Now set `modpack_mode` to `true` and save the file.
+
+This will completely disable all overlays and hotkeys, so you need to manually set this config option back to `false` to be able to edit your layouts again.
 
