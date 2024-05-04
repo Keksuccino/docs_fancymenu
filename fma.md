@@ -2,7 +2,7 @@
 title: Animations
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T09:11:01.221Z
+date: 2024-05-04T09:20:25.128Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -80,14 +80,40 @@ Frame time means how long the frame is visible before the animation goes to the 
 ### `frame_time_intro`
 
 This is basically the same as `frame_time`, but for the **intro** frames of your animated texture.
-You will learn more about this **optional** feature later.
+Intro frames are **optional** and you will learn more about them later.
 
+### `custom_frame_times`
 
+This is **optional** and can be used for overriding the frame time for specific (non-intro) frames.
+For example, you want all your frames to show for `41` milliseconds, so you set `frame_time` to `41`, but you want the first and second frames to show for `5000` milliseconds.
 
+In that case, you would do this:
 
+```json
+{
+  "loop_count": 0,
+  "frame_time": 41,
+  "frame_time_intro": 41,
+  "custom_frame_times": {
+    0: 5000,
+    1: 5000
+  },
+  "custom_frame_times_intro": {
+  }
+}
+```
 
+Frames are zero-based, which means the first frame of the animation is `0`, the second one is `1` and so on.
 
+There needs to be a **comma** at the end of every custom frame time entry, **except** of the last one!
 
+### `custom_frame_times_intro`
+
+This is exactly the same as `custom_frame_times`, but in this case for the **intro** frames. Intro frames are **optional** and you will learn more about them later.
+
+That's it for the `metadata.json` file. Save it now and close the text editor.
+
+## The Frames
 
 
 
