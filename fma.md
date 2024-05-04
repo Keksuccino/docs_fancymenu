@@ -2,7 +2,7 @@
 title: Animations
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T09:46:03.334Z
+date: 2024-05-04T09:50:35.393Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -154,4 +154,13 @@ On Windows, the easiest way to pack your FMA content to a ZIP file is by selecti
 <br>
 <img width="752" alt="Screenshot_6" src="https://gist.github.com/assets/35544624/5b7e7670-5403-410e-943c-283bfe6d585c">
 
+Now there should be a new ZIP file in the `fancymenu_animation` folder called `metadata.zip`, `frames.zip` or `intro_frames.zip`.
 
+<br>
+<img width="700" alt="Screenshot_7" src="https://gist.github.com/assets/35544624/987f7989-dff7-43b4-a54c-0898969827f5">
+
+When you open this file, its content should look like this:
+
+<img width="700" alt="Screenshot_8" src="https://gist.github.com/assets/35544624/f1642a39-e14c-47a7-90f6-8a737e8ec75f">
+
+Now you need to rename the file to 
