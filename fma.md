@@ -2,7 +2,7 @@
 title: Animations
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T09:26:20.199Z
+date: 2024-05-04T09:38:00.919Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -126,5 +126,31 @@ The texture will **NOT WORK** if the frames have invalid file names!
 <br>
 <img width="574" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/eac54695-b57a-4919-8740-4e5c8aad649c">
 
+## The Intro
+
+This feature is **OPTIONAL**.
+
+The **intro** feature of FMA files is a special way to play some frames **before** the actual frames of the `frames` folder start playing. 
+
+The intro will **never loop** and only plays the very first time the animation plays, which allows you to play something like a fade-in animation before the actual animation starts playing in a loop.
+
+Intro frames go into the `intro_frames` folder and work the same as normal frames:
+
+Frames need to be **PNG FILES**! There is **NO SUPPORT FOR JPEG AND OTHER FORMATS**!
+
+Every frame **has to** be called just the number of the frame and the file extension.
+The first frame should be called `0.png`, the second one `1.png`, the third one `2.png` and so on.
+The texture will **NOT WORK** if the frames have invalid file names!
+
+## Packing the FMA File
+
+Now everything important is in the `fancymenu_animation` folder, so you can pack your FMA file now!
+
+Packing the FMA file basically just means to pack the folder content to a ZIP file.
+The content needs to be in the **ROOT of the ZIP** file, so it can't be in an extra folder inside the ZIP.
+
+On Windows, the easiest way to create a new (empty) ZIP file is by right-clicking some random icon on your desktop, then **Send To -> Compressed ZIP Folder**.
+
+Now open this ZIP file and move all the content of your `fancymenu_animation` folder into the ZIP file like that:
 
 
