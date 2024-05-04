@@ -2,7 +2,7 @@
 title: Animations
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T09:20:25.128Z
+date: 2024-05-04T09:26:20.199Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -115,9 +115,16 @@ That's it for the `metadata.json` file. Save it now and close the text editor.
 
 ## The Frames
 
+The frames of your animated texture go into the `frames` folder.
 
+Frames need to be **PNG FILES**! There is **NO SUPPORT FOR JPEG AND OTHER FORMATS**!
 
+Every frame **has to** be called just the number of the frame and the file extension.
+The first frame should be called `0.png`, the second one `1.png`, the third one `2.png` and so on.
+The texture will **NOT WORK** if the frames have invalid file names!
 
+<br>
+<img width="574" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/eac54695-b57a-4919-8740-4e5c8aad649c">
 
 
 
