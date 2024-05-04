@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-05-04T10:29:39.822Z
+date: 2024-05-04T10:30:53.642Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -32,6 +32,7 @@ You surely don't want to keep FancyMenu's menu bar visible in your modpack, so y
 Navigate to `/config/fancymenu/options.txt` and open the file in a text editor.
 
 Now set `modpack_mode` to `true` and save the file.
+This will completely disable all overlays and hotkeys.
 
-This will completely disable all overlays and hotkeys, so you need to manually set this config option back to `false` to be able to edit your layouts again.
+To be able to edit your layouts again, set the config option back to `false`.
 
