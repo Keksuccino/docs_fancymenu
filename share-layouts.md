@@ -2,7 +2,7 @@
 title: Share/Export Layouts
 description: How to share layouts with others.
 published: true
-date: 2024-03-06T02:21:07.983Z
+date: 2024-05-05T04:53:55.300Z
 tags: import, export, setup, design, menu
 editor: markdown
 dateCreated: 2024-02-25T08:39:23.269Z
@@ -17,10 +17,24 @@ Sharing your FancyMenu setup with others is pretty easy and no special knowledge
 
 # Exporting and Importing
 
-Sharing setups with others is nothing more than sharing a config folder.
+You simply need to export/import FancyMenu's config folder, that's all.
 
-All you need to do is giving the `/config/fancymenu/` folder from your Minecraft instance to the person you want to share your setup with. The other person then needs to move that folder to their own `/config/` folder in their own Minecraft instance.
+## Exporting
 
-That's it. Nothing more you need to do.
+1. Navigate to the root directory of the Minecraft instance you made your layouts in.
+2. Open the `config` folder of the Minecraft instance.
+3. Copy the `fancymenu` folder of the `config` folder to your desktop or somewhere else.
+4. Send this folder to the person you want to share your setup with.
 
-But please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside of FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also share all other folders that contain resources/assets used in FancyMenu.
+## Importing
+
+It is recommended to use a **FRESH** installation of FancyMenu without any layouts.
+
+1. Download a setup from somwhere and find the `fancymenu` config folder in the setup.
+1. Navigate to the `config` folder of your Minecraft instance.
+2. If there is already a `fancymenu` folder in the `config` folder, **delete** the existing `fancymenu` folder.
+3. Copy the `fancymenu` folder from **step 1** to the `config` folder of your Minecraft instance.
+4. Restart your game and enjoy your new fancy menus!
+
+> Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
+{.is-warning}
