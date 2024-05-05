@@ -2,7 +2,7 @@
 title: Animations (FMA)
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-05-04T10:07:09.225Z
+date: 2024-05-05T01:59:36.927Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -12,6 +12,9 @@ dateCreated: 2024-05-04T08:44:18.533Z
 
 FMA files are special animated texture files created for FancyMenu.
 They are pretty much the same as APNGs, but way more optimized for FancyMenu.
+
+> This feature only exists in FancyMenu v3.2.0+!
+{.is-warning}
 
 # Making an FMA
 
