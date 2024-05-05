@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-05-05T04:47:35.917Z
+date: 2024-05-05T04:57:11.497Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -24,7 +24,7 @@ You simply need to include FancyMenu's config folder, that's all.
 3. Copy the `fancymenu` folder of the `config` folder to your desktop or somewhere else.
 4. Navigate to the `config` folder of the **modpack** instance.
 5. If there is already a `fancymenu` folder in the `config` folder, **delete** the existing `fancymenu` folder.
-6. Paste the `fancymenu` folder you copied in **step 3** to the `config` folder of the **modpack** instance.
+6. Move the `fancymenu` folder you copied in **step 3** to the `config` folder of the **modpack** instance.
 
 That's it. Nothing more you need to do.
 
