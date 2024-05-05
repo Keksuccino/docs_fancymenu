@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-05-04T10:31:25.119Z
+date: 2024-05-05T04:47:35.917Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -15,15 +15,21 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 > This page is **ONLY** for FancyMenu setups made completely in **FancyMenu v3+**, so if you use a legacy setup (made in v2 and converted to v3), some steps could be different.
 {.is-warning}
 
-# Copy-Pasting the Setup
+# Including the FancyMenu Setup in Your Modpack
 
-Including a FancyMenu setup in a modpack is nothing more than copying a config folder.
+You simply need to include FancyMenu's config folder, that's all.
 
-All you need to do is copy the `/config/fancymenu/` folder from your Minecraft instance to the `config` directory of your modpack, so in other words you simply include FancyMenu's config folder, which is something almost all modpack systems can do by default, so just google how to include mod configs in your modpack system (CurseForge, Modrinth, etc.).
+1. Navigate to the root directory of the Minecraft instance you made your layouts in.
+2. Open the `config` folder of the Minecraft instance.
+3. Copy the `fancymenu` folder of the `config` folder to your desktop or somewhere else.
+4. Navigate to the `config` folder of the **modpack** instance.
+5. If there is already a `fancymenu` folder in the `config` folder, **delete** the existing `fancymenu` folder.
+6. Paste the `fancymenu` folder you copied in **step 3** to the `config` folder of the **modpack** instance.
 
 That's it. Nothing more you need to do.
 
-But please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside of FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets.
+> Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
+{.is-warning}
 
 # Disabling the Menu Bar and Hotkeys
 
