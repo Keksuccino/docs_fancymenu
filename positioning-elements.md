@@ -2,29 +2,32 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-04-27T08:44:17.439Z
+date: 2024-05-06T06:01:46.678Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
 ---
 
-# Positioning Elements
+# Positioning Elements in FancyMenu
 
-Every element in FancyMenu is connected to an **anchor point**.
+In FancyMenu, each element's position is determined by **anchor points**. These points are critical for accurately calculating where an element should appear on the screen, ensuring elements don't overlap, stray off-screen, or move incorrectly when the window is resized.
 
-Anchor points are necessary for calculating an element's position and if used correctly, they prevent elements from overlapping each other, going out-of-screen or move to the wrong place when resizing the window.
+## Understanding Anchor Points
 
-They are the origin point from where the element's position is getting calculated.
+Anchor points serve as the origin from which an element's position is calculated. By default, elements you add to layouts are linked to the **"Center of Screen"** anchor point. This anchor is the exact middle of the screen, irrespective of the window size.
 
-By default, elements are connected to the **"Center of Screen"** anchor point, which is basically just the exact center of the screen, no matter the window size.
-So lets say an element is 2 centimetres away from the center of the screen while being connected to the **"Center of Screen"** anchor. In that case, the element will **always** be 2 centimetres away from the screen's center, no matter the window size.
+For example, if an element is 2 centimeters from the center of the screen while being linked to the **"Center of Screen"** anchor, it will maintain this distance regardless of any changes in window size.
 
-You can see the anchor point an element is connected to when dragging it. This will (by default) also show all other anchor points. You can hover an anchor point while dragging an element to change the element's anchor to the hovered anchor point.
+## Interacting with Anchor Points
 
-![anchor_points](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
+When you drag an element in the editor, the anchor point to which it is connected is highlighted. By default, this action also displays all other available anchor points. You can change an element's anchor by dragging it over another anchor point and wait until the loading bar is filled.
 
-# Anchor Elements to Vanilla Elements
+![Illustration of anchor points](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
 
-**Elements itself can also work as an anchor point for other elements!** Just hover an element while dragging another and the dragged element's anchor point will get changed to the hovered element.
+## Anchoring Elements to Other Elements
 
-This makes it possible to move custom elements with Vanilla elements, which can help integrating custom elements into Vanilla layouts without moving all Vanilla elements!
+Elements can also serve as anchor points for other elements. This feature is particularly useful for integrating custom elements seamlessly into Vanilla menu designs without needing to adjust every Vanilla element.
+
+To anchor an element to another, simply drag it towards the desired component. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
+
+This allows custom elements to align and move together with Vanilla elements, ensuring a seamless integration within the existing Vanilla menu design.
