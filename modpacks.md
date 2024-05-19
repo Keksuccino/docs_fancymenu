@@ -2,50 +2,43 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-05-06T06:21:40.675Z
+date: 2024-05-19T03:24:53.265Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
 ---
 
-# Integrating FancyMenu into Modpacks
+# FancyMenu in Modpacks
 
-This page is specifically about integrating FancyMenu setups created with FancyMenu v3 or later into your modpacks. If your setup was originally created in v2 and later converted to v3, please note that some steps might differ.
+Including your FancyMenu setup in a modpack is very easy and only takes some simple steps.
 
-## How to Include a FancyMenu Setup in Your Modpack
-
-To include a FancyMenu setup with all its layouts and settings into your modpack, you simply need to include its `config` folder.
-
-1. **Locate the Config Folder:**
-   - Navigate to the root directory of the Minecraft instance where you made your FancyMenu layouts in.
-   - Open the `config` folder.
-
-2. **Copy the FancyMenu Folder:**
-   - Inside the `config` folder, find and copy the `fancymenu` folder to a temporary location like your desktop.
-
-3. **Prepare the Modpack Config Folder:**
-   - Go to the `config` folder of your modpack's Minecraft instance.
-   - If a `fancymenu` folder already exists here, delete it.
-
-4. **Transfer the FancyMenu Folder:**
-   - Move the `fancymenu` folder from your temporary location to the `config` folder of the modpack instance.
-
-And that's it! Your modpack is now *fancy*!
-
-> Legacy layouts made with FancyMenu v2 (even if converted to v3) may have layout assets stored outside the default `/config/fancymenu/assets/` directory. Ensure that all necessary assets are included in your modpack.
+> This page is **ONLY** for FancyMenu setups made completely in **FancyMenu v3+**, so if you use a legacy setup (made in v2 and converted to v3), some steps could be different.
 {.is-warning}
 
-# Disabling Menu Bar and Hotkeys
+# Including the FancyMenu Setup in Your Modpack
 
-When using FancyMenu in a modpack it's recommended to disable FancyMenu's hotkeys and overlays, so people have a harder time messing with your menu designs.
+You simply need to include FancyMenu's config folder, that's all.
 
-1. **Find and Open FancyMenu's Options File:**
-   - Navigate to `/config/fancymenu/options.txt`.
-   - Open this file in a text editor.
+1. Navigate to the root directory of the Minecraft instance you made your layouts in.
+2. Open the `config` folder of the Minecraft instance.
+3. Copy the `fancymenu` folder of the `config` folder to your desktop or somewhere else.
+4. Navigate to the `config` folder of the **modpack** instance.
+5. If there is already a `fancymenu` folder in the `config` folder, **delete** the existing `fancymenu` folder.
+6. Move the `fancymenu` folder you copied in **step 3** to the `config` folder of the **modpack** instance.
 
-2. **Enable the Modpack Mode:**
-   - Change the value of `modpack_mode` to `true` and save the file. This disables all FancyMenu overlays and hotkeys.
+That's it. Nothing more you need to do.
 
-## Re-enabling Editing
+> Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
+{.is-warning}
 
-Should you need to adjust layouts in the future, simply set `modpack_mode` back to `false`.
+# Disabling the Menu Bar and Hotkeys
+
+You surely don't want to keep FancyMenu's menu bar visible in your modpack, so you should disable it. But since people can still press the hotkey to make it visible again, let's do something a little bit more *aggressive*.
+
+Navigate to `/config/fancymenu/options.txt` and open the file in a text editor.
+
+Now set `modpack_mode` to `true` and save the file.
+This will completely disable all overlays and hotkeys.
+
+To be able to edit your layouts again, set the config option back to `false`.
+
