@@ -2,7 +2,7 @@
 title: OptiFine Alternatives
 description: Alternatives to OptiFine.
 published: true
-date: 2024-04-26T02:05:37.394Z
+date: 2024-05-29T07:51:33.847Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T04:00:02.270Z
@@ -18,7 +18,7 @@ They are much more stable and don't break everything.
 
 ## Forge
 
-- [Rubidium](https://www.curseforge.com/minecraft/mc-mods/rubidium) (Performance)
+- [Embeddium](https://www.curseforge.com/minecraft/mc-mods/embeddium) (Performance)
 - [Oculus](https://www.curseforge.com/minecraft/mc-mods/oculus) (Shaders)
 - [Capes](https://www.curseforge.com/minecraft/mc-mods/capes) (Lets you use OptiFine capes without having OptiFine installed)
 - [Just Zoom](https://legacy.curseforge.com/minecraft/mc-mods/just-zoom-forge) (Lets you zoom by pressing a key, just like in OptiFine)
