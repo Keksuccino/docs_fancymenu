@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-05-29T09:46:21.241Z
+date: 2024-05-29T09:47:19.616Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
@@ -32,7 +32,7 @@ To anchor an element to another, simply drag it towards the desired component. W
 
 This allows custom elements to align and move together with Vanilla elements, ensuring a seamless integration within the existing Vanilla menu design.
 
-## More Ways to Fix Element Positions
+## More Ways to Improve Element Positioning
 
 If **all anchor points are correct**, but your elements still overlap each other when the window is too small, it's possible that your layout is simply too full for Minecraft's normal GUI scaling logic.
 
