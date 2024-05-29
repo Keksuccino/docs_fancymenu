@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-05-06T06:01:46.678Z
+date: 2024-05-29T09:46:21.241Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
@@ -31,3 +31,19 @@ Elements can also serve as anchor points for other elements. This feature is par
 To anchor an element to another, simply drag it towards the desired component. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
 
 This allows custom elements to align and move together with Vanilla elements, ensuring a seamless integration within the existing Vanilla menu design.
+
+## More Ways to Fix Element Positions
+
+If **all anchor points are correct**, but your elements still overlap each other when the window is too small, it's possible that your layout is simply too full for Minecraft's normal GUI scaling logic.
+
+### Forced GUI Scale
+
+One way to improve the layout element positioning is to force a GUI scale to the menu by **right-clicking the editor background** and then clicking on **GUI Scale**. This will make the menu always have the same GUI scale, no matter what scale is set in Minecraft's options.
+
+### Auto-Scaling
+
+The last option to fix overlapping is to use **auto-scaling**.
+This setting will automatically scale the menu based on the window size to try preserve element positions as good as possible when resizing the window. To enable auto-scaling, **right-click the editor background** and then click on **Auto-Scaling**.
+
+> **Auto-scaling** can make **text** rendered by Minecraft **look bad**. This is not a bug and is just how Minecraft text rendering works. In case of buttons, a good workaround for this is to make button labels part of the button background texture and set a blank normal button label.
+{.is-warning}
