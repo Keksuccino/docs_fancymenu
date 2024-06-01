@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-05-18T08:06:22.799Z
+date: 2024-06-01T04:35:43.411Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -56,6 +56,7 @@ Thank you very much!**
 - [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Crash on startup)
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
+- [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Breaks FancyMenu's UI. UI buttons aren't clickable.)
 
 ## Fabric Mods
 
