@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-06-01T04:35:43.411Z
+date: 2024-06-02T06:42:02.416Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -41,9 +41,7 @@ Thank you very much!**
 - [Skin Layers 3D](https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d) (Works fine in 1.16+, but breaks 1.12)
 - [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) (Works fine in 1.16+, but breaks 1.12)
 - [Supplementaries](https://www.curseforge.com/minecraft/mc-mods/supplementaries) (Randomly crashes the game when customizing its config screen. If that happens, manually delete the layout from `.minecraft/config/fancymenu/customization`)
-- [Inventory HUD](https://www.curseforge.com/minecraft/mc-mods/inventory-hud-forge)
 - [MineTogether](https://www.curseforge.com/minecraft/mc-mods/creeperhost-minetogether) (Seems to break layouts when GUI scale is bigger than 2)
-- [Better Mods Button](https://www.curseforge.com/minecraft/mc-mods/better-mods-button)
 - [Jurassicraft](https://www.curseforge.com/minecraft/mc-mods/jurassicraft) (Game will crash on start when enabling customizations for Jurassicraft GUIs. To fix this, manually delete all Jurassicraft GUIs from `config/fancymenu/customizablemenus.txt`.)
 - [Stylish Effects](https://www.curseforge.com/minecraft/mc-mods/stylish-effects) (Main menu fails to load layouts when shown for the first time)
 - [Sound Physics Remastered](https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered) (The audio extension will not work with this mod installed)
@@ -69,7 +67,6 @@ Thank you very much!**
 - [Minecraft Comes Alive](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-mca) (works just fine, but the menus of the mod aren't customizable)
 - [Skin Layers 3D](https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d) (Works fine in 1.16+, but breaks 1.12)
 - [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) (Works fine in 1.16+, but breaks 1.12)
-- [Inventory HUD](https://www.curseforge.com/minecraft/mc-mods/inventory-hud-forge)
 - [MineTogether](https://www.curseforge.com/minecraft/mc-mods/creeperhost-minetogether) (Seems to break layouts when GUI scale is bigger than 2)
 - [Stylish Effects](https://www.curseforge.com/minecraft/mc-mods/stylish-effects) (Main menu fails to load layouts when shown for the first time)
 - [Colormatic](https://www.curseforge.com/minecraft/mc-mods/colormatic) (Huge lag when starting MC and breaks FM's audio stuff)
