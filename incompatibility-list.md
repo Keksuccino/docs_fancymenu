@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-06-02T06:42:02.416Z
+date: 2024-06-05T04:07:08.800Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -77,7 +77,7 @@ Thank you very much!**
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
 - [DungeonZ](https://www.curseforge.com/minecraft/mc-mods/dungeonz) (Crash)
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
-- [Forge Early Loading Screen for Fabric](https://modrinth.com/mod/forge-early-loading-screen-fabric) (Breaks FancyMenu)
+- [(MOD) Forge Early Loading Screen for Fabric](https://modrinth.com/mod/forge-early-loading-screen-fabric) (Breaks FancyMenu)
 
 ----------
 
