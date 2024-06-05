@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-06-05T06:57:16.700Z
+date: 2024-06-05T06:58:12.567Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -59,7 +59,7 @@ Thank you very much!**
 ## Fabric Mods
 
 - OptiFine (works for the most part, but you should use [these alternatives](https://fm.keksuccino.dev/en/wiki/general/verified/optifine-alternatives) instead)
-- [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (Works fine in most cases, but if you experience a duplicated or uncustomizable Mods button, change your Mod Menu button settings to "Adjacent": Main Menu > Mods > Mod Menu > Mods Button: Adjacent)
+- [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (**WORKS FINE** in most cases, but if you experience a duplicated or uncustomizable Mods button, change your Mod Menu button settings to "Adjacent": Main Menu > Mods > Mod Menu > Mods Button: Adjacent)
 - [Bedrockify](https://www.curseforge.com/minecraft/mc-mods/bedrockify) (Compatible when you disable all menu modifications of the mod, at least for the menus you want to customize)
 - [Slight Gui Modifications](https://www.curseforge.com/minecraft/mc-mods/slight-gui-modifications)
 - [ThonkUtil](https://www.curseforge.com/minecraft/mc-mods/thonkutil) (works, but currently adds an unremovable text to the main menu)
