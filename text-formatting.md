@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2024-06-12T08:34:23.233Z
+date: 2024-06-12T08:35:04.774Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -23,7 +23,7 @@ For example, to make text look bold, you add `**` before and after the bold text
 
 FancyMenu's Markdown even has some special stuff that makes it even more powerful!
 
-> Markdown does **NOT WORK** for other text-based stuff like button labels. It only works for **TEXT ELEMENTS**. For everything else, please use [Minecraft's formatting codes](/text-formatting).
+> Markdown does **NOT WORK** for other text-based stuff like button labels. It only works for **TEXT ELEMENTS**. For everything else, please use [Minecraft's formatting codes](/text-formatting#minecraft-text-formatting).
 {.is-danger}
 
 
