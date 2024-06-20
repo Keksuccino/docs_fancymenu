@@ -2,7 +2,7 @@
 title: OptiFine Alternatives
 description: Alternatives to OptiFine.
 published: true
-date: 2024-05-29T07:51:33.847Z
+date: 2024-06-20T09:31:12.596Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T04:00:02.270Z
@@ -29,5 +29,5 @@ They are much more stable and don't break everything.
 - [Lithium](https://modrinth.com/mod/lithium) (More Performance)
 - [Iris](https://www.curseforge.com/minecraft/mc-mods/irisshaders) (Shaders)
 - [Capes](https://www.curseforge.com/minecraft/mc-mods/capes) (Lets you use OptiFine capes without having OptiFine installed)
-- [Zoomify](https://www.curseforge.com/minecraft/mc-mods/zoomify) (Lets you zoom by pressing a key, just like in OptiFine)
+- [Zoomify](https://www.curseforge.com/minecraft/mc-mods/zoomify) or [Just Zoom](https://legacy.curseforge.com/minecraft/mc-mods/just-zoom-forge) (Lets you zoom by pressing a key, just like in OptiFine)
 - [CIT Resewn](https://www.curseforge.com/minecraft/mc-mods/cit-resewn) (Adds support for OptiFine resource packs without having OptiFine installed)
