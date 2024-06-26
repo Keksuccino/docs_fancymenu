@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-05-29T09:47:19.616Z
+date: 2024-06-26T09:22:25.614Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
@@ -10,7 +10,7 @@ dateCreated: 2024-04-20T09:49:13.361Z
 
 # Positioning Elements in FancyMenu
 
-In FancyMenu, each element's position is determined by **anchor points**. These points are critical for accurately calculating where an element should appear on the screen, ensuring elements don't overlap, stray off-screen, or move incorrectly when the window is resized.
+In FancyMenu, each element's position is determined by **anchor points**. These points are needed for calculating where an element should appear on the screen, ensuring elements don't overlap, stray off-screen, or move incorrectly when the window is resized.
 
 ## Understanding Anchor Points
 
@@ -28,9 +28,9 @@ When you drag an element in the editor, the anchor point to which it is connecte
 
 Elements can also serve as anchor points for other elements. This feature is particularly useful for integrating custom elements seamlessly into Vanilla menu designs without needing to adjust every Vanilla element.
 
-To anchor an element to another, simply drag it towards the desired component. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
+To anchor an element to another, simply drag it towards the desired element. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
 
-This allows custom elements to align and move together with Vanilla elements, ensuring a seamless integration within the existing Vanilla menu design.
+This allows the element to align and move together with its parent element.
 
 ## More Ways to Improve Element Positioning
 
