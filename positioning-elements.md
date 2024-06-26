@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-06-26T09:22:25.614Z
+date: 2024-06-26T09:22:41.109Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
@@ -30,7 +30,7 @@ Elements can also serve as anchor points for other elements. This feature is par
 
 To anchor an element to another, simply drag it towards the desired element. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
 
-This allows the element to align and move together with its parent element.
+This allows the element to move together with its parent element.
 
 ## More Ways to Improve Element Positioning
 
