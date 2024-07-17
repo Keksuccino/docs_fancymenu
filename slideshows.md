@@ -2,7 +2,7 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2024-04-08T04:11:17.568Z
+date: 2024-07-17T18:38:10.527Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T09:02:04.247Z
@@ -12,7 +12,7 @@ dateCreated: 2023-12-24T09:02:04.247Z
 
 FancyMenu allows you to add slideshows and display them in menus and as menu backgrounds.
 
-> **IMPORTANT**: If you're on Windows, don't forget to turn on [file extensions](https://cdn.discordapp.com/attachments/795308330746511390/801561308012347482/unknown.png), because otherwise you will not be able to see important parts of file names later!
+> **IMPORTANT**: If you're on Windows, don't forget to turn on [file extensions](https://vtcri.kayako.com/article/296-view-file-extensions-windows-10), because otherwise you will not be able to see important parts of file names later!
 {.is-warning}
 
 # Making a Slideshow
