@@ -2,7 +2,7 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2024-07-17T18:38:10.527Z
+date: 2024-08-10T20:55:43.898Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T09:02:04.247Z
@@ -32,16 +32,20 @@ For now, only create the **empty** properties file and move on to the next step.
 
 A slideshow needs images (duh), so let's add some!
 
+> Your slideshow images need to be **PNG** files! Minecraft stopped supporting JPEG in modern versions of the game.
+{.is-danger}
+
 All images of your slideshow go to an extra folder **inside** your slideshow folder (`myslideshow` in the example above).
 This folder's name needs to be `images`.
 
 ![3](https://user-images.githubusercontent.com/35544624/105210833-d9d19d00-5b4b-11eb-8ae7-528ad156e27a.png)
 
 Now place all your slideshow images in the `images` folder.
-They get ordered alphabetically (respecting numbers), so just name them something like `image_1.jpg`, `image_2.jpg` and so on.
-In my example, `image_1.jpg` would be displayed first and `image_2.jpg` after.
+They get ordered alphabetically (respecting numbers), so just name them something like `image_1.png`, `image_2.png` and so on.
+In my example, `image_1.png` would be displayed first and `image_2.png` after.
 
-![4](https://user-images.githubusercontent.com/35544624/105211270-58c6d580-5b4c-11eb-851c-46aa31edcdb7.png)
+<br>
+<img width="548" alt="Screenshot_2" src="https://github.com/user-attachments/assets/f58ecbfa-affa-4071-8a84-18ed27a6cfee">
 
 ## Adding Content to the Properties File
 
