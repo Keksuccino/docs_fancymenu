@@ -2,7 +2,7 @@
 title: Menu Background Music
 description: How to customize the music played in menus.
 published: true
-date: 2024-08-24T21:12:37.164Z
+date: 2024-08-24T21:12:58.326Z
 tags: 
 editor: markdown
 dateCreated: 2024-03-07T04:34:08.380Z
@@ -44,7 +44,7 @@ Now we can add the actual custom background music.
 
 If you want to play the same custom music in all screens, you should use a **universal layout**, which gets loaded in every screen that has customizations enabled.
 
-When using a universal layout, the music will continue playing when going from one menu with the layout enabled to another one with the same layout enabled.
+When using a universal layout, the music will **continue playing** when going from one menu with the layout enabled to another one with the same layout enabled.
 
 If you want to play different music per screen, use normal layouts.
 
