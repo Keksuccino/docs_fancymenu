@@ -2,7 +2,7 @@
 title: Pre-Load Resources
 description: How to pre-load resources so they're ready-to-use once the game finishes loading.
 published: true
-date: 2024-02-08T06:05:37.910Z
+date: 2024-09-03T04:51:00.691Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-08T06:04:51.009Z
@@ -14,6 +14,8 @@ In some scenarios it is recommended to pre-load resources.
 This is mostly needed for high resolution images, audio files and web resources in general.
 
 Pre-loading resources can help to remove possible image flickering or audio files not starting fast enough.
+
+It is also recommended to pre-load animations (FMA files) to make it play smoothly and not lag or show a black screen when first loaded.
 
 # Add Resources to the Pre-Loader
 
