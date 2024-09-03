@@ -2,7 +2,7 @@
 title: Pre-Load Resources
 description: How to pre-load resources so they're ready-to-use once the game finishes loading.
 published: true
-date: 2024-09-03T04:51:00.691Z
+date: 2024-09-03T04:51:10.585Z
 tags: 
 editor: markdown
 dateCreated: 2024-02-08T06:04:51.009Z
