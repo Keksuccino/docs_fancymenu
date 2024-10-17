@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-05-19T03:24:53.265Z
+date: 2024-10-17T03:36:17.766Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -42,3 +42,8 @@ This will completely disable all overlays and hotkeys.
 
 To be able to edit your layouts again, set the config option back to `false`.
 
+# Disabling the Welcome Screen
+
+This shouldn't be needed in most cases, but if you didn't close the Welcome screen yet (the screen that tells you do read the documentation), make sure to set `welcome_screen_shown` to `true` in `/config/fancymenu/options.txt`. Don't set it to `false`, because this will SHOW it.
+
+The screen only shows once and disables itself when clicking on the **Open Documentation** button, so again, doing this manually shouldn't be needed in most cases.
