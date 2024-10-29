@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-06-26T09:22:41.109Z
+date: 2024-10-29T05:41:26.898Z
 tags: 
 editor: markdown
 dateCreated: 2024-04-20T09:49:13.361Z
@@ -31,6 +31,21 @@ Elements can also serve as anchor points for other elements. This feature is par
 To anchor an element to another, simply drag it towards the desired element. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
 
 This allows the element to move together with its parent element.
+
+## Example for How to Anchor Elements
+
+The following screenshot shows how you should choose anchors for elements.
+
+<br>
+<img width="571" alt="Screenshot_2" src="https://gist.github.com/user-attachments/assets/159073e1-ab78-4086-9add-e660a1e4c93f">
+
+All elements that should stay in the middle of the screen (buttons and player entity) are anchored to the **Center of Screen** anchor point.
+
+The buttons in the top-left corner are anchored to the **Top-Left Corner** anchor, because they should stay in the top-left corner.
+
+The Text element in the bottom-left corner is anchored to the **Bottom-Left Corner** anchor point, because it should stay in the bottom-left corner.
+
+The Image element in the bottom-right corner is anchored to the **Bottom-Right Corner** anchor point, because it should stay in the bottom-right corner.
 
 ## More Ways to Improve Element Positioning
 
