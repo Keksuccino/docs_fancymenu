@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2024-11-19T08:36:14.435Z
+date: 2024-11-19T08:37:02.243Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T04:18:27.484Z
@@ -22,7 +22,7 @@ If your are a developer and want to make an addon for FancyMenu or integrate Fan
 
 If you want to contribute to the documentation by writing pages, check out [this GitHub repository](https://github.com/Keksuccino/FancyMenu-Docs-Contributions/tree/main)!
 
-Thank you for helping to make the mod more accessible for others! 
+Thank you for helping to make the mod more accessible for others!
 
 # Getting Started
 
