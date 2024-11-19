@@ -2,7 +2,7 @@
 title: Conditions
 description: How to use loading requirements.
 published: true
-date: 2024-11-19T09:40:35.653Z
+date: 2024-11-19T09:44:52.256Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2024-11-19T09:40:35.653Z
@@ -28,7 +28,7 @@ Loading requirements can also be used in action scripts of elements with an acti
 
 You can add them in the action script screen and use them to execute specific actions only if the condition of the loading requirement is met.
 
-# Loading Requirement Values
+# Requirement Values
 
 Some loading requirements need you to set some values to work properly. If that's the case, the loading requirement screen should tell you to set all values first.
 
