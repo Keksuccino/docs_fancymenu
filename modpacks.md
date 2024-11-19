@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-11-19T08:59:28.497Z
+date: 2024-11-19T09:00:41.277Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -29,7 +29,7 @@ You simply need to include FancyMenu's config folder, that's all.
 That's it. Nothing more you need to do.
 
 > Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
-{.is-error}
+{.is-danger}
 
 # Disabling the Menu Bar and Hotkeys
 
