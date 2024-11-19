@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2024-11-19T08:37:02.243Z
+date: 2024-11-19T08:51:16.999Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T04:18:27.484Z
@@ -98,6 +98,8 @@ So lets say an element is 2 centimetres away from the center of the screen while
 You can see the anchor point an element is connected to when dragging it. This will (by default) also show all other anchor points. You can hover an anchor point while dragging an element to change the element's anchor to the hovered anchor point.
 
 Elements itself can also work as an anchor point for other elements! Just hover an element while dragging another and the dragged element's anchor point will get changed to the hovered element.
+
+**[Learn more about how to position your elements.](/positioning-elements)**
 
 ![anchor_points](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
 
