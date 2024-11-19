@@ -2,7 +2,7 @@
 title: Conditions (Loading Requirements)
 description: How to use loading requirements.
 published: true
-date: 2024-11-19T09:50:10.573Z
+date: 2024-11-19T09:56:16.442Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2024-11-19T09:40:35.653Z
@@ -14,11 +14,11 @@ Loading requirements allow you to make parts of your layouts visible or invisibl
 
 They can also be used in action scripts of buttons, sliders, tickers and everything else with an action script input.
 
-# Adding Loading Requirements to Elements
+# Adding Requirements to Elements
 
 To add one or more loading requirements to elements, just right-click the element and click on **Loading Requirements**.
 
-# Layout-wide Loading Requirements
+# Layout-wide Requirements
 
 You can also change the visibity of whole layouts by right-clicking the **editor background** and then clicking on **Loading Requirements [Layout-Wide]**.
 
