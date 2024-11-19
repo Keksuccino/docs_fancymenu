@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2024-05-07T06:47:28.969Z
+date: 2024-11-19T08:36:14.435Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T04:18:27.484Z
@@ -17,6 +17,12 @@ If you're looking for the v2 docs, please go to [the FMv2 documentation](https:/
 # For Developers
 
 If your are a developer and want to make an addon for FancyMenu or integrate FancyMenu in your mod, better take a look at the [developer documentation](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).
+
+# Contributing to the Documentation
+
+If you want to contribute to the documentation by writing pages, check out [this GitHub repository](https://github.com/Keksuccino/FancyMenu-Docs-Contributions/tree/main)!
+
+Thank you for helping to make the mod more accessible for others! 
 
 # Getting Started
 
