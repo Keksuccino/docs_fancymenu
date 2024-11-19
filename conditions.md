@@ -2,7 +2,7 @@
 title: Conditions
 description: How to use loading requirements.
 published: true
-date: 2024-11-19T09:44:52.256Z
+date: 2024-11-19T09:46:55.168Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2024-11-19T09:40:35.653Z
@@ -30,7 +30,7 @@ You can add them in the action script screen and use them to execute specific ac
 
 # Requirement Values
 
-Some loading requirements need you to set some values to work properly. If that's the case, the loading requirement screen should tell you to set all values first.
+Some loading requirements need you to set some values to work properly. If that's the case, the loading requirement screen should tell you to set all values first, but if not, just check if the **Edit Requirement Value** button is clickable when adding the requirement.
 
 Always check the requirement's description if you're not sure what to set as value.
 
