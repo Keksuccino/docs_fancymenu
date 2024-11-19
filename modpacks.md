@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-10-19T08:43:52.029Z
+date: 2024-11-19T08:59:28.497Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-22T05:28:46.511Z
@@ -21,15 +21,15 @@ You simply need to include FancyMenu's config folder, that's all.
 
 1. Navigate to the root directory of the Minecraft instance you made your layouts in.
 2. Open the `config` folder of the Minecraft instance.
-3. Copy the `fancymenu` folder of the `config` folder to your desktop or somewhere else.
+3. Copy the `fancymenu` folder of the `config` folder to your desktop.
 4. Navigate to the `config` folder of the **modpack** instance.
 5. If there is already a `fancymenu` folder in the `config` folder, **delete** the existing `fancymenu` folder.
-6. Move the `fancymenu` folder you copied in **step 3** to the `config` folder of the **modpack** instance.
+6. Move the `fancymenu` folder on your desktop to the `config` folder of the **modpack** instance.
 
 That's it. Nothing more you need to do.
 
 > Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
-{.is-warning}
+{.is-error}
 
 # Disabling the Menu Bar and Hotkeys
 
