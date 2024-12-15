@@ -2,7 +2,7 @@
 title: Animations (FMA)
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-12-15T12:07:24.551Z
+date: 2024-12-15T12:10:55.827Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -120,6 +120,9 @@ This is exactly the same as `custom_frame_times`, but in this case for the **int
 That's it for the `metadata.json` file. Save it now and close the text editor.
 
 ## The Frames
+
+> Is is recommended to use **200 frames at max** at a **max resolution of 1080p** per animation, because animations eat lots of memory and they are not videos. They are meant to be used for short animated loops, not to play full videos with 24 FPS.
+{.is-danger}
 
 The frames of your animated texture go into the `frames` folder.
 
