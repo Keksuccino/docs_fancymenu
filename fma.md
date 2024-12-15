@@ -2,7 +2,7 @@
 title: Animations (FMA)
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-12-15T12:10:55.827Z
+date: 2024-12-15T13:38:39.657Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -131,6 +131,8 @@ Frames need to be **PNG FILES**! There is **NO SUPPORT FOR JPEG AND OTHER FORMAT
 Every frame **has to** be called just the number of the frame and the file extension.
 The first frame should be called `0.png`, the second one `1.png`, the third one `2.png` and so on.
 The texture will **NOT WORK** if the frames have invalid file names!
+
+To **extract frames from videos**, please take a look at [this docs page](/ffmpeg-frames).
 
 <br>
 <img width="574" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/eac54695-b57a-4919-8740-4e5c8aad649c">
