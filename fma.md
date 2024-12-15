@@ -2,7 +2,7 @@
 title: Animations (FMA)
 description: How to make and use FMA (FancyMenu Animation) files.
 published: true
-date: 2024-09-03T04:56:00.199Z
+date: 2024-12-15T12:07:24.551Z
 tags: 
 editor: markdown
 dateCreated: 2024-05-04T08:44:18.533Z
@@ -177,10 +177,10 @@ That's it! You now have a (hopefully) working FMA file!
 
 # Using FMA Files in FancyMenu
 
-> **IMPORTANT**: FMA files are **NOT the same** as the **deprecated Animations** menu background type! FMA files are an animated **texture** format, so you add them as Image/Texture files, just like you do with PNGs, JPEGs, GIFs and APNGs.
+> **IMPORTANT**: FMA files are **NOT the same** as the **deprecated Animations** menu background type! FMA files are an animated **texture** format, so you add them as image/texture files, just like PNGs, JPEGs, GIFs and APNGs.
 {.is-danger}
 
-You can use FMA files like any other animated texture format. FancyMenu sees it as normal texture/image, so you can use it everywhere you can set a texture to something.
+You can use FMA files like any other animated texture/image format. FancyMenu sees it as normal image, so you can use it everywhere you can set a texture to something, like **Image elements or Image menu backgrounds**.
 
 Make sure the FMA file is in the `/config/fancymenu/assets/` folder, because FancyMenu can only pick textures and other resources from its `assets` folder.
 
