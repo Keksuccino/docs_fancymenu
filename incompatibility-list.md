@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2024-12-22T21:17:35.608Z
+date: 2024-12-22T21:18:03.215Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -55,7 +55,7 @@ Thank you very much!**
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
 - [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Breaks FancyMenu's UI. UI buttons aren't clickable.)
-- [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in Villager trade menu; maybe only happens when "Easy Villagers" is also installed)
+- [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu; maybe only happens when "Easy Villagers" is also installed)
 - 
 
 ## Fabric Mods
