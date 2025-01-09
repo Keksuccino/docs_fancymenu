@@ -1,8 +1,8 @@
 ---
-title: Getting Started
-description: 
+title: Начало работы
+description: Мир FancyMenu ждет вас! Это начало чего-то прекрасного!
 published: true
-date: 2025-01-09T17:48:11.204Z
+date: 2025-01-09T17:50:16.371Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T17:41:17.606Z
