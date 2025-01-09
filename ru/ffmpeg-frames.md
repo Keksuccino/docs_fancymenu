@@ -1,8 +1,8 @@
 ---
-title: Get Frames from Videos
-description: 
+title: Извлечение кадров из видео
+description: Как извлечь кадры из видеофайла.
 published: true
-date: 2025-01-09T17:59:54.718Z
+date: 2025-01-09T18:04:50.278Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-09T17:59:54.718Z
