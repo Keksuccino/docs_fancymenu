@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-01-10T21:43:32.487Z
+date: 2025-01-12T19:21:49.209Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -57,6 +57,7 @@ Thank you very much!**
 - [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Breaks FancyMenu's UI. UI buttons aren't clickable.)
 - [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu; maybe only happens when "Easy Villagers" is also installed)
 - [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
+- [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 
 ## Fabric Mods
 
@@ -80,6 +81,7 @@ Thank you very much!**
 - [DungeonZ](https://www.curseforge.com/minecraft/mc-mods/dungeonz) (Crash)
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
 - [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
+- [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 
 ----------
 
