@@ -2,7 +2,7 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2024-08-10T20:55:43.898Z
+date: 2025-01-13T14:21:30.446Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T09:02:04.247Z
@@ -32,7 +32,7 @@ For now, only create the **empty** properties file and move on to the next step.
 
 A slideshow needs images (duh), so let's add some!
 
-> Your slideshow images need to be **PNG** files! Minecraft stopped supporting JPEG in modern versions of the game.
+> Your slideshow images need to be **PNG** files! No JPEGs, GIFs, APNGs or FMAs!
 {.is-danger}
 
 All images of your slideshow go to an extra folder **inside** your slideshow folder (`myslideshow` in the example above).
