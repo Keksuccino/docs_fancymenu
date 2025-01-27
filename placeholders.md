@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-01-27T17:42:04.451Z
+date: 2025-01-27T18:19:02.577Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-19T09:21:20.579Z
@@ -458,6 +458,33 @@ Returns the volume of an audio element.
 {"placeholder":"audio_element_volume","values":{"element_identifier":"background_music"}}
 ```
 Example output: `0.5`
+
+## Variables
+<br>
+
+### Get Variable Value (`getvariable`)
+
+The `getvariable` placeholder allows you to retrieve the value of a previously stored variable. Variables in FancyMenu are simple key-value pairs that can hold textual data. They are useful for passing information between different parts of your menu, such as loading requirements, button actions, and text elements.
+
+To use this placeholder, provide the name of the variable you want to retrieve as the `name` parameter:
+
+```
+{"placeholder":"getvariable","values":{"name":"some_variable"}}
+```
+
+For example, let's say you previously set a variable named `username` to store the player's name. You could display this in a text element using:
+
+```
+{"placeholder":"getvariable","values":{"name":"username"}}
+```
+
+If the `username` variable contained the value "Steve", the placeholder would be replaced with "Steve" in the rendered text.
+
+**A few things to keep in mind:**
+
+- If the specified variable does not exist, the placeholder will return "0". 
+- Variables are stored as strings, so if you need to treat the value as a number, remember to convert it.
+- You can set variables using the "Set Variable Value" action with Ticker, Button or Slider elements.
 
 # Practical Examples
 <br>
