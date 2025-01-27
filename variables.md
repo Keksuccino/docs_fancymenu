@@ -2,7 +2,7 @@
 title: Variables
 description: How to create and use variables.
 published: true
-date: 2025-01-27T19:14:03.942Z
+date: 2025-01-27T19:17:29.557Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-27T19:14:03.942Z
@@ -58,7 +58,7 @@ Now that you have variables holding data, you can use that data in different par
 * **Nested Placeholders**: You can even use variables inside other placeholders! The click counting example above demonstrated this by using the **Get Variable Value** placeholder inside the **Calculator** placeholder.
 
 * **Actions**: Variables can be used in actions to create dynamic behavior based on variable values. Here are a few examples:
-    - Use an **IF** action block to check a variable's value using a combination of the **Is Number** loading requirement and the **Get Variable Value** action and perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
+    - Use an **IF** statement in an action script to check a variable's value using a combination of the **Is Number** loading requirement and the **Get Variable Value** action and perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
     - Combine the **Get Variable Value** placeholder with the **Copy to Clipboard** action to let users copy the value of a variable to their clipboard.
     - Use variables in the **Open GUI** action to load different screens based on the user's progress or preferences, which you track with variables.
 
