@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-01-27T18:22:07.402Z
+date: 2025-01-27T19:19:29.501Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-19T09:21:20.579Z
@@ -482,7 +482,6 @@ If the `username` variable contained the value "Steve", the placeholder would be
 
 **A few things to keep in mind:**
 
-- If the specified variable does not exist, the placeholder will return "0". 
 - Variables are stored as strings, so if you need to treat the value as a number, remember to convert it.
 - You can create variables while not in the editor, when clicking on **menu bar -> Customization -> Variables**.
 - You can set variables using the "Set Variable Value" action with Ticker, Button or Slider elements.
