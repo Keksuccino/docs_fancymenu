@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-01-27T15:43:07.647Z
+date: 2025-01-27T15:49:45.631Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-19T09:21:20.579Z
@@ -43,8 +43,12 @@ To find a **list of all placeholders**, just click on the **Placeholders** butto
 
 Clicking on a placeholder in the placeholder list will paste it to the text content!
 
-# Available Placeholders
-<br>
+# Some Placeholders in Detail
+
+Here are some of the most important placeholders listed with detailed examples.
+Please keep in mind that this list **does not contain all placeholders**!
+
+For a list of ALL placeholders, please use the list in the text editor, like described in the **Using Placeholders** section above.
 
 ## Minecraft Instance
 <br>
