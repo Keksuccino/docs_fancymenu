@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-01-27T15:49:45.631Z
+date: 2025-01-27T17:42:04.451Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-19T09:21:20.579Z
@@ -168,7 +168,7 @@ Returns the current GUI scale.
 ```
 Example output: `2`
 
-## Advanced Category
+## Advanced
 <br>
 
 ### Calculator (`calc`)
