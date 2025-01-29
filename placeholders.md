@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-01-27T19:19:29.501Z
+date: 2025-01-29T21:23:15.881Z
 tags: 
 editor: markdown
 dateCreated: 2024-11-19T09:21:20.579Z
@@ -462,7 +462,7 @@ Example output: `0.5`
 ## Variables
 <br>
 
-### Get Variable Value (`getvariable`)
+### Get Stored Variable (`getvariable`)
 
 The `getvariable` placeholder allows you to retrieve the value of a previously stored variable. Variables in FancyMenu are simple key-value pairs that can hold textual data. They are useful for passing information between different parts of your menu, such as loading requirements, button actions, and text elements.
 
