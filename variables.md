@@ -2,7 +2,7 @@
 title: Variables
 description: How to create and use variables.
 published: true
-date: 2025-01-27T19:17:29.557Z
+date: 2025-01-29T21:20:30.448Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-27T19:14:03.942Z
@@ -41,7 +41,7 @@ clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable
 ```
 
 Here's how this works:
-1. The **Get Variable Value** placeholder retrieves the current value of the `clicks` variable.
+1. The **Get Stored Variable** placeholder retrieves the current value of the `clicks` variable.
 2. The **Calculator** placeholder takes that value and adds 1 to it.
 3. The result is then stored back into the `clicks` variable using the **Set Variable** action.
 
@@ -51,22 +51,22 @@ So each time the button is clicked, the `clicks` variable will increment by 1, e
 
 Now that you have variables holding data, you can use that data in different parts of your menu customization:
 
-* **Loading Requirements**: You can check a variable's value in a loading requirement to control when certain menu elements appear. For example, you could make an element only show up if the `clicks` variable is greater than 5 by using a combination of the **Is Number** requirement and the **Get Variable Value** placeholder.
+* **Loading Requirements**: You can check a variable's value in a loading requirement to control when certain menu elements appear. For example, you could make an element only show up if the `clicks` variable is greater than 5 by using a combination of the **Is Number** requirement and the **Get Stored Variable** placeholder.
 
-* **Placeholders**: Variables can be inserted into text using the **Get Variable Value** placeholder. If you have a text element, you could use `{"placeholder":"getvariable","values":{"name":"clicks"}}` to display the current value of the "clicks" variable.
+* **Placeholders**: Variables can be inserted into text using the **Get Stored Variable** placeholder. If you have a text element, you could use `{"placeholder":"getvariable","values":{"name":"clicks"}}` to display the current value of the "clicks" variable.
 
-* **Nested Placeholders**: You can even use variables inside other placeholders! The click counting example above demonstrated this by using the **Get Variable Value** placeholder inside the **Calculator** placeholder.
+* **Nested Placeholders**: You can even use variables inside other placeholders! The click counting example above demonstrated this by using the **Get Stored Variable** placeholder inside the **Calculator** placeholder.
 
 * **Actions**: Variables can be used in actions to create dynamic behavior based on variable values. Here are a few examples:
-    - Use an **IF** statement in an action script to check a variable's value using a combination of the **Is Number** loading requirement and the **Get Variable Value** action and perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
-    - Combine the **Get Variable Value** placeholder with the **Copy to Clipboard** action to let users copy the value of a variable to their clipboard.
+    - Use an **IF** statement in an action script to check a variable's value using a combination of the **Is Number** loading requirement and the **Get Stored Variable** action and perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
+    - Combine the **Get Stored Variable** placeholder with the **Copy to Clipboard** action to let users copy the value of a variable to their clipboard.
     - Use variables in the **Open GUI** action to load different screens based on the user's progress or preferences, which you track with variables.
 
 ## Variable Examples
 
 Here are a few examples to inspire your own variable usage:
 
-1. **High Score**: Create a `highscore` variable and a button that sets it to the player's current score if it's higher than the existing value. Display the high score on the menu using the **Get Variable Value** placeholder.
+1. **High Score**: Create a `highscore` variable and a button that sets it to the player's current score if it's higher than the existing value. Display the high score on the menu using the **Get Stored Variable** placeholder.
 
 2. **Difficulty Selector**: Make variables for different game difficulties, like `easy`, `medium`, and `hard`. Use buttons to set the difficulty variable, and show/hide elements based on the selected difficulty.
 
