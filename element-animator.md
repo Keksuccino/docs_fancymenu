@@ -2,7 +2,7 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-02-13T01:09:39.421Z
+date: 2025-02-13T01:29:43.212Z
 tags: 
 editor: markdown
 dateCreated: 2025-02-13T01:09:39.421Z
@@ -63,6 +63,22 @@ Keyframes are like bookmarks that tell the Animator what the element should look
   
 - **Delete Multiple Keyframes:**  
   You can select several keyframes (for example, using **Ctrl + A** to select all) and press Delete to remove them all.
+
+## Keyframe Smoothing
+
+Keyframe smoothing is a feature that helps you evenly space out your keyframes. This makes your animation look more consistent and smooth.
+
+- **Select Multiple Keyframes:**  
+  First, select two or more keyframes that you want to smooth out (use **Ctrl + Click** or **Ctrl + A**).
+
+- **Click the Smoothing Button:**  
+  In the keyframe editor’s bottom toolbar, click the button labeled **Distance Smoothing**.
+
+- **Enter a New Distance:**  
+  A small input box will appear. Type in a value (in milliseconds) to set the same time gap between each selected keyframe.
+
+- **Apply the Smoothing:**  
+  Press Enter to apply the smoothing. The keyframes will be adjusted so that the time difference between them is even.
 
 # Previewing Your Animation
 
