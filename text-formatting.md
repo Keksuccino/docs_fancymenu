@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2025-02-14T16:37:28.634Z
+date: 2025-02-14T16:40:28.929Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -204,7 +204,7 @@ To wrap a text part inside a line in a plain text formatting code, you need to a
 This is a line of text with ;;**this part**;; showing as unformatted text with visible ** (bold) formatting code and _this part_ as normal formatted italic text.
 ```
 
-Plain text also works as a multi-line wrapper code, so you need to add `;;;` before and after the line(s) you want to show as plain text like this:
+Plain text also works as a multi-line wrapper code. To wrap whole lines, add `;;;` before and after the line(s) you want to show as plain text like this:
 
 ```
 ;;;
