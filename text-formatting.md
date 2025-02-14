@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2024-06-12T08:35:04.774Z
+date: 2025-02-14T16:37:28.634Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -191,6 +191,29 @@ A line of text containing a single-line code block looks like that:
 Multi-line code blocks wrap multiple lines in one big code block and start with a line that only contains \`\`\` then the text content and then \`\`\` again:
 
 ![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+
+## Plain Text
+
+The plain text formatting code will bypass all other formatting codes inside it.
+
+It works similar to code blocks, but it will not format it like a code block. Instead it will show like normal text, but without any formatting.
+
+To wrap a text part inside a line in a plain text formatting code, you need to add `;;` before and after the text part you want to show as plain text like this:
+
+```
+This is a line of text with ;;**this part**;; showing as unformatted text with visible ** (bold) formatting code and _this part_ as normal formatted italic text.
+```
+
+Plain text also works as a multi-line wrapper code, so you need to add `;;;` before and after the line(s) you want to show as plain text like this:
+
+```
+;;;
+This line will show **unformatted** with visible ** (bold) formatting codes.
+This line will also show _unformatted_ with visible _ (italic) formatting codes.
+;;;
+
+This line will look **normal** again with the "normal" formatted as bold text.
+```
 
 # Minecraft Text Formatting
 
