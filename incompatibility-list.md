@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-01-16T20:23:05.260Z
+date: 2025-02-19T16:01:47.955Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -58,6 +58,7 @@ Thank you very much!**
 - [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu; maybe only happens when "Easy Villagers" is also installed)
 - [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
 - [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
+- [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
 
 ## Fabric Mods
 
@@ -81,6 +82,7 @@ Thank you very much!**
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
 - [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
 - [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
+- [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
 
 ----------
 
