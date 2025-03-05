@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-02-19T16:01:47.955Z
+date: 2025-03-05T15:05:45.747Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -83,6 +83,7 @@ Thank you very much!**
 - [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
 - [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 - [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
+- [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Makes menus look bugged)
 
 ----------
 
