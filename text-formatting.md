@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2025-02-14T16:40:52.701Z
+date: 2025-03-12T18:27:29.543Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-23T10:10:33.171Z
@@ -224,7 +224,7 @@ To read more about Minecraft's formatting system, please take a look at [this Mi
 > The wiki will say the formatting code prefix is `§`, but in FancyMenu you need to replace that with `&`. Everything else stays the same.
 {.is-warning}
 
-# Minecraft Text Components
+# Minecraft Text Components (Raw Component System)
 
 Minecraft's text component system is pretty powerful for **single-line** text content like **button labels**.
 
