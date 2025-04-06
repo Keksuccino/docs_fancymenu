@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2025-04-06T19:52:32.615Z
+date: 2025-04-06T19:55:11.765Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -20,11 +20,7 @@ These can then be used with the **Localize Text** placeholder to localize text t
 > The following documentation focuses on how to load custom localizations, but instead of using custom ones, you can also use **Minecraft's Vanilla localization keys** or **keys of other loaded mods**.
 {.is-info}
 
-## 1. Creating Your Custom Localization Files
-
-Minecraft uses **localization files** (in JSON format) to display text in different languages. You can create your own files to add custom text for FancyMenu or change game messages.
-
-### What Is a Localization File?
+## Custom Localization Files
 
 Localization files are text files with all the text content that should be available in multiple languages. Each translatable text has a unique key, so Minecraft can find the correct translatable text in the localization files.
 
@@ -58,7 +54,7 @@ If you now want to add translated versions, like German, copy the content from t
 
 For German, you would then save the file as `de_de.json`. For other languages, please check [this Minecraft wiki page](https://minecraft.wiki/w/Language) for the correct language code for your language and name the file after it. Search for the **"in-game locale code"** for your language.
 
-## 2. Creating a Minecraft Resource Pack for MC 1.21.4
+## Creating a Minecraft Resource Pack for MC 1.21.4
 
 Now that your localization files are ready, we need a way to load them in Minecraft. For that, we will use a resource pack. We will make the pack to be enabled by default and we can even hide it if we don't want modpack users to mess with it.
 
@@ -101,7 +97,7 @@ A **resource pack** is a ZIP file that holds files that change the game’s look
 4. **ZIP the Resource Pack:**  
    Once your folder is ready, **compress the entire folder into a ZIP file**. Name the ZIP file **my_custom_pack.zip**. This is the example name used throughout the guide.
 
-## 3. Where to Place the Resource Pack
+## Where to Place the Resource Pack
 
 Place your **my_custom_pack.zip** file in the **Minecraft Resourcepacks folder**. This folder is usually located at:
 
@@ -112,7 +108,7 @@ Place your **my_custom_pack.zip** file in the **Minecraft Resourcepacks folder**
 > For modpacks, the `resourcepacks` folder is in your pack's instance directory.
 {.is-warning}
 
-## 4. Auto-Loading the Resource Pack with "Resource Pack Overrides"
+## Auto-Loading the Pack with "Resource Pack Overrides"
 
 The **Resource Pack Overrides** mod makes it possible enable resource packs by default.
 
@@ -144,7 +140,7 @@ The **Resource Pack Overrides** mod makes it possible enable resource packs by d
 
 *Note: The resource packs in the list are applied in reverse order. That means the pack at the top of the list will appear below the others in the game’s resource pack menu.*
 
-## 5. Hiding the Resource Pack in the Selection Screen
+## Hiding the Resource Pack in the Selection Screen
 
 You can hide your resource pack so players do not see it in the resource pack selection screen.
 
@@ -169,7 +165,7 @@ You can hide your resource pack so players do not see it in the resource pack se
    
    This configuration will hide **my_custom_pack.zip** from the selection screen while still loading it automatically.
 
-## 6. Using Your New Localization Keys with FancyMenu
+## Using Your New Localization Keys with FancyMenu
 
 Now that your custom localization files are loaded, you can use your new keys in FancyMenu layouts.
 
