@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2023-12-24T08:20:27.143Z
+date: 2025-04-06T19:52:32.615Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-24T07:59:54.994Z
@@ -10,121 +10,189 @@ dateCreated: 2023-12-24T07:59:54.994Z
 
 # Localizing Layouts
 
-FancyMenu lets you localize text content and even images and other element types.
+FancyMenu lets you localize text content and even whole elements or layouts!
 
 # Text Content
 
 FancyMenu allows you to add your own localizations to the game.
-These can then be used in the **Localize Text** placeholder to localize a text to the current game language.
+These can then be used with the **Localize Text** placeholder to localize text to the current game language.
 
-The following documentation focuses on how to load localizations via FancyMenu's own localization system, but instead of using FancyMenu's system, you can also use **Minecraft's localization system** and load your localizations via resource pack or a resource loader mod.
+> The following documentation focuses on how to load custom localizations, but instead of using custom ones, you can also use **Minecraft's Vanilla localization keys** or **keys of other loaded mods**.
+{.is-info}
 
-The **Localize Text** placeholder works with keys from both FancyMenu's and Minecraft's localization systems.
+## 1. Creating Your Custom Localization Files
 
-## Adding Text Localizations
+Minecraft uses **localization files** (in JSON format) to display text in different languages. You can create your own files to add custom text for FancyMenu or change game messages.
 
-To add your own localization files, you first need to create a localization directory in `.minecraft/config/fancymenu/custom_locals/`.
-This directory should have a unique name, like your username.
+### What Is a Localization File?
 
-In this case, I will name the directory `keksuccino`.
-So now I have my localization directory in `.minecraft/config/fancymenu/custom_locals/keksuccino`.
+Localization files are text files with all the text content that should be available in multiple languages. Each translatable text has a unique key, so Minecraft can find the correct translatable text in the localization files.
 
-![](https://user-images.githubusercontent.com/35544624/134380681-59f9bd02-aefd-4b67-9ee4-ca7568d23935.png)
+- **Default File (en_us.json):**  
+  English (US). This file is used when no other language file is chosen. It acts as the backup language file.
 
-This is the directory where you will put all your localization files.
+- **Other Language Files:**  
+  For example, you can create a German file called `de_de.json` for players who use German.
 
-### The First Localization File
+### How to Create a Custom Localization File
 
-Localization files contain all of your localized text content for different languages.
-There's always one localization file per language.
+You always need an `en_us.json` file! Without it, the game has no fallback when stuff goes wrong or an unsupported language is set.
 
-This means that you put the same text content in multiple files, but in different languages.
+1. **Open a Text Editor:**  
+   Use Notepad (Windows), TextEdit (Mac), or any simple text editor.
 
-To make the game being able to find the same localized content across multiple files, you need to give every localization a **unique** key (like an ID).
+2. **Write Your JSON Code:**  
+   Create your file with your custom keys. A key is a unique name that Minecraft uses to find the text. For example:
+   
+   ```json
+   {
+     "modpack_name.custom.localization.key": "Your custom text here",
+     "modpack_name.another.key": "Another message"
+   }
+   ```
 
-Because you will most likely not localize your content to every language in the game, you will need a **fallback language** that gets used when the game is set to a language your content is not localized to.
+3. **Save the File:**  
+   Save the file as `en_us.json` for the default English text.
 
-This is why the **first file you need to create** in your localization directory is the `en_us.local` file!
-The `en_us.local` (English US) file is always the fallback language, so make sure to add it!
+If you now want to add translated versions, like German, copy the content from the `en_us.json` file to the new file and only translate the actual text, NOT the keys! Keys need to stay the same, so the game can still find the text.
 
-To do this, just open your **localization directory** and **right-click** into the folder to create a new **text document**.
+For German, you would then save the file as `de_de.json`. For other languages, please check [this Minecraft wiki page](https://minecraft.wiki/w/Language) for the correct language code for your language and name the file after it. Search for the **"in-game locale code"** for your language.
 
-![](https://user-images.githubusercontent.com/35544624/134384066-256c0495-30b6-42b5-95ff-bcb3d34e3f28.png)
+## 2. Creating a Minecraft Resource Pack for MC 1.21.4
 
-> **IMPORTANT:** Now you will need to [turn on file extensions](https://cdn.discordapp.com/attachments/795308330746511390/801561308012347482/unknown.png) on Windows and maybe other systems, to see the `.txt` extension of your newly created text file.
+Now that your localization files are ready, we need a way to load them in Minecraft. For that, we will use a resource pack. We will make the pack to be enabled by default and we can even hide it if we don't want modpack users to mess with it.
+
+A **resource pack** is a ZIP file that holds files that change the game’s look and feel.
+
+### Steps to Create Your Resource Pack
+
+1. **Make a New Folder:**  
+   Create a folder named something like `my_custom_pack` where you will add your custom localization files.
+
+2. **Create the Pack File (`pack.mcmeta`):**  
+   Inside your folder, create a file called `pack.mcmeta` with the following content:
+   
+   ```json
+   {
+     "pack": {
+       "pack_format": 16,
+       "description": "My Custom Pack with Localizations"
+     }
+   }
+   ```
+   
+   *Note: `pack_format` 16 is for Minecraft 1.21.4.*
+
+3. **Add Your Localization Files:**  
+   Inside your resource pack folder, create the following folder structure:
+   
+   ```
+   my_custom_pack/
+   ├── assets/
+   │   └── minecraft/
+   │       └── lang/
+   │           ├── en_us.json
+   │           └── de_de.json
+   └── pack.mcmeta
+   ```
+   
+   Place your custom `en_us.json` (and any other language files like `de_de.json`) in the `lang` folder.
+
+4. **ZIP the Resource Pack:**  
+   Once your folder is ready, **compress the entire folder into a ZIP file**. Name the ZIP file **my_custom_pack.zip**. This is the example name used throughout the guide.
+
+## 3. Where to Place the Resource Pack
+
+Place your **my_custom_pack.zip** file in the **Minecraft Resourcepacks folder**. This folder is usually located at:
+
+- **Windows:** `%appdata%\.minecraft\resourcepacks`
+- **Mac:** `~/Library/Application Support/minecraft/resourcepacks`
+- **Linux:** `~/.minecraft/resourcepacks`
+
+> For modpacks, the `resourcepacks` folder is in your pack's instance directory.
 {.is-warning}
 
-Rename this text file to `en_us.local` (make sure to remove the old `.txt` extension).
+## 4. Auto-Loading the Resource Pack with "Resource Pack Overrides"
 
-![](https://user-images.githubusercontent.com/35544624/134384272-6891f062-5f7a-4ba0-bcbc-6c3c6d96924a.png)
+The **Resource Pack Overrides** mod makes it possible enable resource packs by default.
 
-Right-click it and click on **Open with -> Choose another app** (on Windows) and search and select the text editor of your choice in the list. Now enable the **Always use this app to open .local files** option at the bottom of the window and click **OK**.
+### Steps to Auto-Load Your Pack
 
-![](https://user-images.githubusercontent.com/35544624/134385052-d569d8b5-ec15-44d2-b103-da7d3f6288a0.png)
+1. **Install the Mod:**  
+   Download and install the mod from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/resource-pack-overrides) or [Modrinth](https://modrinth.com/mod/resource-pack-overrides).
 
-Now you can open and edit `.local` files with your normal text editor.
+2. **Locate the Config File:**  
+   Find the file at `.minecraft/config/resourcepackoverrides.json`.  
+   *If the file does not exist, create it manually.*
 
-### Localization File Content
+3. **Edit the Config File:**  
+   Open the file and add your resource pack to the `default_packs` list using its file name:
+   
+   ```json
+   {
+     "schema_version": 2,
+     "default_packs": [
+       "file/my_custom_pack.zip"
+     ]
+   }
+   ```
+   
+   This tells Minecraft to load your resource pack automatically when you start the game.
 
-You just created your first localization file (**English US**).
-This means when the game language is set to English US, your text elements will be localized to the content in the `en_us.local` file (and in the case of this specific file, it will also get used if you don't have a localization file for the current game language).
+   **It's important to add the `file/` prefix!**
 
-But the file is still empty, so none of your text elements can get any content from it. Lets change this.
 
-Open your `en_us.local` file with a text editor.
+*Note: The resource packs in the list are applied in reverse order. That means the pack at the top of the list will appear below the others in the game’s resource pack menu.*
 
-There's always one localization key with its value per text line, so line breaks will not work (and will break the localization file).
+## 5. Hiding the Resource Pack in the Selection Screen
 
-To add a new localization, just start with the **unique** key you've chosen for it, followed by an equals sign and the actual value.
+You can hide your resource pack so players do not see it in the resource pack selection screen.
 
-![](https://user-images.githubusercontent.com/35544624/134387882-87d163d7-e974-4f42-b736-3e0c0e1f98e6.png)
+### How to Hide It
 
-Keys need to be **unique**, so you can't use the same key for more than one localization **in the same file**.
+1. **Edit the Config File Again:**  
+   In the same file `.minecraft/config/resourcepackoverrides.json`, add an override for your pack:
+   
+   ```json
+   {
+     "schema_version": 2,
+     "default_packs": [
+       "file/my_custom_pack.zip"
+     ],
+     "pack_overrides": {
+       "file/my_custom_pack.zip": {
+         "hidden": true
+       }
+     }
+   }
+   ```
+   
+   This configuration will hide **my_custom_pack.zip** from the selection screen while still loading it automatically.
 
-Just like for the first localization, you can now add more localizations to the localization file.
+## 6. Using Your New Localization Keys with FancyMenu
 
-![](https://user-images.githubusercontent.com/35544624/134388902-b61b0fab-8e79-428b-ad53-3756e0f9fcf1.png)
+Now that your custom localization files are loaded, you can use your new keys in FancyMenu layouts.
 
-Now you have your first (and most important) localization file ready to use.
+1. **Edit a Text-Based Element:**  
+   Open FancyMenu and choose an element like a Button or Text element.
 
-### Adding More Languages
+2. **Click on the Placeholders Button:**  
+   Look for the Placeholders button at the top-right of the text editor. (If you don’t see it, the element might not support placeholders.)
 
-Now you have your text content localized to English, but well, it's **only** localized to English, so it's not really localized yet, right?
+3. **Insert the Localize Text Placeholder:**  
+   The Localize Text placeholder appears as a JSON snippet. It looks like this:
+   
+   ```json
+   {"placeholder":"local","values":{"key":"localization.key"}}
+   ```
+   
+   Replace `localization.key` with your own custom key. For example, if you want to use your key from the localization file, change it to:
+   
+   ```json
+   {"placeholder":"local","values":{"key":"modpack_name.custom.localization.key"}}
+   ```
 
-Well, no problem! Just like you've created and edited your `en_us.local` file, you can now make files for other languages!
-
-In my example, I will create a file to localize my text content to German.
-
-To do this, I will create a `de_de.local` file in my localization directory.
-
-![](https://user-images.githubusercontent.com/35544624/134390071-97ea159f-5eb0-4695-89e5-6dbfa637c9c5.png)
-
-You've probably noticed at this point that the names of your localization files can't be random.
-You always need to use the **correct language code** for the localization file as file name.
-
-If you want to know the correct language code (aka. local code) for a language, check out [this Minecraft wiki page](https://minecraft.fandom.com/wiki/Language).
-
-Now I will add the exact same localizations as in the `en_us.local` file to my new `de_de.local` file, but will translate everything to German.
-
-Make sure to **only translate the value** and **not the key**!
-
-![](https://user-images.githubusercontent.com/35544624/134391225-0e44e7bc-b8bf-4f98-a5bc-d4564ba92686.png)
-
-Now you have your default `en_us.local` file and one or more other localization files with the same content, but in different languages.
-
-You can edit these files later to add more values or to edit existing ones.
-
-## Using Text Localizations
-
-Your localization files are ready now, so lets see if they work.
-
-To use your localizations in text-based elements, you just need to edit the content of a text-based element (like labels of Button elements or Text elements) and click on the **Placeholders** button on the top-right side of the text editor. If there is no such buttton in the editor, then the text content you're editing does **not support** placeholders.
-
-Search for the **Localize Text** placeholder and click on it to paste it to your text content.
-
-Now replace the `localization.key` part of the placeholder with one of your own localization keys.
-
-Well, and that's basically it. The placeholder should get replaced with the actual localized content when not in the text editor.
+Well, and that's basically it! The placeholder should get replaced with the actual localized content when not editing it in the text editor.
 
 Keep in mind that the placeholder will always localize the text content to the current game language.
 
