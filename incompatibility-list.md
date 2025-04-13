@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-03-05T15:05:45.747Z
+date: 2025-04-13T23:15:04.305Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-21T09:38:10.367Z
@@ -21,7 +21,7 @@ Thank you very much!**
 
 ## Forge Mods
 
-- OptiFine (works for the most part, but you should use [these alternatives](./optifine-alternatives) instead)
+- OptiFine (Breaks the mod! You should use [these alternatives](./optifine-alternatives) instead!)
 - [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
 - [Pack Menu](https://www.curseforge.com/minecraft/mc-mods/packmenu)
 - [Main Menu Scale Mod](https://www.curseforge.com/minecraft/mc-mods/main-menu-scale)
@@ -56,13 +56,12 @@ Thank you very much!**
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
 - [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Breaks FancyMenu's UI. UI buttons aren't clickable.)
 - [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu; maybe only happens when "Easy Villagers" is also installed)
-- [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
 - [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 - [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
+- [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Crashes the game)
 
 ## Fabric Mods
 
-- OptiFine (works for the most part, but you should use [these alternatives](https://fm.keksuccino.dev/en/wiki/general/verified/optifine-alternatives) instead)
 - [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (**WORKS FINE** in most cases, but if you experience a duplicated or uncustomizable Mods button, change your Mod Menu button settings to "Adjacent": Main Menu > Mods > Mod Menu > Mods Button: Adjacent)
 - [Bedrockify](https://www.curseforge.com/minecraft/mc-mods/bedrockify) (Compatible when you disable all menu modifications of the mod, at least for the menus you want to customize)
 - [Slight Gui Modifications](https://www.curseforge.com/minecraft/mc-mods/slight-gui-modifications)
@@ -80,10 +79,10 @@ Thank you very much!**
 - [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 - [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible on MC versions before 1.20.4. Works fine in MC 1.20.4+!)
 - [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash; Can't fix on my end, see [this](https://github.com/Keksuccino/FancyMenu/issues/776))
-- [Valkyrien Skies](https://www.curseforge.com/minecraft/mc-mods/valkyrien-skies) (Crash on startup; Valkyrien Skies needs to fix that on their side)
 - [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 - [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
 - [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Makes menus look bugged)
+- [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Crashes the game)
 
 ----------
 
