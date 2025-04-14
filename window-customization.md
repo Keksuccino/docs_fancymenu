@@ -2,10 +2,10 @@
 title: Window Icon & Title
 description: How to change the window icon and title.
 published: true
-date: 2024-08-31T21:23:48.852Z
+date: 2025-04-14T20:16:35.129Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-22T03:47:58.818Z
+dateCreated: 2025-04-14T20:16:32.382Z
 ---
 
 # Window Icon & Title

@@ -2,10 +2,10 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2024-10-29T05:41:26.898Z
+date: 2025-04-14T20:15:45.120Z
 tags: 
 editor: markdown
-dateCreated: 2024-04-20T09:49:13.361Z
+dateCreated: 2025-04-14T20:15:42.273Z
 ---
 
 # Positioning Elements in FancyMenu

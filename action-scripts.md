@@ -2,10 +2,10 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-02-15T21:22:08.294Z
+date: 2025-04-14T20:15:42.266Z
 tags: 
 editor: markdown
-dateCreated: 2025-02-15T21:22:08.294Z
+dateCreated: 2025-04-14T20:02:13.319Z
 ---
 
 # Action Scripts

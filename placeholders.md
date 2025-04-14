@@ -2,10 +2,10 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-01-29T21:23:15.881Z
+date: 2025-04-14T20:15:41.028Z
 tags: 
 editor: markdown
-dateCreated: 2024-11-19T09:21:20.579Z
+dateCreated: 2025-04-14T20:15:37.364Z
 ---
 
 # Placeholders

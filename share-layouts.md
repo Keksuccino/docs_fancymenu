@@ -2,10 +2,10 @@
 title: Import/Export Layouts
 description: How to share layouts with others.
 published: true
-date: 2024-11-19T09:06:28.069Z
+date: 2025-04-14T20:16:05.886Z
 tags: import, export, setup, design, menu
 editor: markdown
-dateCreated: 2024-02-25T08:39:23.269Z
+dateCreated: 2025-04-14T20:16:02.771Z
 ---
 
 The process of sharing a layout is very similar to [including it in a modpack](/modpacks), so just check the [Modpacks page](/modpacks) for more information.

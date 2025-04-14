@@ -2,10 +2,10 @@
 title: Menu Background Music
 description: How to customize the music played in menus.
 published: true
-date: 2024-08-24T21:12:58.326Z
+date: 2025-04-14T20:14:16.926Z
 tags: 
 editor: markdown
-dateCreated: 2024-03-07T04:34:08.380Z
+dateCreated: 2025-04-14T20:14:14.268Z
 ---
 
 # Menu Background Music

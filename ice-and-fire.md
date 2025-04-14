@@ -2,10 +2,10 @@
 title: Ice & Fire Main Menu
 description: How to disable Ice and Fire's custom main menu.
 published: true
-date: 2025-04-10T15:40:17.969Z
+date: 2025-04-14T20:15:02.802Z
 tags: 
 editor: markdown
-dateCreated: 2025-04-10T15:40:17.969Z
+dateCreated: 2025-04-14T20:14:59.763Z
 ---
 
 To disable the custom title screen in the Ice and Fire mod you need to change its configuration. Here’s how you can do it:

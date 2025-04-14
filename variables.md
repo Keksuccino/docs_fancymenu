@@ -2,10 +2,10 @@
 title: Variables
 description: How to create and use variables.
 published: true
-date: 2025-01-29T21:20:30.448Z
+date: 2025-04-14T20:16:31.178Z
 tags: 
 editor: markdown
-dateCreated: 2025-01-27T19:14:03.942Z
+dateCreated: 2025-04-14T20:16:28.294Z
 ---
 
 # Variables in FancyMenu

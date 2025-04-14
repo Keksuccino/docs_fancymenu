@@ -2,10 +2,10 @@
 title: Game Intro
 description: Play animated content before the game shows the Title screen for the first time.
 published: true
-date: 2024-04-19T02:06:36.256Z
+date: 2025-04-14T20:14:55.520Z
 tags: 
 editor: markdown
-dateCreated: 2024-04-19T00:12:57.220Z
+dateCreated: 2025-04-14T20:14:52.822Z
 ---
 
 # Game Intros

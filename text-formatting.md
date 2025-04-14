@@ -2,10 +2,10 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2025-03-12T18:27:29.543Z
+date: 2025-04-14T20:16:20.131Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-23T10:10:33.171Z
+dateCreated: 2025-04-14T20:16:15.668Z
 ---
 
 # Text Formatting

@@ -2,10 +2,10 @@
 title: Screen Identifiers
 description: About screen identifiers and how to find the identifier of a screen.
 published: true
-date: 2024-02-08T05:01:01.202Z
+date: 2025-04-14T20:16:01.563Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-08T05:00:25.973Z
+dateCreated: 2025-04-14T20:15:58.663Z
 ---
 
 # Screen Identifiers

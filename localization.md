@@ -2,10 +2,10 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2025-04-06T19:55:11.765Z
+date: 2025-04-14T20:15:19.588Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-24T07:59:54.994Z
+dateCreated: 2025-04-14T20:15:16.589Z
 ---
 
 # Localizing Layouts

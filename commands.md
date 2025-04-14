@@ -2,10 +2,10 @@
 title: Commands
 description: FancyMenu's commands and how to use them.
 published: true
-date: 2024-04-13T02:04:41.590Z
+date: 2025-04-14T20:15:29.205Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-24T08:44:25.178Z
+dateCreated: 2025-04-14T20:14:18.072Z
 ---
 
 # Commands

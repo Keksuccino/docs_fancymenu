@@ -2,10 +2,10 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-02-13T01:29:43.212Z
+date: 2025-04-14T20:14:37.412Z
 tags: 
 editor: markdown
-dateCreated: 2025-02-13T01:09:39.421Z
+dateCreated: 2025-04-14T20:14:34.288Z
 ---
 
 # Element Animator

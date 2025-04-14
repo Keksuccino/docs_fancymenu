@@ -2,10 +2,10 @@
 title: Fix Audio Files
 description: How to fix audio files in case FancyMenu fails to play them.
 published: true
-date: 2024-04-17T01:23:05.750Z
+date: 2025-04-14T20:14:47.283Z
 tags: wav, ogg, audio
 editor: markdown
-dateCreated: 2024-04-17T01:23:05.750Z
+dateCreated: 2025-04-14T20:14:44.259Z
 ---
 
 # Fixing Audio Files

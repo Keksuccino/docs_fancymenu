@@ -2,10 +2,10 @@
 title: JSON Paths
 description: How to use Jayway JsonPath in the JSON Parser placeholder.
 published: true
-date: 2023-12-24T08:37:39.825Z
+date: 2025-04-14T20:15:11.610Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-24T01:34:54.059Z
+dateCreated: 2025-04-14T20:15:08.305Z
 ---
 
 # JSON Paths in FancyMenu

@@ -2,10 +2,10 @@
 title: Toggle Parts of Layouts
 description: How to toggle parts of layouts on user input.
 published: true
-date: 2024-02-26T09:56:51.707Z
+date: 2025-04-14T20:16:23.095Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-26T05:08:33.154Z
+dateCreated: 2025-04-14T20:16:20.179Z
 ---
 
 # Toggle Parts of Layouts

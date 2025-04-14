@@ -2,10 +2,10 @@
 title: Custom GUIs
 description: How to add a new GUI screen to the game.
 published: true
-date: 2024-01-30T08:26:46.175Z
+date: 2025-04-14T20:14:29.021Z
 tags: 
 editor: markdown
-dateCreated: 2024-01-30T08:26:08.730Z
+dateCreated: 2025-04-14T20:14:26.193Z
 ---
 
 # Custom GUIs

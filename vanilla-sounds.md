@@ -2,10 +2,10 @@
 title: Vanilla Sounds & Music
 description: How to access Vanilla sound resources.
 published: true
-date: 2024-05-14T08:31:33.995Z
+date: 2025-04-14T20:16:27.064Z
 tags: 
 editor: markdown
-dateCreated: 2024-05-14T08:31:33.995Z
+dateCreated: 2025-04-14T20:16:24.273Z
 ---
 
 # Vanilla Sounds & Music

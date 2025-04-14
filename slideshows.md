@@ -2,10 +2,10 @@
 title: Slideshows
 description: How to make and use slideshows.
 published: true
-date: 2025-01-13T14:21:30.446Z
+date: 2025-04-14T20:16:14.375Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-24T09:02:04.247Z
+dateCreated: 2025-04-14T20:16:11.469Z
 ---
 
 # Slideshows

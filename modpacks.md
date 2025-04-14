@@ -2,10 +2,10 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2024-11-19T09:00:41.277Z
+date: 2025-04-14T20:15:23.876Z
 tags: 
 editor: markdown
-dateCreated: 2023-12-22T05:28:46.511Z
+dateCreated: 2025-04-14T20:15:20.891Z
 ---
 
 # FancyMenu in Modpacks

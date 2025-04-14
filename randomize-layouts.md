@@ -2,10 +2,10 @@
 title: Randomize Layouts
 description: How to randomize full layouts or parts of it.
 published: true
-date: 2024-02-08T05:53:59.046Z
+date: 2025-04-14T20:15:53.317Z
 tags: 
 editor: markdown
-dateCreated: 2024-02-08T05:19:14.757Z
+dateCreated: 2025-04-14T20:15:50.468Z
 ---
 
 # Randomization
