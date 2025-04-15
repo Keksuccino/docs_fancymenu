@@ -2,17 +2,11 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2025-04-14T20:15:46.503Z
+date: 2025-04-15T00:06:28.126Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T19:45:47.193Z
 ---
-
-# FancyMenu v3
-
-Just a little reminder that this is the documentation for **FancyMenu v3**.
-
-If you're looking for the v2 docs, please go to [the FMv2 documentation](https://fm.keksuccino.dev) instead.
 
 # For Developers
 
