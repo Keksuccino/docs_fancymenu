@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-04-14T20:15:07.076Z
+date: 2025-04-15T16:23:34.019Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -59,6 +59,7 @@ Thank you very much!**
 - [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 - [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
 - [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Crashes the game)
+- [Legacy4J](https://www.curseforge.com/minecraft/mc-mods/legacy-minecraft) (Crashes the game)
 
 ## Fabric Mods
 
@@ -83,6 +84,7 @@ Thank you very much!**
 - [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of MCA's menus break FM's menu bar and/or are not customizable)
 - [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Makes menus look bugged)
 - [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Crashes the game)
+- [Legacy4J](https://www.curseforge.com/minecraft/mc-mods/legacy-minecraft) (Crashes the game)
 
 ----------
 
