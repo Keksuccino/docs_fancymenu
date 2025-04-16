@@ -29,9 +29,9 @@
   --bullet-color: var(--primary-highlight-text); /* Color for primary bullets */
   --bullet-color-nested: var(--content-text-secondary-dark); /* Color for nested bullets */
 
-  /* --- User Defined Headline Colors --- */
-  --headline-h1-color: #ffffff; /* Level 1 */
-  --headline-h2-color: #c2bbfa; /* Level 2 */
+  /* Headline Colors */
+  --headline-h1-color: #c2bbfa; /* Level 1 */
+  --headline-h2-color: #ea9ffc; /* Level 2 */
   --headline-h3-color: #ff8799; /* Level 3 */
   --headline-h4-color: #ffc187; /* Level 4 */
   --headline-h5-color: var(--content-text-dark); /* Use main text color */
@@ -241,7 +241,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 /* --- Content Styling --- */
 .contents { }
 
-/* --- Content Headlines --- RESTORED COLORS */
+/* --- Content Headlines --- */
 .contents h1, .contents h2, .contents h3, .contents h4, .contents h5, .contents h6 {
   font-weight: 500;
   margin-top: 2em;
@@ -254,7 +254,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 .contents h1 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--headline-h1-color) !important; /* Apply H1 color */
+  color: var(--headline-h1-color) !important;
   margin-top: 0;
   margin-bottom: 0.4em;
   padding-bottom: 0.4em;
@@ -262,26 +262,26 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 }
 .contents h2 {
   font-size: 1.5rem;
-  color: var(--headline-h2-color) !important; /* Apply H2 color */
+  color: var(--headline-h2-color) !important;
   padding-bottom: 0.25em;
 }
 .contents h3 {
   font-size: 1.3rem;
-  color: var(--headline-h3-color) !important; /* Apply H3 color */
+  color: var(--headline-h3-color) !important;
   border-bottom-style: solid;
   border-bottom-color: rgba(255, 255, 255, 0.12);
   padding-bottom: 0.25em;
 }
 .contents h4 {
   font-size: 1.15rem;
-  color: var(--headline-h4-color) !important; /* Apply H4 color */
+  color: var(--headline-h4-color) !important;
   border-bottom: none;
   margin-bottom: 0.5em;
   padding-bottom: 0;
 }
 .contents h5 {
   font-size: 1.05rem;
-  color: var(--headline-h5-color) !important; /* Apply H5 color */
+  color: var(--headline-h5-color) !important;
   font-weight: 400;
   border-bottom: none;
   margin-bottom: 0.3em;
@@ -289,7 +289,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 }
 .contents h6 {
   font-size: 1rem;
-  color: var(--headline-h6-color) !important; /* Apply H6 color */
+  color: var(--headline-h6-color) !important;
   font-style: italic;
   font-weight: 400;
   border-bottom: none;
@@ -352,19 +352,20 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
   margin-bottom: 0;
 }
 
-/* --- Content Lists --- */
+/* --- Content Lists --- FINAL REVISED BULLET SPACING/INDENT --- */
 .contents ul, .contents ol {
   margin: 1em 0;
-  padding-left: 1.5em; /* Indent for custom bullet */
+  padding-left: 2em; /* Default indent for ordered list */
 }
 
 .contents ul {
-  list-style: none;
+  list-style: none; /* Remove default bullet */
+  padding-left: 2em; /* Match ordered list indent */
 }
 
 .contents ul > li {
   position: relative;
-  padding-left: 1.2em; /* Space for bullet */
+  padding-left: 1.5em; /* Space for the custom bullet + gap */
   margin-bottom: 0.6em;
   color: inherit !important;
 }
@@ -372,14 +373,13 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 .contents ul > li::before {
   content: "" !important;
   position: absolute;
-  left: 0; /* Align bullet to the start of the padding */
-  top: 0.5em;
+  left: 0; /* Align bullet start with the padding edge */
+  top: 0.55em; /* Fine-tune vertical alignment */
   width: 6px !important;
   height: 6px !important;
   background-color: var(--bullet-color) !important;
   border-radius: 50% !important;
   display: inline-block !important;
-  vertical-align: middle;
   border: none !important;
   transform: none !important;
 }
@@ -388,23 +388,24 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 .contents ul ul {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
-  padding-left: 1.5em;
+  list-style: none;
+  padding-left: 1.5em; /* Nested indent relative to parent li's padding */
 }
 
 .contents ul ul > li::before {
   background-color: var(--bullet-color-nested) !important;
   width: 5px !important;
   height: 5px !important;
-  top: 0.55em;
-  left: 0;
+  top: 0.6em;
+  left: 0; /* Align nested bullet with parent */
 }
 
 .contents ul ul ul > li::before {
    background-color: var(--bullet-color-nested) !important;
    width: 4px !important;
    height: 4px !important;
-   top: 0.6em;
-   left: 0;
+   top: 0.65em;
+   left: 0; /* Align nested bullet with parent */
 }
 
 .contents ul > li::marker {
@@ -415,12 +416,12 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 /* Ordered Lists */
 .contents ol {
   list-style: decimal outside;
-  padding-left: 2em;
+  padding-left: 2.5em; /* Ensure enough space for double-digit numbers */
   color: inherit;
 }
 
 .contents ol li {
-  padding-left: 0;
+  padding-left: 0; /* No extra padding needed for standard numbers */
 }
 .contents ol > li::before {
   content: none !important;
