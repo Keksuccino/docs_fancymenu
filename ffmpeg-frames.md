@@ -2,7 +2,7 @@
 title: Get Frames from Videos
 description: How to get frames from a video file.
 published: true
-date: 2025-04-16T19:14:18.768Z
+date: 2025-04-16T19:18:11.821Z
 tags: ffmpeg, mp4, mkv, video, frame, frames
 editor: markdown
 dateCreated: 2025-04-14T20:14:40.022Z
@@ -39,19 +39,19 @@ Before running any commands, make sure to prepare the following:
 
 ## Enable File Extensions
 
-- It’s important to see file extensions like `.mp4` or `.avi` when renaming your video file.
+  - It’s important to see file extensions like `.mp4` or `.avi` when renaming your video file.
 
-  - **On Windows**:
+    - **On Windows**:
 
-    - Open File Explorer.
-    - Click on the "View" tab at the top.
-    - Check the box that says "File name extensions."
+      - Open File Explorer.
+      - Click on the "View" tab at the top.
+      - Check the box that says "File name extensions."
 
-  - **On macOS**:
+    - **On macOS**:
 
-    - Open Finder.
-    - Click on "Finder" in the menu bar and select "Preferences."
-    - Go to the "Advanced" tab and check the box for "Show all filename extensions."
+      - Open Finder.
+      - Click on "Finder" in the menu bar and select "Preferences."
+      - Go to the "Advanced" tab and check the box for "Show all filename extensions."
 
 ## Create an Output Folder
 
