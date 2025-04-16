@@ -29,13 +29,13 @@
   --bullet-color: var(--primary-highlight-text); /* Color for primary bullets */
   --bullet-color-nested: var(--content-text-secondary-dark); /* Color for nested bullets */
 
-  /* --- UPDATED Headline Colors --- */
+  /* --- User Defined Headline Colors --- */
   --headline-h1-color: #c2bbfa; /* Level 1 */
   --headline-h2-color: #ea9ffc; /* Level 2 */
   --headline-h3-color: #ff8799; /* Level 3 */
   --headline-h4-color: #ffc187; /* Level 4 */
-  --headline-h5-color: var(--content-text-dark); /* Use main text color (unchanged) */
-  --headline-h6-color: var(--content-text-dark); /* Use main text color (unchanged) */
+  --headline-h5-color: var(--content-text-dark); /* Use main text color */
+  --headline-h6-color: var(--content-text-dark); /* Use main text color, italic added below */
 
   --border-radius-main: 12px;
   --border-radius-small: 8px;
@@ -241,7 +241,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 /* --- Content Styling --- */
 .contents { }
 
-/* --- Content Headlines --- */
+/* --- Content Headlines --- RESTORED COLORS */
 .contents h1, .contents h2, .contents h3, .contents h4, .contents h5, .contents h6 {
   font-weight: 500;
   margin-top: 2em;
@@ -254,7 +254,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 .contents h1 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--headline-h1-color) !important;
+  color: var(--headline-h1-color) !important; /* Apply H1 color */
   margin-top: 0;
   margin-bottom: 0.4em;
   padding-bottom: 0.4em;
@@ -262,26 +262,26 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 }
 .contents h2 {
   font-size: 1.5rem;
-  color: var(--headline-h2-color) !important;
+  color: var(--headline-h2-color) !important; /* Apply H2 color */
   padding-bottom: 0.25em;
 }
 .contents h3 {
   font-size: 1.3rem;
-  color: var(--headline-h3-color) !important;
+  color: var(--headline-h3-color) !important; /* Apply H3 color */
   border-bottom-style: solid;
   border-bottom-color: rgba(255, 255, 255, 0.12);
   padding-bottom: 0.25em;
 }
 .contents h4 {
   font-size: 1.15rem;
-  color: var(--headline-h4-color) !important;
+  color: var(--headline-h4-color) !important; /* Apply H4 color */
   border-bottom: none;
   margin-bottom: 0.5em;
   padding-bottom: 0;
 }
 .contents h5 {
   font-size: 1.05rem;
-  color: var(--headline-h5-color) !important;
+  color: var(--headline-h5-color) !important; /* Apply H5 color */
   font-weight: 400;
   border-bottom: none;
   margin-bottom: 0.3em;
@@ -289,7 +289,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 }
 .contents h6 {
   font-size: 1rem;
-  color: var(--headline-h6-color) !important;
+  color: var(--headline-h6-color) !important; /* Apply H6 color */
   font-style: italic;
   font-weight: 400;
   border-bottom: none;
@@ -355,53 +355,61 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 /* --- Content Lists --- */
 .contents ul, .contents ol {
   margin: 1em 0;
-  padding-left: 2em;
+  padding-left: 1.5em; /* Indent for custom bullet */
 }
 
 .contents ul {
   list-style: none;
-  padding-left: 1.5em;
 }
 
 .contents ul > li {
   position: relative;
-  padding-left: 1em;
+  padding-left: 1.2em; /* Space for bullet */
   margin-bottom: 0.6em;
   color: inherit !important;
 }
 
 .contents ul > li::before {
-  content: "•";
-  color: var(--bullet-color);
+  content: "" !important;
   position: absolute;
-  left: -0.2em;
-  top: 0;
-  font-size: 1.2em;
-  line-height: inherit;
+  left: 0; /* Align bullet to the start of the padding */
+  top: 0.5em;
+  width: 6px !important;
+  height: 6px !important;
+  background-color: var(--bullet-color) !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  vertical-align: middle;
+  border: none !important;
+  transform: none !important;
 }
 
 /* Nested Lists */
 .contents ul ul {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
-  list-style: none;
   padding-left: 1.5em;
 }
 
 .contents ul ul > li::before {
-  content: "◦";
-  color: var(--bullet-color-nested);
-  font-size: 1.1em;
-  left: -0.2em;
-  top: 0.1em;
+  background-color: var(--bullet-color-nested) !important;
+  width: 5px !important;
+  height: 5px !important;
+  top: 0.55em;
+  left: 0;
 }
 
 .contents ul ul ul > li::before {
-  content: "▪";
-  color: var(--bullet-color-nested);
-  font-size: 0.7em;
-  left: -0.1em;
-  top: 0.3em;
+   background-color: var(--bullet-color-nested) !important;
+   width: 4px !important;
+   height: 4px !important;
+   top: 0.6em;
+   left: 0;
+}
+
+.contents ul > li::marker {
+  content: none !important;
+  display: none !important;
 }
 
 /* Ordered Lists */
@@ -414,6 +422,11 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 .contents ol li {
   padding-left: 0;
 }
+.contents ol > li::before {
+  content: none !important;
+  display: none !important;
+}
+
 
 /* --- Content Horizontal Rules --- */
 .contents hr {
@@ -446,7 +459,7 @@ div[data-app="true"].v-application--is-rtl .v-application--wrap > nav.v-navigati
 .contents code:not([class*="language-"]) {
     background-color: rgba(138, 180, 248, 0.15) !important;
     color: #aecbfa !important;
-    padding: 0.1em 0.4em; /* Reduced vertical padding */
+    padding: 0.1em 0.4em;
     border-radius: 4px;
     font-size: 0.9em;
     vertical-align: baseline;
