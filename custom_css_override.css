@@ -30,8 +30,8 @@
   --bullet-color-nested: var(--content-text-secondary-dark); /* Color for nested bullets */
 
   /* --- User Defined Headline Colors --- */
-  --headline-h1-color: #c2bbfa; /* Level 1 */
-  --headline-h2-color: #ea9ffc; /* Level 2 */
+  --headline-h1-color: #ffffff; /* Level 1 */
+  --headline-h2-color: #c2bbfa; /* Level 2 */
   --headline-h3-color: #ff8799; /* Level 3 */
   --headline-h4-color: #ffc187; /* Level 4 */
   --headline-h5-color: var(--content-text-dark); /* Use main text color */
