@@ -1,0 +1,67 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Use event delegation on the body
+  document.body.addEventListener('click', function(event) {
+    // Find the closest relevant element: either the anchor itself or a headline
+    const clickTarget = event.target;
+    const anchorLink = clickTarget.closest('a.toc-anchor');
+    const headline = clickTarget.closest('.contents h1, .contents h2, .contents h3, .contents h4, .contents h5, .contents h6');
+
+    let targetAnchorElement = null;
+    let targetId = null;
+
+    if (anchorLink && anchorLink.closest('.contents')) {
+      // Click was directly on the anchor icon
+      targetAnchorElement = anchorLink;
+      targetId = targetAnchorElement.getAttribute('href');
+      // console.log('Clicked on anchor icon:', targetId);
+    } else if (headline && !anchorLink) { // Check if click was on headline text, but NOT the anchor icon itself
+      // Click was on the headline text, find the anchor within it
+      targetAnchorElement = headline.querySelector('a.toc-anchor');
+      if (targetAnchorElement) {
+        targetId = targetAnchorElement.getAttribute('href');
+        // console.log('Clicked on headline, found anchor:', targetId);
+      }
+    }
+
+    // Proceed only if we found a valid anchor href starting with #
+    if (targetId && targetId.startsWith('#')) {
+      event.preventDefault(); // Stop default behavior
+      event.stopPropagation(); // Stop event bubbling
+
+      const targetElement = document.querySelector(targetId); // Find the target headline element
+
+      if (targetElement) {
+        // 1. Update the URL bar without reloading the page
+        try {
+            history.pushState(null, '', targetId);
+        } catch(e) {
+            // Fallback for older browsers or specific environments
+            window.location.hash = targetId;
+            console.warn("pushState failed, falling back to hash change:", e);
+        }
+
+
+        // 2. Manually scroll with offset for fixed header
+        try {
+          const header = document.querySelector('header.v-app-bar'); // Adjust selector if header changes
+          const headerHeight = header ? header.offsetHeight : 64; // Default offset if header not found
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight - 15; // Added 15px buffer
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        } catch (e) {
+          console.error("Smooth scroll failed:", e);
+          // Fallback if scrollIntoView is preferred (though offset is harder)
+          // targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        console.warn('Target element for anchor not found:', targetId);
+      }
+    }
+  }, true); // Use capture phase
+});
+</script>
