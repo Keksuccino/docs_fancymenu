@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-05-07T05:02:10.114Z
+date: 2025-05-07T05:09:13.558Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z
@@ -25,9 +25,9 @@ The main thing you need to do is copy one special folder that FancyMenu uses to 
 2. **The `config` Folder:** Inside your Minecraft instance folder, there's usually a folder named `config`. This is where many mods store their settings.
 3. **The `fancymenu` Folder:** Inside that `config` folder, FancyMenu creates its own folder called `fancymenu`. This is the golden folder we need!
 
-### How to Find the Instance Save Location:
+## How to Find the Instance Save Location:
 
-#### If you use the CurseForge App
+### If you use the CurseForge App
 
 1. Open CurseForge.
 2. Find your Minecraft profile/instance in the list and open it.
@@ -36,7 +36,7 @@ The main thing you need to do is copy one special folder that FancyMenu uses to 
 
 <img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/curseforge_launcher_instance.png">
 
-#### If you use the Modrinth App
+### If you use the Modrinth App
 
 1. Open the Modrinth App.
 2. Find your Minecraft profile/instance in the list and open it.
@@ -45,7 +45,7 @@ The main thing you need to do is copy one special folder that FancyMenu uses to 
 
 <img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
 
-#### For other launchers
+### For other launchers
 
 Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option for your specific Minecraft setup.
 
