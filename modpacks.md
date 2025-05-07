@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-05-07T05:09:48.220Z
+date: 2025-05-07T05:11:25.391Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z
@@ -53,7 +53,7 @@ Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option
 
 1. Navigate to the `config` folder of your MODPACK instance (the one you want to copy your setup to).
 2. If there is a `fancymenu` folder inside, DELETE it.
-3. Open the `config` folder of the SOURCE instance (the one you want to use the setuo from).
+3. Open the `config` folder of the SOURCE instance (the one you want to use the setup from).
 4. Copy the `fancymenu` folder inside the `config` folder of your SOURCE instance to the `config` folder of your MODPACK instance.
 5. Done. That's it. Restart your modpack instance now and you should see the setup load.
 
