@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-05-07T01:41:51.390Z
+date: 2025-05-07T05:01:49.482Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z
@@ -27,16 +27,23 @@ The main thing you need to do is copy one special folder that FancyMenu uses to 
 
 ### How to Find the Instance Save Location:
 
-**If you use the CurseForge App:**
+#### If you use the CurseForge App
+
 1. Open CurseForge.
-2. Find your Minecraft profile/instance in the list.
-3. Click the three dots (menu button) next to it.
+2. Find your Minecraft profile/instance in the list and open it.
+3. Click the three dots.
 4. Choose "Open Folder." This will open the main folder for that Minecraft instance.
 
-**If you use the Modrinth App:**
+<img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/curseforge_launcher_instance.png">
+
+#### If you use the Modrinth App
+
 1. Open the Modrinth App.
-2. Go to your "Instances" list.
-3. Find your instance and click the "Folder" icon or "Open Folder" option.
+2. Find your Minecraft profile/instance in the list and open it.
+3. Click the three dots.
+4. Choose "Open Folder." This will open the main folder for that Minecraft instance.
+
+<img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
 
 **For other launchers:** Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option for your specific Minecraft setup.
 
