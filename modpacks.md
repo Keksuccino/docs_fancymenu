@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-04-14T20:15:23.876Z
+date: 2025-05-07T01:41:51.390Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z
@@ -17,16 +17,36 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 
 # Including the FancyMenu Setup in Your Modpack
 
-You simply need to include FancyMenu's config folder, that's all.
+The main thing you need to do is copy one special folder that FancyMenu uses to save all your designs.
 
-1. Navigate to the root directory of the Minecraft instance you made your layouts in.
-2. Open the `config` folder of the Minecraft instance.
-3. Copy the `fancymenu` folder of the `config` folder to your desktop.
-4. Navigate to the `config` folder of the **modpack** instance.
-5. If there is already a `fancymenu` folder in the `config` folder, **delete** the existing `fancymenu` folder.
-6. Move the `fancymenu` folder on your desktop to the `config` folder of the **modpack** instance.
+## What you'll need to find:
 
-That's it. Nothing more you need to do.
+1. **Your "Minecraft Instance" Folder:** This is the main folder on your computer where all the files for a specific Minecraft setup (like the one where you designed your menus) are stored. Launchers like CurseForge and Modrinth call these "instances" or "profiles."
+2. **The `config` Folder:** Inside your Minecraft instance folder, there's usually a folder named `config`. This is where many mods store their settings.
+3. **The `fancymenu` Folder:** Inside that `config` folder, FancyMenu creates its own folder called `fancymenu`. This is the golden folder we need!
+
+### How to Find the Instance Save Location:
+
+**If you use the CurseForge App:**
+1. Open CurseForge.
+2. Find your Minecraft profile/instance in the list.
+3. Click the three dots (menu button) next to it.
+4. Choose "Open Folder." This will open the main folder for that Minecraft instance.
+
+**If you use the Modrinth App:**
+1. Open the Modrinth App.
+2. Go to your "Instances" list.
+3. Find your instance and click the "Folder" icon or "Open Folder" option.
+
+**For other launchers:** Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option for your specific Minecraft setup.
+
+## Copying the FancyMenu Setup
+
+1. Navigate to the `config` folder of your MODPACK instance (the one you want to copy your setup to).
+2. If there is a `fancymenu` folder inside, DELETE it.
+3. Open the `config` folder of the SOURCE instance (the one you want to use the setuo from).
+4. Copy the `fancymenu` folder inside the `config` folder of your SOURCE instance to the `config` folder of your MODPACK instance.
+5. Done. That's it. Restart your modpack instance now and you should see the setup load.
 
 > Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
 {.is-danger}
