@@ -2,7 +2,7 @@
 title: Parallax Effect
 description: How to apply a parallax effect to menu background and elements.
 published: true
-date: 2025-05-07T00:04:35.161Z
+date: 2025-05-07T00:06:12.714Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T00:04:35.161Z
@@ -76,7 +76,6 @@ Too much movement can be distracting. Use parallax effect sparingly, especially 
 
 1. Make sure you've enabled the parallax effect
 2. Check that your parallax intensity isn't set to 0
-3. Verify that the element isn't behind another element blocking mouse interaction
 4. Confirm that the "Slide Wide Images From Left To Right" option is disabled (this option conflicts with parallax)
 
 ## Parallax Movement Too Fast/Slow?
