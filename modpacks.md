@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-05-07T05:09:13.558Z
+date: 2025-05-07T05:09:48.220Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z
@@ -19,13 +19,13 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 
 The main thing you need to do is copy one special folder that FancyMenu uses to save all your designs.
 
-## What you'll need to find:
+## What you'll need to find
 
 1. **Your "Minecraft Instance" Folder:** This is the main folder on your computer where all the files for a specific Minecraft setup (like the one where you designed your menus) are stored. Launchers like CurseForge and Modrinth call these "instances" or "profiles."
 2. **The `config` Folder:** Inside your Minecraft instance folder, there's usually a folder named `config`. This is where many mods store their settings.
 3. **The `fancymenu` Folder:** Inside that `config` folder, FancyMenu creates its own folder called `fancymenu`. This is the golden folder we need!
 
-## How to Find the Instance Save Location:
+## How to Find the Instance Save Location
 
 ### If you use the CurseForge App
 
