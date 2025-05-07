@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-05-07T05:01:49.482Z
+date: 2025-05-07T05:02:10.114Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z
@@ -45,7 +45,9 @@ The main thing you need to do is copy one special folder that FancyMenu uses to 
 
 <img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
 
-**For other launchers:** Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option for your specific Minecraft setup.
+#### For other launchers
+
+Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option for your specific Minecraft setup.
 
 ## Copying the FancyMenu Setup
 
