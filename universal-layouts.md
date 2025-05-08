@@ -2,7 +2,7 @@
 title: Universal Layouts
 description: How to create and use universal layouts.
 published: true
-date: 2025-05-08T23:42:27.319Z
+date: 2025-05-08T23:45:45.578Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-08T23:42:27.319Z
@@ -71,6 +71,11 @@ To add screens to whitelist or blacklist, you need to know their identifiers:
 4. The identifier is now copied to your clipboard
 
 You can paste this identifier into the whitelist or blacklist.
+
+# Enabling Customization for All Screens
+
+It is not possible to enable customization for all screens at once.
+This is by design and prevents people from accidentally bricking their game because they enable customization for a modded screen that isn't supported.
 
 # Advanced Tips
 
