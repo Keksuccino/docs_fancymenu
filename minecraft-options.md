@@ -2,7 +2,7 @@
 title: Set/Get Minecraft Options
 description: How to set and get Minecraft options like volume, FOV, render distance, etc.
 published: true
-date: 2025-05-10T01:59:00.569Z
+date: 2025-05-10T02:03:16.127Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T04:47:56.021Z
@@ -152,7 +152,7 @@ First, we need a ticker that will check the current FOV value and set a variable
 
 1. Create a new Ticker element
 2. Set the "Tick Mode" to "Normal" (so it updates constantly)
-3. Set the "Tick Delay" to around "250" (milliseconds) to avoid excessive checks
+3. Set the "Tick Delay" to around "10" (milliseconds) to avoid excessive checks
 
 Now we need to set up actions for the FOV labels. Here's what your action script structure should look like:
 
