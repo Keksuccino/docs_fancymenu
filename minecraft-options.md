@@ -2,7 +2,7 @@
 title: Set/Get Minecraft Options
 description: How to set and get Minecraft options like volume, FOV, render distance, etc.
 published: true
-date: 2025-05-10T02:03:16.127Z
+date: 2025-05-10T02:07:03.810Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T04:47:56.021Z
@@ -194,6 +194,8 @@ Let's set up each part:
 1. Add an "ELSE Statement" block
 2. Inside this ELSE block, add "Set Variable Value (FM Variable)" action with:
    - Value: `fov_text:{"placeholder":"calc","values":{"decimal":"false","expression":"({"placeholder":"minecraft_option_value","values":{"name":"fov"}} + 1) * 40 + 30"}}`
+
+<img src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/fov_slider_action_script.png" alt="FOV Slider Action Script" style="max-width: 600px; height: auto;">
 
 ### Step 2: Create the FOV Slider
 
