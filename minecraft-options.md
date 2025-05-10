@@ -2,7 +2,7 @@
 title: Set/Get Minecraft Options
 description: How to set and get Minecraft options like volume, FOV, render distance, etc.
 published: true
-date: 2025-05-07T04:47:56.021Z
+date: 2025-05-10T01:41:52.922Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T04:47:56.021Z
@@ -205,9 +205,9 @@ Let's set up each part:
 ### Step 2: Create the FOV Slider
 
 1. Create a new Slider element
-2. Set the "Slider Type" to "Integer Range"
-3. Set the "Minimum Range Value" to "30" (narrow view)
-4. Set the "Maximum Range Value" to "110" (very wide view)
+2. Set the "Slider Type" to "Decimal Range"
+3. Set the "Minimum Range Value" to "-1.0" (narrow view)
+4. Set the "Maximum Range Value" to "1.0" (very wide view)
 5. Edit Action Script → Add Action → Set Minecraft Option Value
    - Set Name to `fov`
    - Set Value to `$$value`
