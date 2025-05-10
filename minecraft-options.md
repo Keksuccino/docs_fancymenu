@@ -2,7 +2,7 @@
 title: Set/Get Minecraft Options
 description: How to set and get Minecraft options like volume, FOV, render distance, etc.
 published: true
-date: 2025-05-10T01:41:52.922Z
+date: 2025-05-10T01:59:00.569Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T04:47:56.021Z
@@ -139,7 +139,12 @@ You can create similar sliders for other sound categories:
 
 ## Creating a Custom FOV Slider
 
-Field of View (FOV) is an important graphics setting that determines how wide your view is in the game. Here's how to create a custom FOV slider with descriptive labels like "Normal", "Wide", etc.
+Field of View (FOV) is an important graphics setting that determines how wide your view is in the game. The FOV option internally uses values from -1.0 to 1.0, but displays as 30 to 110 in the UI.
+
+### Understanding the FOV Value Mapping
+- Internal value range: -1.0 to 1.0
+- Display value range: 30 to 110
+- Mapping formula: `(internal_value + 1) * 40 + 30`
 
 ### Step 1: Create a Ticker Element to Update FOV Text
 
@@ -149,65 +154,53 @@ First, we need a ticker that will check the current FOV value and set a variable
 2. Set the "Tick Mode" to "Normal" (so it updates constantly)
 3. Set the "Tick Delay" to around "250" (milliseconds) to avoid excessive checks
 
-Now we need to set up multiple actions for different FOV ranges using loading requirements. Here's what your action script structure should look like:
+Now we need to set up actions for the FOV labels. Here's what your action script structure should look like:
 
 ```
 ▶ Action Script
 │
-├─▶ IF (FOV < 71)
-│  └─■ Set Variable Value: fov_text:Narrow
-│
-├─▶ ELSE-IF (FOV < 86) 
+├─▶ IF (mapped FOV = 70)
 │  └─■ Set Variable Value: fov_text:Normal
 │
-├─▶ ELSE-IF (FOV < 101)
-│  └─■ Set Variable Value: fov_text:Wide
+├─▶ ELSE-IF (mapped FOV = 110)
+│  └─■ Set Variable Value: fov_text:Quake Pro
 │
 └─▶ ELSE
-   └─■ Set Variable Value: fov_text:Quake Pro
+   └─■ Set Variable Value: fov_text:[calculated numeric value]
 ```
 
 Let's set up each part:
 
-#### Set up the "Narrow" FOV Range:
+#### Set up the "Normal" FOV Label:
 1. Right-click → Edit Action Script → Add Action
 2. Click "IF Statement" to add a conditional block
 3. Set the requirement to "Is Number" with:
-   - Compare Mode: "smaller-than"
-   - Number: `{"placeholder":"minecraft_option_value","values":{"name":"fov"}}`
-   - Compare With: "71"
+   - Compare Mode: "equals"
+   - Number: `{"placeholder":"calc","values":{"decimal":"false","expression":"({"placeholder":"minecraft_option_value","values":{"name":"fov"}} + 1) * 40 + 30"}}`
+   - Compare With: "70"
 4. Inside this IF block, add "Set Variable Value (FM Variable)" action with:
-   - Value: `fov_text:Narrow`
-
-#### Set up the "Normal" FOV Range:
-1. Inside the Action Script, add "ELSE-IF Statement"
-2. Set the requirement to "Is Number" with:
-   - Compare Mode: "smaller-than"
-   - Number: `{"placeholder":"minecraft_option_value","values":{"name":"fov"}}`
-   - Compare With: "86"
-3. Inside this ELSE-IF block, add "Set Variable Value (FM Variable)" action with:
    - Value: `fov_text:Normal`
 
-#### Set up the "Wide" FOV Range:
-1. Add another "ELSE-IF Statement"
+#### Set up the "Quake Pro" FOV Label:
+1. Inside the Action Script, add "ELSE-IF Statement"
 2. Set the requirement to "Is Number" with:
-   - Compare Mode: "smaller-than"
-   - Number: `{"placeholder":"minecraft_option_value","values":{"name":"fov"}}`
-   - Compare With: "101"
+   - Compare Mode: "equals"
+   - Number: `{"placeholder":"calc","values":{"decimal":"false","expression":"({"placeholder":"minecraft_option_value","values":{"name":"fov"}} + 1) * 40 + 30"}}`
+   - Compare With: "110"
 3. Inside this ELSE-IF block, add "Set Variable Value (FM Variable)" action with:
-   - Value: `fov_text:Wide`
+   - Value: `fov_text:Quake Pro`
 
-#### Set up the "Quake Pro" FOV Range:
+#### Set up the Numeric FOV Label:
 1. Add an "ELSE Statement" block
 2. Inside this ELSE block, add "Set Variable Value (FM Variable)" action with:
-   - Value: `fov_text:Quake Pro`
+   - Value: `fov_text:{"placeholder":"calc","values":{"decimal":"false","expression":"({"placeholder":"minecraft_option_value","values":{"name":"fov"}} + 1) * 40 + 30"}}`
 
 ### Step 2: Create the FOV Slider
 
 1. Create a new Slider element
 2. Set the "Slider Type" to "Decimal Range"
-3. Set the "Minimum Range Value" to "-1.0" (narrow view)
-4. Set the "Maximum Range Value" to "1.0" (very wide view)
+3. Set the "Minimum Range Value" to "-1.0"
+4. Set the "Maximum Range Value" to "1.0"
 5. Edit Action Script → Add Action → Set Minecraft Option Value
    - Set Name to `fov`
    - Set Value to `$$value`
@@ -215,19 +208,24 @@ Let's set up each part:
 
 ### Step 3: Set the Slider Label
 
-Set the slider label to display both the descriptive text and the numeric value:
+Set the slider label to simply display the FOV text variable:
 
 ```
-FOV: {"placeholder":"getvariable","values":{"name":"fov_text"}} ({"placeholder":"minecraft_option_value","values":{"name":"fov"}})
+FOV: {"placeholder":"getvariable","values":{"name":"fov_text"}}
 ```
 
-This label will show the current FOV description (Narrow, Normal, Wide, or Quake Pro) followed by the exact numeric value in parentheses.
+This label will show:
+- "FOV: Normal" when the value is 70
+- "FOV: Quake Pro" when the value is 110  
+- "FOV: 85" (or any other number) for all other values
 
 ### Tips for FOV Sliders
 
-- The default FOV in Minecraft is 70 (which falls in the "Normal" range)
-- The Ticker element is invisible in-game but will keep updating the `fov_text` variable
-- The ranges used here match Minecraft's own labels (30-70: Narrow, 71-85: Normal, 86-100: Wide, 101-110: Quake Pro)
+- The internal slider value range is -1.0 to 1.0, which needs to be mapped to 30 to 110 for display
+- The conversion formula is: `(internal_value + 1) * 40 + 30`
+- Only two values have special labels: 70 (Normal) and 110 (Quake Pro)
+- The default FOV in Minecraft is 70 (which corresponds to internal value 0.0)
+- The `fov_text` variable automatically contains either the special label or the numeric value
 
 ## Displaying Option Values in Text Elements
 
