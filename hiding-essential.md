@@ -2,7 +2,7 @@
 title: Hiding Essential's UI
 description: How to completely hide Essential's UI to make the Title screen and Pause screen look like Vanilla again.
 published: true
-date: 2025-05-11T18:06:44.384Z
+date: 2025-05-11T18:28:28.782Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-11T18:06:44.384Z
@@ -14,8 +14,10 @@ If you're using Essential in your modpack, you've probably already noticed that 
 
 # Hiding Essential's UI
 
-Since Essential v1.0.0.10 (Sept 2022) you can switch the entire Essential overlay off with one toggle:
+Since Essential v1.1.1 (Oct 2022) you can switch the entire Essential overlay off with one toggle:
 
-**Title Screen ▶ Essential Settings ▶ General ▶ “Essential” ⇒ OFF**.
+**Title Screen ▶ Essential Settings ▶ Appearance ▶ “Essential menu layout” ⇒ OFF**.
 
 That instantly reverts the Title (and Pause) screen to Vanilla, while leaving the library portion of the mod loaded so other mods that depend on it still work. On older builds you’ll need either (a) to update, or (b) to remove Essential.
+
+<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/essential_settings.png?raw=true" style="max-width: 800px; height: auto;" alt="Essential Settings">
