@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-04-14T20:15:42.266Z
+date: 2025-05-13T19:52:15.267Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -14,18 +14,18 @@ FancyMenu lets you add interactivity to your menus by assigning **actions** to e
 
 # What Are Actions?
 
-An **action** is a task or job that FancyMenu runs when triggered. For example, an action might open a new screen, send a chat message, or adjust the volume of an audio element. In FancyMenu’s editor, actions are configured with a value (if needed) that provides extra details—such as a URL or server address.
+An **action** is a task or job that FancyMenu runs when triggered. For example, an action might open a new screen, send a chat message, or adjust the volume of an audio element. In FancyMenu's editor, actions are configured with a value (if needed) that provides extra details—such as a URL or server address.
 
 # What Are Statements?
 
 To create more complex behavior, FancyMenu supports basic control statements in action scripts. These include:
 
 - **If Statement:** Runs a block of actions only if a specified [condition](/en/conditions) is met.
-- **Else-If Statement:** Checks another [condition](/en/conditions) if the preceding *if* (or earlier *else-if*) wasn’t met.
+- **Else-If Statement:** Checks another [condition](/en/conditions) if the preceding *if* (or earlier *else-if*) wasn't met.
 - **Else Statement:** Runs if none of the preceding [conditions](/en/conditions) are met.
 - **While Statement:** Repeats a block of actions continuously while a [condition](/en/conditions) remains true (with a built‑in timeout to prevent infinite loops).
 
-By combining these statements with actions, you can build dynamic and conditional behavior, for example, checking if a player’s health is low before sending a warning message or repeating an update until a condition changes.
+By combining these statements with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
 
 # Where Can You Use Action Scripts?
 
@@ -33,7 +33,7 @@ Action scripts are versatile and can be used throughout your layout. You can ass
 
 - **Buttons:** Execute an action when the button is clicked.
 - **Tickers:** Continuously run an action script to update on-screen information.
-- **Sliders:** Trigger an action script whenever the slider’s value changes.
+- **Sliders:** Trigger an action script whenever the slider's value changes.
 - **Screen Events:** Run scripts when a screen opens or closes (for example, playing a sound when a menu appears).
 
 # Using Placeholders in Actions
@@ -50,37 +50,119 @@ They follow this syntax:
 {"placeholder": "placeholder_id", "values": {"key1": "value1", "key2": "value2"}}
 ```
 
-They can fetch game data like the player’s name, screen dimensions, or calculated values using the **Calculator** placeholder. You can also nest placeholders for more advanced uses.
+They can fetch game data like the player's name, screen dimensions, or calculated values using the **Calculator** placeholder. You can also nest placeholders for more advanced uses.
 
 ## The `$$value` Placeholder
 
-The `$$value` placeholder is special. It’s used to insert the current interactive value of the element that the action is attached to. For example, if actions are used with a slider, using `$$value` in the action will be replaced with the slider’s current value.
+The `$$value` placeholder is special. It's used to insert the current interactive value of the element that the action is attached to. For example, if actions are used with a slider, using `$$value` in the action will be replaced with the slider's current value.
 
-# Examples of Actions
+# Available Actions
 
-Here are a few common actions you can assign via FancyMenu:
+The following list contains menu of the available actions in FancyMenu, but some could be missing, so make sure to check FancyMenu's action UI for a complete list of all available actions!
 
-## Open URL in Browser
+## Next Track
+- **Description:** Goes to the next track in an audio element
+- **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
 
-- **Description:** Opens a URL in your web browser.  
-- **Value Example:** `https://example.com`  
-- **Usage:** Assign this action to a button. When clicked, FancyMenu opens the specified URL.
+## Previous Track
+- **Description:** Goes to the previous track in an audio element
+- **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
+
+## Set Audio Element Volume
+- **Description:** Sets the volume of an audio element
+- **Value Required:** Yes - `element_identifier:1.0` (element ID and volume value between 0.0 and 1.0)
+
+## Toggle Play Track
+- **Description:** Toggles play/pause of an audio element's current track
+- **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
+
+## Toggle Layout
+- **Description:** Toggles a layout (Enable/Disable) by its name
+- **Value Required:** Yes - `layout_name` (the name of the layout to toggle)
+
+## Enable Layout
+- **Description:** Enables a layout by its name
+- **Value Required:** Yes - `layout_name` (the name of the layout to enable)
+
+## Disable Layout
+- **Description:** Disables a layout by its name
+- **Value Required:** Yes - `layout_name` (the name of the layout to disable)
+
+## Disconnect
+- **Description:** Leaves a world or server and opens a specified screen
+- **Value Required:** Yes - `screen_identifier` (identifier of screen to open after disconnecting)
+
+## Enter World
+- **Description:** Enters a Minecraft world
+- **Value Required:** Yes - `world_folder_name` (folder name of the world to load)
+
+## Join Last World/Server
+- **Description:** Enters/Joins the last world/server the player was in
+- **Value Required:** No
 
 ## Join Server
+- **Description:** Connects the player to a Minecraft server
+- **Value Required:** Yes - `server_ip:port` (e.g., "exampleserver.com:25565")
 
-- **Description:** Connects the player to a Minecraft server.  
-- **Value Example:** `exampleserver.com:25565`  
-- **Usage:** Attach this action to a button to allow players to join a server.
+## Back to Last Screen
+- **Description:** Goes back to the previous screen (the one before the current)
+- **Value Required:** No
+
+## Close Screen
+- **Description:** Closes the active screen
+- **Value Required:** No
+
+## Open Screen
+- **Description:** Opens a screen by its identifier (vanilla, mod, or custom GUI)
+- **Value Required:** Yes - `screen_identifier` (identifier for the screen to open)
+
+## Update Screen
+- **Description:** Reinitializes the current screen
+- **Value Required:** No
+
+## Copy to Clipboard
+- **Description:** Copies text to the clipboard
+- **Value Required:** Yes - `text_to_copy` (the text to copy)
+
+## Edit Minecraft Option
+- **Description:** Edits a Minecraft config option
+- **Value Required:** Yes - `option_name:set_to_value` (name of the option and the value to set)
+
+## Mimic Button
+- **Description:** Mimics the click action of a Vanilla or mod button
+- **Value Required:** Yes - `screen_identifier:widget_id` (e.g., "example.menu.identifier:505280")
+
+## Open URL in Browser
+- **Description:** Opens a link in your default browser
+- **Value Required:** Yes - `https://example.com` (the URL to open)
+
+## Paste to Chat
+- **Description:** Pastes text to the chat input field
+- **Value Required:** Yes - `true:Text to paste` or `false:Text to paste` (true to append, false to replace existing text)
+
+## Quit Minecraft
+- **Description:** Quits Minecraft completely
+- **Value Required:** No
+
+## Reload FancyMenu
+- **Description:** Reloads FancyMenu, including panoramas, slideshows, etc.
+- **Value Required:** No
 
 ## Send Chat Message/Command
+- **Description:** Sends a chat message or executes a chat command
+- **Value Required:** Yes - `message_text` or `/command_text` (if it starts with "/" it's treated as a command)
 
-- **Description:** Sends a chat message or executes a chat command.  
-- **Value Example:** `Hello, world!` or `/help`  
-- **Usage:** When triggered, the provided text is sent as a chat message. If the text begins with a `/`, it’s treated as a command.
+## Set Variable
+- **Description:** Stores text content in a variable for use in placeholders, requirements, etc.
+- **Value Required:** Yes - `variable_name:variable_value` (name and value separated by colon)
+
+## Clear Variables
+- **Description:** Clears ALL of FancyMenu's stored variables
+- **Value Required:** No
 
 # How to Set Up and Edit Actions
 
-To add, edit, or remove actions (and statement blocks) for an element, simply **right-click the element** (whether it’s a button, slider, ticker, or other interactive item) and then select **Manage Action Script**. This opens the Manage Actions screen, where you can:
+To add, edit, or remove actions (and statement blocks) for an element, simply **right-click the element** (whether it's a button, slider, ticker, or other interactive item) and then select **Manage Action Script**. This opens the Manage Actions screen, where you can:
 
 - **Add new actions or statements:** Insert new action entries or control statements (if, else-if, else, while) to build your script.
 - **Edit existing actions or statements:** Modify the action value or change the control logic.
