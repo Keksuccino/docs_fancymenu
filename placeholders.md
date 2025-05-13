@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-04-14T20:15:41.028Z
+date: 2025-05-13T18:57:07.427Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -13,7 +13,6 @@ dateCreated: 2025-04-14T20:15:37.364Z
 Placeholders are dynamic values that get replaced with actual content when they are used. In FancyMenu, placeholders allow you to insert dynamic content into various elements like text, buttons, and loading requirements. Think of them as variables that get evaluated and replaced with their actual values when your layouts are displayed.
 
 # General Information
-<br>
 
 ## Basic Syntax
 Placeholders in FancyMenu use a JSON-like syntax:
@@ -43,15 +42,25 @@ To find a **list of all placeholders**, just click on the **Placeholders** butto
 
 Clicking on a placeholder in the placeholder list will paste it to the text content!
 
-# Some Placeholders in Detail
+# Some Placeholders In Detail
 
-Here are some of the most important placeholders listed with detailed examples.
-Please keep in mind that this list **does not contain all placeholders**!
+## Player Information
 
-For a list of ALL placeholders, please use the list in the text editor, like described in the **Using Placeholders** section above.
+### Player Name (`playername`)
+Returns the current player's username.
+```
+{"placeholder":"playername"}
+```
+Example output: `Steve`
+
+### Player UUID (`playeruuid`)
+Returns the player's unique identifier.
+```
+{"placeholder":"playeruuid"}
+```
+Example output: `c8cde7fe-7ced-11eb-9439-0242ac130002`
 
 ## Minecraft Instance
-<br>
 
 ### Minecraft Version (`mcversion`)
 Returns the current Minecraft version.
@@ -109,8 +118,14 @@ Returns the value of a Minecraft option.
 ```
 Example output: `70`
 
+### Last World or Server (`last_world_server`)
+Returns information about the last world or server accessed.
+```
+{"placeholder":"last_world_server","values":{"type":"both"}}
+```
+Possible types: `"both"`, `"server"`, `"world"`
+
 ## GUI (Screens / Menus)
-<br>
 
 ### Screen Width (`guiwidth`)
 Returns the current screen width.
@@ -147,6 +162,20 @@ Returns the height of a specific element.
 ```
 Example output: `20`
 
+### Element X Position (`elementposx`)
+Returns the X position of a specific element.
+```
+{"placeholder":"elementposx","values":{"id":"my_button"}}
+```
+Example output: `150`
+
+### Element Y Position (`elementposy`)
+Returns the Y position of a specific element.
+```
+{"placeholder":"elementposy","values":{"id":"my_button"}}
+```
+Example output: `100`
+
 ### Mouse Position X (`mouseposx`)
 Returns the current X position of the mouse.
 ```
@@ -168,189 +197,357 @@ Returns the current GUI scale.
 ```
 Example output: `2`
 
-## Advanced
-<br>
+### Vanilla Button Label (`vanillabuttonlabel`)
+Returns the label/text of a vanilla widget/button.
+```
+{"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
+```
+Example output: `Options...`
 
-### Calculator (`calc`)
-The calculator placeholder is a powerful tool that allows you to perform mathematical calculations within your layouts. It supports a wide range of mathematical operations and can work with both decimal and integer numbers.
+## Player Status
 
-#### Basic Syntax
+### Current Player Health (`current_player_health`)
+Returns the player's current health points.
 ```
-{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+{"placeholder":"current_player_health"}
 ```
+Example output: `20.0`
 
-The calculator has two main parameters:
-- `decimal`: Determines whether the result should include decimal places (`true`) or be rounded to integers (`false`)
-- `expression`: The mathematical expression to evaluate
+### Max Player Health (`max_player_health`)
+Returns the player's maximum health points.
+```
+{"placeholder":"max_player_health"}
+```
+Example output: `20.0`
 
-#### Supported Operations
-The calculator supports these mathematical operations:
-- Basic arithmetic: `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division)
-- Parentheses: `( )` for grouping operations
-- Power: `^` for exponents
-- Square root: `sqrt()`
-- Trigonometric functions: `sin()`, `cos()`, `tan()`
-- Mathematical constants: `pi`, `e`
-- Absolute value: `abs()`
-- Logarithms: `log()`, `ln()`
+### Current Player Health Percentage (`current_player_health_percent`)
+Returns the player's health as a percentage.
+```
+{"placeholder":"current_player_health_percent"}
+```
+Example output: `100`
 
-#### Examples
+### Current Player Absorption Health (`current_player_absorption_health`)
+Returns the player's absorption health points (golden hearts).
+```
+{"placeholder":"current_player_absorption_health"}
+```
+Example output: `4.0`
 
-Basic arithmetic with decimals:
+### Max Player Absorption Health (`max_player_absorption_health`)
+Returns the maximum absorption health.
 ```
-{"placeholder":"calc","values":{"decimal":"true","expression":"10.5 + 5.3"}}
+{"placeholder":"max_player_absorption_health"}
 ```
-Output: `15.8`
+Example output: `4.0`
 
-Integer arithmetic:
+### Current Player Absorption Health Percentage (`current_player_absorption_health_percentage`)
+Returns the player's absorption health as a percentage.
 ```
-{"placeholder":"calc","values":{"decimal":"false","expression":"10.5 + 5.3"}}
+{"placeholder":"current_player_absorption_health_percentage"}
 ```
-Output: `16`
+Example output: `100`
 
-Complex calculations:
+### Current Player Hunger (`current_player_hunger`)
+Returns the player's current hunger level.
 ```
-{"placeholder":"calc","values":{"decimal":"true","expression":"(5 + 3) * 2 ^ 2"}}
-```
-Output: `32.0`
-
-Using mathematical functions:
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"sqrt(16) + sin(pi/2)"}}
-```
-Output: `5.0`
-
-#### Using with Other Placeholders
-The calculator becomes especially powerful when combined with other placeholders. Here are some practical examples:
-
-Calculate RAM usage percentage:
-```
-{"placeholder":"calc","values":{"decimal":"false","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
-```
-Output: `45` (if using 45% of RAM)
-
-Convert milliseconds to seconds:
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"unix_time"} / 1000"}}
-```
-Output: `1706371526.543`
-
-Calculate aspect ratio:
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"guiwidth"} / {"placeholder":"guiheight"}"}}
-```
-Output: `1.7777777778`
-
-Temperature conversion:
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"get_variable","values":{"name":"temp_c"}} * 9/5) + 32"}}
-```
-This converts a temperature from Celsius (stored in a variable) to Fahrenheit.
-
-#### Best Practices
-
-1. **Decimal vs Integer**: Use `"decimal":"true"` when:
-   - Working with percentages that need precision
-   - Calculating ratios or scaling factors
-   - Dealing with financial calculations
-   Use `"decimal":"false"` when:
-   - Working with whole numbers like counts or pixels
-   - Displaying user-facing numbers that shouldn't have decimals
-   - Performing integer-based calculations
-
-2. **Parentheses**: Always use parentheses when combining multiple operations to ensure correct order of operations:
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"(5 + 3) * 2"}}
-```
-Instead of:
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"5 + 3 * 2"}}
-```
-
-3. **Error Handling**: The calculator will return an error if:
-   - The expression is invalid
-   - Division by zero occurs
-   - Invalid function parameters are used
-   Always test calculations with extreme values to ensure they work as expected.
-
-### Random Number (`random_number`)
-Generates a random number within a specified range.
-```
-{"placeholder":"random_number","values":{"min":"1","max":"100"}}
-```
-Example output: `42`
-
-### Max Number (`maxnum`)
-Returns the larger of two numbers.
-```
-{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+{"placeholder":"current_player_hunger"}
 ```
 Example output: `20`
 
-### Min Number (`minnum`)
-Returns the smaller of two numbers.
+### Max Player Hunger (`max_player_hunger`)
+Returns the maximum hunger level.
 ```
-{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+{"placeholder":"max_player_hunger"}
 ```
-Example output: `10`
+Example output: `20`
 
-### Math Functions
-<br>
+### Current Player Hunger Percentage (`current_player_hunger_percentage`)
+Returns the player's hunger as a percentage.
+```
+{"placeholder":"current_player_hunger_percentage"}
+```
+Example output: `100`
 
-#### Pi (`math_pi`)
-Returns the value of π.
+### Current Player Armor (`current_player_armor`)
+Returns the player's current armor value.
 ```
-{"placeholder":"math_pi"}
+{"placeholder":"current_player_armor"}
 ```
-Example output: `3.141592653589793`
+Example output: `20`
 
-#### Sine (`math_sin`)
-Returns the sine of an angle.
+### Max Player Armor (`max_player_armor`)
+Returns the maximum armor value.
 ```
-{"placeholder":"math_sin","values":{"angle":"45"}}
+{"placeholder":"max_player_armor"}
 ```
-Example output: `0.7071067811865476`
+Example output: `20`
 
-#### Cosine (`math_cos`)
-Returns the cosine of an angle.
+### Current Player Armor Percentage (`current_player_armor_percentage`)
+Returns the player's armor as a percentage.
 ```
-{"placeholder":"math_cos","values":{"angle":"45"}}
+{"placeholder":"current_player_armor_percentage"}
 ```
-Example output: `0.7071067811865476`
+Example output: `100`
 
-#### Tangent (`math_tan`)
-Returns the tangent of an angle.
+### Current Player Oxygen (`current_player_oxygen`)
+Returns the player's current oxygen level (air bubbles).
 ```
-{"placeholder":"math_tan","values":{"angle":"45"}}
+{"placeholder":"current_player_oxygen"}
 ```
-Example output: `1.0`
+Example output: `300`
 
-## Text Manipulation
-<br>
+### Max Player Oxygen (`max_player_oxygen`)
+Returns the maximum oxygen level.
+```
+{"placeholder":"max_player_oxygen"}
+```
+Example output: `300`
 
-### Split Text (`split_text`)
-Splits text using a specified delimiter.
+### Current Player Oxygen Percentage (`current_player_oxygen_percentage`)
+Returns the player's oxygen level as a percentage.
 ```
-{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
+{"placeholder":"current_player_oxygen_percentage"}
 ```
-Example output: `world`
+Example output: `100`
 
-### Trim Text (`trim_text`)
-Removes leading and trailing whitespace.
+### Current Player Level (`current_player_level`)
+Returns the player's current experience level.
 ```
-{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+{"placeholder":"current_player_level"}
 ```
-Example output: `hello world`
+Example output: `30`
 
-### Crop Text (`crop_text`)
-Removes characters from the start and end of text.
+### Current Player Experience (`current_player_exp`)
+Returns the player's total experience points.
 ```
-{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+{"placeholder":"current_player_exp"}
 ```
-Example output: `ello worl`
+Example output: `1250`
 
-## Real-time
-<br>
+### Current Player Experience Progress (`current_player_exp_progress`)
+Returns the player's experience progress to the next level as a percentage.
+```
+{"placeholder":"current_player_exp_progress"}
+```
+Example output: `75`
+
+### Player Attack Strength Percentage (`player_attack_strength`)
+Returns the player's attack cooldown as a percentage.
+```
+{"placeholder":"player_attack_strength"}
+```
+Example output: `100`
+
+### Player Gamemode (`player_gamemode`)
+Returns the player's current game mode.
+```
+{"placeholder":"player_gamemode"}
+```
+Example output: `survival`
+
+### Player View Direction (`player_view_direction`)
+Returns the direction the player is facing.
+```
+{"placeholder":"player_view_direction"}
+```
+Example output: `north`
+
+### Player X Coordinate (`player_x_coordinate`)
+Returns the player's X position in the world.
+```
+{"placeholder":"player_x_coordinate"}
+```
+Example output: `125`
+
+### Player Y Coordinate (`player_y_coordinate`)
+Returns the player's Y position in the world.
+```
+{"placeholder":"player_y_coordinate"}
+```
+Example output: `64`
+
+### Player Z Coordinate (`player_z_coordinate`)
+Returns the player's Z position in the world.
+```
+{"placeholder":"player_z_coordinate"}
+```
+Example output: `-250`
+
+## Mount Information
+
+### Current Mount Health (`current_mount_health`)
+Returns the current health of the entity the player is riding.
+```
+{"placeholder":"current_mount_health"}
+```
+Example output: `30.0`
+
+### Max Mount Health (`max_mount_health`)
+Returns the maximum health of the entity the player is riding.
+```
+{"placeholder":"max_mount_health"}
+```
+Example output: `30.0`
+
+### Current Mount Health Percentage (`current_mount_health_percentage`)
+Returns the mount's health as a percentage.
+```
+{"placeholder":"current_mount_health_percentage"}
+```
+Example output: `100`
+
+### Current Mount Jump Meter (`current_mount_jump_meter`)
+Returns the mount's jump power meter value.
+```
+{"placeholder":"current_mount_jump_meter"}
+```
+Example output: `75`
+
+## Boss Information
+
+### Current Boss Health (`current_boss_health`)
+Returns the health of the active boss.
+```
+{"placeholder":"current_boss_health"}
+```
+Example output: `150.0`
+
+### Boss Name (`boss_name`)
+Returns the name of the active boss.
+```
+{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
+```
+Example output: `Ender Dragon`
+
+### Boss Count (`boss_count`)
+Returns the number of active bosses.
+```
+{"placeholder":"boss_count"}
+```
+Example output: `1`
+
+## Status Effects
+
+### Active Effects Count (`effects_count`)
+Returns the number of active potion effects.
+```
+{"placeholder":"effects_count"}
+```
+Example output: `3`
+
+### Active Effect (`active_effect`)
+Returns information about a specific active effect.
+```
+{"placeholder":"active_effect","values":{"effect_index":"0"}}
+```
+Example output: `minecraft:speed`
+
+## Inventory & Items
+
+### Active Hotbar Slot (`active_hotbar_slot`)
+Returns the currently selected hotbar slot (0-8).
+```
+{"placeholder":"active_hotbar_slot"}
+```
+Example output: `4`
+
+### Slot Item (`slot_item`)
+Returns information about an item in a specific inventory slot.
+```
+{"placeholder":"slot_item","values":{"slot":"0"}}
+```
+Example output: `minecraft:diamond_sword`
+
+## World Information
+
+### Game Time (`gametime`)
+Returns the current in-game time.
+```
+{"placeholder":"gametime"}
+```
+Example output: `18000`
+
+### World Day Time (`world_day_time`)
+Returns the current world day time.
+```
+{"placeholder":"world_day_time"}
+```
+Example output: `13000`
+
+### World Day Time Hour (`world_daytime_hour`)
+Returns the hour component of world time (00-23).
+```
+{"placeholder":"world_daytime_hour"}
+```
+Example output: `12`
+
+### World Day Time Minute (`world_daytime_minute`)
+Returns the minute component of world time (00-59).
+```
+{"placeholder":"world_daytime_minute"}
+```
+Example output: `30`
+
+### World Difficulty (`world_difficulty`)
+Returns the current world difficulty.
+```
+{"placeholder":"world_difficulty"}
+```
+Example output: `normal`
+
+### Current Title (`current_title`)
+Returns the currently displayed title text.
+```
+{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
+```
+Example output: `Game Over!`
+
+### Current Server IP (`current_server_ip`)
+Returns the IP of the connected server.
+```
+{"placeholder":"current_server_ip"}
+```
+Example output: `mc.hypixel.net`
+
+## Server Information
+
+### Server MOTD (`servermotd`)
+Returns the Message of the Day of a server.
+```
+{"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
+```
+Example output: `Welcome to Hypixel!`
+
+### Server Ping (`serverping`)
+Returns the ping to a server in milliseconds.
+```
+{"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
+```
+Example output: `54`
+
+### Server Player Count (`serverplayercount`)
+Returns the player count of a server.
+```
+{"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
+```
+Example output: `25000/30000`
+
+### Server Status (`serverstatus`)
+Returns the online/offline status of a server.
+```
+{"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
+```
+Example output: `§aOnline` or `§cOffline`
+
+### Server Version (`serverversion`)
+Returns the Minecraft version of a server.
+```
+{"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
+```
+Example output: `1.19.2`
+
+## Real-time Date & Time
 
 ### Year (`realtimeyear`)
 Returns the current year.
@@ -394,8 +591,14 @@ Returns the current second (00-59).
 ```
 Example output: `45`
 
+### Unix Timestamp (`unix_time`)
+Returns the current Unix timestamp in milliseconds.
+```
+{"placeholder":"unix_time"}
+```
+Example output: `1716552478123`
+
 ## System Information
-<br>
 
 ### CPU Info (`cpuinfo`)
 Returns information about the CPU.
@@ -403,6 +606,20 @@ Returns information about the CPU.
 {"placeholder":"cpuinfo"}
 ```
 Example output: `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
+
+### JVM CPU Usage (`jvmcpu`)
+Returns the JVM's CPU usage as a percentage.
+```
+{"placeholder":"jvmcpu"}
+```
+Example output: `25.5`
+
+### OS CPU Usage (`oscpu`)
+Returns the OS CPU usage as a percentage.
+```
+{"placeholder":"oscpu"}
+```
+Example output: `42.8`
 
 ### GPU Info (`gpuinfo`)
 Returns information about the GPU.
@@ -418,6 +635,20 @@ Returns the Java version.
 ```
 Example output: `17.0.2`
 
+### JVM Name (`jvmname`)
+Returns the name of the Java Virtual Machine.
+```
+{"placeholder":"jvmname"}
+```
+Example output: `OpenJDK 64-Bit Server VM`
+
+### OpenGL Version (`glver`)
+Returns the OpenGL version.
+```
+{"placeholder":"glver"}
+```
+Example output: `4.6.0 NVIDIA 516.94`
+
 ### Operating System (`osname`)
 Returns the operating system name.
 ```
@@ -425,8 +656,14 @@ Returns the operating system name.
 ```
 Example output: `Windows 10`
 
+### FPS (`fps`)
+Returns the current frames per second.
+```
+{"placeholder":"fps"}
+```
+Example output: `120`
+
 ## Memory Information
-<br>
 
 ### Used RAM (`usedram`)
 Returns the amount of RAM currently in use (MB).
@@ -450,7 +687,6 @@ Returns the percentage of RAM currently in use.
 Example output: `50`
 
 ## Audio
-<br>
 
 ### Audio Element Volume (`audio_element_volume`)
 Returns the volume of an audio element.
@@ -459,35 +695,255 @@ Returns the volume of an audio element.
 ```
 Example output: `0.5`
 
+### Audio Element Track (`audio_element_current_track`)
+Returns the track name of an audio element.
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Cool Track Name"}}
+```
+Example output: `Cool Track Name`
+
+### Audio Element Duration (`audio_duration`)
+Returns the total duration of an audio track in MM:SS format.
+```
+{"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
+```
+Example output: `03:45`
+
+### Audio Element Playtime (`audio_element_playtime`)
+Returns the current playtime of an audio track.
+```
+{"placeholder":"audio_element_playtime","values":{"element_identifier":"background_music"}}
+```
+Example output: `01:30`
+
+### Audio Element Playing State (`audio_playing_state`)
+Returns whether an audio element is playing (true/false).
+```
+{"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
+```
+Example output: `true`
+
+## Math
+
+### Calculator (`calc`)
+The calculator placeholder is a powerful tool that allows you to perform mathematical calculations within your layouts. It supports a wide range of mathematical operations and can work with both decimal and integer numbers.
+
+#### Basic Syntax
+```
+{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+```
+
+The calculator has two main parameters:
+- `decimal`: Determines whether the result should include decimal places (`true`) or be rounded to integers (`false`)
+- `expression`: The mathematical expression to evaluate
+
+#### Supported Operations
+The calculator supports these mathematical operations:
+- Basic arithmetic: `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division)
+- Parentheses: `( )` for grouping operations
+- Power: `^` for exponents
+- Square root: `sqrt()`
+- Trigonometric functions: `sin()`, `cos()`, `tan()`
+- Mathematical constants: `pi`, `e`
+- Absolute value: `abs()`
+- Logarithms: `log()`, `ln()`
+
+### Random Number (`random_number`)
+Generates a random number within a specified range.
+```
+{"placeholder":"random_number","values":{"min":"1","max":"100"}}
+```
+Example output: `42`
+
+### Max Number (`maxnum`)
+Returns the larger of two numbers.
+```
+{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+```
+Example output: `20`
+
+### Min Number (`minnum`)
+Returns the smaller of two numbers.
+```
+{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+```
+Example output: `10`
+
+### Absolute Number (`absolute_number`)
+Returns the absolute value of a number.
+```
+{"placeholder":"absolute_number","values":{"number":"-10.5"}}
+```
+Example output: `10.5`
+
+### Negate Number (`negate_number`)
+Returns the negated value of a number.
+```
+{"placeholder":"negate_number","values":{"number":"10.5"}}
+```
+Example output: `-10.5`
+
+### Pi (`math_pi`)
+Returns the value of π.
+```
+{"placeholder":"math_pi"}
+```
+Example output: `3.141592653589793`
+
+### Sine (`math_sin`)
+Returns the sine of an angle.
+```
+{"placeholder":"math_sin","values":{"angle":"45"}}
+```
+Example output: `0.7071067811865476`
+
+### Cosine (`math_cos`)
+Returns the cosine of an angle.
+```
+{"placeholder":"math_cos","values":{"angle":"45"}}
+```
+Example output: `0.7071067811865476`
+
+### Tangent (`math_tan`)
+Returns the tangent of an angle.
+```
+{"placeholder":"math_tan","values":{"angle":"45"}}
+```
+Example output: `1.0`
+
+### Floor (`math_floor`)
+Rounds a number down to the nearest integer.
+```
+{"placeholder":"math_floor","values":{"num":"3.14"}}
+```
+Example output: `3`
+
+### Ceiling (`math_ceil`)
+Rounds a number up to the nearest integer.
+```
+{"placeholder":"math_ceil","values":{"num":"3.14"}}
+```
+Example output: `4`
+
+### Round (`math_round`)
+Rounds a number to the nearest integer.
+```
+{"placeholder":"math_round","values":{"num":"3.14"}}
+```
+Example output: `3`
+
+### Sign (`math_sign`)
+Returns the sign of a number (1 for positive, -1 for negative, 0 for zero).
+```
+{"placeholder":"math_sign","values":{"num":"-3.14"}}
+```
+Example output: `-1`
+
+### Hyperbolic Sine (`math_sinh`)
+Returns the hyperbolic sine of an angle.
+```
+{"placeholder":"math_sinh","values":{"angle":"1"}}
+```
+Example output: `1.1752011936438014`
+
+### Hyperbolic Cosine (`math_cosh`)
+Returns the hyperbolic cosine of an angle.
+```
+{"placeholder":"math_cosh","values":{"angle":"1"}}
+```
+Example output: `1.5430806348152437`
+
+### Hyperbolic Tangent (`math_tanh`)
+Returns the hyperbolic tangent of an angle.
+```
+{"placeholder":"math_tanh","values":{"angle":"1"}}
+```
+Example output: `0.7615941559557649`
+
+## Text
+
+### Split Text (`split_text`)
+Splits text using a specified delimiter.
+```
+{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
+```
+Example output: `world`
+
+### Trim Text (`trim_text`)
+Removes leading and trailing whitespace.
+```
+{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+```
+Example output: `hello world`
+
+### Crop Text (`crop_text`)
+Removes characters from the start and end of text.
+```
+{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+```
+Example output: `ello worl`
+
+### Stringify (`stringify`)
+Stringifies a text by escaping all syntax characters.
+```
+{"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
+```
+Example output: `text with \{special\} \"characters\"`
+
+### Localization (`local`)
+Retrieves localized text for a key.
+```
+{"placeholder":"local","values":{"key":"menu.singleplayer"}}
+```
+Example output: `Singleplayer`
+
+### Web Text (`webtext`)
+Retrieves text content from a web URL.
+```
+{"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
+```
+Example output: Text content from the URL
+
+### Random Text (`randomtext`)
+Returns a random line from a text file.
+```
+{"placeholder":"randomtext","values":{"path":"randomtexts.txt","interval":"10"}}
+```
+Example output: A random line from the file
+
+### JSON Parser (`json`)
+Parses JSON data from a file or URL.
+```
+{"placeholder":"json","values":{"source":"path_or_link_to_json","json_path":"$.some.json.path"}}
+```
+Example output: The value at the specified JSON path
+
+### Absolute Path (`absolute_path`)
+Returns the absolute path of a file.
+```
+{"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
+```
+Example output: `C:/Users/Username/AppData/Roaming/.minecraft/relative/path/to/file.txt`
+
+## Switch Case
+
+### Switch Case (`switch_case`)
+Performs a switch-case operation based on a value.
+```
+{"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
+```
+Example output: `first case` (if value is 1)
+
 ## Variables
-<br>
 
 ### Get Stored Variable (`getvariable`)
-
-The `getvariable` placeholder allows you to retrieve the value of a previously stored variable. Variables in FancyMenu are simple key-value pairs that can hold textual data. They are useful for passing information between different parts of your menu, such as loading requirements, button actions, and text elements.
-
-To use this placeholder, provide the name of the variable you want to retrieve as the `name` parameter:
-
+Retrieves the value of a previously stored variable.
 ```
 {"placeholder":"getvariable","values":{"name":"some_variable"}}
 ```
-
-For example, let's say you previously set a variable named `username` to store the player's name. You could display this in a text element using:
-
-```
-{"placeholder":"getvariable","values":{"name":"username"}}
-```
-
-If the `username` variable contained the value "Steve", the placeholder would be replaced with "Steve" in the rendered text.
-
-**A few things to keep in mind:**
-
-- Variables are stored as strings, so if you need to treat the value as a number, remember to convert it.
-- You can create variables while not in the editor, when clicking on **menu bar -> Customization -> Variables**.
-- You can set variables using the "Set Variable Value" action with Ticker, Button or Slider elements.
+Example output: Depends on the stored value
 
 # Practical Examples
-<br>
 
 ## Creating a Dynamic Memory Display
 ```
@@ -507,9 +963,23 @@ GPU: {"placeholder":"gpuinfo"}
 Java: {"placeholder":"javaver"}
 ```
 
+## Player Status HUD
+```
+Health: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
+Armor: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
+XP Level: {"placeholder":"current_player_level"}
+```
+
 ## Complex Calculation with Nested Placeholders
 ```
 {"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
+```
+
+## Coordinate Display with Rounding
+```
+X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
+Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
+Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordinate"}"}}
 ```
 
 # Best Practices
@@ -522,8 +992,11 @@ Java: {"placeholder":"javaver"}
 
 4. **Test Performance**: When using many placeholders or complex nested structures, test the performance impact, especially on lower-end systems.
 
+5. **Use Advanced Sizing/Positioning**: For dynamic UI elements, combine placeholders with advanced sizing and positioning to create responsive layouts.
+
+6. **Combine with Variables**: Use placeholders together with variables for even more dynamic content that can be updated through actions.
+
 # Common Issues and Solutions
-<br>
 
 ## Placeholder Not Updating
 If a placeholder's value isn't updating as expected, check:
@@ -535,7 +1008,6 @@ If a placeholder's value isn't updating as expected, check:
 When nesting placeholders:
 - Ensure proper escaping of quotes
 - Verify that each nested placeholder is valid on its own
-- Check that the total placeholder string length doesn't exceed the maximum limit
 
 ## Performance Issues
 If you notice performance issues:
