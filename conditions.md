@@ -2,7 +2,7 @@
 title: Conditions (Loading Requirements)
 description: How to use loading requirements.
 published: true
-date: 2025-05-13T19:33:01.661Z
+date: 2025-05-13T19:33:23.730Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
@@ -29,7 +29,7 @@ Some value inputs even support **TAB auto completion**.
 
 # Available Requirements
 
-The following list contains menu of the available requirements, but it's possible that some are missing, so always check FancyMenu's requirement UI for a full list of all available requirements.
+The following list contains many of the available requirements, but it's possible that some are missing, so always check FancyMenu's requirement UI for a full list of all available requirements.
 
 ## GUI Category Requirements
 
