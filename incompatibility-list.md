@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-05-15T22:20:57.513Z
+date: 2025-05-16T17:28:00.650Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -48,7 +48,7 @@ If that's the case, it's written after the mod name in the list below.
 * [Pack Menu](https://www.curseforge.com/minecraft/mc-mods/packmenu)
 * [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 * [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-forge) (Works if `patchMinecraftClass = false` in its config)
-* [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Incompatible before MC 1.20.4; works fine in 1.20.4+)
+* [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Breaks FM and Drippy. Don't use that mod.)
 * [Replay Mod](https://www.replaymod.com/download/) (Works when you set `mainMenuButton` to **BIG** in `.minecraft/config/replaymod.json`)
 * [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Crashes the game)
 * [Slight Gui Modifications](https://www.curseforge.com/minecraft/mc-mods/slight-gui-modifications)
