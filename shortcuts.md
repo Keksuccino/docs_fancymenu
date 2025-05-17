@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2025-04-14T20:16:10.317Z
+date: 2025-05-17T18:56:43.607Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:07.228Z
@@ -20,6 +20,10 @@ FancyMenu has lots of useful shortcuts that make working with the **layout edito
 
 You can select multiple elements by holding down **CTRL** while **left-clicking** elements.
 It is also possible to **drag/move multiple elements** with the mouse by holding down **CTRL**.
+
+## SHIFT + Element Resize
+
+Holding SHIFT while resizing elements will preserve their aspect ratio.
 
 ## Arrow Keys
 
