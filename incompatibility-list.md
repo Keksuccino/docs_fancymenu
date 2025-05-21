@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-05-21T18:57:14.061Z
+date: 2025-05-21T18:57:34.002Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -21,7 +21,7 @@ If that's the case, it's written after the mod name in the list below.
 * [Bedrockify](https://www.curseforge.com/minecraft/mc-mods/bedrockify) (Compatible when you disable all menu modifications of the mod, at least for the menus you want to customize)
 * [BetterFPS](https://www.curseforge.com/minecraft/mc-mods/betterfps) (Buttons and menus of this mod aren't customizable)
 * [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Crash on startup)
-* [Chloride](https://modrinth.com/mod/chloride) (FPS placeholder does not work when this mod is installed
+* [Chloride](https://modrinth.com/mod/chloride) (FPS placeholder does not work when this mod is installed)
 * [Colormatic](https://www.curseforge.com/minecraft/mc-mods/colormatic) (Huge lag when starting MC and breaks FM's audio stuff)
 * [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Custom buttons added to menus with FancyMenu aren't clickable via Controllable's “Virtual Mouse” feature)
 * [Crash To Main Menu](https://www.curseforge.com/minecraft/mc-mods/crash-to-main-menu)
