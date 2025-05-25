@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-05-21T18:57:34.002Z
+date: 2025-05-25T01:23:50.584Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -64,3 +64,6 @@ If that's the case, it's written after the mod name in the list below.
 * [ThonkUtil](https://www.curseforge.com/minecraft/mc-mods/thonkutil) (Works, but currently adds an unremovable text to the main menu)
 * [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu—possibly only when “Easy Villagers” is also installed)
 * [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Usable, but some users report issues with the VanillaFix crash screen)
+* [Controlify](https://modrinth.com/mod/controlify) (Seems to crash the game, but I can't fix that on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1144) for more context)
+* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Crashes the game, but I can't fix it on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1115) for more context)
+* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Will not work and cause problems, because stacking menu customization mods is never a good idea)
