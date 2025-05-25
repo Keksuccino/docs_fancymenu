@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-05-25T01:23:50.584Z
+date: 2025-05-25T01:25:57.312Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -24,12 +24,14 @@ If that's the case, it's written after the mod name in the list below.
 * [Chloride](https://modrinth.com/mod/chloride) (FPS placeholder does not work when this mod is installed)
 * [Colormatic](https://www.curseforge.com/minecraft/mc-mods/colormatic) (Huge lag when starting MC and breaks FM's audio stuff)
 * [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Custom buttons added to menus with FancyMenu aren't clickable via Controllable's “Virtual Mouse” feature)
+* [Controlify](https://modrinth.com/mod/controlify) (Seems to crash the game, but I can't fix that on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1144) for more context)
 * [Crash To Main Menu](https://www.curseforge.com/minecraft/mc-mods/crash-to-main-menu)
 * [Custom Loading Screen](https://www.curseforge.com/minecraft/mc-mods/better-loading-screen)
 * [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
 * [Debugify](https://www.curseforge.com/minecraft/mc-mods/debugify) (Use [Modern Debugify](https://www.curseforge.com/minecraft/mc-mods/modern-debugify) instead)
 * [Dynamic Surroundings](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings) (Breaks FancyMenu's Audio elements, but anything else should work fine)
 * [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Seems to break animations, makes backgrounds translucent and probably more)
+* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Crashes the game, but I can't fix it on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1115) for more context)
 * [Essential Mod](https://www.curseforge.com/minecraft/mc-mods/essential-mod) (Elements added to menus by this mod are not customizable, which is not FancyMenu's fault and the Essential devs need to fix that on their side)
 * [Fossils and Archeology Revival](https://www.curseforge.com/minecraft/mc-mods/fossils) (Works ingame, but the custom main menu isn’t supported—can be disabled in its config)
 * [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
@@ -47,6 +49,7 @@ If that's the case, it's written after the mod name in the list below.
 * **OptiFine** (Breaks the mod! Use [these alternatives](./optifine-alternatives) instead)
 * [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Breaks FancyMenu's UI; buttons aren’t clickable)
 * [Pack Menu](https://www.curseforge.com/minecraft/mc-mods/packmenu)
+* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Will not work and cause problems, because stacking menu customization mods is never a good idea)
 * [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 * [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-forge) (Works if `patchMinecraftClass = false` in its config)
 * [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Breaks FM and Drippy. Don't use that mod.)
@@ -64,6 +67,3 @@ If that's the case, it's written after the mod name in the list below.
 * [ThonkUtil](https://www.curseforge.com/minecraft/mc-mods/thonkutil) (Works, but currently adds an unremovable text to the main menu)
 * [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu—possibly only when “Easy Villagers” is also installed)
 * [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Usable, but some users report issues with the VanillaFix crash screen)
-* [Controlify](https://modrinth.com/mod/controlify) (Seems to crash the game, but I can't fix that on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1144) for more context)
-* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Crashes the game, but I can't fix it on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1115) for more context)
-* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Will not work and cause problems, because stacking menu customization mods is never a good idea)
