@@ -2,7 +2,7 @@
 title: Button & Slider Templates
 description: How to use button/slider templates to apply a specific button/slider design to ALL buttons at once.
 published: true
-date: 2025-05-07T01:22:23.200Z
+date: 2025-05-26T04:10:32.255Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T01:22:23.200Z
@@ -11,6 +11,10 @@ dateCreated: 2025-05-07T01:22:23.200Z
 # Using Button Elements as Templates for Buttons and Sliders
 
 It is possible to use a Button element as a template for other buttons and even sliders. By doing that, you can apply a specific button/slider design to ALL buttons/sliders in a menu or even the all menus at once when using a universal layout.
+
+# Important Before You Start
+
+If you only want to change the texture of a single button or slider, it is easiest and recommended to simply **right-click** the button or slider (Vanilla and Custom) in the editor. There is an option to set the **Background Textures** (and slider handle textures) for buttons and sliders.
 
 # What is a Template Button?
 
