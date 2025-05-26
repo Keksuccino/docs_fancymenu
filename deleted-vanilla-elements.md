@@ -2,13 +2,13 @@
 title: Deleted Vanilla Elements
 description: How to delete Vanilla elements and make them visible again.
 published: true
-date: 2025-05-26T04:17:29.775Z
+date: 2025-05-26T04:17:42.735Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:30.203Z
 ---
 
-# Hiding Vanilla Elements
+# Deleting Vanilla Elements
 
 You can hide all default/Vanilla elements (including some mod elements) that are visible in the layout editor. If they are visible, just **right-click** them and click on **Delete**.
 
