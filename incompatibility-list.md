@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-05-25T01:25:57.312Z
+date: 2025-05-28T01:19:47.444Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -67,3 +67,4 @@ If that's the case, it's written after the mod name in the list below.
 * [ThonkUtil](https://www.curseforge.com/minecraft/mc-mods/thonkutil) (Works, but currently adds an unremovable text to the main menu)
 * [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu—possibly only when “Easy Villagers” is also installed)
 * [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Usable, but some users report issues with the VanillaFix crash screen)
+* [FireplaceMode](https://www.curseforge.com/minecraft/mc-mods/fireplacemode) (The Pause screen resets its customizations sometimes with this mod installed)
