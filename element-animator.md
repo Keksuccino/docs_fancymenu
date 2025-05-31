@@ -2,7 +2,7 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-05-31T04:02:56.084Z
+date: 2025-05-31T04:05:05.936Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:34.288Z
@@ -11,6 +11,12 @@ dateCreated: 2025-04-14T20:14:34.288Z
 # Element Animator
 
 The **Animator** is an element that lets you animate other elements. With this element, you can smoothly change another element’s size, position, and anchor point over time using keyframes. Keyframes are like snapshots that capture how the element should look at a specific moment. The Animator element then plays these snapshots in order to create smooth motion.
+
+# Video Tutorial
+
+Since many of you were a bit confused about how the animator works, I made a little video that shows how to work with it.
+
+[FancyMenu | How to Use the Element Editor - YouTube](https://www.youtube.com/watch?v=F9S8cIPssww) (youtu.be/F9S8cIPssww)
 
 # Adding the Animator Element
 
