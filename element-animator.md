@@ -2,7 +2,7 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-05-31T04:05:05.936Z
+date: 2025-05-31T04:10:59.539Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:34.288Z
@@ -17,6 +17,10 @@ The **Animator** is an element that lets you animate other elements. With this e
 Since many of you were a bit confused about how the animator works, I made a little video that shows how to work with it.
 
 [FancyMenu | How to Use the Element Editor - YouTube](https://www.youtube.com/watch?v=F9S8cIPssww) (youtu.be/F9S8cIPssww)
+
+<a href="https://www.youtube.com/watch?v=F9S8cIPssww" target="_blank" rel="noopener noreferrer">
+  <img width="636" alt="Screenshot_2" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/element_animator_video_thumbnail.png" />
+</a>
 
 # Adding the Animator Element
 
