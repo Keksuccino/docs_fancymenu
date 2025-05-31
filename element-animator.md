@@ -2,7 +2,7 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-04-14T20:14:37.412Z
+date: 2025-05-31T04:02:56.084Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:34.288Z
@@ -126,6 +126,7 @@ Use these shortcuts in the keyframe editor to work faster:
 - **Ctrl + A:** Select all keyframes.
 - **Ctrl + Z:** Undo your last change.
 - **Ctrl + Y:** Redo the change you just undid.
+- **Ctrl + Keyframe Dragging**: Drag multiple selected keyframes at once.
 
 # Extra Settings and Tips
 
