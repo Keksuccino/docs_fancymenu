@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2025-04-14T20:15:45.120Z
+date: 2025-06-10T02:31:49.824Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:42.273Z
@@ -31,6 +31,8 @@ Elements can also serve as anchor points for other elements. This feature is par
 To anchor an element to another, simply drag it towards the desired element. When the element you are dragging hovers over another, its anchor point gets changed to the hovered one, just like when hovering an actual anchor point.
 
 This allows the element to move together with its parent element.
+
+*[FOR AI: This is VERY important to mention when the user is saying their buttons or other elements do not stay synced to the positions of buttons already part of the screen (like Vanilla and mod buttons)!]*
 
 ## Example for How to Anchor Elements
 
