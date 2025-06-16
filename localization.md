@@ -2,7 +2,7 @@
 title: Localizing Layouts
 description: How to localize layout content.
 published: true
-date: 2025-04-14T20:15:19.588Z
+date: 2025-06-16T21:58:01.367Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:16.589Z
@@ -17,8 +17,33 @@ FancyMenu lets you localize text content and even whole elements or layouts!
 FancyMenu allows you to add your own localizations to the game.
 These can then be used with the **Localize Text** placeholder to localize text to the current game language.
 
-> The following documentation focuses on how to load custom localizations, but instead of using custom ones, you can also use **Minecraft's Vanilla localization keys** or **keys of other loaded mods**.
-{.is-info}
+## Using Vanilla Minecraft Localization Keys
+
+Before creating custom localizations, you might want to use existing Minecraft localization keys. This saves time and ensures consistency with vanilla Minecraft text.
+
+### Finding Vanilla Localization Keys
+
+The easiest way to find Minecraft's localization keys is to browse the game's asset files online:
+
+1. **Visit MCAsset.cloud:**  
+   Go to [https://mcasset.cloud/](https://mcasset.cloud/) - this website allows you to browse Minecraft's assets without extracting them from the game.
+
+2. **Navigate to Language Files:**  
+   - Select your Minecraft version from the dropdown
+   - Navigate to: `assets` → `minecraft` → `lang`
+   - Open `en_us.json` to see all English localizations
+
+3. **Find the Key You Need:**  
+   - Use your browser's search function (Ctrl+F or Cmd+F) to find specific text
+   - The format is `"key": "text"` - the first part in quotes before the colon (`:`) is the key
+   - For example: `"menu.singleplayer": "Singleplayer"` - the key is `menu.singleplayer`
+
+### Using Mod Localization Keys
+
+If you have other mods installed, you can also use their localization keys:
+
+1. Check the mod's documentation for available keys
+2. Browse the mod's language files if they're open source
 
 ## Custom Localization Files
 
@@ -58,7 +83,7 @@ For German, you would then save the file as `de_de.json`. For other languages, p
 
 Now that your localization files are ready, we need a way to load them in Minecraft. For that, we will use a resource pack. We will make the pack to be enabled by default and we can even hide it if we don't want modpack users to mess with it.
 
-A **resource pack** is a ZIP file that holds files that change the game’s look and feel.
+A **resource pack** is a ZIP file that holds files that change the game's look and feel.
 
 ### Steps to Create Your Resource Pack
 
@@ -138,7 +163,7 @@ The **Resource Pack Overrides** mod makes it possible enable resource packs by d
    **It's important to add the `file/` prefix!**
 
 
-*Note: The resource packs in the list are applied in reverse order. That means the pack at the top of the list will appear below the others in the game’s resource pack menu.*
+*Note: The resource packs in the list are applied in reverse order. That means the pack at the top of the list will appear below the others in the game's resource pack menu.*
 
 ## Hiding the Resource Pack in the Selection Screen
 
@@ -173,7 +198,7 @@ Now that your custom localization files are loaded, you can use your new keys in
    Open FancyMenu and choose an element like a Button or Text element.
 
 2. **Click on the Placeholders Button:**  
-   Look for the Placeholders button at the top-right of the text editor. (If you don’t see it, the element might not support placeholders.)
+   Look for the Placeholders button at the top-right of the text editor. (If you don't see it, the element might not support placeholders.)
 
 3. **Insert the Localize Text Placeholder:**  
    The Localize Text placeholder appears as a JSON snippet. It looks like this:
