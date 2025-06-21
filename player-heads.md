@@ -1,8 +1,8 @@
 ---
 title: Player Heads
-description: How to display a player's head as 2D image in a menu.
+description: How to display a player's head as 2D or 3D image in a menu.
 published: true
-date: 2025-06-21T16:29:35.748Z
+date: 2025-06-21T16:30:01.441Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-21T16:14:25.615Z
