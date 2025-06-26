@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-05-13T19:52:15.267Z
+date: 2025-06-26T20:49:16.878Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -112,9 +112,13 @@ The following list contains menu of the available actions in FancyMenu, but some
 - **Description:** Closes the active screen
 - **Value Required:** No
 
-## Open Screen
+## Open Screen or Custom GUI
 - **Description:** Opens a screen by its identifier (vanilla, mod, or custom GUI)
 - **Value Required:** Yes - `screen_identifier` (identifier for the screen to open)
+
+This action will not work for every screen, especially mod screens. If the action fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
+
+I will also not manually add compatibility for mod screens anymore, because adding compatibility for all the mods out there would take me ages, sorry.
 
 ## Update Screen
 - **Description:** Reinitializes the current screen
