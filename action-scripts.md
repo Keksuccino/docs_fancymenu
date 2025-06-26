@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-06-26T20:49:16.878Z
+date: 2025-06-26T20:54:44.247Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -151,6 +151,9 @@ I will also not manually add compatibility for mod screens anymore, because addi
 ## Reload FancyMenu
 - **Description:** Reloads FancyMenu, including panoramas, slideshows, etc.
 - **Value Required:** No
+
+> This action has a **big impact on performance** and can cause lags if used in Tickers. It is not recommended to use this action in anything else than a button.
+{.is-warning}
 
 ## Send Chat Message/Command
 - **Description:** Sends a chat message or executes a chat command
