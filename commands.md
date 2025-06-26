@@ -2,7 +2,7 @@
 title: Commands
 description: FancyMenu's commands and how to use them.
 published: true
-date: 2025-04-14T20:15:29.205Z
+date: 2025-06-26T20:50:07.093Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:18.072Z
@@ -21,6 +21,10 @@ The `/openguiscreen` command lets you open a GUI (Vanilla/mod and custom GUIs).
 It can even remotely open GUIs for other players when FancyMenu is installed on both server and clients.
 
 For a more in-detail description of this command, take a look at the [Open GUIs by Command](/opengui-command) page.
+
+This command will not work for every screen, especially mod screens. If the command fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
+
+I will also not manually add compatibility for mod screens anymore, because adding compatibility for all the mods out there would take me ages, sorry.
 
 **Usage:** `/openguiscreen <screen_identifier> <target_player>`
 
