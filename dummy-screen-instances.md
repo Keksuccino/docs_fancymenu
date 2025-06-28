@@ -2,7 +2,7 @@
 title: World Loading Screens
 description: How to edit the screens that show when joining a world or server.
 published: true
-date: 2025-06-28T19:12:15.371Z
+date: 2025-06-28T19:14:09.571Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-28T19:12:15.371Z
@@ -22,3 +22,6 @@ For example, when joining a world or server, there are at least two screens that
 
 - Level Loading Screen (aka. World Loading Screen)
 - Generic Dirt Message Screen (aka. Dirt Message Screen)
+
+> **Important:** The "World Loading Screen" is not the same as the "Game Loading Screen" (aka. Splash Screen or Resource Reloading Screen). The "Game Loading Screen" can be customized with **Drippy Loading Screen**, which is an addon for FancyMenu.
+{.is-warning}
