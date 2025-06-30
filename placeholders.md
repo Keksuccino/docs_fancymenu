@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-05-21T22:21:41.944Z
+date: 2025-06-30T21:33:27.568Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -44,7 +44,9 @@ Most elements that have text inputs support placeholders. You can see if a text 
 
 To find a **list of all placeholders**, just click on the **Placeholders** button in the **top-right corner** of the **text editor**.
 
-Clicking on a placeholder in the placeholder list will paste it to the text content!
+There is a **search bar** at the top of the placeholders list that lets you search for placeholders.
+
+Clicking on a placeholder in the placeholder list will paste it to the text content.
 
 # Some Placeholders In Detail
 
