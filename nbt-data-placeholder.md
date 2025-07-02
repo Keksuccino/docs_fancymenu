@@ -2,7 +2,7 @@
 title: NBT Data Placeholder
 description: How to use the NBT Data placeholder.
 published: true
-date: 2025-06-30T21:10:15.683Z
+date: 2025-07-02T14:40:10.368Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:10:15.683Z
@@ -10,6 +10,8 @@ dateCreated: 2025-06-30T21:10:15.683Z
 
 
 # Getting NBT Data
+
+This placeholder is available in FancyMenu v3.6.0+.
 
 The **Get NBT Data** placeholder allows you to retrieve NBT (Named Binary Tag) data from entities and blocks in Minecraft, similar to the `/data get` command. This is extremely useful for creating dynamic layouts that respond to game state, player stats, or world conditions.
 
