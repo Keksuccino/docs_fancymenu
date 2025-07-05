@@ -2,7 +2,7 @@
 title: Text in Menus
 description: How to add text content to menus.
 published: true
-date: 2025-07-05T19:49:10.059Z
+date: 2025-07-05T19:51:24.309Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T19:40:17.459Z
@@ -19,6 +19,10 @@ This element is scrollable, has full Markdown support and line wrapping, which m
 The Text element can fetch its content in many ways. It allows you to set a source for its text content, which can be a direct plain text input, a local text file in FancyMenu's `assets` folder (`/config/fancymenu/assets/`), a web text file (via URL) or a local text file loaded via resource pack.
 
 Keep in mind that FancyMenu caches the content of text sources, so it doesn't have to constantly fetch the content again (which would be very bad for performance). The content is only cached for the active session, so restarting the game will clear the cache. You can also clear the cache by reloading FancyMenu via **menu bar -> Customization -> Reload FancyMenu**.
+
+## Placeholders
+
+The Text element also supports FancyMenu's placeholder system, which makes it possible to make text content dynamic and react to various changes to menus, worlds, players, etc.
 
 ## Customizing or Disabling Markdown
 
