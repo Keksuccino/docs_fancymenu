@@ -2,7 +2,7 @@
 title: Text in Menus
 description: How to add text content to menus.
 published: true
-date: 2025-07-05T19:51:24.309Z
+date: 2025-07-05T19:52:56.960Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T19:40:17.459Z
@@ -17,6 +17,8 @@ This element is scrollable, has full Markdown support and line wrapping, which m
 ## Text Content
 
 The Text element can fetch its content in many ways. It allows you to set a source for its text content, which can be a direct plain text input, a local text file in FancyMenu's `assets` folder (`/config/fancymenu/assets/`), a web text file (via URL) or a local text file loaded via resource pack.
+
+Using the web source type as text source is especially useful if you want to make something like a changelog that's always up-to-date or a news tickers and similar things, without the need to release an update for your modpack.
 
 Keep in mind that FancyMenu caches the content of text sources, so it doesn't have to constantly fetch the content again (which would be very bad for performance). The content is only cached for the active session, so restarting the game will clear the cache. You can also clear the cache by reloading FancyMenu via **menu bar -> Customization -> Reload FancyMenu**.
 
