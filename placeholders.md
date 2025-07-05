@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-06-30T21:33:27.568Z
+date: 2025-07-05T20:38:19.113Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -127,9 +127,21 @@ Example output: `70`
 ### Last World or Server (`last_world_server`)
 Returns information about the last world or server accessed.
 ```
-{"placeholder":"last_world_server","values":{"type":"both"}}
+{"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
 ```
-Possible types: `"both"`, `"server"`, `"world"`
+Parameters:
+- `type`: Determines what type of information to return
+  - `"both"`: Returns the last accessed world or server (default)
+  - `"server"`: Only returns if the last accessed was a server
+  - `"world"`: Only returns if the last accessed was a world
+- `full_world_path`: Controls how world paths are displayed
+  - `"true"`: Returns the full world path (default)
+  - `"false"`: Returns only the world name without path (does not affect servers)
+
+Examples:
+- Server: `mc.hypixel.net`
+- World with full path: `saves/New World`
+- World without full path: `New World`
 
 ## GUI (Screens / Menus)
 
@@ -380,6 +392,20 @@ Returns the player's Z position in the world.
 ```
 Example output: `-250`
 
+### Player Has Tag (`player_has_tag`)
+Returns true if a specific player has a specific tag.
+```
+{"placeholder":"player_has_tag","values":{"player_name":"Steve","tag":"special_player"}}
+```
+Example output: `true` or `false`
+
+### Player Tags List (`player_tags_list`)
+Returns all tags that a specific player has.
+```
+{"placeholder":"player_tags_list","values":{"player_name":"Steve","separator":", "}}
+```
+Example output: `special_player, vip, admin`
+
 ## Mount Information
 
 ### Current Mount Health (`current_mount_health`)
@@ -515,6 +541,13 @@ Returns the IP of the connected server.
 {"placeholder":"current_server_ip"}
 ```
 Example output: `mc.hypixel.net`
+
+### World Players List (`world_players_list`)
+Returns a list of all players currently in the world.
+```
+{"placeholder":"world_players_list","values":{"separator":", "}}
+```
+Example output: `Steve, Alex, Notch`
 
 ## Server Information
 
@@ -729,6 +762,66 @@ Returns whether an audio element is playing (true/false).
 ```
 Example output: `true`
 
+## Video Element
+
+### Video Element Volume (`video_element_vol`)
+Returns the volume level of a video element (0.0 to 1.0).
+```
+{"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
+```
+Example output: `0.5`
+
+### Video Element Duration (`video_element_duration`)
+Returns the total duration of a video element in seconds.
+```
+{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element"}}
+```
+Example output: `120.5`
+
+### Video Element Play Time (`video_element_playtime`)
+Returns the current playback time (progress) of a video element in seconds.
+```
+{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element"}}
+```
+Example output: `45.2`
+
+### Video Element Paused State (`video_element_paused_state`)
+Returns whether a video element is paused (true/false).
+```
+{"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
+```
+Example output: `false`
+
+## Video Background
+
+### Video Background Volume (`video_background_vol`)
+Returns the volume level of a video menu background (0.0 to 1.0).
+```
+{"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
+```
+Example output: `0.7`
+
+### Video Background Duration (`video_background_duration`)
+Returns the total duration of a video menu background in seconds.
+```
+{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video"}}
+```
+Example output: `180.0`
+
+### Video Background Play Time (`video_background_playtime`)
+Returns the current playback time (progress) of a video menu background in seconds.
+```
+{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video"}}
+```
+Example output: `60.5`
+
+### Video Background Paused State (`video_background_paused_state`)
+Returns whether a video menu background is paused (true/false).
+```
+{"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
+```
+Example output: `true`
+
 ## Math
 
 ### Calculator (`calc`)
@@ -911,18 +1004,64 @@ Retrieves text content from a web URL.
 Example output: Text content from the URL
 
 ### Random Text (`randomtext`)
-Returns a random line from a text file.
+Returns a random line from a text file, URL, or direct plain text. The text changes at specified intervals.
 ```
-{"placeholder":"randomtext","values":{"path":"randomtexts.txt","interval":"10"}}
+{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
 ```
-Example output: A random line from the file
+Parameters:
+- `source`: The source of the text lines (replaces the old `path` parameter)
+  - File path: `/config/fancymenu/assets/quotes.txt`
+  - URL: `https://example.com/quotes.txt`
+  - Plain text: `Line 1\nLine 2\nLine 3`
+- `interval`: Time in seconds between text changes
+
+The placeholder now supports three source types:
+1. **Local files**: Text files from your game directory
+   ```
+   {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
+   ```
+2. **URLs**: Remote text files from the internet
+   ```
+   {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
+   ```
+3. **Plain text**: Direct text input with lines separated by `\n`
+   ```
+   {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
+   ```
+
+Note: Old placeholders using `path` instead of `source` will continue to work.
 
 ### JSON Parser (`json`)
-Parses JSON data from a file or URL.
+Parses JSON data from a file, URL, or direct JSON content and extracts values using JSON path expressions.
 ```
-{"placeholder":"json","values":{"source":"path_or_link_to_json","json_path":"$.some.json.path"}}
+{"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
 ```
-Example output: The value at the specified JSON path
+Parameters:
+- `source`: The source of the JSON data
+  - File path: `/config/fancymenu/assets/data.json`
+  - URL: `https://api.example.com/data.json`
+  - Direct JSON: `{"name":"Steve","level":42}`
+- `json_path`: The JSON path expression to extract data
+
+The placeholder now supports three source types:
+1. **Local files**: JSON files from your game directory
+   ```
+   {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
+   ```
+2. **URLs**: Remote JSON data from APIs or web services
+   ```
+   {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
+   ```
+3. **Direct JSON**: Inline JSON content
+   ```
+   {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
+   ```
+
+Example JSON paths:
+- `$.name` - Gets the "name" field from root
+- `$.player.level` - Gets nested "level" field inside "player"
+- `$.items[0].id` - Gets the "id" of the first item in an array
+- `$.scores.*` - Gets all values from the "scores" object
 
 ### Absolute Path (`absolute_path`)
 Returns the absolute path of a file.
@@ -930,6 +1069,68 @@ Returns the absolute path of a file.
 {"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
 ```
 Example output: `C:/Users/Username/AppData/Roaming/.minecraft/relative/path/to/file.txt`
+
+### Text Character Count (`text_character_count`)
+Returns the number of characters in the given text.
+```
+{"placeholder":"text_character_count","values":{"text":"Hello World!"}}
+```
+Example output: `12`
+
+### Text Width (`text_width`)
+Returns the width in pixels of the given text when rendered.
+```
+{"placeholder":"text_width","values":{"text":"Hello World!"}}
+```
+Example output: `66`
+
+### Uppercase Text (`uppercase_text`)
+Converts the input text to all uppercase letters.
+```
+{"placeholder":"uppercase_text","values":{"text":"Hello World"}}
+```
+Example output: `HELLO WORLD`
+
+### Lowercase Text (`lowercase_text`)
+Converts the input text to all lowercase letters.
+```
+{"placeholder":"lowercase_text","values":{"text":"Hello World"}}
+```
+Example output: `hello world`
+
+### File Text (`file_text`)
+Returns text lines from a file or URL. Can return all lines or just the last X lines.
+```
+{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
+```
+Parameters:
+- `path_or_url`: File path or URL to read from
+- `mode`: Either `"all"` (returns all lines) or `"last"` (returns only the last X lines)
+- `separator`: Text to join lines with (default: `"\n"`)
+- `last_lines`: Number of lines to return when mode is `"last"` (default: `"1"`)
+
+Example output: Depends on file content
+
+### Clipboard Content (`clipboard_content`)
+Returns the current text content stored in the system's clipboard.
+```
+{"placeholder":"clipboard_content"}
+```
+Example output: Whatever text is currently in the clipboard
+
+### Replace Text (`replace_text`)
+Replaces text in a string using literal text or regular expressions.
+```
+{"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
+```
+Parameters:
+- `text`: The input text to process
+- `search`: The text or regex pattern to search for
+- `replacement`: The replacement text
+- `use_regex`: Whether to use regex (`"true"`) or literal matching (`"false"`)
+- `replace_all`: Replace all occurrences (`"true"`) or just the first (`"false"`)
+
+Example output: `Hello FancyMenu! This is a test.`
 
 ## Switch Case
 
@@ -948,6 +1149,112 @@ Retrieves the value of a previously stored variable.
 {"placeholder":"getvariable","values":{"name":"some_variable"}}
 ```
 Example output: Depends on the stored value
+
+## NBT Data
+
+### Get NBT Data (`nbt_data_get`)
+Retrieves NBT data from entities and blocks (similar to the `/data get` command).
+```
+{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
+```
+Parameters:
+- `source_type`: Either `"entity"` or `"block"`
+- `entity_selector`: Entity selector like `@s`, `@p`, `@e`, or UUID/name (for entities)
+- `block_pos`: Block position in format `"x y z"` (for blocks)
+- `nbt_path`: The NBT path to retrieve
+- `scale`: Optional scaling factor for numeric values (default: `"1.0"`)
+- `return_type`: How to return the data:
+  - `"value"`: Default, returns the value (with optional scaling for numbers)
+  - `"string"`: Returns the actual NBT data as string
+  - `"snbt"`: Returns as SNBT (formatted NBT)
+  - `"json"`: Returns as JSON-formatted component (for compound tags)
+
+Example output: `20` (for food level)
+
+## Scoreboard
+
+### Scoreboard Player Team (`player_team`)
+Returns the current team of the given player.
+```
+{"placeholder":"player_team","values":{"player_name":"Steve"}}
+```
+Example output: `red_team`
+
+### Scoreboard Score (`scoreboard_score`)
+Returns the score value of a player for a specific objective.
+```
+{"placeholder":"scoreboard_score","values":{"player":"Steve","objective":"kills"}}
+```
+Example output: `42`
+
+### Scoreboard Objectives List (`scoreboard_objectives_list`)
+Returns a list of all objectives in the scoreboard.
+```
+{"placeholder":"scoreboard_objectives_list","values":{"separator":", "}}
+```
+Example output: `kills, deaths, points`
+
+### Scoreboard Tracked Players (`scoreboard_tracked_players`)
+Returns a list of all players tracked by the scoreboard.
+```
+{"placeholder":"scoreboard_tracked_players","values":{"separator":", "}}
+```
+Example output: `Steve, Alex, Notch`
+
+### Scoreboard Display Slot (`scoreboard_display_slot`)
+Returns the objective displayed in a specific slot (sidebar, list, etc.).
+```
+{"placeholder":"scoreboard_display_slot","values":{"slot":"sidebar"}}
+```
+Possible slots: `sidebar`, `list`, `belowName`
+Example output: `points`
+
+### Scoreboard Has Score (`scoreboard_has_score`)
+Checks if a player has a score for a specific objective (true/false).
+```
+{"placeholder":"scoreboard_has_score","values":{"player":"Steve","objective":"kills"}}
+```
+Example output: `true`
+
+### Scoreboard Objective Display Name (`scoreboard_objective_display_name`)
+Returns the display name of an objective (supports JSON format).
+```
+{"placeholder":"scoreboard_objective_display_name","values":{"objective":"kills","as_json":"false"}}
+```
+Example output: `Player Kills`
+
+### Scoreboard Objective Criteria (`scoreboard_objective_criteria`)
+Returns the criteria type of an objective (dummy, trigger, etc.).
+```
+{"placeholder":"scoreboard_objective_criteria","values":{"objective":"kills"}}
+```
+Example output: `playerKillCount`
+
+### Scoreboard Objective Render Type (`scoreboard_objective_render_type`)
+Returns how an objective is rendered (integer or hearts).
+```
+{"placeholder":"scoreboard_objective_render_type","values":{"objective":"health"}}
+```
+Example output: `hearts`
+
+### Scoreboard Player Scores List (`scoreboard_player_scores_list`)
+Returns a formatted list of all scores for a specific player.
+```
+{"placeholder":"scoreboard_player_scores_list","values":{"player":"Steve","format":"%objective%: %score%","separator":", "}}
+```
+Parameters:
+- `player`: The player name
+- `format`: Format string using `%objective%` and `%score%` placeholders
+- `separator`: Text to join scores with
+
+Example output: `kills: 42, deaths: 5, points: 100`
+
+### Scoreboard Objective Count (`scoreboard_objective_count`)
+Returns the total number of objectives in the scoreboard.
+```
+{"placeholder":"scoreboard_objective_count"}
+```
+Example output: `3`
 
 # Practical Examples
 
