@@ -2,7 +2,7 @@
 title: Vanilla Elements
 description: How to customize elements that are part of screens by default.
 published: true
-date: 2025-07-05T19:26:08.462Z
+date: 2025-07-05T20:08:33.201Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-26T13:59:53.535Z
@@ -32,6 +32,10 @@ You can also **hide** Vanilla/mod widgets by simply **right-clicking** them and 
 The Title screen has elements that are not normal widgets (like the logo, splash text, etc.) that can't be moved or customized. They are meant to get deleted and replaced with custom elements (like an Image element for the logo or a custom Splash Text element for the Vanilla splash text).
 
 To delete them, just right-click them. If you want to restore them later, just click on **menu bar -> Element -> Deleted Vanilla Elements** and **left-click** the element you want to make visible again.
+
+## Troubleshooting: Vanilla Elements Not Visible in The Editor
+
+If you can't see Vanilla elements in the editor, it is probably caused by you using a **universal layout** instead of one **for the current screen**. Make sure to create a layout for the current screen. You can only create layouts for the current screen when customizations are enabled for that screen.
 
 ## Troubleshooting: Customizations Don't Get Applied
 
