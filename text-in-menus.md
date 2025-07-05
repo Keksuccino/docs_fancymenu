@@ -2,7 +2,7 @@
 title: Text in Menus
 description: How to add text content to menus.
 published: true
-date: 2025-07-05T19:40:17.459Z
+date: 2025-07-05T19:44:08.696Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T19:40:17.459Z
@@ -29,3 +29,7 @@ If you don't want line wrapping, you can disable it by **right-clicking** the Te
 Text elements are scrollable by default and if the element thinks the user needs to scroll for seeing all of its content, it will show its scroll bars, which are small, grey bars at the right and bottom sides of the Text element (vertical and horizontal scroll bars).
 
 You can disable these bars by toggling off **Scrolling** in the menu that opens when **right-clicking** the element. This will disable scrolling in general, not just the bars. If you want the bars to be invisible instead, you can set custom scroll bar textures by right-clicking the element. Just set a fully transparent texture there.
+
+## Minecraft's Raw Component Text Format (Serialized JSON Components)
+
+The Text element does NOT have support for Minecraft's raw component format. This format is only supported by button and slider labels.
