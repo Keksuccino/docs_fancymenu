@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-07-05T21:09:31.485Z
+date: 2025-07-05T21:10:26.881Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -130,7 +130,7 @@ A highly versatile element for displaying text. It can be used for anything from
 Plays a video file. This is perfect for cinematic intros or decorative looping backgrounds.
 
 > This element requires the **MCEF (Minecraft Chromium Embedded Framework)** mod to be installed and working.
-{.is-info}
+{.is-warning}
 
 *   **Use Cases:**
     *   An animated modpack or server trailer.
@@ -188,7 +188,7 @@ Renders a player model in the menu.
 An element that renders a live web page inside the game.
 
 > This element requires the **MCEF (Minecraft Chromium Embedded Framework)** mod to be installed and working.
-{.is-info}
+{.is-warning}
 
 *   **Use Cases:**
     *   Displaying a server's live Dynmap.
