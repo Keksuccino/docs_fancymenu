@@ -2,7 +2,7 @@
 title: Resources
 description: How resources work in FancyMenu. Covers resource locations, local resources and web resources.
 published: true
-date: 2025-04-14T20:15:57.499Z
+date: 2025-07-06T14:40:29.444Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:54.572Z
@@ -11,6 +11,8 @@ dateCreated: 2025-04-14T20:15:54.572Z
 # Resources
 
 FancyMenu's resource system allows you to use resources from Minecraft's own resource loader (**Resource Packs**), **Local** resources (files from the client system) and **Web** sources (files stored online).
+
+Almost all resource inputs, be it images, audio, video or text, gets set via FancyMenu's resource chooser. There are some exceptions, like when setting a source path for a placeholder or action, but in most places, you set resources via the same resource chooser interface.
 
 # Minecraft Resources (Resource Packs)
 
@@ -47,3 +49,15 @@ A web resource is basically just the **URL** to a file stored on a server, so le
 
 Make sure to always use **DIRECT URLs**, which means URLs that end with the resource's **file name and extension**, just like the example URL above.
 Using non-direct URLs hurts performance and is more likely to fail.
+
+# Placeholders in Resource Sources
+
+It is possible to use FancyMenu's placeholders in resource sources, like the path to a local source, the URL to a web source or the resource location to a Minecraft resource.
+
+This makes it possible to dynamically update sources, like changing the image source of a menu background when setting a FancyMenu variable, to show a different background based on the variable's value.
+
+You can manually edit the source by clicking on the **Open in Editor** button at the right side of the resource source input field.
+
+> Keep in mind this is only for resource inputs that use the normal resource chooser interface. It is possible that *some* resource inputs that do not use the chooser do **NOT** support placeholders or do not update dynamically when the placeholder changes.
+{.is-warning}
+
