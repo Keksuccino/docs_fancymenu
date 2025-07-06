@@ -2,7 +2,7 @@
 title: Resources
 description: How resources work in FancyMenu. Covers resource locations, local resources and web resources.
 published: true
-date: 2025-07-06T14:40:29.444Z
+date: 2025-07-06T14:41:56.133Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:54.572Z
@@ -13,6 +13,8 @@ dateCreated: 2025-04-14T20:15:54.572Z
 FancyMenu's resource system allows you to use resources from Minecraft's own resource loader (**Resource Packs**), **Local** resources (files from the client system) and **Web** sources (files stored online).
 
 Almost all resource inputs, be it images, audio, video or text, gets set via FancyMenu's resource chooser. There are some exceptions, like when setting a source path for a placeholder or action, but in most places, you set resources via the same resource chooser interface.
+
+When you set a resource input via the resource chooser interface, you basically choose a so called "resource source" (that's how FancyMenu calls them), which can be a path, link or resource location, depending on the source type.
 
 # Minecraft Resources (Resource Packs)
 
