@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-07-05T21:15:48.316Z
+date: 2025-07-12T15:57:16.951Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -190,6 +190,10 @@ An element that renders a live web page inside the game.
 > This element requires the **[MCEF (Minecraft Chromium Embedded Framework)](https://www.curseforge.com/minecraft/mc-mods/mcef)** mod to be installed and working.
 {.is-warning}
 
+> When you see only black instead of the actual browser content, it is most likely not related to FancyMenu, but MCEF. MCEF probably failed to load correctly, so FancyMenu can't use it.<br>
+In this case you should better reach out to the MCEF devs and ask them for help in their Discord: https://discord.gg/rNrh5kW8Ty
+{.is-danger}
+
 *   **Use Cases:**
     *   Displaying a server's live Dynmap.
     *   Embedding a YouTube video player.
@@ -197,6 +201,7 @@ An element that renders a live web page inside the game.
 *   **Key Features:**
     *   **Interactivity:** Can be made fully interactable, allowing users to click links, scroll, and type.
     *   **Media Control:** Offers options to mute media, loop videos, and hide video controls on the loaded page.
+
 
 ## Element Animator
 A powerful tool for creating complex, keyframe-based animations. It can animate the position, size, and anchor point of one or multiple other elements.
