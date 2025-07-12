@@ -2,7 +2,7 @@
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
 published: true
-date: 2025-06-30T21:25:05.730Z
+date: 2025-07-12T15:54:24.294Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:24:26.869Z
@@ -37,6 +37,12 @@ And the following **placeholders** to get information about video backgrounds an
 To use the Video element and menu background type, you need to have the **MCEF** mod installed, which is used as backend for video support.
 
 You can download MCEF from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef)¹ and [Modrinth](https://modrinth.com/mod/mcef)².
+
+## Element and Background Shows as Pure Black Instead Of Video
+
+When you see only black instead of the video playing, it is most likely not related to FancyMenu, but MCEF. MCEF probably failed to load correctly, so FancyMenu can't use it.
+
+In this case you should better reach out to the MCEF devs and ask them for help in their Discord: https://discord.gg/rNrh5kW8Ty
 
 ---
 
