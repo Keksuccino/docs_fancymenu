@@ -2,7 +2,7 @@
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
 published: true
-date: 2025-07-12T15:54:24.294Z
+date: 2025-07-12T15:55:00.928Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:24:26.869Z
@@ -43,6 +43,8 @@ You can download MCEF from [CurseForge](https://www.curseforge.com/minecraft/mc-
 When you see only black instead of the video playing, it is most likely not related to FancyMenu, but MCEF. MCEF probably failed to load correctly, so FancyMenu can't use it.
 
 In this case you should better reach out to the MCEF devs and ask them for help in their Discord: https://discord.gg/rNrh5kW8Ty
+
+The same can happen with the Browser element when MCEF fails to load correctly.
 
 ---
 
