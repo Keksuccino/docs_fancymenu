@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-05-28T01:19:47.444Z
+date: 2025-07-31T18:24:23.684Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -32,7 +32,6 @@ If that's the case, it's written after the mod name in the list below.
 * [Dynamic Surroundings](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings) (Breaks FancyMenu's Audio elements, but anything else should work fine)
 * [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Seems to break animations, makes backgrounds translucent and probably more)
 * [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Crashes the game, but I can't fix it on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1115) for more context)
-* [Essential Mod](https://www.curseforge.com/minecraft/mc-mods/essential-mod) (Elements added to menus by this mod are not customizable, which is not FancyMenu's fault and the Essential devs need to fix that on their side)
 * [Fossils and Archeology Revival](https://www.curseforge.com/minecraft/mc-mods/fossils) (Works ingame, but the custom main menu isn’t supported—can be disabled in its config)
 * [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 * [Ice and Fire](https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons) (Works if the custom main menu is disabled in its config)
