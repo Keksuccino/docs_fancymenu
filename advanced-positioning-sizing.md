@@ -2,7 +2,7 @@
 title: Advanced Positioning & Sizing
 description: How to use Advanced Positioning and Sizing of elements.
 published: true
-date: 2025-04-14T20:14:10.028Z
+date: 2025-08-01T01:44:07.527Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:03:22.929Z
@@ -11,6 +11,10 @@ dateCreated: 2025-04-14T20:03:22.929Z
 # Advanced Positioning & Sizing
 
 Advanced positoning/sizing allows you to have **full control over the position and size of your elements**. This is very powerful but also **a lot more time-consuming** than using FancyMenu's automated sizing and positioning.
+
+> If you just want elements to better scale with Minecraft's **GUI scale**, it is recommended to use layout-wide **auto-scaling** instead, which can be enabled by first forcing a GUI scale in the menu that opens when right-clicking the editor background and then enabling **Auto-Scaling** in the same menu.
+{.is-warning}
+
 
 # Toggling Advanced Positioning/Sizing Mode
 
