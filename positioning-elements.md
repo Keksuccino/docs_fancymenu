@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2025-06-10T02:31:49.824Z
+date: 2025-08-01T01:55:48.541Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:42.273Z
@@ -48,6 +48,17 @@ The buttons in the top-left corner are anchored to the **Top-Left Corner** ancho
 The Text element in the bottom-left corner is anchored to the **Bottom-Left Corner** anchor point, because it should stay in the bottom-left corner.
 
 The Image element in the bottom-right corner is anchored to the **Bottom-Right Corner** anchor point, because it should stay in the bottom-right corner.
+
+## Moving Elements Out-Of-Screen
+
+By default it is not possible to move elements out of screen, which is like a failsafe for when a layout gets loaded in a super small or weird window size, so elements are still visible and can be interacted with.
+
+They will always stay on screen and keep a small gap between them and the screen's edges.
+
+You can **disable** this for individual elements by **right-clicking** them and then disabling **Stay On Screen**.
+
+> Disabling this can sometimes cause the element to vanish, because its actual/real position was out-of-screen, but the feature made it stay visible. If that happens to you, **undo** the last action (disabling **Stay On Screen**) via the undo shortcut or in the **menu bar -> Edit -> Undo**, then manually move the element to the middle of the screen and disable **Stay On Screen** again. Now it should stay visible even with the feature disabled.
+{.is-warning}
 
 ## More Ways to Improve Element Positioning
 
