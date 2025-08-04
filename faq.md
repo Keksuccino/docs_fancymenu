@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-08-04T19:44:22.004Z
+date: 2025-08-04T19:46:04.986Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -88,7 +88,7 @@ This means the mod adds its buttons in a custom, non-vanilla way. FancyMenu cann
 Backgrounds: A standard 1920x1080 (1080p) image is a great starting point and will scale well for most users.
 Buttons: Most vanilla buttons are around 150-200 pixels wide and 20 pixels high. Matching this size for custom textures is a good practice for consistency.
 
-### Is there a way to automatically run a command when a player completes an in-game objective (like a quest)?
+### Is there a way to automatically open a menu or run a command when a player completes an in-game objective (like a quest)?
 FancyMenu itself cannot detect in-game events like this. However, you can integrate it with a questing mod like FTB Quests. Most quest mods allow you to run a command as a quest reward. You would set the reward to execute the `/openguiscreen` or `/fmvariable` command to interact with your menus.
 
 ### How do I make a button inactive or "grayed out"?
