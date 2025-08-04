@@ -2,7 +2,7 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-05-31T04:10:59.539Z
+date: 2025-08-04T19:15:57.173Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:34.288Z
@@ -11,6 +11,9 @@ dateCreated: 2025-04-14T20:14:34.288Z
 # Element Animator
 
 The **Animator** is an element that lets you animate other elements. With this element, you can smoothly change another element’s size, position, and anchor point over time using keyframes. Keyframes are like snapshots that capture how the element should look at a specific moment. The Animator element then plays these snapshots in order to create smooth motion.
+
+> The **Element Animator** allows you to control the **position and size** of elements. It is **NOT** possible to control any other settings of elements, such as opacity, visibility, rotation etc.!
+{.is-warning}
 
 # Video Tutorial
 
