@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2025-04-15T00:06:28.126Z
+date: 2025-08-18T03:24:05.603Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T19:45:47.193Z
@@ -31,6 +31,9 @@ Make sure to also check out the rest of the documentation for more in-detail inf
 One of the first things you will notice when starting the game is the **menu bar** at the top of every menu.
 
 The **menu bar** is your entry point to basically all of FancyMenu's features like **creating layouts** to **customize menus**, changing the **window title and icon** and much more.
+
+> If you acidentally pressed some keys and the **menu bar disappeared**, you can bring it back by pressing **CTRL + ALT + C**.
+{.is-warning}
 
 ![menu_bar](https://github.com/Keksuccino/FancyMenu/assets/35544624/7100521c-8893-4eea-b0c1-1f02f4025ed7)
 
