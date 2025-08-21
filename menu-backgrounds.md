@@ -2,7 +2,7 @@
 title: Menu Backgrounds
 description: How to set custom menu backgrounds (images, animations) for screens.
 published: true
-date: 2025-08-21T20:56:15.476Z
+date: 2025-08-21T20:57:13.379Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-10T00:20:13.298Z
@@ -22,6 +22,7 @@ In the screen that opens, choose one of the background types, like:
 - Slideshow
 - Cubic Panorama
 - Color (HEX)
+- Video [MCEF]
 - and more..
 
 Select one of the types and then click on **Configure Background** in the bottom-right to configure the background type.
