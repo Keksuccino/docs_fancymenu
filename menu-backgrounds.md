@@ -2,7 +2,7 @@
 title: Menu Backgrounds
 description: How to set custom menu backgrounds (images, animations) for screens.
 published: true
-date: 2025-06-10T00:20:13.298Z
+date: 2025-08-21T20:56:15.476Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-10T00:20:13.298Z
@@ -36,3 +36,8 @@ Menu backgrounds can stack! If you have multiple layouts active, backgrounds of 
 
 To sort layouts and make them show up in a specific order, right-click the editor background and click on **Layout Index**.
 
+# Transparent Backgrounds
+
+Since there is nothing behind backgrounds, it is not possible to make the background at the very bottom transparent, because that would result in graphical glitches, but it is absolutely possible to use transparency for stacked background setups, as long as the bottom one stays as full opacity. That way you can have translucent background layers on top of the bottom one.
+
+To make a background image translucent, use an image editor of your choice.
