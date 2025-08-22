@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-08-04T19:46:04.986Z
+date: 2025-08-22T21:33:13.195Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -99,3 +99,6 @@ The button will now use its "Inactive Background" texture and will be unclickabl
 
 ### How can I remove the header and footer (the dirt texture bars) on scrollable screens?
 In FancyMenu v3, you can customize these. In the layout editor, right-click the editor background and look for options like "Customize Header/Footer". You can set their textures to be fully transparent to effectively remove them visually. Note that this may not work on all screens, especially older or heavily modded ones.
+
+### I can't create a layout "for the current screen". The button is greyed out.
+You need to enabled customizations for that screen first via **menu bar -> Customization -> Current Screen Customizations -> toggle it to Enabled**.
