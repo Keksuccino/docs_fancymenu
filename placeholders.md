@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-07-05T20:38:19.113Z
+date: 2025-08-24T17:08:05.055Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -33,10 +33,6 @@ Example of nested placeholders:
 {"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
 ```
 This example takes the maximum RAM value and divides it by 1024 to convert it from MB to GB.
-
-> Nested placeholders in FancyMenu do **NOT GET ESCAPED** like regular JSON. Nested placeholders look the same as not-nested placeholders.<br><br>**This is wrong:** `{"placeholder":"calc","values":{"expression":"{\"placeholder\":\"getvariable\",\"values\":{\"name\":\"fadeDelayTimer\"}} - 1"}}`<br><br>**This is right:** `{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"fadeDelayTimer"}} - 1"}}`
-{.is-warning}
-
 
 # Using Placeholders
 
