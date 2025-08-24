@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-07-31T18:24:23.684Z
+date: 2025-08-24T09:19:36.763Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -18,6 +18,7 @@ If that's the case, it's written after the mod name in the list below.
 **In case you found an incompatible mod that isn't part of this list already, please open an issue on GitHub! Thank you very much!**
 
 * [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Makes menus look bugged)
+* [Animated Mojang Logo](https://www.curseforge.com/minecraft/mc-mods/animated-mojang-logo) (Layouts will sometimes not load; Also breaks Drippy Loading Screen)
 * [Bedrockify](https://www.curseforge.com/minecraft/mc-mods/bedrockify) (Compatible when you disable all menu modifications of the mod, at least for the menus you want to customize)
 * [BetterFPS](https://www.curseforge.com/minecraft/mc-mods/betterfps) (Buttons and menus of this mod aren't customizable)
 * [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Crash on startup)
