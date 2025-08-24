@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-06-26T20:54:44.247Z
+date: 2025-08-24T09:20:45.391Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -60,59 +60,59 @@ The `$$value` placeholder is special. It's used to insert the current interactiv
 
 The following list contains menu of the available actions in FancyMenu, but some could be missing, so make sure to check FancyMenu's action UI for a complete list of all available actions!
 
-## Next Track
+## Next Track (`audio_next_track`)
 - **Description:** Goes to the next track in an audio element
 - **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
 
-## Previous Track
+## Previous Track (`audio_previous_track`)
 - **Description:** Goes to the previous track in an audio element
 - **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
 
-## Set Audio Element Volume
+## Set Audio Element Volume (`set_audio_element_volume`)
 - **Description:** Sets the volume of an audio element
 - **Value Required:** Yes - `element_identifier:1.0` (element ID and volume value between 0.0 and 1.0)
 
-## Toggle Play Track
+## Toggle Play Track (`audio_toggle_play`)
 - **Description:** Toggles play/pause of an audio element's current track
 - **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
 
-## Toggle Layout
+## Toggle Layout (`toggle_layout`)
 - **Description:** Toggles a layout (Enable/Disable) by its name
 - **Value Required:** Yes - `layout_name` (the name of the layout to toggle)
 
-## Enable Layout
+## Enable Layout (`enable_layout`)
 - **Description:** Enables a layout by its name
 - **Value Required:** Yes - `layout_name` (the name of the layout to enable)
 
-## Disable Layout
+## Disable Layout (`disable_layout`)
 - **Description:** Disables a layout by its name
 - **Value Required:** Yes - `layout_name` (the name of the layout to disable)
 
-## Disconnect
+## Disconnect (`disconnect_server_or_world`)
 - **Description:** Leaves a world or server and opens a specified screen
 - **Value Required:** Yes - `screen_identifier` (identifier of screen to open after disconnecting)
 
-## Enter World
+## Enter World (`loadworld`)
 - **Description:** Enters a Minecraft world
 - **Value Required:** Yes - `world_folder_name` (folder name of the world to load)
 
-## Join Last World/Server
+## Join Last World/Server (`join_last_world`)
 - **Description:** Enters/Joins the last world/server the player was in
 - **Value Required:** No
 
-## Join Server
+## Join Server (`joinserver`)
 - **Description:** Connects the player to a Minecraft server
 - **Value Required:** Yes - `server_ip:port` (e.g., "exampleserver.com:25565")
 
-## Back to Last Screen
+## Back to Last Screen (`back_to_last_screen`)
 - **Description:** Goes back to the previous screen (the one before the current)
 - **Value Required:** No
 
-## Close Screen
+## Close Screen (`closegui`)
 - **Description:** Closes the active screen
 - **Value Required:** No
 
-## Open Screen or Custom GUI
+## Open Screen or Custom GUI (`opengui`)
 - **Description:** Opens a screen by its identifier (vanilla, mod, or custom GUI)
 - **Value Required:** Yes - `screen_identifier` (identifier for the screen to open)
 
@@ -120,52 +120,85 @@ This action will not work for every screen, especially mod screens. If the actio
 
 I will also not manually add compatibility for mod screens anymore, because adding compatibility for all the mods out there would take me ages, sorry.
 
-## Update Screen
+## Update Screen (`update_screen`)
 - **Description:** Reinitializes the current screen
 - **Value Required:** No
 
-## Copy to Clipboard
+## Copy to Clipboard (`copytoclipboard`)
 - **Description:** Copies text to the clipboard
 - **Value Required:** Yes - `text_to_copy` (the text to copy)
 
-## Edit Minecraft Option
+## Edit Minecraft Option (`edit_minecraft_option`)
 - **Description:** Edits a Minecraft config option
 - **Value Required:** Yes - `option_name:set_to_value` (name of the option and the value to set)
 
-## Mimic Button
+## Mimic Button (`mimicbutton`)
 - **Description:** Mimics the click action of a Vanilla or mod button
 - **Value Required:** Yes - `screen_identifier:widget_id` (e.g., "example.menu.identifier:505280")
 
-## Open URL in Browser
+## Open URL in Browser (`openlink`)
 - **Description:** Opens a link in your default browser
 - **Value Required:** Yes - `https://example.com` (the URL to open)
 
-## Paste to Chat
+## Paste to Chat (`paste_to_chat`)
 - **Description:** Pastes text to the chat input field
 - **Value Required:** Yes - `true:Text to paste` or `false:Text to paste` (true to append, false to replace existing text)
 
-## Quit Minecraft
+## Quit Minecraft (`quitgame`)
 - **Description:** Quits Minecraft completely
 - **Value Required:** No
 
-## Reload FancyMenu
+## Reload FancyMenu (`reloadmenu`)
 - **Description:** Reloads FancyMenu, including panoramas, slideshows, etc.
 - **Value Required:** No
 
 > This action has a **big impact on performance** and can cause lags if used in Tickers. It is not recommended to use this action in anything else than a button.
 {.is-warning}
 
-## Send Chat Message/Command
+## Send Chat Message/Command (`sendmessage`)
 - **Description:** Sends a chat message or executes a chat command
 - **Value Required:** Yes - `message_text` or `/command_text` (if it starts with "/" it's treated as a command)
 
-## Set Variable
+## Set Variable (`set_variable`)
 - **Description:** Stores text content in a variable for use in placeholders, requirements, etc.
 - **Value Required:** Yes - `variable_name:variable_value` (name and value separated by colon)
 
-## Clear Variables
+## Clear Variables (`clear_variables`)
 - **Description:** Clears ALL of FancyMenu's stored variables
 - **Value Required:** No
+
+## Send HTTP Request (`send_http_request`)
+
+Sends an HTTP request to a web target with configurable parameters.
+
+This action allows you to send data to REST APIs, webhooks, or any HTTP endpoint.
+Supports various authentication methods, custom headers, and different request types.
+
+This action also allows you to store the response of the request in a FancyMenu variable for later use!
+
+## Set Video Element Volume (`set_video_element_volume`)
+
+Sets the volume of a Video menu background by its identifier.
+The volume has to be a valid decimal between 0.0 (0%%) and 1.0 (100%%).
+
+To get the identifier of a background, right-click the
+editor background and click on 'Copy Background Identifier'.
+
+## Toggle Video Element Paused State (`toggle_video_element_pause_state`)
+
+Toggles the paused state of a Video element.
+
+## Set Video Background Volume (`set_video_menu_background_volume`)
+
+Sets the volume of a Video element.
+The volume has to be a valid decimal between 0.0 (0%%) and 1.0 (100%%).
+
+## Toggle Video Background Paused State (`toggle_video_menu_background_pause_state`)
+
+Toggles the paused state of a Video menu background by its identifier.
+
+To get the identifier of a background, right-click the
+editor background and click on 'Copy Background Identifier'.
 
 # How to Set Up and Edit Actions
 
