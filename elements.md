@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-07-12T15:57:16.951Z
+date: 2025-08-27T19:06:29.746Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -298,5 +298,5 @@ An invisible element that replaces the default system cursor with a custom image
 *   [Slideshows](https://docs.fancymenu.net/en/slideshows) (https://docs.fancymenu.net/en/slideshows)
 *   [Player Heads](https://docs.fancymenu.net/en/player-heads) (https://docs.fancymenu.net/en/player-heads)
 *   [Element Animator](https://docs.fancymenu.net/en/element-animator) (https://docs.fancymenu.net/en/element-animator)
-*   [Menu Background Music](https://docs.fancymenu.net/en/menu-background-music) (https://docs.fancymenu.net/en/menu-background-music)
+*   [Menu Background Music](https://docs.fancymenu.net/en/background-music) (https://docs.fancymenu.net/en/background-music)
 *   [Custom Cursor](https://docs.fancymenu.net/en/custom-cursor) (https://docs.fancymenu.net/en/custom-cursor)
