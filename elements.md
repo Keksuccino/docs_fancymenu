@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-08-27T19:08:41.874Z
+date: 2025-08-27T19:09:22.224Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -294,7 +294,7 @@ An invisible element that replaces the default system cursor with a custom image
 *   [Placeholders](https://docs.fancymenu.net/en/placeholders) (https://docs.fancymenu.net/en/placeholders)
 *   [Text Formatting](https://docs.fancymenu.net/en/text-formatting) (https://docs.fancymenu.net/en/text-formatting)
 *   [MCEF (Minecraft Chromium Embedded Framework)](https://www.curseforge.com/minecraft/mc-mods/mcef) (https://www.curseforge.com/minecraft/mc-mods/mcef)
-*   [Videos (MP4)](https://docs.fancymenu.net/en/videos-mp4) (https://docs.fancymenu.net/en/videos-mp4)
+*   [Videos (MP4)](https://docs.fancymenu.net/en/video) (https://docs.fancymenu.net/en/video)
 *   [Slideshows](https://docs.fancymenu.net/en/slideshows) (https://docs.fancymenu.net/en/slideshows)
 *   [Player Heads](https://docs.fancymenu.net/en/player-heads) (https://docs.fancymenu.net/en/player-heads)
 *   [Element Animator](https://docs.fancymenu.net/en/element-animator) (https://docs.fancymenu.net/en/element-animator)
