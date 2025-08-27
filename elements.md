@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-08-27T19:09:22.224Z
+date: 2025-08-27T19:11:34.364Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -238,7 +238,7 @@ An invisible element that plays audio files. It can manage a playlist of tracks 
 *   **Key Features:**
     *   **Playlist:** Can manage multiple audio tracks.
     *   **Playback Modes:** Can play tracks in order or shuffle them (with support for track weighting to make some tracks more common than others).
-    *   **Control:** Supports looping, volume adjustment, and can be assigned to a specific sound channel (e.g., Master, Music). For more info, see the [Menu Background Music](https://docs.fancymenu.net/en/menu-background-music) page.
+    *   **Control:** Supports looping, volume adjustment, and can be assigned to a specific sound channel (e.g., Master, Music). For more info, see the [Menu Background Music](https://docs.fancymenu.net/en/background-music) page.
 
 ## Music Controller
 An invisible element used to control Minecraft's default music playback within a specific menu.
