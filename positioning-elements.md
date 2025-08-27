@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2025-08-01T01:55:48.541Z
+date: 2025-08-27T19:21:51.404Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:42.273Z
@@ -59,6 +59,12 @@ You can **disable** this for individual elements by **right-clicking** them and 
 
 > Disabling this can sometimes cause the element to vanish, because its actual/real position was out-of-screen, but the feature made it stay visible. If that happens to you, **undo** the last action (disabling **Stay On Screen**) via the undo shortcut or in the **menu bar -> Edit -> Undo**, then manually move the element to the middle of the screen and disable **Stay On Screen** again. Now it should stay visible even with the feature disabled.
 {.is-warning}
+
+## Centering Elements
+
+As long as elements have a fixed size, centering them is as easy as anchoring them to a center-based anchor point.
+
+If the element dynamically changes its size based on conditions or something else, it's a bit more tricky, but FancyMenu has a great feature for that! In that case, first anchor the element to a center-based anchor point and then right-click it. In the context menu, enable **Sticky Anchors**. This feature changes how FancyMenu calculates the position of the element, which makes it so it always keeps the same distance to its anchor point, no matter if its size changes. For center-based anchors it will always keep the same distance to the anchor from the element's absolute center, which makes it always stay centered when using center-based anchors. (For left-based anchors, it will always keep the same distance to the anchor from the element's left side and for right-based anchors it keeps the same distance from the element's right side.)
 
 ## More Ways to Improve Element Positioning
 
