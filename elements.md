@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-08-27T19:06:29.746Z
+date: 2025-08-27T19:07:53.359Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -289,7 +289,7 @@ An invisible element that replaces the default system cursor with a custom image
 *   [Variables](https://docs.fancymenu.net/en/variables) (https://docs.fancymenu.net/en/variables)
 *   [Conditions (Loading Requirements)](https://docs.fancymenu.net/en/conditions) (https://docs.fancymenu.net/en/conditions)
 *   [NBT Data Placeholder](https://docs.fancymenu.net/en/nbt-data-placeholder) (https://docs.fancymenu.net/en/nbt-data-placeholder)
-*   [Nine-Slicing & Tiling](https://docs.fancymenu.net/en/nine-slicing-tiling) (https://docs.fancymenu.net/en/nine-slicing-tiling)
+*   [Nine-Slicing & Tiling](https://docs.fancymenu.net/en/nine-slicing-and-tiling) (https://docs.fancymenu.net/en/nine-slicing-and-tiling)
 *   [Parallax Effect](https://docs.fancymenu.net/en/parallax-effect) (https://docs.fancymenu.net/en/parallax-effect)
 *   [Placeholders](https://docs.fancymenu.net/en/placeholders) (https://docs.fancymenu.net/en/placeholders)
 *   [Text Formatting](https://docs.fancymenu.net/en/text-formatting) (https://docs.fancymenu.net/en/text-formatting)
