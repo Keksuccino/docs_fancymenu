@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-08-27T19:11:34.364Z
+date: 2025-08-27T19:12:44.684Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -108,10 +108,10 @@ Displays a static image from a local file, a web URL, or a Minecraft resource lo
     *   Creating decorative borders or UI frames.
     *   Using images as part of a more complex UI design.
 *   **Key Features:**
-    *   **Nine-Slicing:** Allows the image to be used as a scalable border or panel without distorting the corners. Learn more at the [Nine-Slicing & Tiling](https://docs.fancymenu.net/en/nine-slicing-tiling) page.
+    *   **Nine-Slicing:** Allows the image to be used as a scalable border or panel without distorting the corners. Learn more at the [Nine-Slicing & Tiling](https://docs.fancymenu.net/en/nine-slicing-and-tiling) page.
     *   **Texture Repeating:** The image can be tiled to fill the element's area.
     *   **Tinting:** You can apply a color tint to the image.
-    *   **Parallax Effect:** Can be configured to move slightly with the mouse for a 3D effect. See the [Parallax Effect](https://docs.fancymenu.net/en/parallax-effect) page for more.
+    *   **Parallax Effect:** Can be configured to move slightly with the mouse for a 3D effect. See the [Parallax Effect](https://docs.fancymenu.net/en/parallax) page for more.
 
 ## Text
 A highly versatile element for displaying text. It can be used for anything from single-line labels to multi-page, scrollable documents.
@@ -137,7 +137,7 @@ Plays a video file. This is perfect for cinematic intros or decorative looping b
     *   A looping, ambient video to add life to your menu.
     *   An in-game tutorial video.
 *   **Key Features:**
-    *   **Sources:** Supports both local video files and web URLs. See the [Videos (MP4)](https://docs.fancymenu.net/en/videos-mp4) page for details.
+    *   **Sources:** Supports both local video files and web URLs. See the [Videos (MP4)](https://docs.fancymenu.net/en/video) page for details.
     *   **Playback Control:** Can be set to loop automatically. Its volume and sound channel are adjustable.
     *   **Interactive Control:** The video's playback (pause/play) and volume can be controlled via button actions.
 
