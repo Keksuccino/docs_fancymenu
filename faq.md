@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-09-01T17:22:26.132Z
+date: 2025-09-01T17:23:22.381Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -105,7 +105,7 @@ You need to enabled customizations for that screen first via **menu bar -> Custo
 
 ### I can't customize any elements of a screen when opening it in the editor. It's just an empty screen then.
 
-This could mean you accidentally created a universal layout instrad of one **for the current screen**.
+This could mean you accidentally created a universal layout instead of one **for the current screen**.
 
 It could also mean that the screen you are customizing is a scrollable screen, which are screens that FancyMenu can't customize by default.
 
