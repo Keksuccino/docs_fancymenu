@@ -2,7 +2,7 @@
 title: Player Entities
 description: How FancyMenu's "Player Entity" element works and how to use it correctly.
 published: true
-date: 2025-09-01T17:07:21.964Z
+date: 2025-09-01T17:08:35.382Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-20T02:29:56.333Z
@@ -11,9 +11,6 @@ dateCreated: 2025-08-20T02:29:56.333Z
 # Player Entities
 
 FancyMenu allows you to add player entities to screens, so you can display the client player or other players, including custom entities that do not represent a real player at all with a custom skin, name, cape and so on.
-
-> The **Player Entity** element is currently **temporarily disabled** in MC 1.21.4+. The element will get added back in the future, but there is no ETA for when it gets added back.
-{.is-warning}
 
 # Client Player
 
