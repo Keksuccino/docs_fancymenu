@@ -2,7 +2,7 @@
 title: Player Entities
 description: How FancyMenu's "Player Entity" element works and how to use it correctly.
 published: true
-date: 2025-09-01T17:13:02.794Z
+date: 2025-09-01T17:14:05.906Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-20T02:29:56.333Z
@@ -42,4 +42,4 @@ For Minecraft 1.21.4+, there is an extra mod needed for making Player Entity ele
 
 If there is no build available yet for the Minecraft version you're using, it will most likely get released at a later point.
 
-Please keep in mind that FER is not developed by Keksuccino, so he has no control over builds that get released.
+Please keep in mind that FER is not developed by Keksuccino, so he has no control over when builds get released.
