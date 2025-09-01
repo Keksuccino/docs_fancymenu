@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-08-22T21:33:13.195Z
+date: 2025-09-01T17:22:26.132Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -102,3 +102,11 @@ In FancyMenu v3, you can customize these. In the layout editor, right-click the 
 
 ### I can't create a layout "for the current screen". The button is greyed out.
 You need to enabled customizations for that screen first via **menu bar -> Customization -> Current Screen Customizations -> toggle it to Enabled**.
+
+### I can't customize any elements of a screen when opening it in the editor. It's just an empty screen then.
+
+This could mean you accidentally created a universal layout instrad of one **for the current screen**.
+
+It could also mean that the screen you are customizing is a scrollable screen, which are screens that FancyMenu can't customize by default.
+
+The third possibility is that it's a screen from a mod that adds elements in a non-Vanilla way, which makes FancyMenu unable to customize these elements.
