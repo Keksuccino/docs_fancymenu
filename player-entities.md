@@ -2,7 +2,7 @@
 title: Player Entities
 description: How FancyMenu's "Player Entity" element works and how to use it correctly.
 published: true
-date: 2025-08-20T02:29:56.333Z
+date: 2025-09-01T17:07:21.964Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-20T02:29:56.333Z
@@ -32,6 +32,8 @@ If you do not want to show a real player at all and instead want to fully custom
 The Player Entity element has full support for customizing its pose, so in other words you can freely move all of its limbs, body parts, etc.
 
 To do that, right-click the element and click on **Player Pose**. This will open a screen with sliders to configure the X/Y/Z rotation of all body parts.
+
+The player pose settings have a normal mode where you can customize the rotations with sliders and there's also an advanced mode that allows a text input for all rotations with full placeholder support, which makes it possible to even animate the entity with a Ticker element that sets rotation variables!
 
 # Changing the Entity Size
 
