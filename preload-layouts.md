@@ -2,7 +2,7 @@
 title: Pre-Load Resources
 description: How to pre-load resources so they're ready-to-use once the game finishes loading.
 published: true
-date: 2025-04-14T20:15:49.276Z
+date: 2025-09-02T17:59:48.381Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:46.512Z
@@ -32,3 +32,7 @@ Every resource in this list will get pre-loaded every time the game reloads its 
 <br>
 
 <img width="731" alt="Screenshot_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
+
+# Pre-Loading Slideshows & Panoramas
+
+You can also add slideshows and panoramas to the list of resources to pre-load, which will help fixing issues with panorama or slideshow images showing as black/missing image first or flicker for a moment.
