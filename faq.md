@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-09-01T17:23:22.381Z
+date: 2025-09-05T10:54:12.693Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -110,3 +110,9 @@ This could mean you accidentally created a universal layout instead of one **for
 It could also mean that the screen you are customizing is a scrollable screen, which are screens that FancyMenu can't customize by default.
 
 The third possibility is that it's a screen from a mod that adds elements in a non-Vanilla way, which makes FancyMenu unable to customize these elements.
+
+### There are weird grey boxes at my Text element.
+
+These translucent (low opacity) boxes/rectangles can be at the right or bottom edge of your Text element and they are not a bug. These are the scroll grabbers of the Text element, since the element is scrollable.
+
+If you don't want these boxes to be visible, you can either right-click the element and disable scrolling completely OR you can also set the grabber textures to completely transparent ones in the same right-click menu, if you want the element to be still scrollable.
