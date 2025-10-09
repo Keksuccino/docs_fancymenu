@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2025-09-01T17:16:04.547Z
+date: 2025-10-09T06:06:21.188Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T19:45:47.193Z
@@ -97,6 +97,7 @@ Elements itself can also work as an anchor point for other elements! Just hover 
 ## Saving Your Work
 
 Don't forget to save your work!
+You will see an "Unsaved Changes" indicator in the top-right corner of the editor if you need to save your work before closing it.
 
 This can be done by pressing **CTRL + S** or by clicking on **Layout -> Save**!
 
