@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2025-04-14T20:16:20.131Z
+date: 2025-10-09T02:37:35.336Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:15.668Z
@@ -25,7 +25,6 @@ FancyMenu's Markdown even has some special stuff that makes it even more powerfu
 
 > Markdown does **NOT WORK** for other text-based stuff like button labels. It only works for **TEXT ELEMENTS**. For everything else, please use [Minecraft's formatting codes](/text-formatting#minecraft-text-formatting).
 {.is-danger}
-
 
 ## Fonts
 
@@ -223,6 +222,9 @@ To read more about Minecraft's formatting system, please take a look at [this Mi
 
 > The wiki will say the formatting code prefix is `§`, but in FancyMenu you need to replace that with `&`. Everything else stays the same.
 {.is-warning}
+
+> **Text elements** are very complex and to support Markdown, the tradeoff was to **break Minecraft's Vanilla formatting codes**, so these codes will not work good in Text elements (only first word gets formatted after formatting code, etc.). You should instead use Markdown formatting codes in Text elements.
+{.is-danger}
 
 # Minecraft Text Components (Raw Component System)
 
