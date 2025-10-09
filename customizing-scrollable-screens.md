@@ -2,7 +2,7 @@
 title: Scrollable Screens
 description: How to customize scrollable screens.
 published: true
-date: 2025-07-17T15:16:05.416Z
+date: 2025-07-17T15:16:10.099Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T20:01:34.059Z

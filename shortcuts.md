@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2025-05-17T18:56:43.607Z
+date: 2025-05-17T18:56:49.443Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:07.228Z

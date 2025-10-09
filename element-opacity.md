@@ -2,7 +2,7 @@
 title: Element Opacity
 description: How to control the opacity of elements.
 published: true
-date: 2025-09-03T17:05:20.104Z
+date: 2025-09-03T17:05:25.530Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:13:04.533Z

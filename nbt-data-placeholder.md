@@ -2,7 +2,7 @@
 title: NBT Data Placeholder
 description: How to use the NBT Data placeholder.
 published: true
-date: 2025-07-02T14:40:10.368Z
+date: 2025-07-02T14:40:15.360Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:10:15.683Z

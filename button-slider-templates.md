@@ -2,7 +2,7 @@
 title: Button & Slider Templates
 description: How to use button/slider templates to apply a specific button/slider design to ALL buttons at once.
 published: true
-date: 2025-05-26T04:10:32.255Z
+date: 2025-05-26T04:10:37.922Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T01:22:23.200Z

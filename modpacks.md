@@ -2,7 +2,7 @@
 title: Modpacks
 description: How to include layouts in a modpack.
 published: true
-date: 2025-05-07T05:11:25.391Z
+date: 2025-05-07T05:11:28.393Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:20.891Z

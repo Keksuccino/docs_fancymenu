@@ -2,7 +2,7 @@
 title: Get Frames from Videos
 description: How to get frames from a video file.
 published: true
-date: 2025-04-16T19:18:11.821Z
+date: 2025-04-16T19:18:14.899Z
 tags: ffmpeg, mp4, mkv, video, frame, frames
 editor: markdown
 dateCreated: 2025-04-14T20:14:40.022Z

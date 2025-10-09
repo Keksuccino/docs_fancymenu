@@ -2,7 +2,7 @@
 title: Custom Cursor
 description: How to make menus use a custom mouse cursor.
 published: true
-date: 2025-06-25T18:46:32.912Z
+date: 2025-06-25T18:46:37.027Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-25T18:46:32.912Z

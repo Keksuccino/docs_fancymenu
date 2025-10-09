@@ -2,7 +2,7 @@
 title: Text in Menus
 description: How to add text content to menus.
 published: true
-date: 2025-07-05T19:52:56.960Z
+date: 2025-07-05T19:52:59.694Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T19:40:17.459Z

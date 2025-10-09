@@ -2,7 +2,7 @@
 title: Vanilla Elements
 description: How to customize elements that are part of screens by default.
 published: true
-date: 2025-07-05T20:08:33.201Z
+date: 2025-07-05T20:08:37.114Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-26T13:59:53.535Z

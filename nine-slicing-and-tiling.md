@@ -2,7 +2,7 @@
 title: Nine-Slicing & Tiling
 description: How to use nine-slicing and tiling in FancyMenu.
 published: true
-date: 2025-05-07T00:48:22.581Z
+date: 2025-05-07T00:48:25.757Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T00:48:22.581Z

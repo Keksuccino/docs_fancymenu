@@ -2,7 +2,7 @@
 title: Rotating Elements
 description: Rotating elements in FancyMenu.
 published: true
-date: 2025-08-04T01:24:06.338Z
+date: 2025-08-04T01:24:11.692Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T01:24:06.338Z

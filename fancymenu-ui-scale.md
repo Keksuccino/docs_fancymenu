@@ -2,7 +2,7 @@
 title: FancyMenu's UI Scale
 description: How to change the scale of FancyMenu's UI.
 published: true
-date: 2025-08-04T19:22:28.057Z
+date: 2025-08-04T19:22:30.755Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:19:36.697Z

@@ -2,7 +2,7 @@
 title: Dragger
 description: How to drag elements in menus by using the Dragger element.
 published: true
-date: 2025-07-05T19:19:37.358Z
+date: 2025-07-05T19:19:41.915Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T19:19:37.358Z

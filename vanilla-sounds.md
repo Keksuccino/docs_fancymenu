@@ -2,7 +2,7 @@
 title: Accessing Vanilla Sound Files
 description: How to access Vanilla sound resources.
 published: true
-date: 2025-06-25T20:17:45.586Z
+date: 2025-06-25T20:17:48.636Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:24.273Z

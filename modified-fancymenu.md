@@ -2,7 +2,7 @@
 title: Modified FancyMenu Found
 description: What to do when getting the "Modified FancyMenu JAR Found" error.
 published: true
-date: 2025-06-25T20:07:53.523Z
+date: 2025-06-25T20:07:55.920Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-25T20:07:53.523Z

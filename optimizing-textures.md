@@ -2,7 +2,7 @@
 title: Optimizing Textures
 description: How to optimize textures for FancyMenu.
 published: true
-date: 2025-05-17T18:59:39.559Z
+date: 2025-05-17T18:59:42.199Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-17T18:59:39.559Z

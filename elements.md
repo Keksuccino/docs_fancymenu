@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-08-27T19:12:44.684Z
+date: 2025-08-27T19:12:49.327Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z

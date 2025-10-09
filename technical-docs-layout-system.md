@@ -2,7 +2,7 @@
 title: Technical Dive: Layout System
 description: This is a technical document about how FancyMenu's layout system works INTERNALLY. This is not something normal users should ever be interested in.
 published: true
-date: 2025-10-09T03:00:48.983Z
+date: 2025-10-09T03:00:52.461Z
 tags: technical
 editor: markdown
 dateCreated: 2025-10-09T03:00:19.216Z

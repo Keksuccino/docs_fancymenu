@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2025-10-09T06:06:21.188Z
+date: 2025-10-09T06:06:26.820Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T19:45:47.193Z

@@ -2,7 +2,7 @@
 title: Browser JavaScript API
 description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
 published: true
-date: 2025-08-24T09:30:22.976Z
+date: 2025-08-24T09:30:27.513Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-24T09:30:22.976Z

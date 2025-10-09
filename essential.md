@@ -2,7 +2,7 @@
 title: Essential Mod
 description: How to customize Essential's UI.
 published: true
-date: 2025-08-04T01:11:38.376Z
+date: 2025-08-04T01:11:43.629Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-31T18:11:30.915Z

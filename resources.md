@@ -2,7 +2,7 @@
 title: Resources
 description: How resources work in FancyMenu. Covers resource locations, local resources and web resources.
 published: true
-date: 2025-07-06T14:41:56.133Z
+date: 2025-07-06T14:41:59.164Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:54.572Z

@@ -2,7 +2,7 @@
 title: Set/Get Minecraft Options
 description: How to set and get Minecraft options like volume, FOV, render distance, etc.
 published: true
-date: 2025-05-10T02:07:03.810Z
+date: 2025-05-10T02:07:08.261Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T04:47:56.021Z

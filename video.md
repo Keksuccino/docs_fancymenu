@@ -2,7 +2,7 @@
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
 published: true
-date: 2025-07-12T15:55:00.928Z
+date: 2025-07-12T15:55:04.207Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:24:26.869Z

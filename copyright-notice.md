@@ -2,7 +2,7 @@
 title: Title Screen Copyright
 description: About the copyright text in the Title screen.
 published: true
-date: 2025-06-26T14:04:12.046Z
+date: 2025-06-26T14:04:14.635Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-26T14:03:50.591Z

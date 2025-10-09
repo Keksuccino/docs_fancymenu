@@ -2,7 +2,7 @@
 title: Commands
 description: FancyMenu's commands and how to use them.
 published: true
-date: 2025-06-26T20:50:07.093Z
+date: 2025-06-26T20:50:09.935Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:18.072Z

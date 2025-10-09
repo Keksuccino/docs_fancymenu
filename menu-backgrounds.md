@@ -2,7 +2,7 @@
 title: Menu Backgrounds
 description: How to set custom menu backgrounds (images, animations) for screens.
 published: true
-date: 2025-08-21T20:57:13.379Z
+date: 2025-08-21T20:57:16.740Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-10T00:20:13.298Z

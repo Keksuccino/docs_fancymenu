@@ -2,7 +2,7 @@
 title: Advanced Positioning & Sizing
 description: How to use Advanced Positioning and Sizing of elements.
 published: true
-date: 2025-08-01T01:44:07.527Z
+date: 2025-08-01T01:44:12.713Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:03:22.929Z

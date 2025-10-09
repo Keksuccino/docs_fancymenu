@@ -2,7 +2,7 @@
 title: Element Identifiers
 description: How element identifiers work in FancyMenu.
 published: true
-date: 2025-05-17T19:06:43.493Z
+date: 2025-05-17T19:06:46.339Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-17T19:06:11.365Z

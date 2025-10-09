@@ -2,7 +2,7 @@
 title: Title Screen Glyph
 description: How to hide/remove the little diamond or emerald (green or blue) glyph/icon in the Title screen.
 published: true
-date: 2025-07-06T15:15:39.543Z
+date: 2025-07-06T15:15:42.758Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-06T15:15:39.543Z

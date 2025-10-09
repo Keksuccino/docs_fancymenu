@@ -2,7 +2,7 @@
 title: Positioning Elements
 description: How to correctly use anchor points.
 published: true
-date: 2025-08-27T19:21:51.404Z
+date: 2025-08-27T19:21:54.814Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:42.273Z

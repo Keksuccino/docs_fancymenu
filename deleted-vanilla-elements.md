@@ -2,7 +2,7 @@
 title: Deleted Vanilla Elements
 description: How to delete Vanilla elements and make them visible again.
 published: true
-date: 2025-05-26T04:17:42.735Z
+date: 2025-05-26T04:17:45.533Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:30.203Z

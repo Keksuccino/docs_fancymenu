@@ -2,7 +2,7 @@
 title: Parallax Effect
 description: How to apply a parallax effect to menu background and elements.
 published: true
-date: 2025-05-07T00:06:12.714Z
+date: 2025-05-07T00:06:16.021Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T00:04:35.161Z

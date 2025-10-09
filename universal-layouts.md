@@ -2,7 +2,7 @@
 title: Universal Layouts
 description: How to create and use universal layouts.
 published: true
-date: 2025-05-08T23:45:45.578Z
+date: 2025-05-08T23:45:48.625Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-08T23:42:27.319Z

@@ -2,7 +2,7 @@
 title: Open GUIs by Command
 description: How to open Vanilla and Custom GUIs via command.
 published: true
-date: 2025-06-26T20:50:49.484Z
+date: 2025-06-26T20:50:52.238Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:25.104Z

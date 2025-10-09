@@ -2,7 +2,7 @@
 title: Player Entities
 description: How FancyMenu's "Player Entity" element works and how to use it correctly.
 published: true
-date: 2025-09-01T17:14:05.906Z
+date: 2025-09-01T17:14:09.508Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-20T02:29:56.333Z
