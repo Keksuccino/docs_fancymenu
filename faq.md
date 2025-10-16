@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-09-05T10:54:17.927Z
+date: 2025-10-16T05:52:10.426Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -116,3 +116,9 @@ The third possibility is that it's a screen from a mod that adds elements in a n
 These translucent (low opacity) boxes/rectangles can be at the right or bottom edge of your Text element and they are not a bug. These are the scroll grabbers of the Text element, since the element is scrollable.
 
 If you don't want these boxes to be visible, you can either right-click the element and disable scrolling completely OR you can also set the grabber textures to completely transparent ones in the same right-click menu, if you want the element to be still scrollable.
+
+### How can I show the latest Minecraft changelog in my menus?
+
+There's a great [GitHub project](https://github.com/ClaytonTDM/minecraft-changelogs-markdown) that converts Minecraft's changelogs to FancyMenu-compatible Markdown, so you can show the latest MC changelog in your menus! It updates daily to fetch new changelogs.
+
+For example, to show the latest Minecraft changelog in a Text element, set its **Source Mode** to **Resource** and set its resource source to **Web**. Then use this URL as source: `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`
