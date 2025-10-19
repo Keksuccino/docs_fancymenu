@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-08-27T19:12:49.327Z
+date: 2025-10-19T04:25:36.264Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -187,12 +187,11 @@ Renders a player model in the menu.
 ## Browser
 An element that renders a live web page inside the game.
 
-> This element requires the **[MCEF (Minecraft Chromium Embedded Framework)](https://www.curseforge.com/minecraft/mc-mods/mcef)** mod to be installed and working.
-{.is-warning}
+This element requires the **MCEF (Minecraft Chromium Embedded Framework)** mod to be installed and working!
 
-> When you see only black instead of the actual browser content, it is most likely not related to FancyMenu, but MCEF. MCEF probably failed to load correctly, so FancyMenu can't use it.<br>
-In this case you should better reach out to the MCEF devs and ask them for help in their Discord: https://discord.gg/rNrh5kW8Ty
-{.is-danger}
+You can download MCEF from the official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef) and [Modrinth](https://modrinth.com/mod/mcef).
+
+For newer Minecraft versions (1.21.5+), the official MCEF projects do not provide builds, but there is a fork with builds for latest Minecraft versions, which can be found [here](https://www.curseforge.com/minecraft/mc-mods/mcef-keksuccino) (CurseForge) and [here](https://modrinth.com/mod/mcef-keksuccino) (Modrinth). This fork is maintained by Keksuccino, to get builds for latest Minecraft versions out as fast as possible.
 
 *   **Use Cases:**
     *   Displaying a server's live Dynmap.
