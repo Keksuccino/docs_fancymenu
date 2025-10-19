@@ -2,7 +2,7 @@
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
 published: true
-date: 2025-10-19T04:15:42.891Z
+date: 2025-10-19T04:20:44.986Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:24:26.869Z
@@ -36,6 +36,6 @@ And the following **placeholders** to get information about video backgrounds an
 
 To use the Video element and menu background type, you need to have the **MCEF** mod installed, which is used as backend for video support.
 
-You can download MCEF from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef) and [Modrinth](https://modrinth.com/mod/mcef).
+You can download MCEF fromthe official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef) and [Modrinth](https://modrinth.com/mod/mcef).
 
-For newer Minecraft versions (1.21.5+), the official MCEF projects do not provide builds, but there is a fork with builds for latest Minecraft versions, which can be found [here (CurseForge)](https://www.curseforge.com/minecraft/mc-mods/mcef-keksuccino) and [here (Modrinth)](https://modrinth.com/mod/mcef-keksuccino).
+For newer Minecraft versions (1.21.5+), the official MCEF projects do not provide builds, but there is a fork with builds for latest Minecraft versions, which can be found [here](https://www.curseforge.com/minecraft/mc-mods/mcef-keksuccino) (CurseForge) and [here](https://modrinth.com/mod/mcef-keksuccino) (Modrinth). This fork is maintained by Keksuccino, to get builds for latest Minecraft versions out as fast as possible.
