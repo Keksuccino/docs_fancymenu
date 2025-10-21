@@ -2,7 +2,7 @@
 title: Browser JavaScript API
 description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
 published: true
-date: 2025-08-24T09:30:27.513Z
+date: 2025-10-21T10:08:45.531Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-24T09:30:22.976Z
@@ -12,7 +12,7 @@ dateCreated: 2025-08-24T09:30:22.976Z
 
 Starting with v3.7.0+, FancyMenu injects its own JavaScript API into MCEF-based mod features like the **Browser** element.
 
-This API allows you to **execute FancyMenu's actions** via JavaScript in all MCEF-based mod features.
+This API allows you to **execute all of FancyMenu's [actions](./action-scripts)** via JavaScript in all MCEF-based mod features.
 
 The API is available through two global objects:
 - `window.fancymenu` - The primary namespace
@@ -21,7 +21,7 @@ The API is available through two global objects:
 # Methods
 
 ## Without Callback: `fancymenu.execute(actionType, actionValue)`
-Executes a FancyMenu action without callbacks.
+Executes a FancyMenu [action](./action-scripts) without callbacks.
 
 **Parameters:**
 - `actionType` (string) - The type of action to execute
