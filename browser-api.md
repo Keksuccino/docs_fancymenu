@@ -2,7 +2,7 @@
 title: Browser JavaScript API
 description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
 published: true
-date: 2025-10-21T10:08:45.531Z
+date: 2025-10-21T10:10:39.793Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-24T09:30:22.976Z
@@ -38,7 +38,7 @@ fancymenu.execute('set_variable', 'myvar:myvalue');
 ```
 
 ## With Callback: `fancymenu.executeWithCallback(actionType, actionValue, onSuccess, onFailure)`
-Executes a FancyMenu action with callback functions.
+Executes a FancyMenu [action](./action-scripts) with callback functions.
 
 **Parameters:**
 - `actionType` (string) - The type of action to execute
@@ -46,7 +46,7 @@ Executes a FancyMenu action with callback functions.
 - `onSuccess` (function, optional) - Called when the action executes successfully
 - `onFailure` (function, optional) - Called when the action fails
 
-**Note:** For actions without values, you can pass the callbacks as the second and third arguments.
+**Note:** For [actions](./action-scripts) without values, you can pass the callbacks as the second and third arguments.
 
 **Examples:**
 ```javascript
@@ -72,6 +72,8 @@ fancymenu.executeWithCallback('opengui', 'title_screen',
 ```
 
 # Common Action Types
+
+Keep in mind that the JS API supports all of FancyMenu's [actions](./action-scripts), but these are some very common ones to experiment with when trying out the API.
 
 ## Actions without values:
 - `quitgame` - Quits the game
