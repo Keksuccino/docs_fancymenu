@@ -2,7 +2,7 @@
 title: Browser JavaScript API
 description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
 published: true
-date: 2025-10-22T02:05:10.698Z
+date: 2025-10-22T02:07:04.550Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-24T09:30:22.976Z
@@ -13,7 +13,7 @@ dateCreated: 2025-08-24T09:30:22.976Z
 FancyMenu injects a JavaScript bridge into every MCEF-backed feature (for example the **Browser** element). The bridge lets web content:
 
 - run any FancyMenu [action](./action-scripts) directly from JavaScript,
-- read any FancyMenu [placeholder](/placeholders) (including placeholder variables) asynchronously.
+- read any FancyMenu [placeholder](/placeholders) asynchronously.
 
 Two globals expose the API:
 - `window.fancymenu` – primary namespace
