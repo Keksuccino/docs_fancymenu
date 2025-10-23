@@ -2,7 +2,7 @@
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
 published: true
-date: 2025-10-19T04:26:38.786Z
+date: 2025-10-23T07:58:38.201Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:24:26.869Z
@@ -39,3 +39,15 @@ To use the Video element and menu background type, you need to have the **MCEF**
 You can download MCEF from the official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef) and [Modrinth](https://modrinth.com/mod/mcef).
 
 For newer Minecraft versions (1.21.5+), the official MCEF projects do not provide builds, but there is a fork with builds for latest Minecraft versions, which can be found [here](https://www.curseforge.com/minecraft/mc-mods/mcef-keksuccino) (CurseForge) and [here](https://modrinth.com/mod/mcef-keksuccino) (Modrinth). This fork is maintained by Keksuccino, to get builds for latest Minecraft versions out as fast as possible.
+
+## Videos in Loading Screens
+
+Video support does NOT work in loading screens (game/resource loading screen & world loading screen).
+
+This also means that you should NOT add videos to the game loading screen via **Drippy Loading Screen**, since it will not work in most cases.
+
+You should use short, simple FMA files in loading screens instead, since users don't notice it getting reloaded in most cases when the animation is simple and short enough (it will still be stuck for a moment or flicker, but better than having a long animation start from the beginning again after reload).
+
+## Troubleshooting
+
+If you have issues with video support, make sure to ask in FancyMenu's Discord server for help instead of asking in the MCEF Discord server, since many issues come from FancyMenu's side and not MCEF.
