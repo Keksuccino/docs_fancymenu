@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-10-16T05:52:10.426Z
+date: 2025-10-24T12:40:27.014Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -122,3 +122,7 @@ If you don't want these boxes to be visible, you can either right-click the elem
 There's a great [GitHub project](https://github.com/ClaytonTDM/minecraft-changelogs-markdown) that converts Minecraft's changelogs to FancyMenu-compatible Markdown, so you can show the latest MC changelog in your menus! It updates daily to fetch new changelogs.
 
 For example, to show the latest Minecraft changelog in a Text element, set its **Source Mode** to **Resource** and set its resource source to **Web**. Then use this URL as source: `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`
+
+### What's the easiest way to stretch any element to the size of the screen?
+
+Most elements have an option on their right-click context menus to stretch them horizontally and vertically. Enabling this will make them always stretch to the full width and/or height of the screen. Horizontal and vertical stretching can be toggled independently.
