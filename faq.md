@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-10-24T12:40:27.014Z
+date: 2025-10-24T12:41:31.584Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -125,4 +125,4 @@ For example, to show the latest Minecraft changelog in a Text element, set its *
 
 ### What's the easiest way to stretch any element to the size of the screen?
 
-Most elements have an option on their right-click context menus to stretch them horizontally and vertically. Enabling this will make them always stretch to the full width and/or height of the screen. Horizontal and vertical stretching can be toggled independently.
+Most elements have an option in their right-click context menus to stretch them horizontally and vertically. Enabling this will make them always stretch to the full width and/or height of the screen. Horizontal and vertical stretching can be toggled independently.
