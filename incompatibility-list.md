@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-08-24T09:19:41.023Z
+date: 2025-10-25T10:56:25.548Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -68,3 +68,4 @@ If that's the case, it's written after the mod name in the list below.
 * [Trade Uses](https://modrinth.com/mod/trade-uses) (Causes crashes in villager trade menu—possibly only when “Easy Villagers” is also installed)
 * [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Usable, but some users report issues with the VanillaFix crash screen)
 * [FireplaceMode](https://www.curseforge.com/minecraft/mc-mods/fireplacemode) (The Pause screen resets its customizations sometimes with this mod installed)
+* [Respackopts](https://www.curseforge.com/minecraft/mc-mods/respackopts) (Works, but only if you disable customizations for the Resource Pack screen)
