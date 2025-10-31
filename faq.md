@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-10-31T08:54:54.862Z
+date: 2025-10-31T08:57:53.861Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -127,3 +127,9 @@ Most elements have an option in their right-click context menus to stretch them 
 ### I can't click buttons or interact with sliders when they are behind or in front of a Text element.
 
 This happens because Text elements are interactable by default (to be able to grab the scroll grabber or click Markdown hyperlinks), which means they consume mouse clicks and scroll events. The best way would be to simply not move buttons behind/in front of Text elements, but if there is no way around it, you can make the Text element not interactable by **right-clicking it** and then setting **Interactable** to **Disabled**. Keep in mind this makes the Text element a static, non-interactable text, so you can't scroll it anymore or click on hyperlinks.
+
+### How can I make it so buttons and sliders do not get selected/focused anymore when navigating in screens with the Arrow and Tab keyboard keys?
+
+To make buttons and sliders not navigable, you need to **right-click** it and set **Navigable** to **Disabled**. The button/slider will still be clickable, but you can't focus it with Arrow/Tab navigation anymore.
+
+This is also useful if you want to add buttons/sliders to the Chat screen, so you can still use the Arrow Up key to scroll through older messages without accidentally selecting buttons/sliders in the screen.
