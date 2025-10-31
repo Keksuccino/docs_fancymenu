@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-10-31T08:53:43.589Z
+date: 2025-10-31T08:54:54.862Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -56,9 +56,6 @@ The best way to check for a mod conflict is to **run the game with only FancyMen
 
 ### A button from another mod disappears or doesn't work when I try to edit it.
 This usually means the other mod adds its buttons in a non-standard way that FancyMenu cannot interact with. This is an issue that the other mod's developer would need to fix on their end. FancyMenu cannot customize elements it cannot "see".
-
-### Is there a way to open a file or folder on my computer with a button?
-Yes, but this requires the **System Interactions Addon** for FancyMenu, which is a separate download. This addon may not be up-to-date with the latest Minecraft versions.
 
 ### Can I use FancyMenu layouts on a server?
 FancyMenu is a client-side mod. All layouts and customizations are on the player's client. You cannot put layouts on a server to force players to see them. However, you can distribute your `config/fancymenu` folder as part of a modpack. If you want to use commands like `/fmvariable` or `/openguiscreen` from the server, then FancyMenu (or its Spigot plugin) must be installed on the server.
