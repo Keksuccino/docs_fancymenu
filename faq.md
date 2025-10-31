@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-10-24T12:41:31.584Z
+date: 2025-10-31T08:53:43.589Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -126,3 +126,7 @@ For example, to show the latest Minecraft changelog in a Text element, set its *
 ### What's the easiest way to stretch any element to the size of the screen?
 
 Most elements have an option in their right-click context menus to stretch them horizontally and vertically. Enabling this will make them always stretch to the full width and/or height of the screen. Horizontal and vertical stretching can be toggled independently.
+
+### I can't click buttons or interact with sliders when they are behind or in front of a Text element.
+
+This happens because Text elements are interactable by default (to be able to grab the scroll grabber or click Markdown hyperlinks), which means they consume mouse clicks and scroll events. The best way would be to simply not move buttons behind/in front of Text elements, but if there is no way around it, you can make the Text element not interactable by **right-clicking it** and then setting **Interactable** to **Disabled**. Keep in mind this makes the Text element a static, non-interactable text, so you can't scroll it anymore or click on hyperlinks.
