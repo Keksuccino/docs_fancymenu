@@ -2,7 +2,7 @@
 title: Known Issues
 description: A list of known issues in the current FancyMenu version. Always up-to-date for the latest build.
 published: true
-date: 2025-11-09T04:27:59.235Z
+date: 2025-11-09T04:30:38.922Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-09T04:27:59.235Z
@@ -23,3 +23,7 @@ GitHub Issue Reference: https://github.com/Keksuccino/FancyMenu/issues/1198
 The NBT Data placeholder currently does not work correctly in some cases, because it can't fetch everything client-side. This is considered a bug and will be fixed in the future.
 
 GitHub Issue Reference: https://github.com/Keksuccino/FancyMenu/issues/1344, https://github.com/Keksuccino/FancyMenu/issues/1273, https://github.com/Keksuccino/FancyMenu/issues/1260
+
+## MCEF-related features like video and browser stuff is unstable.
+
+Videos sometimes show only a black screen, browsers don't load correctly and similar things. This is considered a bug in FancyMenu (not MCEF) and it will be fixed in the future.
