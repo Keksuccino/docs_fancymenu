@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-08-24T17:08:13.247Z
+date: 2025-11-09T04:44:33.246Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -387,20 +387,6 @@ Returns the player's Z position in the world.
 {"placeholder":"player_z_coordinate"}
 ```
 Example output: `-250`
-
-### Player Has Tag (`player_has_tag`)
-Returns true if a specific player has a specific tag.
-```
-{"placeholder":"player_has_tag","values":{"player_name":"Steve","tag":"special_player"}}
-```
-Example output: `true` or `false`
-
-### Player Tags List (`player_tags_list`)
-Returns all tags that a specific player has.
-```
-{"placeholder":"player_tags_list","values":{"player_name":"Steve","separator":", "}}
-```
-Example output: `special_player, vip, admin`
 
 ## Mount Information
 
@@ -1251,6 +1237,22 @@ Returns the total number of objectives in the scoreboard.
 {"placeholder":"scoreboard_objective_count"}
 ```
 Example output: `3`
+
+### Player Has Tag (`player_has_tag`)
+Returns true if a specific player has a specific tag.
+(Since tags are handled by the scoreboard system, this is considered a scoreboard-related placeholder.)
+```
+{"placeholder":"player_has_tag","values":{"player_name":"Steve","tag":"special_player"}}
+```
+Example output: `true` or `false`
+
+### Player Tags List (`player_tags_list`)
+Returns all tags that a specific player has.
+(Since tags are handled by the scoreboard system, this is considered a scoreboard-related placeholder.)
+```
+{"placeholder":"player_tags_list","values":{"player_name":"Steve","separator":", "}}
+```
+Example output: `special_player, vip, admin`
 
 # Practical Examples
 
