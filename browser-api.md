@@ -2,98 +2,150 @@
 title: Browser JavaScript API
 description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
 published: true
-date: 2025-10-22T02:41:53.244Z
+date: 2025-11-22T09:06:04.988Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-24T09:30:22.976Z
 ---
 
-# JavaScript API
+# FancyMenu JavaScript API
 
-Starting with v3.7.0+, FancyMenu injects its own JavaScript API into MCEF-based mod features like the **Browser** element.
+FancyMenu injects a JavaScript bridge into every MCEF-backed feature (for example the **Browser** element). The bridge lets web content:
 
-This API allows you to **execute all of FancyMenu's [actions](./action-scripts)** via JavaScript in all MCEF-based mod features.
+- run any FancyMenu [action](./action-scripts) directly from JavaScript,
+- read any FancyMenu [placeholder](/placeholders) asynchronously.
 
-The API is available through two global objects:
-- `window.fancymenu` - The primary namespace
-- `window.FancyMenu` - An alias for convenience
+Two globals expose the API:
+- `window.fancymenu` – primary namespace
+- `window.FancyMenu` – alias (mirrors the exact shape of `fancymenu`)
 
-# Methods
+Use the `fancymenu-ready` event, or feature detection, to ensure the bridge is available before calling it.
 
-## Without Callback: `fancymenu.execute(actionType, actionValue)`
-Executes a FancyMenu [action](./action-scripts) without callbacks.
+## 1. Namespaces & Structure
 
-**Parameters:**
-- `actionType` (string) - The type of action to execute
-- `actionValue` (string, optional) - The value for the action (omit for actions without values)
+- `fancymenu.actions` – execute FancyMenu actions from the browser.
+- `fancymenu.placeholders` – read FancyMenu placeholder values asynchronously.
+- `FancyMenu` mirrors `fancymenu`, so both expose the same sub-namespaces.
 
-**Examples:**
+Actions expose two helpers:
+- `fancymenu.actions.execute(actionType, actionValue?)`
+- `fancymenu.actions.executeWithCallback(actionType, actionValue?, onSuccess?, onFailure?)`
+
+## 2. Availability
+
 ```javascript
-// Action without value
-fancymenu.execute('quitgame');
+if (typeof fancymenu !== 'undefined') {
+    // safe to use
+}
 
-// Action with value
-fancymenu.execute('opengui', 'title_screen');
-fancymenu.execute('set_variable', 'myvar:myvalue');
+window.addEventListener('fancymenu-ready', () => {
+    console.log('FancyMenu API is ready');
+});
 ```
 
-## With Callback: `fancymenu.executeWithCallback(actionType, actionValue, onSuccess, onFailure)`
-Executes a FancyMenu [action](./action-scripts) with callback functions.
+Content may also be hosted locally: place HTML files in `config/fancymenu/assets/` and load them through URLs of the form `file:///config/fancymenu/assets/<name>.html`.
 
-**Parameters:**
-- `actionType` (string) - The type of action to execute
-- `actionValue` (string, optional) - The value for the action
-- `onSuccess` (function, optional) - Called when the action executes successfully
-- `onFailure` (function, optional) - Called when the action fails
+## 3. Executing Actions
 
-**Note:** For [actions](./action-scripts) without values, you can pass the callbacks as the second and third arguments.
+Use the `fancymenu.actions` namespace. Each call mirrors the action strings used in FancyMenu scripts.
 
-**Examples:**
+### Quick Calls
+
 ```javascript
-// Action without value
-fancymenu.executeWithCallback('quitgame',
-    function(result) {
-        console.log('Game quit initiated');
-    },
-    function(error) {
-        console.error('Failed to quit:', error);
-    }
-);
-
-// Action with value
-fancymenu.executeWithCallback('opengui', 'title_screen',
-    function(result) {
-        console.log('Title screen opened');
-    },
-    function(error) {
-        console.error('Failed to open GUI:', error);
-    }
-);
+fancymenu.actions.execute('quitgame');                // action without value
+fancymenu.actions.execute('opengui', 'title_screen'); // action with value
+fancymenu.actions.execute('set_variable', 'hp:20');   // value uses name:value format
 ```
 
-# Common Action Types
+### With Callbacks
 
-Keep in mind that the JS API supports all of FancyMenu's [actions](./action-scripts), but these are some very common ones to experiment with when trying out the API.
+```javascript
+fancymenu.actions.executeWithCallback(
+    'opengui',
+    'title_screen',
+    result => console.log('Opened title screen'),
+    error  => console.error('Open failed:', error)
+);
 
-## Actions without values:
-- `quitgame` - Quits the game
-- `back_to_last_screen` - Returns to the previous screen
+// The value parameter is optional. When omitted, pass the callbacks directly after actionType.
+fancymenu.actions.executeWithCallback(
+    'quitgame',
+    result => console.log('Quit triggered'),
+    error  => console.error('Quit failed:', error)
+);
 
-## Actions with values:
-- `opengui` - Opens a specific GUI screen
-  - Example: `fancymenu.execute('opengui', 'title_screen')`
-- `openlink` - Opens a URL in the default browser
-  - Example: `fancymenu.execute('openlink', 'https://minecraft.net')`
-- `sendmessage` - Sends a chat message
-  - Example: `fancymenu.execute('sendmessage', 'Hello World!')`
-- `set_variable` - Sets a FancyMenu variable
-  - Example: `fancymenu.execute('set_variable', 'myvar:myvalue')`
-- `joinserver` - Connects to a Minecraft server
-  - Example: `fancymenu.execute('joinserver', 'play.hypixel.net')`
-- `disconnect_server_or_world` - Disconnects from current server or world and opens a specific screen after
-  - Example: `fancymenu.execute('disconnect_server_or_world', 'title_screen')`
+Legacy helpers `fancymenu.execute(...)` and `fancymenu.executeWithCallback(...)` still work and delegate to the `actions` namespace, so existing content does not need immediate changes.
+```
 
-# Example HTML
+### Common Action Types
+
+- `quitgame` – immediately quits the game (no value)
+- `back_to_last_screen` – returns to the previous GUI (no value)
+- `opengui` – opens a FancyMenu or vanilla screen (value: screen identifier)
+- `openlink` – launches a browser (value: URL)
+- `sendmessage` – posts a chat line (value: message text)
+- `set_variable` – assigns a FancyMenu variable (value: `name:value`)
+- `joinserver` – connects to a server (value: address)
+- `disconnect_server_or_world` – disconnects and moves to a target screen (value: screen identifier)
+
+Every action that exists in FancyMenu is available through the bridge; see [action scripts](./action-scripts) for the complete catalog.
+
+## 4. Reading Placeholders
+
+FancyMenu’s [placeholder](/placeholders) system is exposed through `fancymenu.placeholders` (and `FancyMenu.placeholders`). Both helper methods return `Promise<string>`:
+
+```ts
+fancymenu.placeholders.get(identifier: string): Promise<string>
+fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promise<string>
+```
+
+### Supplying Variables
+
+- Variables are strings in `name:value` form. The bridge splits on the **first** colon only, so the value can contain additional colons.
+- Names and values are trimmed; empty names are rejected.
+- Provide as many variables as the placeholder requires. Omit optional ones.
+
+### Examples
+
+```javascript
+// No variables
+fancymenu.placeholders.get('playername')
+    .then(name => console.log('Player:', name));
+
+// One variable
+fancymenu.placeholders.getWithVars('uptime_duration', 'output_as_millis:false')
+    .then(seconds => console.log('Uptime (s):', seconds));
+
+// Multiple variables
+fancymenu.placeholders.getWithVars(
+    'split_text',
+    'input:apple|banana|carrot',
+    'regex:\\|',
+    'max_parts:-1',
+    'split_index:1'
+).then(part => console.log('Selected part:', part));
+```
+
+### Error Model
+
+Rejected promises contain a structured error:
+
+```ts
+interface PlaceholderError {
+    code: 'NOT_FOUND' | 'MISSING_VARIABLE' | 'INVALID_VARIABLE' | 'EVALUATION_ERROR' | 'INTERNAL_ERROR';
+    message: string;
+    details?: unknown;
+}
+```
+
+Example handling:
+
+```javascript
+fancymenu.placeholders.get('unknown')
+    .catch(error => console.warn(error.code, error.message));
+```
+
+## 5. Complete Example
 
 ```html
 <!DOCTYPE html>
@@ -108,85 +160,93 @@ Keep in mind that the JS API supports all of FancyMenu's [actions](./action-scri
     <button onclick="openTitleScreen()">Title Screen</button>
     <button onclick="disconnectFromServer()">Disconnect</button>
     <button onclick="setVariable()">Set Variable</button>
+    <button onclick="loadPlaceholders()">Load Placeholders</button>
+
+    <div id="placeholderOutput" style="margin-top:16px;font-family:monospace"></div>
     
     <script>
-        function quitGame() {
-            if (typeof fancymenu !== 'undefined') {
-                fancymenu.execute('quitgame');
+        function getActions() {
+            if (typeof fancymenu === 'undefined') {
+                console.warn('FancyMenu API is not available yet.');
+                return null;
             }
+            return fancymenu.actions || fancymenu;
+        }
+
+        function quitGame() {
+            const actions = getActions();
+            if (!actions) return;
+            actions.execute('quitgame');
         }
         
         function openTitleScreen() {
-            if (typeof fancymenu !== 'undefined') {
-                fancymenu.executeWithCallback('opengui', 'title_screen',
-                    function() { console.log('Title screen opened!'); },
-                    function(err) { console.error('Error:', err); }
-                );
-            }
+            const actions = getActions();
+            if (!actions) return;
+            actions.executeWithCallback(
+                'opengui',
+                'title_screen',
+                () => console.log('Title screen opened!'),
+                err => console.error('Error:', err)
+            );
         }
         
         function disconnectFromServer() {
-            if (typeof fancymenu !== 'undefined') {
-                fancymenu.execute('disconnect_server_or_world', 'title_screen');
-            }
+            const actions = getActions();
+            if (!actions) return;
+            actions.execute('disconnect_server_or_world', 'title_screen');
         }
         
         function setVariable() {
-            if (typeof fancymenu !== 'undefined') {
-                var varName = prompt('Variable name:');
-                var varValue = prompt('Variable value:');
-                if (varName && varValue) {
-                    fancymenu.execute('set_variable', varName + ':' + varValue);
-                }
+            const actions = getActions();
+            if (!actions) return;
+            var varName = prompt('Variable name:');
+            var varValue = prompt('Variable value:');
+            if (varName && varValue) {
+                actions.execute('set_variable', varName + ':' + varValue);
             }
+        }
+
+        function loadPlaceholders() {
+            if (typeof fancymenu === 'undefined' || !fancymenu.placeholders) {
+                console.warn('FancyMenu placeholder API is not available yet.');
+                return;
+            }
+
+            Promise.all([
+                fancymenu.placeholders.get('playername'),
+                fancymenu.placeholders.getWithVars('uptime_duration', 'output_as_millis:false'),
+                fancymenu.placeholders.getWithVars(
+                    'split_text',
+                    'input:apple|banana|carrot',
+                    'regex:\\|',
+                    'max_parts:-1',
+                    'split_index:1'
+                )
+            ]).then(([playerName, uptimeSeconds, secondFruit]) => {
+                document.getElementById('placeholderOutput').textContent =
+                    'Player: ' + playerName + '\n' +
+                    'Uptime (seconds): ' + uptimeSeconds + '\n' +
+                    'Second fruit: ' + secondFruit;
+            }).catch(error => {
+                console.error('Placeholder request failed:', error);
+            });
         }
     </script>
 </body>
 </html>
 ```
 
-# Loading Local HTML Files
+## 6. Best Practices & Notes
 
-Content loaded in the Browser element (and other MCEF-based mod features) do not need to be web-hosted. It's possible to load HTML files right from the `/config/fancymenu/assets/` folder!
+- **Detect the bridge** before using it, or listen for `fancymenu-ready`.
+- **Handle errors** (callbacks for [actions](/action_scripts), `.catch` for [placeholders](/placeholders)) to present useful feedback.
+- **Validate input** before passing it to actions or [placeholder](/placeholders) variables.
+- **Throttle requests**; avoid spamming the bridge with rapid-fire calls (especially placeholder refresh loops).
+- **Security**: actions execute with the player’s normal permissions. Treat user-provided data with care to avoid injection.
 
-To do that, just set this as URL in the Browser element (or other MCEF stuff):
-`file:///config/fancymenu/assets/<your_file.html>` (replace `<your_file.html>` with the actual file name)
+## 7. Troubleshooting
 
-# Best Practices
-
-1. **Check API Availability**: Always check if `fancymenu` is defined before using it
-2. **Handle Errors**: Use the callback version (`executeWithCallback`) for important actions
-3. **Validate Input**: Sanitize user input before passing to actions
-4. **Action Values**: Remember that some actions require values while others don't
-5. **Performance**: Avoid executing too many actions rapidly
-
-# Security Notes
-
-- Actions are executed with the same permissions as if triggered from the game UI
-- Some actions may be restricted based on game state
-- Always validate and sanitize user input to prevent injection attacks
-- The `set_variable` action value format is `variable_name:variable_value`
-
-# Troubleshooting
-
-If the API is not available:
-1. Ensure the page is loaded in a FancyMenu MCEF browser
-2. Check the browser console for errors
-3. Verify that JavaScript is enabled
-
-For action-specific issues:
-1. Check that you're using the correct action type
-2. Verify if the action requires a value or not
-3. Ensure any required values are properly formatted
-4. Check the game logs for any error messages
-
-# Events
-
-The API dispatches a `fancymenu-ready` event when it's fully loaded:
-
-```javascript
-window.addEventListener('fancymenu-ready', function() {
-    console.log('FancyMenu API is ready!');
-    // Your code here
-});
-```
+1. Confirm the page is loaded in a FancyMenu-controlled MCEF browser.
+2. Check the browser console for JavaScript errors.
+3. Verify the [placeholder](/placeholders) identifier or [action](/action-scripts) type is correct and that required values are supplied.
+4. Review the Minecraft log (`latest.log`) for FancyMenu error messages if execution fails unexpectedly.
