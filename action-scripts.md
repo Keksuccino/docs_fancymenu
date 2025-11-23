@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-23T09:38:21.562Z
+date: 2025-11-23T12:50:41.713Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -72,6 +72,30 @@ To add, edit, or remove actions (and statement blocks) for an element, simply **
 - **Remove actions or statements:** Delete unwanted actions from the script.
 
 For [listeners](/listeners) there is a special menu to manage and create listeners, including accessing their action scripts to have the same experience as when editing a button's or slider's action script for example.
+
+# Action Script Editor Shortcuts and More
+
+The action script editor has some great QoL features making script editing super easy.
+
+## Shortcuts
+
+- `DEL` : Quick-delete the selected entry
+- `ENTER` : Starts the in-line editing of the selected entry (or opens the edit screen if there is not in-line edit for the selected entry)
+- `CTRL + C` : Copy the selected action (only works with actions for now)
+- `CTRL + V` : Paste the previously copied action
+- `CTRL + Z` : One step back (undo)
+- `CTRL + Y` : One step forward (redo)
+- `ARROW UP` : Navigate one entry up from the currently selected one
+- `ARROW DOWN` : Navigate one entry down from the currently selected one
+- `SHIFT + ARROW UP` : Move the selected entry one up
+- `SHIFT + ARROW DOWN` : Move the selected entry one down
+- `A` : Quick-open the Action Chooser screen to add a new action
+
+## More QoL Features
+
+- Double-clicking the value of an action lets you edit the value without going into the full value editing screen.
+- IF statement chains (with appended ELSE/ELSE-IF statements), WHILE loops and Folders can be collapsed (only visual, does not affect script logic).
+- The editor always adds new actions below the selected entry (or nested in the selected chain/loop/folder).
 
 # Actions in Detail
 
