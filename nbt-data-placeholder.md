@@ -2,7 +2,7 @@
 title: NBT Data Placeholder
 description: How to use the NBT Data placeholder.
 published: true
-date: 2025-07-02T14:40:15.360Z
+date: 2025-11-23T10:14:16.283Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:10:15.683Z
@@ -11,15 +11,22 @@ dateCreated: 2025-06-30T21:10:15.683Z
 
 # Getting NBT Data
 
-This placeholder is available in FancyMenu v3.6.0+.
+These placeholders is available in FancyMenu v3.8.0+.
 
-The **Get NBT Data** placeholder allows you to retrieve NBT (Named Binary Tag) data from entities and blocks in Minecraft, similar to the `/data get` command. This is extremely useful for creating dynamic layouts that respond to game state, player stats, or world conditions.
+The **Client NBT Data Get** and **Server NBT Data Get** placeholders allows you to retrieve NBT (Named Binary Tag) data from entities and blocks in Minecraft, similar to the `/data get` command. This is extremely useful for creating dynamic layouts that respond to game state, player stats, or world conditions.
 
-**Modded Content Support:** This placeholder is particularly powerful for modded gameplay, as it can access custom NBT data that mods add to entities and players. Whether you're playing with magic mods that add mana systems, RPG mods with custom stats, or technology mods with energy values, you can display these modded values in your UI layouts.
+> This placeholder is particularly powerful for modded gameplay, as it can access custom NBT data that mods add to entities and players. Whether you're playing with magic mods that add mana systems, RPG mods with custom stats, or technology mods with energy values, you can display these modded values in your UI layouts.
+{.is-info}
 
 ## Overview
 
-This placeholder extracts specific values from NBT data structures using NBT paths. You can retrieve player health, hunger, inventory items, block states, modded attributes like mana or energy, and much more.
+These placeholders extracts specific values from NBT data structures using NBT paths. You can retrieve player health, hunger, inventory items, block states, modded attributes like mana or energy, and much more.
+
+The client-side version of the placeholder has the big advantage that it works purely client-side, so you don't need FancyMenu on the server, but this also makes it a lot more limited, because not everything related to NBT data is visible to all clients all the time.
+
+The server-side version requires FancyMenu to be installed on the server, but this gives it **full support** for basically **everything** that is stored as NBT.
+
+This page will focus on the client-side version (`nbt_data_get`), but everything works very similar for the server-side version (`nbt_data_get_server`) too.
 
 ## Placeholder Syntax
 
