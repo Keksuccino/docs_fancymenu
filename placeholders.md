@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-11-23T07:23:09.536Z
+date: 2025-11-23T07:44:35.821Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -17,7 +17,7 @@ Placeholders are dynamic values that get replaced with actual content when they 
 ## Basic Syntax
 Placeholders in FancyMenu use a JSON-like syntax:
 ```
-{"placeholder":"placeholder_id","values":{"value_name":"value"}}
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
 
 For example, to display the player's name:
@@ -149,7 +149,7 @@ Returns the current screen height.
 ```
 Example output: `1080`
 
-## Screen Identifier (`screenid`)
+## Current Screen Identifier (`screenid`)
 Returns the identifier of the current screen.
 ```
 {"placeholder":"screenid"}
@@ -247,10 +247,10 @@ Returns the maximum absorption health.
 ```
 Example output: `4.0`
 
-## Current Player Absorption Health Percentage (`current_player_absorption_health_percentage`)
+## Current Player Absorption Health Percentage (`current_player_absorption_health_percent`)
 Returns the player's absorption health as a percentage.
 ```
-{"placeholder":"current_player_absorption_health_percentage"}
+{"placeholder":"current_player_absorption_health_percent"}
 ```
 Example output: `100`
 
@@ -268,10 +268,10 @@ Returns the maximum hunger level.
 ```
 Example output: `20`
 
-## Current Player Hunger Percentage (`current_player_hunger_percentage`)
+## Current Player Hunger Percentage (`current_player_hunger_percent`)
 Returns the player's hunger as a percentage.
 ```
-{"placeholder":"current_player_hunger_percentage"}
+{"placeholder":"current_player_hunger_percent"}
 ```
 Example output: `100`
 
@@ -289,10 +289,10 @@ Returns the maximum armor value.
 ```
 Example output: `20`
 
-## Current Player Armor Percentage (`current_player_armor_percentage`)
+## Current Player Armor Percentage (`current_player_armor_percent`)
 Returns the player's armor as a percentage.
 ```
-{"placeholder":"current_player_armor_percentage"}
+{"placeholder":"current_player_armor_percent"}
 ```
 Example output: `100`
 
@@ -310,10 +310,10 @@ Returns the maximum oxygen level.
 ```
 Example output: `300`
 
-## Current Player Oxygen Percentage (`current_player_oxygen_percentage`)
+## Current Player Oxygen Percentage (`current_player_oxygen_percent`)
 Returns the player's oxygen level as a percentage.
 ```
-{"placeholder":"current_player_oxygen_percentage"}
+{"placeholder":"current_player_oxygen_percent"}
 ```
 Example output: `100`
 
@@ -394,10 +394,10 @@ Returns the maximum health of the entity the player is riding.
 ```
 Example output: `30.0`
 
-## Current Mount Health Percentage (`current_mount_health_percentage`)
+## Current Mount Health Percentage (`current_mount_health_percent`)
 Returns the mount's health as a percentage.
 ```
-{"placeholder":"current_mount_health_percentage"}
+{"placeholder":"current_mount_health_percent"}
 ```
 Example output: `100`
 
@@ -457,17 +457,17 @@ Returns information about an item in a specific inventory slot.
 ```
 Example output: `minecraft:diamond_sword`
 
-## Game Time (`gametime`)
-Returns the current in-game time.
+## Game Time (`game_time`)
+Returns the current in-game time tick counter.
 ```
-{"placeholder":"gametime"}
+{"placeholder":"game_time"}
 ```
 Example output: `18000`
 
-## World Day Time (`world_day_time`)
+## World Day Time (`world_daytime`)
 Returns the current world day time.
 ```
-{"placeholder":"world_day_time"}
+{"placeholder":"world_daytime"}
 ```
 Example output: `13000`
 
@@ -681,10 +681,10 @@ Returns the percentage of RAM currently in use.
 ```
 Example output: `50`
 
-## Audio Element Volume (`audio_element_volume`)
+## Audio Element Volume (`audio_element_vol`)
 Returns the volume of an audio element.
 ```
-{"placeholder":"audio_element_volume","values":{"element_identifier":"background_music"}}
+{"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
 ```
 Example output: `0.5`
 
@@ -702,12 +702,12 @@ Returns the total duration of an audio track in MM:SS format.
 ```
 Example output: `03:45`
 
-## Audio Element Playtime (`audio_element_playtime`)
-Returns the current playtime of an audio track.
+## Audio Element Playtime (`audio_playtime`)
+Returns the current playtime of an audio track. Set `show_percentage` to `"true"` to get a 0-100 progress value instead of `MM:SS`.
 ```
-{"placeholder":"audio_element_playtime","values":{"element_identifier":"background_music"}}
+{"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
 ```
-Example output: `01:30`
+Example output: `01:30` (or `45` when `show_percentage` is `"true"`)
 
 ## Audio Element Playing State (`audio_playing_state`)
 Returns whether an audio element is playing (true/false).
@@ -816,17 +816,17 @@ Returns the smaller of two numbers.
 ```
 Example output: `10`
 
-## Absolute Number (`absolute_number`)
+## Absolute Number (`absnum`)
 Returns the absolute value of a number.
 ```
-{"placeholder":"absolute_number","values":{"number":"-10.5"}}
+{"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
 Example output: `10.5`
 
-## Negate Number (`negate_number`)
+## Negate Number (`negnum`)
 Returns the negated value of a number.
 ```
-{"placeholder":"negate_number","values":{"number":"10.5"}}
+{"placeholder":"negnum","values":{"num":"10.5"}}
 ```
 Example output: `-10.5`
 
@@ -873,11 +873,11 @@ Rounds a number up to the nearest integer.
 Example output: `4`
 
 ## Round (`math_round`)
-Rounds a number to the nearest integer.
+Rounds a number. By default it rounds to the nearest integer; set `decimals` to a non-negative number to round to that many decimal places.
 ```
-{"placeholder":"math_round","values":{"num":"3.14"}}
+{"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
-Example output: `3`
+Example output: `3.14` (with `decimals:-1` or omitted → `3`)
 
 ## Sign (`math_sign`)
 Returns the sign of a number (1 for positive, -1 for negative, 0 for zero).
@@ -1092,8 +1092,8 @@ Retrieves the value of a previously stored variable.
 ```
 Example output: Depends on the stored value
 
-## Get NBT Data (`nbt_data_get`)
-Retrieves NBT data from entities and blocks (similar to the `/data get` command).
+## Client NBT Data Get (`nbt_data_get`)
+Retrieves NBT data on the client (similar to the `/data get` command). Use the server variant `nbt_data_get_server` when connected to a server and you need authoritative server-side values.
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
@@ -1111,104 +1111,61 @@ Parameters:
 
 Example output: `20` (for food level)
 
-## Scoreboard Player Team (`player_team`)
-Returns the current team of the given player.
+## Server NBT Data Get (`nbt_data_get_server`)
+Queries NBT data on the server side (using a packet) and caches results briefly. Values mirror the client-side placeholder.
 ```
-{"placeholder":"player_team","values":{"player_name":"Steve"}}
+{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
 ```
-Example output: `red_team`
+Example output: `minecraft:diamond_sword`
 
-## Scoreboard Score (`scoreboard_score`)
-Returns the score value of a player for a specific objective.
+## Last Death Message (`lastdeathmessage`)
+Returns the last recorded death message of the client player. Set `as_json_component` to `"true"` to get the raw JSON text component.
 ```
-{"placeholder":"scoreboard_score","values":{"player":"Steve","objective":"kills"}}
+{"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
-Example output: `42`
+Example output: `Steve was slain by Zombie`
 
-## Scoreboard Objectives List (`scoreboard_objectives_list`)
-Returns a list of all objectives in the scoreboard.
+## Uptime Duration (`uptime_duration`)
+Returns how long FancyMenu has been loaded. By default the value is in seconds; set `output_as_millis` to `"true"` to receive milliseconds.
 ```
-{"placeholder":"scoreboard_objectives_list","values":{"separator":", "}}
+{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
 ```
-Example output: `kills, deaths, points`
+Example output: `742` (seconds since load)
 
-## Scoreboard Tracked Players (`scoreboard_tracked_players`)
-Returns a list of all players tracked by the scoreboard.
+## World Save Names (`level_save_names`)
+Lists all local world save names joined by the chosen separator. Runs on the client thread.
 ```
-{"placeholder":"scoreboard_tracked_players","values":{"separator":", "}}
+{"placeholder":"level_save_names","values":{"separator":", "}}
 ```
-Example output: `Steve, Alex, Notch`
+Example output: `Creative Test, Survival World, Hardcore`
 
-## Scoreboard Display Slot (`scoreboard_display_slot`)
-Returns the objective displayed in a specific slot (sidebar, list, etc.).
+## World Save Data (`level_save_data`)
+Returns serialized level data for the given world name (must match the display name shown in the saves list).
 ```
-{"placeholder":"scoreboard_display_slot","values":{"slot":"sidebar"}}
+{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
 ```
-Possible slots: `sidebar`, `list`, `belowName`
-Example output: `points`
+Example output: `{"name":"Survival World","gameMode":"survival",...}`
 
-## Scoreboard Has Score (`scoreboard_has_score`)
-Checks if a player has a score for a specific objective (true/false).
+## Number Base Convert (`number_base_convert`)
+Converts a number (integer or fractional) from one base to another (2–36). Defaults to decimal if bases are not provided.
 ```
-{"placeholder":"scoreboard_has_score","values":{"player":"Steve","objective":"kills"}}
+{"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
 ```
-Example output: `true`
+Example output: `43.8`
 
-## Scoreboard Objective Display Name (`scoreboard_objective_display_name`)
-Returns the display name of an objective (supports JSON format).
+## File Size (`file_size`)
+Returns the size of a local file in bytes. Only local paths are allowed.
 ```
-{"placeholder":"scoreboard_objective_display_name","values":{"objective":"kills","as_json":"false"}}
+{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
 ```
-Example output: `Player Kills`
+Example output: `1284`
 
-## Scoreboard Objective Criteria (`scoreboard_objective_criteria`)
-Returns the criteria type of an objective (dummy, trigger, etc.).
+## File MD5 (`file_md5`)
+Returns the MD5 hash of a local file as a lowercase hex string.
 ```
-{"placeholder":"scoreboard_objective_criteria","values":{"objective":"kills"}}
+{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
 ```
-Example output: `playerKillCount`
-
-## Scoreboard Objective Render Type (`scoreboard_objective_render_type`)
-Returns how an objective is rendered (integer or hearts).
-```
-{"placeholder":"scoreboard_objective_render_type","values":{"objective":"health"}}
-```
-Example output: `hearts`
-
-## Scoreboard Player Scores List (`scoreboard_player_scores_list`)
-Returns a formatted list of all scores for a specific player.
-```
-{"placeholder":"scoreboard_player_scores_list","values":{"player":"Steve","format":"%objective%: %score%","separator":", "}}
-```
-Parameters:
-- `player`: The player name
-- `format`: Format string using `%objective%` and `%score%` placeholders
-- `separator`: Text to join scores with
-
-Example output: `kills: 42, deaths: 5, points: 100`
-
-## Scoreboard Objective Count (`scoreboard_objective_count`)
-Returns the total number of objectives in the scoreboard.
-```
-{"placeholder":"scoreboard_objective_count"}
-```
-Example output: `3`
-
-## Player Has Tag (`player_has_tag`)
-Returns true if a specific player has a specific tag.
-(Since tags are handled by the scoreboard system, this is considered a scoreboard-related placeholder.)
-```
-{"placeholder":"player_has_tag","values":{"player_name":"Steve","tag":"special_player"}}
-```
-Example output: `true` or `false`
-
-## Player Tags List (`player_tags_list`)
-Returns all tags that a specific player has.
-(Since tags are handled by the scoreboard system, this is considered a scoreboard-related placeholder.)
-```
-{"placeholder":"player_tags_list","values":{"player_name":"Steve","separator":", "}}
-```
-Example output: `special_player, vip, admin`
+Example output: `d41d8cd98f00b204e9800998ecf8427e`
 
 # Practical Examples
 
