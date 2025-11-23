@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-23T08:43:54.029Z
+date: 2025-11-23T08:48:45.828Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -35,6 +35,7 @@ Action scripts are versatile and can be used throughout your layout. You can ass
 - **Tickers:** Continuously run an action script to update on-screen information.
 - **Sliders:** Trigger an action script whenever the slider's value changes.
 - **Screen Events:** Run scripts when a screen opens or closes (for example, playing a sound when a menu appears).
+- **Listeners:** When a listener that listeners to a specific event gets fired, it will execute its action script.
 
 # Using Placeholders in Actions
 
@@ -59,6 +60,16 @@ The `$$` placeholders are special. Some features of FancyMenu will provide these
 For example, if actions are used within a slider, using `$$value` in the action will be replaced with the slider's current value.
 
 When using actions in listeners, every listener will provide its own unique set of variables/placeholders for getting more information about the listener, like pressed mouse button, entered structure, etc.
+
+# How to Set Up and Edit Actions
+
+To add, edit, or remove actions (and statement blocks) for an element, simply **right-click the element** (whether it's a button, slider, ticker, or other interactive item) and then select **Manage Action Script**. This opens the Manage Actions screen, where you can:
+
+- **Add new actions or statements:** Insert new action entries or control statements (if, else-if, else, while) to build your script.
+- **Edit existing actions or statements:** Modify the action value or change the control logic.
+- **Remove actions or statements:** Delete unwanted actions from the script.
+
+For [listeners](/listeners) there is a special menu to manage and create listeners, including accessing their action scripts to have the same experience as when editing a button's or slider's action script for example.
 
 # Actions in Detail
 
@@ -183,7 +194,7 @@ This action also allows you to store the response of the request in a FancyMenu 
 ## Set Video Element Volume (`set_video_element_volume`)
 
 Sets the volume of a Video menu background by its identifier.
-The volume has to be a valid decimal between 0.0 (0%%) and 1.0 (100%%).
+The volume has to be a valid decimal between 0.0 (0%) and 1.0 (100%).
 
 To get the identifier of a background, right-click the
 editor background and click on 'Copy Background Identifier'.
@@ -195,7 +206,7 @@ Toggles the paused state of a Video element.
 ## Set Video Background Volume (`set_video_menu_background_volume`)
 
 Sets the volume of a Video element.
-The volume has to be a valid decimal between 0.0 (0%%) and 1.0 (100%%).
+The volume has to be a valid decimal between 0.0 (0%) and 1.0 (100%).
 
 ## Toggle Video Background Paused State (`toggle_video_menu_background_pause_state`)
 
@@ -203,13 +214,3 @@ Toggles the paused state of a Video menu background by its identifier.
 
 To get the identifier of a background, right-click the
 editor background and click on 'Copy Background Identifier'.
-
-# How to Set Up and Edit Actions
-
-To add, edit, or remove actions (and statement blocks) for an element, simply **right-click the element** (whether it's a button, slider, ticker, or other interactive item) and then select **Manage Action Script**. This opens the Manage Actions screen, where you can:
-
-- **Add new actions or statements:** Insert new action entries or control statements (if, else-if, else, while) to build your script.
-- **Edit existing actions or statements:** Modify the action value or change the control logic.
-- **Remove actions or statements:** Delete unwanted actions from the script.
-
-For [listeners](/listeners) there is a special menu to manage and create listeners, including accessing their action scripts to have the same experience as when editing a button's or slider's action script for example.
