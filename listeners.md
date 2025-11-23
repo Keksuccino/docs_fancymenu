@@ -2,7 +2,7 @@
 title: Listeners
 description: How to create and use listeners in FancyMenu.
 published: true
-date: 2025-11-23T08:24:21.102Z
+date: 2025-11-23T08:25:12.146Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-23T08:24:21.102Z
@@ -17,11 +17,11 @@ They can supply variables for actions, placeholders, and requirements nested in 
 
 Other than most things in FancyMenu, listeners are not locked to a screen or overlay. They constantly run in the background, listening to their events. As soon as a listener gets fired, it executes its action script, even if there is no screen open at that time.
 
-## Using Listeners
+# Using Listeners
 
 To create a new listener that listeners to an event and executes an action script, click on **menu bar -> Customization -> Manage Listeners** while **NOT** in the layout editor. There you can find an easy-to-use UI for creating and managing listeners.
 
-## Listeners in Detail
+# Listeners in Detail
 
 This list should include most, if not all, of FancyMenu's listeners. It is possible that the list is not always up-to-date due to updates of the mod.
 
