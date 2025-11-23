@@ -2,7 +2,7 @@
 title: Listeners
 description: How to create and use listeners in FancyMenu.
 published: true
-date: 2025-11-23T08:25:12.146Z
+date: 2025-11-23T09:39:43.505Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-23T08:24:21.102Z
@@ -20,6 +20,8 @@ Other than most things in FancyMenu, listeners are not locked to a screen or ove
 # Using Listeners
 
 To create a new listener that listeners to an event and executes an action script, click on **menu bar -> Customization -> Manage Listeners** while **NOT** in the layout editor. There you can find an easy-to-use UI for creating and managing listeners.
+
+<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/manage_listeners.png?raw=true" alt="Manage listeners" style="max-width:800px;width:100%;height:auto;">
 
 # Listeners in Detail
 
