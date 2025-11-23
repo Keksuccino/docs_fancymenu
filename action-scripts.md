@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-08-24T09:20:50.659Z
+date: 2025-11-23T08:37:16.422Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -52,9 +52,13 @@ They follow this syntax:
 
 They can fetch game data like the player's name, screen dimensions, or calculated values using the **Calculator** placeholder. You can also nest placeholders for more advanced uses.
 
-## The `$$value` Placeholder
+## `$$` Placeholders (Variables)
 
-The `$$value` placeholder is special. It's used to insert the current interactive value of the element that the action is attached to. For example, if actions are used with a slider, using `$$value` in the action will be replaced with the slider's current value.
+The `$$` placeholders are special. Some features of FancyMenu will provide these special placeholders for their nested actions, requirements and normal placeholders, so they can be used inside to get more information about the environment (element, listener, etc.) they are in.
+
+For example, if actions are used within a slider, using `$$value` in the action will be replaced with the slider's current value.
+
+When using actions in listeners, every listener will provide its own unique set of variables/placeholders for getting more information about the listener, like pressed mouse button, entered structure, etc.
 
 # Available Actions
 
