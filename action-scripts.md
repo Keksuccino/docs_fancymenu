@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-23T08:37:16.422Z
+date: 2025-11-23T08:43:54.029Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -60,9 +60,9 @@ For example, if actions are used within a slider, using `$$value` in the action 
 
 When using actions in listeners, every listener will provide its own unique set of variables/placeholders for getting more information about the listener, like pressed mouse button, entered structure, etc.
 
-# Available Actions
+# Actions in Detail
 
-The following list contains menu of the available actions in FancyMenu, but some could be missing, so make sure to check FancyMenu's action UI for a complete list of all available actions!
+The following list contains most, if not all, actions available in FancyMenu. It is possible that the list is sometimes a bit outdated due to updates of the mod.
 
 ## Next Track (`audio_next_track`)
 - **Description:** Goes to the next track in an audio element
@@ -122,7 +122,7 @@ The following list contains menu of the available actions in FancyMenu, but some
 
 This action will not work for every screen, especially mod screens. If the action fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
 
-I will also not manually add compatibility for mod screens anymore, because adding compatibility for all the mods out there would take me ages, sorry.
+Compatibility for mod screens will also not get added manually on FancyMenu's side anymore, because adding compatibility for all the mods out there would take ages, sorry. In most cases it is also not recommended to contact the dev of the other mod in that case, because if FancyMenu can't open the screen, there is not easy way to add support for it. The recommended workaround here is to try to use the "Mimic Button" action to mimic a button that opens the specific screen. If there is no button, then you're out of luck, sorry.
 
 ## Update Screen (`update_screen`)
 - **Description:** Reinitializes the current screen
@@ -211,3 +211,5 @@ To add, edit, or remove actions (and statement blocks) for an element, simply **
 - **Add new actions or statements:** Insert new action entries or control statements (if, else-if, else, while) to build your script.
 - **Edit existing actions or statements:** Modify the action value or change the control logic.
 - **Remove actions or statements:** Delete unwanted actions from the script.
+
+For [listeners](/listeners) there is a special menu to manage and create listeners, including accessing their action scripts to have the same experience as when editing a button's or slider's action script for example.
