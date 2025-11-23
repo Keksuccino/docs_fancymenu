@@ -2,7 +2,7 @@
 title: Tilting Elements
 description: How to tilt elements in FancyMenu.
 published: true
-date: 2025-11-23T09:48:50.700Z
+date: 2025-11-23T09:56:23.936Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-23T09:46:46.335Z
@@ -19,3 +19,7 @@ If there are no lines with grabbers on the element, you can't tilt it.
 # Advanced
 
 You can also right-click the element to manually set tilt values via a direct text input. This direct input supports [placeholders](/placeholders), so you can dynamically change the tilting of the element when combining it with placeholders to get FancyMenu variable values or similar.
+
+# Buttons, Sliders and Other Interactable Elements
+
+In case of interactable elements, tilting them is possible, but the tilt is only visual, so the button, for example, will still only react to clicks inside its original area, even tho the tilting maybe partly moved it away from that area.
