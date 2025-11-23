@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-23T09:36:51.523Z
+date: 2025-11-23T09:38:21.562Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -12,7 +12,7 @@ dateCreated: 2025-04-14T20:02:13.319Z
 
 FancyMenu lets you add interactivity to your menus by assigning **actions** to elements. These actions run when a button is clicked, ticker is ticking, slider gets used, or when a screen opens or closes. You can also build advanced action scripts using simple control statements, such as **if**, **else-if**, **else**, and **while**, to control which actions run and when.
 
-![](https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true)
+<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="Action script editor" style="max-width:800px;width:100%;height:auto;">
 
 # What Are Actions?
 
