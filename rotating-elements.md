@@ -2,7 +2,7 @@
 title: Rotating Elements
 description: Rotating elements in FancyMenu.
 published: true
-date: 2025-11-23T09:49:31.353Z
+date: 2025-11-23T09:55:33.039Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T01:24:06.338Z
@@ -19,3 +19,7 @@ If there is no circle shape around the element, you can't rotate it.
 # Advanced
 
 You can also right-click the element to manually set rotation values via a direct text input. This direct input supports [placeholders](/placeholders), so you can dynamically change the rotation of the element when combining it with placeholders to get FancyMenu variable values or similar.
+
+# Buttons, Sliders and Other Interactable Elements
+
+In case of interactable elements, rotating them is possible, but the rotation is only visual, so the button, for example, will still only react to clicks inside its original area, even tho the rotation maybe partly moved it away from that area.
