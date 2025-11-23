@@ -2,7 +2,7 @@
 title: Custom GUIs
 description: How to add a new GUI screen to the game.
 published: true
-date: 2025-04-14T20:14:29.021Z
+date: 2025-11-23T12:44:13.409Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:26.193Z
@@ -45,3 +45,7 @@ The last part is to give normal users access to your GUI. The easiest way to do 
 
 You can also open your custom GUI via an [in-game command](./commands#openguiscreen).
 This even allows you to remotely open the GUI for other users!
+
+# Popup Mode
+
+Starting with FancyMenu v3.8.0, Custom GUIs support a "Popup Mode" that makes them look like a popup getting opened on top of another screen (the previous screen the Custom GUI got opened from). This setting can be toggled individually for each Custom GUI in its settings.
