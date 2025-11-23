@@ -2,7 +2,7 @@
 title: Player Entities
 description: How FancyMenu's "Player Entity" element works and how to use it correctly.
 published: true
-date: 2025-09-01T17:14:09.508Z
+date: 2025-11-23T10:05:11.932Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-20T02:29:56.333Z
@@ -34,7 +34,9 @@ The player pose settings have a normal mode where you can customize the rotation
 
 # Changing the Entity Size
 
-Unlike most other elements in FancyMenu, Player Entity elements do not support direct resizing via the resize grabbers. Instead you need to right-click the element and click on **Scale**. This allows you to set a scale for the element. The default one should be `30`, so setting it to `60` for example makes the player twice as big as normal, setting it to `15` shows it at half the size and so on.
+In Minecraft 1.21.4+ you can simply use the normal resize grabbers of the element to scale the entity.
+
+For older versions (1.21.3 and older), Player Entity elements do not support direct resizing via the resize grabbers. Instead you need to right-click the element and click on **Scale**. This allows you to set a scale for the element. The default one should be `30`, so setting it to `60` for example makes the player twice as big as normal, setting it to `15` shows it at half the size and so on.
 
 # Dependency: Fancy Entity Renderer (FER)
 
