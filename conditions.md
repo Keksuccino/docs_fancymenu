@@ -2,7 +2,7 @@
 title: Conditions (Requirements)
 description: How to use loading requirements.
 published: true
-date: 2025-11-23T10:24:04.020Z
+date: 2025-11-23T10:59:10.568Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
@@ -35,6 +35,14 @@ The following list contains most, if not all, requirements available in FancyMen
 Checks if a specific element is hovered by the mouse cursor.  
 **Value required**: Yes - Element ID of the target element (e.g., `some_element_ID`). You can get the ID by right-clicking an element in the editor.
 
+## Is Element Focused
+Checks if a specific element currently has keyboard focus (for example, a text field or focused button).
+**Value required**: Yes - Element ID of the target element (the same ID shown in the editor)
+
+> This is not the same as when an element is just hovered, even tho it looks similar. Focused elements keep looking "hovered" even when they are not hovered anymore. Elements get focused when clicking them or when using the keyboard to navigate in menus.
+{.is-info}
+
+
 ## Is ANY Element Hovered
 Checks if any element in the layout is currently being hovered by the mouse cursor.  
 **Value required**: No
@@ -62,6 +70,10 @@ Checks if the screen title matches a specific text or localization key.
 ## Is Key Pressed
 Checks if a specific keyboard key is currently being pressed.  
 **Value required**: Yes - The key code of the target key. Selected via a UI when editing the requirement value.
+
+## Is ANY Screen Open
+Checks if any screen/menu is currently open (returns false if no screen is showing).  
+**Value required**: No
 
 ## Mouse Clicked
 Checks if a specific mouse button is being pressed.  
@@ -251,6 +263,10 @@ Checks if a specific inventory slot contains an item.
 Checks if a specific hotbar slot is currently selected.  
 **Value required**: Yes - Hotbar slot number (0-8)
 
+## Has Player Permission Level
+Checks if the player has at least the specified permission/OP level on the current world or server.  
+**Value required**: Yes - Permission level number (0-4, where 4 is server operator)
+
 ## Is Attack Strength Weakened
 Checks if the player's attack strength is currently weakened (not fully charged).  
 **Value required**: No
@@ -311,6 +327,10 @@ Checks if the current game language matches a specific value.
 Checks if a specific mod is loaded.  
 **Value required**: Yes - Mod ID (e.g., `fancymenu`, `jei`). You can also check for Optifine with `optifine`. Multiple mod IDs can be provided by separating with commas.
 
+## Is MCEF Loaded
+Checks if MCEF (Minecraft Chromium Embedded Framework) is installed and initialized.  
+**Value required**: No
+
 ## Is Number
 Provides advanced number comparison with different comparison modes.  
 **Value required**: Yes - Complex format: `["mode":"comparison_mode","number":"value1","compare_with":"value2"]$` where `comparison_mode` can be `equals`, `bigger-than`, `smaller-than`, `bigger-than-or-equals`, or `smaller-than-or-equals`
@@ -326,6 +346,10 @@ Checks if the current server IP matches a specific value.
 ## Is Server Online
 Checks if a specific server is online and reachable.  
 **Value required**: Yes - Server IP address (with or without port)
+
+## Is Resource Pack Enabled
+Checks if a specific resource pack is currently selected/active.  
+**Value required**: Yes - Resource pack title or pack ID (e.g., `Programmer Art` or the pack's ID)
 
 ## Is Variable Value
 Checks if a FancyMenu variable has a specific value.  
