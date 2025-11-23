@@ -2,7 +2,7 @@
 title: NBT Data Placeholder
 description: How to use the NBT Data placeholder.
 published: true
-date: 2025-11-23T10:14:30.490Z
+date: 2025-11-23T10:15:53.194Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:10:15.683Z
@@ -179,8 +179,7 @@ To find modded NBT paths, use `/data get entity @p` while the mod is active and 
 
 ## Limitations
 
-- **Client-side only** - Can only access data available to the client
-- **No storage access** - Storage data source is not supported (server-side only)
+- **No storage access on client** - Storage data source is not supported client-side (server-side only)
 - **Performance** - Accessing NBT data frequently may impact performance
 - Returns empty string if the path is invalid or data cannot be accessed
 
