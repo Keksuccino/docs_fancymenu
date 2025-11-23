@@ -2,7 +2,7 @@
 title: Conditions (Requirements)
 description: How to use loading requirements.
 published: true
-date: 2025-11-23T10:23:12.709Z
+date: 2025-11-23T10:24:04.020Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
@@ -28,8 +28,8 @@ Some requirements need you to set some values to work properly. If that's the ca
 Always check the requirement's description if you're not sure what to set as value.
 Some value inputs even support **TAB auto completion**.
 
-# Available Requirements
-The following list contains many of the available requirements, but it's possible that some are missing, so always check FancyMenu's requirement UI for a full list of all available requirements.
+# Requirements in Detail
+The following list contains most, if not all, requirements available in FancyMenu. It is possible that the list is sometimes a bit outdated due to updates for the mod.
 
 ## Is Element Hovered
 Checks if a specific element is hovered by the mouse cursor.  
