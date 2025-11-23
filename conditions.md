@@ -1,29 +1,30 @@
 ---
-title: Conditions (Loading Requirements)
+title: Conditions (Requirements)
 description: How to use loading requirements.
 published: true
-date: 2025-05-13T19:36:50.690Z
+date: 2025-11-23T10:22:52.433Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
 ---
 
-# Loading Requirements
-Loading requirements allow you to make parts of your layouts visible or invisible based on various conditions like if an element is hovered, the window has a specific size or if you're currently in a world.
+# Requirements
+Requirements (aka. "loading requirements") allow you to make parts of your layouts visible or invisible based on various conditions like if an element is hovered, the window has a specific size or if you're currently in a world.
+
 They can also be used in action scripts of buttons, sliders, tickers and everything else with an action script input.
 
 # Adding Requirements to Elements
-To add one or more loading requirements to elements, just right-click the element and click on **Loading Requirements**.
+To add one or more requirements to elements, just right-click the element and click on **Loading Requirements**.
 
 # Layout-wide Requirements
 You can also change the visibity of whole layouts by right-clicking the **editor background** and then clicking on **Loading Requirements [Layout-Wide]**.
 
 # Action Scripts
-Loading requirements can also be used in action scripts of elements with an action script input, like buttons, sliders or tickers.
-You can add them in the action script screen and use them to execute specific actions only if the condition of the loading requirement is met.
+Requirements can also be used in action scripts.
+You can add them in the action script editor screen and use them to execute specific actions only if the condition of the requirement is met.
 
 # Requirement Values
-Some loading requirements need you to set some values to work properly. If that's the case, the loading requirement screen should tell you to set all values first, but if not, just check if the **Edit Requirement Value** button is clickable when adding the requirement.
+Some requirements need you to set some values to work properly. If that's the case, the requirement screen should tell you to set all values first, but if not, just check if the **Edit Requirement Value** button is clickable when adding the requirement.
 Always check the requirement's description if you're not sure what to set as value.
 Some value inputs even support **TAB auto completion**.
 
