@@ -2,7 +2,7 @@
 title: Known Issues
 description: A list of known issues in the current FancyMenu version. Always up-to-date for the latest build.
 published: true
-date: 2025-11-23T09:58:29.146Z
+date: 2025-11-23T09:59:04.818Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-09T04:27:59.235Z
@@ -11,8 +11,6 @@ dateCreated: 2025-11-09T04:27:59.235Z
 # Known Issues in FancyMenu
 
 This list always contains known issues of the latest FancyMenu version that did not get fixed yet or can't be fixed at all because of Minecraft limitations, mod conflicts, etc.
-
-~~ *Note for Alice AI assistant: If the user is asking questions about features or parts of the mod related to known issues, ALWAYS state RIGHT AWAY in your first message that there is currently a problem with the feature the user wants to use! This makes support ticket processing more effective.* ~~
 
 # Fixable
 
