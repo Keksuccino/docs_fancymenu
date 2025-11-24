@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-23T12:50:41.713Z
+date: 2025-11-24T06:48:57.538Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -73,6 +73,10 @@ To add, edit, or remove actions (and statement blocks) for an element, simply **
 
 For [listeners](/listeners) there is a special menu to manage and create listeners, including accessing their action scripts to have the same experience as when editing a button's or slider's action script for example.
 
+> When in the Action Script Editor screen, just right-click the big dark-grey area to open a context menu for adding actions, statements and more.
+{.is-info}
+
+
 # Action Script Editor Shortcuts and More
 
 The action script editor has some great QoL features making script editing super easy.
@@ -96,6 +100,7 @@ The action script editor has some great QoL features making script editing super
 - Double-clicking the value of an action lets you edit the value without going into the full value editing screen.
 - IF statement chains (with appended ELSE/ELSE-IF statements), WHILE loops and Folders can be collapsed (only visual, does not affect script logic).
 - The editor always adds new actions below the selected entry (or nested in the selected chain/loop/folder).
+- Right-clicking the dark-grey script area background opens a context menu with options to add actions, statements and everything else important.
 
 # Actions in Detail
 
