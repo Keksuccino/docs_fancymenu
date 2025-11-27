@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-24T06:48:57.538Z
+date: 2025-11-27T02:27:23.730Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -114,11 +114,11 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Goes to the previous track in an audio element
 - **Value Required:** Yes - `audio_element_identifier` (the ID of the audio element to control)
 
-## Set Audio Element Volume (`set_audio_element_volume`)
+## Set Track Volume (`set_audio_element_volume`)
 - **Description:** Sets the volume of an audio element (0.0 to 1.0)
 - **Value Required:** Yes - `element_identifier:volume`
 
-## Toggle Play Track (`audio_toggle_play`)
+## Toggle Play/Pause Track (`audio_toggle_play`)
 - **Description:** Toggles play/pause of an audio element's current track
 - **Value Required:** Yes - `audio_element_identifier`
 
@@ -162,7 +162,7 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 
 > This action **will not work for every screen**, especially mod screens. If the action fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
 > 
-> Compatibility for mod screens will also not get added manually on FancyMenu's side anymore, because adding compatibility for all the mods out there would take ages, sorry. In most cases it is also not recommended to contact the dev of the other mod in that case, because if FancyMenu can't open the screen, there is not easy way to add support for it. The recommended workaround here is to try to use the **"Mimic Button"** action to mimic a button that opens the specific screen. If there is no button, then you're out of luck, sorry.
+> Compatibility for mod screens will also not get added manually on FancyMenu's side anymore, because adding compatibility for all the mods out there would take ages, sorry. In most cases it is also not recommended to contact the dev of the other mod in that case, because if FancyMenu can't open the screen, there is not easy way to add support for it. The recommended workaround here is to try to use the **"Mimic Vanilla/Mod Button"** action to mimic a button that opens the specific screen. If there is no button, then you're out of luck, sorry.
 {.is-info}
 
 ## Close Screen (`closegui`)
@@ -185,11 +185,11 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Enters a Minecraft world
 - **Value Required:** Yes - `world_folder_name`
 
-## Join Last World/Server (`join_last_world`)
+## Enter/Join Last World/Server (`join_last_world`)
 - **Description:** Enters/joins the last world or server the player was in
 - **Value Required:** No
 
-## Disconnect (`disconnect_server_or_world`)
+## Leave World or Server (`disconnect_server_or_world`)
 - **Description:** Leaves a world or server and opens a specified screen
 - **Value Required:** Yes - `screen_identifier`
 
@@ -205,7 +205,7 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Pastes text to the chat input field (append or replace)
 - **Value Required:** Yes - `true:Text` or `false:Text`
 
-## Display In Chat (Client-Side) (`display_in_chat_client_side`)
+## Display In Chat [Client-Side] (`display_in_chat_client_side`)
 - **Description:** Prints text directly to local chat (no server)
 - **Value Required:** Yes - `text_or_json`
 
@@ -213,19 +213,19 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Opens a link in your default browser
 - **Value Required:** Yes - `https://example.com`
 
-## Copy to Clipboard (`copytoclipboard`)
+## Copy Text to Clipboard (`copytoclipboard`)
 - **Description:** Copies text to the clipboard
 - **Value Required:** Yes - `text_to_copy`
 
-## Print to Log (`print_to_log`)
+## Print to Game Log (`print_to_log`)
 - **Description:** Writes a line to the game log
 - **Value Required:** Yes - `text_to_log`
 
-## Set Variable (`set_variable`)
+## Set Variable Value (FM Variable) (`set_variable`)
 - **Description:** Stores text content in a FancyMenu variable
 - **Value Required:** Yes - `variable_name:variable_value`
 
-## Clear Variables (`clear_variables`)
+## Clear All Variables (FM Variable) (`clear_variables`)
 - **Description:** Clears ALL of FancyMenu's stored variables
 - **Value Required:** No
 
@@ -269,7 +269,7 @@ This action also allows you to store the response of the request in a FancyMenu 
 - **Description:** Resets an element animator timeline/state
 - **Value Required:** Yes - `animator_identifier`
 
-## Mimic Button (`mimicbutton`)
+## Mimic Vanilla/Mod Button (`mimicbutton`)
 - **Description:** Mimics the click action of a vanilla or mod button
 - **Value Required:** Yes - `screen_identifier:widget_locator`
 
@@ -277,31 +277,31 @@ This action also allows you to store the response of the request in a FancyMenu 
 - **Description:** Runs a Minecraft keybind (optional hold)
 - **Value Required:** Yes - `keybind_id|||keep_pressed_bool|||duration_ms`
 
-## Create File (`create_file_in_game_dir`)
+## Create File in Game Directory (`create_file_in_game_dir`)
 - **Description:** Creates an empty file in the game directory (instance root). Accepts the `.minecraft/` prefix to target the default launcher profile directory (may differ from the current instance dir).
 - **Value Required:** Yes - `file_path`
 
-## Delete File/Folder (`delete_file_in_game_dir`)
+## Delete File/Folder in Game Directory (`delete_file_in_game_dir`)
 - **Description:** Deletes a file or folder in the game directory (instance root). Accepts `.minecraft/` prefix to hit the default launcher profile (can differ from the running instance). Append `*` to delete **all files directly inside** a folder (ignores sub-directories; keeps the folder).
 - **Value Required:** Yes - `target_path`
 
-## Copy File/Folder (`copy_file_in_game_dir`)
+## Copy File/Folder in Game Directory (`copy_file_in_game_dir`)
 - **Description:** Copies within the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not always the current instance). Append `*` to the **source** path to copy every file directly inside that folder (ignores sub-directories); destination must be a directory and cannot use `*`.
 - **Value Required:** Yes - `source||destination`
 
-## Move File/Folder (`move_file_in_game_dir`)
+## Move File/Folder in Game Directory (`move_file_in_game_dir`)
 - **Description:** Moves within the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from the current instance). Append `*` to the **source** path to move every file directly inside that folder (ignores sub-directories); destination must be a directory and cannot use `*`.
 - **Value Required:** Yes - `source||destination`
 
-## Rename File/Folder (`rename_file_in_game_dir`)
+## Rename File/Folder in Game Directory (`rename_file_in_game_dir`)
 - **Description:** Renames a file or folder inside the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from current instance). Keeps contents intact, only the name changes.
 - **Value Required:** Yes - `path||new_name`
 
-## Download File (`download_file_to_game_dir`)
+## Download File to Game Directory (`download_file_to_game_dir`)
 - **Description:** Downloads a file asynchronously into the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not necessarily the running instance). Provide the **target folder**; filename is derived from headers/URL automatically.
 - **Value Required:** Yes - `url||target_folder`
 
-## Write File (`write_file_in_game_dir`)
+## Write File in Game Directory (`write_file_in_game_dir`)
 - **Description:** Writes or appends text inside the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from this instance). Creates the file if missing. Supports `\n` in the value to insert line breaks; append mode controlled by the final boolean.
 - **Value Required:** Yes - `path|||content|||append_bool`
 
@@ -313,6 +313,6 @@ This action also allows you to store the response of the request in a FancyMenu 
 - **Description:** Displays a configurable toast notification
 - **Value Required:** Yes - toast configuration
 
-## Edit Minecraft Option (`edit_minecraft_option`)
+## Set Minecraft Option (`edit_minecraft_option`)
 - **Description:** Edits a Minecraft config option
 - **Value Required:** Yes - `option_name:set_to_value`
