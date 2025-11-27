@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-27T02:27:23.730Z
+date: 2025-11-27T02:29:04.770Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -233,10 +233,11 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Sends an HTTP request; can store the response in a variable
 - **Value Required:** Yes - HTTP request configuration
 
-This action allows you to send data to REST APIs, webhooks, or any HTTP endpoint.
-Supports various authentication methods, custom headers, and different request types.
-
-This action also allows you to store the response of the request in a FancyMenu variable for later use!
+> This action allows you to send data to REST APIs, webhooks, or any HTTP endpoint.
+> Supports various authentication methods, custom headers, and different request types.
+> 
+> This action also allows you to store the response of the request in a FancyMenu variable for later use!
+{.is-info}
 
 ## Manage Resource Pack (`manage_resource_pack`)
 - **Description:** Enable/disable/toggle a resource pack by display name (optional reload)
