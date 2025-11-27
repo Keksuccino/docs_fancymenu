@@ -2,7 +2,7 @@
 title: Conditions (Requirements)
 description: How to use loading requirements.
 published: true
-date: 2025-11-23T10:59:10.568Z
+date: 2025-11-27T02:42:33.303Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
@@ -42,12 +42,11 @@ Checks if a specific element currently has keyboard focus (for example, a text f
 > This is not the same as when an element is just hovered, even tho it looks similar. Focused elements keep looking "hovered" even when they are not hovered anymore. Elements get focused when clicking them or when using the keyboard to navigate in menus.
 {.is-info}
 
-
-## Is ANY Element Hovered
+## Is Any Element Hovered
 Checks if any element in the layout is currently being hovered by the mouse cursor.  
 **Value required**: No
 
-## Is ANY Button Hovered
+## Is Any Button Hovered
 Checks if any button (vanilla or custom) is currently being hovered by the mouse cursor.  
 **Value required**: No
 
@@ -63,7 +62,7 @@ Checks if the current GUI scale matches certain conditions.
 Checks if a specific button is active (clickable).  
 **Value required**: Yes - Element ID of the target button (e.g., "some_element_ID")
 
-## Is Menu Title
+## Is Screen Title
 Checks if the screen title matches a specific text or localization key.  
 **Value required**: Yes - The exact title text or localization key of the screen
 
@@ -71,7 +70,7 @@ Checks if the screen title matches a specific text or localization key.
 Checks if a specific keyboard key is currently being pressed.  
 **Value required**: Yes - The key code of the target key. Selected via a UI when editing the requirement value.
 
-## Is ANY Screen Open
+## Is Any Screen Open
 Checks if any screen/menu is currently open (returns false if no screen is showing).  
 **Value required**: No
 
@@ -163,7 +162,7 @@ Checks if the player is currently sneaking/crouching.
 Checks if the player is currently swimming.  
 **Value required**: No
 
-## Is Player Jumping
+## Is Player Jumping or Falling
 Checks if the player is currently jumping.  
 **Value required**: No
 
@@ -183,7 +182,7 @@ Checks if the player is in lava.
 Checks if the player is in any fluid (water, lava, etc.).  
 **Value required**: No
 
-## Is Player Riding Entity
+## Is Player Riding Entity/Vehicle
 Checks if the player is riding any entity.  
 **Value required**: No
 
@@ -251,7 +250,7 @@ Checks if a specific potion effect is active on the player.
 Checks if the player has any potion effect active.  
 **Value required**: No
 
-## Is Player Left Handed
+## Is Player Left-Handed
 Checks if the player is set to left-handed mode in the game options.  
 **Value required**: No
 
@@ -259,7 +258,7 @@ Checks if the player is set to left-handed mode in the game options.
 Checks if a specific inventory slot contains an item.  
 **Value required**: Yes - Slot number (0-35 for main inventory, slots 0-8 are hotbar)
 
-## Is Hotbar Slot Active
+## Is Hotbar Slot Selected
 Checks if a specific hotbar slot is currently selected.  
 **Value required**: Yes - Hotbar slot number (0-8)
 
@@ -351,7 +350,7 @@ Checks if a specific server is online and reachable.
 Checks if a specific resource pack is currently selected/active.  
 **Value required**: Yes - Resource pack title or pack ID (e.g., `Programmer Art` or the pack's ID)
 
-## Is Variable Value
+## Is Variable Value (FM Variable)
 Checks if a FancyMenu variable has a specific value.  
 **Value required**: Yes - Format: "variable_name:expected_value"
 
