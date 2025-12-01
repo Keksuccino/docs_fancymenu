@@ -2,7 +2,7 @@
 title: Listeners
 description: How to create and use listeners in FancyMenu.
 published: true
-date: 2025-11-23T09:39:43.505Z
+date: 2025-12-01T02:27:18.513Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-23T08:24:21.102Z
@@ -13,7 +13,7 @@ dateCreated: 2025-11-23T08:24:21.102Z
 Starting with FancyMenu v3.8.0, there is a new feature called "listeners".
 
 Listeners execute action scripts when specific client or gameplay events happen.
-They can supply variables for actions, placeholders, and requirements nested in the listener.
+They can expose variables to actions, placeholders, and requirements nested in the listener.
 
 Other than most things in FancyMenu, listeners are not locked to a screen or overlay. They constantly run in the background, listening to their events. As soon as a listener gets fired, it executes its action script, even if there is no screen open at that time.
 
