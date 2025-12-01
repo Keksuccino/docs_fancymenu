@@ -2,7 +2,7 @@
 title: Listeners
 description: How to create and use listeners in FancyMenu.
 published: true
-date: 2025-12-01T02:27:18.513Z
+date: 2025-12-01T03:04:01.789Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-23T08:24:21.102Z
@@ -22,6 +22,18 @@ Other than most things in FancyMenu, listeners are not locked to a screen or ove
 To create a new listener that listeners to an event and executes an action script, click on **menu bar -> Customization -> Manage Listeners** while **NOT** in the layout editor. There you can find an easy-to-use UI for creating and managing listeners.
 
 <img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/manage_listeners.png?raw=true" alt="Manage listeners" style="max-width:800px;width:100%;height:auto;">
+
+# Listener Variables
+
+Listeners often expose a special type of variable for its nested actions, requirements and placeholders.
+These variables can be accessed like placeholders (they are effectively placeholders).
+
+You use these variables by simply using their names with the `$$` prefix in text inputs, similar to how you would use a normal placeholder.
+
+For example, if you use the **On Keyboard Key Pressed** listener and want to print the key name to the log via the **Print to Log** action, you would use something like `Key pressed! The key is: $$key_name` as input for the message the action should print. The variable placeholder will later get replaced with the actual name of the key.
+
+> Even tho these are called "variables", they are in no way related to FancyMenu's normal [variable system](/variables). You can't set these variables, since they are **read-only**. You also can't use any actions, requirements and placeholders meant for FancyMenu's variable system with these special listener variables, so using **Get Variable Value [FM Variable]**, **Is Variable Value [FM Variable]** or **Set Variable Value [FM Variable]** will not work for listener variables.
+{.is-warning}
 
 # Listeners in Detail
 
