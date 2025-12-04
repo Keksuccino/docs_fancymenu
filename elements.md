@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-10-19T04:25:36.264Z
+date: 2025-12-04T03:22:09.172Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -24,9 +24,9 @@ You can add a new element to your layout from within the **Layout Editor**.
 
 Once an element is added, you can move, resize, and customize it by **right-clicking** on it to open its specific context menu. To learn more about how to arrange elements, see the [Positioning Elements](https://docs.fancymenu.net/en/positioning-elements) and [Element Identifiers](https://docs.fancymenu.net/en/element-identifiers) pages.
 
-# All Element Types
+# Elements in Detail
 
-The following list contains many of FancyMenu's element types, but it is possible that it does not contain all of them due to the site not being updated yet for the latest FancyMenu release or similar.
+The following list contains most, if not all, elements available in FancyMenu. The list can sometimes be a little outdated due to updates of FancyMenu.
 
 ## Button
 A clickable button that can perform a wide variety of actions. This is one of the most powerful and versatile elements for creating interactive menus.
