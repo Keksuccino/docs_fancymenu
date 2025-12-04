@@ -2,13 +2,13 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-12-04T03:22:09.172Z
+date: 2025-12-04T03:22:46.942Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
 ---
 
-# Element Types
+# Elements
 
 Elements are the building blocks of your custom layouts in FancyMenu. You can add them to any layout to display information, add interactivity, or create stunning visual effects.
 
