@@ -2,7 +2,7 @@
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
 published: true
-date: 2025-11-30T03:27:11.256Z
+date: 2025-12-19T10:25:05.030Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:03.963Z
@@ -69,4 +69,5 @@ If that's the case, it's written after the mod name in the list below.
 * [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Usable, but some users report issues with the VanillaFix crash screen)
 * [FireplaceMode](https://www.curseforge.com/minecraft/mc-mods/fireplacemode) (The Pause screen resets its customizations sometimes with this mod installed)
 * [Respackopts](https://www.curseforge.com/minecraft/mc-mods/respackopts) (Works, but only if you disable customizations for the Resource Pack screen)
-* [Bind Pizzeria](https://modrinth.com/mod/jjpizza) (breaks text rendering in FancyMenu's context menus)
+* [Bind Pizzeria](https://modrinth.com/mod/jjpizza) (Breaks text rendering in FancyMenu's context menus)
+* [EnhancedTooltips](https://www.curseforge.com/minecraft/mc-mods/enhancedtooltips) (Breaks FancyMenu's tooltips)
