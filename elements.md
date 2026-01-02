@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2025-12-04T03:22:46.942Z
+date: 2026-01-02T13:00:11.630Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -201,6 +201,14 @@ For newer Minecraft versions (1.21.5+), the official MCEF projects do not provid
     *   **Interactivity:** Can be made fully interactable, allowing users to click links, scroll, and type.
     *   **Media Control:** Offers options to mute media, loop videos, and hide video controls on the loaded page.
 
+### Loading Local HTML Files
+The Browser element lets you load local HTML documents in `/config/fancymenu/assets/`! This means you can display local browser-rendered content for fancy looking changelogs and more.
+
+To load a local HTML file, start your URL with `file:///`, followed by the SHORT file path, for example `/config/fancymenu/assets/cool_changelog.html`, which makes it look like this: `file:///config/fancymenu/assets/cool_changelog.html`.
+
+On **Linux** you need to give it the absolute file path, but since hardcoding an absolute path would break the layout, you need to let a placeholder convert the short path to an absolute one dynamically: `file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/cool_changelog.html"}}`.
+
+It is SUPER IMPORTANT that you start the short path with `/` on Linux, like in the example above. Without this it will not work.
 
 ## Element Animator
 A powerful tool for creating complex, keyframe-based animations. It can animate the position, size, and anchor point of one or multiple other elements.
@@ -278,24 +286,3 @@ An invisible element that replaces the default system cursor with a custom image
 *   **Key Features:**
     *   **Custom Texture:** Use any image for your cursor.
     *   **Hotspot:** You can define the exact pixel on the image that serves as the "click point". See the [Custom Cursor](https://docs.fancymenu.net/en/custom-cursor) guide for more.
-
-# Links used in this document
-
-*   [Positioning Elements](https://docs.fancymenu.net/en/positioning-elements) (https://docs.fancymenu.net/en/positioning-elements)
-*   [Element Identifiers](https://docs.fancymenu.net/en/element-identifiers) (https://docs.fancymenu.net/en/element-identifiers)
-*   [Action Scripts](https://docs.fancymenu.net/en/action-scripts) (https://docs.fancymenu.net/en/action-scripts)
-*   [Button & Slider Templates](https://docs.fancymenu.net/en/button-slider-templates) (https://docs.fancymenu.net/en/button-slider-templates)
-*   [Variables](https://docs.fancymenu.net/en/variables) (https://docs.fancymenu.net/en/variables)
-*   [Conditions (Loading Requirements)](https://docs.fancymenu.net/en/conditions) (https://docs.fancymenu.net/en/conditions)
-*   [NBT Data Placeholder](https://docs.fancymenu.net/en/nbt-data-placeholder) (https://docs.fancymenu.net/en/nbt-data-placeholder)
-*   [Nine-Slicing & Tiling](https://docs.fancymenu.net/en/nine-slicing-and-tiling) (https://docs.fancymenu.net/en/nine-slicing-and-tiling)
-*   [Parallax Effect](https://docs.fancymenu.net/en/parallax) (https://docs.fancymenu.net/en/parallax)
-*   [Placeholders](https://docs.fancymenu.net/en/placeholders) (https://docs.fancymenu.net/en/placeholders)
-*   [Text Formatting](https://docs.fancymenu.net/en/text-formatting) (https://docs.fancymenu.net/en/text-formatting)
-*   [MCEF (Minecraft Chromium Embedded Framework)](https://www.curseforge.com/minecraft/mc-mods/mcef) (https://www.curseforge.com/minecraft/mc-mods/mcef)
-*   [Videos (MP4)](https://docs.fancymenu.net/en/video) (https://docs.fancymenu.net/en/video)
-*   [Slideshows](https://docs.fancymenu.net/en/slideshows) (https://docs.fancymenu.net/en/slideshows)
-*   [Player Heads](https://docs.fancymenu.net/en/player-heads) (https://docs.fancymenu.net/en/player-heads)
-*   [Element Animator](https://docs.fancymenu.net/en/element-animator) (https://docs.fancymenu.net/en/element-animator)
-*   [Menu Background Music](https://docs.fancymenu.net/en/background-music) (https://docs.fancymenu.net/en/background-music)
-*   [Custom Cursor](https://docs.fancymenu.net/en/custom-cursor) (https://docs.fancymenu.net/en/custom-cursor)
