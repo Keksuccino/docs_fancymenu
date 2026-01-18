@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2025-10-31T08:57:53.861Z
+date: 2026-01-18T05:31:46.774Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -133,3 +133,7 @@ This happens because Text elements are interactable by default (to be able to gr
 To make buttons and sliders not navigable, you need to **right-click** it and set **Navigable** to **Disabled**. The button/slider will still be clickable, but you can't focus it with Arrow/Tab navigation anymore.
 
 This is also useful if you want to add buttons/sliders to the Chat screen, so you can still use the Arrow Up key to scroll through older messages without accidentally selecting buttons/sliders in the screen.
+
+### One of FancyMenu's context menus is missing an option that should be there.
+
+FancyMenu's context menus (the menus that open when you right-click somewhere or when you interact with menu bars) are SCROLLABLE. This means you can use your scroll wheel while your mouse cursor is over the menu to scroll up or down, which let's you see more options that were previously not visible.
