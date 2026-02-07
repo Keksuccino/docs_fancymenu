@@ -2,7 +2,7 @@
 title: Known Issues
 description: A list of known issues in the current FancyMenu version. Always up-to-date for the latest build.
 published: true
-date: 2025-11-23T09:59:04.818Z
+date: 2026-02-07T05:24:40.032Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-09T04:27:59.235Z
@@ -16,11 +16,9 @@ This list always contains known issues of the latest FancyMenu version that did 
 
 These issues can and will be fixed in the future.
 
-## Scoreboard-related placeholders don't work correctly for things not displayed client-side.
+## Scoreboard-related features are broken. They do not work.
 
-All current scoreboard-related placeholders are **client-side**, which means they can only work with data the client knows about, which is not much, because the client only knows about things that are visible to the user (sidebar, tab bar). This is considered a bug an will be fixed in the future.
-
-GitHub Issue Reference: https://github.com/Keksuccino/FancyMenu/issues/1198
+All features (placeholders, actions, requirements) that access scoreboard, score or player tag data DO NOT WORK as intended right now. Depending on the FancyMenu version, scoreboard-related features are not available at all anymore, because they got removed for now, to rework them and re-implement them in the future. Even if available, these features should NOT GET USED right now! They will not work anyway.
 
 # Not Fixable
 
