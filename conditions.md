@@ -2,7 +2,7 @@
 title: Conditions (Requirements)
 description: How to use loading requirements.
 published: true
-date: 2025-11-27T02:42:33.303Z
+date: 2026-04-03T21:29:14.819Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
@@ -63,7 +63,8 @@ Checks if a specific button is active (clickable).
 **Value required**: Yes - Element ID of the target button (e.g., "some_element_ID")
 
 ## Is Screen Title
-Checks if the screen title matches a specific text or localization key.  
+Checks if the screen's DISPLAY title matches a specific text or localization key. This will only check for the display name/title of the screen, like "Options" or "Pause". It will NOT check for the menu/screen identifier (like `title_screen`)!
+
 **Value required**: Yes - The exact title text or localization key of the screen
 
 ## Is Key Pressed
