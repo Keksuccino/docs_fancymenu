@@ -1,11 +1,6 @@
 ---
 title: Animations (FMA/AFMA)
 description: How to make and use FancyMenu animation files.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:14:48.394Z
 ---
 
 # Animations
@@ -16,25 +11,32 @@ They are pretty much the same as APNGs, but way more optimized for FancyMenu.
 > This feature only exists in FancyMenu v3.2.0+!
 {.is-warning}
 
-# AFMA in FancyMenu 3.9.0+
+# AFMA Files
 
 FancyMenu 3.9.0 adds **AFMA** (Advanced FancyMenu Animation), the successor to classic FMA files.
 
 AFMA files are no longer ZIP files. They use FancyMenu's newer animation format with better file sizes, lower memory usage and better performance.
 
-For new large or complex animated textures, use **AFMA** instead of classic FMA:
+For new large or complex animated textures, use **AFMA** instead of classic FMA.
+
+To create an AFMA file, do this:
 
 1. Open FancyMenu's menu bar.
 2. Go to **Tools -> AFMA Creator**.
 3. Import/convert your frames with the creator.
 
+> [!IMPORTANT]
+> AFMA files can't be packed manually like classic FMA files. You need to use the **AFMA Creator** to pack/create them.
+
 Classic FMA files are still supported and were optimized in FancyMenu 3.9.0, so existing layouts do not need to be converted immediately.
 
-# Making an FMA
+# Classic FMA Files
+
+## Making an FMA
 
 Making an FMA file is as easy as creating a ZIP file! Well, that's mostly because it _is_ a ZIP file under the hood.
 
-## File Extensions
+### File Extensions
 
 You need to see file extensions to be able to follow this documentation, so make sure to **ENABLE FILE EXTENSIONS** before you start.
 
@@ -45,7 +47,7 @@ Then go to the **View** tab and enable **File Name Extensions**.
 <br>
 <img width="764" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/1f0a0864-1ad8-4f63-be3a-ab18385539e6"> 
 
-## Preparation
+### Preparation
 
 Lets start with creating a new folder for the content of the FMA file.
 In this example, lets call the folder `fancymenu_animation`.
@@ -60,7 +62,7 @@ Now you should have a folder called `fancymenu_animation` and in this folder are
 <br>
 <img width="700" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/e29f6666-ee4a-4d79-b7e2-1b640f40ce78">
 
-## The Metadata JSON
+### The Metadata JSON
 
 This is the file that tells FancyMenu how it should handle your FMA texture.
 It contains information such as the frame times (how long a frame is visible) and the loop count.
@@ -84,7 +86,7 @@ Copy this text to the file:
 This is the basic template of how the file should look like.
 Now you can customize it to your liking.
 
-### `loop_count`
+#### `loop_count`
 
 This is to control how many times the texture should loop (restart it's animation).
 
@@ -92,17 +94,17 @@ Setting this to `0` means it will loop indefinitely. It will *never stop*.
 
 Everything bigger than `0` means how many times the texture plays. So for example, setting the value to `1` means the texture will only play once, then stops at the last frame, `2` means it will play two times, then stop at the last frame *and so on*.
 
-### `frame_time`
+#### `frame_time`
 
 This is the universal frame time in **milliseconds** for the frames of the animated texture.
 Frame time means how long the frame is visible before the animation goes to the next frame.
 
-### `frame_time_intro`
+#### `frame_time_intro`
 
 This is basically the same as `frame_time`, but for the **intro** frames of your animated texture.
 Intro frames are **optional** and you will learn more about them later.
 
-### `custom_frame_times`
+#### `custom_frame_times`
 
 This is **optional** and can be used for overriding the frame time for specific (non-intro) frames.
 For example, you want all your frames to show for `41` milliseconds, so you set `frame_time` to `41`, but you want the first and second frames to show for `5000` milliseconds.
@@ -127,13 +129,13 @@ Frames are zero-based, which means the first frame of the animation is `0`, the 
 
 There needs to be a **comma** at the end of every custom frame time entry, **except** of the last one!
 
-### `custom_frame_times_intro`
+#### `custom_frame_times_intro`
 
 This is exactly the same as `custom_frame_times`, but in this case for the **intro** frames. Intro frames are **optional** and you will learn more about them later.
 
 That's it for the `metadata.json` file. Save it now and close the text editor.
 
-## The Frames
+### The Frames
 
 > Is is recommended to use **200 frames at max** at a **max resolution of 1080p** per animation, because animations eat lots of memory and they are not videos. They are meant to be used for short animated loops, not to play full videos with 24 FPS.
 {.is-danger}
@@ -151,7 +153,7 @@ To **extract frames from videos**, please take a look at [this docs page](/ffmpe
 <br>
 <img width="574" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/eac54695-b57a-4919-8740-4e5c8aad649c">
 
-## The Intro
+### The Intro
 
 This feature is **OPTIONAL**.
 
@@ -167,7 +169,7 @@ Every frame **has to** be called just the number of the frame and the file exten
 The first frame should be called `0.png`, the second one `1.png`, the third one `2.png` and so on.
 The texture will **NOT WORK** if the frames have invalid file names!
 
-## Packing the FMA File
+### Packing the FMA File
 
 Now everything important is in the `fancymenu_animation` folder, so you can pack your FMA file now!
 
@@ -194,14 +196,11 @@ Of course you can change the `fancymenu_animation` part to whatever you want, bu
 
 That's it! You now have a (hopefully) working FMA file!
 
-# Using FMA Files in FancyMenu
+# Using AFMA & FMA Files in FancyMenu
 
-> **IMPORTANT**: FMA files are **NOT the same** as the **deprecated Animations** menu background type! FMA files are an animated **texture** format, so you add them as image/texture files, just like PNGs, JPEGs, GIFs and APNGs.
-{.is-danger}
+> [!IMPORTANT]
+> AFMA/FMA files are considered **animated textures**, so you add them via **Image** inputs. Almost everything that takes images (PNG, JPEG, GIF, etc.) will also accept FMA and AFMA files.
 
-You can use FMA files like any other animated texture/image format. FancyMenu sees it as normal image, so you can use it everywhere you can set a texture to something, like **Image elements or Image menu backgrounds**.
+You can use AFMA/FMA files like any other animated texture/image format. FancyMenu sees it as normal image, so you can use it everywhere you can set a texture to something, like **Image elements or Image menu backgrounds**.
 
-Make sure the FMA file is in the `/config/fancymenu/assets/` folder, because FancyMenu can only pick textures and other resources from its `assets` folder.
-
-> It is recommended to [pre-load FMA files](/preload-layouts) to make them play smoothly and not lag or show a black screen when shown for the first time.
-{.is-warning}
+Make sure the AFMA/FMA file is in the `/config/fancymenu/assets/` folder, because FancyMenu can only pick textures and other resources from its `assets` folder.
