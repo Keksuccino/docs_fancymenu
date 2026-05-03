@@ -2,7 +2,7 @@
 title: Element Animator
 description: How to animate elements with keyframes using the Element Animator.
 published: true
-date: 2025-08-04T19:17:04.934Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:34.288Z
@@ -148,6 +148,9 @@ Use these shortcuts in the keyframe editor to work faster:
   
 - **Ignore Size/Position:**  
   If you do not want the keyframes to change an element’s size or position, turn these options off.
+
+- **Timing Offsets:**
+  FancyMenu 3.9.0 adds timing offsets for controlled elements. You can offset individual target elements, or use random timing offsets in a configured range, so one animation can start at slightly different times for each target.
   
 - **Offset Mode:**  
   In offset mode, animations are applied as changes from the element’s original spot. The preview is shown centered on a crosshair.

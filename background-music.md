@@ -2,7 +2,7 @@
 title: Menu Background Music
 description: How to customize the music played in menus.
 published: true
-date: 2025-04-14T20:14:16.926Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:14.268Z
@@ -20,7 +20,7 @@ FancyMenu has multiple ways to disable Vanilla menu music. This can be useful if
 
 If you want no music in menus at all, this is the easiest way to do that.
 
-To globally disable the Vanilla menu music, go to FancyMenu's menu bar at the top of screens and click on **Customization -> Settings** and disable **Play Vanilla Menu in Music**.
+To globally disable or replace Vanilla menu music in FancyMenu 3.9.0+, go to FancyMenu's menu bar at the top of screens and click **Customization -> Global Customizations**. Global Customizations can replace menu music without requiring a resource pack and without enabling customizations for every screen.
 
 <br>
 <img width="600" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/d829a35e-f23f-42a9-ad79-193de73b499b">
@@ -42,7 +42,7 @@ By **right-clicking** the element you can customize what types of music that pla
 
 Now we can add the actual custom background music.
 
-If you want to play the same custom music in all screens, you should use a **universal layout**, which gets loaded in every screen that has customizations enabled.
+If you want to play the same custom music in all screens and need layout-level control, you should use a **universal layout**, which gets loaded in every screen that has customizations enabled. For simple global menu music replacement, use [Global Customizations](/global-customizations) instead.
 
 When using a universal layout, the music will **continue playing** when going from one menu with the layout enabled to another one with the same layout enabled.
 

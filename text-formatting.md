@@ -2,7 +2,7 @@
 title: Text Formatting
 description: How to format text with Markdown and Minecraft's formatting codes.
 published: true
-date: 2025-10-09T02:37:39.033Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:15.668Z
@@ -45,6 +45,14 @@ A valid HEX color for green is `#77fc03`, so to show text in this color, do this
 This will show `this text is green!` as `#77fc03` (green).
 
 Make sure that the HEX color is starting with `#`!
+
+FancyMenu 3.9.0 also supports common HTML-like color names in this same color formatting code:
+
+```
+%#red%This text is red!%#%
+```
+
+Supported names: `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan`, and `transparent`.
 
 ## Text Alignment
 
@@ -120,6 +128,24 @@ Text that should appear as [hyperlink](https://google.com) needs to get wrapped 
 
 So if you want to make `example text content` clickable and open `https://example-website.net`, do this:
 `[example text content](https://example-website.net)`
+
+## Click and Hover Events
+
+FancyMenu 3.9.0 adds Markdown click and hover events for Text elements and other Markdown text.
+
+Click events use the `click:` prefix:
+
+```
+[some clickable text](click:unique_text_click_event_id)
+```
+
+Hover events use the `hover:` prefix:
+
+```
+[some hoverable text](hover:unique_text_hover_event_id)
+```
+
+Use the **On Markdown Text Clicked** and **On Markdown Text Hovered** listeners to react to these events. Both listeners expose the event ID as `$$text_event_id`.
 
 ## Images
 

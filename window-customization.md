@@ -2,7 +2,7 @@
 title: Window Icon & Title
 description: How to change the window icon and title.
 published: true
-date: 2025-04-14T20:16:35.129Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:32.382Z
@@ -16,7 +16,7 @@ FancyMenu allows you to change the icon and title of the Minecraft window.
 
 # Custom Icon
 
-To set a custom icon for the Minecraft window, navigate to **Customization -> Settings -> Custom Window Icon** in the **menu bar**.
+To set a custom icon for the Minecraft window in FancyMenu 3.9.0+, navigate to **Customization -> Global Customizations** in the **menu bar**.
 
 ![window_icon](https://github.com/Keksuccino/FancyMenu/assets/35544624/6d826bd5-3db0-4f1b-918d-8ccbe944b5c0)
 
@@ -30,6 +30,6 @@ To set a custom icon for the Minecraft window, navigate to **Customization -> Se
 
 # Custom Title
 
-To set a custom title for the Minecraft window, nacigate to **Customization -> Settings -> Custom Window Title** in the **menu bar**.
+To set a custom title for the Minecraft window in FancyMenu 3.9.0+, navigate to **Customization -> Global Customizations** in the **menu bar**.
 
 ![window_title](https://github.com/Keksuccino/FancyMenu/assets/35544624/06ecd207-c2d2-4f7c-83f4-18d94c66c5ff)

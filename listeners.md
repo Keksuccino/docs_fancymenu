@@ -2,7 +2,7 @@
 title: Listeners
 description: How to create and use listeners in FancyMenu.
 published: true
-date: 2025-12-01T03:04:01.789Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-23T08:24:21.102Z
@@ -38,6 +38,88 @@ For example, if you use the **On Keyboard Key Pressed** listener and want to pri
 # Listeners in Detail
 
 This list should include most, if not all, of FancyMenu's listeners. It is possible that the list is not always up-to-date due to updates of the mod.
+
+## On Markdown Text Clicked
+- Fires when Markdown text with a `click:` event is clicked, for example `[Open](click:open_menu)`.
+- Variables:
+  - `$$text_event_id` – event ID from the Markdown link
+
+## On Markdown Text Hovered
+- Fires when Markdown text with a `hover:` event is hovered, for example `[Hint](hover:show_hint)`.
+- Variables:
+  - `$$text_event_id` – event ID from the Markdown link
+
+## On ZIP Extracted via Action
+- Fires when the **Extract ZIP File In Game Directory** action finishes.
+- Variables:
+  - `$$source_zip_path` – resolved source ZIP path
+  - `$$target_folder_path` – resolved extraction target path
+  - `$$extract_succeeded` – true/false
+  - `$$failure_reason` – error text when extraction failed
+
+## On Element Spawned
+- Fires when an element is spawned via an action/scripted element-spawn flow.
+- Variables:
+  - `$$element_type` – spawned element type
+  - `$$element_identifier` – spawned element identifier
+  - `$$target_screen` – target screen identifier
+
+## On Animated Texture Started Playing
+- Fires when an animated texture starts playing.
+- Variables:
+  - `$$texture_source` – texture source
+  - `$$texture_source_type` – source type
+  - `$$texture_will_restart` – true/false
+
+## On Animated Texture Finished Playing
+- Fires when an animated texture finishes playing.
+- Variables:
+  - `$$texture_source`
+  - `$$texture_source_type`
+  - `$$texture_will_restart`
+
+## On Video Playback Status Changed
+- Fires when a video element or video menu background changes playback status.
+- Variables:
+  - `$$video_source` – video source
+  - `$$video_source_type` – source type
+  - `$$is_looping` – true/false
+  - `$$new_status` – `PLAYING`, `STOPPED`, `PAUSED`, or `FINISHED`
+
+## On System Message Received in Chat
+- Fires when the client receives a system chat message, such as command feedback.
+- Variables:
+  - `$$system_message_string` – plain text message
+  - `$$system_message_component` – JSON component
+
+## On FM Data Received
+- Fires when a server sends FM Data to this client via `/fmdata send`.
+- Variables:
+  - `$$data_identifier` – data identifier string
+  - `$$data` – data payload
+  - `$$sent_by` – server IP or `integrated_server`
+
+## On Remote Server Connected
+- Fires when FancyMenu initializes a remote server connection.
+- Variables:
+  - `$$request_id` – cached request ID
+  - `$$remote_server_url` – remote server URL
+
+## On Remote Server Data Received
+- Fires when text data is received from a connected remote server.
+- Variables:
+  - `$$request_id` – request ID
+  - `$$remote_server_url` – remote server URL
+  - `$$data` – received payload
+
+## On Remote Server Connection Closed
+- Fires when a remote server connection closes.
+- Variables:
+  - `$$request_id` – request ID
+  - `$$remote_server_url` – remote server URL
+  - `$$intentionally_closed` – TRUE if closed by an action
+  - `$$crashed` – TRUE if the connection crashed unexpectedly
+  - `$$unknown_close_reason` – TRUE if no known close reason was available
 
 ## On Keyboard Key Pressed
 - Triggers whenever a key is pressed (repeats while held; works in screens and in-game).
@@ -446,12 +528,12 @@ This list should include most, if not all, of FancyMenu's listeners. It is possi
 ## On Position Changed
 - Fires whenever the player’s block position changes.
 - Variables:
-  - `$old_pos_x` – previous block X
-  - `$old_pos_y` – previous block Y
-  - `$old_pos_z` – previous block Z
-  - `$new_pos_x` – new block X
-  - `$new_pos_y` – new block Y
-  - `$new_pos_z` – new block Z
+  - `$$old_pos_x` – previous block X
+  - `$$old_pos_y` – previous block Y
+  - `$$old_pos_z` – previous block Z
+  - `$$new_pos_x` – new block X
+  - `$$new_pos_y` – new block Y
+  - `$$new_pos_z` – new block Z
 
 ## On Started Running
 - Fires when the player starts sprinting.
@@ -532,6 +614,13 @@ This list should include most, if not all, of FancyMenu's listeners. It is possi
 - Fires when the player finishes consuming an item.
 - Variables:
   - `$$item_key` – consumed item
+
+## On Item Hovered in Inventory
+- Fires when the user hovers an item in any inventory screen.
+- Variables:
+  - `$$item_key` – hovered item resource location
+  - `$$item_display_name_string` – plain text item display name
+  - `$$item_display_name_json` – JSON component item display name
 
 ## On Item Used
 - Fires when the player uses an item.

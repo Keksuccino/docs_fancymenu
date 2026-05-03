@@ -2,7 +2,7 @@
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
 published: true
-date: 2025-10-23T07:58:38.201Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-30T21:24:26.869Z
@@ -10,15 +10,17 @@ dateCreated: 2025-06-30T21:24:26.869Z
 
 # Videos
 
-Since FancyMenu v3.6.0, the mod has support for playing MP4 videos!
+FancyMenu supports playing MP4 videos as elements, menu backgrounds and Game Intro content.
 
-There is a Video **element** and a **menu background type** that lets you play videos.
+FancyMenu 3.9.0 adds a new native **Video** element and **Video** menu background powered by Watermedia V3. The old **Video [MCEF]** element/background type is deprecated and should only be kept for old layouts that still need it.
 
 There are also the following **actions** to control video backgrounds and elements:
 
-- **Set Video Element Volume"** to set the volume of a Video element
+- **Set Video Element Volume** to set the volume of a Video element
+- **Set Video Element Play Time** to seek a Video element to a millisecond timestamp
 - **Toggle Video Element Paused State** to toggle the paused state of a Video element
 - **Set Video Background Volume** to set the volume of a Video menu background
+- **Set Video Background Play Time** to seek a Video menu background to a millisecond timestamp
 - **Toggle Video Background Paused State** to toggle the paused state of a Video menu background
 
 And the following **placeholders** to get information about video backgrounds and elements:
@@ -32,13 +34,20 @@ And the following **placeholders** to get information about video backgrounds an
 - **Video Background Play Time** to get the current play time (progress) of a Video menu background
 - **Video Background Paused State** to get the paused state (true/false) of a Video menu background
 
+The duration and play-time placeholders return `MM:SS` by default. Set `output_as_timestamp` to `true` when you need millisecond timestamps. Play-time placeholders can still use `show_percentage` for 0-100 progress values.
+
+FancyMenu 3.9.0 also adds the **On Video Playback Status Changed** listener, which can react to `PLAYING`, `PAUSED`, `STOPPED` and `FINISHED`.
+
 ## Requirements
 
-To use the Video element and menu background type, you need to have the **MCEF** mod installed, which is used as backend for video support.
+To use the new native Video element and menu background type, you need to install:
 
-You can download MCEF from the official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef) and [Modrinth](https://modrinth.com/mod/mcef).
+- **Watermedia V3**
+- **Watermedia Binaries V3**
 
-For newer Minecraft versions (1.21.5+), the official MCEF projects do not provide builds, but there is a fork with builds for latest Minecraft versions, which can be found [here](https://www.curseforge.com/minecraft/mc-mods/mcef-keksuccino) (CurseForge) and [here](https://modrinth.com/mod/mcef-keksuccino) (Modrinth). This fork is maintained by Keksuccino, to get builds for latest Minecraft versions out as fast as possible.
+These are optional dependencies, so they must be added to the instance manually if you want video support.
+
+The deprecated **Video [MCEF]** type still uses MCEF. For new layouts, use the native Watermedia-powered Video type instead.
 
 ## Videos in Loading Screens
 
@@ -46,8 +55,8 @@ Video support does NOT work in loading screens (game/resource loading screen & w
 
 This also means that you should NOT add videos to the game loading screen via **Drippy Loading Screen**, since it will not work in most cases.
 
-You should use short, simple FMA files in loading screens instead, since users don't notice it getting reloaded in most cases when the animation is simple and short enough (it will still be stuck for a moment or flicker, but better than having a long animation start from the beginning again after reload).
+You should use short, simple AFMA/FMA files in loading screens instead, since users don't notice them getting reloaded in most cases when the animation is simple and short enough.
 
 ## Troubleshooting
 
-If you have issues with video support, make sure to ask in FancyMenu's Discord server for help instead of asking in the MCEF Discord server, since many issues come from FancyMenu's side and not MCEF.
+If you have issues with native video support, first confirm that both Watermedia V3 and Watermedia Binaries V3 are installed and match your Minecraft/modloader version.

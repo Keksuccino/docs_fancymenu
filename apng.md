@@ -2,7 +2,7 @@
 title: APNGs
 description: How to make FancyMenu-compatible APNG images.
 published: true
-date: 2025-04-14T20:14:52.812Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:10.093Z
@@ -10,8 +10,8 @@ dateCreated: 2025-04-14T20:14:10.093Z
 
 # Animated PNG Images
 
-> It is **NOT RECOMMENDED to use APNG** files with FancyMenu. You should use [FMA files](/fma) instead, because they are way more optimized. They load faster, eat less memory and play more smoothly. They also have a way smaller chance to produce errors and problems.
-{.is-danger}
+> For new large or complex animations, prefer [AFMA/FMA files](/fma). FancyMenu 3.9.0 can use Watermedia V3 + Watermedia Binaries V3 for faster APNG/GIF decoding when available, but AFMA is still the preferred FancyMenu animation format.
+{.is-info}
 
 
 APNGs are an animated version of PNG images, making it possible to have the same features as with a GIF, but in full, lossless PNG quality!

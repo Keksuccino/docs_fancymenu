@@ -2,7 +2,7 @@
 title: Elements
 description: Everything to know about FancyMenu's element types.
 published: true
-date: 2026-01-02T13:00:11.630Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-07-05T21:09:31.485Z
@@ -38,8 +38,8 @@ A clickable button that can perform a wide variety of actions. This is one of th
     *   Creating buttons that toggle other layouts on or off.
 *   **Key Features:**
     *   **Actions:** Can execute a sequence of actions, such as opening a URL, joining a server, sending a chat command, mimicking another button's function, controlling variables, and much more. Learn more at the [Action Scripts](https://docs.fancymenu.net/en/action-scripts) documentation.
-    *   **Custom Appearance:** Fully customizable textures for normal, hovered, and inactive states. Supports nine-slicing for scalable button backgrounds.
-    *   **Sounds:** Custom click and hover sounds.
+    *   **Custom Appearance:** Fully customizable textures for normal, hovered, and inactive states. Supports transparent backgrounds, nine-slicing, custom label colors, hover label colors, label scale, label shadow toggles and button icon textures.
+    *   **Sounds:** Custom click, hover and unhover sounds.
     *   **Template Mode:** Can act as a template to apply its appearance and properties to all other Vanilla or modded buttons in the menu, ensuring a consistent look. Read more at the [Button & Slider Templates](https://docs.fancymenu.net/en/button-slider-templates) page.
 
 ## Slider
@@ -52,7 +52,7 @@ A slider that users can drag to select a value from a list or a range. It can ex
 *   **Key Features:**
     *   **Types:** Can be a `Value List` (e.g., "Easy", "Normal", "Hard"), an `Integer Range` (e.g., 1-100), or a `Decimal Range` (e.g., 0.0-1.0).
     *   **Dynamic Actions:** Executes actions on value change. The slider's current value can be used within its actions to perform dynamic tasks, which can be used with [Variables](https://docs.fancymenu.net/en/variables).
-    *   **Customization:** The slider's label can dynamically display its current value. The handle and background textures are fully customizable.
+    *   **Customization:** The slider's label can dynamically display its current value. The handle and background textures are fully customizable, including transparent backgrounds, label color/scale options, text shadow toggles and custom click/unhover sounds.
 
 ## Checkbox
 A standard checkbox that can be toggled on or off. It can execute actions upon being toggled.
@@ -63,6 +63,7 @@ A standard checkbox that can be toggled on or off. It can execute actions upon b
     *   Toggling a layout or variable on/off.
 *   **Key Features:**
     *   **Actions on Toggle:** Executes [Action Scripts](https://docs.fancymenu.net/en/action-scripts) when its state changes. The current state (`true` or `false`) can be accessed within its actions.
+    *   **Variable Mode:** Can be linked directly to a FancyMenu variable, making the checkbox state read from and write to that variable.
     *   **Custom Appearance:** Supports custom textures for the background (in normal, hover, and inactive states) and the checkmark itself.
 
 ## Text Input Field
@@ -76,6 +77,7 @@ A field where users can type text. Its content can be linked to a FancyMenu vari
     *   **Variable Linking:** The text entered by the user is stored in a specified [variable](https://docs.fancymenu.net/en/variables).
     *   **Input Validation:** Can be configured to only accept specific character types, such as numbers, URLs, or plain text.
     *   **Max Length:** You can set a maximum character limit for the input.
+    *   **Appearance and Sounds:** Supports custom background color, border colors, border rounding, text color, hint/placeholder text, hint color, hover sounds, unhover sounds and click sounds.
 
 ## Tooltip
 A text box that can be configured to appear at a specific location or follow the mouse cursor. Its visibility is typically controlled by [Conditions (Loading Requirements)](https://docs.fancymenu.net/en/conditions).
@@ -100,6 +102,18 @@ Displays a single Minecraft item, either from vanilla or a mod.
     *   **Custom Data:** You can set the item's name, lore, count, enchantment glint, and even custom NBT data. You can learn more about using NBT with the [NBT Data Placeholder](https://docs.fancymenu.net/en/nbt-data-placeholder) documentation.
     *   **Tooltip Display:** Can be configured to show the item's standard tooltip on hover.
 
+## Block/Item JSON Model
+Renders a block or item JSON model from Minecraft resources or external sources.
+
+*   **Use Cases:**
+    *   Displaying a 3D resource-pack model in a menu.
+    *   Showing item/block previews with custom textures.
+    *   Building model-based decorative UI elements.
+*   **Key Features:**
+    *   **Model Source:** Can load model JSON from Minecraft resources or external sources.
+    *   **Texture Overrides:** Supports setting a custom texture.
+    *   **Rendering Controls:** Includes rotation and light controls.
+
 ## Image
 Displays a static image from a local file, a web URL, or a Minecraft resource location.
 
@@ -111,6 +125,7 @@ Displays a static image from a local file, a web URL, or a Minecraft resource lo
     *   **Nine-Slicing:** Allows the image to be used as a scalable border or panel without distorting the corners. Learn more at the [Nine-Slicing & Tiling](https://docs.fancymenu.net/en/nine-slicing-and-tiling) page.
     *   **Texture Repeating:** The image can be tiled to fill the element's area.
     *   **Tinting:** You can apply a color tint to the image.
+    *   **Rounded Corners:** Non-nine-sliced and non-repeated images can have rounded corners.
     *   **Parallax Effect:** Can be configured to move slightly with the mouse for a 3D effect. See the [Parallax Effect](https://docs.fancymenu.net/en/parallax) page for more.
 
 ## Text
@@ -129,7 +144,7 @@ A highly versatile element for displaying text. It can be used for anything from
 ## Video
 Plays a video file. This is perfect for cinematic intros or decorative looping backgrounds.
 
-> This element requires the **[MCEF (Minecraft Chromium Embedded Framework)](https://www.curseforge.com/minecraft/mc-mods/mcef)** mod to be installed and working.
+> The new native Video element in FancyMenu 3.9.0 requires **Watermedia V3** and **Watermedia Binaries V3**. The old **Video [MCEF]** element is deprecated.
 {.is-warning}
 
 *   **Use Cases:**
@@ -138,8 +153,20 @@ Plays a video file. This is perfect for cinematic intros or decorative looping b
     *   An in-game tutorial video.
 *   **Key Features:**
     *   **Sources:** Supports both local video files and web URLs. See the [Videos (MP4)](https://docs.fancymenu.net/en/video) page for details.
-    *   **Playback Control:** Can be set to loop automatically. Its volume and sound channel are adjustable.
-    *   **Interactive Control:** The video's playback (pause/play) and volume can be controlled via button actions.
+    *   **Playback Control:** Can be set to loop automatically. Its volume, sound channel and aspect-ratio preserving behavior are adjustable.
+    *   **Interactive Control:** The video's playback, seek time and volume can be controlled via button actions.
+
+## GLSL Shader
+Renders a custom GLSL shader inside an element.
+
+*   **Use Cases:**
+    *   Animated shader panels.
+    *   Procedural visual effects.
+    *   Shadertoy-style menu effects clipped to an element rectangle.
+*   **Key Features:**
+    *   **Shader Runtime:** Supports single-pass and multipass shaders.
+    *   **Shadertoy Support:** Can use Shadertoy-style `mainImage` shaders.
+    *   **Uniforms:** Exposes FancyMenu and input uniforms. See the [GLSL Shader API](https://docs.fancymenu.net/en/glsl-shader-api) page for details.
 
 ## Slideshow
 Displays a sequence of images. The configuration for the slideshow (images, timing, transitions) is done in a separate `.properties` file located in the `/config/fancymenu/assets/slideshows/` directory.
@@ -160,7 +187,16 @@ A simple, solid-colored rectangle.
     *   Designing simple UI panels and dividers.
     *   As a colored placeholder during layout design.
 *   **Key Features:**
-    *   Supports HEX RGBA colors, allowing for full control over color and transparency.
+    *   Supports HEX RGBA colors, rounded corners and optional blur, allowing the shape to work as a simple panel, tint or blur background.
+
+## Circle Shape
+A simple, solid-colored circle/ellipse shape.
+
+*   **Use Cases:**
+    *   Creating circular accents, indicators or soft UI areas.
+    *   Building themed UI decorations without a texture file.
+*   **Key Features:**
+    *   Works similar to the Rectangle Shape element and supports color/blur-style visual customization.
 
 ## Splash Text
 A recreation of Minecraft's iconic yellow, bouncing splash text from the title screen.
@@ -221,10 +257,14 @@ A powerful tool for creating complex, keyframe-based animations. It can animate 
     *   **Keyframe Editor:** A dedicated editor for adding, editing, and sequencing keyframes on a timeline.
     *   **Multi-Target:** A single Animator can control multiple "target" elements at once.
     *   **Control:** Animations can be set to loop. You can also choose to animate only position or size.
+    *   **Timing Offsets:** Target elements can use individual or randomized start timing offsets.
     *   **[Learn more about the Element Animator.](https://docs.fancymenu.net/en/element-animator)**
 
 ## Ticker
 An invisible element that executes a list of actions at a regular interval (every "tick").
+
+> For new background automation in FancyMenu 3.9.0+, consider using [Schedulers](https://docs.fancymenu.net/en/schedulers). Schedulers are global, easier to organize and can keep running independently of a specific screen.
+{.is-info}
 
 *   **Use Cases:**
     *   Periodically checking a server's online status and updating a text element.
@@ -265,7 +305,7 @@ A customizable bar that visually represents a numerical value.
     *   A volume indicator that is controlled by a **Slider** element.
 *   **Key Features:**
     *   **Dynamic Value:** The progress value (0-100 or 0.0-1.0) is set via a text field that supports [placeholders](https://docs.fancymenu.net/en/placeholders).
-    *   **Appearance:** The bar's direction (up, down, left, right), colors, and textures are all customizable.
+    *   **Appearance:** The bar's direction (up, down, left, right), colors, textures and nine-slicing for bar/background textures are all customizable.
     *   **Animation:** Features a smooth filling animation to make progress changes look less jarring.
 
 ## Dragger

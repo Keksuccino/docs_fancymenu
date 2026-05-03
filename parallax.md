@@ -2,7 +2,7 @@
 title: Parallax Effect
 description: How to apply a parallax effect to menu background and elements.
 published: true
-date: 2025-05-07T00:06:16.021Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T00:04:35.161Z
@@ -28,15 +28,15 @@ Adding a parallax effect to your menu background is super easy:
 1. Open the menu editor by pressing **CTRL+ALT+C** to show the menu bar, then go to **Customization**
 2. Create a new layout or edit an existing one
 3. Click on **Layout → Properties** 
-4. Click on **Set Background**
+4. Open **Menu Backgrounds**
 5. Choose **Image** as your background type
 6. Configure your image background:
    - Choose an image (local or from the web)
    - Enable **Parallax Effect** by clicking the toggle button
-   - Set the **Parallax Effect Intensity** (between 0.0 and 1.0)
+   - Set the **Parallax Effect Intensity X** and **Parallax Effect Intensity Y** (between 0.0 and 1.0)
    - Optionally enable **Invert Parallax Movement** to change the direction
 
-> **Tip**: The higher the intensity value, the more your background will move. Start with a value around 0.3 and adjust to your liking.
+> **Tip**: The higher the intensity value, the more your background will move. FancyMenu 3.9.0 lets you set X and Y intensity separately, so you can make movement stronger horizontally than vertically, or the other way around.
 {.is-info}
 
 # How to Use Parallax for Individual Elements
@@ -47,14 +47,14 @@ You can also add parallax to individual elements to create layered effects:
 2. Right-click the element to open the context menu
 3. Scroll down and find **Parallax Effect: Enabled/Disabled**
 4. Toggle it to **Enabled**
-5. Adjust the **Parallax Intensity** value (between 0.0 and 1.0)
+5. Adjust the **Parallax Intensity X** and **Parallax Intensity Y** values (between 0.0 and 1.0)
 6. Optionally enable **Invert Parallax** to change movement direction
 
 # Tips for Creating Amazing Parallax Effects
 
 ## Layer Your Elements
 
-Create depth by using different parallax intensity values for different elements:
+Create depth by using different parallax intensity values for different elements. You can tune X and Y separately:
 
 - **Background**: Lower intensity (0.1-0.3)
 - **Middle layer elements**: Medium intensity (0.3-0.6)
@@ -80,7 +80,7 @@ Too much movement can be distracting. Use parallax effect sparingly, especially 
 
 ## Parallax Movement Too Fast/Slow?
 
-Adjust the **Parallax Intensity** value:
+Adjust the **Parallax Intensity X/Y** values:
 - Lower values (closer to 0) = slower, more subtle movement
 - Higher values (closer to 1) = faster, more dramatic movement
 

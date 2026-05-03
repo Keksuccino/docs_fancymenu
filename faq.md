@@ -2,7 +2,7 @@
 title: FAQ
 description: Frequently asked questions.
 published: true
-date: 2026-01-18T05:31:46.774Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-04T19:44:22.004Z
@@ -45,7 +45,7 @@ Yes, this is done using **Custom GUIs**.
 This is expected behavior. Pre-loading large resources like high-resolution animations or sounds during the initial startup will naturally increase the game's loading time.
 
 ### My FMA animation is using too much RAM!
-FMA files are uncompressed animations and can consume a lot of memory. The recommended limits are a maximum of **200 frames** at a resolution of **1080p**. Using more frames or a higher resolution will significantly increase RAM usage. Animations are meant for short, decorative loops, not for playing full videos.
+Classic FMA files can consume a lot of memory when they contain many high-resolution frames. FancyMenu 3.9.0 adds AFMA, which is much better for large or complex animated textures. For classic FMA files, keep animations short and avoid very large frame counts/resolutions. Animations are meant for short, decorative loops, not for playing full videos.
 
 ### Does FancyMenu work with OptiFine?
 No. OptiFine is **not compatible** and is known to break many mods, including FancyMenu. It is highly recommended to use modern alternatives like Sodium/Embeddium + Iris/Oculus.
@@ -73,7 +73,7 @@ You can't. Due to how Minecraft renders entities, the Player Entity element will
 This is a visual glitch, likely caused by a mod conflict with another mod that alters player animations or models. Check the Player Entity's Pose settings to see if the legs have been rotated or moved by accident.
 
 ### How do I create a delay between actions in a script?
-You cannot add a "wait" or "sleep" action, as this would freeze the game. To create a delay, you must use a Ticker element to count up a variable. For example, have a Ticker increase a timer variable by 1 every tick. Then, use an IF statement to check if timer has reached your desired value (e.g., 20 for a 1-second delay if the ticker runs every 50ms) before executing the next action.
+FancyMenu 3.9.0 adds **Delay** and **Execute Later** blocks to action scripts. Use those for most delayed action logic. For repeating background logic, use [Schedulers](https://docs.fancymenu.net/en/schedulers).
 
 ### Can I customize menus from the Create mod?
 No. FancyMenu has known incompatibilities with Create's complex GUIs. Customization for Create screens has been intentionally disabled to prevent crashes.

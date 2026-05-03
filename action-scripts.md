@@ -2,7 +2,7 @@
 title: Action Scripts
 description: How to use action scripts with buttons, sliders, tickers and more.
 published: true
-date: 2025-11-27T02:29:04.770Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:02:13.319Z
@@ -26,6 +26,9 @@ To create more complex behavior, FancyMenu supports basic control statements in 
 - **Else-If Statement:** Checks another [condition](/en/conditions) if the preceding *if* (or earlier *else-if*) wasn't met.
 - **Else Statement:** Runs if none of the preceding [conditions](/en/conditions) are met.
 - **While Statement:** Repeats a block of actions continuously while a [condition](/en/conditions) remains true (with a built‑in timeout to prevent infinite loops).
+- **Delay Block:** Waits for the specified time before running its contained actions. The rest of the script keeps running while the delay counts down.
+- **Execute Later Block:** Queues contained actions to run on the main thread after a millisecond delay.
+- **Comment:** Adds a note inside the script for organization. Comments do not run any action.
 
 By combining these statements with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
 
@@ -94,6 +97,7 @@ The action script editor has some great QoL features making script editing super
 - `SHIFT + ARROW UP` : Move the selected entry one up
 - `SHIFT + ARROW DOWN` : Move the selected entry one down
 - `A` : Quick-open the Action Chooser screen to add a new action
+- `CTRL + S` : Done/save from the editor window
 
 ## More QoL Features
 
@@ -122,9 +126,22 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Toggles play/pause of an audio element's current track
 - **Value Required:** Yes - `audio_element_identifier`
 
+## Play Audio (`play_audio`)
+- **Description:** Plays an audio resource once. The action tracks audio it started so it can later be stopped by `stop_all_action_audios`.
+- **Value Required:** Yes - JSON configuration with `audioSource`, `soundChannel`, and `baseVolume`
+- **Example Value:** `{"audioSource":"[source:local]/config/fancymenu/assets/example.ogg","soundChannel":"master","baseVolume":1.0}`
+
+## Stop All Action Audios (`stop_all_action_audios`)
+- **Description:** Stops all audio tracks that were started by the **Play Audio** action. This does not stop Audio elements, menu open/close sounds, button sounds, or other audio systems.
+- **Value Required:** No
+
 ## Set Video Element Volume (`set_video_element_volume`)
 - **Description:** Sets the volume of a video element (0.0 to 1.0)
 - **Value Required:** Yes - `video_element_identifier:volume`
+
+## Set Video Element Play Time (`set_video_element_play_time`)
+- **Description:** Seeks a video element to a millisecond timestamp
+- **Value Required:** Yes - `video_element_identifier:timestamp_ms`
 
 ## Toggle Video Element Paused State (`toggle_video_element_pause_state`)
 - **Description:** Toggles the paused state of a video element
@@ -133,6 +150,13 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 ## Set Video Background Volume (`set_video_menu_background_volume`)
 - **Description:** Sets the volume of a video menu background (0.0 to 1.0)
 - **Value Required:** Yes - `background_identifier:volume`
+
+> To get the identifier of a background, right-click the editor background and click on 'Copy Background Identifier'.
+{.is-info}
+
+## Set Video Background Play Time (`set_video_menu_background_play_time`)
+- **Description:** Seeks a video menu background to a millisecond timestamp
+- **Value Required:** Yes - `background_identifier:timestamp_ms`
 
 > To get the identifier of a background, right-click the editor background and click on 'Copy Background Identifier'.
 {.is-info}
@@ -201,6 +225,13 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Sends a chat message or executes a chat command
 - **Value Required:** Yes - `message_text` or `/command_text`
 
+## Execute Command As Integrated Server (`execute_command_as_integrated_server`)
+- **Description:** Force-executes a command in singleplayer as the integrated server, ignoring permissions and the cheats setting.
+- **Value Required:** Yes - Command text, for example `/give @p minecraft:diamond 1`
+
+> This action only works in singleplayer while the world is not opened to LAN. It intentionally does nothing on multiplayer servers.
+{.is-warning}
+
 ## Paste to Chat (`paste_to_chat`)
 - **Description:** Pastes text to the chat input field (append or replace)
 - **Value Required:** Yes - `true:Text` or `false:Text`
@@ -208,6 +239,26 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 ## Display In Chat [Client-Side] (`display_in_chat_client_side`)
 - **Description:** Prints text directly to local chat (no server)
 - **Value Required:** Yes - `text_or_json`
+
+## Send FM Data To Server (`send_fm_data_to_server`)
+- **Description:** Sends custom text data to the current FancyMenu server through the FM Data packet channel.
+- **Value Required:** Yes - `data_identifier||data`
+
+## Connect To Remote Server (`connect_to_remote_server`)
+- **Description:** Opens or reuses a client-initiated WebSocket connection to an external remote server.
+- **Value Required:** Yes - Remote server URL, for example `wss://example.com/ws`
+
+## Send Data To Remote Server (`send_data_to_remote_server`)
+- **Description:** Opens or reuses a remote server connection and sends text data to it.
+- **Value Required:** Yes - `remote_server_url||data`
+
+## Close Remote Server Connection (`close_remote_server_connection`)
+- **Description:** Closes a specific remote server connection by request ID.
+- **Value Required:** Yes - Request ID, usually from a Remote Server listener variable such as `$$request_id`
+
+## Close All Remote Server Connections (`close_all_remote_server_connections`)
+- **Description:** Closes all active remote server connections opened by FancyMenu.
+- **Value Required:** No
 
 ## Open URL in Browser (`openlink`)
 - **Description:** Opens a link in your default browser
@@ -278,6 +329,10 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Runs a Minecraft keybind (optional hold)
 - **Value Required:** Yes - `keybind_id|||keep_pressed_bool|||duration_ms`
 
+## Set Text Input Field Value (`set_text_input_field_value`)
+- **Description:** Sets the value of a custom or vanilla input field by element identifier.
+- **Value Required:** Yes - `element_identifier|||new_value|||force_set_when_inactive`
+
 ## Create File in Game Directory (`create_file_in_game_dir`)
 - **Description:** Creates an empty file in the game directory (instance root). Accepts the `.minecraft/` prefix to target the default launcher profile directory (may differ from the current instance dir).
 - **Value Required:** Yes - `file_path`
@@ -302,6 +357,14 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Downloads a file asynchronously into the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not necessarily the running instance). Provide the **target folder**; filename is derived from headers/URL automatically.
 - **Value Required:** Yes - `url||target_folder`
 
+## Extract ZIP File In Game Directory (`extract_zip_file_in_game_dir`)
+- **Description:** Extracts a ZIP file into a target folder inside the game directory or default `.minecraft` directory. Triggers the **On ZIP Extracted via Action** listener when finished.
+- **Value Required:** Yes - `source_zip_path||target_folder_path`
+
+## Open File/Folder In Game Directory (`open_file_folder_in_game_dir`)
+- **Description:** Opens a file or folder with the operating system's default app. The target must stay inside the game directory or the default `.minecraft` directory.
+- **Value Required:** Yes - `target_path`
+
 ## Write File in Game Directory (`write_file_in_game_dir`)
 - **Description:** Writes or appends text inside the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from this instance). Creates the file if missing. Supports `\n` in the value to insert line breaks; append mode controlled by the final boolean.
 - **Value Required:** Yes - `path|||content|||append_bool`
@@ -313,6 +376,14 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 ## Show Toast (`show_toast`)
 - **Description:** Displays a configurable toast notification
 - **Value Required:** Yes - toast configuration
+
+## Start Scheduler (`start_scheduler`)
+- **Description:** Starts a scheduler by its scheduler ID.
+- **Value Required:** Yes - `scheduler_id`
+
+## Stop Scheduler (`stop_scheduler`)
+- **Description:** Stops a scheduler by its scheduler ID.
+- **Value Required:** Yes - `scheduler_id`
 
 ## Set Minecraft Option (`edit_minecraft_option`)
 - **Description:** Edits a Minecraft config option

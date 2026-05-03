@@ -2,7 +2,7 @@
 title: Variables
 description: How to create and use variables.
 published: true
-date: 2025-04-14T20:16:31.178Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:28.294Z
@@ -23,6 +23,8 @@ To create a variable in FancyMenu:
 5. Type in a name for your new variable and click **OK**.
 
 That's it! Your variable is ready to use. You can see it listed in the "Manage Variables" screen.
+
+FancyMenu 3.9.0 reworks the Manage Variables window. Important actions are available through a right-click context menu, the list supports keyboard navigation, variables can be copied/pasted, changes can be undone/redone, typing starts a search, **DEL** deletes the selected variable, and **CTRL + S** confirms the window.
 
 ## Setting Variable Values
 

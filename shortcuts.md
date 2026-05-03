@@ -2,7 +2,7 @@
 title: Shortcuts & Keybinds
 description: Shortcuts for the layout editor, the text editor and other parts of FancyMenu.
 published: true
-date: 2025-05-17T18:56:49.443Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:16:07.228Z
@@ -45,6 +45,10 @@ This also works from one layout to another, so you can copy elements in layout A
 ## CTRL + S
 
 Quickly **save** the layout.
+
+## CTRL + ALT + L
+
+Quickly open the layout editor with the last edited layout.
 
 ## CTRL + Z
 
@@ -90,9 +94,33 @@ Holding down **O** shows the anchor point overlay if its visibility is set to **
 
 **Select** the full text.
 
+## CTRL + D
+
+**Duplicate** the current line.
+
 ## CTRL + U
 
 **Cut** the selected text.
+
+## ALT + Arrow Up / Arrow Down
+
+Move the current line up or down.
+
+## CTRL + Home / CTRL + End
+
+Move the cursor to the start or end of the text.
+
+## CTRL + G
+
+Open the **Go To Line** input.
+
+## CTRL + S
+
+Confirm the editor, same as clicking **Done**.
+
+## SHIFT + Arrow Keys
+
+Select/highlight text while moving the cursor.
 
 ## Arrow Keys
 
@@ -115,3 +143,8 @@ This includes a full resource/asset reload and most caches get cleared.
 
 Toggle the visibility of FancyMenu's **debug overlay**.
 
+# Editing Windows
+
+Many FancyMenu editing windows in v3.9.0 support keyboard navigation with **Arrow Keys** and **Enter**. Many windows also use **CTRL + S** as a shortcut for **Done** and **ESC** as **Cancel**.
+
+The reworked Action Script Editor, Manage Requirements and Manage Variables windows also support right-click context menus, search, undo/redo and keyboard navigation for their lists.

@@ -2,7 +2,7 @@
 title: Nine-Slicing & Tiling
 description: How to use nine-slicing and tiling in FancyMenu.
 published: true
-date: 2025-05-07T00:48:25.757Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T00:48:22.581Z
@@ -22,6 +22,7 @@ Nine-slicing is a technique that lets you stretch an image to any size without m
 
 In FancyMenu, Nine-Slicing is available for:
 - **Button Elements** (both custom buttons and when editing Vanilla buttons)
+- **Progress Bar textures** (bar and background textures)
 
 ## How to Use Nine-Slicing with Buttons
 
@@ -58,7 +59,7 @@ In FancyMenu, Tiling is available for:
 
 ## How to Use Tiling with Menu Backgrounds
 
-1. Go to "Set Background" in your layout properties.
+1. Open **Menu Backgrounds** from the layout editor background context menu.
 2. Choose the **Image** background type.
 3. Select your background image.
 4. Enable the **"Repeat Texture"** option.

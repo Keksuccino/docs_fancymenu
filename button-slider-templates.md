@@ -2,7 +2,7 @@
 title: Button & Slider Templates
 description: How to use button/slider templates to apply a specific button/slider design to ALL buttons at once.
 published: true
-date: 2025-05-26T04:10:37.922Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-07T01:22:23.200Z
@@ -11,6 +11,8 @@ dateCreated: 2025-05-07T01:22:23.200Z
 # Using Button Elements as Templates for Buttons and Sliders
 
 It is possible to use a Button element as a template for other buttons and even sliders. By doing that, you can apply a specific button/slider design to ALL buttons/sliders in a menu or even the all menus at once when using a universal layout.
+
+FancyMenu 3.9.0 also adds [Global Customizations](/global-customizations), which can replace vanilla button and slider textures globally without using a resource pack. Use global customizations for broad vanilla UI styling, and use templates when you need layout-specific behavior or template-driven element properties.
 
 # Important Before You Start
 

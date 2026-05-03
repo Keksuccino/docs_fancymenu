@@ -1,8 +1,8 @@
 ---
-title: Animations (FMA)
-description: How to make and use FMA (FancyMenu Animation) files.
+title: Animations (FMA/AFMA)
+description: How to make and use FancyMenu animation files.
 published: true
-date: 2025-04-14T20:15:50.427Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:48.394Z
@@ -15,6 +15,20 @@ They are pretty much the same as APNGs, but way more optimized for FancyMenu.
 
 > This feature only exists in FancyMenu v3.2.0+!
 {.is-warning}
+
+# AFMA in FancyMenu 3.9.0+
+
+FancyMenu 3.9.0 adds **AFMA** (Advanced FancyMenu Animation), the successor to classic FMA files.
+
+AFMA files are no longer ZIP files. They use FancyMenu's newer animation format with better file sizes, lower memory usage and better performance.
+
+For new large or complex animated textures, use **AFMA** instead of classic FMA:
+
+1. Open FancyMenu's menu bar.
+2. Go to **Tools -> AFMA Creator**.
+3. Import/convert your frames with the creator.
+
+Classic FMA files are still supported and were optimized in FancyMenu 3.9.0, so existing layouts do not need to be converted immediately.
 
 # Making an FMA
 

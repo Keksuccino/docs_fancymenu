@@ -2,7 +2,7 @@
 title: Conditions (Requirements)
 description: How to use loading requirements.
 published: true
-date: 2026-04-03T21:29:14.819Z
+date: 2026-05-03T11:01:52.000Z
 tags: loading requirements, loading requirement, requirement, requirements
 editor: markdown
 dateCreated: 2025-04-14T20:14:22.175Z
@@ -27,6 +27,8 @@ You can add them in the action script editor screen and use them to execute spec
 Some requirements need you to set some values to work properly. If that's the case, the requirement screen should tell you to set all values first, but if not, just check if the **Edit Requirement Value** button is clickable when adding the requirement.
 Always check the requirement's description if you're not sure what to set as value.
 Some value inputs even support **TAB auto completion**.
+
+FancyMenu 3.9.0 reworks the Manage Requirements window to use a right-click context menu, keyboard navigation, search, undo/redo (`CTRL + Z` / `CTRL + Y`) and `CTRL + S` as the **Done** shortcut.
 
 # Requirements in Detail
 The following list contains most, if not all, requirements available in FancyMenu. It is possible that the list is sometimes a bit outdated due to updates for the mod.
@@ -54,6 +56,10 @@ Checks if any button (vanilla or custom) is currently being hovered by the mouse
 Checks if a specific layout is currently enabled.  
 **Value required**: Yes - The name of the layout (e.g., `my_cool_main_menu_layout`)
 
+## Is Scheduler Running
+Checks if a scheduler is currently running.
+**Value required**: Yes - Scheduler ID (e.g., `my_scheduler`)
+
 ## Is GUI Scale
 Checks if the current GUI scale matches certain conditions.  
 **Value required**: Yes - Can accept numeric values like `1`, `2`, etc.
@@ -73,6 +79,22 @@ Checks if a specific keyboard key is currently being pressed.
 
 ## Is Any Screen Open
 Checks if any screen/menu is currently open (returns false if no screen is showing).  
+**Value required**: No
+
+## Is MC Debug Overlay Enabled
+Checks if the F3 debug overlay is currently visible.
+**Value required**: No
+
+## Is Active Cursor Type
+Checks if FancyMenu's currently active cursor type matches a specific standard cursor type.
+**Value required**: Yes - Cursor type: `normal`, `writing`, `crosshair`, `pointing_hand`, `resize_horizontal`, `resize_vertical`, `resize_nwse`, `resize_nesw`, `resize_all`, or `not_allowed`
+
+## Is Customization Menu Bar Visible
+Checks if FancyMenu's customization menu bar is currently visible.
+**Value required**: No
+
+## Is Modpack Mode Enabled
+Checks if FancyMenu's Modpack Mode is enabled.
 **Value required**: No
 
 ## Mouse Clicked
@@ -135,6 +157,14 @@ Checks if the player is in a specific game mode.
 Checks if the current game difficulty matches a specific value.  
 **Value required**: Yes - Difficulty name (e.g., "peaceful", "easy", "normal", "hard")
 
+## Is Hardcore
+Checks if the currently loaded world is in hardcore mode.
+**Value required**: No
+
+## Is Camera Perspective
+Checks if the current camera perspective matches a specific perspective.
+**Value required**: Yes - `first_person`, `third_person_back`, or `third_person_front`
+
 ## Is Raining
 Checks if it's currently raining in the player's location.  
 **Value required**: No
@@ -157,6 +187,10 @@ Checks if the player is currently sprinting.
 
 ## Is Player Sneaking
 Checks if the player is currently sneaking/crouching.  
+**Value required**: No
+
+## Is Player Using Item
+Checks if the player is currently using an item.
 **Value required**: No
 
 ## Is Player Swimming
@@ -239,6 +273,10 @@ Checks if the player is in a specific biome.
 Checks if the player is in a specific dimension.  
 **Value required**: Yes - Dimension identifier (e.g., `minecraft:overworld`, `minecraft:the_nether`, `minecraft:the_end`)
 
+## Is Player In Structure
+Checks if the player is currently inside a specific structure. Requires FancyMenu on the server for server worlds.
+**Value required**: Yes - Structure identifier (e.g., `minecraft:village`)
+
 ## Is Entity Nearby
 Checks if a specific entity type is within a certain radius of the player.  
 **Value required**: Yes - Format: "radius:entity_id" (e.g., `10:minecraft:pig` - checks for pigs within 10 blocks)
@@ -258,6 +296,14 @@ Checks if the player is set to left-handed mode in the game options.
 ## Is Inventory Slot Filled
 Checks if a specific inventory slot contains an item.  
 **Value required**: Yes - Slot number (0-35 for main inventory, slots 0-8 are hotbar)
+
+## Is Item Hovered in Inventory
+Checks if the cursor is hovering any item in an inventory screen.
+**Value required**: No
+
+## Is Cursor Holding Inventory Item
+Checks if the cursor is currently holding an inventory item stack.
+**Value required**: No
 
 ## Is Hotbar Slot Selected
 Checks if a specific hotbar slot is currently selected.  

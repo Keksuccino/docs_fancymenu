@@ -2,7 +2,7 @@
 title: Menu Backgrounds
 description: How to set custom menu backgrounds (images, animations) for screens.
 published: true
-date: 2025-08-21T20:57:16.740Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-06-10T00:20:13.298Z
@@ -10,35 +10,52 @@ dateCreated: 2025-06-10T00:20:13.298Z
 
 # Menu Backgrounds
 
-FancyMenu lets you set a custom background for menus. You can set images, animations (FMA), videos (FancyMenu v3.6.0+), slideshows, cubic panoramas (like in the Title screen) and more.
+FancyMenu lets you set custom backgrounds for menus. You can use images, animated textures, slideshows, cubic panoramas, colors, browsers, videos, GLSL shaders and more.
 
 # Setting a Background
 
-To set a menu background, right-click the editor background and click on **Set Background**.
+In FancyMenu 3.9.0+, menu background customization happens directly from the layout editor context menu:
 
-In the screen that opens, choose one of the background types, like:
+1. Open the layout editor.
+2. Right-click the editor background.
+3. Open **Menu Backgrounds**.
+4. Enable and configure the background type(s) you want.
 
+Common background types include:
+
+- Vanilla
 - Image
 - Slideshow
 - Cubic Panorama
 - Color (HEX)
-- Video [MCEF]
+- Browser
+- Video
+- GLSL Shader
+- Video [MCEF] (deprecated)
 - and more..
 
-Select one of the types and then click on **Configure Background** in the bottom-right to configure the background type.
+The old **Video [MCEF]** background type is deprecated in FancyMenu 3.9.0. Use the new native **Video** background powered by Watermedia V3 for new layouts.
 
 # Removing the Custom Background
 
-To remove the custom background you set earlier, just open the **Set Background** screen again and this time, click on **NO BACKGROUND [RESET BACKGROUND]**. Then click **Done**. This will revert the background back to Vanilla.
+Open **Menu Backgrounds** again and disable/remove the custom background type you no longer want. If no custom background type is active, the screen will fall back to its normal vanilla background behavior.
 
 # Stacking Backgrounds
 
-Menu backgrounds can stack! If you have multiple layouts active, backgrounds of all layouts will stack. If you combine this with transparent backgrounds and the **Parallax** feature of some background types, this allows you to make multi-layer parallax backgrounds!
+FancyMenu 3.9.0 allows multiple menu background types to be enabled in the same layout. Active backgrounds are rendered as a stack, so you can combine a base image or panorama with translucent overlays, browser layers, shader layers, parallax layers and other effects.
 
-To sort layouts and make them show up in a specific order, right-click the editor background and click on **Layout Index**.
+If you also have multiple layouts active, their background stacks can combine too. To sort layouts and make them show up in a specific order, right-click the editor background and click on **Layout Index**.
 
 # Transparent Backgrounds
 
 Since there is nothing behind backgrounds, it is not possible to make the background at the very bottom transparent, because that would result in graphical glitches, but it is absolutely possible to use transparency for stacked background setups, as long as the bottom one stays as full opacity. That way you can have translucent background layers on top of the bottom one.
 
 To make a background image translucent, use an image editor of your choice.
+
+# Browser Backgrounds
+
+The **Browser** background type works like the Browser element, but fills the whole screen and is auto-focused. This is useful for fullscreen web content, local HTML pages, or web-video layers.
+
+# GLSL Shader Backgrounds
+
+The **GLSL Shader** background type renders custom GLSL shaders and supports Shadertoy-style shader authoring. See the [GLSL Shader API](/glsl-shader-api) page for supported uniforms and shader structure.

@@ -2,7 +2,7 @@
 title: Placeholders
 description: How to use placeholders.
 published: true
-date: 2025-11-27T02:56:28.981Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:15:37.364Z
@@ -47,6 +47,9 @@ Clicking on a placeholder in the placeholder list will paste it to the text cont
 # Placeholders In Detail
 
 This list contains most, if not all, placeholders available in FancyMenu. The list can sometimes be a bit outdated due to updates of the mod.
+
+> FancyMenu 3.9.0 removed the old scoreboard/player-tag placeholders because they did not work reliably. They are no longer documented as active placeholders.
+{.is-warning}
 
 ## Player Name (playername)
 Returns the current player's username.
@@ -200,6 +203,16 @@ Returns the current Y position of the mouse.
 ```
 Example output: `540`
 
+## Clicks Per Second (clicks_per_second)
+Returns the current clicks per second for a mouse button.
+```
+{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
+```
+Parameters:
+- `mouse_button`: `left` or `right`
+
+Example output: `8`
+
 ## GUI Scale (guiscale)
 Returns the current GUI scale.
 ```
@@ -213,6 +226,13 @@ Returns the label/text of a vanilla widget/button.
 {"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
 ```
 Example output: `Options...`
+
+## Text Input Field Value (text_input_field_value)
+Returns the current value of a custom or vanilla text input field by element identifier.
+```
+{"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
+```
+Example output: `Hello World`
 
 ## Current Player Health (current_player_health)
 Returns the player's current health points.
@@ -277,12 +297,26 @@ Returns the player's hunger as a percentage.
 ```
 Example output: `100`
 
+## Current Player Hunger Saturation (current_player_hunger_saturation)
+Returns the player's current hunger saturation value.
+```
+{"placeholder":"current_player_hunger_saturation"}
+```
+Example output: `5.0`
+
 ## Current Player Armor (current_player_armor)
 Returns the player's current armor value.
 ```
 {"placeholder":"current_player_armor"}
 ```
 Example output: `20`
+
+## Player Armor Toughness (player_armor_toughness)
+Returns the player's total armor toughness value.
+```
+{"placeholder":"player_armor_toughness"}
+```
+Example output: `8.0`
 
 ## Max Player Armor (max_player_armor)
 Returns the maximum armor value.
@@ -459,6 +493,52 @@ Returns information about an item in a specific inventory slot.
 ```
 Example output: `minecraft:diamond_sword`
 
+## Slot Item Count (slot_item_count)
+Returns the stack size of the item in a specific player inventory slot.
+```
+{"placeholder":"slot_item_count","values":{"slot":"0"}}
+```
+Example output: `64`
+
+## Slot Item Durability (slot_item_durability)
+Returns durability information for the item in a specific player inventory slot.
+```
+{"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
+```
+Parameters:
+- `slot`: Player inventory slot number.
+- `format`: `current`, `remaining`, `max`, `damage`, `percentage`, or `percent`.
+
+Example output: `87`
+
+## Slot Item Display Name (slot_item_display_name_fm)
+Returns the display name of the item in a specific slot as a JSON text component. In spectator mode, hotbar slots can resolve spectator menu item names unless `ignore_spectator` is `true`.
+```
+{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
+```
+Example output: `{"text":"Diamond Sword","color":"aqua"}`
+
+## Inventory Item Count (inventory_item_count)
+Returns the total count of an item type in the player inventory. If `item` is empty, it counts all item stacks in the inventory.
+```
+{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
+```
+Example output: `12`
+
+## Inventory Slot Food Point Restore Amount (inventory_slot_food_point_restore_amount)
+Returns the hunger points restored by the food item in the given player inventory slot.
+```
+{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
+```
+Example output: `4.0`
+
+## Hovered Inventory Item (hovered_inventory_item)
+Returns the item key of the item currently hovered in an inventory screen.
+```
+{"placeholder":"hovered_inventory_item"}
+```
+Example output: `minecraft:apple`
+
 ## World Game Time (game_time)
 Returns the current in-game time tick counter.
 ```
@@ -474,9 +554,9 @@ Returns the current world day time.
 Example output: `13000`
 
 ## World Day Time Hour (world_daytime_hour)
-Returns the hour component of world time (00-23).
+Returns the hour component of world time. By default this uses 24-hour format; set `twelve_hour_format` to `"true"` for 12-hour format.
 ```
-{"placeholder":"world_daytime_hour"}
+{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
 ```
 Example output: `12`
 
@@ -494,12 +574,124 @@ Returns the current world difficulty.
 ```
 Example output: `normal`
 
+## Current World Seed (current_world_seed)
+Returns the seed of the current singleplayer world. Returns an empty value when the seed is not available.
+```
+{"placeholder":"current_world_seed"}
+```
+Example output: `123456789`
+
+## Current Biome (current_biome)
+Returns the biome the player is currently in. Set `as_key` to `"false"` to return a translated/display name where available.
+```
+{"placeholder":"current_biome","values":{"as_key":"true"}}
+```
+Example output: `minecraft:plains`
+
+## Current Dimension (current_dimension)
+Returns the dimension the player is currently in. Set `as_key` to `"false"` to return a translated/display name where available.
+```
+{"placeholder":"current_dimension","values":{"as_key":"true"}}
+```
+Example output: `minecraft:overworld`
+
+## Gamerule Value (gamerule_value)
+Returns the current value of a gamerule in the loaded world/server. Server worlds require FancyMenu on the server.
+```
+{"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
+```
+Example output: `true`
+
+## Item Category (item_category)
+Returns the creative tab category of an item. Set `as_key` to `"true"` to return the category key instead of the display name.
+```
+{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
+```
+Example output: `Combat`
+
 ## Current HUD Title/Subtitle (current_title)
 Returns the currently displayed title text.
 ```
 {"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
 ```
 Example output: `Game Over!`
+
+## Action Bar Message (action_bar_message_fm)
+Returns the current vanilla action bar message above the hotbar.
+```
+{"placeholder":"action_bar_message_fm"}
+```
+Example output: `You may not rest now`
+
+## Action Bar Message Time (action_bar_message_time_fm)
+Returns how many ticks the current vanilla action bar message will still be shown.
+```
+{"placeholder":"action_bar_message_time_fm"}
+```
+Example output: `42`
+
+## Camera Rotation X (camera_rotation_x_fm)
+Returns the current camera pitch in degrees.
+```
+{"placeholder":"camera_rotation_x_fm"}
+```
+Example output: `12.5`
+
+## Camera Rotation Y (camera_rotation_y_fm)
+Returns the current camera yaw in degrees.
+```
+{"placeholder":"camera_rotation_y_fm"}
+```
+Example output: `-90.0`
+
+## Camera Rotation Delta X (camera_rotation_delta_x_fm)
+Returns the per-tick change in camera pitch.
+```
+{"placeholder":"camera_rotation_delta_x_fm"}
+```
+Example output: `0.4`
+
+## Camera Rotation Delta Y (camera_rotation_delta_y_fm)
+Returns the per-tick change in camera yaw.
+```
+{"placeholder":"camera_rotation_delta_y_fm"}
+```
+Example output: `-1.2`
+
+## Highlighted Item Time (highlighted_item_time_fm)
+Returns how many ticks the highlighted item name will still be shown above the hotbar.
+```
+{"placeholder":"highlighted_item_time_fm"}
+```
+Example output: `30`
+
+## Player Item Use Progress (player_item_use_progress_fm)
+Returns the current item-use progress from `0.0` to `1.0`.
+```
+{"placeholder":"player_item_use_progress_fm"}
+```
+Example output: `0.65`
+
+## Player Position Delta X (player_position_delta_x_fm)
+Returns the per-tick change in player position on the X axis.
+```
+{"placeholder":"player_position_delta_x_fm"}
+```
+Example output: `0.0`
+
+## Player Position Delta Y (player_position_delta_y_fm)
+Returns the per-tick change in player position on the Y axis.
+```
+{"placeholder":"player_position_delta_y_fm"}
+```
+Example output: `-0.08`
+
+## Player Position Delta Z (player_position_delta_z_fm)
+Returns the per-tick change in player position on the Z axis.
+```
+{"placeholder":"player_position_delta_z_fm"}
+```
+Example output: `0.12`
 
 ## Current Server IP (current_server_ip)
 Returns the IP of the connected server.
@@ -572,9 +764,9 @@ Returns the current day of the month (01-31).
 Example output: `27`
 
 ## Hour (realtimehour)
-Returns the current hour (00-23).
+Returns the current hour. By default this uses 24-hour format; set `twelve_hour_format` to `"true"` for 12-hour format.
 ```
-{"placeholder":"realtimehour"}
+{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
 ```
 Example output: `14`
 
@@ -598,6 +790,9 @@ Returns the current Unix timestamp in milliseconds.
 {"placeholder":"unix_time"}
 ```
 Example output: `1716552478123`
+
+> Realtime placeholders (`realtimeyear`, `realtimemonth`, `realtimeday`, `realtimehour`, `realtimeminute`, `realtimesecond`, and `unix_time`) support a `timezone` value. Use normal Java time zone IDs like `UTC`, `Europe/Berlin`, or `America/New_York`; omit it or use `system` for the system timezone.
+{.is-info}
 
 ## CPU Info (cpuinfo)
 Returns information about the CPU.
@@ -726,18 +921,18 @@ Returns the volume level of a video element (0.0 to 1.0).
 Example output: `0.5`
 
 ## Video Element Duration (video_element_duration)
-Returns the total duration of a video element in seconds.
+Returns the total duration of a video element in `MM:SS` format. Set `output_as_timestamp` to `"true"` to return a millisecond timestamp.
 ```
-{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
 ```
-Example output: `120.5`
+Example output: `02:00` (or `120000` when `output_as_timestamp` is `"true"`)
 
 ## Video Element Play Time (video_element_playtime)
-Returns the current playback time (progress) of a video element in seconds.
+Returns the current playback time (progress) of a video element in `MM:SS` format. Set `show_percentage` to `"true"` for a 0-100 progress value, or `output_as_timestamp` to `"true"` for milliseconds.
 ```
-{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
 ```
-Example output: `45.2`
+Example output: `00:45` (or `38` as percentage, or `45200` as timestamp)
 
 ## Video Element Paused State (video_element_paused_state)
 Returns whether a video element is paused (true/false).
@@ -754,18 +949,18 @@ Returns the volume level of a video menu background (0.0 to 1.0).
 Example output: `0.7`
 
 ## Video Background Duration (video_background_duration)
-Returns the total duration of a video menu background in seconds.
+Returns the total duration of a video menu background in `MM:SS` format. Set `output_as_timestamp` to `"true"` to return a millisecond timestamp.
 ```
-{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
 ```
-Example output: `180.0`
+Example output: `03:00` (or `180000` when `output_as_timestamp` is `"true"`)
 
 ## Video Background Play Time (video_background_playtime)
-Returns the current playback time (progress) of a video menu background in seconds.
+Returns the current playback time (progress) of a video menu background in `MM:SS` format. Set `show_percentage` to `"true"` for a 0-100 progress value, or `output_as_timestamp` to `"true"` for milliseconds.
 ```
-{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
 ```
-Example output: `60.5`
+Example output: `01:00` (or `33` as percentage, or `60500` as timestamp)
 
 ## Video Background Paused State (video_background_paused_state)
 Returns whether a video menu background is paused (true/false).
@@ -1045,6 +1240,62 @@ Converts the input text to all lowercase letters.
 {"placeholder":"lowercase_text","values":{"text":"Hello World"}}
 ```
 Example output: `hello world`
+
+## Title Case Text (title_case_text)
+Converts the input text to title case.
+```
+{"placeholder":"title_case_text","values":{"text":"hello world"}}
+```
+Example output: `Hello World`
+
+## Sentence Case Text (sentence_case_text)
+Converts the input text to sentence case.
+```
+{"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
+```
+Example output: `Hello world. This is fancymenu!`
+
+## Snake Case Text (snake_case_text)
+Converts the input text to `snake_case`.
+```
+{"placeholder":"snake_case_text","values":{"text":"Hello World"}}
+```
+Example output: `hello_world`
+
+## Kebab Case Text (kebab_case_text)
+Converts the input text to `kebab-case`.
+```
+{"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
+```
+Example output: `hello-world`
+
+## Alternating Case Text (alternating_case_text)
+Converts the input text to alternating case.
+```
+{"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
+```
+Example output: `aLtErNaTiNg CaSe`
+
+## Toggle Case Text (toggle_case_text)
+Toggles the case of every letter in the input text.
+```
+{"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
+```
+Example output: `tOGGLE cASE`
+
+## Encode To Base64 (base64_encode)
+Encodes the given text as Base64.
+```
+{"placeholder":"base64_encode","values":{"text":"Hello World"}}
+```
+Example output: `SGVsbG8gV29ybGQ=`
+
+## Decode From Base64 (base64_decode)
+Decodes a Base64 string back to plain text.
+```
+{"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
+```
+Example output: `Hello World`
 
 ## File Text (file_text)
 Returns text lines from a file or URL. Can return all lines or just the last X lines.

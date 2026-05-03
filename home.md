@@ -2,7 +2,7 @@
 title: Getting Started
 description: The world of FancyMenu awaits you! This is the beginning of something beautiful!
 published: true
-date: 2025-10-09T06:06:26.820Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T19:45:47.193Z
@@ -19,6 +19,18 @@ The first time using FancyMenu can be a bit overwhelming, but don't worry, most 
 > Please **keep in mind** that this page is just to get into FancyMenu and help you with your **very first steps**.
 Make sure to also check out the rest of the documentation for more in-detail information about FancyMenu's features!
 {.is-info}
+
+# New In FancyMenu 3.9.0
+
+FancyMenu 3.9.0 adds several larger systems with their own documentation pages:
+
+- **[Global Customizations](/global-customizations)**: global UI, startup, button/slider, music, background and loading-screen customizations that can affect screens without enabling a normal layout for each one.
+- **[Schedulers](/schedulers)**: background action scripts that run on a timer and can be started, stopped and checked from actions/requirements.
+- **[Decoration Overlays](/decoration-overlays)**: fullscreen visual overlays like snowfall, rainfall, fireflies, string lights, leaves, fireworks, confetti, browser overlays and GLSL shader overlays.
+- **[FM Data](/fm-data)**: text data exchange between FancyMenu clients and Minecraft servers.
+- **[Remote Server Communication](/remote-server-communication)**: client-initiated WebSocket communication with external services.
+- **[Seamless World Loading](/seamless-world-loading)**: use a screenshot from the previous world/server session as the next world-loading background.
+- **[GLSL Shader API](/glsl-shader-api)**: shader authoring reference for the GLSL menu background, element and decoration overlay.
 
 # The Menu Bar
 

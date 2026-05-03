@@ -2,7 +2,7 @@
 title: Custom GUIs
 description: How to add a new GUI screen to the game.
 published: true
-date: 2025-11-23T12:44:13.409Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-04-14T20:14:26.193Z
@@ -49,3 +49,5 @@ This even allows you to remotely open the GUI for other users!
 # Popup Mode
 
 Starting with FancyMenu v3.8.0, Custom GUIs support a "Popup Mode" that makes them look like a popup getting opened on top of another screen (the previous screen the Custom GUI got opened from). This setting can be toggled individually for each Custom GUI in its settings.
+
+FancyMenu 3.9.0 also adds an option to toggle the screen background overlay for Custom GUIs while in a world. Use it when you want to disable or keep the blur/dark tint behind a Custom GUI opened over gameplay.

@@ -2,7 +2,7 @@
 title: Browser JavaScript API
 description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
 published: true
-date: 2025-11-22T09:06:04.988Z
+date: 2026-05-03T11:01:52.000Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-24T09:30:22.976Z
@@ -239,7 +239,7 @@ fancymenu.placeholders.get('unknown')
 ## 6. Best Practices & Notes
 
 - **Detect the bridge** before using it, or listen for `fancymenu-ready`.
-- **Handle errors** (callbacks for [actions](/action_scripts), `.catch` for [placeholders](/placeholders)) to present useful feedback.
+- **Handle errors** (callbacks for [actions](/action-scripts), `.catch` for [placeholders](/placeholders)) to present useful feedback.
 - **Validate input** before passing it to actions or [placeholder](/placeholders) variables.
 - **Throttle requests**; avoid spamming the bridge with rapid-fire calls (especially placeholder refresh loops).
 - **Security**: actions execute with the player’s normal permissions. Treat user-provided data with care to avoid injection.
