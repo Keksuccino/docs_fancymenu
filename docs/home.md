@@ -26,7 +26,7 @@ The **menu bar** is your entry point to basically all of FancyMenu's features li
 > If you acidentally pressed some keys and the **menu bar disappeared**, you can bring it back by pressing **CTRL + ALT + C**.
 {.is-warning}
 
-<img width="575" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
+<img width="650" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
 
 # Your First Layout
 
@@ -40,15 +40,13 @@ To make a new layout for a **specific menu**:
 
 Customizations are disabled for all menus by default and you need to activate them for every menu you want to customize, so let's click on the **"Current Screen Customization: Disabled"** entry first, which will switch the toggle to **Enabled**.
 
-<img width="450" alt="toggle_customizations" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true">
-<br>
-<br>
+<img width="475" alt="toggle_customizations" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true">
 
 After doing that, click on **Layouts -> New -> For Current Screen**.
 
 This will open the **layout editor** where you can add elements to the layout and customize Vanilla and mod elements (like buttons).
 
-<img width="500" alt="new_layout_current" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true">
+<img width="550" alt="new_layout_current" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true">
 
 ## Editing the Layout
 
@@ -64,7 +62,7 @@ To add a new element to your layout, **right-click** the background of the edito
 
 In the context menu that opens, click on **New Element** and choose one of the many types of elements.
 
-<img width="450" alt="add_element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true">
+<img width="525" alt="add_element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true">
 
 ## Customizing Elements
 
@@ -72,9 +70,7 @@ To customize an element, **right-click** it, which will open a context menu with
 
 As well as elements you've added, you can also customize vanilla elements (however there are sometimes less options with those)
 
-<img width="450" alt="element_customization" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true">
-<br>
-<br>
+<img width="525" alt="element_customization" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true">
 
 > [!IMPORTANT]
 > Some context menus like this are **scrollable**!
@@ -96,7 +92,7 @@ You can even use an element as an anchor point for other elements! Just hover an
 
 **[Learn more about how to position your elements.](/positioning-elements)**
 
-<img width="575" alt="anchor_points" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true">
+<img width="650" alt="anchor_points" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true">
 
 ## Saving Your Work
 
@@ -106,7 +102,8 @@ You will see an "Unsaved Changes" indicator in the top-right corner of the edito
 
 Save your work by clicking on **Layout -> Save**!
 
-![save_your_work](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/save_your_work.png?raw=true)
+<img width="375" alt="save_your_work" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/save_your_work.png?raw=true">
+
 > [!TIP]
 > You can also save your work using the keyboard shortcut **CTRL + S**
 
