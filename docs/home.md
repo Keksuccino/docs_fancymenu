@@ -40,13 +40,15 @@ To make a new layout for a **specific menu**:
 
 Customizations are disabled for all menus by default and you need to activate them for every menu you want to customize, so let's click on the **"Current Screen Customization: Disabled"** entry first, which will switch the toggle to **Enabled**.
 
-![toggle_customizations](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true)
+<img width="450" alt="toggle_customizations" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true">
+<br>
+<br>
 
 After doing that, click on **Layouts -> New -> For Current Screen**.
 
 This will open the **layout editor** where you can add elements to the layout and customize Vanilla and mod elements (like buttons).
 
-![new_layout_current](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true)
+<img width="500" alt="new_layout_current" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true">
 
 ## Editing the Layout
 
@@ -62,7 +64,7 @@ To add a new element to your layout, **right-click** the background of the edito
 
 In the context menu that opens, click on **New Element** and choose one of the many types of elements.
 
-![add_element](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true)
+<img width="450" alt="add_element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true">
 
 ## Customizing Elements
 
@@ -70,7 +72,10 @@ To customize an element, **right-click** it, which will open a context menu with
 
 As well as elements you've added, you can also customize vanilla elements (however there are sometimes less options with those)
 
-![element_customization](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true)
+<img width="450" alt="element_customization" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true">
+<br>
+<br>
+
 > [!IMPORTANT]
 > Some context menus like this are **scrollable**!
 
