@@ -1,11 +1,6 @@
 ---
 title: Placeholders
 description: How to use placeholders.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:15:37.364Z
 ---
 
 # Placeholders
@@ -47,9 +42,6 @@ Clicking on a placeholder in the placeholder list will paste it to the text cont
 # Placeholders In Detail
 
 This list contains most, if not all, placeholders available in FancyMenu. The list can sometimes be a bit outdated due to updates of the mod.
-
-> FancyMenu 3.9.0 removed the old scoreboard/player-tag placeholders because they did not work reliably. They are no longer documented as active placeholders.
-{.is-warning}
 
 ## Player Name (playername)
 Returns the current player's username.
