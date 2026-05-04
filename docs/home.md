@@ -26,7 +26,7 @@ The **menu bar** is your entry point to basically all of FancyMenu's features li
 > If you acidentally pressed some keys and the **menu bar disappeared**, you can bring it back by pressing **CTRL + ALT + C**.
 {.is-warning}
 
-![menu_bar](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true)
+<img width="475" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
 
 # Your First Layout
 
@@ -91,7 +91,7 @@ You can even use an element as an anchor point for other elements! Just hover an
 
 **[Learn more about how to position your elements.](/positioning-elements)**
 
-![anchor_points](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true)
+<img width="475" alt="anchor_points" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true">
 
 ## Saving Your Work
 
