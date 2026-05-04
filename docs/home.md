@@ -26,7 +26,7 @@ The **menu bar** is your entry point to basically all of FancyMenu's features li
 > If you acidentally pressed some keys and the **menu bar disappeared**, you can bring it back by pressing **CTRL + ALT + C**.
 {.is-warning}
 
-![menu_bar](https://github.com/Keksuccino/FancyMenu/assets/35544624/7100521c-8893-4eea-b0c1-1f02f4025ed7)
+![menu_bar](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true)
 
 # Your First Layout
 
@@ -40,13 +40,13 @@ To make a new layout for a **specific menu**:
 
 Customizations are disabled for all menus by default and you need to activate them for every menu you want to customize, so let's click on the **"Current Screen Customization: Disabled"** entry first, which will switch the toggle to **Enabled**.
 
-![toggle_customizations](https://github.com/Keksuccino/FancyMenu/assets/35544624/1654b7b1-cbab-4321-908c-7e3bf3239e75)
+![toggle_customizations](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true)
 
 After doing that, click on **Layouts -> New -> For Current Screen**.
 
 This will open the **layout editor** where you can add elements to the layout and customize Vanilla and mod elements (like buttons).
 
-![new_layout_current](https://github.com/Keksuccino/FancyMenu/assets/35544624/065c3dd7-b3df-4501-b721-118ed819a93f)
+![new_layout_current](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true)
 
 ## Editing the Layout
 
@@ -54,7 +54,7 @@ Most customization options can be accessed by **right-clicking the editor backgr
 Doing that will open a context menu with lots of options, like customizing the **menu backround** or **adding elements** to the layout.
 
 <br>
-<img width="300" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/853c8084-eaf3-42d3-875e-c386f0eebdee">
+<img width="350" alt="context_menu" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/context_menu.png?raw=true">
 
 ## Adding Elements to Layouts
 
@@ -62,15 +62,17 @@ To add a new element to your layout, **right-click** the background of the edito
 
 In the context menu that opens, click on **New Element** and choose one of the many types of elements.
 
-![add_element](https://github.com/Keksuccino/FancyMenu/assets/35544624/865a66c5-76a6-404d-b746-d57802b1c12f)
+![add_element](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true)
 
 ## Customizing Elements
 
 To customize an element, **right-click** it, which will open a context menu with everything you can customize for that element type.
 
-It doesn't matter if the element is a custom element added by you or a Vanilla element that was already part of the menu.
+As well as elements you've added, you can also customize vanilla elements (however there are sometimes less options with those)
 
-![element_customization](https://github.com/Keksuccino/FancyMenu/assets/35544624/cfa3c357-d6be-4ed9-a6f0-a63f751e545a)
+![element_customization](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true)
+> [!IMPORTANT]
+> Some context menus like this are **scrollable**!
 
 ## Positioning Elements
 
@@ -89,15 +91,18 @@ You can even use an element as an anchor point for other elements! Just hover an
 
 **[Learn more about how to position your elements.](/positioning-elements)**
 
-![anchor_points](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
+![anchor_points](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true)
 
 ## Saving Your Work
 
-Don't forget to save your work!
-You will see an "Unsaved Changes" indicator in the top-right corner of the editor if you need to save your work before closing it.
+Don't forget to save your masterpiece!
 
-This can be done by pressing **CTRL + S** or by clicking on **Layout -> Save**!
+You will see an "Unsaved Changes" indicator in the top-right corner of the editor if you need to save your changes before closing.
 
-![save_your_work](https://github.com/Keksuccino/FancyMenu/assets/35544624/93436ec9-343e-4d10-85d9-de8982712c4a)
+Save your work by clicking on **Layout -> Save**!
+
+![save_your_work](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/save_your_work.png?raw=true)
+> [!TIP]
+> You can also save your work using the keyboard shortcut **CTRL + S**
 
 *Congratulations! You can now make Minecraft's menus look a lot more beautiful!*
