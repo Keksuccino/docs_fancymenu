@@ -7,11 +7,11 @@ description: >-
 
 # For Developers
 
-If your are a developer and want to make an addon for FancyMenu or integrate FancyMenu in your mod, better take a look at the [developer documentation](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).
+If your are a developer and want to make an addon for FancyMenu or integrate FancyMenu in your mod, you should take a look at the [developer documentation](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).
 
 # Getting Started
 
-The first time using FancyMenu can be a bit overwhelming, but don't worry, most of it is actually pretty self-explaining once you start working with it!
+The first time using FancyMenu can be a bit overwhelming, but don't worry, most of it is actually pretty self-explanitory once you start working with it!
 
 > Please **keep in mind** that this page is just to get into FancyMenu and help you with your **very first steps**.
 Make sure to also check out the rest of the documentation for more in-detail information about FancyMenu's features!
@@ -85,7 +85,7 @@ So lets say an element is 2 centimetres away from the center of the screen while
 
 You can see the anchor point an element is connected to when dragging it. This will (by default) also show all other anchor points. You can hover an anchor point while dragging an element to change the element's anchor to the hovered anchor point.
 
-Elements itself can also work as an anchor point for other elements! Just hover an element while dragging another and the dragged element's anchor point will get changed to the hovered element.
+You can even use an element as an anchor point for other elements! Just hover an element while dragging another and the dragged element's anchor point will get changed to the hovered element.
 
 **[Learn more about how to position your elements.](/positioning-elements)**
 
