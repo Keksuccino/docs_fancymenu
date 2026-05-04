@@ -37,10 +37,11 @@ By combining these statements with actions, you can build dynamic and conditiona
 Action scripts are versatile and can be used throughout your layout. You can assign them, for example, to:
 
 - **Buttons:** Execute an action when the button is clicked.
-- **Tickers:** Continuously run an action script to update on-screen information.
+- **Tickers:** Continuously run an action script to update on-screen information within a layout.
 - **Sliders:** Trigger an action script whenever the slider's value changes.
 - **Screen Events:** Run scripts when a screen opens or closes (for example, playing a sound when a menu appears).
 - **Listeners:** When a listener that listeners to a specific event gets fired, it will execute its action script.
+***Schedulers:** Execute actions on a timed basis, even when no screen is open.
 
 # Using Placeholders in Actions
 
