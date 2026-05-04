@@ -363,7 +363,7 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Value Required:** Yes - `source_zip_path||target_folder_path`
 
 ## Open File/Folder In Game Directory (`open_file_folder_in_game_dir`)
-- **Description:** Opens a file or folder with the operating system's default app. The target must stay inside the game directory or the default `.minecraft` directory.
+- **Description:** Opens a file or folder with the operating system's default app. The target must stay inside the game directory or the default `.minecraft` directory for safety reasons.
 - **Value Required:** Yes - `target_path`
 
 ## Write File in Game Directory (`write_file_in_game_dir`)
