@@ -41,7 +41,7 @@ Action scripts are versatile and can be used throughout your layout. You can ass
 - **Sliders:** Trigger an action script whenever the slider's value changes.
 - **Screen Events:** Run scripts when a screen opens or closes (for example, playing a sound when a menu appears).
 - **Listeners:** When a listener that listeners to a specific event gets fired, it will execute its action script.
-**Schedulers:** Execute actions on a timed basis, even when no screen is open.
+- **Schedulers:** Execute actions on a timed basis, even when no screen is open.
 
 # Using Placeholders in Actions
 
