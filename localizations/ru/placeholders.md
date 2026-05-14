@@ -1,0 +1,1486 @@
+---
+title: Плейсхолдеры
+description: Как использовать плейсхолдеры.
+---
+
+# Плейсхолдеры
+
+Плейсхолдеры — это динамические значения, которые подставляются вместо реального содержимого при использовании. В FancyMenu плейсхолдеры позволяют вставлять динамический контент в различные элементы, такие как текст, кнопки и условия загрузки. Представляйте их как переменные, которые вычисляются и заменяются на свои фактические значения, когда ваши макеты отображаются.
+
+# Общая информация
+
+## Базовый синтаксис
+Плейсхолдеры в FancyMenu используют синтаксис, похожий на JSON:
+```
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+```
+
+Например, чтобы вывести имя игрока:
+```
+{"placeholder":"playername"}
+```
+
+## Вложенные плейсхолдеры
+Одна из самых мощных возможностей системы плейсхолдеров FancyMenu — это возможность вкладывать плейсхолдеры в другие плейсхолдеры. Это означает, что вы можете использовать результат одного плейсхолдера как входные данные для другого.
+
+Пример вложенных плейсхолдеров:
+```
+{"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
+```
+В этом примере берётся значение максимальной RAM и делится на 1024, чтобы перевести её из МБ в ГБ.
+
+# Использование плейсхолдеров
+
+Большинство элементов с текстовыми полями поддерживают плейсхолдеры. Вы можете увидеть, поддерживает ли текстовое поле плейсхолдеры, при его редактировании. Если при редактировании текста открывается полноэкранный **текстовый редактор**, значит он поддерживает плейсхолдеры. 
+
+Чтобы найти **список всех плейсхолдеров**, просто нажмите кнопку **Placeholders** в **правом верхнем углу** **текстового редактора**.
+
+Вверху списка плейсхолдеров есть **строка поиска**, которая позволяет искать плейсхолдеры.
+
+Нажатие на плейсхолдер в списке вставит его в текстовое содержимое.
+
+# Плейсхолдеры подробно
+
+Этот список содержит большинство, если не все, плейсхолдеры, доступные в FancyMenu. Список может иногда быть немного устаревшим из-за обновлений мода.
+
+## Имя игрока (playername)
+Возвращает имя текущего игрока.
+```
+{"placeholder":"playername"}
+```
+Пример вывода: `Steve`
+
+## UUID игрока (playeruuid)
+Возвращает уникальный идентификатор игрока.
+```
+{"placeholder":"playeruuid"}
+```
+Пример вывода: `c8cde7fe-7ced-11eb-9439-0242ac130002`
+
+## Версия Minecraft (mcversion)
+Возвращает текущую версию Minecraft.
+```
+{"placeholder":"mcversion"}
+```
+Пример вывода: `1.19.2`
+
+## Версия загрузчика модов (loaderver)
+Возвращает версию загрузчика модов (Forge/Fabric).
+```
+{"placeholder":"loaderver"}
+```
+Пример вывода: `43.2.0`
+
+## Название загрузчика модов (loadername)
+Возвращает название загрузчика модов.
+```
+{"placeholder":"loadername"}
+```
+Пример вывода: `Forge`
+
+## Версия мода (modversion)
+Возвращает версию указанного мода.
+```
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+```
+Пример вывода: `2.14.9`
+
+## Общее количество модов (totalmods)
+Возвращает общее количество установленных модов.
+```
+{"placeholder":"totalmods"}
+```
+Пример вывода: `45`
+
+## Количество активных модов (loadedmods)
+Возвращает количество модов, которые сейчас загружены.
+```
+{"placeholder":"loadedmods"}
+```
+Пример вывода: `43`
+
+## Прогресс загрузки мира (world_load_progress)
+Возвращает текущий прогресс загрузки мира в процентах.
+```
+{"placeholder":"world_load_progress"}
+```
+Пример вывода: `75`
+
+## Значение настройки Minecraft (minecraft_option_value)
+Возвращает значение настройки Minecraft.
+```
+{"placeholder":"minecraft_option_value","values":{"name":"fov"}}
+```
+Пример вывода: `70`
+
+## Последний мир или сервер (last_world_server)
+Возвращает информацию о последнем открытом мире или сервере.
+```
+{"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
+```
+Параметры:
+- `type`: Определяет, какой тип информации возвращать
+  - `"both"`: Возвращает последний открытый мир или сервер (по умолчанию)
+  - `"server"`: Возвращает только если последним был сервер
+  - `"world"`: Возвращает только если последним был мир
+- `full_world_path`: Управляет отображением пути к миру
+  - `"true"`: Возвращает полный путь к миру (по умолчанию)
+  - `"false"`: Возвращает только имя мира без пути (не влияет на серверы)
+
+Примеры:
+- Сервер: `mc.hypixel.net`
+- Мир с полным путём: `saves/New World`
+- Мир без полного пути: `New World`
+
+## Ширина экрана (guiwidth)
+Возвращает текущую ширину экрана.
+```
+{"placeholder":"guiwidth"}
+```
+Пример вывода: `1920`
+
+## Высота экрана (guiheight)
+Возвращает текущую высоту экрана.
+```
+{"placeholder":"guiheight"}
+```
+Пример вывода: `1080`
+
+## Идентификатор текущего экрана (screenid)
+Возвращает идентификатор текущего экрана.
+```
+{"placeholder":"screenid"}
+```
+Пример вывода: `title_screen`
+
+## Ширина элемента (elementwidth)
+Возвращает ширину указанного элемента.
+```
+{"placeholder":"elementwidth","values":{"id":"my_button"}}
+```
+Пример вывода: `200`
+
+## Высота элемента (elementheight)
+Возвращает высоту указанного элемента.
+```
+{"placeholder":"elementheight","values":{"id":"my_button"}}
+```
+Пример вывода: `20`
+
+## Позиция элемента по X (elementposx)
+Возвращает позицию указанного элемента по оси X.
+```
+{"placeholder":"elementposx","values":{"id":"my_button"}}
+```
+Пример вывода: `150`
+
+## Позиция элемента по Y (elementposy)
+Возвращает позицию указанного элемента по оси Y.
+```
+{"placeholder":"elementposy","values":{"id":"my_button"}}
+```
+Пример вывода: `100`
+
+## Позиция мыши по X (mouseposx)
+Возвращает текущую позицию мыши по оси X.
+```
+{"placeholder":"mouseposx"}
+```
+Пример вывода: `960`
+
+## Позиция мыши по Y (mouseposy)
+Возвращает текущую позицию мыши по оси Y.
+```
+{"placeholder":"mouseposy"}
+```
+Пример вывода: `540`
+
+## Клики в секунду (clicks_per_second)
+Возвращает текущее количество кликов в секунду для кнопки мыши.
+```
+{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
+```
+Параметры:
+- `mouse_button`: `left` или `right`
+
+Пример вывода: `8`
+
+## Масштаб GUI (guiscale)
+Возвращает текущий масштаб GUI.
+```
+{"placeholder":"guiscale"}
+```
+Пример вывода: `2`
+
+## Метка/текст ванильного виджета (vanillabuttonlabel)
+Возвращает метку/текст ванильного виджета/кнопки.
+```
+{"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
+```
+Пример вывода: `Options...`
+
+## Значение текстового поля ввода (text_input_field_value)
+Возвращает текущее значение пользовательского или ванильного текстового поля по идентификатору элемента.
+```
+{"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
+```
+Пример вывода: `Hello World`
+
+## Текущее здоровье игрока (current_player_health)
+Возвращает текущее количество очков здоровья игрока.
+```
+{"placeholder":"current_player_health"}
+```
+Пример вывода: `20.0`
+
+## Максимальное здоровье игрока (max_player_health)
+Возвращает максимальное количество очков здоровья игрока.
+```
+{"placeholder":"max_player_health"}
+```
+Пример вывода: `20.0`
+
+## Текущее здоровье игрока (в процентах) (current_player_health_percent)
+Возвращает здоровье игрока в процентах.
+```
+{"placeholder":"current_player_health_percent"}
+```
+Пример вывода: `100`
+
+## Текущее поглощаемое здоровье игрока (current_player_absorption_health)
+Возвращает очки поглощаемого здоровья игрока (золотые сердца).
+```
+{"placeholder":"current_player_absorption_health"}
+```
+Пример вывода: `4.0`
+
+## Максимальное поглощаемое здоровье игрока (max_player_absorption_health)
+Возвращает максимальное поглощаемое здоровье.
+```
+{"placeholder":"max_player_absorption_health"}
+```
+Пример вывода: `4.0`
+
+## Текущее поглощаемое здоровье игрока (в процентах) (current_player_absorption_health_percent)
+Возвращает поглощаемое здоровье игрока в процентах.
+```
+{"placeholder":"current_player_absorption_health_percent"}
+```
+Пример вывода: `100`
+
+## Текущий уровень голода игрока (current_player_hunger)
+Возвращает текущий уровень голода игрока.
+```
+{"placeholder":"current_player_hunger"}
+```
+Пример вывода: `20`
+
+## Максимальный уровень голода игрока (max_player_hunger)
+Возвращает максимальный уровень голода.
+```
+{"placeholder":"max_player_hunger"}
+```
+Пример вывода: `20`
+
+## Текущий уровень голода игрока (в процентах) (current_player_hunger_percent)
+Возвращает голод игрока в процентах.
+```
+{"placeholder":"current_player_hunger_percent"}
+```
+Пример вывода: `100`
+
+## Текущее насыщение голода игрока (current_player_hunger_saturation)
+Возвращает текущее значение насыщения голода игрока.
+```
+{"placeholder":"current_player_hunger_saturation"}
+```
+Пример вывода: `5.0`
+
+## Текущая броня игрока (current_player_armor)
+Возвращает текущее значение брони игрока.
+```
+{"placeholder":"current_player_armor"}
+```
+Пример вывода: `20`
+
+## Прочность брони игрока (player_armor_toughness)
+Возвращает общее значение прочности брони игрока.
+```
+{"placeholder":"player_armor_toughness"}
+```
+Пример вывода: `8.0`
+
+## Максимальная броня игрока (max_player_armor)
+Возвращает максимальное значение брони.
+```
+{"placeholder":"max_player_armor"}
+```
+Пример вывода: `20`
+
+## Текущая броня игрока (в процентах) (current_player_armor_percent)
+Возвращает броню игрока в процентах.
+```
+{"placeholder":"current_player_armor_percent"}
+```
+Пример вывода: `100`
+
+## Текущий уровень кислорода игрока (current_player_oxygen)
+Возвращает текущий уровень кислорода игрока (пузырьки воздуха).
+```
+{"placeholder":"current_player_oxygen"}
+```
+Пример вывода: `300`
+
+## Максимальный уровень кислорода игрока (max_player_oxygen)
+Возвращает максимальный уровень кислорода.
+```
+{"placeholder":"max_player_oxygen"}
+```
+Пример вывода: `300`
+
+## Текущий уровень кислорода игрока (в процентах) (current_player_oxygen_percent)
+Возвращает уровень кислорода игрока в процентах.
+```
+{"placeholder":"current_player_oxygen_percent"}
+```
+Пример вывода: `100`
+
+## Текущий уровень игрока (current_player_level)
+Возвращает текущий уровень опыта игрока.
+```
+{"placeholder":"current_player_level"}
+```
+Пример вывода: `30`
+
+## Текущий опыт игрока (current_player_exp)
+Возвращает общее количество очков опыта игрока.
+```
+{"placeholder":"current_player_exp"}
+```
+Пример вывода: `1250`
+
+## Прогресс опыта игрока (в процентах) (current_player_exp_progress)
+Возвращает прогресс опыта игрока до следующего уровня в процентах.
+```
+{"placeholder":"current_player_exp_progress"}
+```
+Пример вывода: `75`
+
+## Сила атаки игрока (в процентах) (player_attack_strength)
+Возвращает кулдаун атаки игрока в процентах.
+```
+{"placeholder":"player_attack_strength"}
+```
+Пример вывода: `100`
+
+## Режим игры игрока (player_gamemode)
+Возвращает текущий режим игры игрока.
+```
+{"placeholder":"player_gamemode"}
+```
+Пример вывода: `survival`
+
+## Направление взгляда игрока (player_view_direction)
+Возвращает направление, в которое смотрит игрок.
+```
+{"placeholder":"player_view_direction"}
+```
+Пример вывода: `north`
+
+## Координата X игрока (player_x_coordinate)
+Возвращает позицию игрока по оси X в мире.
+```
+{"placeholder":"player_x_coordinate"}
+```
+Пример вывода: `125`
+
+## Координата Y игрока (player_y_coordinate)
+Возвращает позицию игрока по оси Y в мире.
+```
+{"placeholder":"player_y_coordinate"}
+```
+Пример вывода: `64`
+
+## Координата Z игрока (player_z_coordinate)
+Возвращает позицию игрока по оси Z в мире.
+```
+{"placeholder":"player_z_coordinate"}
+```
+Пример вывода: `-250`
+
+## Текущее здоровье маунта (current_mount_health)
+Возвращает текущее здоровье сущности, на которой едет игрок.
+```
+{"placeholder":"current_mount_health"}
+```
+Пример вывода: `30.0`
+
+## Максимальное здоровье маунта (max_mount_health)
+Возвращает максимальное здоровье сущности, на которой едет игрок.
+```
+{"placeholder":"max_mount_health"}
+```
+Пример вывода: `30.0`
+
+## Текущее здоровье маунта (в процентах) (current_mount_health_percent)
+Возвращает здоровье маунта в процентах.
+```
+{"placeholder":"current_mount_health_percent"}
+```
+Пример вывода: `100`
+
+## Текущий индикатор прыжка маунта (в процентах) (current_mount_jump_meter)
+Возвращает значение индикатора силы прыжка маунта.
+```
+{"placeholder":"current_mount_jump_meter"}
+```
+Пример вывода: `75`
+
+## Текущее здоровье босса (в процентах) (current_boss_health)
+Возвращает здоровье активного босса.
+```
+{"placeholder":"current_boss_health"}
+```
+Пример вывода: `150.0`
+
+## Имя босса (boss_name)
+Возвращает имя активного босса.
+```
+{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
+```
+Пример вывода: `Ender Dragon`
+
+## Количество боссов (boss_count)
+Возвращает количество активных боссов.
+```
+{"placeholder":"boss_count"}
+```
+Пример вывода: `1`
+
+## Количество активных эффектов (effects_count)
+Возвращает количество активных эффектов зелий.
+```
+{"placeholder":"effects_count"}
+```
+Пример вывода: `3`
+
+## Активный эффект (active_effect)
+Возвращает информацию об указанном активном эффекте.
+```
+{"placeholder":"active_effect","values":{"effect_index":"0"}}
+```
+Пример вывода: `minecraft:speed`
+
+## Выбранный слот хотбара (active_hotbar_slot)
+Возвращает текущий выбранный слот хотбара (0-8).
+```
+{"placeholder":"active_hotbar_slot"}
+```
+Пример вывода: `4`
+
+## Предмет в слоте (slot_item)
+Возвращает информацию о предмете в указанном слоте инвентаря.
+```
+{"placeholder":"slot_item","values":{"slot":"0"}}
+```
+Пример вывода: `minecraft:diamond_sword`
+
+## Количество предметов в слоте (slot_item_count)
+Возвращает размер стака предмета в указанном слоте инвентаря игрока.
+```
+{"placeholder":"slot_item_count","values":{"slot":"0"}}
+```
+Пример вывода: `64`
+
+## Прочность предмета в слоте (slot_item_durability)
+Возвращает информацию о прочности предмета в указанном слоте инвентаря игрока.
+```
+{"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
+```
+Параметры:
+- `slot`: Номер слота инвентаря игрока.
+- `format`: `current`, `remaining`, `max`, `damage`, `percentage` или `percent`.
+
+Пример вывода: `87`
+
+## Отображаемое имя предмета в слоте (slot_item_display_name_fm)
+Возвращает отображаемое имя предмета в указанном слоте как JSON-компонент текста. В режиме наблюдателя слоты хотбара могут возвращать названия предметов меню наблюдателя, если `ignore_spectator` имеет значение `true`.
+```
+{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
+```
+Пример вывода: `{"text":"Diamond Sword","color":"aqua"}`
+
+## Количество предметов в инвентаре (inventory_item_count)
+Возвращает общее количество предметов указанного типа в инвентаре игрока. Если `item` пустой, считает все стаки предметов в инвентаре.
+```
+{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
+```
+Пример вывода: `12`
+
+## Количество восстанавливаемых очков голода предметом в слоте инвентаря (inventory_slot_food_point_restore_amount)
+Возвращает количество очков голода, восстанавливаемых пищевым предметом в указанном слоте инвентаря игрока.
+```
+{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
+```
+Пример вывода: `4.0`
+
+## Предмет под курсором в инвентаре (hovered_inventory_item)
+Возвращает ключ предмета, на который сейчас наведён курсор в экране инвентаря.
+```
+{"placeholder":"hovered_inventory_item"}
+```
+Пример вывода: `minecraft:apple`
+
+## Игровое время мира (game_time)
+Возвращает текущий счётчик тиков игрового времени.
+```
+{"placeholder":"game_time"}
+```
+Пример вывода: `18000`
+
+## Время суток мира (world_daytime)
+Возвращает текущее время суток в мире.
+```
+{"placeholder":"world_daytime"}
+```
+Пример вывода: `13000`
+
+## Час времени суток мира (world_daytime_hour)
+Возвращает часовую составляющую времени мира. По умолчанию используется 24-часовой формат; установите `twelve_hour_format` в `"true"` для 12-часового формата.
+```
+{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
+```
+Пример вывода: `12`
+
+## Минута времени суток мира (world_daytime_minute)
+Возвращает минутную составляющую времени мира (00-59).
+```
+{"placeholder":"world_daytime_minute"}
+```
+Пример вывода: `30`
+
+## Сложность мира (world_difficulty)
+Возвращает текущую сложность мира.
+```
+{"placeholder":"world_difficulty"}
+```
+Пример вывода: `normal`
+
+## Текущий сид одиночного мира (current_world_seed)
+Возвращает сид текущего одиночного мира. Если сид недоступен, возвращает пустое значение.
+```
+{"placeholder":"current_world_seed"}
+```
+Пример вывода: `123456789`
+
+## Текущий биом (current_biome)
+Возвращает биом, в котором сейчас находится игрок. Установите `as_key` в `"false"`, чтобы вернуть переведённое/отображаемое имя, если оно доступно.
+```
+{"placeholder":"current_biome","values":{"as_key":"true"}}
+```
+Пример вывода: `minecraft:plains`
+
+## Тектое измерение (current_dimension)
+Возвращает измерение, в котором сейчас находится игрок. Установите `as_key` в `"false"`, чтобы вернуть переведённое/отображаемое имя, если оно доступно.
+```
+{"placeholder":"current_dimension","values":{"as_key":"true"}}
+```
+Пример вывода: `minecraft:overworld`
+
+## Значение gamerule (gamerule_value)
+Возвращает текущее значение правила игры в загруженном мире/на сервере. Для серверных миров требуется FancyMenu на сервере.
+```
+{"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
+```
+Пример вывода: `true`
+
+## Категория предмета (item_category)
+Возвращает категорию предмета во вкладке креатива. Установите `as_key` в `"true"`, чтобы вернуть ключ категории вместо отображаемого имени.
+```
+{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
+```
+Пример вывода: `Combat`
+
+## Текущий заголовок/подзаголовок HUD (current_title)
+Возвращает текущий отображаемый текст заголовка.
+```
+{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
+```
+Пример вывода: `Game Over!`
+
+## Сообщение action bar (action_bar_message_fm)
+Возвращает текущее ванильное сообщение action bar над хотбаром.
+```
+{"placeholder":"action_bar_message_fm"}
+```
+Пример вывода: `You may not rest now`
+
+## Время сообщения action bar (action_bar_message_time_fm)
+Возвращает, сколько тиков ещё будет отображаться текущее ванильное сообщение action bar.
+```
+{"placeholder":"action_bar_message_time_fm"}
+```
+Пример вывода: `42`
+
+## Вращение камеры X (camera_rotation_x_fm)
+Возвращает текущий наклон камеры в градусах.
+```
+{"placeholder":"camera_rotation_x_fm"}
+```
+Пример вывода: `12.5`
+
+## Вращение камеры Y (camera_rotation_y_fm)
+Возвращает текущий поворот камеры в градусах.
+```
+{"placeholder":"camera_rotation_y_fm"}
+```
+Пример вывода: `-90.0`
+
+## Изменение вращения камеры X (camera_rotation_delta_x_fm)
+Возвращает изменение наклона камеры за тик.
+```
+{"placeholder":"camera_rotation_delta_x_fm"}
+```
+Пример вывода: `0.4`
+
+## Изменение вращения камеры Y (camera_rotation_delta_y_fm)
+Возвращает изменение поворота камеры за тик.
+```
+{"placeholder":"camera_rotation_delta_y_fm"}
+```
+Пример вывода: `-1.2`
+
+## Время подсвеченного предмета (highlighted_item_time_fm)
+Возвращает, сколько тиков ещё будет отображаться имя подсвеченного предмета над хотбаром.
+```
+{"placeholder":"highlighted_item_time_fm"}
+```
+Пример вывода: `30`
+
+## Прогресс использования предмета игроком (player_item_use_progress_fm)
+Возвращает текущий прогресс использования предмета от `0.0` до `1.0`.
+```
+{"placeholder":"player_item_use_progress_fm"}
+```
+Пример вывода: `0.65`
+
+## Изменение позиции игрока по X (player_position_delta_x_fm)
+Возвращает изменение позиции игрока по оси X за тик.
+```
+{"placeholder":"player_position_delta_x_fm"}
+```
+Пример вывода: `0.0`
+
+## Изменение позиции игрока по Y (player_position_delta_y_fm)
+Возвращает изменение позиции игрока по оси Y за тик.
+```
+{"placeholder":"player_position_delta_y_fm"}
+```
+Пример вывода: `-0.08`
+
+## Изменение позиции игрока по Z (player_position_delta_z_fm)
+Возвращает изменение позиции игрока по оси Z за тик.
+```
+{"placeholder":"player_position_delta_z_fm"}
+```
+Пример вывода: `0.12`
+
+## Текущий IP сервера (current_server_ip)
+Возвращает IP подключённого сервера.
+```
+{"placeholder":"current_server_ip"}
+```
+Пример вывода: `mc.hypixel.net`
+
+## Список игроков мира (world_players_list)
+Возвращает список всех игроков, которые сейчас находятся в мире.
+```
+{"placeholder":"world_players_list","values":{"separator":", "}}
+```
+Пример вывода: `Steve, Alex, Notch`
+
+## MOTD сервера (servermotd)
+Возвращает сообщение дня сервера.
+```
+{"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
+```
+Пример вывода: `Welcome to Hypixel!`
+
+## PING сервера (serverping)
+Возвращает пинг до сервера в миллисекундах.
+```
+{"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
+```
+Пример вывода: `54`
+
+## Количество игроков на сервере (serverplayercount)
+Возвращает количество игроков на сервере.
+```
+{"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
+```
+Пример вывода: `25000/30000`
+
+## Статус сервера (serverstatus)
+Возвращает статус сервера: онлайн/оффлайн.
+```
+{"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
+```
+Пример вывода: `§aOnline` or `§cOffline`
+
+## Версия сервера (serverversion)
+Возвращает версию Minecraft сервера.
+```
+{"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
+```
+Пример вывода: `1.19.2`
+
+## Год (realtimeyear)
+Возвращает текущий год.
+```
+{"placeholder":"realtimeyear"}
+```
+Пример вывода: `2024`
+
+## Месяц (realtimemonth)
+Возвращает текущий месяц (01-12).
+```
+{"placeholder":"realtimemonth"}
+```
+Пример вывода: `01`
+
+## День (realtimeday)
+Возвращает текущий день месяца (01-31).
+```
+{"placeholder":"realtimeday"}
+```
+Пример вывода: `27`
+
+## Час (realtimehour)
+Возвращает текущий час. По умолчанию используется 24-часовой формат; установите `twelve_hour_format` в `"true"` для 12-часового формата.
+```
+{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
+```
+Пример вывода: `14`
+
+## Минута (realtimeminute)
+Возвращает текущую минуту (00-59).
+```
+{"placeholder":"realtimeminute"}
+```
+Пример вывода: `30`
+
+## Секунда (realtimesecond)
+Возвращает текущую секунду (00-59).
+```
+{"placeholder":"realtimesecond"}
+```
+Пример вывода: `45`
+
+## Текущее время в миллисекундах (Unix Timestamp) (unix_time)
+Возвращает текущую Unix-метку времени в миллисекундах.
+```
+{"placeholder":"unix_time"}
+```
+Пример вывода: `1716552478123`
+
+> Плейсхолдеры реального времени (`realtimeyear`, `realtimemonth`, `realtimeday`, `realtimehour`, `realtimeminute`, `realtimesecond` и `unix_time`) поддерживают значение `timezone`. Используйте обычные идентификаторы часовых поясов Java, такие как `UTC`, `Europe/Berlin` или `America/New_York`; не указывайте его или используйте `system` для системного часового пояса.
+{.is-info}
+
+## Информация о CPU (cpuinfo)
+Возвращает информацию о процессоре.
+```
+{"placeholder":"cpuinfo"}
+```
+Пример вывода: `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
+
+## Использование CPU (JVM) (jvmcpu)
+Возвращает использование CPU JVM в процентах.
+```
+{"placeholder":"jvmcpu"}
+```
+Пример вывода: `25.5`
+
+## Использование CPU (ОС) (oscpu)
+Возвращает использование CPU операционной системой в процентах.
+```
+{"placeholder":"oscpu"}
+```
+Пример вывода: `42.8`
+
+## Информация о GPU (gpuinfo)
+Возвращает информацию о видеокарте.
+```
+{"placeholder":"gpuinfo"}
+```
+Пример вывода: `NVIDIA GeForce RTX 3080`
+
+## Версия Java (javaver)
+Возвращает версию Java.
+```
+{"placeholder":"javaver"}
+```
+Пример вывода: `17.0.2`
+
+## Виртуальная машина Java (jvmname)
+Возвращает название виртуальной машины Java.
+```
+{"placeholder":"jvmname"}
+```
+Пример вывода: `OpenJDK 64-Bit Server VM`
+
+## Версия OpenGL (glver)
+Возвращает версию OpenGL.
+```
+{"placeholder":"glver"}
+```
+Пример вывода: `4.6.0 NVIDIA 516.94`
+
+## Название операционной системы (osname)
+Возвращает название операционной системы.
+```
+{"placeholder":"osname"}
+```
+Пример вывода: `Windows 10`
+
+## FPS (кадров в секунду) (fps)
+Возвращает текущее количество кадров в секунду.
+```
+{"placeholder":"fps"}
+```
+Пример вывода: `120`
+
+## Используемая RAM в МБ (usedram)
+Возвращает объём RAM, который сейчас используется (МБ).
+```
+{"placeholder":"usedram"}
+```
+Пример вывода: `4096`
+
+## Максимальная RAM в МБ (maxram)
+Возвращает максимальный выделенный объём RAM (МБ).
+```
+{"placeholder":"maxram"}
+```
+Пример вывода: `8192`
+
+## Используемая RAM в %% (percentram)
+Возвращает процент RAM, который сейчас используется.
+```
+{"placeholder":"percentram"}
+```
+Пример вывода: `50`
+
+## Громкость аудиоэлемента (audio_element_vol)
+Возвращает громкость аудиоэлемента.
+```
+{"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
+```
+Пример вывода: `0.5`
+
+## Текущий аудиотрек (audio_element_current_track)
+Возвращает название трека аудиоэлемента.
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Cool Track Name"}}
+```
+Пример вывода: `Cool Track Name`
+
+## Длительность аудио (audio_duration)
+Возвращает общую длительность аудиотрека в формате MM:SS.
+```
+{"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
+```
+Пример вывода: `03:45`
+
+## Время воспроизведения аудио (audio_playtime)
+Возвращает текущее время воспроизведения аудиотрека. Установите `show_percentage` в `"true"`, чтобы получить значение прогресса от 0 до 100 вместо MM:SS.
+```
+{"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
+```
+Пример вывода: `01:30` (или `45`, когда `show_percentage` имеет значение `"true"`)
+
+## Состояние воспроизведения аудио (audio_playing_state)
+Возвращает, воспроизводится ли аудиоэлемент (true/false).
+```
+{"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
+```
+Пример вывода: `true`
+
+## Громкость видеоэлемента (video_element_vol)
+Возвращает уровень громкости видеоэлемента (0.0 to 1.0).
+```
+{"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
+```
+Пример вывода: `0.5`
+
+## Длительность видеоэлемента (video_element_duration)
+Возвращает общую длительность видеоэлемента в формате `MM:SS`. Установите `output_as_timestamp` в `"true"`, чтобы вернуть метку времени в миллисекундах.
+```
+{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
+```
+Пример вывода: `02:00` (или `120000`, когда `output_as_timestamp` имеет значение `"true"`)
+
+## Время воспроизведения видеоэлемента (video_element_playtime)
+Возвращает текущее время воспроизведения (прогресс) видеоэлемента в формате `MM:SS`. Установите `show_percentage` в `"true"` для значения прогресса от 0 до 100, или `output_as_timestamp` в `"true"` для миллисекунд.
+```
+{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
+```
+Пример вывода: `00:45` (или `38` в процентах, или `45200` как метка времени)
+
+## Состояние паузы видеоэлемента (video_element_paused_state)
+Возвращает, находится ли видеоэлемент на паузе (true/false).
+```
+{"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
+```
+Пример вывода: `false`
+
+## Громкость фона видео (video_background_vol)
+Возвращает уровень громкости видеофона меню (0.0 to 1.0).
+```
+{"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
+```
+Пример вывода: `0.7`
+
+## Длительность фона видео (video_background_duration)
+Возвращает общую длительность видеофона меню в формате `MM:SS`. Установите `output_as_timestamp` в `"true"`, чтобы вернуть метку времени в миллисекундах.
+```
+{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
+```
+Пример вывода: `03:00` (или `180000`, когда `output_as_timestamp` имеет значение `"true"`)
+
+## Время воспроизведения фона видео (video_background_playtime)
+Возвращает текущее время воспроизведения (прогресс) видеофона меню в формате `MM:SS`. Установите `show_percentage` в `"true"` для значения прогресса от 0 до 100, или `output_as_timestamp` в `"true"` для миллисекунд.
+```
+{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
+```
+Пример вывода: `01:00` (или `33` в процентах, или `60500` как метка времени)
+
+## Состояние паузы фона видео (video_background_paused_state)
+Возвращает, находится ли видеофон меню на паузе (true/false).
+```
+{"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
+```
+Пример вывода: `true`
+
+## Калькулятор (calc)
+Плейсхолдер калькулятора — это мощный инструмент, который позволяет выполнять математические вычисления внутри ваших макетов. Он поддерживает широкий спектр математических операций и может работать как с десятичными, так и с целыми числами.
+
+### Базовый синтаксис
+```
+{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+```
+
+У калькулятора есть два основных параметра:
+- `decimal`: Определяет, должен ли результат содержать десятичные знаки (`true`) или округляться до целых (`false`)
+- `expression`: Математическое выражение для вычисления
+
+### Поддерживаемые операции
+Калькулятор поддерживает следующие математические операции:
+- Базовая арифметика: `+` (сложение), `-` (вычитание), `*` (умножение), `/` (деление)
+- Скобки: `( )` для группировки операций
+- Степень: `^` для возведения в степень
+- Квадратный корень: `sqrt()`
+- Тригонометрические функции: `sin()`, `cos()`, `tan()`
+- Математические константы: `pi`, `e`
+- Абсолютное значение: `abs()`
+- Логарифмы: `log()`, `ln()`
+
+## Случайное число (random_number)
+Генерирует случайное число в указанном диапазоне.
+```
+{"placeholder":"random_number","values":{"min":"1","max":"100"}}
+```
+Пример вывода: `42`
+
+## Максимальное число (maxnum)
+Возвращает большее из двух чисел.
+```
+{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+```
+Пример вывода: `20`
+
+## Минимальное число (minnum)
+Возвращает меньшее из двух чисел.
+```
+{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+```
+Пример вывода: `10`
+
+## Абсолютное число (absnum)
+Возвращает абсолютное значение числа.
+```
+{"placeholder":"absnum","values":{"num":"-10.5"}}
+```
+Пример вывода: `10.5`
+
+## Отрицание числа (negnum)
+Возвращает отрицательное значение числа.
+```
+{"placeholder":"negnum","values":{"num":"10.5"}}
+```
+Пример вывода: `-10.5`
+
+## *пи* (Math) (math_pi)
+Возвращает значение π.
+```
+{"placeholder":"math_pi"}
+```
+Пример вывода: `3.141592653589793`
+
+## Тригонометрический синус (Math) (math_sin)
+Возвращает синус угла.
+```
+{"placeholder":"math_sin","values":{"angle":"45"}}
+```
+Пример вывода: `0.7071067811865476`
+
+## Тригонометрический косинус (Math) (math_cos)
+Возвращает косинус угла.
+```
+{"placeholder":"math_cos","values":{"angle":"45"}}
+```
+Пример вывода: `0.7071067811865476`
+
+## Тригонометрический тангенс (Math) (math_tan)
+Возвращает тангенс угла.
+```
+{"placeholder":"math_tan","values":{"angle":"45"}}
+```
+Пример вывода: `1.0`
+
+## Округление вниз (Math) (math_floor)
+Округляет число вниз до ближайшего целого.
+```
+{"placeholder":"math_floor","values":{"num":"3.14"}}
+```
+Пример вывода: `3`
+
+## Округление вверх (Math) (math_ceil)
+Округляет число вверх до ближайшего целого.
+```
+{"placeholder":"math_ceil","values":{"num":"3.14"}}
+```
+Пример вывода: `4`
+
+## Округление (Math) (math_round)
+Округляет число. По умолчанию округляет до ближайшего целого; установите `decimals` в неотрицательное число, чтобы округлить до указанного количества знаков после запятой.
+```
+{"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
+```
+Пример вывода: `3.14` (с `decimals:-1` или если параметр не указан → `3`)
+
+## Знак числа (Math) (math_sign)
+Возвращает знак числа (1 для положительного, -1 для отрицательного, 0 для нуля).
+```
+{"placeholder":"math_sign","values":{"num":"-3.14"}}
+```
+Пример вывода: `-1`
+
+## Гиперболический синус (Math) (math_sinh)
+Возвращает гиперболический синус угла.
+```
+{"placeholder":"math_sinh","values":{"angle":"1"}}
+```
+Пример вывода: `1.1752011936438014`
+
+## Гиперболический косинус (Math) (math_cosh)
+Возвращает гиперболический косинус угла.
+```
+{"placeholder":"math_cosh","values":{"angle":"1"}}
+```
+Пример вывода: `1.5430806348152437`
+
+## Гиперболический тангенс (Math) (math_tanh)
+Возвращает гиперболический тангенс угла.
+```
+{"placeholder":"math_tanh","values":{"angle":"1"}}
+```
+Пример вывода: `0.7615941559557649`
+
+## Разделение текста (split_text)
+Разделяет текст с помощью указанного разделителя.
+```
+{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
+```
+Пример вывода: `world`
+
+## Обрезка пробелов (trim_text)
+Удаляет начальные и конечные пробелы.
+```
+{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+```
+Пример вывода: `hello world`
+
+## Обрезка текста (crop_text)
+Удаляет символы в начале и конце текста.
+```
+{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+```
+Пример вывода: `ello worl`
+
+## Строковое представление (stringify)
+Преобразует текст в строку, экранируя все синтаксические символы.
+```
+{"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
+```
+Пример вывода: `text with \{special\} \"characters\"`
+
+## Локализация текста (local)
+Получает локализованный текст для ключа.
+```
+{"placeholder":"local","values":{"key":"menu.singleplayer"}}
+```
+Пример вывода: `Singleplayer`
+
+## Веб-текст (webtext)
+Получает текстовое содержимое с веб-URL.
+```
+{"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
+```
+Пример вывода: Текстовое содержимое из URL
+
+## Случайный текст (randomtext)
+Возвращает случайную строку из текстового файла, URL или введённого напрямую обычного текста. Текст меняется через указанные интервалы.
+```
+{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
+```
+Параметры:
+- `source`: Источник строк текста (заменяет старый параметр `path`)
+  - Путь к файлу: `/config/fancymenu/assets/quotes.txt`
+  - URL: `https://example.com/quotes.txt`
+  - Обычный текст: `Line 1\nLine 2\nLine 3`
+- `interval`: Интервал в секундах между изменениями текста
+
+Теперь плейсхолдер поддерживает три типа источника:
+1. **Локальные файлы**: Текстовые файлы из каталога игры
+   ```
+   {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
+   ```
+2. **URL**: Удалённые текстовые файлы из интернета
+   ```
+   {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
+   ```
+3. **Обычный текст**: Прямой ввод текста со строками, разделёнными `\n`
+   ```
+   {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
+   ```
+
+Примечание: Старые плейсхолдеры, использующие `path` вместо `source`, по-прежнему будут работать.
+
+## Парсер JSON (json)
+Разбирает JSON-данные из файла, URL или прямого JSON-содержимого и извлекает значения с помощью выражений JSON path.
+```
+{"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
+```
+Параметры:
+- `source`: Источник JSON-данных
+  - Путь к файлу: `/config/fancymenu/assets/data.json`
+  - URL: `https://api.example.com/data.json`
+  - Прямой JSON: `{"name":"Steve","level":42}`
+- `json_path`: Выражение JSON path для извлечения данных
+
+Теперь плейсхолдер поддерживает три типа источника:
+1. **Локальные файлы**: JSON-файлы из каталога игры
+   ```
+   {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
+   ```
+2. **URL**: Удалённые JSON-данные из API или веб-сервисов
+   ```
+   {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
+   ```
+3. **Прямой JSON**: Встроенное JSON-содержимое
+   ```
+   {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
+   ```
+
+Примеры JSON path:
+- `$.name` - Получает поле "name" из корня
+- `$.player.level` - Получает вложенное поле "level" внутри "player"
+- `$.items[0].id` - Получает "id" первого элемента в массиве
+- `$.scores.*` - Получает все значения из объекта "scores"
+
+## Абсолютный путь к файлу/папке (absolute_path)
+Возвращает абсолютный путь к файлу.
+```
+{"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
+```
+Пример вывода: `C:/Users/Username/AppData/Roaming/.minecraft/relative/path/to/file.txt`
+
+## Количество символов в тексте (text_character_count)
+Возвращает количество символов в заданном тексте.
+```
+{"placeholder":"text_character_count","values":{"text":"Hello World!"}}
+```
+Пример вывода: `12`
+
+## Ширина текста (text_width)
+Возвращает ширину заданного текста в пикселях при отображении.
+```
+{"placeholder":"text_width","values":{"text":"Hello World!"}}
+```
+Пример вывода: `66`
+
+## Текст в верхнем регистре (uppercase_text)
+Преобразует введённый текст в полностью заглавные буквы.
+```
+{"placeholder":"uppercase_text","values":{"text":"Hello World"}}
+```
+Пример вывода: `HELLO WORLD`
+
+## Текст в нижнем регистре (lowercase_text)
+Преобразует введённый текст в полностью строчные буквы.
+```
+{"placeholder":"lowercase_text","values":{"text":"Hello World"}}
+```
+Пример вывода: `hello world`
+
+## Текст в формате Title Case (title_case_text)
+Преобразует введённый текст в формат заголовка.
+```
+{"placeholder":"title_case_text","values":{"text":"hello world"}}
+```
+Пример вывода: `Hello World`
+
+## Текст в формате предложения (sentence_case_text)
+Преобразует введённый текст в формат предложения.
+```
+{"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
+```
+Пример вывода: `Hello world. This is fancymenu!`
+
+## Текст в snake_case (snake_case_text)
+Преобразует введённый текст в `snake_case`.
+```
+{"placeholder":"snake_case_text","values":{"text":"Hello World"}}
+```
+Пример вывода: `hello_world`
+
+## Текст в kebab-case (kebab_case_text)
+Преобразует введённый текст в `kebab-case`.
+```
+{"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
+```
+Пример вывода: `hello-world`
+
+## Текст с чередованием регистра (alternating_case_text)
+Преобразует введённый текст в текст с чередованием регистра.
+```
+{"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
+```
+Пример вывода: `aLtErNaTiNg CaSe`
+
+## Переключение регистра текста (toggle_case_text)
+Меняет регистр каждой буквы во введённом тексте на противоположный.
+```
+{"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
+```
+Пример вывода: `tOGGLE cASE`
+
+## Кодировать в Base64 (base64_encode)
+Кодирует заданный текст в Base64.
+```
+{"placeholder":"base64_encode","values":{"text":"Hello World"}}
+```
+Пример вывода: `SGVsbG8gV29ybGQ=`
+
+## Декодировать из Base64 (base64_decode)
+Декодирует строку Base64 обратно в обычный текст.
+```
+{"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
+```
+Пример вывода: `Hello World`
+
+## Текст из файла (file_text)
+Возвращает текстовые строки из файла или URL. Может возвращать все строки или только последние X строк.
+```
+{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
+```
+Параметры:
+- `path_or_url`: Путь к файлу или URL, откуда читать
+- `mode`: Либо `"all"` (возвращает все строки), либо `"last"` (возвращает только последние X строк)
+- `separator`: Текст для объединения строк (по умолчанию: `"\n"`)
+- `last_lines`: Количество строк, которые нужно вернуть, когда mode равен `"last"` (по умолчанию: `"1"`)
+
+Пример вывода: Зависит от содержимого файла
+
+## Содержимое буфера обмена (clipboard_content)
+Возвращает текущий текст, хранящийся в системном буфере обмена.
+```
+{"placeholder":"clipboard_content"}
+```
+Пример вывода: Любой текст, который сейчас находится в буфере обмена
+
+## Замена текста (replace_text)
+Заменяет текст в строке с использованием буквального текста или регулярных выражений.
+```
+{"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
+```
+Параметры:
+- `text`: Входной текст для обработки
+- `search`: Текст или шаблон regex для поиска
+- `replacement`: Текст замены
+- `use_regex`: Использовать regex (`"true"`) или буквальное совпадение (`"false"`)
+- `replace_all`: Заменять все вхождения (`"true"`) или только первое (`"false"`)
+
+Пример вывода: `Hello FancyMenu! This is a test.`
+
+## Выбор по условию (switch_case)
+Выполняет операцию switch-case на основе значения.
+```
+{"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
+```
+Пример вывода: `first case` (если значение равно 1)
+
+## Получить значение переменной (FM Variable) (getvariable)
+Извлекает значение ранее сохранённой переменной.
+```
+{"placeholder":"getvariable","values":{"name":"some_variable"}}
+```
+Пример вывода: Зависит от сохранённого значения
+
+## Получить NBT-данные (nbt_data_get)
+Получает NBT-данные на клиенте (аналог команды `/data get`). Используйте серверный вариант `nbt_data_get_server`, когда вы подключены к серверу и вам нужны достоверные значения со стороны сервера.
+```
+{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
+```
+Параметры:
+- `source_type`: Либо `"entity"`, либо `"block"`
+- `entity_selector`: Селектор сущности, например `@s`, `@p`, `@e`, либо UUID/имя (для сущностей)
+- `block_pos`: Позиция блока в формате `"x y z"` (для блоков)
+- `nbt_path`: Путь NBT для извлечения
+- `scale`: Необязательный коэффициент масштабирования для числовых значений (по умолчанию: `"1.0"`)
+- `return_type`: Как вернуть данные:
+  - `"value"`: По умолчанию, возвращает значение (с необязательным масштабированием для чисел)
+  - `"string"`: Возвращает фактические NBT-данные в виде строки
+  - `"snbt"`: Возвращает SNBT (форматированные NBT-данные)
+  - `"json"`: Возвращает JSON-форматированный компонент (для compound-тегов)
+
+Пример вывода: `20` (для уровня голода)
+
+## Получить NBT-данные (со стороны сервера) (nbt_data_get_server)
+Запрашивает NBT-данные на стороне сервера (через пакет) и ненадолго кэширует результаты. Значения соответствуют клиентскому плейсхолдеру.
+```
+{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
+```
+Пример вывода: `minecraft:diamond_sword`
+
+## Последнее сообщение о смерти (lastdeathmessage)
+Возвращает последнее записанное сообщение о смерти клиентского игрока. Установите `as_json_component` в `"true"`, чтобы получить необработанный JSON-компонент текста.
+```
+{"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
+```
+Пример вывода: `Steve was slain by Zombie`
+
+## Длительность работы (uptime_duration)
+Возвращает, как долго загружен FancyMenu. По умолчанию значение указывается в секундах; установите `output_as_millis` в `"true"`, чтобы получить миллисекунды.
+```
+{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+```
+Пример вывода: `742` (секунд с момента загрузки)
+
+## Названия сохранений миров (level_save_names)
+Выводит все локальные названия сохранений миров, соединённые выбранным разделителем. Выполняется в потоке клиента.
+```
+{"placeholder":"level_save_names","values":{"separator":", "}}
+```
+Пример вывода: `Creative Test, Survival World, Hardcore`
+
+## Данные сохранения мира (level_save_data)
+Возвращает сериализованные данные уровня для указанного названия мира (должно совпадать с отображаемым именем в списке сохранений).
+```
+{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
+```
+Пример вывода: `{"name":"Survival World","gameMode":"survival",...}`
+
+## Конвертер систем счисления (number_base_convert)
+Преобразует число (целое или дробное) из одной системы счисления в другую (2–36). По умолчанию используется десятичная система, если основания не указаны.
+```
+{"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
+```
+Пример вывода: `43.8`
+
+## Размер файла (file_size)
+Возвращает размер локального файла в байтах. Разрешены только локальные пути.
+```
+{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+```
+Пример вывода: `1284`
+
+## MD5 файла (file_md5)
+Возвращает MD5-хэш локального файла в виде шестнадцатеричной строки в нижнем регистре.
+```
+{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+```
+Пример вывода: `d41d8cd98f00b204e9800998ecf8427e`
+
+# Практические примеры
+
+## Создание динамического отображения памяти
+```
+Используемая RAM: {"placeholder":"usedram"}МБ / {"placeholder":"maxram"}МБ ({"placeholder":"percentram"}%)
+```
+
+## Создание часов в реальном времени
+```
+{"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}:{"placeholder":"realtimesecond"}
+```
+
+## Создание отображения системной информации
+```
+ОС: {"placeholder":"osname"}
+CPU: {"placeholder":"cpuinfo"}
+GPU: {"placeholder":"gpuinfo"}
+Java: {"placeholder":"javaver"}
+```
+
+## HUD состояния игрока
+```
+Здоровье: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
+Броня: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
+Уровень XP: {"placeholder":"current_player_level"}
+```
+
+## Сложное вычисление с вложенными плейсхолдерами
+```
+{"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
+```
+
+## Отображение координат с округлением
+```
+X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
+Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
+Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordinate"}"}}
+```
+
+# Лучшие практики
+
+1. **Кэшируйте ресурсоёмкие операции**: Некоторые плейсхолдеры (например, те, что читают системную информацию) могут быть затратными по ресурсам. Подумайте об использовании переменных для хранения их значений, если вам нужно обращаться к ним несколько раз.
+
+2. **Используйте подходящие настройки decimal**: При работе с вычислениями корректно используйте параметр `decimal`. Устанавливайте его в `false`, когда нужны целые числа, и в `true`, когда нужны точные дробные значения.
+
+3. **Обрабатывайте отсутствующие значения**: Всегда учитывайте, что должно происходить, если плейсхолдер не возвращает значение. В таких случаях можно задавать значения по умолчанию.
+
+4. **Тестируйте производительность**: При использовании большого количества плейсхолдеров или сложных вложенных структур тестируйте влияние на производительность, особенно на слабых системах.
+
+5. **Используйте продвинутое изменение размеров/позиционирование**: Для динамических элементов UI сочетайте плейсхолдеры с расширенным изменением размеров и позиционированием, чтобы создавать адаптивные макеты.
+
+6. **Сочетайте с переменными**: Используйте плейсхолдеры вместе с переменными для ещё более динамичного контента, который можно обновлять через действия.
+
+# Частые проблемы и решения
+
+## Плейсхолдер не обновляется
+Если значение плейсхолдера не обновляется так, как ожидается, проверьте:
+- Правильно ли отформатирован плейсхолдер
+- Используете ли вы правильный регистр для ID плейсхолдера
+- Не требуется ли для плейсхолдера особое условие для обновления
+
+## Вложенные плейсхолдеры не работают
+При вложении плейсхолдеров:
+- Убедитесь в правильном экранировании кавычек
+- Проверьте, что каждый вложенный плейсхолдер сам по себе является корректным
+
+## Проблемы с производительностью
+Если вы замечаете проблемы с производительностью:
+- Уменьшите количество используемых плейсхолдеров
+- Избегайте лишнего вложения
+- Подумайте об использовании переменных для часто запрашиваемых значений
+- Используйте подходящий плейсхолдер для вашей задачи (например, не используйте плейсхолдеры реального времени, если достаточно статических значений)
