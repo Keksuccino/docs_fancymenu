@@ -1,13 +1,9 @@
 ---
 title: Title Screen Glyph
-description: How to hide/remove the little diamond or emerald (green or blue) glyph/icon in the Title screen.
-published: true
-date: 2025-07-06T15:15:42.758Z
-tags: 
-editor: markdown
-dateCreated: 2025-07-06T15:15:39.543Z
+description: >-
+  How to hide/remove the little diamond or emerald (green or blue) glyph/icon in
+  the Title screen.
 ---
-
 # Emerald/Diamond Icon in the Title Screen
 
 If you struggle to hide the little icon that keeps appearing in your Title screen and that looks like a little diamond or emerald (green or blue little icon), this is mostly the mod update notification of either Mod Menu (Fabric mod) or Forge (built-in modloader feature).
@@ -24,7 +20,7 @@ Click on the **Mods** button -> Hover over the icon of the Mod Menu mod in the m
 
 Forge uses a built-in version checker to show that emerald icon when mods are outdated. You can turn it off:
 
-1. Open your config/fml.toml file.
+1. Open your `/config/fml.toml` file.
 2. Find the `versionCheck` setting.
 3. Set it to `false`: `versionCheck = false`
 4. Save and restart Minecraft.
@@ -32,6 +28,15 @@ Forge uses a built-in version checker to show that emerald icon when mods are ou
 This disables the version check entirely, which also hides the emerald glyph at launch.
 
 Another way to hide the icon is by simply hiding the whole Mods button via FancyMenu. Hiding the button will also hide the glyph.
+
+# Hiding the NeoForge Icon
+
+For NeoForge it works exactly the same as for classic Forge.
+
+1. Open your `/config/fml.toml` file.
+2. Find the `versionCheck` setting.
+3. Set it to `false`: `versionCheck = false`
+4. Save and restart Minecraft.
 
 # Hiding the Vanilla Realms Icons
 
