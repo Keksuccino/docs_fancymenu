@@ -1,13 +1,7 @@
 ---
 title: Parallax Effect
 description: How to apply a parallax effect to menu background and elements.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-05-07T00:04:35.161Z
 ---
-
 # What is the Parallax Effect?
 
 The parallax effect is a cool visual trick that makes your menu backgrounds and elements appear to have depth. When you move your mouse cursor, elements with parallax enabled will move slightly, creating an illusion of 3D space in your 2D menu. 
@@ -84,8 +78,6 @@ Adjust the **Parallax Intensity X/Y** values:
 - Lower values (closer to 0) = slower, more subtle movement
 - Higher values (closer to 1) = faster, more dramatic movement
 
-# Final Thoughts
+## Parallax Feels Unsmooth or Laggy?
 
-The parallax effect is a wonderful way to make your Minecraft menus feel more alive and interactive. Experiment with different combinations of background and element parallax to create stunning, dynamic layouts that respond to your mouse movements!
-
-Remember, the best effects are often subtle - a little movement goes a long way in creating an immersive experience.
+That's a limitation of the parallax effect, since Minecraft uses integer-based coordinates (full numbers), so it's possible that the effect can feel a bit like elements are "jumping", but that shouldn't be too noticeable if you use the "normal" parallax intensities and not super small or big ones.
