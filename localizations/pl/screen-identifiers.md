@@ -1,16 +1,18 @@
 ---
 title: Identyfikatory ekranów
-description: 'O identyfikatorach ekranów i o tym, jak znaleźć identyfikator danego ekranu.'
+description: 'O identyfikatorach ekranów i tym, jak znaleźć identyfikator danego ekranu.'
 ---
-
 # Identyfikatory ekranów
 
-FancyMenu używa identyfikatorów ekranów, aby wiedzieć, do którego ekranu należy dany układ, wskazywać przycisk w konkretnym ekranie oraz wykonywać inne գործողności wymagające, by mod komunikował się z określonym ekranem lub go dostosowywał.
+FancyMenu używa identyfikatorów ekranów, aby wiedzieć, do którego ekranu należy dany układ, wskazać przycisk w konkretnym ekranie oraz obsługiwać inne funkcje wymagające, aby mod komunikował się z konkretnym ekranem lub go dostosowywał.
 
 # Znajdowanie identyfikatora ekranu
 
-Identyfikator aktualnie aktywnego menu możesz zobaczyć za pomocą **nakładki debugowania**.
-Zawiera ona identyfikator bieżącego ekranu i pozwala skopiować go do schowka po kliknięciu lewym przyciskiem myszy.
+Identyfikator aktualnie aktywnego menu możesz zobaczyć, korzystając z **nakładki debugowania**.
+Zawiera ona identyfikator bieżącego ekranu i umożliwia skopiowanie go do schowka po kliknięciu lewym przyciskiem myszy.
+
+>[!TIP]
+>Możesz włączyć **nakładkę debugowania**, naciskając **CTRL + ALT + D**, gdy **nie** jesteś w edytorze układu.
 
 <br>
 

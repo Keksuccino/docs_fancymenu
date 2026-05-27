@@ -1,18 +1,20 @@
 ---
 title: Identificadores de pantalla
 description: >-
-  Acerca de los identificadores de pantalla y de cómo encontrar el identificador
-  de una pantalla.
+  Acerca de los identificadores de pantalla y cómo encontrar el identificador de
+  una pantalla.
 ---
-
 # Identificadores de pantalla
 
-FancyMenu usa identificadores de pantalla para saber a qué pantalla pertenece un diseño, para señalar un botón en una pantalla específica y para otras cosas que requieren que el mod se comunique con una pantalla concreta o la personalice.
+FancyMenu utiliza identificadores de pantalla para saber a qué pantalla pertenece un diseño, para señalar un botón en una pantalla específica y otras acciones que requieren que el mod se comunique con una pantalla concreta o la personalice.
 
-# Encontrar el identificador de una pantalla
+# Cómo encontrar el identificador de una pantalla
 
-Puedes ver el identificador del menú actualmente activo usando la **superposición de depuración**.
+Puedes ver el identificador del menú que está activo actualmente utilizando la **superposición de depuración**.
 Contiene el identificador de la pantalla actual y te permite copiarlo al portapapeles haciendo clic izquierdo sobre él.
+
+>[!TIP]
+>Puedes activar la **superposición de depuración** pulsando **CTRL + ALT + D** mientras **no** estés en el editor de diseños.
 
 <br>
 

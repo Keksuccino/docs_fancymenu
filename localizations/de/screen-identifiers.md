@@ -1,16 +1,20 @@
 ---
-title: Bildschirmkennungen
-description: Über Bildschirmkennungen und wie man die Kennung eines Bildschirms findet.
+title: Bildschirm-Identifikatoren
+description: >-
+  Über Bildschirm-Identifikatoren und wie man den Identifikator eines
+  Bildschirms findet.
 ---
+# Bildschirm-Identifikatoren
 
-# Bildschirmkennungen
+FancyMenu verwendet Bildschirm-Identifikatoren, um zu erkennen, zu welchem Bildschirm ein Layout gehört, um auf eine Schaltfläche in einem bestimmten Bildschirm zu verweisen und für andere Dinge, bei denen das Mod mit einem bestimmten Bildschirm kommunizieren oder ihn anpassen muss.
 
-FancyMenu verwendet Bildschirmkennungen, um zu wissen, zu welchem Bildschirm ein Layout gehört, um auf eine Schaltfläche in einem bestimmten Bildschirm zu verweisen und für andere Dinge, die vom Mod verlangen, mit einem bestimmten Bildschirm zu kommunizieren oder ihn anzupassen.
+# Den Identifikator eines Bildschirms finden
 
-# Die Kennung eines Bildschirms finden
+Du kannst den Identifikator des aktuell aktiven Menüs über das **Debug-Overlay** sehen.
+Es enthält den Identifikator des aktuellen Bildschirms und ermöglicht es dir, ihn per Linksklick in die Zwischenablage zu kopieren.
 
-Du kannst die Kennung des aktuell aktiven Menüs mithilfe des **Debug-Overlays** sehen.
-Es enthält die Kennung des aktuellen Bildschirms und ermöglicht es dir, sie per Linksklick in die Zwischenablage zu kopieren.
+>[!TIP]
+>Du kannst das **Debug-Overlay** aktivieren, indem du **STRG + ALT + D** drückst, während du dich **nicht** im Layout-Editor befindest.
 
 <br>
 
