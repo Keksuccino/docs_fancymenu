@@ -1,42 +1,41 @@
 ---
 title: Text in Menüs
-description: Wie man Menüs Textinhalte hinzufügt.
+description: Wie man Textinhalte zu Menüs hinzufügt.
 ---
-
 # Text in Menüs
 
 FancyMenu ermöglicht es dir, Menüs/Bildschirmen über das **Text**-Element Textinhalte hinzuzufügen.
 
-Dieses Element ist scrollbar, unterstützt vollständiges Markdown und Zeilenumbrüche, was es sehr leistungsfähig macht, um selbst komplexe Textinhalte anzuzeigen. Es eignet sich aber auch hervorragend für einfache Einzeiler.
+Dieses Element ist scrollbar, unterstützt vollständig Markdown und Zeilenumbrüche, wodurch es sehr leistungsstark ist, um auch komplexe Textinhalte darzustellen, eignet sich aber genauso gut für einfache Einzeiler.
 
-## Textinhalt
+# Textinhalt
 
-Das Text-Element kann seinen Inhalt auf viele Arten abrufen. Du kannst eine Quelle für seinen Textinhalt festlegen, etwa eine direkte Texteingabe, eine lokale Textdatei im `assets`-Ordner von FancyMenu (`/config/fancymenu/assets/`), eine Web-Textdatei (per URL) oder eine lokale Textdatei, die über ein Resource Pack geladen wird.
+Das Text-Element kann seinen Inhalt auf viele Arten beziehen. Du kannst eine Quelle für seinen Textinhalt festlegen, die entweder eine direkte Klartexteingabe, eine lokale Textdatei im `assets`-Ordner von FancyMenu (`/config/fancymenu/assets/`), eine Web-Textdatei (per URL) oder eine lokale Textdatei ist, die über ein Ressourcenpaket geladen wird.
 
-Die Web-Quellenart als Textquelle zu verwenden ist besonders nützlich, wenn du etwas wie ein Changelog erstellen möchtest, das immer aktuell ist, oder einen News-Ticker und Ähnliches, ohne dafür ein Update für dein Modpack veröffentlichen zu müssen.
+Die Web-Quelle als Textquelle zu verwenden ist besonders nützlich, wenn du so etwas wie ein stets aktuelles Changelog, einen News-Ticker oder Ähnliches erstellen möchtest, ohne dafür ein Update für dein Modpack veröffentlichen zu müssen.
 
-Beachte, dass FancyMenu den Inhalt von Textquellen zwischenspeichert, damit er nicht ständig neu abgerufen werden muss (was die Leistung stark beeinträchtigen würde). Der Inhalt wird nur für die aktive Sitzung zwischengespeichert, daher wird der Cache beim Neustart des Spiels geleert. Du kannst den Cache auch leeren, indem du FancyMenu über **Menüleiste -> Anpassung -> FancyMenu neu laden** neu lädst.
+Beachte, dass FancyMenu den Inhalt von Textquellen zwischenspeichert, damit er nicht ständig erneut abgerufen werden muss (was für die Leistung sehr schlecht wäre). Der Inhalt wird nur für die aktive Sitzung zwischengespeichert, daher wird der Cache beim Neustart des Spiels gelöscht. Du kannst den Cache auch leeren, indem du FancyMenu über **Menüleiste -> Anpassung -> FancyMenu neu laden** neu lädst.
 
-## Platzhalter
+# Platzhalter
 
-Das Text-Element unterstützt außerdem das Platzhalter-System von FancyMenu, wodurch es möglich wird, Textinhalte dynamisch zu gestalten und auf verschiedene Änderungen an Menüs, Welten, Spielern usw. zu reagieren.
+Das Text-Element unterstützt außerdem das Platzhaltersystem von FancyMenu, wodurch es möglich wird, Textinhalte dynamisch zu gestalten und auf verschiedene Änderungen an Menüs, Welten, Spielern usw. zu reagieren.
 
-## Markdown anpassen oder deaktivieren
+# Markdown anpassen oder deaktivieren
 
-Wenn du die Farben für Überschriften oder andere Markdown-bezogene Dinge anpassen möchtest, klicke einfach mit der **rechten Maustaste** auf das Text-Element und dann auf **Markdown**. Im Untermenü, das sich öffnet, findest du zahlreiche Optionen, um das Aussehen und Verhalten des Markdown-Parsers anzupassen.
+Wenn du die Farben für Überschriften oder andere mit Markdown zusammenhängende Dinge anpassen möchtest, **klicke mit der rechten Maustaste** auf das Text-Element und dann auf **Markdown**. Im sich öffnenden Unter-Kontextmenü findest du viele Optionen, um das Aussehen und Verhalten des Markdown-Parsers anzupassen.
 
-Falls du überhaupt keine Markdown-Analyse möchtest, was die Leistung bei langen Textinhalten verbessern kann, kannst du Markdown im **Markdown**-Menü vollständig deaktivieren, indem du mit der **rechten Maustaste** auf das Text-Element klickst.
+Falls du Markdown-Parsing überhaupt nicht möchtest, was die Leistung bei langen Textinhalten verbessern kann, kannst du Markdown im **Markdown**-Menü vollständig deaktivieren, indem du **mit der rechten Maustaste** auf das Text-Element klickst.
 
-## Zeilenumbrüche deaktivieren
+# Zeilenumbruch deaktivieren
 
-Wenn du keine Zeilenumbrüche möchtest, kannst du sie per **Rechtsklick** auf das Text-Element deaktivieren.
+Wenn du keinen Zeilenumbruch möchtest, kannst du ihn deaktivieren, indem du **mit der rechten Maustaste** auf das Text-Element klickst.
 
-## Scrollen deaktivieren
+# Scrollen deaktivieren & Scroll-Griffe ausblenden
 
-Text-Elemente sind standardmäßig scrollbar, und wenn das Element meint, dass der Nutzer scrollen muss, um den gesamten Inhalt zu sehen, zeigt es Scrollleisten an – kleine graue Balken an der rechten und unteren Seite des Text-Elements (vertikale und horizontale Scrollleisten).
+Text-Elemente sind standardmäßig scrollbar, und wenn das Element denkt, dass der Benutzer scrollen muss, um den gesamten Inhalt zu sehen, zeigt es seine Scrollbalken/-griffe an. Das sind kleine, graue, halbtransparente Balken (mit abgerundeten Kanten) auf der rechten und unteren Seite des Text-Elements (vertikale und horizontale Scrollbalken). Die Scroll-Griffe werden manchmal auch für Schatten gehalten.
 
-Du kannst diese Balken deaktivieren, indem du **Scrolling** im Menü ausschaltest, das sich beim **Rechtsklick** auf das Element öffnet. Dadurch wird das Scrollen insgesamt deaktiviert, nicht nur die Balken. Wenn du stattdessen möchtest, dass die Balken unsichtbar sind, kannst du benutzerdefinierte Scrollleisten-Texturen festlegen, indem du mit der rechten Maustaste auf das Element klickst. Setze dort einfach eine vollständig transparente Textur.
+Du kannst diese Griffe deaktivieren, indem du **Scrolling** in dem Menü ausschaltest, das sich öffnet, wenn du **mit der rechten Maustaste** auf das Element klickst. Dadurch wird das Scrollen generell deaktiviert, nicht nur die Griffe. Wenn du nur möchtest, dass die Griffe unsichtbar sind, du aber weiterhin scrollen können willst, kannst du benutzerdefinierte Texturen für die Scroll-Griffe festlegen, indem du mit der rechten Maustaste auf das Element klickst. Setze dort einfach eine vollständig transparente Textur.
 
-## Minecrafts Roh-Komponenten-Textformat (serialisierte JSON-Komponenten)
+# Minecrafts Raw-Component-Textformat (serialisierte JSON-Components)
 
-Das Text-Element unterstützt das Roh-Komponenten-Format von Minecraft **nicht**. Dieses Format wird nur von Button- und Slider-Beschriftungen unterstützt.
+Das Text-Element unterstützt das Raw-Component-Format von Minecraft NICHT. Dieses Format wird nur von Button- und Slider-Beschriftungen unterstützt.
