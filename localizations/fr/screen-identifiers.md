@@ -4,15 +4,17 @@ description: >-
   À propos des identifiants d’écran et de la manière de trouver l’identifiant
   d’un écran.
 ---
-
 # Identifiants d’écran
 
-FancyMenu utilise des identifiants d’écran pour savoir à quel écran appartient une disposition, pour cibler un bouton dans un écran spécifique et pour d’autres fonctions qui nécessitent que le mod communique avec un écran précis ou le personnalise.
+FancyMenu utilise des identifiants d’écran pour savoir à quel écran appartient une mise en page, pour cibler un bouton dans un écran spécifique et pour d’autres actions qui nécessitent que le mod communique avec un écran précis ou le personnalise.
 
 # Trouver l’identifiant d’un écran
 
 Vous pouvez voir l’identifiant du menu actuellement actif à l’aide de la **superposition de débogage**.
 Elle contient l’identifiant de l’écran actuel et vous permet de le copier dans le presse-papiers en cliquant dessus avec le bouton gauche.
+
+>[!TIP]
+>Vous pouvez activer la **superposition de débogage** en appuyant sur **CTRL + ALT + D** lorsque vous **n’êtes pas** dans l’éditeur de mise en page.
 
 <br>
 
