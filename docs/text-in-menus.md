@@ -30,7 +30,7 @@ In case you don't want Markdown parsing at all, which can improve performance fo
 
 If you don't want line wrapping, you can disable it by **right-clicking** the Text element.
 
-## Disabling Scrolling
+## Disabling Scrolling & Hiding The Scroll Grabbers
 
 Text elements are scrollable by default and if the element thinks the user needs to scroll for seeing all of its content, it will show its scroll bars/grabbers, which are small, grey translucent bars (with rounded edges) at the right and bottom sides of the Text element (vertical and horizontal scroll bars). The scroll grabbers sometimes also get mistaken for shadows.
 
