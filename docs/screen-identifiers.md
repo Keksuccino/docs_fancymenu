@@ -1,13 +1,7 @@
 ---
 title: Screen Identifiers
 description: About screen identifiers and how to find the identifier of a screen.
-published: true
-date: 2025-04-14T20:16:01.563Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:15:58.663Z
 ---
-
 # Screen Identifiers
 
 FancyMenu uses screen identifiers to know which screen a layout belongs to, to point to a button in a specific screen and other things that require the mod to communicate with or customize a specific screen.
@@ -16,6 +10,9 @@ FancyMenu uses screen identifiers to know which screen a layout belongs to, to p
 
 You can see the identifier of the currently active menu by using the **Debug Overlay**.
 It contains the current screen's identifier and allows you to copy it to the clipboard by left-clicking it.
+
+>[!TIP]
+>You can enable the debug overlay by pressing **CTRL + ALT + D** while you are **not** in the layout editor.
 
 <br>
 
