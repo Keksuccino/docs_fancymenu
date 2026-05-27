@@ -1,13 +1,7 @@
 ---
 title: Text in Menus
 description: How to add text content to menus.
-published: true
-date: 2025-07-05T19:52:59.694Z
-tags: 
-editor: markdown
-dateCreated: 2025-07-05T19:40:17.459Z
 ---
-
 # Text in Menus
 
 FancyMenu allows you to add text content to menus/screens via the **Text** element.
@@ -38,9 +32,9 @@ If you don't want line wrapping, you can disable it by **right-clicking** the Te
 
 ## Disabling Scrolling
 
-Text elements are scrollable by default and if the element thinks the user needs to scroll for seeing all of its content, it will show its scroll bars, which are small, grey bars at the right and bottom sides of the Text element (vertical and horizontal scroll bars).
+Text elements are scrollable by default and if the element thinks the user needs to scroll for seeing all of its content, it will show its scroll bars/grabbers, which are small, grey translucent bars (with rounded edges) at the right and bottom sides of the Text element (vertical and horizontal scroll bars). The scroll grabbers sometimes also get mistaken for shadows.
 
-You can disable these bars by toggling off **Scrolling** in the menu that opens when **right-clicking** the element. This will disable scrolling in general, not just the bars. If you want the bars to be invisible instead, you can set custom scroll bar textures by right-clicking the element. Just set a fully transparent texture there.
+You can disable these grabbers by toggling off **Scrolling** in the menu that opens when **right-clicking** the element. This will disable scrolling in general, not just the grabbers. If you just want the grabbers to be invisible, while still being able to scroll, you can set custom scroll grabber textures by right-clicking the element. Just set a fully transparent texture there.
 
 ## Minecraft's Raw Component Text Format (Serialized JSON Components)
 
