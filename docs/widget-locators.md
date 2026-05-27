@@ -14,5 +14,5 @@ The first one is activating the **debug overlay** in the menu that contains the 
 
 The second one is opening the **layout editor** for the menu that contains the widget, and then **right-clicking the widget element**, which will also open a context menu with an option to copy the locator to the clipboard.
 
->[!WARN]
+>[!WARNING]
 >If you **can't right-click** the widget via the debug overlay, or it **does not appear** in the layout editor, it is probably not visible for FancyMenu, which means that it does not have a locator in that case. This mostly happens for mod buttons that are added to menus in weird ways.
