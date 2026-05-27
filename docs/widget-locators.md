@@ -4,11 +4,11 @@ description: What are widgets locators and how to find them.
 ---
 # Widget Locators
 
-Widget locators are used for pointing at a specific Vanilla widget (button, slider, text input field) in a menu, which is needed for some of FancyMenu's features that need to interact with a widget in some way.
+Widget locators are used for pointing at a specific Vanilla/mod widget (button, slider, text input field) in a menu, which is needed for some of FancyMenu's features that need to interact with a widget in some way.
 
 # Getting The Locator of a Widget
 
-There are two ways to get the locator of a Vanilla widget.
+There are two ways to get the locator of a Vanilla/mod widget.
 
 The first one is activating the **debug overlay** in the menu that contains the widget, by pressing **CTRL + ALT + D**, and then **right-clicking the widget**, which will open a context menu with an option to copy the locator to the clipboard.
 
