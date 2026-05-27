@@ -8,11 +8,11 @@ FancyMenu uses screen identifiers to know which screen a layout belongs to, to p
 
 # Finding the Identifier of a Screen
 
-You can see the identifier of the currently active menu by using the **Debug Overlay**.
+You can see the identifier of the currently active menu by using the **debug overlay**.
 It contains the current screen's identifier and allows you to copy it to the clipboard by left-clicking it.
 
 >[!TIP]
->You can enable the debug overlay by pressing **CTRL + ALT + D** while you are **not** in the layout editor.
+>You can enable the **debug overlay** by pressing **CTRL + ALT + D** while you are **not** in the layout editor.
 
 <br>
 
