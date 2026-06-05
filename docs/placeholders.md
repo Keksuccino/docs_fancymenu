@@ -2,7 +2,6 @@
 title: Placeholders
 description: How to use placeholders.
 ---
-
 # Placeholders
 
 Placeholders are dynamic values that get replaced with actual content when they are used. In FancyMenu, placeholders allow you to insert dynamic content into various elements like text, buttons, and loading requirements. Think of them as variables that get evaluated and replaced with their actual values when your layouts are displayed.
@@ -28,6 +27,9 @@ Example of nested placeholders:
 {"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
 ```
 This example takes the maximum RAM value and divides it by 1024 to convert it from MB to GB.
+
+> [!IMPORTANT]
+> Unlike real JSON, nested placeholders do **not** get **escaped** by using `\`. This is very important, because placeholders will stop working when escaped (obviously). Placeholders just use a JSON-like syntax. They are not real JSON.
 
 # Using Placeholders
 
