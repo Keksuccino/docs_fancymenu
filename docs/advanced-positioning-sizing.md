@@ -1,13 +1,7 @@
 ---
 title: Advanced Positioning & Sizing
 description: How to use Advanced Positioning and Sizing of elements.
-published: true
-date: 2025-08-01T01:44:12.713Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:03:22.929Z
 ---
-
 # Advanced Positioning & Sizing
 
 Advanced positoning/sizing allows you to have **full control over the position and size of your elements**. This is very powerful but also **a lot more time-consuming** than using FancyMenu's automated sizing and positioning.
@@ -46,3 +40,6 @@ The `decimal` variable is set to `false`, which is important for most sizing/pos
 The following calculator uses the **Screen Width** placeholder and divides it by `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
+
+> [!IMPORTANT]
+> While **Advanced Positioning** is enabled, the **anchor** and any other types of position-related feature of the element will be **ignored**. Advanced Positioning will always use the top-left (X0 Y0) corner as origin, just like the default Minecraft GUI logic does it. The only setting that Advanced Positioning respects is **Stay on Screen**.
