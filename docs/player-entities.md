@@ -34,7 +34,7 @@ For older versions (1.19.2 and older), Player Entity elements do not support dir
 
 # Dependency: Fancy Entity Renderer (FER)
 
-For Minecraft 1.20.1+, there is an extra mod needed for making Player Entity elements work. The mod is called "Fancy Entity Renderer" and is available on CurseForge and Modrinth.
+For **Minecraft 1.20.1+**, there is an **extra mod needed** for making Player Entity elements work. The mod is called **Fancy Entity Renderer** and is available on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer) and [Modrinth](https://modrinth.com/mod/fancy-entity-renderer).
 
 If there is no build available yet for the Minecraft version you're using, it will most likely get released at a later point.
 
