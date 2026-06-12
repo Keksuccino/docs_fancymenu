@@ -2,15 +2,14 @@
 title: Placeholders
 description: Jak używać placeholderów.
 ---
-
 # Placeholders
 
-Placeholders to dynamiczne wartości, które są zastępowane rzeczywistą treścią w momencie użycia. W FancyMenu placeholdery pozwalają wstawiać dynamiczną zawartość do różnych elementów, takich jak tekst, przyciski i wymagania ładowania. Traktuj je jak zmienne, które są obliczane i zastępowane swoimi rzeczywistymi wartościami, gdy wyświetlane są Twoje układy.
+Placeholdy to dynamiczne wartości, które są zastępowane rzeczywistą treścią w momencie użycia. W FancyMenu placeholdy pozwalają wstawiać dynamiczne treści do różnych elementów, takich jak tekst, przyciski i wymagania ładowania. Można je traktować jak zmienne, które są obliczane i zastępowane swoimi rzeczywistymi wartościami, gdy układy są wyświetlane.
 
 # Informacje ogólne
 
 ## Podstawowa składnia
-Placeholders w FancyMenu używają składni podobnej do JSON:
+Placeholdy w FancyMenu używają składni podobnej do JSON:
 ```
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
@@ -21,7 +20,7 @@ Na przykład, aby wyświetlić nazwę gracza:
 ```
 
 ## Zagnieżdżanie placeholderów
-Jedną z najpotężniejszych funkcji systemu placeholderów FancyMenu jest możliwość zagnieżdżania placeholderów wewnątrz innych placeholderów. Oznacza to, że możesz użyć wyniku jednego placeholdera jako wejścia dla innego.
+Jedną z najpotężniejszych funkcji systemu placeholderów w FancyMenu jest możliwość zagnieżdżania placeholderów wewnątrz innych placeholderów. Oznacza to, że możesz użyć wyniku jednego placeholdera jako wejścia dla innego.
 
 Przykład zagnieżdżonych placeholderów:
 ```
@@ -29,9 +28,12 @@ Przykład zagnieżdżonych placeholderów:
 ```
 Ten przykład pobiera maksymalną wartość RAM i dzieli ją przez 1024, aby przeliczyć ją z MB na GB.
 
+> [!IMPORTANT]
+> W przeciwieństwie do prawdziwego JSON-a, zagnieżdżone placeholdery **nie** są **escape’owane** za pomocą `\`. To bardzo ważne, ponieważ placeholdery przestaną działać po escape’owaniu (oczywiście). Placeholdery używają tylko składni podobnej do JSON-a. Nie są prawdziwym JSON-em.
+
 # Używanie placeholderów
 
-Większość elementów, które mają pola tekstowe, obsługuje placeholdery. Podczas edycji możesz sprawdzić, czy dane pole tekstowe obsługuje placeholdery. Jeśli podczas edycji tekstu otwiera się pełnoekranowy **edytor tekstu**, oznacza to, że obsługuje on placeholdery. 
+Większość elementów, które mają pola tekstowe, obsługuje placeholdery. Podczas edycji możesz sprawdzić, czy dane pole tekstowe obsługuje placeholdery. Jeśli podczas edycji tekstu otwiera się pełnoekranowy **edytor tekstu**, oznacza to, że placeholdery są obsługiwane.
 
 Aby znaleźć **listę wszystkich placeholderów**, kliknij przycisk **Placeholders** w **prawym górnym rogu** **edytora tekstu**.
 
@@ -39,7 +41,7 @@ Na górze listy placeholderów znajduje się **pasek wyszukiwania**, który pozw
 
 Kliknięcie placeholdera na liście spowoduje wklejenie go do treści tekstu.
 
-# Placeholders szczegółowo
+# Placeholdy szczegółowo
 
 Ta lista zawiera większość, jeśli nie wszystkie, placeholdery dostępne w FancyMenu. Lista może czasem być nieco nieaktualna z powodu aktualizacji moda.
 
@@ -58,7 +60,7 @@ Zwraca unikalny identyfikator gracza.
 Przykładowy wynik: `c8cde7fe-7ced-11eb-9439-0242ac130002`
 
 ## Wersja Minecrafta (mcversion)
-Zwraca bieżącą wersję Minecrafta.
+Zwraca aktualną wersję Minecrafta.
 ```
 {"placeholder":"mcversion"}
 ```
@@ -85,7 +87,7 @@ Zwraca wersję określonego moda.
 ```
 Przykładowy wynik: `2.14.9`
 
-## Całkowita liczba modów (totalmods)
+## Łączna liczba modów (totalmods)
 Zwraca łączną liczbę zainstalowanych modów.
 ```
 {"placeholder":"totalmods"}
@@ -100,7 +102,7 @@ Zwraca liczbę aktualnie załadowanych modów.
 Przykładowy wynik: `43`
 
 ## Postęp ładowania świata (world_load_progress)
-Zwraca bieżący postęp ładowania świata w procentach.
+Zwraca aktualny postęp ładowania świata w procentach.
 ```
 {"placeholder":"world_load_progress"}
 ```
@@ -114,18 +116,18 @@ Zwraca wartość opcji Minecrafta.
 Przykładowy wynik: `70`
 
 ## Ostatni świat lub serwer (last_world_server)
-Zwraca informacje o ostatnio użytym świecie lub serwerze.
+Zwraca informacje o ostatnio otwartym świecie lub serwerze.
 ```
 {"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
 ```
 Parametry:
-- `type`: Określa, jaki typ informacji ma zostać zwrócony
-  - `"both"`: Zwraca ostatnio użyty świat lub serwer (domyślnie)
-  - `"server"`: Zwraca tylko wtedy, gdy ostatnio użyty był serwer
-  - `"world"`: Zwraca tylko wtedy, gdy ostatnio użyty był świat
-- `full_world_path`: Określa sposób wyświetlania ścieżek świata
+- `type`: Określa, jaki rodzaj informacji ma zostać zwrócony
+  - `"both"`: Zwraca ostatnio otwarty świat lub serwer (domyślnie)
+  - `"server"`: Zwraca tylko wtedy, gdy ostatnio otwarty był serwer
+  - `"world"`: Zwraca tylko wtedy, gdy ostatnio otwarty był świat
+- `full_world_path`: Kontroluje sposób wyświetlania ścieżek światów
   - `"true"`: Zwraca pełną ścieżkę świata (domyślnie)
-  - `"false"`: Zwraca tylko nazwę świata bez ścieżki (nie dotyczy serwerów)
+  - `"false"`: Zwraca tylko nazwę świata bez ścieżki (nie wpływa na serwery)
 
 Przykłady:
 - Serwer: `mc.hypixel.net`
@@ -133,21 +135,21 @@ Przykłady:
 - Świat bez pełnej ścieżki: `New World`
 
 ## Szerokość ekranu (guiwidth)
-Zwraca bieżącą szerokość ekranu.
+Zwraca aktualną szerokość ekranu.
 ```
 {"placeholder":"guiwidth"}
 ```
 Przykładowy wynik: `1920`
 
 ## Wysokość ekranu (guiheight)
-Zwraca bieżącą wysokość ekranu.
+Zwraca aktualną wysokość ekranu.
 ```
 {"placeholder":"guiheight"}
 ```
 Przykładowy wynik: `1080`
 
-## Identyfikator bieżącego ekranu (screenid)
-Zwraca identyfikator bieżącego ekranu.
+## Identyfikator aktualnego ekranu (screenid)
+Zwraca identyfikator aktualnego ekranu.
 ```
 {"placeholder":"screenid"}
 ```
@@ -182,21 +184,21 @@ Zwraca pozycję Y określonego elementu.
 Przykładowy wynik: `100`
 
 ## Pozycja X myszy (mouseposx)
-Zwraca bieżącą pozycję X myszy.
+Zwraca aktualną pozycję X myszy.
 ```
 {"placeholder":"mouseposx"}
 ```
 Przykładowy wynik: `960`
 
 ## Pozycja Y myszy (mouseposy)
-Zwraca bieżącą pozycję Y myszy.
+Zwraca aktualną pozycję Y myszy.
 ```
 {"placeholder":"mouseposy"}
 ```
 Przykładowy wynik: `540`
 
 ## Kliknięcia na sekundę (clicks_per_second)
-Zwraca bieżącą liczbę kliknięć na sekundę dla przycisku myszy.
+Zwraca aktualną liczbę kliknięć na sekundę dla przycisku myszy.
 ```
 {"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
 ```
@@ -206,28 +208,28 @@ Parametry:
 Przykładowy wynik: `8`
 
 ## Skala GUI (guiscale)
-Zwraca bieżącą skalę GUI.
+Zwraca aktualną skalę GUI.
 ```
 {"placeholder":"guiscale"}
 ```
 Przykładowy wynik: `2`
 
-## Etykieta/tekst vanillowego widgetu/przycisku (vanillabuttonlabel)
-Zwraca etykietę/tekst vanillowego widgetu lub przycisku.
+## Etykieta/tekst przycisku Vanilla (vanillabuttonlabel)
+Zwraca etykietę/tekst zwykłego widgetu/przycisku.
 ```
 {"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
 ```
 Przykładowy wynik: `Options...`
 
 ## Wartość pola tekstowego (text_input_field_value)
-Zwraca bieżącą wartość niestandardowego lub vanillowego pola tekstowego na podstawie identyfikatora elementu.
+Zwraca aktualną wartość niestandardowego lub vanilla pola tekstowego na podstawie identyfikatora elementu.
 ```
 {"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
 ```
 Przykładowy wynik: `Hello World`
 
-## Bieżące zdrowie gracza (current_player_health)
-Zwraca bieżącą liczbę punktów zdrowia gracza.
+## Aktualne zdrowie gracza (current_player_health)
+Zwraca aktualną liczbę punktów zdrowia gracza.
 ```
 {"placeholder":"current_player_health"}
 ```
@@ -240,15 +242,15 @@ Zwraca maksymalną liczbę punktów zdrowia gracza.
 ```
 Przykładowy wynik: `20.0`
 
-## Bieżące zdrowie gracza (procent) (current_player_health_percent)
+## Aktualne zdrowie gracza (procent) (current_player_health_percent)
 Zwraca zdrowie gracza w procentach.
 ```
 {"placeholder":"current_player_health_percent"}
 ```
 Przykładowy wynik: `100`
 
-## Bieżące zdrowie absorpcji gracza (current_player_absorption_health)
-Zwraca bieżące punkty zdrowia absorpcji gracza (złote serca).
+## Aktualne zdrowie absorpcji gracza (current_player_absorption_health)
+Zwraca punkty zdrowia absorpcji gracza (złote serca).
 ```
 {"placeholder":"current_player_absorption_health"}
 ```
@@ -261,15 +263,15 @@ Zwraca maksymalne zdrowie absorpcji.
 ```
 Przykładowy wynik: `4.0`
 
-## Bieżące zdrowie absorpcji gracza (procent) (current_player_absorption_health_percent)
+## Aktualne zdrowie absorpcji gracza (procent) (current_player_absorption_health_percent)
 Zwraca zdrowie absorpcji gracza w procentach.
 ```
 {"placeholder":"current_player_absorption_health_percent"}
 ```
 Przykładowy wynik: `100`
 
-## Bieżący poziom głodu gracza (current_player_hunger)
-Zwraca bieżący poziom głodu gracza.
+## Aktualny poziom głodu gracza (current_player_hunger)
+Zwraca aktualny poziom głodu gracza.
 ```
 {"placeholder":"current_player_hunger"}
 ```
@@ -282,50 +284,50 @@ Zwraca maksymalny poziom głodu.
 ```
 Przykładowy wynik: `20`
 
-## Bieżący poziom głodu gracza (procent) (current_player_hunger_percent)
-Zwraca głód gracza w procentach.
+## Aktualny poziom głodu gracza (procent) (current_player_hunger_percent)
+Zwraca poziom głodu gracza w procentach.
 ```
 {"placeholder":"current_player_hunger_percent"}
 ```
 Przykładowy wynik: `100`
 
-## Bieżące nasycenie głodu gracza (current_player_hunger_saturation)
-Zwraca bieżącą wartość nasycenia głodu gracza.
+## Aktualne nasycenie głodu gracza (current_player_hunger_saturation)
+Zwraca aktualną wartość nasycenia głodu gracza.
 ```
 {"placeholder":"current_player_hunger_saturation"}
 ```
 Przykładowy wynik: `5.0`
 
-## Bieżąca zbroja gracza (current_player_armor)
-Zwraca bieżącą wartość zbroi gracza.
+## Aktualny pancerz gracza (current_player_armor)
+Zwraca aktualną wartość pancerza gracza.
 ```
 {"placeholder":"current_player_armor"}
 ```
 Przykładowy wynik: `20`
 
-## Wytrzymałość zbroi gracza (player_armor_toughness)
-Zwraca łączną wartość wytrzymałości zbroi gracza.
+## Wytrzymałość pancerza gracza (player_armor_toughness)
+Zwraca łączną wartość wytrzymałości pancerza gracza.
 ```
 {"placeholder":"player_armor_toughness"}
 ```
 Przykładowy wynik: `8.0`
 
-## Maksymalna zbroja gracza (max_player_armor)
-Zwraca maksymalną wartość zbroi.
+## Maksymalny pancerz gracza (max_player_armor)
+Zwraca maksymalną wartość pancerza.
 ```
 {"placeholder":"max_player_armor"}
 ```
 Przykładowy wynik: `20`
 
-## Bieżąca zbroja gracza (procent) (current_player_armor_percent)
-Zwraca zbroję gracza w procentach.
+## Aktualny pancerz gracza (procent) (current_player_armor_percent)
+Zwraca pancerz gracza w procentach.
 ```
 {"placeholder":"current_player_armor_percent"}
 ```
 Przykładowy wynik: `100`
 
-## Bieżący poziom tlenu gracza (current_player_oxygen)
-Zwraca bieżący poziom tlenu gracza (bąbelki powietrza).
+## Aktualny poziom tlenu gracza (current_player_oxygen)
+Zwraca aktualny poziom tlenu gracza (bąbelki powietrza).
 ```
 {"placeholder":"current_player_oxygen"}
 ```
@@ -338,21 +340,21 @@ Zwraca maksymalny poziom tlenu.
 ```
 Przykładowy wynik: `300`
 
-## Bieżący poziom tlenu gracza (procent) (current_player_oxygen_percent)
+## Aktualny poziom tlenu gracza (procent) (current_player_oxygen_percent)
 Zwraca poziom tlenu gracza w procentach.
 ```
 {"placeholder":"current_player_oxygen_percent"}
 ```
 Przykładowy wynik: `100`
 
-## Bieżący poziom gracza (current_player_level)
-Zwraca bieżący poziom doświadczenia gracza.
+## Aktualny poziom doświadczenia gracza (current_player_level)
+Zwraca aktualny poziom doświadczenia gracza.
 ```
 {"placeholder":"current_player_level"}
 ```
 Przykładowy wynik: `30`
 
-## Bieżące doświadczenie gracza (current_player_exp)
+## Aktualne doświadczenie gracza (current_player_exp)
 Zwraca łączną liczbę punktów doświadczenia gracza.
 ```
 {"placeholder":"current_player_exp"}
@@ -408,8 +410,8 @@ Zwraca pozycję Z gracza w świecie.
 ```
 Przykładowy wynik: `-250`
 
-## Bieżące zdrowie wierzchowca (current_mount_health)
-Zwraca bieżące zdrowie encji, na której jedzie gracz.
+## Aktualne zdrowie wierzchowca (current_mount_health)
+Zwraca aktualne zdrowie encji, na której jedzie gracz.
 ```
 {"placeholder":"current_mount_health"}
 ```
@@ -422,21 +424,21 @@ Zwraca maksymalne zdrowie encji, na której jedzie gracz.
 ```
 Przykładowy wynik: `30.0`
 
-## Bieżące zdrowie wierzchowca (procent) (current_mount_health_percent)
+## Aktualne zdrowie wierzchowca (procent) (current_mount_health_percent)
 Zwraca zdrowie wierzchowca w procentach.
 ```
 {"placeholder":"current_mount_health_percent"}
 ```
 Przykładowy wynik: `100`
 
-## Bieżący wskaźnik skoku wierzchowca (procent) (current_mount_jump_meter)
-Zwraca wartość wskaźnika siły skoku wierzchowca.
+## Aktualny wskaźnik skoku wierzchowca (procent) (current_mount_jump_meter)
+Zwraca wartość wskaźnika mocy skoku wierzchowca.
 ```
 {"placeholder":"current_mount_jump_meter"}
 ```
 Przykładowy wynik: `75`
 
-## Bieżące zdrowie bossa (procent) (current_boss_health)
+## Aktualne zdrowie bossa (procent) (current_boss_health)
 Zwraca zdrowie aktywnego bossa.
 ```
 {"placeholder":"current_boss_health"}
@@ -471,7 +473,7 @@ Zwraca informacje o określonym aktywnym efekcie.
 ```
 Przykładowy wynik: `minecraft:speed`
 
-## Wybrany slot hotbara (active_hotbar_slot)
+## Wybrany slot paska szybkiego dostępu (active_hotbar_slot)
 Zwraca aktualnie wybrany slot hotbara (0-8).
 ```
 {"placeholder":"active_hotbar_slot"}
@@ -486,45 +488,45 @@ Zwraca informacje o przedmiocie w określonym slocie ekwipunku.
 Przykładowy wynik: `minecraft:diamond_sword`
 
 ## Liczba przedmiotów w slocie (slot_item_count)
-Zwraca liczbę sztuk przedmiotu w określonym slocie ekwipunku gracza.
+Zwraca liczebność stosu przedmiotu w określonym slocie ekwipunku gracza.
 ```
 {"placeholder":"slot_item_count","values":{"slot":"0"}}
 ```
 Przykładowy wynik: `64`
 
-## Wytrzymałość przedmiotu w slocie (slot_item_durability)
-Zwraca informacje o wytrzymałości przedmiotu w określonym slocie ekwipunku gracza.
+## Trwałość przedmiotu w slocie (slot_item_durability)
+Zwraca informacje o trwałości przedmiotu w określonym slocie ekwipunku gracza.
 ```
 {"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
 ```
 Parametry:
-- `slot`: Numer slota w ekwipunku gracza.
+- `slot`: Numer slota ekwipunku gracza.
 - `format`: `current`, `remaining`, `max`, `damage`, `percentage` lub `percent`.
 
 Przykładowy wynik: `87`
 
 ## Nazwa wyświetlana przedmiotu w slocie (slot_item_display_name_fm)
-Zwraca nazwę wyświetlaną przedmiotu w określonym slocie jako komponent tekstowy JSON. W trybie obserwatora sloty hotbara mogą zwracać nazwy pozycji menu obserwatora, chyba że `ignore_spectator` ma wartość `true`.
+Zwraca nazwę wyświetlaną przedmiotu w określonym slocie jako komponent tekstowy JSON. W trybie obserwatora sloty hotbara mogą zwracać nazwy przedmiotów z menu obserwatora, chyba że `ignore_spectator` ma wartość `true`.
 ```
 {"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
 ```
 Przykładowy wynik: `{"text":"Diamond Sword","color":"aqua"}`
 
 ## Liczba przedmiotów w ekwipunku (inventory_item_count)
-Zwraca łączną liczbę przedmiotów danego typu w ekwipunku gracza. Jeśli `item` jest puste, liczy wszystkie stosy przedmiotów w ekwipunku.
+Zwraca łączną liczbę przedmiotów danego typu w ekwipunku gracza. Jeśli `item` jest puste, zlicza wszystkie stosy przedmiotów w ekwipunku.
 ```
 {"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
 ```
 Przykładowy wynik: `12`
 
-## Ilość punktów głodu przywracanych przez przedmiot w slocie ekwipunku (inventory_slot_food_point_restore_amount)
-Zwraca liczbę punktów głodu przywracanych przez przedmiot spożywczy w danym slocie ekwipunku gracza.
+## Ilość głodu przywracana przez przedmiot w slocie ekwipunku (inventory_slot_food_point_restore_amount)
+Zwraca liczbę punktów głodu przywracanych przez jedzenie znajdujące się w danym slocie ekwipunku gracza.
 ```
 {"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
 ```
 Przykładowy wynik: `4.0`
 
-## Przedmiot w podświetlonym slocie ekwipunku (hovered_inventory_item)
+## Przedmiot nad którym znajduje się kursor w ekwipunku (hovered_inventory_item)
 Zwraca klucz przedmiotu aktualnie wskazywanego w ekranie ekwipunku.
 ```
 {"placeholder":"hovered_inventory_item"}
@@ -532,63 +534,63 @@ Zwraca klucz przedmiotu aktualnie wskazywanego w ekranie ekwipunku.
 Przykładowy wynik: `minecraft:apple`
 
 ## Czas gry świata (game_time)
-Zwraca bieżący licznik ticków czasu gry.
+Zwraca aktualny licznik ticków czasu w grze.
 ```
 {"placeholder":"game_time"}
 ```
 Przykładowy wynik: `18000`
 
-## Czas dnia świata (world_daytime)
-Zwraca bieżący czas dnia w świecie.
+## Czas dobowy świata (world_daytime)
+Zwraca aktualny czas dnia w świecie.
 ```
 {"placeholder":"world_daytime"}
 ```
 Przykładowy wynik: `13000`
 
-## Godzina czasu dnia świata (world_daytime_hour)
-Zwraca godzinę z czasu świata. Domyślnie używa formatu 24-godzinnego; ustaw `twelve_hour_format` na `"true"`, aby użyć formatu 12-godzinnego.
+## Godzina czasu świata (world_daytime_hour)
+Zwraca godzinę czasu świata. Domyślnie używany jest format 24-godzinny; ustaw `twelve_hour_format` na `"true"`, aby użyć formatu 12-godzinnego.
 ```
 {"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
 ```
 Przykładowy wynik: `12`
 
-## Minuta czasu dnia świata (world_daytime_minute)
-Zwraca minutę z czasu świata (00-59).
+## Minuta czasu świata (world_daytime_minute)
+Zwraca minutę czasu świata (00-59).
 ```
 {"placeholder":"world_daytime_minute"}
 ```
 Przykładowy wynik: `30`
 
-## Trudność świata (world_difficulty)
-Zwraca bieżącą trudność świata.
+## Poziom trudności świata (world_difficulty)
+Zwraca aktualny poziom trudności świata.
 ```
 {"placeholder":"world_difficulty"}
 ```
 Przykładowy wynik: `normal`
 
-## Bieżące ziarno świata (current_world_seed)
-Zwraca ziarno aktualnego świata jednoosobowego. Zwraca pustą wartość, gdy ziarno nie jest dostępne.
+## Aktualny seed świata (current_world_seed)
+Zwraca seed aktualnego świata jednoosobowego. Gdy seed nie jest dostępny, zwraca pustą wartość.
 ```
 {"placeholder":"current_world_seed"}
 ```
 Przykładowy wynik: `123456789`
 
-## Bieżący biom (current_biome)
-Zwraca biom, w którym aktualnie znajduje się gracz. Ustaw `as_key` na `"false"`, aby zwrócić tłumaczoną/wyświetlaną nazwę, jeśli jest dostępna.
+## Aktualny biom (current_biome)
+Zwraca biom, w którym aktualnie znajduje się gracz. Ustaw `as_key` na `"false"`, aby zwrócić przetłumaczoną/nazwaną pozycję, jeśli jest dostępna.
 ```
 {"placeholder":"current_biome","values":{"as_key":"true"}}
 ```
 Przykładowy wynik: `minecraft:plains`
 
-## Bieżący wymiar (current_dimension)
-Zwraca wymiar, w którym aktualnie znajduje się gracz. Ustaw `as_key` na `"false"`, aby zwrócić tłumaczoną/wyświetlaną nazwę, jeśli jest dostępna.
+## Aktualny wymiar (current_dimension)
+Zwraca wymiar, w którym aktualnie znajduje się gracz. Ustaw `as_key` na `"false"`, aby zwrócić przetłumaczoną/nazwaną pozycję, jeśli jest dostępna.
 ```
 {"placeholder":"current_dimension","values":{"as_key":"true"}}
 ```
 Przykładowy wynik: `minecraft:overworld`
 
 ## Wartość gamerule (gamerule_value)
-Zwraca bieżącą wartość gamerule w załadowanym świecie/serwerze. Światy serwerowe wymagają FancyMenu na serwerze.
+Zwraca aktualną wartość gamerule’a w załadowanym świecie/serwerze. Światy serwerowe wymagają FancyMenu po stronie serwera.
 ```
 {"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
 ```
@@ -601,7 +603,7 @@ Zwraca kategorię zakładki kreatywnej dla przedmiotu. Ustaw `as_key` na `"true"
 ```
 Przykładowy wynik: `Combat`
 
-## Bieżący tytuł/podtytuł HUD (current_title)
+## Aktualny tytuł/podtytuł HUD (current_title)
 Zwraca aktualnie wyświetlany tekst tytułu.
 ```
 {"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
@@ -609,48 +611,48 @@ Zwraca aktualnie wyświetlany tekst tytułu.
 Przykładowy wynik: `Game Over!`
 
 ## Wiadomość paska akcji (action_bar_message_fm)
-Zwraca bieżącą vanillową wiadomość paska akcji nad hotbarem.
+Zwraca aktualną wiadomość vanilla action bar nad hotbarem.
 ```
 {"placeholder":"action_bar_message_fm"}
 ```
 Przykładowy wynik: `You may not rest now`
 
-## Czas wiadomości paska akcji (action_bar_message_time_fm)
-Zwraca, przez ile ticków bieżąca vanillowa wiadomość paska akcji będzie jeszcze wyświetlana.
+## Czas wyświetlania wiadomości paska akcji (action_bar_message_time_fm)
+Zwraca, przez ile ticków aktualna wiadomość vanilla action bar będzie jeszcze wyświetlana.
 ```
 {"placeholder":"action_bar_message_time_fm"}
 ```
 Przykładowy wynik: `42`
 
 ## Obrót kamery X (camera_rotation_x_fm)
-Zwraca bieżące pochylenie kamery w stopniach.
+Zwraca aktualny pitch kamery w stopniach.
 ```
 {"placeholder":"camera_rotation_x_fm"}
 ```
 Przykładowy wynik: `12.5`
 
 ## Obrót kamery Y (camera_rotation_y_fm)
-Zwraca bieżący obrót kamery w poziomie w stopniach.
+Zwraca aktualny yaw kamery w stopniach.
 ```
 {"placeholder":"camera_rotation_y_fm"}
 ```
 Przykładowy wynik: `-90.0`
 
 ## Zmiana obrotu kamery X (camera_rotation_delta_x_fm)
-Zwraca zmianę pochylenia kamery na tick.
+Zwraca zmianę pitch kamery na tick.
 ```
 {"placeholder":"camera_rotation_delta_x_fm"}
 ```
 Przykładowy wynik: `0.4`
 
 ## Zmiana obrotu kamery Y (camera_rotation_delta_y_fm)
-Zwraca zmianę obrotu kamery w poziomie na tick.
+Zwraca zmianę yaw kamery na tick.
 ```
 {"placeholder":"camera_rotation_delta_y_fm"}
 ```
 Przykładowy wynik: `-1.2`
 
-## Czas podświetlonego przedmiotu (highlighted_item_time_fm)
+## Czas podświetlenia przedmiotu (highlighted_item_time_fm)
 Zwraca, przez ile ticków nazwa podświetlonego przedmiotu będzie jeszcze wyświetlana nad hotbarem.
 ```
 {"placeholder":"highlighted_item_time_fm"}
@@ -658,7 +660,7 @@ Zwraca, przez ile ticków nazwa podświetlonego przedmiotu będzie jeszcze wyśw
 Przykładowy wynik: `30`
 
 ## Postęp używania przedmiotu przez gracza (player_item_use_progress_fm)
-Zwraca bieżący postęp używania przedmiotu od `0.0` do `1.0`.
+Zwraca aktualny postęp używania przedmiotu od `0.0` do `1.0`.
 ```
 {"placeholder":"player_item_use_progress_fm"}
 ```
@@ -685,28 +687,28 @@ Zwraca zmianę pozycji gracza na osi Z na tick.
 ```
 Przykładowy wynik: `0.12`
 
-## Bieżące IP serwera (current_server_ip)
-Zwraca adres IP połączonego serwera.
+## Aktualne IP serwera (current_server_ip)
+Zwraca IP połączonego serwera.
 ```
 {"placeholder":"current_server_ip"}
 ```
 Przykładowy wynik: `mc.hypixel.net`
 
 ## Lista graczy w świecie (world_players_list)
-Zwraca listę wszystkich graczy aktualnie obecnych w świecie.
+Zwraca listę wszystkich graczy aktualnie znajdujących się w świecie.
 ```
 {"placeholder":"world_players_list","values":{"separator":", "}}
 ```
 Przykładowy wynik: `Steve, Alex, Notch`
 
 ## MOTD serwera (servermotd)
-Zwraca Message of the Day serwera.
+Zwraca wiadomość dnia serwera.
 ```
 {"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
 ```
 Przykładowy wynik: `Welcome to Hypixel!`
 
-## PING serwera (serverping)
+## Ping serwera (serverping)
 Zwraca ping do serwera w milisekundach.
 ```
 {"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
@@ -735,55 +737,55 @@ Zwraca wersję Minecrafta serwera.
 Przykładowy wynik: `1.19.2`
 
 ## Rok (realtimeyear)
-Zwraca bieżący rok.
+Zwraca aktualny rok.
 ```
 {"placeholder":"realtimeyear"}
 ```
 Przykładowy wynik: `2024`
 
 ## Miesiąc (realtimemonth)
-Zwraca bieżący miesiąc (01-12).
+Zwraca aktualny miesiąc (01-12).
 ```
 {"placeholder":"realtimemonth"}
 ```
 Przykładowy wynik: `01`
 
 ## Dzień (realtimeday)
-Zwraca bieżący dzień miesiąca (01-31).
+Zwraca aktualny dzień miesiąca (01-31).
 ```
 {"placeholder":"realtimeday"}
 ```
 Przykładowy wynik: `27`
 
 ## Godzina (realtimehour)
-Zwraca bieżącą godzinę. Domyślnie używa formatu 24-godzinnego; ustaw `twelve_hour_format` na `"true"`, aby użyć formatu 12-godzinnego.
+Zwraca aktualną godzinę. Domyślnie używany jest format 24-godzinny; ustaw `twelve_hour_format` na `"true"`, aby użyć formatu 12-godzinnego.
 ```
 {"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
 ```
 Przykładowy wynik: `14`
 
 ## Minuta (realtimeminute)
-Zwraca bieżącą minutę (00-59).
+Zwraca aktualną minutę (00-59).
 ```
 {"placeholder":"realtimeminute"}
 ```
 Przykładowy wynik: `30`
 
 ## Sekunda (realtimesecond)
-Zwraca bieżącą sekundę (00-59).
+Zwraca aktualną sekundę (00-59).
 ```
 {"placeholder":"realtimesecond"}
 ```
 Przykładowy wynik: `45`
 
-## Bieżący czas w milisekundach (znacznik czasu Unix) (unix_time)
-Zwraca bieżący znacznik czasu Unix w milisekundach.
+## Aktualny czas w milisekundach (Unix Timestamp) (unix_time)
+Zwraca aktualny znacznik czasu Unix w milisekundach.
 ```
 {"placeholder":"unix_time"}
 ```
 Przykładowy wynik: `1716552478123`
 
-> Placeholders czasu rzeczywistego (`realtimeyear`, `realtimemonth`, `realtimeday`, `realtimehour`, `realtimeminute`, `realtimesecond` i `unix_time`) obsługują wartość `timezone`. Używaj standardowych identyfikatorów stref czasowych Java, takich jak `UTC`, `Europe/Berlin` lub `America/New_York`; pomiń ją lub użyj `system`, aby skorzystać ze strefy czasowej systemu.
+> Placeholdy czasu rzeczywistego (`realtimeyear`, `realtimemonth`, `realtimeday`, `realtimehour`, `realtimeminute`, `realtimesecond` i `unix_time`) obsługują wartość `timezone`. Używaj standardowych identyfikatorów stref czasowych Java, takich jak `UTC`, `Europe/Berlin` lub `America/New_York`; pomiń ją albo użyj `system`, aby skorzystać ze strefy systemowej.
 {.is-info}
 
 ## Informacje o CPU (cpuinfo)
@@ -800,7 +802,7 @@ Zwraca użycie CPU przez JVM w procentach.
 ```
 Przykładowy wynik: `25.5`
 
-## Użycie CPU (system operacyjny) (oscpu)
+## Użycie CPU (system) (oscpu)
 Zwraca użycie CPU przez system operacyjny w procentach.
 ```
 {"placeholder":"oscpu"}
@@ -808,21 +810,21 @@ Zwraca użycie CPU przez system operacyjny w procentach.
 Przykładowy wynik: `42.8`
 
 ## Informacje o GPU (gpuinfo)
-Zwraca informacje o GPU.
+Zwraca informacje o karcie graficznej.
 ```
 {"placeholder":"gpuinfo"}
 ```
 Przykładowy wynik: `NVIDIA GeForce RTX 3080`
 
-## Wersja Javy (javaver)
-Zwraca wersję Javy.
+## Wersja Java (javaver)
+Zwraca wersję Java.
 ```
 {"placeholder":"javaver"}
 ```
 Przykładowy wynik: `17.0.2`
 
-## Maszyna wirtualna Javy (jvmname)
-Zwraca nazwę Java Virtual Machine.
+## Wirtualna maszyna Java (jvmname)
+Zwraca nazwę maszyny wirtualnej Java.
 ```
 {"placeholder":"jvmname"}
 ```
@@ -843,27 +845,27 @@ Zwraca nazwę systemu operacyjnego.
 Przykładowy wynik: `Windows 10`
 
 ## FPS (klatki na sekundę) (fps)
-Zwraca bieżącą liczbę klatek na sekundę.
+Zwraca aktualną liczbę klatek na sekundę.
 ```
 {"placeholder":"fps"}
 ```
 Przykładowy wynik: `120`
 
-## Używany RAM w MB (usedram)
+## Używana pamięć RAM w MB (usedram)
 Zwraca ilość aktualnie używanej pamięci RAM (MB).
 ```
 {"placeholder":"usedram"}
 ```
 Przykładowy wynik: `4096`
 
-## Maksymalny RAM w MB (maxram)
+## Maksymalna pamięć RAM w MB (maxram)
 Zwraca maksymalnie przydzieloną pamięć RAM (MB).
 ```
 {"placeholder":"maxram"}
 ```
 Przykładowy wynik: `8192`
 
-## Używany RAM w %% (percentram)
+## Używana pamięć RAM w %% (percentram)
 Zwraca procent aktualnie używanej pamięci RAM.
 ```
 {"placeholder":"percentram"}
@@ -892,14 +894,14 @@ Zwraca całkowity czas trwania utworu audio w formacie MM:SS.
 Przykładowy wynik: `03:45`
 
 ## Czas odtwarzania audio (audio_playtime)
-Zwraca bieżący czas odtwarzania utworu audio. Ustaw `show_percentage` na `"true"`, aby otrzymać wartość postępu 0-100 zamiast formatu MM:SS.
+Zwraca aktualny czas odtwarzania utworu audio. Ustaw `show_percentage` na `"true"`, aby otrzymać wartość postępu 0-100 zamiast formatu `MM:SS`.
 ```
 {"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
 ```
 Przykładowy wynik: `01:30` (lub `45`, gdy `show_percentage` ma wartość `"true"`)
 
 ## Stan odtwarzania audio (audio_playing_state)
-Zwraca, czy element audio jest odtwarzany (true/false).
+Zwraca informację, czy element audio jest odtwarzany (true/false).
 ```
 {"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
 ```
@@ -920,14 +922,14 @@ Zwraca całkowity czas trwania elementu wideo w formacie `MM:SS`. Ustaw `output_
 Przykładowy wynik: `02:00` (lub `120000`, gdy `output_as_timestamp` ma wartość `"true"`)
 
 ## Czas odtwarzania elementu wideo (video_element_playtime)
-Zwraca bieżący czas odtwarzania (postęp) elementu wideo w formacie `MM:SS`. Ustaw `show_percentage` na `"true"`, aby otrzymać wartość postępu 0-100, lub `output_as_timestamp` na `"true"`, aby otrzymać milisekundy.
+Zwraca aktualny czas odtwarzania (postęp) elementu wideo w formacie `MM:SS`. Ustaw `show_percentage` na `"true"` dla wartości postępu 0-100 albo `output_as_timestamp` na `"true"` dla milisekund.
 ```
 {"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
 ```
 Przykładowy wynik: `00:45` (lub `38` jako procent, albo `45200` jako znacznik czasu)
 
 ## Stan pauzy elementu wideo (video_element_paused_state)
-Zwraca, czy element wideo jest wstrzymany (true/false).
+Zwraca informację, czy element wideo jest wstrzymany (true/false).
 ```
 {"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
 ```
@@ -948,21 +950,21 @@ Zwraca całkowity czas trwania tła wideo menu w formacie `MM:SS`. Ustaw `output
 Przykładowy wynik: `03:00` (lub `180000`, gdy `output_as_timestamp` ma wartość `"true"`)
 
 ## Czas odtwarzania tła wideo (video_background_playtime)
-Zwraca bieżący czas odtwarzania (postęp) tła wideo menu w formacie `MM:SS`. Ustaw `show_percentage` na `"true"`, aby otrzymać wartość postępu 0-100, lub `output_as_timestamp` na `"true"`, aby otrzymać milisekundy.
+Zwraca aktualny czas odtwarzania (postęp) tła wideo menu w formacie `MM:SS`. Ustaw `show_percentage` na `"true"` dla wartości postępu 0-100 albo `output_as_timestamp` na `"true"` dla milisekund.
 ```
 {"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
 ```
 Przykładowy wynik: `01:00` (lub `33` jako procent, albo `60500` jako znacznik czasu)
 
 ## Stan pauzy tła wideo (video_background_paused_state)
-Zwraca, czy tło wideo menu jest wstrzymane (true/false).
+Zwraca informację, czy tło wideo menu jest wstrzymane (true/false).
 ```
 {"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
 ```
 Przykładowy wynik: `true`
 
 ## Kalkulator (calc)
-Placeholder kalkulatora to potężne narzędzie, które pozwala wykonywać obliczenia matematyczne w obrębie Twoich układów. Obsługuje szeroki zakres działań matematycznych i może pracować zarówno z liczbami dziesiętnymi, jak i całkowitymi.
+Placeholder kalkulatora to potężne narzędzie, które pozwala wykonywać obliczenia matematyczne w układach. Obsługuje szeroki zakres operacji matematycznych i może działać zarówno na liczbach dziesiętnych, jak i całkowitych.
 
 ### Podstawowa składnia
 ```
@@ -970,11 +972,11 @@ Placeholder kalkulatora to potężne narzędzie, które pozwala wykonywać oblic
 ```
 
 Kalkulator ma dwa główne parametry:
-- `decimal`: Określa, czy wynik ma zawierać miejsca po przecinku (`true`), czy być zaokrąglony do liczb całkowitych (`false`)
+- `decimal`: Określa, czy wynik ma zawierać miejsca po przecinku (`true`), czy zostać zaokrąglony do liczb całkowitych (`false`)
 - `expression`: Wyrażenie matematyczne do obliczenia
 
 ### Obsługiwane operacje
-Kalkulator obsługuje następujące działania matematyczne:
+Kalkulator obsługuje następujące operacje matematyczne:
 - Podstawowe działania: `+` (dodawanie), `-` (odejmowanie), `*` (mnożenie), `/` (dzielenie)
 - Nawiasy: `( )` do grupowania operacji
 - Potęgowanie: `^`
@@ -1013,7 +1015,7 @@ Zwraca wartość bezwzględną liczby.
 Przykładowy wynik: `10.5`
 
 ## Negacja liczby (negnum)
-Zwraca wartość przeciwną liczby.
+Zwraca wartość liczby ze zmianą znaku.
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
@@ -1026,21 +1028,21 @@ Zwraca wartość π.
 ```
 Przykładowy wynik: `3.141592653589793`
 
-## Funkcja sinus (Matematyka) (math_sin)
+## Sinus trygonometryczny (Matematyka) (math_sin)
 Zwraca sinus kąta.
 ```
 {"placeholder":"math_sin","values":{"angle":"45"}}
 ```
 Przykładowy wynik: `0.7071067811865476`
 
-## Funkcja cosinus (Matematyka) (math_cos)
+## Cosinus trygonometryczny (Matematyka) (math_cos)
 Zwraca cosinus kąta.
 ```
 {"placeholder":"math_cos","values":{"angle":"45"}}
 ```
 Przykładowy wynik: `0.7071067811865476`
 
-## Funkcja tangens (Matematyka) (math_tan)
+## Tangens trygonometryczny (Matematyka) (math_tan)
 Zwraca tangens kąta.
 ```
 {"placeholder":"math_tan","values":{"angle":"45"}}
@@ -1062,11 +1064,11 @@ Zaokrągla liczbę w górę do najbliższej liczby całkowitej.
 Przykładowy wynik: `4`
 
 ## Zaokrąglanie (Matematyka) (math_round)
-Zaokrągla liczbę. Domyślnie do najbliższej liczby całkowitej; ustaw `decimals` na nieujemną liczbę, aby zaokrąglić do tylu miejsc po przecinku.
+Zaokrągla liczbę. Domyślnie do najbliższej liczby całkowitej; ustaw `decimals` na nieujemną liczbę, aby zaokrąglić do określonej liczby miejsc po przecinku.
 ```
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
-Przykładowy wynik: `3.14` (przy `decimals:-1` lub bez wartości → `3`)
+Przykładowy wynik: `3.14` (z `decimals:-1` lub bez parametru → `3`)
 
 ## Znak (Matematyka) (math_sign)
 Zwraca znak liczby (1 dla dodatniej, -1 dla ujemnej, 0 dla zera).
@@ -1110,7 +1112,7 @@ Usuwa białe znaki z początku i końca tekstu.
 ```
 Przykładowy wynik: `hello world`
 
-## Przytnij tekst na krawędziach (crop_text)
+## Przytnij tekst z końców (crop_text)
 Usuwa znaki z początku i końca tekstu.
 ```
 {"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
@@ -1118,39 +1120,39 @@ Usuwa znaki z początku i końca tekstu.
 Przykładowy wynik: `ello worl`
 
 ## Stringify (stringify)
-Konwertuje tekst, escape’ując wszystkie znaki składni.
+Konwertuje tekst do postaci ciągu, escape’ując wszystkie znaki składni.
 ```
 {"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
 ```
 Przykładowy wynik: `text with \{special\} \"characters\"`
 
 ## Lokalizuj tekst (local)
-Pobiera zlokalizowany tekst dla podanego klucza.
+Pobiera przetłumaczony tekst dla określonego klucza.
 ```
 {"placeholder":"local","values":{"key":"menu.singleplayer"}}
 ```
 Przykładowy wynik: `Singleplayer`
 
 ## Tekst z sieci (webtext)
-Pobiera treść tekstu z adresu URL.
+Pobiera treść tekstową z adresu URL.
 ```
 {"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
 ```
-Przykładowy wynik: Treść tekstu z adresu URL
+Przykładowy wynik: treść tekstowa z adresu URL
 
 ## Losowy tekst (randomtext)
-Zwraca losową linię z pliku tekstowego, adresu URL lub bezpośrednio podanego zwykłego tekstu. Tekst zmienia się w określonych odstępach czasu.
+Zwraca losową linię z pliku tekstowego, adresu URL lub bezpośrednio podanego zwykłego tekstu. Tekst zmienia się w określonych odstępach.
 ```
 {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
 ```
 Parametry:
 - `source`: Źródło linii tekstu (zastępuje stary parametr `path`)
-  - Ścieżka do pliku: `/config/fancymenu/assets/quotes.txt`
+  - Ścieżka pliku: `/config/fancymenu/assets/quotes.txt`
   - URL: `https://example.com/quotes.txt`
-  - Zwykły tekst: `Linia 1\nLinia 2\nLinia 3`
+  - Zwykły tekst: `Line 1\nLine 2\nLine 3`
 - `interval`: Czas w sekundach między zmianami tekstu
 
-Ten placeholder obsługuje teraz trzy typy źródeł:
+Placeholder obsługuje teraz trzy typy źródeł:
 1. **Pliki lokalne**: Pliki tekstowe z katalogu gry
    ```
    {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
@@ -1159,26 +1161,26 @@ Ten placeholder obsługuje teraz trzy typy źródeł:
    ```
    {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
    ```
-3. **Zwykły tekst**: Bezpośrednio wpisany tekst z liniami rozdzielonymi `\n`
+3. **Zwykły tekst**: Bezpośrednio wpisany tekst z liniami oddzielonymi przez `\n`
    ```
    {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
    ```
 
-Uwaga: stare placeholdery używające `path` zamiast `source` nadal będą działać.
+Uwaga: Starsze placeholdery używające `path` zamiast `source` nadal będą działać.
 
 ## Parser JSON (json)
-Parsuje dane JSON z pliku, URL-a lub bezpośrednio podanej zawartości JSON i wyodrębnia wartości przy użyciu wyrażeń JSON path.
+Parsuje dane JSON z pliku, URL-a lub bezpośrednio podanej treści JSON i wyciąga wartości przy użyciu wyrażeń JSON Path.
 ```
 {"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
 ```
 Parametry:
 - `source`: Źródło danych JSON
-  - Ścieżka do pliku: `/config/fancymenu/assets/data.json`
+  - Ścieżka pliku: `/config/fancymenu/assets/data.json`
   - URL: `https://api.example.com/data.json`
   - Bezpośredni JSON: `{"name":"Steve","level":42}`
-- `json_path`: Wyrażenie JSON path do wyodrębnienia danych
+- `json_path`: Wyrażenie JSON Path do wyciągania danych
 
-Ten placeholder obsługuje teraz trzy typy źródeł:
+Placeholder obsługuje teraz trzy typy źródeł:
 1. **Pliki lokalne**: Pliki JSON z katalogu gry
    ```
    {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
@@ -1187,19 +1189,19 @@ Ten placeholder obsługuje teraz trzy typy źródeł:
    ```
    {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
    ```
-3. **Bezpośredni JSON**: Wstawiona bezpośrednio zawartość JSON
+3. **Bezpośredni JSON**: Osadzona treść JSON
    ```
    {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
    ```
 
 Przykładowe ścieżki JSON:
-- `$.name` - Pobiera pole "name" z poziomu głównego
+- `$.name` - Pobiera pole "name" z głównego obiektu
 - `$.player.level` - Pobiera zagnieżdżone pole "level" wewnątrz "player"
-- `$.items[0].id` - Pobiera "id" pierwszego elementu w tablicy
+- `$.items[0].id` - Pobiera "id" pierwszego elementu tablicy
 - `$.scores.*` - Pobiera wszystkie wartości z obiektu "scores"
 
 ## Absolutna ścieżka pliku/folderu (absolute_path)
-Zwraca absolutną ścieżkę pliku.
+Zwraca pełną ścieżkę pliku.
 ```
 {"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
 ```
@@ -1213,7 +1215,7 @@ Zwraca liczbę znaków w podanym tekście.
 Przykładowy wynik: `12`
 
 ## Szerokość tekstu (text_width)
-Zwraca szerokość w pikselach podanego tekstu po wyrenderowaniu.
+Zwraca szerokość podanego tekstu w pikselach po wyrenderowaniu.
 ```
 {"placeholder":"text_width","values":{"text":"Hello World!"}}
 ```
@@ -1233,8 +1235,8 @@ Konwertuje tekst wejściowy na same małe litery.
 ```
 Przykładowy wynik: `hello world`
 
-## Tekst w tytule (title_case_text)
-Konwertuje tekst wejściowy do formatu Title Case.
+## Tekst w kapitalikach tytułowych (title_case_text)
+Konwertuje tekst wejściowy do kapitalików tytułowych.
 ```
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
@@ -1248,28 +1250,28 @@ Konwertuje tekst wejściowy do zapisu zdaniowego.
 Przykładowy wynik: `Hello world. This is fancymenu!`
 
 ## Tekst w snake_case (snake_case_text)
-Konwertuje tekst wejściowy do `snake_case`.
+Konwertuje tekst wejściowy do formatu `snake_case`.
 ```
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
 Przykładowy wynik: `hello_world`
 
 ## Tekst w kebab-case (kebab_case_text)
-Konwertuje tekst wejściowy do `kebab-case`.
+Konwertuje tekst wejściowy do formatu `kebab-case`.
 ```
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
 Przykładowy wynik: `hello-world`
 
-## Naprzemienna wielkość liter (alternating_case_text)
-Konwertuje tekst wejściowy do naprzemiennej wielkości liter.
+## Tekst z naprzemienną wielkością liter (alternating_case_text)
+Konwertuje tekst wejściowy do zapisu naprzemiennego.
 ```
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
 Przykładowy wynik: `aLtErNaTiNg CaSe`
 
-## Przełącz wielkość liter (toggle_case_text)
-Przełącza wielkość każdej litery w tekście wejściowym.
+## Przełącz wielkość liter tekstu (toggle_case_text)
+Przełącza wielkość liter każdej litery w tekście wejściowym.
 ```
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
@@ -1295,35 +1297,35 @@ Zwraca linie tekstu z pliku lub URL-a. Może zwrócić wszystkie linie albo tylk
 {"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
 ```
 Parametry:
-- `path_or_url`: Ścieżka do pliku lub URL, z którego należy odczytać dane
-- `mode`: `"all"` (zwraca wszystkie linie) albo `"last"` (zwraca tylko ostatnie X linii)
+- `path_or_url`: Ścieżka pliku lub URL do odczytu
+- `mode`: `"all"` (zwraca wszystkie linie) lub `"last"` (zwraca tylko ostatnie X linii)
 - `separator`: Tekst używany do łączenia linii (domyślnie: `"\n"`)
 - `last_lines`: Liczba linii do zwrócenia, gdy `mode` ma wartość `"last"` (domyślnie: `"1"`)
 
 Przykładowy wynik: Zależy od zawartości pliku
 
 ## Zawartość schowka (clipboard_content)
-Zwraca bieżącą treść tekstową przechowywaną w schowku systemowym.
+Zwraca aktualną zawartość tekstową przechowywaną w systemowym schowku.
 ```
 {"placeholder":"clipboard_content"}
 ```
 Przykładowy wynik: Dowolny tekst aktualnie znajdujący się w schowku
 
-## Zastąp tekst (replace_text)
-Zastępuje tekst w ciągu przy użyciu tekstu dosłownego lub wyrażeń regularnych.
+## Zamień tekst (replace_text)
+Zamienia tekst w ciągu przy użyciu zwykłego tekstu lub wyrażeń regularnych.
 ```
 {"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
 ```
 Parametry:
 - `text`: Tekst wejściowy do przetworzenia
 - `search`: Tekst lub wzorzec regex do wyszukania
-- `replacement`: Tekst zastępujący
-- `use_regex`: Czy używać regex (`"true"`), czy dopasowania dosłownego (`"false"`)
-- `replace_all`: Zastąp wszystkie wystąpienia (`"true"`) czy tylko pierwsze (`"false"`)
+- `replacement`: Tekst zastępczy
+- `use_regex`: Czy używać wyrażeń regularnych (`"true"`), czy dopasowania literalnego (`"false"`)
+- `replace_all`: Zastąp wszystkie wystąpienia (`"true"`) lub tylko pierwsze (`"false"`)
 
 Przykładowy wynik: `Hello FancyMenu! This is a test.`
 
-## Instrukcja switch-case (switch_case)
+## Switch Case (switch_case)
 Wykonuje operację switch-case na podstawie wartości.
 ```
 {"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
@@ -1338,47 +1340,47 @@ Pobiera wartość wcześniej zapisanej zmiennej.
 Przykładowy wynik: Zależy od zapisanej wartości
 
 ## Pobierz dane NBT (nbt_data_get)
-Pobiera dane NBT po stronie klienta (podobnie jak komenda `/data get`). Użyj wariantu serwerowego `nbt_data_get_server`, gdy jesteś połączony z serwerem i potrzebujesz autorytatywnych wartości po stronie serwera.
+Pobiera dane NBT po stronie klienta (podobnie do komendy `/data get`). Użyj wariantu serwerowego `nbt_data_get_server`, gdy jesteś połączony z serwerem i potrzebujesz autorytatywnych wartości po stronie serwera.
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
 Parametry:
 - `source_type`: `"entity"` lub `"block"`
-- `entity_selector`: selektor encji, np. `@s`, `@p`, `@e` albo UUID/nazwa (dla encji)
-- `block_pos`: pozycja bloku w formacie `"x y z"` (dla bloków)
-- `nbt_path`: ścieżka NBT do pobrania
-- `scale`: opcjonalny współczynnik skalowania dla wartości liczbowych (domyślnie: `"1.0"`)
-- `return_type`: sposób zwracania danych:
-  - `"value"`: domyślnie, zwraca wartość (z opcjonalnym skalowaniem dla liczb)
-  - `"string"`: zwraca rzeczywiste dane NBT jako ciąg
-  - `"snbt"`: zwraca jako SNBT (formatowany NBT)
-  - `"json"`: zwraca jako komponent sformatowany JSON (dla tagów compound)
+- `entity_selector`: Selektor encji, np. `@s`, `@p`, `@e` albo UUID/nazwa (dla encji)
+- `block_pos`: Pozycja bloku w formacie `"x y z"` (dla bloków)
+- `nbt_path`: Ścieżka NBT do pobrania
+- `scale`: Opcjonalny współczynnik skalowania dla wartości numerycznych (domyślnie: `"1.0"`)
+- `return_type`: Sposób zwrócenia danych:
+  - `"value"`: Domyślnie, zwraca wartość (z opcjonalnym skalowaniem dla liczb)
+  - `"string"`: Zwraca rzeczywiste dane NBT jako tekst
+  - `"snbt"`: Zwraca jako SNBT (sformatowane NBT)
+  - `"json"`: Zwraca jako komponent w formacie JSON (dla tagów złożonych)
 
 Przykładowy wynik: `20` (dla poziomu głodu)
 
 ## Pobierz dane NBT (po stronie serwera) (nbt_data_get_server)
-Pyta o dane NBT po stronie serwera (używając pakietu) i krótko buforuje wyniki. Wartości odpowiadają placeholderowi po stronie klienta.
+Zapyta o dane NBT po stronie serwera (używając pakietu) i tymczasowo buforuje wyniki. Wartości odpowiadają placeholderowi po stronie klienta.
 ```
 {"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
 ```
 Przykładowy wynik: `minecraft:diamond_sword`
 
 ## Ostatnia wiadomość śmierci (lastdeathmessage)
-Zwraca ostatnio zapisaną wiadomość śmierci klienta-gracza. Ustaw `as_json_component` na `"true"`, aby uzyskać surowy komponent tekstowy JSON.
+Zwraca ostatnio zarejestrowaną wiadomość śmierci gracza klienta. Ustaw `as_json_component` na `"true"`, aby otrzymać surowy komponent tekstowy JSON.
 ```
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
 Przykładowy wynik: `Steve was slain by Zombie`
 
 ## Czas działania (uptime_duration)
-Zwraca czas, od jakiego załadowane jest FancyMenu. Domyślnie wartość podawana jest w sekundach; ustaw `output_as_millis` na `"true"`, aby otrzymać milisekundy.
+Zwraca, jak długo FancyMenu jest załadowane. Domyślnie wartość podawana jest w sekundach; ustaw `output_as_millis` na `"true"`, aby otrzymać milisekundy.
 ```
 {"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
 ```
 Przykładowy wynik: `742` (sekundy od załadowania)
 
-## Nazwy zapisów świata (level_save_names)
-Wyświetla wszystkie lokalne nazwy zapisów świata połączone wybranym separatorem. Działa w wątku klienta.
+## Nazwy zapisów światów (level_save_names)
+Wyświetla nazwy wszystkich lokalnych zapisów światów połączone wybranym separatorem. Działa na wątku klienta.
 ```
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
@@ -1392,7 +1394,7 @@ Zwraca serializowane dane poziomu dla podanej nazwy świata (musi odpowiadać na
 Przykładowy wynik: `{"name":"Survival World","gameMode":"survival",...}`
 
 ## Konwerter podstawy liczby (number_base_convert)
-Konwertuje liczbę (całkowitą lub ułamkową) z jednej podstawy do innej (2–36). Domyślnie używa systemu dziesiętnego, jeśli podstawy nie zostaną podane.
+Konwertuje liczbę (całkowitą lub ułamkową) z jednej podstawy na inną (2–36). Domyślnie używa systemu dziesiętnego, jeśli podstawy nie zostaną podane.
 ```
 {"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
 ```
@@ -1406,7 +1408,7 @@ Zwraca rozmiar lokalnego pliku w bajtach. Dozwolone są tylko lokalne ścieżki.
 Przykładowy wynik: `1284`
 
 ## MD5 pliku (file_md5)
-Zwraca hash MD5 lokalnego pliku jako mały łańcuch szesnastkowy.
+Zwraca hash MD5 lokalnego pliku jako mały ciąg szesnastkowy.
 ```
 {"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
 ```
@@ -1414,9 +1416,9 @@ Przykładowy wynik: `d41d8cd98f00b204e9800998ecf8427e`
 
 # Praktyczne przykłady
 
-## Tworzenie dynamicznego wyświetlacza pamięci
+## Tworzenie dynamicznego wyświetlania pamięci
 ```
-Używany RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholder":"percentram"}%)
+Używana RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholder":"percentram"}%)
 ```
 
 ## Tworzenie zegara czasu rzeczywistego
@@ -1424,7 +1426,7 @@ Używany RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeh
 {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}:{"placeholder":"realtimesecond"}
 ```
 
-## Tworzenie wyświetlacza informacji o systemie
+## Tworzenie wyświetlania informacji o systemie
 ```
 OS: {"placeholder":"osname"}
 CPU: {"placeholder":"cpuinfo"}
@@ -1435,7 +1437,7 @@ Java: {"placeholder":"javaver"}
 ## HUD stanu gracza
 ```
 Zdrowie: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
-Zbroja: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
+Pancerz: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
 Poziom XP: {"placeholder":"current_player_level"}
 ```
 
@@ -1444,7 +1446,7 @@ Poziom XP: {"placeholder":"current_player_level"}
 {"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
 ```
 
-## Wyświetlanie współrzędnych z zaokrągleniem
+## Wyświetlanie współrzędnych z zaokrąglaniem
 ```
 X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
 Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
@@ -1453,34 +1455,34 @@ Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordin
 
 # Najlepsze praktyki
 
-1. **Buforuj kosztowne operacje**: Niektóre placeholdery (np. te odczytujące informacje o systemie) mogą być zasobożerne. Rozważ użycie zmiennych do przechowywania ich wartości, jeśli potrzebujesz używać ich wielokrotnie.
+1. **Buforuj kosztowne operacje**: Niektóre placeholdery (np. pobierające informacje systemowe) mogą obciążać zasoby. Jeśli musisz używać ich wielokrotnie, rozważ przechowywanie ich wartości w zmiennych.
 
-2. **Używaj odpowiednich ustawień dziesiętnych**: Podczas wykonywania obliczeń używaj parametru `decimal` odpowiednio. Ustaw go na `false`, gdy potrzebujesz liczb całkowitych, i na `true`, gdy potrzebujesz dokładnych wartości dziesiętnych.
+2. **Używaj odpowiednich ustawień dziesiętnych**: Podczas pracy z obliczeniami używaj parametru `decimal` właściwie. Ustaw go na `false`, gdy potrzebujesz liczb całkowitych, oraz na `true`, gdy potrzebujesz precyzyjnych wartości dziesiętnych.
 
-3. **Obsługuj brakujące wartości**: Zawsze zastanów się, co ma się stać, jeśli placeholder nie zwróci żadnej wartości. W takich przypadkach możesz chcieć podać wartości domyślne.
+3. **Obsługuj brakujące wartości**: Zawsze rozważ, co ma się stać, jeśli placeholder nie zwróci wartości. W takich przypadkach warto ustawić wartości domyślne.
 
-4. **Testuj wydajność**: Podczas używania wielu placeholderów lub złożonych struktur zagnieżdżonych testuj wpływ na wydajność, zwłaszcza na słabszych systemach.
+4. **Testuj wydajność**: Przy używaniu wielu placeholderów lub złożonych struktur zagnieżdżonych przetestuj wpływ na wydajność, zwłaszcza na słabszych komputerach.
 
-5. **Korzystaj z zaawansowanego skalowania/pozycjonowania**: W przypadku dynamicznych elementów UI łącz placeholdery z zaawansowanym skalowaniem i pozycjonowaniem, aby tworzyć responsywne układy.
+5. **Używaj zaawansowanego skalowania/pozycjonowania**: Dla dynamicznych elementów UI łącz placeholdery z zaawansowanym skalowaniem i pozycjonowaniem, aby tworzyć responsywne układy.
 
 6. **Łącz z zmiennymi**: Używaj placeholderów razem ze zmiennymi, aby uzyskać jeszcze bardziej dynamiczną treść, którą można aktualizować za pomocą akcji.
 
-# Typowe problemy i rozwiązania
+# Częste problemy i rozwiązania
 
 ## Placeholder się nie aktualizuje
 Jeśli wartość placeholdera nie aktualizuje się zgodnie z oczekiwaniami, sprawdź:
-- czy placeholder jest poprawnie sformatowany
-- czy używasz właściwej wielkości liter w identyfikatorach placeholderów
-- czy placeholder wymaga spełnienia określonych warunków, aby się zaktualizować
+- Czy placeholder ma prawidłowy format
+- Czy używasz właściwej wielkości liter w identyfikatorze placeholdera
+- Czy placeholder wymaga spełnienia określonych warunków, aby się zaktualizować
 
 ## Zagnieżdżone placeholdery nie działają
 Podczas zagnieżdżania placeholderów:
-- upewnij się, że cudzysłowy są poprawnie escapowane
-- sprawdź, czy każdy zagnieżdżony placeholder działa poprawnie samodzielnie
+- Upewnij się, że cudzysłowy są poprawnie escape’owane
+- Sprawdź, czy każdy zagnieżdżony placeholder jest sam w sobie prawidłowy
 
 ## Problemy z wydajnością
 Jeśli zauważysz problemy z wydajnością:
-- zmniejsz liczbę używanych placeholderów
-- unikaj niepotrzebnego zagnieżdżania
-- rozważ użycie zmiennych dla często używanych wartości
-- używaj odpowiedniego placeholdera do swoich potrzeb (np. nie używaj placeholderów czasu rzeczywistego, gdy wystarczą wartości statyczne)
+- Ogranicz liczbę używanych placeholderów
+- Unikaj niepotrzebnego zagnieżdżania
+- Rozważ używanie zmiennych dla często używanych wartości
+- Używaj odpowiedniego placeholdera do danego zadania (np. nie używaj placeholderów czasu rzeczywistego, jeśli wystarczą wartości statyczne)
