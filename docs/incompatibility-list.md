@@ -1,13 +1,7 @@
 ---
 title: Incompatibility List
 description: A list of mods that are known to be incompatible with FancyMenu.
-published: true
-date: 2025-12-19T10:25:05.030Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:15:03.963Z
 ---
-
 # List of Incompatible Mods
 
 The following mods are known to be incompatible with FancyMenu in some way.
@@ -71,3 +65,4 @@ If that's the case, it's written after the mod name in the list below.
 * [Respackopts](https://www.curseforge.com/minecraft/mc-mods/respackopts) (Works, but only if you disable customizations for the Resource Pack screen)
 * [Bind Pizzeria](https://modrinth.com/mod/jjpizza) (Breaks text rendering in FancyMenu's context menus)
 * [EnhancedTooltips](https://www.curseforge.com/minecraft/mc-mods/enhancedtooltips) (Breaks FancyMenu's tooltips)
+* [Skin Shuffle](https://modrinth.com/mod/skinshuffle) (The player entity added to menus by that mod is not customizable via FancyMenu)
