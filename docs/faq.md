@@ -1,13 +1,7 @@
 ---
 title: FAQ
 description: Frequently asked questions.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-08-04T19:44:22.004Z
 ---
-
 # FAQ
 
 ### I need help with an issue. What information should I provide?
@@ -137,3 +131,9 @@ This is also useful if you want to add buttons/sliders to the Chat screen, so yo
 ### One of FancyMenu's context menus is missing an option that should be there.
 
 FancyMenu's context menus (the menus that open when you right-click somewhere or when you interact with menu bars) are SCROLLABLE. This means you can use your scroll wheel while your mouse cursor is over the menu to scroll up or down, which let's you see more options that were previously not visible.
+
+### I can't customize the Title screen, it keeps showing the original when I leave the editor.
+
+When you set a custom menu background, move/edit buttons, or similar, and while it works fine in the editor, it gets reverted to the uncustomized version as soon as you leave the editor, this means that some mod is overriding the Title screen completely or partially. FancyMenu can only customize the orignal `title_screen`, not any custom override, because FancyMenu adds special compat for that screen. In most cases it is fine if mods add their own things to the original screen (without overriding it completely), but this _can_ also cause problems in some cases.
+
+For when a mod completely overrides the Title screen, the only way is to find the mod that does that, and check if the mod has a config setting to disable the custom screen. If it has a setting, disable the custom screen via the setting. If it does not have a setting, you should tell their devs to add such a setting, and then remove the mod until they add said setting. There is no workaround from your side for this.
