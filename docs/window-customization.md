@@ -16,7 +16,7 @@ FancyMenu allows you to change the icon and title of the Minecraft window.
 
 # Custom Icon
 
-To set a custom icon for the Minecraft window in FancyMenu 3.9.0+, navigate to **Customization -> Global Customizations** in the **menu bar**.
+To set a custom icon, open [**Global Customizations**](./global-customizations) through **Customization -> Global Customizations**.
 
 ![window_icon](https://github.com/Keksuccino/FancyMenu/assets/35544624/6d826bd5-3db0-4f1b-918d-8ccbe944b5c0)
 
@@ -30,6 +30,6 @@ To set a custom icon for the Minecraft window in FancyMenu 3.9.0+, navigate to *
 
 # Custom Title
 
-To set a custom title for the Minecraft window in FancyMenu 3.9.0+, navigate to **Customization -> Global Customizations** in the **menu bar**.
+To set a custom title, open [**Global Customizations**](./global-customizations) through **Customization -> Global Customizations**.
 
 ![window_title](https://github.com/Keksuccino/FancyMenu/assets/35544624/06ecd207-c2d2-4f7c-83f4-18d94c66c5ff)

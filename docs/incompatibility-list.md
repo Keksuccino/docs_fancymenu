@@ -1,15 +1,36 @@
 ---
 title: Incompatibility List
-description: A list of mods that are known to be incompatible with FancyMenu.
+description: Screens blocked by FancyMenu and community-reported incompatibilities.
 ---
-# List of Incompatible Mods
+# Incompatibilities
 
-The following mods are known to be incompatible with FancyMenu in some way.
+# Screens Where Customization Is Intentionally Disabled
 
-Some of the mods have workarounds to make them work with FancyMenu.
-If that's the case, it's written after the mod name in the list below.
+FancyMenu blocks screens matching certain mod package paths to prevent crashes or broken behavior. The customization toggle, overlay, and layouts are unavailable on matching screens.
 
-**In case you found an incompatible mod that isn't part of this list already, please open an issue on GitHub! Thank you very much!**
+Blocked screen groups include:
+
+- Create
+- Panoramica
+- Alex's Mobs
+- Screenshot Viewer
+- Twilight Forest
+- Supplementaries
+- OptiFine; use [OptiFine Alternatives](./optifine-alternatives)
+- SlimeKnights and Tinkers' Construct
+- MidnightDust mods
+- SkinSwapper
+- FancyMenu's own configuration screens; [Custom GUIs](./custom-guis) are excluded
+- Immersive Engineering
+- Dungeonz
+- RPG-Hud
+- Cobblemon and some Cobblemon-related screens
+- Applied Energistics 2
+- Xaero's map mods
+
+# Community-Reported Incompatibilities
+
+The entries below are community reports, not screens blocked by FancyMenu itself. Compatibility can change with the FancyMenu, Minecraft, loader, and mod versions in a pack.
 
 * [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Makes menus look bugged)
 * [Animated Mojang Logo](https://www.curseforge.com/minecraft/mc-mods/animated-mojang-logo) (Layouts will sometimes not load; Also breaks Drippy Loading Screen)
@@ -19,38 +40,37 @@ If that's the case, it's written after the mod name in the list below.
 * [Chloride](https://modrinth.com/mod/chloride) (FPS placeholder does not work when this mod is installed)
 * [Colormatic](https://www.curseforge.com/minecraft/mc-mods/colormatic) (Huge lag when starting MC and breaks FM's audio stuff)
 * [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Custom buttons added to menus with FancyMenu aren't clickable via Controllable's “Virtual Mouse” feature)
-* [Controlify](https://modrinth.com/mod/controlify) (Seems to crash the game, but I can't fix that on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1144) for more context)
+* [Controlify](https://modrinth.com/mod/controlify) (Reported crash; see [issue #1144](https://github.com/Keksuccino/FancyMenu/issues/1144))
 * [Crash To Main Menu](https://www.curseforge.com/minecraft/mc-mods/crash-to-main-menu)
 * [Custom Loading Screen](https://www.curseforge.com/minecraft/mc-mods/better-loading-screen)
 * [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
 * [Debugify](https://www.curseforge.com/minecraft/mc-mods/debugify) (Use [Modern Debugify](https://www.curseforge.com/minecraft/mc-mods/modern-debugify) instead)
-* [Dynamic Surroundings](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings) (Breaks FancyMenu's Audio elements, but anything else should work fine)
-* [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Seems to break animations, makes backgrounds translucent and probably more)
-* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Crashes the game, but I can't fix it on my end - see [this issue](https://github.com/Keksuccino/FancyMenu/issues/1115) for more context)
+* [Dynamic Surroundings](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings) (Reported to break Audio elements)
+* [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Reported animation and translucent-background problems)
+* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Reported crash; see [issue #1115](https://github.com/Keksuccino/FancyMenu/issues/1115))
 * [Fossils and Archeology Revival](https://www.curseforge.com/minecraft/mc-mods/fossils) (Works ingame, but the custom main menu isn’t supported—can be disabled in its config)
 * [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Crash on startup)
 * [Ice and Fire](https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons) (Works if the custom main menu is disabled in its config)
-* [Jurassicraft](https://www.curseforge.com/minecraft/mc-mods/jurassicraft) (Crashes on start when enabling customizations for its GUIs—delete them from `config/fancymenu/customizablemenus.txt`)
+* [Jurassicraft](https://www.curseforge.com/minecraft/mc-mods/jurassicraft) (Crashes on start when enabling customizations for its GUIs—delete them from `<game-directory>/config/fancymenu/customizablemenus.txt`)
 * [Legacy4J](https://www.curseforge.com/minecraft/mc-mods/legacy-minecraft) (Crashes the game)
 * [MalisisCore](https://www.curseforge.com/minecraft/mc-mods/malisiscore) (Breaks main-menu customization)
 * [Main Menu Scale Mod](https://www.curseforge.com/minecraft/mc-mods/main-menu-scale)
 * [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Works, but some of its menus break FM's menu bar and/or are not customizable)
-* [Minecraft Comes Alive](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-mca) (Works fine, but its menus aren’t customizable)
-* [MineTogether](https://www.curseforge.com/minecraft/mc-mods/creeperhost-minetogether) (Seems to break layouts when GUI scale > 2)
-* [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (**WORKS FINE** in most cases, but if you experience a duplicated or uncustomizable Mods button, change your Mod Menu button settings to "Adjacent": Main Menu > Mods > Mod Menu > Mods Button: Adjacent)
+* [Minecraft Comes Alive](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-mca) (Reported compatible, but its menus are not customizable)
+* [MineTogether](https://www.curseforge.com/minecraft/mc-mods/creeperhost-minetogether) (Reported layout problems above GUI scale 2)
+* [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (Usually compatible; for a duplicated or uncustomizable Mods button, set **Main Menu -> Mods -> Mod Menu -> Mods Button** to **Adjacent**)
 * [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Crash—see [this issue](https://github.com/Keksuccino/FancyMenu/issues/776))
-* [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) (Works fine in 1.16+, but breaks 1.12)
-* **OptiFine** (Breaks the mod! Use [these alternatives](./optifine-alternatives) instead)
+* [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) (Reported compatible on 1.16+ and incompatible on 1.12)
 * [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Breaks FancyMenu's UI; buttons aren’t clickable)
 * [Pack Menu](https://www.curseforge.com/minecraft/mc-mods/packmenu)
-* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Will not work and cause problems, because stacking menu customization mods is never a good idea)
+* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Reported conflict between menu customization systems)
 * [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (Game fails to load)
 * [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-forge) (Works if `patchMinecraftClass = false` in its config)
-* [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Breaks FM and Drippy. Don't use that mod.)
+* [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Reported to break FancyMenu and Drippy Loading Screen)
 * [Replay Mod](https://www.replaymod.com/download/) (Works when you set `mainMenuButton` to **BIG** in `<game-directory>/config/replaymod.json`)
 * [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Crashes the game)
 * [Slight Gui Modifications](https://www.curseforge.com/minecraft/mc-mods/slight-gui-modifications)
-* [Skin Layers 3D](https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d) (Works fine in 1.16+, but breaks 1.12)
+* [Skin Layers 3D](https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d) (Reported compatible on 1.16+ and incompatible on 1.12)
 * [Smooth Scrolling Everywhere](https://www.curseforge.com/minecraft/mc-mods/smooth-scrolling-everywhere)
 * [Sound Filters](https://www.curseforge.com/minecraft/mc-mods/sound-filters) (The audio extension will not work with this installed)
 * [Sound Physics Remastered](https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered) (The audio extension will not work with this installed)

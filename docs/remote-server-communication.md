@@ -22,17 +22,17 @@ FancyMenu uses this ID to track the connection and expose it in listener variabl
 
 # Quick Start
 
-1. Add action **Connect To Remote Server** (optional, but useful to open early)
-2. Add action **Send Data To Remote Server** with the same URL
-3. Add listener **On Remote Server Data Received** to react to replies
-4. Use **On Remote Server Connected** / **On Remote Server Connection Closed** for connection-state logic
-5. Close connections when needed with close actions
+1. Add [**Connect To Remote Server**](#connect-to-remote-server) when the connection should open early.
+2. Add [**Send Data To Remote Server**](#send-data-to-remote-server) with the same URL.
+3. Add [**On Remote Server Data Received**](#on-remote-server-data-received) to react to replies.
+4. Use [**On Remote Server Connected**](#on-remote-server-connected) and [**On Remote Server Connection Closed**](#on-remote-server-connection-closed) for connection-state logic.
+5. Close connections with [**Close Remote Server Connection**](#close-remote-server-connection) or [**Close All Remote Server Connections**](#close-all-remote-server-connections).
 
 # Actions
 
 ## Connect To Remote Server
 
-Initializes a remote server connection without sending payload data.
+Opens or reuses a remote server connection without sending payload data.
 
 Input:
 
@@ -63,7 +63,7 @@ Closes all currently active remote server connections.
 
 ## On Remote Server Connected
 
-Triggers when a remote server connection gets initialized.
+Triggers after a remote server connection successfully opens.
 
 Variables:
 
@@ -103,17 +103,15 @@ Variables:
 
 # URL Modes
 
-- `wss://` = secure (TLS), recommended
-- `ws://` = unencrypted, useful for local testing
+- `wss://` is used as written and is recommended.
+- `ws://` is used as written and is unencrypted.
+- `https://` is converted to `wss://`.
+- `http://` is converted to `ws://`.
+- A bare host is prefixed with `wss://`.
+- Other explicit URL schemes are rejected.
 
-Example local URL:
+Prefer explicit `wss://` URLs. Example local URL:
 
 - `ws://127.0.0.1:8765`
 
-# Best Practices
-
-1. Use one stable URL per backend service.
-2. Keep payload format consistent for each use case.
-3. Handle closed/crashed connections with fallback UI logic.
-4. Use close actions when your flow is finished.
-5. Use `wss://` for production setups.
+Use one stable URL per service, handle the closed/crashed listener states, and close connections when they are no longer needed.

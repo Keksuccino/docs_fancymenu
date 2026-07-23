@@ -27,26 +27,17 @@ For the three commands with optional targets, omitting the target only works whe
 
 ## /openguiscreen
 
-The `/openguiscreen` command lets you open a GUI (Vanilla/mod and custom GUIs).
-It can even remotely open GUIs for other players when FancyMenu is installed on both server and clients.
+The `/openguiscreen` command opens a Vanilla, mod, or [Custom GUI](./custom-guis). It can target other players when FancyMenu is installed on the server and their clients.
 
-For a more in-detail description of this command, take a look at the [Open GUIs by Command](/opengui-command) page.
+See [Opening GUIs by Command](./opengui-command) and [Screen Identifiers](./screen-identifiers).
 
-This command will not work for every screen, especially mod screens. If the command fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
-
-I will also not manually add compatibility for mod screens anymore, because adding compatibility for all the mods out there would take me ages, sorry.
+Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) on the widget that normally opens it.
 
 **Usage:** `/openguiscreen <screen_identifier> [<target_players>]`
 
 ## /closeguiscreen
 
-The `/closeguiscreen` command lets you close the current GUI.
-
-Huh? This is totally useless you say?
-Well yes, but actually no.
-
-This command is useful for when using mods that trigger commands on specific actions.
-So yes, this command is absolutely useless when using it without other mods, but can be really helpful if you have the right mods installed!
+The `/closeguiscreen` command closes the current screen for the command source or selected players. It is useful with quest, event, or automation mods that can run commands.
 
 **Usage:** `/closeguiscreen [<target_players>]`
 
@@ -63,11 +54,10 @@ Examples:
 
 ## /fmvariable
 
-The `/fmvariable` command allows you to set and get FancyMenu variables.
+The `/fmvariable` command sets and reads [FancyMenu variables](./variables).
 
-To execute this command as another player on servers, you can use the `/execute as` Vanilla command.
-So lets say you want to execute the `/fmvariable` command as the player `ExamplePlayer`. In that case you would type:
-`/execute as ExamplePlayer run fmvariable...`.
+To execute this command as another player, use Vanilla's `/execute as` command:
+`/execute as ExamplePlayer run fmvariable ...`
 
 **Usage:**
 

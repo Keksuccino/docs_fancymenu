@@ -24,7 +24,7 @@ To create a variable in FancyMenu:
 
 That's it! Your variable is ready to use. You can see it listed in the "Manage Variables" screen.
 
-FancyMenu 3.9.0 reworks the Manage Variables window. Important actions are available through a right-click context menu, the list supports keyboard navigation, variables can be copied/pasted, changes can be undone/redone, typing starts a search, **DEL** deletes the selected variable, and **CTRL + S** confirms the window.
+The Manage Variables window supports a right-click context menu, keyboard navigation, copy/paste, undo/redo, type-to-search, **DEL** to delete, and **CTRL + S** to save.
 
 ## Setting Variable Values
 
@@ -34,18 +34,18 @@ There are two main ways to set a variable's value:
 
 1. In the "Manage Variables" screen, find the variable in the list, click it, and then click **Set Value**. Type in the data you want to store.
 
-2. While customizing your menu, use the **Set Variable** action on a Button, Slider or Ticker element. With this action, you specify the variable name and the value to store in it. When someone, for example, clicks a button with this action, the variable will update with the new value.
+2. While customizing your menu, use the [**Set Variable Value** action](./action-scripts#set-variable-value-fm-variable-set_variable) on a [Button](./elements#button), [Slider](./elements#slider), or [Ticker](./elements#ticker) element.
 
-For example, let's say you create a variable named `clicks` to count how many times a button is pressed. You would add the **Set Variable** action to the button, and use a placeholder in the action's value to increment the click count each time, like this:
+For example, create a variable named `clicks` and add the [**Set Variable Value** action](./action-scripts#set-variable-value-fm-variable-set_variable) to a button:
 
 ```
 clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
 ```
 
 Here's how this works:
-1. The **Get Stored Variable** placeholder retrieves the current value of the `clicks` variable.
-2. The **Calculator** placeholder takes that value and adds 1 to it.
-3. The result is then stored back into the `clicks` variable using the **Set Variable** action.
+1. The [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable) retrieves the current value of the `clicks` variable.
+2. The [**Calculator** placeholder](./placeholders#calculator-calc) takes that value and adds 1 to it.
+3. The result is stored back into `clicks` using the [**Set Variable Value** action](./action-scripts#set-variable-value-fm-variable-set_variable).
 
 So each time the button is clicked, the `clicks` variable will increment by 1, effectively counting the total number of clicks.
 
@@ -53,22 +53,22 @@ So each time the button is clicked, the `clicks` variable will increment by 1, e
 
 Now that you have variables holding data, you can use that data in different parts of your menu customization:
 
-* **Loading Requirements**: You can check a variable's value in a loading requirement to control when certain menu elements appear. For example, you could make an element only show up if the `clicks` variable is greater than 5 by using a combination of the **Is Number** requirement and the **Get Stored Variable** placeholder.
+* [**Loading Requirements**](./conditions): Check a variable's value to control when elements appear. For example, show an element when `clicks` is greater than 5 by combining [**Is Number**](./conditions#is-number) with the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
 
-* **Placeholders**: Variables can be inserted into text using the **Get Stored Variable** placeholder. If you have a text element, you could use `{"placeholder":"getvariable","values":{"name":"clicks"}}` to display the current value of the "clicks" variable.
+* **Placeholders**: Insert a variable into text with the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable), for example `{"placeholder":"getvariable","values":{"name":"clicks"}}`.
 
-* **Nested Placeholders**: You can even use variables inside other placeholders! The click counting example above demonstrated this by using the **Get Stored Variable** placeholder inside the **Calculator** placeholder.
+* **Nested Placeholders**: You can use the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable) inside the [**Calculator** placeholder](./placeholders#calculator-calc).
 
-* **Actions**: Variables can be used in actions to create dynamic behavior based on variable values. Here are a few examples:
-    - Use an **IF** statement in an action script to check a variable's value using a combination of the **Is Number** requirement and the **Get Stored Variable** placeholder, then perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
-    - Combine the **Get Stored Variable** placeholder with the **Copy to Clipboard** action to let users copy the value of a variable to their clipboard.
-    - Use variables in the **Open GUI** action to load different screens based on the user's progress or preferences, which you track with variables.
+* **Actions**: Variables can create dynamic behavior:
+  - Use an **IF** statement in an [action script](./action-scripts#what-are-statements) with [**Is Number**](./conditions#is-number) and the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
+  - Combine the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable) with [**Copy Text to Clipboard**](./action-scripts#copy-text-to-clipboard-copytoclipboard).
+  - Use variables in [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui) to select a screen from stored progress or preferences.
 
 ## Variable Examples
 
 Here are a few examples to inspire your own variable usage:
 
-1. **High Score**: Create a `highscore` variable and a button that sets it to the player's current score if it's higher than the existing value. Display the high score on the menu using the **Get Stored Variable** placeholder.
+1. **High Score**: Create a `highscore` variable and a button that sets it to the player's current score if it is higher than the existing value. Display it with the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
 
 2. **Difficulty Selector**: Make variables for different game difficulties, like `easy`, `medium`, and `hard`. Use buttons to set the difficulty variable, and show/hide elements based on the selected difficulty.
 
@@ -81,11 +81,11 @@ Variables are shared across the current Minecraft instance. They are not separat
 Values are saved immediately in `<game-directory>/config/fancymenu/user_variables.db` and survive restarts.
 
 - **Reset on Launch** empties that variable the next time the game starts.
-- **Clear All Variables** removes all stored variable values.
+- [**Clear All Variables**](./action-scripts#clear-all-variables-fm-variable-clear_variables) removes all stored variable values.
 - Names are case-sensitive. Use simple, unique names such as `tutorial_step`.
 
-The **Get Stored Variable** placeholder returns `0` when the named variable does not exist or when its stored value is empty. This fallback matters in comparisons and calculator expressions.
+The [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable) returns `0` when the named variable does not exist or when its stored value is empty. This fallback matters in comparisons and calculator expressions.
 
-The **Set Variable** action uses `variable_name:variable_value` and splits at the first colon, so the value may contain more colons.
+The [**Set Variable Value** action](./action-scripts#set-variable-value-fm-variable-set_variable) uses `variable_name:variable_value` and splits at the first colon, so the value may contain more colons.
 
 Do not store passwords, tokens, or other secrets in FancyMenu variables. They are readable configuration data.

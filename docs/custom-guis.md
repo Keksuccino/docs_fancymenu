@@ -1,74 +1,62 @@
 ---
 title: Custom GUIs
-description: How to add a new GUI screen to the game.
+description: Create and configure new GUI screens.
 published: true
 date: 2026-05-03T11:01:52.000Z
-tags: 
+tags:
 editor: markdown
 dateCreated: 2025-04-14T20:14:26.193Z
 ---
 
 # Custom GUIs
 
-FancyMenu allows you to customize existing GUI screens, but it also allows you to add completely new ones and fill it with elements.
+Custom GUIs are new screens that you can fill with FancyMenu [elements](./elements).
 
 > [!CAUTION]
 > Custom GUIs can run actions. Import them only from sources you trust.
 
-# Adding a New Screen
+# Creating a Custom GUI
 
-To add a new screen, navigate to **Customization -> Custom GUIs -> Manage Custom GUIs**.
+1. Open **Customization -> Custom GUIs -> Manage Custom GUIs**.
+2. Select **New GUI**.
+3. Enter an identifier and configure the screen settings.
+4. Select **Done**, then open the new GUI from the manager.
+5. Create and edit its layout like any other screen.
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+Identifiers must be unique and use the lowercase filename-safe characters accepted by the editor. Empty, invalid, or duplicate identifiers cannot be saved.
 
-In the next menu, click on **New GUI**.
+Custom GUIs always have screen customization enabled; their customization toggle cannot be disabled.
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+# Screen Settings
 
-Here you need to give your new GUI a unique identifier and you can customize other parts of the basic screeen behavior.
-When you're done, press **Done**.
+| Setting | Behavior |
+|---|---|
+| Allow ESC | Lets Escape close the GUI and return to its parent screen |
+| Pause Game/World | Pauses singleplayer while the GUI is open |
+| Render World Background | Shows the loaded world behind the GUI |
+| World Background Overlay | Adds the standard blur/dark overlay over the world |
+| Popup Mode | Keeps the parent screen visible behind the Custom GUI |
+| Popup Background Overlay | Adds blur/tint over the parent screen in Popup Mode |
 
-Use a unique lowercase identifier. Identifiers are case-sensitive.
+Closing a Custom GUI returns to its parent screen when one exists.
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+# Opening a Custom GUI
 
-Now you have a new empty GUI. To open it, select the GUI in the **Manage Custom GUIs** menu and click on **Open GUI**.
+Use the exact Custom GUI identifier with either:
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
-
-This will open the still pretty empty GUI screen. To make it less empty, just create a new layout for it like you would do with any other screen.
-
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
-
-# Opening the GUI via Action
-
-The last part is to give normal users access to your GUI. The easiest way to do that is to use the **Open Screen or Custom GUI** action with a button, slider or ticker.
-
-Enter the Custom GUI identifier exactly as shown in the manager.
-
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
-
-# Opening the GUI via Command
-
-You can also open your custom GUI via an [in-game command](./commands#openguiscreen).
-This even allows you to remotely open the GUI for other users!
+- The [**Open Screen or Custom GUI** action](./action-scripts#open-screen-or-custom-gui-opengui).
+- The [`/openguiscreen` command](./commands#openguiscreen).
 
 # Overriding an Existing Screen
 
-A Custom GUI can automatically replace a Vanilla or mod screen whenever that screen opens.
+A Custom GUI can replace a Vanilla or mod screen whenever that screen opens.
 
-1. Create the replacement Custom GUI first.
-2. Open the Vanilla or mod screen you want to replace.
-3. Enable **Customization -> Settings -> Advanced Customization Mode** in the menu bar.
+1. Create the replacement Custom GUI.
+2. Open the screen you want to replace.
+3. Enable **Customization -> Settings -> Advanced Customization Mode**.
 4. Select **Customization -> Custom GUIs -> Override Current with Custom GUI**.
-5. Confirm the warning and choose the replacement Custom GUI.
+5. Choose the replacement Custom GUI.
 
-FancyMenu immediately opens the replacement, saves the rule, and substitutes the Custom GUI whenever the target screen is opened afterward. Because the original screen is being replaced, overrides can cause unexpected behavior when a screen depends on its own initialization or interaction logic. Test every overridden screen and its navigation paths carefully.
+Manage saved overrides through **Customization -> Custom GUIs -> Manage Overridden Screens**.
 
-To review or remove rules, open **Customization -> Custom GUIs -> Manage Overridden Screens**. Override rules and Custom GUI definitions are both stored in `config/fancymenu/custom_gui_screens.txt`.
-
-# Popup Mode
-
-Starting with FancyMenu v3.8.0, Custom GUIs support a "Popup Mode" that makes them look like a popup getting opened on top of another screen (the previous screen the Custom GUI got opened from). This setting can be toggled individually for each Custom GUI in its settings.
-
-FancyMenu 3.9.0 also adds an option to toggle the screen background overlay for Custom GUIs while in a world. Use it when you want to disable or keep the blur/dark tint behind a Custom GUI opened over gameplay.
+An override skips the original screen, so test its navigation and any features that depend on the original screen's behavior.

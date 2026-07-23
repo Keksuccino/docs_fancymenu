@@ -4,15 +4,15 @@ description: How to use Advanced Positioning and Sizing of elements.
 ---
 # Advanced Positioning & Sizing
 
-Advanced positoning/sizing allows you to have **full control over the position and size of your elements**. This is very powerful but also **a lot more time-consuming** than using FancyMenu's automated sizing and positioning.
+Advanced positioning and sizing gives you direct control over element coordinates and dimensions.
 
-> If you just want elements to better scale with Minecraft's **GUI scale**, it is recommended to use layout-wide **auto-scaling** instead, which can be enabled by first forcing a GUI scale in the menu that opens when right-clicking the editor background and then enabling **Auto-Scaling** in the same menu.
+> For GUI-scale adaptation, try layout-wide **Auto-Scaling** first. Right-click the editor background, force a GUI scale, then enable **Auto-Scaling** in the same menu.
 {.is-warning}
 
 
 # Toggling Advanced Positioning/Sizing Mode
 
-To **enable** andvanced positioning/sizing for an element, **right-click** it and click on **Advanced Positioning** or **Advanced Sizing**.
+To enable advanced positioning or sizing for an element, **right-click** it and select **Advanced Positioning** or **Advanced Sizing**.
 The element will automatically switch to the advanced mode when you set an advanced position or size value.
 
 To **disable** it and switch back to normal positioning/sizing, **clear all positioning/sizing values**.
@@ -22,24 +22,24 @@ To **disable** it and switch back to normal positioning/sizing, **clear all posi
 
 # Calculating Positions/Sizes
 
-The reason why advanced positioning/sizing is so powerful is that you can use **placeholders** in the position/size values.
+Advanced position and size values support [placeholders](./placeholders).
 
-This allows you to use the **Calculator** placeholder (located in the **Advanced** placeholder category) in combination with placeholders of the **GUI** category, like **Screen Width**, **GUI Scale**, **Element Width** and more.
+This allows you to combine the [**Calculator**](./placeholders#calculator-calc) placeholder with GUI placeholders such as [**Screen Width**](./placeholders#screen-width-guiwidth), [**GUI Scale**](./placeholders#gui-scale-guiscale), and [**Element Width**](./placeholders#element-width-elementwidth).
 
 > You can add placeholders by clicking on the **Placeholders** button at the top-right side of the text editor. If you don't see this button, the content you want to edit does **not support** placeholders.
 {.is-info}
 
-To calculate something with the **Calculator** placeholder, replace the example expression with your own. You can use nested placeholders in the expression, so you can make use of the screen size, element size, etc. placeholders there.
+To calculate something with the [**Calculator** placeholder](./placeholders#calculator-calc), replace the example expression with your own. Nested placeholders can supply screen or element dimensions.
 
-For example, this placeholder will simply solve `1 + 1` and will show as `2` later:
+This example returns `2`:
 
 `{"placeholder":"calc","values":{"expression":"1 + 1","decimal":"false"}}`
 
-The `decimal` variable is set to `false`, which is important for most sizing/positioning calculations, so just set this always to `false` when working with advanced positioning/sizing.
+Keep `decimal` set to `false` for whole-pixel position and size calculations.
 
-The following calculator uses the **Screen Width** placeholder and divides it by `2`:
+The following calculator uses the [**Screen Width** placeholder](./placeholders#screen-width-guiwidth) and divides it by `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
 
 > [!IMPORTANT]
-> While **Advanced Positioning** is enabled, the **anchor** and any other types of position-related feature of the element will be **ignored**. Advanced Positioning will always use the top-left (X0 Y0) corner as origin, just like the default Minecraft GUI logic does it. The only setting that Advanced Positioning respects is **Stay on Screen**.
+> **Advanced Positioning** ignores the element anchor and uses the top-left screen corner (`X0 Y0`) as its origin. **Stay on Screen** still applies.

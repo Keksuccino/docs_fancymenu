@@ -14,7 +14,7 @@ FancyMenu lets you set custom backgrounds for menus. You can use images, animate
 
 # Setting a Background
 
-In FancyMenu 3.9.0+, menu background customization happens directly from the layout editor context menu:
+Menu background customization is available from the layout editor context menu:
 
 1. Open the layout editor.
 2. Right-click the editor background.
@@ -32,9 +32,9 @@ Common background types include:
 - Video
 - GLSL Shader
 - Video [MCEF] (deprecated)
-- and more..
+- Additional add-on background types
 
-The old **Video [MCEF]** background type is deprecated in FancyMenu 3.9.0. Use the new native **Video** background powered by Watermedia V3 for new layouts.
+The old **Video [MCEF]** background type is deprecated. Use the [native **Video** background](./video) powered by Watermedia V3 for new layouts.
 
 # Removing the Custom Background
 
@@ -42,7 +42,7 @@ Open **Menu Backgrounds** again and disable/remove the custom background type yo
 
 # Stacking Backgrounds
 
-FancyMenu 3.9.0 allows multiple menu background types to be enabled in the same layout. Active backgrounds are rendered as a stack, so you can combine a base image or panorama with translucent overlays, browser layers, shader layers, parallax layers and other effects.
+Multiple menu background types can be enabled in one layout. Active backgrounds render as a stack, so a base image or panorama can be combined with translucent browser, shader, parallax, or other layers.
 
 If you also have multiple layouts active, their background stacks can combine too. To sort layouts and make them show up in a specific order, right-click the editor background and click on **Layout Index**.
 
@@ -54,7 +54,7 @@ To make a background image translucent, use an image editor of your choice.
 
 # Browser Backgrounds
 
-The **Browser** background type works like the Browser element, but fills the whole screen and is auto-focused. This is useful for fullscreen web content, local HTML pages, or web-video layers.
+The **Browser** background type works like the [Browser element](./elements#browser), but fills the whole screen and is auto-focused. This is useful for fullscreen web content, local HTML pages, or web-video layers.
 
 # GLSL Shader Backgrounds
 

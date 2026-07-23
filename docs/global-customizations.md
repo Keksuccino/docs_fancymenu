@@ -10,12 +10,7 @@ dateCreated: 2026-05-03T11:01:52.000Z
 
 # Global Customizations
 
-Global Customizations are FancyMenu tweaks that apply across the game UI.
-Use them when you want one consistent style/behavior everywhere instead of editing each screen layout separately.
-
-> [!INFO]
-> Unlike most FancyMenu customization features, Global Customizations work even if normal screen customizations are disabled.
-> They do **not** require enabling customizations per screen, which means one change can affect all screens right away.
+Global Customizations apply shared UI and startup settings without editing each screen layout. They work even when normal screen customization is disabled.
 
 Common examples:
 
@@ -29,52 +24,54 @@ Common examples:
 
 Open FancyMenu's **menu bar** while **not** in the layout editor, then **Customization -> Global Customizations**.
 
-# Quick Start
-
-1. Open **Customization -> Global Customizations**.
-2. Pick one category to start with (for example **Custom Button Textures**).
-3. Configure the options in that category (resource pickers, toggles, or number inputs).
-4. Test the result in multiple screens.
-5. Fine-tune related settings (for example transparency, label styles, nine-slice borders).
-
 # What You Can Customize
 
 ## Global behavior and startup
 
-- **Game Intro** (an intro video or animation that plays before the Title screen shows up)
+- [**Game Intro**](./game-intro) (an intro video or animation that plays before the Title screen)
 - **Singleplayer Screen World Icons**
 - **Multiplayer Screen Server Icons**
-- **Seamless World Loading** (uses a screenshot of the world as world loading screen background)
-- **Custom Window Icon**
-- **Custom Window Title**
+- [**Seamless World Loading**](./seamless-world-loading) (uses a recent world screenshot as the loading-screen background)
+- [**Custom Window Icon**](./window-customization#custom-icon)
+- [**Custom Window Title**](./window-customization#custom-title)
 - **Default GUI Scale**
 - **Force Fullscreen on Launch**
 
 ## Button visuals
 
-- **Custom Button Textures** (Normal/Hover/Inactive states, transparent mode, nine-slice + border sizes)
+- **Custom Button Textures** (Normal/Hover/Inactive states, transparent mode, [nine-slice](./nine-slicing-and-tiling) + border sizes)
 - **Button Labels** (underline-on-hover, base/hover color, scale, shadow)
 
 ## Slider visuals
 
 - **Custom Slider Textures**
-- **Slider Background Texture** (texture, transparent mode, nine-slice + border sizes)
-- **Slider Handle Textures** (Normal/Hover/Inactive states, nine-slice + border sizes)
+- **Slider Background Texture** (texture, transparent mode, [nine-slice](./nine-slicing-and-tiling) + border sizes)
+- **Slider Handle Textures** (Normal/Hover/Inactive states, [nine-slice](./nine-slicing-and-tiling) + border sizes)
 - **Slider Labels** (underline-on-hover, base/hover color, scale, shadow)
 
 ## Menu visuals and audio
 
-- **Custom Menu Background Texture**
-- **Custom Menu Background Panorama**
+- [**Custom Menu Background Texture**](./menu-backgrounds)
+- [**Custom Menu Background Panorama**](./panoramas)
 - **Play Vanilla Menu Music** (enable/disable playing Vanilla menu music)
-- **Custom Menu Music Tracks**
+- [**Custom Menu Music Tracks**](./background-music)
 - **Custom Button/Slider Click Sound**
 
 # Custom Menu Music Tracks
 
 Use **Custom Menu Music Tracks** to build a randomized track list for menus.
 
-Configured custom tracks replace vanilla menu music in menus.
+> [!IMPORTANT]
+> Global custom menu tracks play only when no world is loaded, such as on the Title screen. Use an [**Audio** element](./elements#audio) for in-world menu audio.
+
+Configured tracks use the Music sound channel and replace Vanilla menu music in supported non-world menus.
+
+- The first track starts after about five seconds.
+- Later tracks start after a random delay of about one to thirty seconds.
+- Tracks are selected randomly.
+- With multiple tracks, the previous track is not selected twice in a row.
+
+Manage the track list from **Custom Menu Music Tracks**:
 
 - Open **Custom Menu Music Tracks** to open **Manage Menu Music Tracks**.
 - Use **Add Track** to add audio sources.

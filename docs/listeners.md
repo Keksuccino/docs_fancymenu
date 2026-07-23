@@ -10,7 +10,7 @@ dateCreated: 2025-11-23T08:24:21.102Z
 
 # Listeners
 
-Listeners run action scripts when specific events happen. They are not tied to an open screen, so they can also run while playing or loading.
+Listeners run [action scripts](./action-scripts) when specific events happen. They are not tied to an open screen, so they can also run while playing or loading.
 
 Listeners can provide `$$` values, such as a pressed key or clicked mouse button, to their actions and requirements.
 
@@ -27,9 +27,9 @@ Outside the Layout Editor, open **menu bar -> Customization -> Manage Listeners*
 
 Listeners can provide read-only values to their actions and requirements. Use their `$$` names in supported text fields.
 
-For example, if you use the **On Keyboard Key Pressed** listener and want to print the key name to the log via the **Print to Log** action, you would use something like `Key pressed! The key is: $$key_name` as input for the message the action should print. The variable placeholder will later get replaced with the actual name of the key.
+For example, use [**On Keyboard Key Pressed**](#on-keyboard-key-pressed) with the [**Print to Game Log** action](./action-scripts#print-to-game-log-print_to_log). The value `Key pressed! The key is: $$key_name` inserts the pressed key's name.
 
-> Listener variables are separate from FancyMenu's [stored variables](/variables). Stored-variable actions, requirements, and placeholders do not work with `$$` values.
+> Listener variables are separate from FancyMenu's [stored variables](./variables). Stored-variable actions, requirements, and placeholders do not work with `$$` values.
 {.is-warning}
 
 Listener variable names are case-sensitive and only work inside that listener's script.
@@ -38,20 +38,20 @@ Treat values from chat, remote servers, files, and user input as untrusted. Do n
 
 # Listeners in Detail
 
-This list should include most, if not all, of FancyMenu's listeners. It is possible that the list is not always up-to-date due to updates of the mod.
+This section lists FancyMenu's built-in listeners.
 
 ## On Markdown Text Clicked
-- Fires when Markdown text with a `click:` event is clicked, for example `[Open](click:open_menu)`.
+- Fires when [Markdown text with a `click:` event](./text-formatting#click-and-hover-events) is clicked, for example `[Open](click:open_menu)`.
 - Variables:
   - `$$text_event_id` – event ID from the Markdown link
 
 ## On Markdown Text Hovered
-- Fires when Markdown text with a `hover:` event is hovered, for example `[Hint](hover:show_hint)`.
+- Fires when [Markdown text with a `hover:` event](./text-formatting#click-and-hover-events) is hovered, for example `[Hint](hover:show_hint)`.
 - Variables:
   - `$$text_event_id` – event ID from the Markdown link
 
 ## On ZIP Extracted via Action
-- Fires when the **Extract ZIP File In Game Directory** action finishes.
+- Fires when the [**Extract ZIP File In Game Directory** action](./action-scripts#extract-zip-file-in-game-directory-extract_zip_file_in_game_dir) finishes.
 - Variables:
   - `$$source_zip_path` – resolved source ZIP path
   - `$$target_folder_path` – resolved extraction target path
@@ -66,7 +66,7 @@ This list should include most, if not all, of FancyMenu's listeners. It is possi
   - `$$target_screen` – target screen identifier
 
 ## On Animated Texture Started Playing
-- Fires when an animated texture starts playing.
+- Fires when an [animated texture](./fma) starts playing.
 - Variables:
   - `$$texture_source` – texture source
   - `$$texture_source_type` – source type
@@ -80,7 +80,7 @@ This list should include most, if not all, of FancyMenu's listeners. It is possi
   - `$$texture_will_restart`
 
 ## On Video Playback Status Changed
-- Fires when a video element or video menu background changes playback status.
+- Fires when a [Video element or menu background](./video) changes playback status.
 - Variables:
   - `$$video_source` – video source
   - `$$video_source_type` – source type
@@ -94,14 +94,14 @@ This list should include most, if not all, of FancyMenu's listeners. It is possi
   - `$$system_message_component` – JSON component
 
 ## On FM Data Received
-- Fires when a server sends FM Data to this client via `/fmdata send`.
+- Fires when a server sends [FM Data](./fm-data) to this client via `/fmdata send`.
 - Variables:
   - `$$data_identifier` – data identifier string
   - `$$data` – data payload
   - `$$sent_by` – server IP or `integrated_server`
 
 ## On Remote Server Connected
-- Fires when FancyMenu initializes a remote server connection.
+- Fires after a [remote server connection](./remote-server-communication) successfully opens.
 - Variables:
   - `$$request_id` – cached request ID
   - `$$remote_server_url` – remote server URL
@@ -197,21 +197,21 @@ This list should include most, if not all, of FancyMenu's listeners. It is possi
   - `$$death_pos_z` – death Z coordinate
 
 ## On Variable Updated [FM Variable]
-- Fires whenever a FancyMenu variable is set/updated.
+- Fires whenever a [FancyMenu variable](./variables) is set or updated.
 - Variables:
   - `$$var_name` – variable name
   - `$$old_value` – previous value
   - `$$new_value` – new value
 
 ## On File Downloaded via Action
-- Fires after the “Download File to Game Directory” action finishes.
+- Fires after the [**Download File to Game Directory** action](./action-scripts#download-file-to-game-directory-download_file_to_game_dir) finishes.
 - Variables:
   - `$$download_url` – download source
-  - `$$target_file_path` – saved file path
+  - `$$target_file_path` – saved file path on success; on failure, this may contain only the target directory because no final filename was resolved
   - `$$download_succeeded` – true/false
 
 ## On File Selected
-- Fires after the “Select File” action completes.
+- Fires after the [**Select File from System** action](./action-scripts#select-file-from-system-select_file_to_game_dir) completes.
 - Variables:
   - `$$selected_file_path` – absolute chosen file path or empty if cancelled
   - `$$target_file_path` – resolved path inside instance

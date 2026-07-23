@@ -150,7 +150,7 @@ Use these shortcuts in the keyframe editor to work faster:
   If you do not want the keyframes to change an element’s size or position, turn these options off.
 
 - **Timing Offsets:**
-  FancyMenu 3.9.0 adds timing offsets for controlled elements. You can offset individual target elements, or use random timing offsets in a configured range, so one animation can start at slightly different times for each target.
+  You can offset individual target elements or use random timing offsets in a configured range, so one animation starts at different times for each target.
   
 - **Offset Mode:**  
   In offset mode, animations are applied as changes from the element’s original spot. The preview is shown centered on a crosshair.
@@ -163,9 +163,3 @@ Use these shortcuts in the keyframe editor to work faster:
   
 - **Preview Changes:**  
   Use the play button or **`P` key** to see your animation in action before saving it.
-
-# Conclusion
-
-By following these simple steps, you can add an Animator element to your layout and create smooth animations. Whether you record live changes with the preview, adjust keyframes with your keyboard, choose which elements to animate, or preview your animation to see how it looks, the Animator element gives you an easy way to bring life to your custom menus.
-
-Happy animating!

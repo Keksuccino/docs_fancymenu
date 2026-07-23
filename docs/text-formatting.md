@@ -10,9 +10,7 @@ dateCreated: 2025-04-14T20:16:15.668Z
 
 # Text Formatting
 
-FancyMenu has lots of features to make text content in layouts *fancier*!
-
-Text elements have full **Markdown** support with some cool extras and most other text content supports **Minecraft's text formatting** system and button labels even have support for **Minecraft's text components** that allow you to use custom Fonts and more.
+[Text elements](./elements#text) support Markdown. Other text fields use Minecraft formatting, and button labels can use Minecraft text components.
 
 # Markdown
 
@@ -21,9 +19,9 @@ FancyMenu's **Text elements** have full Markdown support, which means you can fo
 For example, to make text look bold, you add `**` before and after the bold text, so `**Some bold text that's very bold.**` will look like that:
 **Some bold text that's very bold.**
 
-FancyMenu's Markdown even has some special stuff that makes it even more powerful!
+FancyMenu also supports the extensions documented below.
 
-> Markdown does **NOT WORK** for other text-based stuff like button labels. It only works for **TEXT ELEMENTS**. For everything else, please use [Minecraft's formatting codes](/text-formatting#minecraft-text-formatting).
+> Markdown works only in **Text elements**. For button labels and other text fields, use [Minecraft's formatting codes](#minecraft-text-formatting).
 {.is-danger}
 
 ## Fonts
@@ -46,7 +44,7 @@ This will show `this text is green!` as `#77fc03` (green).
 
 Make sure that the HEX color is starting with `#`!
 
-FancyMenu 3.9.0 also supports common HTML-like color names in this same color formatting code:
+Common HTML-like color names are supported in the same color formatting code:
 
 ```
 %#red%This text is red!%#%
@@ -131,7 +129,7 @@ So if you want to make `example text content` clickable and open `https://exampl
 
 ## Click and Hover Events
 
-FancyMenu 3.9.0 adds Markdown click and hover events for Text elements and other Markdown text.
+Markdown click and hover events are available for [Text elements](./elements#text) and other Markdown text. Use [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked) and [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered) to react to them.
 
 Click events use the `click:` prefix:
 
@@ -145,7 +143,7 @@ Hover events use the `hover:` prefix:
 [some hoverable text](hover:unique_text_hover_event_id)
 ```
 
-Use the **On Markdown Text Clicked** and **On Markdown Text Hovered** listeners to react to these events. Both listeners expose the event ID as `$$text_event_id`.
+Both listeners expose the event ID as `$$text_event_id`.
 
 ## Images
 
@@ -153,7 +151,7 @@ Markdown supports displaying images in text content.
 
 FancyMenu supports Minecraft resources, local resources and web resources in Markdown.
 
-To add an image, start a text line with `![](`, then the [URL, Resource Location or Path to the resource](/resources) and then `)`.
+To add an image, start a text line with `![](`, then the [URL, Resource Location or Path to the resource](./resources) and then `)`.
 
 So to show the Web resource `https://example-website.net/image.png`, do this:
 `![](https://example-website.net/image.png)`

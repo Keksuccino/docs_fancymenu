@@ -12,9 +12,9 @@ FancyMenu lets you do this in Minecraft!
 
 # APNGs, GIFs and Videos as Intro
 
-FancyMenu supports animated textures and, starting with FancyMenu 3.9.0, videos as game intro content.
+FancyMenu supports animated textures and videos as game intro content.
 
-To set intro content in FancyMenu 3.9.0+, navigate to FancyMenu's **menu bar**, then **Customization -> Global Customizations** and configure **Game Intro** there.
+Open [**Global Customizations**](./global-customizations) through **Customization -> Global Customizations**, then configure **Game Intro**.
 
 Video intros support sound, including volume and sound-channel settings. Native video support requires **Watermedia V3** and **Watermedia Binaries V3**.
 

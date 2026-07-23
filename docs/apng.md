@@ -10,7 +10,7 @@ dateCreated: 2025-04-14T20:14:10.093Z
 
 # Animated PNG Images
 
-> For new large or complex animations, prefer [AFMA/FMA files](/fma). FancyMenu 3.9.0 can use Watermedia V3 + Watermedia Binaries V3 for faster APNG/GIF decoding when available, but AFMA is still the preferred FancyMenu animation format.
+> For large or complex animations, prefer [AFMA files](./fma). Watermedia V3 and Watermedia Binaries V3 can accelerate APNG/GIF decoding when available, but AFMA remains the preferred FancyMenu animation format.
 {.is-info}
 
 

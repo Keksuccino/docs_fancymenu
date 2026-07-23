@@ -43,7 +43,7 @@ Clicking on a placeholder in the placeholder list will paste it to the text cont
 
 # Placeholders In Detail
 
-This list contains most, if not all, placeholders available in FancyMenu. The list can sometimes be a bit outdated due to updates of the mod.
+This section lists FancyMenu's built-in placeholders.
 
 ## Player Name (playername)
 Returns the current player's username.
@@ -64,14 +64,14 @@ Returns the current Minecraft version.
 ```
 {"placeholder":"mcversion"}
 ```
-Example output: the running Minecraft version
+Example output: `1.21.1`
 
 ## Mod Loader Version (loaderver)
 Returns the version of the mod loader (Fabric/NeoForge).
 ```
 {"placeholder":"loaderver"}
 ```
-Example output: the installed loader version
+Example output: `0.16.14`
 
 ## Mod Loader Name (loadername)
 Returns the name of the mod loader.
@@ -83,12 +83,12 @@ Example output: `Fabric`
 ## Mod Version (modversion)
 Returns the version of a specific mod.
 ```
-{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+{"placeholder":"modversion","values":{"modid":"example_mod"}}
 ```
-Example output: the installed mod version
+Example output: `1.2.3`
 
 ## Total Mods Count (totalmods)
-Returns the total number of mods installed.
+Returns an approximate mod-file count based on the `mods` directory and loaded-mod count. It does not reliably count every disabled mod.
 ```
 {"placeholder":"totalmods"}
 ```
@@ -135,18 +135,18 @@ Examples:
 - World without full path: `New World`
 
 ## Screen Width (guiwidth)
-Returns the current screen width.
+Returns the current screen width in GUI-scaled pixels, not physical monitor pixels.
 ```
 {"placeholder":"guiwidth"}
 ```
-Example output: `1920`
+Example output: `960`
 
 ## Screen Height (guiheight)
-Returns the current screen height.
+Returns the current screen height in GUI-scaled pixels, not physical monitor pixels.
 ```
 {"placeholder":"guiheight"}
 ```
-Example output: `1080`
+Example output: `540`
 
 ## Current Screen Identifier (screenid)
 Returns the identifier of the current screen.
@@ -439,11 +439,11 @@ Returns the mount's jump power meter value.
 Example output: `75`
 
 ## Current Boss Health (Percent) (current_boss_health)
-Returns the health of the active boss.
+Returns the active boss's health as an integer percentage from `0` to `100`.
 ```
 {"placeholder":"current_boss_health"}
 ```
-Example output: `150.0`
+Example output: `75`
 
 ## Boss Name (boss_name)
 Returns the name of the active boss.
@@ -611,11 +611,11 @@ Returns the currently displayed title text.
 Example output: `Game Over!`
 
 ## Action Bar Message (action_bar_message_fm)
-Returns the current vanilla action bar message above the hotbar.
+Returns the current vanilla action-bar message as a serialized Minecraft text component.
 ```
 {"placeholder":"action_bar_message_fm"}
 ```
-Example output: `You may not rest now`
+Example output: `{"text":"You may not rest now","color":"red"}`
 
 ## Action Bar Message Time (action_bar_message_time_fm)
 Returns how many ticks the current vanilla action bar message will still be shown.
@@ -734,7 +734,10 @@ Returns the Minecraft version of a server.
 ```
 {"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
 ```
-Example output: the server's reported Minecraft version
+Example output: `1.21.1`
+
+> The realtime placeholders below accept a `timezone` value. Use a Java time-zone ID such as `UTC`, `Europe/Berlin`, or `America/New_York`; omit it or use `system` for the system timezone. `unix_time` always returns the Unix timestamp and has no `timezone` value.
+{.is-info}
 
 ## Year (realtimeyear)
 Returns the current year.
@@ -784,9 +787,6 @@ Returns the current Unix timestamp in milliseconds.
 {"placeholder":"unix_time"}
 ```
 Example output: `1716552478123`
-
-> Realtime placeholders (`realtimeyear`, `realtimemonth`, `realtimeday`, `realtimehour`, `realtimeminute`, `realtimesecond`, and `unix_time`) support a `timezone` value. Use normal Java time zone IDs like `UTC`, `Europe/Berlin`, or `America/New_York`; omit it or use `system` for the system timezone.
-{.is-info}
 
 ## CPU Info (cpuinfo)
 Returns information about the CPU.
@@ -887,7 +887,7 @@ Returns the track name of an audio element.
 Example output: `Cool Track Name`
 
 ## Audio Duration (audio_duration)
-Returns the total duration of an audio track in MM:SS format.
+Returns the duration of the [Audio element](./elements#audio)'s current loaded track in `MM:SS` format. The track may be playing, paused, or stopped.
 ```
 {"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
 ```
@@ -1014,8 +1014,8 @@ Returns the absolute value of a number.
 ```
 Example output: `10.5`
 
-## Negate Number (negnum)
-Returns the negated value of a number.
+## Make Number Negative (negnum)
+Makes a positive number negative. Zero and already-negative values are returned unchanged.
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
@@ -1029,25 +1029,25 @@ Returns the value of π.
 Example output: `3.141592653589793`
 
 ## Trigonometric Sine (Math) (math_sin)
-Returns the sine of an angle.
+Returns the sine of an angle in radians. Convert degree values to radians first.
 ```
-{"placeholder":"math_sin","values":{"angle":"45"}}
-```
-Example output: `0.7071067811865476`
-
-## Trigonometric Cosine (Math) (math_cos)
-Returns the cosine of an angle.
-```
-{"placeholder":"math_cos","values":{"angle":"45"}}
-```
-Example output: `0.7071067811865476`
-
-## Trigonometric Tangent (Math) (math_tan)
-Returns the tangent of an angle.
-```
-{"placeholder":"math_tan","values":{"angle":"45"}}
+{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
 ```
 Example output: `1.0`
+
+## Trigonometric Cosine (Math) (math_cos)
+Returns the cosine of an angle in radians. Convert degree values to radians first.
+```
+{"placeholder":"math_cos","values":{"angle":"0"}}
+```
+Example output: `1.0`
+
+## Trigonometric Tangent (Math) (math_tan)
+Returns the tangent of an angle in radians. Convert degree values to radians first.
+```
+{"placeholder":"math_tan","values":{"angle":"0"}}
+```
+Example output: `0.0`
 
 ## Floor (Math) (math_floor)
 Rounds a number down to the nearest integer.
@@ -1078,23 +1078,23 @@ Returns the sign of a number (1 for positive, -1 for negative, 0 for zero).
 Example output: `-1`
 
 ## Hyperbolic Sine (Math) (math_sinh)
-Returns the hyperbolic sine of an angle.
+Returns the hyperbolic sine of a number.
 ```
-{"placeholder":"math_sinh","values":{"angle":"1"}}
+{"placeholder":"math_sinh","values":{"num":"1"}}
 ```
 Example output: `1.1752011936438014`
 
 ## Hyperbolic Cosine (Math) (math_cosh)
-Returns the hyperbolic cosine of an angle.
+Returns the hyperbolic cosine of a number.
 ```
-{"placeholder":"math_cosh","values":{"angle":"1"}}
+{"placeholder":"math_cosh","values":{"num":"1"}}
 ```
 Example output: `1.5430806348152437`
 
 ## Hyperbolic Tangent (Math) (math_tanh)
-Returns the hyperbolic tangent of an angle.
+Returns the hyperbolic tangent of a number.
 ```
-{"placeholder":"math_tanh","values":{"angle":"1"}}
+{"placeholder":"math_tanh","values":{"num":"1"}}
 ```
 Example output: `0.7615941559557649`
 
@@ -1138,7 +1138,7 @@ Retrieves text content from a web URL.
 ```
 {"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
 ```
-Example output: Text content from the URL
+Example output: `Welcome to the server!`
 
 ## Random Text (randomtext)
 Returns a random line from a text file, URL, or direct plain text. The text changes at specified intervals.
@@ -1207,7 +1207,7 @@ Returns the absolute path of a file.
 ```
 {"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
 ```
-Example output: `C:/Users/Username/AppData/Roaming/.minecraft/relative/path/to/file.txt`
+Example output: `C:/Games/PrismLauncher/instances/My Pack/relative/path/to/file.txt`
 
 ## Text Character Count (text_character_count)
 Returns the number of characters in the given text.
@@ -1301,17 +1301,22 @@ Returns text lines from a file or URL. Can return all lines or just the last X l
 Parameters:
 - `path_or_url`: File path or URL to read from
 - `mode`: Either `"all"` (returns all lines) or `"last"` (returns only the last X lines)
-- `separator`: Text to join lines with (default: `"\n"`)
+- `separator`: Text used between lines (default: `"\n"`)
 - `last_lines`: Number of lines to return when mode is `"last"` (default: `"1"`)
 
-Example output: Depends on file content
+Example output:
+
+```text
+First line
+Second line
+```
 
 ## Clipboard Content (clipboard_content)
 Returns the current text content stored in the system's clipboard.
 ```
 {"placeholder":"clipboard_content"}
 ```
-Example output: Whatever text is currently in the clipboard
+Example output: `Hello from the clipboard`
 
 ## Replace Text (replace_text)
 Replaces text in a string using literal text or regular expressions.
@@ -1339,7 +1344,7 @@ Retrieves the value of a previously stored variable.
 ```
 {"placeholder":"getvariable","values":{"name":"some_variable"}}
 ```
-Example output: Depends on the stored value
+Example output: `42`
 
 ## Get NBT Data (nbt_data_get)
 Retrieves NBT data on the client (similar to the `/data get` command). Use the server variant `nbt_data_get_server` when connected to a server and you need authoritative server-side values.
@@ -1425,7 +1430,7 @@ Used RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholde
 
 ## Making a Real-time Clock
 ```
-{"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}:{"placeholder":"realtimesecond"}
+{"placeholder":"realtimehour","values":{"timezone":"system"}}:{"placeholder":"realtimeminute","values":{"timezone":"system"}}:{"placeholder":"realtimesecond","values":{"timezone":"system"}}
 ```
 
 ## Creating a System Info Display

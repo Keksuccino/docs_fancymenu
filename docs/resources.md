@@ -10,61 +10,41 @@ dateCreated: 2025-04-14T20:15:54.572Z
 
 # Resources
 
-FancyMenu's resource system allows you to use resources from Minecraft's own resource loader (**Resource Packs**), **Local** resources (files from the client system) and **Web** sources (files stored online).
+Resource fields can load content from:
 
-Almost all resource inputs, be it images, audio, video or text, gets set via FancyMenu's resource chooser. There are some exceptions, like when setting a source path for a placeholder or action, but in most places, you set resources via the same resource chooser interface.
+- **Minecraft:** a resource location provided by Minecraft or a resource pack.
+- **Local:** a file in the active game instance.
+- **Web:** a direct file URL.
 
-When you set a resource input via the resource chooser interface, you basically choose a so called "resource source" (that's how FancyMenu calls them), which can be a path, link or resource location, depending on the source type.
-
-FancyMenu 3.9.0 adds a Minecraft resource browser to the resource chooser. This lets you browse resources loaded through resource packs like a directory instead of typing every resource location manually.
+Most image, audio, video, and text fields use the same resource chooser. The chooser includes a browser for Minecraft and resource-pack content.
 
 # Minecraft Resources (Resource Packs)
 
-Minecraft uses so called "resource locations" to "point" to a resource.
+Resource locations use `namespace:path`. The namespace is the directory immediately below `assets`, and the path is everything below that namespace.
 
-Resource locations written as text consist of two parts, separated by colon (`:`).
-The first part is the **namespace** and the second path is the rest of the **path to the resource**, including the resource name with file extension.
+For example, consider a resource pack image stored at `/assets/custom_resources/images/image.png`.
+Its resource location is `custom_resources:images/image.png`.
 
-The **namespace** of a resource location is always just the **top-level directory/folder** of the full path to the resource.
-
-So lets say you load a resource pack with a resource called `image.png` that is stored in `/assets/custom_resources/images/image.png`.
-In this case, the **namespace** of the resource location would be `custom_resources`, because `/assets/` is just where Minecraft loads all its resources from, so `custom_resources` is the **top-level directory** of the resource.
-This means that `images/image.png` is the **rest of the path** to the resource.
-
-So the correct resource location to the `image.png` resource would be:
-`custom_resources:images/image.png`
-
-> **Fun fact**: Since Minecraft has most of its resources stored in `/assets/minecraft/`, the **namespace** of most Minecraft resources is `minecraft`.
+> Minecraft's built-in resources normally use the `minecraft` namespace.
 {.is-info}
 
 # Local Resources
-
-The easiest way to load resources is to simply use local files stored on the client (and in most cases shipped with modpacks).
 
 Store local resources in `<game-directory>/config/fancymenu/assets/`. `<game-directory>` is the active instance folder, which may differ from `.minecraft`.
 
 Resource fields may show the same path as `/config/fancymenu/assets/example.png`. In those fields, the leading `/` still means `<game-directory>`; it is not a filesystem-root path.
 
-This also makes it really easy to [ship local resource with your modpacks](./modpacks), since most modpack systems (CurseForge, Modrinth, etc.) support shipping mod config folders by default.
+These files can be [shipped with a modpack](./modpacks) through its config folder.
 
 For a complete map of FancyMenu's layout, resource, configuration, and generated-state paths, see [Data Storage Locations](./data-storage-locations).
 
 # Web Resources
 
-When you need to dynamically change resources without the need to update your modpack, **web** resources would be the best option.
-
-A web resource is basically just the **URL** to a file stored on a server, so let's say `https://example-domain.net/image.png`.
-
-Make sure to always use **DIRECT URLs**, which means URLs that end with the resource's **file name and extension**, just like the example URL above.
-Using non-direct URLs hurts performance and is more likely to fail.
+Use a direct URL to the file, for example `https://example-domain.net/image.png`. Pages and redirect links are slower and more likely to fail than direct URLs ending in the resource's filename and extension.
 
 # Placeholders in Resource Sources
 
-It is possible to use FancyMenu's placeholders in resource sources, like the path to a local source, the URL to a web source or the resource location to a Minecraft resource.
+Chooser-backed resource fields can use [placeholders](./placeholders) in local paths, URLs, and Minecraft resource locations. Select **Open in Editor** beside the source field to edit it directly.
 
-This makes it possible to dynamically update sources, like changing the image source of a menu background when setting a FancyMenu variable, to show a different background based on the variable's value.
-
-You can manually edit the source by clicking on the **Open in Editor** button at the right side of the resource source input field.
-
-> Keep in mind this is only for resource inputs that use the normal resource chooser interface. It is possible that *some* resource inputs that do not use the chooser do **NOT** support placeholders or do not update dynamically when the placeholder changes.
+> Resource inputs that do not use the normal chooser may not support placeholders or live source updates.
 {.is-warning}

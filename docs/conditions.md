@@ -12,11 +12,11 @@ dateCreated: 2025-04-14T20:14:22.175Z
 
 Requirements (called **Loading Requirements** in some menus) show or hide content based on conditions such as hover state, window size, or whether a world is loaded.
 
-You can use them on elements, whole layouts, and action scripts.
+You can use them on [elements](./elements), whole layouts, and [action scripts](./action-scripts).
 
 # Adding Requirements to Elements
 
-To add one or more requirements to elements, just right-click the element and click on **Loading Requirements**.
+To add requirements to an element, right-click it and select **Loading Requirements**.
 
 Requirements are checked while the menu is open, so elements update when a condition changes.
 
@@ -45,21 +45,21 @@ For requirements that need a value, use **Edit Requirement Value** and follow th
 
 If an imported requirement no longer works after changing FancyMenu or add-ons, edit it in the requirements screen and check `logs/latest.log` for errors.
 
-FancyMenu 3.9.0 reworks the Manage Requirements window to use a right-click context menu, keyboard navigation, search, undo/redo (`CTRL + Z` / `CTRL + Y`) and `CTRL + S` as the **Done** shortcut.
+The requirements editor supports a right-click context menu, keyboard navigation, search, undo/redo (`CTRL + Z` / `CTRL + Y`), and `CTRL + S` to save.
 
 # Requirements in Detail
 
-The following list contains most, if not all, requirements available in FancyMenu. It is possible that the list is sometimes a bit outdated due to updates for the mod.
+This section lists FancyMenu's built-in requirements.
 
 ## Is Element Hovered
 Checks if a specific element is hovered by the mouse cursor.  
-**Value required**: Yes - Element ID of the target element (e.g., `some_element_ID`). You can get the ID by right-clicking an element in the editor.
+**Value required**: Yes - [Element identifier](./element-identifiers) of the target element (e.g., `some_element_ID`).
 
 ## Is Element Focused
 Checks if a specific element currently has keyboard focus (for example, a text field or focused button).
 **Value required**: Yes - Element ID of the target element (the same ID shown in the editor)
 
-> This is not the same as when an element is just hovered, even tho it looks similar. Focused elements keep looking "hovered" even when they are not hovered anymore. Elements get focused when clicking them or when using the keyboard to navigate in menus.
+> Focus and hover are different states. An element can keep its focused appearance after the pointer leaves it; clicking or keyboard navigation can give it focus.
 {.is-info}
 
 ## Is Any Element Hovered
@@ -75,12 +75,12 @@ Checks if a specific layout is currently enabled.
 **Value required**: Yes - The name of the layout (e.g., `my_cool_main_menu_layout`)
 
 ## Is Scheduler Running
-Checks if a scheduler is currently running.
+Checks if a [scheduler](./schedulers) is currently running.
 **Value required**: Yes - Scheduler ID (e.g., `my_scheduler`)
 
 ## Is GUI Scale
 Checks if the current GUI scale matches certain conditions.  
-**Value required**: Yes - Can accept numeric values like `1`, `2`, etc.
+**Value required**: Yes - Use a number for equality, `>` for greater than, or `<` for less than.
 
 ## Is Button Active
 Checks if a specific button is active (clickable).  
@@ -115,8 +115,8 @@ Checks if FancyMenu's customization menu bar is currently visible.
 Checks if FancyMenu's Modpack Mode is enabled.
 **Value required**: No
 
-## Mouse Clicked
-Checks if a specific mouse button is being pressed.  
+## Mouse Button Is Pressed
+Returns true while a specific mouse button is held. This is not a one-shot click event; use the [**On Mouse Button Clicked** listener](./listeners#on-mouse-button-clicked) when an action should run once per click.
 **Value required**: Yes - `left` or `right` to indicate which mouse button to check
 
 ## Is Fullscreen
@@ -216,7 +216,7 @@ Checks if the player is currently swimming.
 **Value required**: No
 
 ## Is Player Jumping or Falling
-Checks if the player is currently jumping.  
+Returns true while the player is airborne in a normal jumping or falling state. Swimming, fluids, elytra flight, sleeping, visual swimming, and crawling are excluded.
 **Value required**: No
 
 ## Is Player Under Water
@@ -364,8 +364,8 @@ Checks if the current real-world year matches a specific value.
 **Value required**: Yes - Full year (e.g., "2023"). Multiple values can be provided by separating with commas.
 
 ## File/Folder Exists
-Checks if a specific file or folder exists on the system.  
-**Value required**: Yes - Path to the file or folder (absolute or relative to the game directory)
+Checks whether a file or directory exists.
+**Value required**: Yes - A path relative to the active game directory, or a path beginning with `.minecraft/` for the conventional Minecraft directory. Files and directories both count as existing.
 
 ## Is OS Linux
 Checks if the operating system is Linux.  
@@ -392,7 +392,7 @@ Checks if a specific mod is loaded.
 **Value required**: Yes - Mod ID (e.g., `fancymenu`, `jei`). You can also check for Optifine with `optifine`. Multiple mod IDs can be provided by separating with commas.
 
 ## Is MCEF Loaded
-Checks if MCEF (Minecraft Chromium Embedded Framework) is installed and initialized.  
+Checks if MCEF (Minecraft Chromium Embedded Framework) is installed and initialized. MCEF is required for the [Browser element](./elements#browser) and [deprecated MCEF-based video types](./video#requirements); [native Video features](./video) use Watermedia.
 **Value required**: No
 
 ## Is Number
@@ -420,5 +420,5 @@ Checks if a FancyMenu variable has a specific value.
 **Value required**: Yes - Format: "variable_name:expected_value"
 
 ## Only Once Per Session
-Returns true only once per game session. Useful for one-time announcements or actions.  
+Each configured instance returns true once per game session. Different instances are tracked independently.
 **Value required**: No

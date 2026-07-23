@@ -10,11 +10,11 @@ description: >-
 It is possible to use a Button element as a template for other buttons and even sliders. By doing that, you can apply a specific button/slider design to ALL buttons/sliders in a menu or even the all menus at once when using a universal layout.
 
 > [!IMPORTANT]
-> Since FancyMenu 3.9.0 it is recommended to use [Global Customizations](/global-customizations) instead of Button/Slider Templates whenever possible, which can replace vanilla button and slider textures globally without using a resource pack. Use global customizations for broad vanilla UI styling, and use templates only when you need layout-specific behavior.
+> Prefer [Global Customizations](./global-customizations) for broad Vanilla button and slider styling. Use Button/Slider Templates when the behavior must be layout-specific.
 
 # Important Before You Start
 
-If you only want to change the texture of a single button or slider, it is easiest and recommended to simply **right-click** the button or slider (Vanilla and Custom) in the editor. There is an option to set the **Background Textures** (and slider handle textures) for buttons and sliders.
+For one button or slider, **right-click** it in the editor and edit its **Background Textures** or slider-handle textures directly.
 
 # What is a Template Button?
 

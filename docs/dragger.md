@@ -1,19 +1,21 @@
 ---
 title: Dragger
-description: How to drag elements in menus by using the Dragger element.
+description: Let users move anchored elements outside the editor.
 published: true
 date: 2025-07-05T19:19:41.915Z
-tags: 
+tags:
 editor: markdown
 dateCreated: 2025-07-05T19:19:37.358Z
 ---
 
 # Dragger
 
-The Dragger element is an element in FancyMenu that allows you to make menus interactive in a rather uncommon way. The Dragger is an element that can be dragged with the mouse OUTSIDE the editor, which means users can basically grab the element and move it around.
+A Dragger is an invisible element that users can move with the mouse outside the layout editor.
 
-This is cool and all, but moving around an element that does nothing else is pretty pointless, right? Well, no, because you can attach other elements to it by setting the Dragger element as anchor point for the other elements that should move with the Dragger.
+1. Add a [**Dragger** element](./elements#dragger).
+2. Anchor the elements that should move to the Dragger.
+3. Size and position the Dragger over the visible area users should grab.
 
-The position offset of Dragger elements is persistent and gets saved across game restarts, which basically just means that when a user moves the Dragger, it stays at this "custom" position, even when restarting the game.
+Enable **Save User Drag Offset** to keep the dragged position across screen openings and game restarts. Disable it when the offset should reset.
 
-The Dragger element is only visible in the editor and invisible outside, so make sure to use another element as "body" for it, if you want the user to see where the dragable area is.
+The Dragger is visible only in the editor. Use an anchored [Image](./elements#image), [Shape](./elements#rectangle-shape), or other element as its visible body.

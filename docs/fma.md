@@ -5,68 +5,58 @@ description: How to make and use FancyMenu animation files.
 
 # Animations
 
-AFMA/FMA files are special animated texture files created for FancyMenu.
-They are pretty much the same as APNGs, but way more optimized for FancyMenu.
+AFMA and FMA files are animated texture formats created for FancyMenu.
 
 # AFMA Files
 
-FancyMenu 3.9.0 adds **AFMA** (Advanced FancyMenu Animation), the successor to classic FMA files.
+**AFMA** (Advanced FancyMenu Animation) is the successor to classic FMA files.
 
-AFMA files are no longer ZIP files. They use FancyMenu's newer animation format with better file sizes, lower memory usage and better performance.
+AFMA uses a non-ZIP format with smaller files, lower memory use, and better performance than classic FMA.
 
-For new large or complex animated textures, use **AFMA** instead of classic FMA.
+For large or complex animated textures, use **AFMA** instead of classic FMA.
 
-To create an AFMA file, do this:
+Create AFMA files with the built-in creator:
 
 1. Open FancyMenu's menu bar.
 2. Go to **Tools -> AFMA Creator**.
 3. Import/convert your frames with the creator.
 
 > [!IMPORTANT]
-> AFMA files can't be packed manually like classic FMA files. You need to use the **AFMA Creator** to pack/create them.
+> AFMA files cannot be packed manually. Use **Tools -> AFMA Creator**.
 
-Classic FMA files are still supported and were optimized in FancyMenu 3.9.0, so existing layouts do not need to be converted immediately.
+Classic FMA files remain supported, so existing layouts do not need to be converted immediately.
 
 # Classic FMA Files
 
 ## Making an FMA
 
-Making an FMA file is as easy as creating a ZIP file! Well, that's mostly because it _is_ a ZIP file under the hood.
+A classic FMA file is a ZIP archive with a `.fma` extension.
 
 ### File Extensions
 
-You need to see file extensions to be able to follow this documentation, so make sure to **ENABLE FILE EXTENSIONS** before you start.
+Enable file extensions in your file manager before creating or renaming the files below.
 
-On Windows, this works by opening a random folder and then clicking on the arrow on the top-right side to extend the menu below.
-
-Then go to the **View** tab and enable **File Name Extensions**.
+On Windows, open File Explorer and enable **View -> File name extensions**.
 
 <br>
 <img width="764" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/1f0a0864-1ad8-4f63-be3a-ab18385539e6"> 
 
 ### Preparation
 
-Lets start with creating a new folder for the content of the FMA file.
-In this example, lets call the folder `fancymenu_animation`.
+Create a folder named `fancymenu_animation` for the archive contents.
 
-In this folder, create two more folders. The first folder **has** to be called `frames` and the second folder **has** to be called `intro_frames`.
+Create a required `frames` directory and an optional `intro_frames` directory inside it.
 
-Now in the same folder, create a new TXT file and rename it to `metadata.json`.
-Please make sure the file is not still a TXT file. You **have to** change the file extension to `json`.
+In the same folder, create `metadata.json`. Make sure its file extension is `.json`, not `.txt`.
 
-Now you should have a folder called `fancymenu_animation` and in this folder are a folder called `frames`, a folder called `intro_frames` and a JSON file called `metadata.json`.
+The folder must now contain `frames/`, `intro_frames/`, and `metadata.json`.
 
 <br>
 <img width="700" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/e29f6666-ee4a-4d79-b7e2-1b640f40ce78">
 
 ### The Metadata JSON
 
-This is the file that tells FancyMenu how it should handle your FMA texture.
-It contains information such as the frame times (how long a frame is visible) and the loop count.
-
-Please open the `metadata.json` file with a text editor.
-
-Copy this text to the file:
+Open `metadata.json` in a text editor and use this template:
 
 ```json
 {
@@ -80,33 +70,23 @@ Copy this text to the file:
 }
 ```
 
-This is the basic template of how the file should look like.
-Now you can customize it to your liking.
+Edit the values as needed.
 
 #### `loop_count`
 
-This is to control how many times the texture should loop (restart it's animation).
-
-Setting this to `0` means it will loop indefinitely. It will *never stop*.
-
-Everything bigger than `0` means how many times the texture plays. So for example, setting the value to `1` means the texture will only play once, then stops at the last frame, `2` means it will play two times, then stop at the last frame *and so on*.
+Controls how many times the animation plays. Use `0` to loop indefinitely. A positive value plays that many times, then holds the last frame.
 
 #### `frame_time`
 
-This is the universal frame time in **milliseconds** for the frames of the animated texture.
-Frame time means how long the frame is visible before the animation goes to the next frame.
+Sets how long each normal frame remains visible, in milliseconds.
 
 #### `frame_time_intro`
 
-This is basically the same as `frame_time`, but for the **intro** frames of your animated texture.
-Intro frames are **optional** and you will learn more about them later.
+Sets the frame time for optional **intro** frames.
 
 #### `custom_frame_times`
 
-This is **optional** and can be used for overriding the frame time for specific (non-intro) frames.
-For example, you want all your frames to show for `41` milliseconds, so you set `frame_time` to `41`, but you want the first and second frames to show for `5000` milliseconds.
-
-In that case, you would do this:
+Optionally overrides the duration of individual normal frames. This example keeps frames `0` and `1` visible for `5000` milliseconds while other frames use `frame_time`:
 
 ```json
 {
@@ -114,90 +94,67 @@ In that case, you would do this:
   "frame_time": 41,
   "frame_time_intro": 41,
   "custom_frame_times": {
-    0: 5000,
-    1: 5000
+    "0": 5000,
+    "1": 5000
   },
   "custom_frame_times_intro": {
   }
 }
 ```
 
-Frames are zero-based, which means the first frame of the animation is `0`, the second one is `1` and so on.
+Frame indexes are zero-based: the first frame is `0`, the second is `1`, and so on.
 
-There needs to be a **comma** at the end of every custom frame time entry, **except** of the last one!
+Add a comma after every custom frame-time entry except the last one.
 
 #### `custom_frame_times_intro`
 
-This is exactly the same as `custom_frame_times`, but in this case for the **intro** frames. Intro frames are **optional** and you will learn more about them later.
+Uses the same format as `custom_frame_times`, but applies to optional intro frames.
 
-That's it for the `metadata.json` file. Save it now and close the text editor.
+Save `metadata.json`.
 
 ### The Frames
 
-> Is is recommended to use **200 frames at max** at a **max resolution of 1080p** per animation, because animations eat lots of memory and they are not videos. They are meant to be used for short animated loops, not to play full videos with 24 FPS.
+> Keep classic FMA animations at or below 200 frames and 1080p. Use [Video](./video) for long or high-frame-rate content.
 {.is-danger}
 
-The frames of your animated texture go into the `frames` folder.
+Place normal frames in `frames/`. They must be PNG files named sequentially from `0.png`, such as `0.png`, `1.png`, and `2.png`. Other formats and names are not supported.
 
-Frames need to be **PNG FILES**! There is **NO SUPPORT FOR JPEG AND OTHER FORMATS**!
-
-Every frame **has to** be called just the number of the frame and the file extension.
-The first frame should be called `0.png`, the second one `1.png`, the third one `2.png` and so on.
-The texture will **NOT WORK** if the frames have invalid file names!
-
-To **extract frames from videos**, please take a look at [this docs page](/ffmpeg-frames).
+To extract frames from a video, see [Extracting Frames with FFmpeg](./ffmpeg-frames).
 
 <br>
 <img width="574" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/eac54695-b57a-4919-8740-4e5c8aad649c">
 
 ### The Intro
 
-This feature is **OPTIONAL**.
-
-The **intro** feature of FMA files is a special way to play some frames **before** the actual frames of the `frames` folder start playing. 
-
-The intro will **never loop** and only plays the very first time the animation plays, which allows you to play something like a fade-in animation before the actual animation starts playing in a loop.
-
-Intro frames go into the `intro_frames` folder and work the same as normal frames:
-
-Frames need to be **PNG FILES**! There is **NO SUPPORT FOR JPEG AND OTHER FORMATS**!
-
-Every frame **has to** be called just the number of the frame and the file extension.
-The first frame should be called `0.png`, the second one `1.png`, the third one `2.png` and so on.
-The texture will **NOT WORK** if the frames have invalid file names!
+Place optional intro frames in `intro_frames/`. They follow the same PNG naming rules as normal frames, play once before the normal sequence, and do not loop.
 
 ### Packing the FMA File
 
-Now everything important is in the `fancymenu_animation` folder, so you can pack your FMA file now!
+Create a ZIP containing the folder's contents. `metadata.json`, `frames/`, and the optional `intro_frames/` directory must be at the ZIP root, not inside another directory.
 
-Packing the FMA file basically just means to pack the folder content to a ZIP file.
-The content needs to be in the **ROOT of the ZIP** file, so it can't be in an extra folder inside the ZIP.
-
-On Windows, the easiest way to pack your FMA content to a ZIP file is by selecting everything in the `fancymenu_animation` folder and then **right-clicking** the `metadata.json` file. In the context menu that opens, click on **Send To -> Compressed ZIP Folder**.
+On Windows, select the contents of `fancymenu_animation`, right-click the selection, and choose **Send to -> Compressed (zipped) folder**.
 
 <br>
 <img width="752" alt="Screenshot_6" src="https://gist.github.com/assets/35544624/5b7e7670-5403-410e-943c-283bfe6d585c">
 
-Now there should be a new ZIP file in the `fancymenu_animation` folder called `metadata.zip`, `frames.zip` or `intro_frames.zip`.
+Locate the resulting ZIP file.
 
 <br>
 <img width="700" alt="Screenshot_7" src="https://gist.github.com/assets/35544624/987f7989-dff7-43b4-a54c-0898969827f5">
 
-When you open this file, its content should look like this:
+Its root contents should look like this:
 
 <img width="700" alt="Screenshot_8" src="https://gist.github.com/assets/35544624/f1642a39-e14c-47a7-90f6-8a737e8ec75f">
 
-Now you need to rename the file to `fancymenu_animation.fma`. Make sure to REPLACE the `.zip` with `.fma`, so it's not a ZIP anymore.
+Rename the file to `fancymenu_animation.fma`, replacing the `.zip` extension. The base filename can be changed, but the `.fma` extension is required.
 
-Of course you can change the `fancymenu_animation` part to whatever you want, but make sure it stays a `.fma` file!
-
-That's it! You now have a (hopefully) working FMA file!
+The renamed archive is now ready to use as an FMA file.
 
 # Using AFMA & FMA Files in FancyMenu
 
 > [!IMPORTANT]
-> AFMA/FMA files are considered **animated textures**, so you add them via **Image** inputs. Almost everything that takes images (PNG, JPEG, GIF, etc.) will also accept FMA and AFMA files.
+> AFMA/FMA files are animated textures, so add them through [**Image** inputs](./elements#image). Almost everything that accepts images also accepts AFMA and FMA files.
 
-You can use AFMA/FMA files like any other animated texture/image format. FancyMenu sees it as normal image, so you can use it everywhere you can set a texture to something, like **Image elements or Image menu backgrounds**.
+Use AFMA/FMA files anywhere that accepts an image, including [Image elements](./elements#image) and [Image menu backgrounds](./menu-backgrounds).
 
-Make sure the AFMA/FMA file is in `<game-directory>/config/fancymenu/assets/`, because FancyMenu can only pick normal local textures and other resources from its assets directory.
+Store the AFMA/FMA file in `<game-directory>/config/fancymenu/assets/` so it appears in FancyMenu's local resource chooser.

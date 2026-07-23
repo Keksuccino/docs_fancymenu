@@ -19,4 +19,4 @@ Due to these templates being very complex most of the time, it is not recommende
 
 Most templates in the channel allow you to edit them, and even using them in your own projects, like modpacks, but it is very important that you **check the template post for what you are allowed to do with it**!
 
-Not all of them give you full permission to so everything.
+Not all of them give you permission to do everything.

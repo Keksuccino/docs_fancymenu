@@ -10,9 +10,9 @@ dateCreated: 2025-11-23T09:46:46.335Z
 
 # Tilting Elements
 
-Starting with FancyMenu v3.8.0, it is possible to tilt **most** elements vertically and horizontally!
+Most elements can be tilted vertically and horizontally.
 
-To tilt an element, select it in the layout editor. If you see two lines with a grabber attached to it (one vertical line, one horizonal line) that are not the element border, you can grab the grabbers to tilt the element in the desired direction.
+Select an element in the layout editor. If tilting is supported, vertical and horizontal guides with grabbers appear around it. Drag a grabber to tilt the element on that axis.
 
 If there are no lines with grabbers on the element, you can't tilt it.
 
@@ -22,4 +22,4 @@ You can also right-click the element to manually set tilt values via a direct te
 
 # Buttons, Sliders and Other Interactable Elements
 
-In case of interactable elements, tilting them is possible, but the tilt is only visual, so the button, for example, will still only react to clicks inside its original area, even tho the tilting maybe partly moved it away from that area.
+Tilting is visual only for interactive elements. A tilted button still accepts clicks within its original, untilted area.

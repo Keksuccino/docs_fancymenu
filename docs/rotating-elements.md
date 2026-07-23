@@ -10,9 +10,9 @@ dateCreated: 2025-08-04T01:24:06.338Z
 
 # Rotating Elements
 
-Starting with FancyMenu v3.8.0, it is possible to rotate **most** elements!
+Most elements can be rotated.
 
-To rotate an element, select it in the layout editor and if you see a circle shape around the element, it should have a grabber attached to it that you can grab to rotate the element around its axis.
+Select an element in the layout editor. If rotation is supported, a circular guide and grabber appear around it. Drag the grabber to rotate the element.
 
 If there is no circle shape around the element, you can't rotate it.
 
@@ -22,4 +22,4 @@ You can also right-click the element to manually set rotation values via a direc
 
 # Buttons, Sliders and Other Interactable Elements
 
-In case of interactable elements, rotating them is possible, but the rotation is only visual, so the button, for example, will still only react to clicks inside its original area, even tho the rotation maybe partly moved it away from that area.
+Rotation is visual only for interactive elements. A rotated button still accepts clicks within its original, unrotated area.

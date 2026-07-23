@@ -10,24 +10,23 @@ dateCreated: 2025-04-14T20:15:46.512Z
 
 # Pre-Load Resources
 
-In some scenarios it is recommended to pre-load resources.
-This is mostly needed for high resolution images, audio files and web resources in general.
-
-Pre-loading resources can help to remove possible image flickering or audio files not starting fast enough.
-
-It is also recommended to pre-load animations (AFMA/FMA files) to make them play smoothly and not lag or show a black screen when first loaded.
+Pre-loading prepares selected resources before a menu needs them. Use it for resources that otherwise flicker, show a black first frame, or start late.
 
 # Add Resources to the Pre-Loader
 
-To add a resource to FancyMenu's resource pre-loader, just click on **Pre-Load Resources** in **Customization**.
+Open **Customization -> Pre-Load Resources**.
 
 <br>
 
 <img width="350" alt="Screenshot_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
 
-This will open a menu that lets you add local resources, web resources and resource pack resources to a list.
+The list accepts supported image, animation, audio, video, and text resources from local files, web URLs, or resource packs. It does not preload a live [Browser](./elements#browser) page.
 
-Resources in this list are loaded during startup and Minecraft resource reloads. This increases loading time and memory use, so only add resources that must appear immediately.
+The pre-loader starts during game startup and Minecraft resource reloads. It waits for each entry to finish or fail before continuing, with a limit of two minutes per entry.
+
+Loaded resources remain cached until FancyMenu releases resources during a reload or client shutdown. **Customization -> Reload FancyMenu** releases the cache but does not run the pre-loader again.
+
+Pre-loading increases loading time and RAM/VRAM use. Add only resources that must be ready immediately; remove large entries if the client runs out of memory.
 
 <br>
 
@@ -35,6 +34,6 @@ Resources in this list are loaded during startup and Minecraft resource reloads.
 
 # Pre-Loading Slideshows & Panoramas
 
-Adding a slideshow loads all of its images and optional overlay. Adding a panorama loads all six faces and its optional overlay.
+Adding a [slideshow](./slideshows) loads all of its images and optional overlay. Adding a [panorama](./panoramas) loads all six faces and its optional overlay.
 
 **Customization -> Reload FancyMenu** does not run the pre-loader. Use a Minecraft resource reload or restart the game after changing the preload list.

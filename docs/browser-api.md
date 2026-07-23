@@ -43,7 +43,7 @@ window.addEventListener('fancymenu-ready', () => {
 });
 ```
 
-Content may also be hosted locally: place HTML files in `config/fancymenu/assets/` and load them through URLs of the form `file:///config/fancymenu/assets/<name>.html`.
+Content may also be hosted locally: place HTML files in `<game-directory>/config/fancymenu/assets/` and load them through URLs of the form `file:///config/fancymenu/assets/<name>.html`.
 
 ## 3. Executing Actions
 
