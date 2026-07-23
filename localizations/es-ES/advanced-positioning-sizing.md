@@ -1,44 +1,45 @@
 ---
 title: Posicionamiento y dimensionado avanzados
-description: Cómo usar el posicionamiento y el dimensionado avanzados de los elementos.
+description: Cómo usar el posicionamiento y dimensionado avanzados de los elementos.
 ---
 # Posicionamiento y dimensionado avanzados
 
-El posicionamiento/dimensionado avanzado te permite tener **control total sobre la posición y el tamaño de tus elementos**. Esto es muy potente, pero también **mucho más lento** que usar el dimensionado y posicionamiento automáticos de FancyMenu.
+El posicionamiento y dimensionado avanzados te ofrecen control directo sobre las coordenadas y dimensiones de los elementos.
 
-> Si solo quieres que los elementos se adapten mejor al **escalado de la interfaz (GUI)** de Minecraft, se recomienda usar en su lugar el **autoescalado** de todo el diseño, que puede activarse primero forzando una escala de GUI en el menú que se abre al hacer clic derecho en el fondo del editor y luego habilitando **Auto-Scaling** en ese mismo menú.
+> Para adaptar la escala de la interfaz gráfica, prueba primero el **Autoescalado** a nivel de diseño. Haz clic derecho en el fondo del editor, fuerza una escala de GUI y, después, activa **Autoescalado** en ese mismo menú.
 {.is-warning}
+
 
 # Activar o desactivar el modo de posicionamiento/dimensionado avanzado
 
-Para **activar** el posicionamiento/dimensionado avanzado de un elemento, haz **clic derecho** sobre él y pulsa **Advanced Positioning** o **Advanced Sizing**.
+Para activar el posicionamiento o dimensionado avanzados de un elemento, **haz clic derecho** sobre él y selecciona **Posicionamiento avanzado** o **Dimensionado avanzado**.
 El elemento cambiará automáticamente al modo avanzado cuando establezcas un valor avanzado de posición o tamaño.
 
 Para **desactivarlo** y volver al posicionamiento/dimensionado normal, **borra todos los valores de posicionamiento/dimensionado**.
 
-> Mientras un elemento esté en modo de Posicionamiento/Dimensionado avanzado, puede que cambiar su tamaño y/o moverlo esté deshabilitado o limitado.
+> Mientras un elemento esté en modo de Posicionamiento/Dimensionado avanzado, puede que cambiar su tamaño o moverlo esté deshabilitado o restringido.
 {.is-warning}
 
 # Calcular posiciones/tamaños
 
-La razón por la que el posicionamiento/dimensionado avanzado es tan potente es que puedes usar **marcadores de posición** en los valores de posición/tamaño.
+Los valores avanzados de posición y tamaño admiten [placeholders](./placeholders).
 
-Esto te permite usar el marcador de posición **Calculator** (ubicado en la categoría de marcadores de posición **Advanced**) en combinación con marcadores de posición de la categoría **GUI**, como **Screen Width**, **GUI Scale**, **Element Width** y más.
+Esto te permite combinar el placeholder [**Calculator**](./placeholders#calculator-calc) con placeholders de la GUI como [**Screen Width**](./placeholders#screen-width-guiwidth), [**GUI Scale**](./placeholders#gui-scale-guiscale) y [**Element Width**](./placeholders#element-width-elementwidth).
 
-> Puedes añadir marcadores de posición haciendo clic en el botón **Placeholders** en la parte superior derecha del editor de texto. Si no ves este botón, el contenido que quieres editar **no admite** marcadores de posición.
+> Puedes añadir placeholders haciendo clic en el botón **Placeholders** en la parte superior derecha del editor de texto. Si no ves este botón, el contenido que quieres editar **no admite** placeholders.
 {.is-info}
 
-Para calcular algo con el marcador de posición **Calculator**, sustituye la expresión de ejemplo por la tuya. Puedes usar marcadores de posición anidados en la expresión, así que puedes aprovechar ahí el tamaño de la pantalla, el tamaño del elemento, etc.
+Para calcular algo con el [**placeholder Calculator**](./placeholders#calculator-calc), sustituye la expresión de ejemplo por la tuya. Los placeholders anidados pueden proporcionar dimensiones de pantalla o de elemento.
 
-Por ejemplo, este marcador de posición simplemente resolverá `1 + 1` y más adelante mostrará `2`:
+Este ejemplo devuelve `2`:
 
 `{"placeholder":"calc","values":{"expression":"1 + 1","decimal":"false"}}`
 
-La variable `decimal` está establecida en `false`, lo cual es importante para la mayoría de los cálculos de dimensionado/posicionamiento, así que déjala siempre en `false` cuando trabajes con posicionamiento/dimensionado avanzado.
+Mantén `decimal` en `false` para cálculos de posición y tamaño con píxeles enteros.
 
-El siguiente calculador usa el marcador de posición **Screen Width** y lo divide entre `2`:
+El siguiente cálculo usa el [**placeholder Screen Width**](./placeholders#screen-width-guiwidth) y lo divide entre `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
 
 > [!IMPORTANT]
-> Mientras **Advanced Positioning** esté activado, el **anchor** y cualquier otro tipo de función relacionada con la posición del elemento serán **ignorados**. Advanced Positioning siempre usará la esquina superior izquierda (X0 Y0) como origen, igual que lo hace la lógica de la GUI predeterminada de Minecraft. La única configuración que respeta Advanced Positioning es **Stay on Screen**.
+> **Posicionamiento avanzado** ignora el anclaje del elemento y usa la esquina superior izquierda de la pantalla (`X0 Y0`) como origen. **Permanecer en pantalla** sigue aplicándose.
