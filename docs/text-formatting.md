@@ -21,8 +21,8 @@ For example, to make text look bold, you add `**` before and after the bold text
 
 FancyMenu also supports the extensions documented below.
 
+> [!CAUTION]
 > Markdown works only in **Text elements**. For button labels and other text fields, use [Minecraft's formatting codes](#minecraft-text-formatting).
-{.is-danger}
 
 ## Fonts
 
@@ -129,7 +129,7 @@ So if you want to make `example text content` clickable and open `https://exampl
 
 ## Click and Hover Events
 
-Markdown click and hover events are available for [Text elements](./elements#text) and other Markdown text. Use [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked) and [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered) to react to them.
+Markdown click and hover events are available for [Text elements](./elements#text) and other Markdown text. Use [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked-text_clicked) and [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered-text_hovered) to react to them.
 
 Click events use the `click:` prefix:
 
@@ -159,8 +159,8 @@ So to show the Web resource `https://example-website.net/image.png`, do this:
 Images can also be **hyperlinks** by wrapping the whole image text line in a **hyperlink** like that:
 `[![](https://example-website.net/image.png)](https://example-website.net)`
 
+> [!WARNING]
 > Local resources need to be in `<game-directory>/config/fancymenu/assets/`!
-{.is-warning}
 
 ## Quote
 
@@ -240,15 +240,12 @@ This line will look **normal** again with the "normal" formatted as bold text.
 
 # Minecraft Text Formatting
 
-Minecraft itself has a pretty good formatting system that works similar to Markdown, where you add special characters to your text content to format it.
+Minecraft formatting codes work in supported formatted text fields throughout FancyMenu. Use `&` in place of Minecraft's `§` prefix; for example, `&cWarning` displays red text.
 
-To read more about Minecraft's formatting system, please take a look at [this Minecraft wiki page](https://minecraft.wiki/w/Formatting_codes).
+See the [Minecraft Wiki formatting-code reference](https://minecraft.wiki/w/Formatting_codes) for the available colors and styles.
 
-> The wiki will say the formatting code prefix is `§`, but in FancyMenu you need to replace that with `&`. Everything else stays the same.
-{.is-warning}
-
-> **Text elements** are very complex and to support Markdown, the tradeoff was to **break Minecraft's Vanilla formatting codes**, so these codes will not work good in Text elements (only first word gets formatted after formatting code, etc.). You should instead use Markdown formatting codes in Text elements.
-{.is-danger}
+> [!CAUTION]
+> Minecraft formatting codes are unreliable in **Text elements** because those elements parse Markdown. Use the Markdown formatting described above instead.
 
 # Minecraft Text Components (Raw Component System)
 
@@ -265,5 +262,5 @@ To make FancyMenu detect a button label as **text component**, set nothing but t
 
 The example above will show the button label `Button Label Text` in the `uniform` font.
 
+> [!NOTE]
 > You can use FancyMenu's placeholders in the `text` value of components.
-{.is-info}

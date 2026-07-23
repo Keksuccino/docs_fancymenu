@@ -59,8 +59,8 @@ To set this option:
 2. Go to "Template Settings"
 3. Click on "Share With: [Current Option]" to cycle between options
 
+> [!WARNING]
 > **Important**: You can have two templates active at the same time - one for buttons AND one for sliders. This means you can create separate template designs for different element types on the same screen!
-{.is-warning}
 
 
 # What Can Be Templated

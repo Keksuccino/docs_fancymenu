@@ -30,6 +30,8 @@ Some entries are authored configuration or assets; others are state that FancyMe
 | [Listener](./listeners) instances and action scripts | `<game-directory>/config/fancymenu/listener_instances.txt` |
 | [Schedulers](./schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
 
+`customizablemenus.txt` is managed by the **Current Screen Customization** toggle and stores concrete screen class identifiers. Do not add [Universal Layout](./universal-layouts) identifiers; FancyMenu ignores them when loading the file.
+
 On a dedicated server, the two FM Data files are relative to that server's game root. Other client-owned configuration and resources belong in each player's instance.
 
 # Persistent Runtime State
@@ -43,5 +45,9 @@ FancyMenu keeps additional generated, per-instance state outside `config/fancyme
 | Last world state | `<game-directory>/fancymenu_data/last_world.fmdata` |
 | [Seamless World Loading](./seamless-world-loading) state | `<game-directory>/fancymenu_data/seamless_world_loading/` |
 | Buddy pet and leveling saves | `<game-directory>/fancymenu_data/buddy/` |
+| Layout editor widget positions and visibility | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
+| Default GUI scale initialization marker | `<game-directory>/fancymenu_data/default_scale_set.fm` |
 
 Buddy keeps the pet state and leveling/achievement state in separate JSON files within its directory. Each Buddy overlay instance uses its own pair of files.
+
+Layout editor widget files store each widget's position, size, visibility, expanded state, and snapping side. Deleting `default_scale_set.fm` causes FancyMenu to treat the configured default GUI scale as not yet applied on the next launch.

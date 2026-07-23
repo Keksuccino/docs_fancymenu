@@ -10,16 +10,10 @@ dateCreated: 2025-07-31T18:11:30.915Z
 
 # Essential
 
-Recent versions of the Essential mod added compatibility with FancyMenu, which means you should now be able to fully customize all elements Essential adds to the Title screen and Pause screen!
+Essential provides FancyMenu integration for elements it adds to the Title and Pause screens.
 
-For a detailed guide about how to customize Essential's UI, you should take a look at [this wiki page](https://essential.gg/wiki/fancymenu) of the Essential wiki!
+See [Essential's FancyMenu guide](https://essential.gg/wiki/fancymenu) for its supported customization workflow.
 
 # Customization Issues
 
-If you encounter some bug or inconvenience while trying to customize Essential's elements, it is almost always caused by Essential and the Essential devs need to fix it on their side.
-
-You should report the bug/issue to the Essential team via their Discord or GitHub.
-
-# Links used in this page
-
-- Essential wiki page about FancyMenu: https://essential.gg/wiki/fancymenu
+Essential provides its FancyMenu integration. If an Essential-owned widget is missing or behaves differently from a normal Minecraft widget, reproduce the issue with current versions and report it to the project that owns the affected widget.

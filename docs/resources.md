@@ -25,8 +25,8 @@ Resource locations use `namespace:path`. The namespace is the directory immediat
 For example, consider a resource pack image stored at `/assets/custom_resources/images/image.png`.
 Its resource location is `custom_resources:images/image.png`.
 
+> [!NOTE]
 > Minecraft's built-in resources normally use the `minecraft` namespace.
-{.is-info}
 
 # Local Resources
 
@@ -46,5 +46,5 @@ Use a direct URL to the file, for example `https://example-domain.net/image.png`
 
 Chooser-backed resource fields can use [placeholders](./placeholders) in local paths, URLs, and Minecraft resource locations. Select **Open in Editor** beside the source field to edit it directly.
 
+> [!WARNING]
 > Resource inputs that do not use the normal chooser may not support placeholders or live source updates.
-{.is-warning}

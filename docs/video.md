@@ -36,7 +36,9 @@ And the following **placeholders** to get information about video backgrounds an
 
 The duration and play-time placeholders return `MM:SS` by default. Set `output_as_timestamp` to `true` when you need millisecond timestamps. Play-time placeholders can still use `show_percentage` for 0-100 progress values.
 
-The [**On Video Playback Status Changed** listener](./listeners#on-video-playback-status-changed) can react to `PLAYING`, `PAUSED`, `STOPPED`, and `FINISHED`.
+Volume and paused-state values are controller metadata associated with the identifier. Duration and play-time values require the matching Video element or background to be active and ready on the current screen.
+
+The [**On Video Playback Status Changed** listener](./listeners#on-video-playback-status-changed-video_playback_status_changed) can react to `PLAYING`, `PAUSED`, `STOPPED`, and `FINISHED`.
 
 ## Requirements
 
@@ -46,6 +48,8 @@ To use the new native Video element and menu background type, you need to instal
 - **Watermedia Binaries V3**
 
 These are optional dependencies, so they must be added to the instance manually if you want video support.
+
+Native video playback also requires an OpenGL renderer. Watermedia playback is unavailable while Minecraft uses Vulkan; switch to OpenGL to use Video elements, Video menu backgrounds, and [video Game Intros](./game-intro).
 
 The deprecated **Video [MCEF]** type still uses MCEF. For new layouts, use the native Watermedia-powered Video type instead.
 
@@ -59,4 +63,4 @@ Use short, simple [AFMA/FMA animations](./fma) in loading screens instead.
 
 ## Troubleshooting
 
-If you have issues with native video support, first confirm that both Watermedia V3 and Watermedia Binaries V3 are installed and match your Minecraft/modloader version.
+If native video does not play, confirm that Watermedia V3 and Watermedia Binaries V3 match your Minecraft/modloader version and that Minecraft is using OpenGL instead of Vulkan.

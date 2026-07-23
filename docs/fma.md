@@ -114,8 +114,8 @@ Save `metadata.json`.
 
 ### The Frames
 
+> [!CAUTION]
 > Keep classic FMA animations at or below 200 frames and 1080p. Use [Video](./video) for long or high-frame-rate content.
-{.is-danger}
 
 Place normal frames in `frames/`. They must be PNG files named sequentially from `0.png`, such as `0.png`, `1.png`, and `2.png`. Other formats and names are not supported.
 

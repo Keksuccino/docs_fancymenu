@@ -30,8 +30,8 @@ To **move** and **resize** Vanilla/mod widgets, you need to give them an anchor 
 
 You can also **hide** Vanilla/mod widgets by simply **right-clicking** them and clicking on **Delete**. They are not actually deleted, but hidden and you can restore them by clicking on **menu bar -> Element -> Deleted Vanilla Elements** and **left-clicking** the element(s) you want to make visible again.
 
+> [!WARNING]
 > The **Copyright** widget in the Title screen is the only one you **CAN'T** hide/delete. This is by design. Please don't remove copyright notices.
-{.is-warning}
 
 ## Title Screen Elements
 

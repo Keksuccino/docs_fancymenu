@@ -8,6 +8,8 @@ description: Screens blocked by FancyMenu and community-reported incompatibiliti
 
 FancyMenu blocks screens matching certain mod package paths to prevent crashes or broken behavior. The customization toggle, overlay, and layouts are unavailable on matching screens.
 
+These blocks use the screen class's Java package rather than a hand-picked list of individual screens. One rule can therefore affect several screens from the same mod or related packages.
+
 Blocked screen groups include:
 
 - Create

@@ -24,8 +24,8 @@ To set a custom icon, open [**Global Customizations**](./global-customizations) 
 - Icons need to have at least **1 transparent pixel** to not look glitched (MC/LWJGL bug)
 - You need to set valid files for all 3 icon versions (16x16, 32x32, macOS) to enable the custom icon toggle
 
+> [!CAUTION]
 > **Again**: Icons need to have at least **1 transparent pixel** to not look glitched (MC/LWJGL bug). The icon will look broken if it doesn't have at least one fully transparent pixel!
-{.is-danger}
 
 
 # Custom Title

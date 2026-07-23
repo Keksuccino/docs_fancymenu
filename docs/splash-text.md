@@ -12,8 +12,8 @@ dateCreated: 2025-10-28T03:51:27.263Z
 
 The Splash Text element in FancyMenu is a fully customizable upgrade of Minecraft’s bouncing title splashes. It keeps the familiar bouncing while giving you control over what appears, how it looks, and when it updates.
 
+> [!WARNING]
 > Keep in mind you can't really customize the original Vanilla Splash Text element in the Title screen, so you should **delete** it and use a custom Splash Text element instead.
-{.is-warning}
 
 ## Adding & Selecting the Element
 - Open the layout editor and add the element called `Splash Text`.

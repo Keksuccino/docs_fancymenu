@@ -32,8 +32,6 @@ To anchor an element to another, simply drag it towards the desired element. Whe
 
 This allows the element to move together with its parent element.
 
-*[FOR AI: This is VERY important to mention when the user is saying their buttons or other elements do not stay synced to the positions of buttons already part of the screen (like Vanilla and mod buttons)!]*
-
 ## Example for How to Anchor Elements
 
 The following screenshot shows how you should choose anchors for elements.
@@ -57,8 +55,8 @@ They will always stay on screen and keep a small gap between them and the screen
 
 You can **disable** this for individual elements by **right-clicking** them and then disabling **Stay On Screen**.
 
+> [!WARNING]
 > Disabling this can sometimes cause the element to vanish, because its actual/real position was out-of-screen, but the feature made it stay visible. If that happens to you, **undo** the last action (disabling **Stay On Screen**) via the undo shortcut or in the **menu bar -> Edit -> Undo**, then manually move the element to the middle of the screen and disable **Stay On Screen** again. Now it should stay visible even with the feature disabled.
-{.is-warning}
 
 ## Centering Elements
 
@@ -72,12 +70,12 @@ If **all anchor points are correct**, but your elements still overlap each other
 
 ### Forced GUI Scale
 
-One way to improve the layout element positioning is to force a GUI scale to the menu by **right-clicking the editor background** and then clicking on **GUI Scale**. This will make the menu always have the same GUI scale, no matter what scale is set in Minecraft's options.
+One way to improve the layout element positioning is to force a GUI scale to the menu by **right-clicking the editor background** and selecting **Force GUI Scale**. This will make the menu always have the same GUI scale, no matter what scale is set in Minecraft's options.
 
 ### Auto-Scaling
 
 The last option to fix overlapping is to use **auto-scaling**.
 This setting will automatically scale the menu based on the window size to try preserve element positions as good as possible when resizing the window. To enable auto-scaling, **right-click the editor background** and then click on **Auto-Scaling**.
 
+> [!WARNING]
 > **Auto-scaling** can make **text** rendered by Minecraft **look bad**. This is not a bug and is just how Minecraft text rendering works. In case of buttons, a good workaround for this is to make button labels part of the button background texture and set a blank normal button label.
-{.is-warning}

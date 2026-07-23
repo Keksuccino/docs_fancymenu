@@ -57,7 +57,7 @@ The best way to check for a mod conflict is to **run the game with only FancyMen
 
 ### A button from another mod disappears or doesn't work when I try to edit it.
 
-This usually means the other mod adds its buttons in a non-standard way that FancyMenu cannot interact with. This is an issue that the other mod's developer would need to fix on their end. FancyMenu cannot customize elements it cannot "see".
+Some mods add widgets in ways FancyMenu cannot detect or customize. Check [Vanilla/Mod Elements](./vanilla-elements) and, for list-based screens, [Customizing Scrollable Screens](./customizing-scrollable-screens). If the widget still does not appear, the mod that adds it must expose it as a supported screen widget.
 
 ### Can I use FancyMenu layouts on a server?
 
@@ -73,7 +73,7 @@ The FancyMenu community shares layouts in the `#layout-templates` channel on the
 
 ### How can I make the Player Entity render behind other elements?
 
-The [Player Entity element](./elements#player-entity) normally renders in front of 2D elements regardless of layer order.
+You generally cannot force a [Player Entity element](./elements#player-entity) behind normal 2D elements through the [Layers widget](./layers-and-groups). Its renderer can ignore normal GUI layer order. Design the layout around that limitation or use a pre-rendered image when strict layer ordering is required.
 
 ### My Player Entity has only one leg! What happened?
 
@@ -87,10 +87,6 @@ Use [**Delay** or **Execute Later** blocks](./action-scripts#what-are-statements
 
 No. Customization is intentionally disabled for Create screens. See [Screens where customization is intentionally disabled](./incompatibility-list#screens-where-customization-is-intentionally-disabled).
 
-### Why do buttons from mod X disappear in the editor?
-
-This means the mod adds its buttons in a custom, non-vanilla way. FancyMenu cannot "see" or interact with these elements, so it cannot customize them. The developer of the other mod would need to change how they add their buttons for them to be compatible.
-
 ### What is the recommended resolution for background images and button textures?
 
 Backgrounds: A standard 1920x1080 (1080p) image is a great starting point and will scale well for most users.
@@ -102,17 +98,17 @@ FancyMenu has many [built-in game-event listeners](./listeners), but there is no
 ### How do I make a button inactive or "grayed out"?
 
 You can control a button's active state using [Loading Requirements](./conditions).
-Right-click the button in the editor and select "Active State".
-Add a requirement that must be met for the button to be active. To permanently disable it, use [**Is Number**](./conditions#is-number) to check whether 0 equals 1.
+Right-click the button in the editor and select **Control Active State**.
+Add a requirement that must be met for the button to be active. To permanently disable it, use [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) to check whether 0 equals 1.
 The button will now use its "Inactive Background" texture and will be unclickable.
 
 ### How can I remove the header and footer (the dirt texture bars) on scrollable screens?
 
-In the layout editor, right-click the editor background and open **Customize Header/Footer**. Set the textures to transparent. This option may be unavailable on some modded screens.
+In the layout editor, open **Layout Properties -> Header/Footer Customizations**. Set the textures to transparent. This option may be unavailable on some modded screens.
 
 ### I can't create a layout "for the current screen". The button is greyed out.
 
-You need to enabled customizations for that screen first via **menu bar -> Customization -> Current Screen Customizations -> toggle it to Enabled**.
+You need to enable customizations for that screen first through **menu bar -> Customization -> Current Screen Customizations -> Enabled**.
 
 ### I can't customize any elements of a screen when opening it in the editor. It's just an empty screen then.
 

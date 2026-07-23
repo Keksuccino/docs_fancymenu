@@ -23,5 +23,5 @@ For example, when joining a world or server, there are at least two screens that
 - Level Loading Screen (aka. World Loading Screen)
 - Generic Dirt Message Screen (aka. Dirt Message Screen)
 
+> [!WARNING]
 > **Important:** The "World Loading Screen" is not the same as the "Game Loading Screen" (aka. Splash Screen or Resource Reloading Screen). The "Game Loading Screen" can be customized with **Drippy Loading Screen**, which is an addon for FancyMenu.
-{.is-warning}

@@ -12,8 +12,8 @@ dateCreated: 2025-04-14T20:14:18.072Z
 
 FancyMenu adds some commands to the game that can be very useful when combining them with other mods like FTB Quests.
 
+> [!WARNING]
 > FancyMenu needs to be on the **SERVER** (and client) to use commands in Multiplayer!
-{.is-warning}
 
 ## Target Players and Permissions
 

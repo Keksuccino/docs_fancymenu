@@ -147,8 +147,8 @@ A highly versatile element for displaying text. It can be used for anything from
 ## Video
 Plays a video file. This is perfect for cinematic intros or decorative looping backgrounds.
 
+> [!WARNING]
 > The native Video element requires **Watermedia V3** and **Watermedia Binaries V3**. The old **Video [MCEF]** element is deprecated.
-{.is-warning}
 
 *   **Use Cases:**
     *   An animated modpack or server trailer.
@@ -266,8 +266,8 @@ A powerful tool for creating complex, keyframe-based animations. It can animate 
 ## Ticker
 An invisible element that executes a list of actions at a regular interval (every "tick").
 
+> [!NOTE]
 > For background automation, consider using [Schedulers](./schedulers). Schedulers are global and can run independently of a specific screen.
-{.is-info}
 
 *   **Use Cases:**
     *   Periodically checking a server's online status and updating a text element.

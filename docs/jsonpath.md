@@ -15,8 +15,8 @@ This page explains JSON paths in detail.
 
 The text on this page is a copy of the README from Jayway JsonPath's GitHub repository.
 
+> [!NOTE]
 > In this text, the term "JsonPath expression" refers to a JSON path.
-{.is-info}
 
 # JsonPath
 

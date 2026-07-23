@@ -15,8 +15,8 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 > [!CAUTION]
 > FancyMenu setups can run actions. Import them only from sources you trust.
 
+> [!WARNING]
 > This page is **ONLY** for FancyMenu setups made completely in **FancyMenu v3+**, so if you use a legacy setup (made in v2 and converted to v3), some steps could be different.
-{.is-warning}
 
 # Including the FancyMenu Setup in Your Modpack
 
@@ -60,8 +60,8 @@ Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option
 4. Copy the `fancymenu` folder inside the `config` folder of your SOURCE instance to the `config` folder of your MODPACK instance.
 5. Done. That's it. Restart your modpack instance now and you should see the setup load.
 
+> [!CAUTION]
 > Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `<game-directory>/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
-{.is-danger}
 
 # Disabling the Menu Bar and Hotkeys
 

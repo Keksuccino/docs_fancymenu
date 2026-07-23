@@ -10,8 +10,12 @@ dateCreated: 2025-06-25T18:46:32.912Z
 
 # Custom Mouse Cursor
 
-FancyMenu allows you to set a custom mouse cursor per screen.
+Add a [**Cursor** element](./elements#cursor) to a layout to replace the system cursor on that screen:
 
-To do that, simply add a new **Cursor** element to a layout and right-click it to set a cursor texture.
+1. Select **New Element -> Cursor**.
+2. Set a PNG texture with RGBA color.
+3. Set **Hotspot X** and **Hotspot Y** to the texture pixel where clicks should occur.
+4. Enable the editor preview when you want to check the cursor while editing.
+5. Use a [Universal Layout](./universal-layouts) when the same cursor should appear on multiple supported screens.
 
-If you want the custom cursor to show up in all screens, you should use a **universal layout**.
+Small cursor textures such as `32×32` or `64×64` are recommended. Cursor appearance and behavior can vary by operating system.

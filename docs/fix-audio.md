@@ -1,6 +1,6 @@
 ---
 title: Fix Audio Files
-description: How to fix audio files in case FancyMenu fails to play them.
+description: Troubleshoot audio files that FancyMenu cannot play.
 published: true
 date: 2025-04-14T20:14:47.283Z
 tags: wav, ogg, audio
@@ -10,48 +10,14 @@ dateCreated: 2025-04-14T20:14:44.259Z
 
 # Fixing Audio Files
 
-Minecraft is a little bit picky about what audio files it plays.
-Sometimes it happens that audio files work fine in other audio players, but FancyMenu failes to play them.
-If that's the case, you can try to fix the audio file to make it work in Minecraft.
+If an audio file plays elsewhere but not in FancyMenu, re-encode it as OGG or PCM WAV. For WAV, try 48 kHz, 16-bit audio.
 
-# OGG Files
+You can use FFmpeg or another trusted audio converter. Re-encoding is useful even when the current file extension and reported settings already look correct.
 
-In most cases it's pretty easy to fix OGG files.
+# Checks
 
-90% of your audio file problems get solved by simply re-converting the file.
-
-1. Go to https://convertio.co/ogg-mp3/ and convert your OGG to MP3.
-2. Go to https://convertio.co/mp3-ogg/ and convert the MP3 you got in the last step back to OGG.
-
-The file should work fine now.
-If it still doesn't work, make sure it's not a super big audio file and check if the audio file plays in other audio players.
-
-# WAV Files
-
-For WAV files it's mostly an unsupported sample rate and similar things that make the audio not work correctly in Minecraft.
-
-Make sure that your audio:
-
-- Has a sample rate of 48KHz
-- Has a bit rate of 16bit
-- Is a valid WAV file that works outside of MC
-
-You can easily (re)convert your audio to the correct bit and sample rate by using this website:
-https://audio.online-convert.com/convert-to-wav
-
-**IMPORTANT:**
-Even if you think your audio already has the correct format, bit rate and sample rate, please re-convert it anyway using the website mentioned above.
-
-# Other Causes
-
-Sometimes it's not the file that's broken, but other things that are not configured correctly, etc.
-
-## Volume Too Low
-
-Maybe your Minecraft volume is too low for you to hear the audio.
-Make sure the MASTER channel and all other channels are loud enough.
-
-## Mod Conflict
-
-Maybe another mod is incompatible with the audio system my mods use.
-In that case, please open an issue on GitHub, thank you very much.
+- Confirm that the re-encoded file plays in another audio player.
+- Keep very large audio files out of memory-sensitive screens.
+- Verify the sound channel selected by the [Audio element](./elements#audio) or action.
+- Check Minecraft's Master volume and the selected channel's volume.
+- If audio still fails, test without other mods that replace or process Minecraft audio.

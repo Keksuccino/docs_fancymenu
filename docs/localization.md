@@ -34,6 +34,8 @@ custom_locals/
     └── text.json
 ```
 
+Put localization files inside at least one subdirectory of `custom_locals`; files placed directly in the `custom_locals` root are not loaded. Nested subdirectories are supported.
+
 Supported UTF-8 formats:
 
 | Extension | Format |
@@ -73,4 +75,4 @@ Use the same keys in each language file, enable the resource pack, then read the
 
 # Localizing Images and Elements
 
-Use the [**Is Game Language** requirement](./conditions#is-game-language) to show different elements or layouts for different language codes, such as `en_us` and `de_de`.
+Use the [**Is Game Language** requirement](./conditions#is-game-language-fancymenu_loading_requirement_is_language) to show different elements or layouts for different language codes, such as `en_us` and `de_de`.

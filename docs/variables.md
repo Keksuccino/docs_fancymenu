@@ -24,7 +24,7 @@ To create a variable in FancyMenu:
 
 That's it! Your variable is ready to use. You can see it listed in the "Manage Variables" screen.
 
-The Manage Variables window supports a right-click context menu, keyboard navigation, copy/paste, undo/redo, type-to-search, **DEL** to delete, and **CTRL + S** to save.
+The Manage Variables window supports a right-click context menu, keyboard navigation, copy/paste, undo/redo, type-to-search, **Delete** to delete, and **Ctrl/Command + S** to save.
 
 ## Setting Variable Values
 
@@ -53,14 +53,14 @@ So each time the button is clicked, the `clicks` variable will increment by 1, e
 
 Now that you have variables holding data, you can use that data in different parts of your menu customization:
 
-* [**Loading Requirements**](./conditions): Check a variable's value to control when elements appear. For example, show an element when `clicks` is greater than 5 by combining [**Is Number**](./conditions#is-number) with the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
+* [**Loading Requirements**](./conditions): Check a variable's value to control when elements appear. For example, show an element when `clicks` is greater than 5 by combining [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) with the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
 
 * **Placeholders**: Insert a variable into text with the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable), for example `{"placeholder":"getvariable","values":{"name":"clicks"}}`.
 
 * **Nested Placeholders**: You can use the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable) inside the [**Calculator** placeholder](./placeholders#calculator-calc).
 
 * **Actions**: Variables can create dynamic behavior:
-  - Use an **IF** statement in an [action script](./action-scripts#what-are-statements) with [**Is Number**](./conditions#is-number) and the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
+  - Use an **IF** statement in an [action script](./action-scripts#what-are-statements) with [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) and the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable).
   - Combine the [**Get Stored Variable** placeholder](./placeholders#get-variable-value-fm-variable-getvariable) with [**Copy Text to Clipboard**](./action-scripts#copy-text-to-clipboard-copytoclipboard).
   - Use variables in [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui) to select a screen from stored progress or preferences.
 

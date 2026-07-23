@@ -73,9 +73,9 @@ fancymenu.actions.executeWithCallback(
     result => console.log('Quit triggered'),
     error  => console.error('Quit failed:', error)
 );
-
-Legacy helpers `fancymenu.execute(...)` and `fancymenu.executeWithCallback(...)` still work and delegate to the `actions` namespace, so existing content does not need immediate changes.
 ```
+
+Legacy helpers `fancymenu.execute(...)` and `fancymenu.executeWithCallback(...)` still delegate to the `actions` namespace.
 
 ### Common Action Types
 
@@ -242,7 +242,7 @@ fancymenu.placeholders.get('unknown')
 - **Handle errors** (callbacks for [actions](/action-scripts), `.catch` for [placeholders](/placeholders)) to present useful feedback.
 - **Validate input** before passing it to actions or [placeholder](/placeholders) variables.
 - **Throttle requests**; avoid spamming the bridge with rapid-fire calls (especially placeholder refresh loops).
-- **Security**: actions execute with the player’s normal permissions. Treat user-provided data with care to avoid injection.
+- **Security:** Browser content can invoke any registered FancyMenu action, including file, network, command, clipboard, resource-pack, link, and quit actions. Load only trusted pages, and validate all data received from web content.
 
 ## 7. Troubleshooting
 

@@ -20,15 +20,15 @@ The following tips are the most important basic steps you need to keep in mind w
 - **Avoid low-res images**: If an image is too small and stretched to fit a larger area, it may appear blurry.
 - **Avoid high-res overkill**: Very large textures displayed at a small size can also appear distorted or "weird" and may waste performance.
 
+> [!NOTE]
 > 📌 **Tip:** Use textures at or near the resolution they will appear in the menu.
-{.is-info}
 
 ## 2. Preserve Aspect Ratio
 - Always maintain the image's aspect ratio when scaling.
 - Stretching an image disproportionately can lead to visual artifacts and a poor appearance.
 
+> [!NOTE]
 > 📌 **Tip:** You can right-click Image elements and click on **Restore Aspect Ratio** to resize them to their correct aspect ratio, then when you further resize them manually, hold **SHIFT** while resizing, to make the resizing respect the element's aspect ratio.
-{.is-info}
 
 ## 3. Consider Nine-Slicing & Tiling
 - For scalable UI elements (like panels or buttons), use FancyMenu’s [Nine-Slicing & Tiling](/nine-slicing-and-tiling) features.

@@ -10,8 +10,8 @@ dateCreated: 2025-04-14T20:14:10.093Z
 
 # Animated PNG Images
 
+> [!NOTE]
 > For large or complex animations, prefer [AFMA files](./fma). Watermedia V3 and Watermedia Binaries V3 can accelerate APNG/GIF decoding when available, but AFMA remains the preferred FancyMenu animation format.
-{.is-info}
 
 
 APNGs are an animated version of PNG images, making it possible to have the same features as with a GIF, but in full, lossless PNG quality!
@@ -55,8 +55,8 @@ In the save menu, make sure to:
 - Set the file type to **APNG** (first setting, you maybe need to scroll to the top of the menu first)
 - Disable **Detect Unchanged Pixels**
 
+> [!NOTE]
 > You can also configure the **looping behavior** in the that menu! Disabling **Looped Apng** will make the APNG not loop at all, and when enabling it you can choose between a specific number of loops or infinite looping.
-{.is-info}
 
 ![screentogif_save](https://github.com/Keksuccino/FancyMenu/assets/35544624/954353da-45ed-4df8-9f06-c78a0a469fc8)
 
@@ -64,8 +64,8 @@ In the save menu, make sure to:
 
 Now copy your APNG file to `<game-directory>/config/fancymenu/assets/`. Then you will be able to use it for nearly everything that accepts images.
 
+> [!WARNING]
 > It is **really important** that the APNG file name ends with `.apng`!
 > FancyMenu will not be able to identify the image as APNG if it's not ending with `.apng`.
-{.is-warning}
 
 ![screentogif_use_apng](https://github.com/Keksuccino/FancyMenu/assets/35544624/2322da62-4013-451e-9a8b-3df0bf92df54)

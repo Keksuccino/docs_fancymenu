@@ -12,8 +12,8 @@ dateCreated: 2025-04-14T20:14:34.288Z
 
 The **Animator** is an element that lets you animate other elements. With this element, you can smoothly change another element’s size, position, and anchor point over time using keyframes. Keyframes are like snapshots that capture how the element should look at a specific moment. The Animator element then plays these snapshots in order to create smooth motion.
 
+> [!WARNING]
 > The **Element Animator** allows you to control the **position, size and anchor point** of elements. It is **NOT** possible to control any other settings of elements, such as opacity, visibility, rotation etc.!
-{.is-warning}
 
 # Video Tutorial
 

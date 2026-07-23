@@ -36,6 +36,8 @@ Add a [**Music Controller** element](./elements#music-controller) to a layout to
 
 The element supports [loading requirements](./conditions).
 
+Disabling menu music with a Music Controller also prevents the global custom menu track list from playing on that screen.
+
 # Custom Music with Audio Elements
 
 Use an [**Audio** element](./elements#audio) when you need:

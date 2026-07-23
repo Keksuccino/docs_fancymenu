@@ -48,7 +48,7 @@ If you also have multiple layouts active, their background stacks can combine to
 
 # Transparent Backgrounds
 
-Since there is nothing behind backgrounds, it is not possible to make the background at the very bottom transparent, because that would result in graphical glitches, but it is absolutely possible to use transparency for stacked background setups, as long as the bottom one stays as full opacity. That way you can have translucent background layers on top of the bottom one.
+FancyMenu renders a black backing layer behind active custom backgrounds. Transparent pixels in the bottom-most background therefore reveal black. Use an opaque base background, then stack translucent backgrounds above it.
 
 To make a background image translucent, use an image editor of your choice.
 

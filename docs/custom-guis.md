@@ -23,7 +23,7 @@ Custom GUIs are new screens that you can fill with FancyMenu [elements](./elemen
 4. Select **Done**, then open the new GUI from the manager.
 5. Create and edit its layout like any other screen.
 
-Identifiers must be unique and use the lowercase filename-safe characters accepted by the editor. Empty, invalid, or duplicate identifiers cannot be saved.
+Identifiers may use lowercase letters, digits, `.`, `_`, and `-`. They cannot contain spaces and must be unique. Empty, invalid, or duplicate identifiers cannot be saved.
 
 Custom GUIs always have screen customization enabled; their customization toggle cannot be disabled.
 
@@ -38,7 +38,7 @@ Custom GUIs always have screen customization enabled; their customization toggle
 | Popup Mode | Keeps the parent screen visible behind the Custom GUI |
 | Popup Background Overlay | Adds blur/tint over the parent screen in Popup Mode |
 
-Closing a Custom GUI returns to its parent screen when one exists.
+Popup Mode does not merge the two screens. The Custom GUI remains the active screen while its parent is rendered behind it. Closing the Custom GUI returns to that parent when one exists.
 
 # Opening a Custom GUI
 

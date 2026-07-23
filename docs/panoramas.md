@@ -34,7 +34,7 @@ Each panorama has its own directory below:
         └── panorama_5.png
 ```
 
-The six face images must be PNG files with the exact names shown above. File-name case can matter on some operating systems.
+The six face images must be PNG files with the exact names shown above, and all six must have identical dimensions. File-name case can matter on some operating systems.
 
 Add an optional `overlay.png` beside `properties.txt` for a vignette or other full-panorama overlay.
 
