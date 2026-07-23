@@ -1,48 +1,56 @@
 ---
 title: Niestandardowe GUI
-description: Jak dodać do gry nowy ekran GUI.
+description: Twórz i konfiguruj nowe ekrany GUI.
 ---
-
 # Niestandardowe GUI
 
-FancyMenu pozwala dostosowywać istniejące ekrany GUI, ale umożliwia też dodawanie całkiem nowych i wypełnianie ich elementami.
+Niestandardowe GUI to nowe ekrany, które możesz wypełniać [elementami](./elements) FancyMenu.
 
-# Dodawanie nowego ekranu
+> [!CAUTION]
+> Niestandardowe GUI mogą uruchamiać działania. Importuj je tylko z zaufanych źródeł.
 
-Aby dodać nowy ekran, przejdź do **Customization -> Custom GUIs -> Manage Custom GUIs**.
+# Tworzenie niestandardowego GUI
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+1. Otwórz **Dostosowywanie -> Niestandardowe GUI -> Zarządzaj niestandardowymi GUI**.
+2. Wybierz **Nowe GUI**.
+3. Wpisz identyfikator i skonfiguruj ustawienia ekranu.
+4. Wybierz **Gotowe**, a następnie otwórz nowe GUI z menedżera.
+5. Utwórz jego układ i edytuj go tak jak każdy inny ekran.
 
-W następnym menu kliknij **New GUI**.
+Identyfikatory mogą zawierać małe litery, cyfry, `.`, `_` i `-`. Nie mogą zawierać spacji i muszą być unikalne. Pustych, nieprawidłowych ani zduplikowanych identyfikatorów nie można zapisać.
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+Niestandardowe GUI zawsze mają włączone dostosowywanie ekranu; ich przełącznika dostosowywania nie można wyłączyć.
 
-Tutaj musisz nadać swojemu nowemu GUI unikalny identyfikator oraz możesz dostosować inne aspekty podstawowego zachowania ekranu.
-Gdy skończysz, naciśnij **Done**.
+# Ustawienia ekranu
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+| Ustawienie | Działanie |
+|---|---|
+| Zezwól na ESC | Pozwala klawiszowi Escape zamknąć GUI i wrócić do nadrzędnego ekranu |
+| Wstrzymaj grę/świat | Wstrzymuje grę w trybie jednego gracza, gdy GUI jest otwarte |
+| Renderuj tło świata | Pokazuje załadowany świat za GUI |
+| Nakładka tła świata | Dodaje standardowe rozmycie/ciemną nakładkę na świat |
+| Tryb wyskakujący | Utrzymuje nadrzędny ekran widoczny za niestandardowym GUI |
+| Nakładka tła wyskakującego okna | Dodaje rozmycie/kolorową nakładkę na nadrzędny ekran w trybie wyskakującym |
 
-Teraz masz nowe, puste GUI. Aby je otworzyć, wybierz GUI w menu **Manage Custom GUIs** i kliknij **Open GUI**.
+Tryb wyskakujący nie łączy obu ekranów. Niestandardowe GUI pozostaje aktywnym ekranem, podczas gdy jego ekran nadrzędny jest renderowany za nim. Zamknięcie niestandardowego GUI wraca do tego nadrzędnego ekranu, jeśli istnieje.
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
+# Otwieranie niestandardowego GUI
 
-Spowoduje to otwarcie nadal dość pustego ekranu GUI. Aby nie był tak pusty, po prostu utwórz dla niego nowy układ, tak jak zrobiłbyś to w przypadku każdego innego ekranu.
+Użyj dokładnego identyfikatora niestandardowego GUI z jedną z tych opcji:
 
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
+- [**Akcja Otwórz ekran lub niestandardowe GUI**](./action-scripts#open-screen-or-custom-gui-opengui).
+- [Komenda `/openguiscreen`](./commands#openguiscreen).
 
-# Otwieranie GUI przez akcję
+# Zastępowanie istniejącego ekranu
 
-Ostatnim krokiem jest umożliwienie zwykłym użytkownikom dostępu do Twojego GUI. Najprostszym sposobem jest użycie akcji **Open Screen or Custom GUI** za pomocą przycisku, suwaka lub ticker'a.
+Niestandardowe GUI może zastąpić ekran Vanilla lub modu za każdym razem, gdy ten ekran się otwiera.
 
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
+1. Utwórz niestandardowe GUI zastępujące ekran.
+2. Otwórz ekran, który chcesz zastąpić.
+3. Włącz **Dostosowywanie -> Ustawienia -> Zaawansowany tryb dostosowywania**.
+4. Wybierz **Dostosowywanie -> Niestandardowe GUI -> Zastąp bieżący ekran niestandardowym GUI**.
+5. Wybierz niestandardowe GUI zastępujące ekran.
 
-# Otwieranie GUI przez komendę
+Zarządzaj zapisanymi zastąpieniami przez **Dostosowywanie -> Niestandardowe GUI -> Zarządzaj zastąpionymi ekranami**.
 
-Możesz również otworzyć swoje niestandardowe GUI za pomocą [komendy w grze](./commands#openguiscreen).
-Pozwala to nawet zdalnie otwierać GUI dla innych użytkowników!
-
-# Tryb popup
-
-Począwszy od FancyMenu v3.8.0, niestandardowe GUI obsługują „Tryb popup”, który sprawia, że wyglądają jak wyskakujące okno otwierane na wierzchu innego ekranu (poprzedniego ekranu, z którego zostało otwarte niestandardowe GUI). To ustawienie można przełączać osobno dla każdego niestandardowego GUI w jego ustawieniach.
-
-FancyMenu 3.9.0 dodaje także opcję przełączania nakładki tła ekranu dla niestandardowych GUI podczas przebywania w świecie. Użyj jej, gdy chcesz wyłączyć lub zachować rozmycie/przyciemnienie tła za niestandardowym GUI otwartym nad rozgrywką.
+Zastąpienie pomija oryginalny ekran, więc przetestuj jego nawigację oraz wszystkie funkcje zależne od zachowania oryginalnego ekranu.
