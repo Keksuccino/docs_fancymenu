@@ -45,6 +45,8 @@ FancyMenu only allows loading local resources stored in `/config/fancymenu/asset
 
 This also makes it really easy to [ship local resource with your modpacks](./modpacks), since most modpack systems (CurseForge, Modrinth, etc.) support shipping mod config folders by default.
 
+For a complete map of FancyMenu's layout, resource, configuration, and generated-state paths, see [Data Storage Locations](./data-storage-locations).
+
 # Web Resources
 
 When you need to dynamically change resources without the need to update your modpack, **web** resources would be the best option.

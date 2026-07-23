@@ -46,6 +46,20 @@ The last part is to give normal users access to your GUI. The easiest way to do 
 You can also open your custom GUI via an [in-game command](./commands#openguiscreen).
 This even allows you to remotely open the GUI for other users!
 
+# Overriding an Existing Screen
+
+A Custom GUI can automatically replace a Vanilla or mod screen whenever that screen opens.
+
+1. Create the replacement Custom GUI first.
+2. Open the Vanilla or mod screen you want to replace.
+3. Enable **Customization -> Settings -> Advanced Customization Mode** in the menu bar.
+4. Select **Customization -> Custom GUIs -> Override Current with Custom GUI**.
+5. Confirm the warning and choose the replacement Custom GUI.
+
+FancyMenu immediately opens the replacement, saves the rule, and substitutes the Custom GUI whenever the target screen is opened afterward. Because the original screen is being replaced, overrides can cause unexpected behavior when a screen depends on its own initialization or interaction logic. Test every overridden screen and its navigation paths carefully.
+
+To review or remove rules, open **Customization -> Custom GUIs -> Manage Overridden Screens**. Override rules and Custom GUI definitions are both stored in `config/fancymenu/custom_gui_screens.txt`.
+
 # Popup Mode
 
 Starting with FancyMenu v3.8.0, Custom GUIs support a "Popup Mode" that makes them look like a popup getting opened on top of another screen (the previous screen the Custom GUI got opened from). This setting can be toggled individually for each Custom GUI in its settings.

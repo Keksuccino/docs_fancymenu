@@ -7,6 +7,8 @@ description: Send and receive custom data between server and client with FancyMe
 
 The "FM Data" system lets you send custom text data between server and client.
 
+Every `/fmdata` sub-command requires **permission level 2** (Game Master / OP level 2).
+
 Every FM Data message has:
 
 1. A **data identifier** (what kind of message this is)
@@ -30,7 +32,7 @@ Example idea:
 Use:
 
 ```mcfunction
-/fmdata send <target_player> <data_identifier> <string_data>
+/fmdata send <target_players> <data_identifier> <string_data>
 ```
 
 Examples:
@@ -42,7 +44,7 @@ Examples:
 
 Notes:
 
-- `<target_player>` supports normal player selectors like `@a`, `@p`, `@s`
+- `<target_players>` supports player names and selectors such as `@a`, `@p`, and `@s`
 - Use quotes for values with spaces
 
 # Client: Receive Data

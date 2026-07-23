@@ -20,6 +20,12 @@ You can customize their **labels and textures** just like you would do with cust
 
 The only thing you **can't do** with Vanilla/mod widgets is customizing their **action script** (like changing what they do when interacting with them). This is only possible with custom buttons and sliders.
 
+## Automated Clicks
+
+Vanilla and mod widgets have an **Automated Clicks** property. Set it to an integer greater than `0` to invoke the widget's original left-click behavior that many times when the screen loads. For example, setting it to `2` clicks the widget twice during the first update of each newly opened screen. The default value `0` disables automated clicks.
+
+These are real widget clicks: each click can change a slider or cycle-button value, run the widget's normal callback, or even open another screen. Test the result carefully, especially when configuring more than one click.
+
 To **move** and **resize** Vanilla/mod widgets, you need to give them an anchor point first. To do that, **right-click** them and click on **Anchor Point**. Set it to anything other than **Original**, because that's the default anchor of Vanilla/mod elements.
 
 You can also **hide** Vanilla/mod widgets by simply **right-clicking** them and clicking on **Delete**. They are not actually deleted, but hidden and you can restore them by clicking on **menu bar -> Element -> Deleted Vanilla Elements** and **left-clicking** the element(s) you want to make visible again.

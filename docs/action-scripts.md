@@ -225,7 +225,7 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Force-executes a command in singleplayer as the integrated server, ignoring permissions and the cheats setting.
 - **Value Required:** Yes - Command text, for example `/give @p minecraft:diamond 1`
 
-> This action only works in singleplayer while the world is not opened to LAN. It intentionally does nothing on multiplayer servers.
+> This action only works in singleplayer while the world is **not opened to LAN**. It intentionally does nothing when no integrated server exists or when the integrated server is published to LAN.
 {.is-warning}
 
 ## Paste to Chat (`paste_to_chat`)
@@ -291,7 +291,7 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Value Required:** Yes - `pack_name|||MODE|||reload_bool`
 
 ## Reload Resource Packs (`reload_resource_packs`)
-- **Description:** Reloads resource packs (5s cooldown)
+- **Description:** Reloads Minecraft's resource packs. A built-in five-second cooldown ignores repeated triggers during that period to prevent reload spam.
 - **Value Required:** No
 
 ## Reload FancyMenu (`reloadmenu`)
@@ -329,6 +329,8 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Sets the value of a custom or vanilla input field by element identifier.
 - **Value Required:** Yes - `element_identifier|||new_value|||force_set_when_inactive`
 
+The three fields must be separated with the triple-pipe delimiter `|||`. Set `force_set_when_inactive` to `true` to update a disabled input field too; when it is `false`, inactive fields are left unchanged.
+
 ## Create File in Game Directory (`create_file_in_game_dir`)
 - **Description:** Creates an empty file in the game directory (instance root). Accepts the `.minecraft/` prefix to target the default launcher profile directory (may differ from the current instance dir).
 - **Value Required:** Yes - `file_path`
@@ -337,21 +339,31 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Deletes a file or folder in the game directory (instance root). Accepts `.minecraft/` prefix to hit the default launcher profile (can differ from the running instance). Append `*` to delete **all files directly inside** a folder (ignores sub-directories; keeps the folder).
 - **Value Required:** Yes - `target_path`
 
+For example, `config/downloads/*` deletes the files directly inside `config/downloads/`, but it neither traverses nor deletes its sub-directories.
+
 ## Copy File/Folder in Game Directory (`copy_file_in_game_dir`)
 - **Description:** Copies within the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not always the current instance). Append `*` to the **source** path to copy every file directly inside that folder (ignores sub-directories); destination must be a directory and cannot use `*`.
 - **Value Required:** Yes - `source||destination`
 
+For example, `config/source/*||config/destination/` copies only the files directly inside `config/source/`. With a wildcard source, FancyMenu creates the destination directory when needed but does not copy any source sub-directories.
+
 ## Move File/Folder in Game Directory (`move_file_in_game_dir`)
 - **Description:** Moves within the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from the current instance). Append `*` to the **source** path to move every file directly inside that folder (ignores sub-directories); destination must be a directory and cannot use `*`.
 - **Value Required:** Yes - `source||destination`
+
+For example, `config/source/*||config/destination/` moves only the files directly inside `config/source/`. With a wildcard source, FancyMenu creates the destination directory when needed but leaves source sub-directories in place.
 
 ## Rename File/Folder in Game Directory (`rename_file_in_game_dir`)
 - **Description:** Renames a file or folder inside the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from current instance). Keeps contents intact, only the name changes.
 - **Value Required:** Yes - `path||new_name`
 
 ## Download File to Game Directory (`download_file_to_game_dir`)
-- **Description:** Downloads a file asynchronously into the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not necessarily the running instance). Provide the **target folder**; filename is derived from headers/URL automatically.
+- **Description:** Downloads a file asynchronously into the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not necessarily the running instance).
 - **Value Required:** Yes - `url||target_folder`
+
+The second field is a **target directory**, not a complete destination file path. FancyMenu creates the directory when needed and determines the filename from the response's `Content-Disposition` header, then falls back to the URL path. The resolved name is URL-decoded and sanitized before use; if neither source provides a usable name, FancyMenu generates one. An existing file with the same name is overwritten.
+
+The [**On File Downloaded via Action** listener](./listeners#on-file-downloaded-via-action) fires after both successful and failed download attempts and exposes the URL, resolved target path, and success state.
 
 ## Extract ZIP File In Game Directory (`extract_zip_file_in_game_dir`)
 - **Description:** Extracts a ZIP file into a target folder inside the game directory or default `.minecraft` directory. Triggers the **On ZIP Extracted via Action** listener when finished.
@@ -367,7 +379,11 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 
 ## Select File from System (`select_file_to_game_dir`)
 - **Description:** Opens a native file picker (any location) and copies the selected file into the game directory (instance root) or default `.minecraft/` when prefixed (that default may differ from this instance). Supports extension filters, custom filter label, and optional overwrite toggle.
-- **Value Required:** Yes - selection configuration
+- **Value Required:** Yes - `target_path|||filter_description|||extensions|||overwrite_bool`
+
+`target_path` is the complete destination file path. Separate multiple extensions with `;` or `,`, for example `png;jpg`; a blank extension list allows all files. If `overwrite_bool` is `false`, the action fails instead of replacing an existing destination file.
+
+The [**On File Selected** listener](./listeners#on-file-selected) fires when the file is copied, the picker is cancelled, or selection fails. It exposes the selected path, resolved target path, success/cancelled states, and a failure reason.
 
 ## Show Toast (`show_toast`)
 - **Description:** Displays a configurable toast notification

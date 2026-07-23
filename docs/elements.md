@@ -41,6 +41,7 @@ A clickable button that can perform a wide variety of actions. This is one of th
     *   **Custom Appearance:** Fully customizable textures for normal, hovered, and inactive states. Supports transparent backgrounds, nine-slicing, custom label colors, hover label colors, label scale, label shadow toggles and button icon textures.
     *   **Sounds:** Custom click, hover and unhover sounds.
     *   **Template Mode:** Can act as a template to apply its appearance and properties to all other Vanilla or modded buttons in the menu, ensuring a consistent look. Read more at the [Button & Slider Templates](https://docs.fancymenu.net/en/button-slider-templates) page.
+    *   **Automated Vanilla/Mod Widget Clicks:** Existing Vanilla and mod widgets have an **Automated Clicks** property that can invoke their original click behavior a chosen number of times when the screen loads. See [Vanilla Elements](./vanilla-elements#automated-clicks) for details.
 
 ## Slider
 A slider that users can drag to select a value from a list or a range. It can execute actions whenever its value changes.
@@ -64,6 +65,7 @@ A standard checkbox that can be toggled on or off. It can execute actions upon b
 *   **Key Features:**
     *   **Actions on Toggle:** Executes [Action Scripts](https://docs.fancymenu.net/en/action-scripts) when its state changes. The current state (`true` or `false`) can be accessed within its actions.
     *   **Variable Mode:** Can be linked directly to a FancyMenu variable, making the checkbox state read from and write to that variable.
+    *   **Persistent State:** When Variable Mode is disabled, the checkbox automatically saves its state by element identifier and restores it after restarting the game. These states are stored in `<game_root>/checkbox_states.json`. In Variable Mode, the linked FancyMenu variable is the checkbox's state source instead.
     *   **Custom Appearance:** Supports custom textures for the background (in normal, hover, and inactive states) and the checkmark itself.
 
 ## Text Input Field
@@ -169,7 +171,7 @@ Renders a custom GLSL shader inside an element.
     *   **Uniforms:** Exposes FancyMenu and input uniforms. See the [GLSL Shader API](https://docs.fancymenu.net/en/glsl-shader-api) page for details.
 
 ## Slideshow
-Displays a sequence of images. The configuration for the slideshow (images, timing, transitions) is done in a separate `.properties` file located in the `/config/fancymenu/assets/slideshows/` directory.
+Displays a sequence of images. Its images and `properties.txt` configuration file live in the slideshow's own subdirectory under `/config/fancymenu/slideshows/`.
 
 *   **Use Cases:**
     *   A rotating gallery of in-game screenshots.
@@ -307,6 +309,7 @@ A customizable bar that visually represents a numerical value.
     *   **Dynamic Value:** The progress value (0-100 or 0.0-1.0) is set via a text field that supports [placeholders](https://docs.fancymenu.net/en/placeholders).
     *   **Appearance:** The bar's direction (up, down, left, right), colors, textures and nine-slicing for bar/background textures are all customizable.
     *   **Animation:** Features a smooth filling animation to make progress changes look less jarring.
+    *   **Progress-Based Element Anchor:** When another element uses the progress bar as its **Element** anchor, enable **Use Progress for Element Anchor** to move that anchor to the current edge of the filled area. Anchored elements then travel with the bar's progress instead of staying attached to the progress bar's static bounds.
 
 ## Dragger
 An invisible element that the user can click and drag to move around. Other elements can be anchored to it to create movable widgets.

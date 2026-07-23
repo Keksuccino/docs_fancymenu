@@ -13,7 +13,7 @@ dateCreated: 2025-04-14T20:15:25.104Z
 FancyMenu comes with a command that lets you open Vanilla and Custom GUIs via command.
 You can even remotely open GUIs for **other players** when installing FancyMenu on both **server and clients**.
 
-To open a GUI, just use the command `/openguiscreen <screen_identifier> <target_player>`.
+To open a GUI, use `/openguiscreen <screen_identifier> [<target_players>]`.
 
 Replace `<screen_identifier>` with the actual menu identifier of the GUI you want to open.
 This can be the identifier of your Custom GUI (made with FancyMenu) or the normal menu identifier of a Vanilla/mod GUI.
@@ -22,8 +22,7 @@ To get the **menu identifier of Vanilla/mod GUIs**, open the menu you want to kn
 
 ![copy_identifier](https://github.com/Keksuccino/FancyMenu/assets/35544624/dd6c53d9-d2bd-4810-be03-3741e326bd5a)
 
-Leave the `<target_player>` argument empty to open the GUI for your client or choose a player (or multiple players) to open the GUI for.
-Keep in mind that the other player needs to have FancyMenu installed on their client.
+Omit `[<target_players>]` to open the GUI for yourself, or use a player name or selector such as `@a` to open it for one or more players. Supplying the target argument requires permission level 2 (Game Master / OP level 2), even if it names yourself, and every target player needs FancyMenu installed on their client.
 
 This command will not work for every screen, especially mod screens. If the command fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
 
@@ -31,4 +30,4 @@ I will also not manually add compatibility for mod screens anymore, because addi
 
 # Closing GUIs by Command
 
-In the rare case you need it, there's also a `/closeguiscreen <target_player>` command that closes the current screen.
+In the rare case you need it, `/closeguiscreen [<target_players>]` closes the current screen. It affects you when the target is omitted; supplying the target argument requires permission level 2.
