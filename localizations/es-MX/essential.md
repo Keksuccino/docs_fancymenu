@@ -1,20 +1,13 @@
 ---
 title: Essential Mod
-description: Cómo personalizar la interfaz de Essential.
+description: Cómo personalizar la interfaz de usuario de Essential.
 ---
-
 # Essential
 
-Las versiones recientes del mod Essential agregaron compatibilidad con FancyMenu, lo que significa que ahora deberías poder personalizar por completo todos los elementos que Essential agrega a la pantalla de Título y a la pantalla de Pausa.
+Essential proporciona integración con FancyMenu para los elementos que agrega a las pantallas de Título y Pausa.
 
-Para obtener una guía detallada sobre cómo personalizar la interfaz de Essential, ¡échale un vistazo a [esta página del wiki](https://essential.gg/wiki/fancymenu) del wiki de Essential!
+Consulta la [guía de FancyMenu de Essential](https://essential.gg/wiki/fancymenu) para conocer su flujo de trabajo de personalización compatible.
 
 # Problemas de personalización
 
-Si encuentras algún error o inconveniente al intentar personalizar los elementos de Essential, casi siempre es causado por Essential y los desarrolladores de Essential necesitan corregirlo de su lado.
-
-Debes reportar el error/problema al equipo de Essential a través de su Discord o GitHub.
-
-# Enlaces usados en esta página
-
-- Página del wiki de Essential sobre FancyMenu: https://essential.gg/wiki/fancymenu
+Essential proporciona su integración con FancyMenu. Si falta un widget propiedad de Essential o se comporta de forma diferente a un widget normal de Minecraft, reproduce el problema con las versiones actuales e ინფórmalo al proyecto que posee el widget afectado.
