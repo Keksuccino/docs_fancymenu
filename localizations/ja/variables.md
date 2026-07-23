@@ -1,72 +1,85 @@
 ---
 title: 変数
-description: 変数を作成して使用する方法。
+description: 変数の作成と使用方法。
 ---
-
 # FancyMenu の変数
 
-変数は FancyMenu の強力な機能で、メニュー全体のカスタマイズにわたって情報を保存し、再利用できます。変数は、さまざまな種類のデータを入れられるコンテナのようなもので、それぞれに名前を付け、あとからその変数名を使ってデータにアクセスできます。変数を使うことで、設定した条件に応じて変化する動的なメニューを作れるようになります。
+変数にはテキスト値を保存できます。レイアウト、アクション、プレースホルダー、要件、リスナー、スケジューラー、カスタム GUI で再利用できます。
 
 ## 変数の作成
 
 FancyMenu で変数を作成するには、次の手順を行います。
 
-1. いま Layout Editor にいないことを確認します。 
+1. 現在レイアウトエディターを開いていないことを確認します。
 2. 画面上部のメニューバーをクリックします。
 3. **Customization -> Variables -> Manage Variables** に進みます。
-4. 表示される「Manage Variables」画面で、**Add Variable** ボタンをクリックします。
-5. 新しい変数名を入力し、**OK** をクリックします。
+4. 表示された「Manage Variables」画面で、**Add Variable** ボタンをクリックします。
+5. 新しい変数の名前を入力し、**OK** をクリックします。
 
-これで完了です。変数はすぐに使えるようになります。「Manage Variables」画面に一覧として表示されます。
+これで完了です。変数を使用できるようになりました。「Manage Variables」画面に一覧表示されます。
 
-FancyMenu 3.9.0 では Manage Variables ウィンドウが再設計されています。重要な操作は右クリックのコンテキストメニューから利用でき、一覧はキーボード操作に対応しています。変数のコピー/貼り付け、変更の取り消し/やり直し、入力による検索開始、**DEL** による選択中の変数の削除、**CTRL + S** によるウィンドウの確定が可能です。
+「Manage Variables」ウィンドウでは、右クリックのコンテキストメニュー、キーボード操作、コピー/貼り付け、元に戻す/やり直し、検索入力、**Delete** による削除、**Ctrl/Command + S** による保存をサポートしています。
 
 ## 変数の値を設定する
 
-空の変数だけではあまり役に立ちません。変数を活用するには、その中にデータを入れる必要があります。FancyMenu では、これを「変数の値を設定する」と呼びます。 
+空の変数だけではあまり役に立ちません。変数を活用するには、その中にデータを入れる必要があります。FancyMenu では、これを「変数の値を設定する」と呼びます。
 
 変数の値を設定する主な方法は 2 つあります。
 
-1. 「Manage Variables」画面で、一覧から変数を見つけてクリックし、**Set Value** をクリックします。保存したいデータを入力します。
+1. 「Manage Variables」画面で一覧から変数を見つけてクリックし、**Set Value** をクリックします。保存したいデータを入力します。
 
-2. メニューをカスタマイズしている最中に、Button、Slider、Ticker 要素の **Set Variable** アクションを使います。このアクションでは、変数名と保存する値を指定します。たとえば、ボタンをクリックしたときにこのアクションが実行されると、変数は新しい値に更新されます。
+2. メニューをカスタマイズしている最中に、[**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) を [Button](./elements#button)、[Slider](./elements#slider)、または [Ticker](./elements#ticker) 要素に使用します。
 
-たとえば、ボタンが押された回数を数えるために `clicks` という変数を作成したとします。この場合、ボタンに **Set Variable** アクションを追加し、アクションの値にプレースホルダーを使ってクリック回数を毎回増やすようにします。次のようになります。
+たとえば、`clicks` という名前の変数を作成し、ボタンに [**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) を追加します。
 
 ```
 clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
 ```
 
-この仕組みは次のように動作します。
-1. **Get Stored Variable** プレースホルダーが、`clicks` 変数の現在値を取得します。
-2. **Calculator** プレースホルダーが、その値に 1 を加えます。
-3. その結果が **Set Variable** アクションによって `clicks` 変数に再び保存されます。
+この仕組みは次のとおりです。
+1. [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) が `clicks` 変数の現在値を取得します。
+2. [**Calculator** プレースホルダー](./placeholders#calculator-calc) がその値に 1 を足します。
+3. 結果は [**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) を使って `clicks` に保存されます。
 
-つまり、ボタンがクリックされるたびに `clicks` 変数は 1 ずつ増え、合計クリック回数を数えられるようになります。
+そのため、ボタンがクリックされるたびに `clicks` 変数が 1 ずつ増え、クリック数の合計を数えられます。
 
 ## 変数の使用
 
-データを持つ変数ができたら、そのデータをメニューカスタマイズのさまざまな場所で使えます。
+変数にデータを保存したら、そのデータをメニューのさまざまな部分で使えます。
 
-* **Loading Requirements**: ローディング条件で変数の値を確認し、特定のメニュー要素をいつ表示するかを制御できます。たとえば、**Is Number** 条件と **Get Stored Variable** プレースホルダーを組み合わせて、`clicks` 変数が 5 より大きい場合にのみ要素を表示できます。
+* [**Loading Requirements**](./conditions): 変数の値を確認して、要素を表示するタイミングを制御できます。たとえば、[**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) と [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を組み合わせて、`clicks` が 5 より大きいときに要素を表示できます。
 
-* **Placeholders**: **Get Stored Variable** プレースホルダーを使って、変数をテキストに埋め込めます。テキスト要素で `{"placeholder":"getvariable","values":{"name":"clicks"}}` を使えば、"clicks" 変数の現在値を表示できます。
+* **プレースホルダー**: [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を使って、テキスト内に変数を挿入できます。たとえば `{"placeholder":"getvariable","values":{"name":"clicks"}}` のようにします。
 
-* **Nested Placeholders**: ほかのプレースホルダーの中で変数を使うこともできます。上のクリック数カウントの例では、**Calculator** プレースホルダーの中で **Get Stored Variable** プレースホルダーを使っています。
+* **ネストされたプレースホルダー**: [**Calculator** プレースホルダー](./placeholders#calculator-calc) の中で [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を使えます。
 
-* **Actions**: 変数の値に応じた動的な動作を作るために、アクション内で変数を使うこともできます。例をいくつか挙げます。
-    - アクションスクリプト内で **IF** 文を使い、**Is Number** ローディング条件と **Get Stored Variable** アクションを組み合わせて変数の値を確認し、結果に応じて異なる処理を実行します。たとえば、「あなたは私を X 回クリックしました！」と表示するボタンを作り、クリック数が 10 を超えたら特別なメッセージを表示する IF ブロックを使えます。
-    - **Get Stored Variable** プレースホルダーと **Copy to Clipboard** アクションを組み合わせると、変数の値をクリップボードにコピーできるようにできます。
-    - **Open GUI** アクションで変数を使い、進行状況や好みに応じて異なる画面を読み込めます。これらは変数で追跡します。
+* **アクション**: 変数を使うことで動的な動作を作れます。
+  - [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) と [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を使い、アクションスクリプトの [IF](./action-scripts#what-are-statements) 文で条件分岐できます。
+  - [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) と [**Copy Text to Clipboard**](./action-scripts#copy-text-to-clipboard-copytoclipboard) を組み合わせられます。
+  - [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui) で変数を使い、保存された進行状況や設定に応じて画面を選択できます。
 
-## 変数の例
+## 変数の使用例
 
-自分なりの変数の使い方の参考になる例をいくつか紹介します。
+自分の変数活用の参考になるいくつかの例を紹介します。
 
-1. **High Score**: `highscore` 変数を作成し、既存の値より高い場合にプレイヤーの現在スコアを設定するボタンを作ります。**Get Stored Variable** プレースホルダーを使って、メニューにハイスコアを表示します。
+1. **ハイスコア**: `highscore` 変数を作成し、現在のプレイヤースコアが既存値より高い場合にその値を設定するボタンを作ります。[**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) で表示できます。
 
-2. **Difficulty Selector**: `easy`、`medium`、`hard` など、ゲームの難易度ごとの変数を作成します。ボタンで難易度変数を設定し、選択された難易度に応じて要素を表示/非表示にします。
+2. **難易度セレクター**: `easy`、`medium`、`hard` など、ゲームの難易度ごとに変数を作成します。ボタンで難易度変数を設定し、選択された難易度に応じて要素の表示/非表示を切り替えます。
 
-3. **Tutorial Progress**: `tutorial_step` のような変数を追加して、チュートリアルの進行状況を追跡します。各ステップを完了するたびに変数を増やし、ローディング条件を使ってメニューの内容を少しずつ表示していきます。
+3. **チュートリアルの進行状況**: `tutorial_step` のような変数を追加して、プレイヤーのチュートリアル進行を追跡します。各ステップを完了するたびに変数を増やし、Loading Requirements を使ってメニューの内容を少しずつ表示します。
 
-FancyMenu のほかの機能と変数を組み合わせることで、各プレイヤーの行動や好みに合わせたメニューを非常に柔軟に作成できます。さまざまな変数の設定を試して、メニューカスタマイズの可能性を最大限に引き出しましょう！
+## 永続性、スコープ、保存先
+
+変数は現在の Minecraft インスタンス全体で共有されます。レイアウト、ワールド、サーバー、プレイヤーごとには分かれません。
+
+値は `<game-directory>/config/fancymenu/user_variables.db` に即座に保存され、再起動後も保持されます。
+
+- **Reset on Launch** は、次回ゲーム起動時にその変数を空にします。
+- [**Clear All Variables**](./action-scripts#clear-all-variables-fm-variable-clear_variables) は、保存されているすべての変数値を削除します。
+- 名前は大文字と小文字を区別します。`tutorial_step` のような、シンプルで一意な名前を使ってください。
+
+[**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) は、指定した名前の変数が存在しない場合、または保存値が空の場合に `0` を返します。このフォールバックは、比較や計算式で重要です。
+
+[**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) は `variable_name:variable_value` の形式を使い、最初のコロンで分割します。そのため、値にコロンを複数含めることができます。
+
+FancyMenu の変数には、パスワード、トークン、その他の秘密情報を保存しないでください。変数は読み取り可能な設定データです。
