@@ -1,22 +1,28 @@
 ---
 title: Spiel-Intro
 description: >-
-  Spiele animierte Inhalte ab, bevor das Spiel zum ersten Mal den Titelscreen
-  anzeigt.
+  Animierte Inhalte abspielen, bevor das Spiel zum ersten Mal den
+  Titelbildschirm anzeigt.
 ---
-
 # Spiel-Intros
 
-Du kennst diese coolen kleinen Videos, die beim Start eines Spiels abgespielt werden?
-Mit FancyMenu kannst du das in Minecraft machen!
+Spiel-Intros spielen ein animiertes Bild oder Video ab, bevor der Titelbildschirm zum ersten Mal erscheint.
 
-# APNGs, GIFs und Videos als Intro
+# Einrichtung
 
-FancyMenu unterstützt animierte Texturen und, ab FancyMenu 3.9.0, Videos als Intro-Inhalt für das Spiel.
+Öffne [**Globale Anpassungen**](./global-customizations) über **Anpassung -> Globale Anpassungen** und konfiguriere dann diese Einstellungen:
 
-Um Intro-Inhalte in FancyMenu 3.9.0+ festzulegen, gehe in die **Menüleiste** von FancyMenu und dann zu **Anpassung -> Globale Anpassungen** und konfiguriere dort **Spiel-Intro**.
+| Einstellung | Verhalten |
+|---|---|
+| Spiel-Intro festlegen | Wählt ein animiertes Bild oder Video von lokal, aus dem Web oder aus Minecraft-Ressourcen aus |
+| Spiel-Intro überspringen | Erlaubt es, das Intro mit einer beliebigen Taste oder einem Mausklick zu überspringen |
+| Spiel-Intro ausblenden | Blendet das Intro in den Zielbildschirm über |
+| Benutzerdefinierter Überspringen-Text | Ersetzt die Standardaufforderung zum Überspringen durch Klartext oder einen Lokalisierungsschlüssel |
+| Spiel-Intro-Lautstärke | Legt die Grundlautstärke von `0.0` bis `1.0` fest |
+| Spiel-Intro-Soundkanal | Wählt die Minecraft-Soundkategorie aus |
+| Spiel-Intro erneut auslösen | Spielt das konfigurierte Intro zum Testen erneut ab |
 
-Video-Intros unterstützen Ton, einschließlich Lautstärke- und Soundkanal-Einstellungen. Die native Videounterstützung erfordert **Watermedia V3** und **Watermedia Binaries V3**.
+Video-Intros erfordern **Watermedia V3**, **Watermedia Binaries V3** und einen OpenGL-Renderer. Die Videowiedergabe von Watermedia ist mit Vulkan nicht verfügbar. Wenn die Wiedergabe nicht verfügbar ist, zeigt FancyMenu eine Erklärung über dem Intro-Bildschirm an. Siehe [Videos](./video#requirements).
 
 <br>
 <img width="700" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/71cec75b-33f1-4a21-9f18-d0adc7ceebb6">
