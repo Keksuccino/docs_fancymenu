@@ -1,59 +1,79 @@
 ---
 title: 命令
-description: FancyMenu 的命令及其使用方法。
+description: FancyMenu 的命令以及如何使用它们。
 ---
-
 # 命令
 
 FancyMenu 为游戏添加了一些命令，在与 FTB Quests 等其他模组配合使用时非常有用。
 
-> 在多人游戏中使用命令时，FancyMenu 需要同时安装在 **服务器**（以及客户端）上！
-{.is-warning}
+> [!WARNING]
+> 在多人游戏中使用命令时，FancyMenu 必须安装在 **服务器**（以及客户端）上！
+
+## 目标玩家与权限
+
+`/openguiscreen`、`/closeguiscreen` 和 `/fmlayout` 的目标玩家参数是可选的。玩家省略该参数时，命令会作用于该玩家本身。指定目标时，可以使用普通玩家名以及 `@a` 之类的选择器。
+
+- 为 `/openguiscreen` 或 `/closeguiscreen` 提供目标参数需要 **权限等级 2**（游戏管理员 / OP 2 级），即使目标是命令来源本身也是如此。
+- 为 `/fmlayout` 提供目标参数需要 **权限等级 3**（管理员 / OP 3 级），即使目标是命令来源本身也是如此。
+- 每个 `/fmdata` 子命令都需要 **权限等级 2**（游戏管理员 / OP 2 级）。
+
+对于这三个带可选目标的命令，只有当命令来源是玩家时，省略目标参数才可用。服务器控制台必须提供目标，并满足目标参数所需的权限要求。
 
 ## /openguiscreen
 
-`/openguiscreen` 命令可让你打开一个 GUI（原版/模组和自定义 GUI）。
-当 FancyMenu 同时安装在服务器和客户端上时，它甚至可以远程为其他玩家打开 GUI。
+`/openguiscreen` 命令会打开原版、模组或 [自定义 GUI](./custom-guis)。当 FancyMenu 安装在服务器和客户端上时，它可以指定其他玩家作为目标。
 
-有关此命令更详细的说明，请查看 [通过命令打开 GUI](/opengui-command) 页面。
+请参阅 [通过命令打开 GUI](./opengui-command) 和 [屏幕标识符](./screen-identifiers)。
 
-该命令并不适用于每一个界面，尤其是模组界面。如果命令无法打开某个界面，它会显示错误。在这种情况下，你能做的并不多，因为那个界面很可能过于复杂，FancyMenu 无法自动打开。
+并非所有模组界面都能直接创建。如果目标屏幕不受支持，FancyMenu 会显示错误。在本地布局中，请在通常用于打开它的控件上使用 [**模拟原版/模组按钮**](./action-scripts#mimic-vanillamod-button-mimicbutton)。
 
-我也不会再手动为模组界面添加兼容性了，因为要为现存的所有模组添加兼容支持会花掉我太多时间，抱歉。
-
-**用法：** `/openguiscreen <screen_identifier> <target_player>`
+**用法：** `/openguiscreen <screen_identifier> [<target_players>]`
 
 ## /closeguiscreen
 
-`/closeguiscreen` 命令可让你关闭当前 GUI。
+`/closeguiscreen` 命令会为命令来源或选中的玩家关闭当前界面。它与能够运行命令的任务、事件或自动化模组配合使用时非常有用。
 
-嗯？你说这完全没用？
+**用法：** `/closeguiscreen [<target_players>]`
 
-确实是，但其实也不是。
+## /fmlayout
 
-当你使用会在特定操作时触发命令的模组时，这个命令就很有用。
-所以，是的，如果不配合其他模组，这个命令确实完全没用；但如果你安装了合适的模组，它就会非常实用！
+`/fmlayout` 命令用于设置一个或多个客户端上的布局是否启用。请准确使用该布局在 FancyMenu 中显示的名称，包含空格的名称需要用引号括起来。
 
-**用法：** `/closeguiscreen <target_player>`
+**用法：** `/fmlayout <layout_name> <true|false> [<target_players>]`
+
+示例：
+
+- `/fmlayout quest_complete true` 会为运行该命令的玩家启用 `quest_complete`。
+- `/fmlayout quest_complete false @a` 会为所有在线玩家禁用它。提供目标参数需要权限等级 3。
 
 ## /fmvariable
 
-`/fmvariable` 命令允许你设置和获取 FancyMenu 变量。
+`/fmvariable` 命令用于设置和读取 [FancyMenu 变量](./variables)。
 
-要在服务器上以另一个玩家的身份执行此命令，你可以使用原版的 `/execute as` 命令。
-比如说，你想以玩家 `ExamplePlayer` 的身份执行 `/fmvariable` 命令。在这种情况下，你应输入：
-`/execute as ExamplePlayer run fmvariable...`。
+要以其他玩家身份执行此命令，请使用原版的 `/execute as` 命令：
+`/execute as ExamplePlayer run fmvariable ...`
 
-**用法：** `/fmvariable <get_or_set> <variable_name> [<set_to_value>] [<send_chat_feedback>]`
+**用法：**
+
+- `/fmvariable get <variable_name>`
+- `/fmvariable set <variable_name> <send_chat_feedback> <set_to_value>`
 
 ### 获取
-要**获取变量值**，请使用 `get` 子命令，例如：
+
+要**获取变量值**，请使用 `get` 子命令，如下所示：
 `/fmvariable get some_variable`
 
-然后，这个变量的值会输出到你的聊天栏中。
+然后该变量的值会打印到你的聊天栏中。
 
 ### 设置
-要**设置变量**，请使用 `set` 子命令，例如：
-`/fmvariable set some_variable new_value true`
 
-这里的最后一个参数用于设置是否接收聊天反馈，也就是是否希望该命令将消息输出到你的聊天栏中。
+要**设置变量**，请在新值前面放上聊天反馈布尔值：
+`/fmvariable set some_variable true new_value`
+
+`send_chat_feedback` 参数控制 FancyMenu 是否在聊天中确认更改。`set_to_value` 参数会消耗命令剩余的所有内容，因此值中可以包含空格。例如，`/fmvariable set greeting false Hello from FancyMenu` 会存储 `Hello from FancyMenu`，而不会发送成功反馈。
+
+## /fmdata
+
+`/fmdata` 命令用于在服务器与 FancyMenu 客户端之间发送自定义数据，管理服务器端监听器，并配置玩家加入时发送的数据。每个 `/fmdata` 子命令都需要权限等级 2。
+
+有关所有子命令、语法和示例，请参阅 [FM 数据](./fm-data)。
