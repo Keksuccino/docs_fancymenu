@@ -1,50 +1,65 @@
 ---
-title: Aktionsskripte
-description: 'Wie man Aktionsskripte mit Buttons, Slidern, Tickern und mehr verwendet.'
+title: Action-Skripte
+description: 'Wie man Action-Skripte mit Buttons, Slidern, Tickern und mehr verwendet.'
 ---
+# Action-Skripte
 
-# Aktionsskripte
+Action-Skripte führen konfigurierte Aufgaben aus, wenn ein [Button](./elements#button) angeklickt wird, ein [Ticker](./elements#ticker) aktualisiert wird, ein [Slider](./elements#slider) sich ändert, ein Bildschirm geöffnet oder geschlossen wird oder ein anderes unterstütztes Ereignis eintritt. Anweisungen wie **if**, **else-if**, **else** und **while** sorgen für bedingte Steuerung.
 
-FancyMenu ermöglicht es dir, Menüs durch das Zuweisen von **Aktionen** zu Elementen interaktiv zu machen. Diese Aktionen werden ausgeführt, wenn auf einen Button geklickt wird, ein Ticker tickt, ein Slider verwendet wird oder wenn ein Bildschirm geöffnet oder geschlossen wird. Du kannst außerdem erweiterte Aktionsskripte mit einfachen Kontrollanweisungen wie **if**, **else-if**, **else** und **while** erstellen, um zu steuern, welche Aktionen wann ausgeführt werden.
+> [!CAUTION]
+> Importierte Action-Skripte können Dateien ändern, Server kontaktieren, Links öffnen oder Befehle ausführen. Verwende nur Quellen, denen du vertraust.
 
-<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="Action script editor" style="max-width:800px;width:100%;height:auto;">
+<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="Action-Skript-Editor" style="max-width:800px;width:100%;height:auto;">
 
 # Was sind Aktionen?
 
-Eine **Aktion** ist eine Aufgabe oder Funktion, die FancyMenu ausführt, wenn sie ausgelöst wird. Zum Beispiel kann eine Aktion einen neuen Bildschirm öffnen, eine Chatnachricht senden oder die Lautstärke eines Audioelements anpassen. Im Editor von FancyMenu werden Aktionen mit einem Wert konfiguriert (falls nötig), der zusätzliche Details bereitstellt — zum Beispiel eine URL oder Serveradresse.
+Eine **Aktion** ist eine Aufgabe oder ein Job, den FancyMenu bei Auslösung ausführt. Eine Aktion kann zum Beispiel einen neuen Bildschirm öffnen, eine Chatnachricht senden oder die Lautstärke eines [Audio-Elements](./elements#audio) anpassen. Im Editor von FancyMenu werden Aktionen mit einem Wert konfiguriert (falls erforderlich), der zusätzliche Details liefert — etwa eine URL oder eine Serveradresse.
 
-# Was sind Anweisungen?
+# Anweisungen
 
-Um komplexeres Verhalten zu erstellen, unterstützt FancyMenu grundlegende Kontrollanweisungen in Aktionsskripten. Dazu gehören:
+Um komplexeres Verhalten zu erstellen, unterstützt FancyMenu Kontrollanweisungen in Action-Skripten:
 
-- **If-Anweisung:** Führt einen Aktionsblock nur aus, wenn eine bestimmte [Bedingung](/en/conditions) erfüllt ist.
-- **Else-If-Anweisung:** Prüft eine weitere [Bedingung](/en/conditions), wenn das vorherige *if* (oder ein früheres *else-if*) nicht erfüllt wurde.
-- **Else-Anweisung:** Wird ausgeführt, wenn keine der vorherigen [Bedingungen](/en/conditions) erfüllt sind.
-- **While-Anweisung:** Wiederholt einen Aktionsblock fortlaufend, solange eine [Bedingung](/en/conditions) wahr bleibt (mit einem eingebauten Timeout, um endlose Schleifen zu verhindern).
-- **Verzögerungsblock:** Wartet die angegebene Zeit, bevor die darin enthaltenen Aktionen ausgeführt werden. Der Rest des Skripts läuft während des Countdowns weiter.
-- **Später ausführen-Block:** Wartet Aktionen zur Ausführung auf dem Hauptthread nach einer Millisekunden-Verzögerung ein.
-- **Kommentar:** Fügt eine Notiz innerhalb des Skripts zur besseren Organisation hinzu. Kommentare führen keine Aktion aus.
+| Anweisung | Verhalten |
+|---|---|
+| **If** | Führt seine Aktionen nur aus, wenn seine [Voraussetzungen](./conditions) erfüllt sind. |
+| **Else-If** | Prüft einen weiteren Satz von [Voraussetzungen](./conditions), wenn das vorherige **If** oder **Else-If** nicht ausgeführt wurde. |
+| **Else** | Wird ausgeführt, wenn keine der vorherigen **If**- oder **Else-If**-Voraussetzungen erfüllt sind. |
+| **While** | Wiederholt seine Aktionen, solange seine [Voraussetzungen](./conditions) wahr bleiben. Es stoppt nach drei Sekunden, um Endlosschleifen zu verhindern; verwende es nicht als Timer. |
 
-Durch die Kombination dieser Anweisungen mit Aktionen kannst du dynamisches und bedingtes Verhalten erstellen, zum Beispiel prüfen, ob die Gesundheit eines Spielers niedrig ist, bevor eine Warnmeldung gesendet wird, oder ein Update wiederholen, bis sich eine Bedingung ändert.
+# Blöcke
 
-# Wo kannst du Aktionsskripte verwenden?
+Blöcke können zu Skripten hinzugefügt werden und bieten nützliche Funktionen, um mehr Kontrolle über den Ausführungsfluss bzw. das Timing des Skripts zu haben, sowie einige praktische QoL-Funktionen:
 
-Aktionsskripte sind vielseitig und können in deinem gesamten Layout verwendet werden. Du kannst sie beispielsweise zuweisen an:
+| Block | Verhalten |
+|---|---|
+| **Delay** | Startet einen Countdown, ohne den Rest des Skripts anzuhalten. Seine verschachtelten Aktionen werden nach Ablauf der Verzögerung ausführbar; eine Bildschirm-Neuinitialisierung setzt den Countdown zurück. |
+| **Execute Later** | Plant jedes Mal, wenn der Block erreicht wird, eine neue Ausführung seiner verschachtelten Aktionen nach Ablauf der Verzögerung. |
+| **Comment** | Fügt eine Notiz zur Organisation innerhalb des Skripts hinzu und führt keine Aktion aus. |
 
-- **Buttons:** Führt eine Aktion aus, wenn auf den Button geklickt wird.
-- **Ticker:** Führt fortlaufend ein Aktionsskript aus, um Informationen auf dem Bildschirm innerhalb eines Layouts zu aktualisieren.
-- **Slider:** Löst ein Aktionsskript aus, sobald sich der Wert des Sliders ändert.
-- **Bildschirmereignisse:** Führt Skripte aus, wenn ein Bildschirm geöffnet oder geschlossen wird (zum Beispiel, um einen Sound abzuspielen, wenn ein Menü erscheint).
-- **Listener:** Wenn ein Listener, der auf ein bestimmtes Ereignis hört, ausgelöst wird, führt er sein Aktionsskript aus.
-- **Scheduler:** Führt Aktionen zeitgesteuert aus, auch wenn kein Bildschirm geöffnet ist.
+# Skriptausführung
+
+Aktionen werden von oben nach unten ausgeführt. Eine fehlgeschlagene Aktion wird protokolliert, danach läuft das Skript weiter.
+
+Downloads, ZIP-Extraktion und HTTP-Anfragen werden später abgeschlossen; die nächste Aktion wartet nicht. Verwende [**On File Downloaded via Action**](./listeners#on-file-downloaded-via-action-file_downloaded_via_action), [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) oder eine HTTP-Antwortvariable, wenn spätere Arbeit vom Ergebnis abhängt.
+
+# Wo kannst du Action-Skripte verwenden?
+
+Action-Skripte sind vielseitig und können in deinem gesamten Layout verwendet werden. Du kannst sie zum Beispiel zuweisen an:
+
+- [**Buttons**](./elements#button): Führt eine Aktion aus, wenn der Button angeklickt wird.
+- [**Ticker**](./elements#ticker): Führt kontinuierlich ein Action-Skript aus, um On-Screen-Informationen innerhalb eines Layouts zu aktualisieren.
+- [**Slider**](./elements#slider): Löst ein Action-Skript aus, wenn sich der Wert des Sliders ändert.
+- **Bildschirmereignisse:** Führt Skripte aus, wenn ein Bildschirm geöffnet oder geschlossen wird (z. B. um einen Sound abzuspielen, wenn ein Menü erscheint).
+- [**Listener**](./listeners): Wenn ein Listener sein konfiguriertes Ereignis empfängt, führt er sein Action-Skript aus.
+- [**Scheduler**](./schedulers): Führt Aktionen zeitgesteuert aus, auch wenn kein Bildschirm geöffnet ist.
 
 # Platzhalter in Aktionen verwenden
 
-Aktionswerte unterstützen dynamische Inhalte durch **Platzhalter**. Meistens verwenden diese Platzhalter eine JSON-ähnliche Syntax und werden zur Laufzeit durch aktuelle Daten ersetzt.
+Aktionswerte unterstützen dynamische Inhalte über **Platzhalter**. Meist verwenden diese Platzhalter eine JSON-ähnliche Syntax und werden zur Laufzeit der Aktion durch Live-Daten ersetzt.
 
 ## JSON-ähnliche Platzhalter
 
-Das sind die normalen [Platzhalter](/en/placeholders), die an vielen Stellen innerhalb von Layouts verwendet werden können.
+Dies sind die normalen [Platzhalter](./placeholders), die an vielen Stellen innerhalb von Layouts verwendet werden können.
 
 Sie folgen dieser Syntax:
 
@@ -52,335 +67,555 @@ Sie folgen dieser Syntax:
 {"placeholder": "placeholder_id", "values": {"key1": "value1", "key2": "value2"}}
 ```
 
-Damit können Spieldaten wie der Name des Spielers, die Bildschirmabmessungen oder berechnete Werte über den **Calculator**-Platzhalter abgerufen werden. Du kannst Platzhalter auch verschachteln, um fortgeschrittenere Anwendungen zu ermöglichen.
+Sie können Spieldaten abrufen, etwa den Spielernamen, Bildschirmabmessungen oder berechnete Werte mithilfe des [**Calculator**-Platzhalters](./placeholders#calculator-calc). Du kannst Platzhalter auch verschachteln, um fortgeschrittenere Anwendungsfälle zu ermöglichen.
 
 ## `$$`-Platzhalter (Variablen)
 
-Die `$$`-Platzhalter sind speziell. Einige Funktionen von FancyMenu stellen diese speziellen Platzhalter für ihre verschachtelten Aktionen, Anforderungen und normalen Platzhalter bereit, sodass sie darin verwendet werden können, um mehr Informationen über die Umgebung (Element, Listener usw.) zu erhalten, in der sie sich befinden.
+`$$`-Werte sind schreibgeschützte Werte, die einem bestimmten Action-Skript von der Funktion bereitgestellt werden, die es ausführt.
 
-Wenn Aktionen beispielsweise innerhalb eines Sliders verwendet werden, wird `$$value` in der Aktion durch den aktuellen Wert des Sliders ersetzt.
+Zum Beispiel liefert ein [Slider](./elements#slider) seinen aktuellen Wert als `$$value`.
 
-Wenn Aktionen in Listenern verwendet werden, stellt jeder Listener seine eigene einzigartige Menge an Variablen/Platzhaltern bereit, um mehr Informationen über den Listener zu erhalten, wie gedrückte Maustaste, eingegebene Struktur usw.
+Jeder [Listener](./listeners) dokumentiert die `$$`-Werte, die er bereitstellt, etwa eine gedrückte Maustaste oder eine eingegebene Struktur.
 
-# So richtest du Aktionen ein und bearbeitest sie
+`$$`-Namen sind case-sensitiv und funktionieren nur in dem Skript, das sie bereitstellt. Siehe [Listener](./listeners#listener-variables).
 
-Um Aktionen (und Anweisungsblöcke) für ein Element hinzuzufügen, zu bearbeiten oder zu entfernen, **klicke einfach mit der rechten Maustaste auf das Element** (egal ob Button, Slider, Ticker oder anderes interaktives Element) und wähle dann **Aktionsskript verwalten**. Dadurch öffnet sich der Bildschirm „Aktionen verwalten“, in dem du:
+## Trennzeichen für Aktionswerte
+
+Verwende genau das Trennzeichen, das für jede Aktion angezeigt wird: `:`, `||` oder `|||`. Es gibt keine Escape-Syntax für Trennzeichen innerhalb eines Feldes.
+
+Platzhalter werden ersetzt, bevor der Wert aufgeteilt wird. Bei `set_variable` trennt nur der erste Doppelpunkt den Namen vom Wert, spätere Doppelpunkte bleiben also Teil des Werts.
+
+## Textwerte
+
+[FancyMenu-Formatierungscodes](./text-formatting#minecraft-text-formatting) verwenden `&` anstelle von Minecrafts `§`-Zeichen, überall dort, wo eine Aktion formatierten Text akzeptiert.
+
+- [**Send Chat Message/Command**](#send-chat-messagecommand-sendmessage) und [**Paste to Chat**](#paste-to-chat-paste_to_chat) unterstützen diese Formatierungscodes.
+- [**Display In Chat [Client-Side]**](#display-in-chat-client-side-display_in_chat_client_side) akzeptiert reinen Text oder serialisiertes Minecraft-Textkomponenten-JSON.
+- [**Open URL in Browser**](#open-url-in-browser-openlink) wendet dieselbe Umwandlung der Formatierungscodes an, bevor die URL an das Betriebssystem übergeben wird.
+
+# Aktionen einrichten und bearbeiten
+
+Um die Aktionen und Anweisungsblöcke eines Elements zu bearbeiten, **klicke mit der rechten Maustaste auf das Element** und wähle **Manage Action Script**. Im Editor kannst du:
 
 - **Neue Aktionen oder Anweisungen hinzufügen:** Neue Aktionseinträge oder Kontrollanweisungen (if, else-if, else, while) einfügen, um dein Skript aufzubauen.
-- **Vorhandene Aktionen oder Anweisungen bearbeiten:** Den Aktionswert ändern oder die Kontrolllogik anpassen.
+- **Vorhandene Aktionen oder Anweisungen bearbeiten:** Den Aktionswert ändern oder die Steuerlogik anpassen.
 - **Aktionen oder Anweisungen entfernen:** Unerwünschte Aktionen aus dem Skript löschen.
 
-Für [Listener](/listeners) gibt es ein spezielles Menü zum Verwalten und Erstellen von Listenern, einschließlich des Zugriffs auf deren Aktionsskripte, damit du dieselbe Erfahrung hast wie beim Bearbeiten des Aktionsskripts eines Buttons oder Sliders.
+Erstelle und bearbeite Listener-Skripte über [**Customization -> Manage Listeners**](./listeners#using-listeners).
 
-> Wenn du dich im Bildschirm des Aktionsskript-Editors befindest, klicke einfach mit der rechten Maustaste auf den großen dunkelgrauen Bereich, um ein Kontextmenü zum Hinzufügen von Aktionen, Anweisungen und mehr zu öffnen.
-{.is-info}
-
-
-# Tastenkürzel und mehr im Aktionsskript-Editor
-
-Der Aktionsskript-Editor bietet einige praktische QoL-Funktionen, die das Bearbeiten von Skripten super einfach machen.
+# Tastenkürzel im Action-Skript-Editor
 
 ## Tastenkürzel
 
-- `DEL` : Entfernt den ausgewählten Eintrag sofort
-- `ENTER` : Startet die Inline-Bearbeitung des ausgewählten Eintrags (oder öffnet den Bearbeitungsbildschirm, wenn für den ausgewählten Eintrag keine Inline-Bearbeitung vorhanden ist)
-- `CTRL + C` : Kopiert die ausgewählte Aktion (funktioniert derzeit nur mit Aktionen)
-- `CTRL + V` : Fügt die zuvor kopierte Aktion ein
-- `CTRL + Z` : Einen Schritt zurück (Rückgängig)
-- `CTRL + Y` : Einen Schritt vorwärts (Wiederholen)
-- `ARROW UP` : Einen Eintrag nach oben zum aktuell ausgewählten navigieren
-- `ARROW DOWN` : Einen Eintrag nach unten zum aktuell ausgewählten navigieren
-- `SHIFT + ARROW UP` : Verschiebt den ausgewählten Eintrag um einen nach oben
-- `SHIFT + ARROW DOWN` : Verschiebt den ausgewählten Eintrag um einen nach unten
-- `A` : Öffnet den Action Chooser schnell, um eine neue Aktion hinzuzufügen
-- `CTRL + S` : Fertig/Speichern aus dem Editorfenster
+- `DEL` : Den ausgewählten Eintrag schnell löschen
+- `ENTER` : Startet die Inline-Bearbeitung des ausgewählten Eintrags (oder öffnet den Bearbeitungsbildschirm, wenn für den ausgewählten Eintrag keine Inline-Bearbeitung verfügbar ist)
+- `Ctrl/Command + C` : Die ausgewählte Aktion kopieren (funktioniert derzeit nur mit Aktionen)
+- `Ctrl/Command + V` : Die zuvor kopierte Aktion einfügen
+- `Ctrl/Command + Z` : Einen Schritt zurück (Undo)
+- `Ctrl/Command + Y` : Einen Schritt vor (Redo)
+- `PFEIL HOCH` : Einen Eintrag nach oben zum vorherigen Eintrag navigieren
+- `PFEIL RUNTER` : Einen Eintrag nach unten zum nächsten Eintrag navigieren
+- `SHIFT + PFEIL HOCH` : Den ausgewählten Eintrag um eins nach oben verschieben
+- `SHIFT + PFEIL RUNTER` : Den ausgewählten Eintrag um eins nach unten verschieben
+- `A` : Den Action-Auswahlbildschirm schnell öffnen, um eine neue Aktion hinzuzufügen
+- `Ctrl/Command + S` : Im Editor-Fenster fertig / speichern
 
-## Weitere QoL-Funktionen
+## Bearbeiten
 
-- Ein Doppelklick auf den Wert einer Aktion ermöglicht es dir, den Wert zu bearbeiten, ohne den vollständigen Wert-Bearbeitungsbildschirm zu öffnen.
+- Durch Doppelklick auf den Wert einer Aktion kannst du den Wert bearbeiten, ohne in den vollständigen Werte-Bearbeitungsbildschirm zu wechseln.
 - IF-Anweisungsketten (mit angehängten ELSE-/ELSE-IF-Anweisungen), WHILE-Schleifen und Ordner können eingeklappt werden (nur visuell, beeinflusst nicht die Skriptlogik).
-- Der Editor fügt neue Aktionen immer unter dem ausgewählten Eintrag hinzu (oder verschachtelt in der ausgewählten Kette/Schleife/im ausgewählten Ordner).
-- Ein Rechtsklick auf den dunkelgrauen Hintergrundbereich des Skripts öffnet ein Kontextmenü mit Optionen zum Hinzufügen von Aktionen, Anweisungen und allem anderen Wichtigen.
+- Der Editor fügt neue Aktionen immer unterhalb des ausgewählten Eintrags hinzu (oder verschachtelt in der ausgewählten Kette/Schleife/im ausgewählten Ordner).
+- Ein Rechtsklick auf den dunkelgrauen Hintergrund des Skriptbereichs öffnet ein Kontextmenü mit Optionen zum Hinzufügen von Aktionen, Anweisungen und allem anderen Wichtigen.
 
 # Aktionen im Detail
 
-Diese Liste enthält die meisten, wenn nicht sogar alle in FancyMenu verfügbaren Aktionen. Es ist möglich, dass die Liste durch Updates des Mods manchmal etwas veraltet ist.
+Dieser Abschnitt listet die eingebauten Aktionen von FancyMenu auf.
 
 ## Nächster Titel (`audio_next_track`)
-- **Beschreibung:** Wechselt zum nächsten Titel in einem Audioelement
-- **Wert erforderlich:** Ja - `audio_element_identifier` (die ID des zu steuernden Audioelements)
+
+**Zweck:** Wechselt zum nächsten Titel in einem [Audio-Element](./elements#audio)
+
+**Wert:** Erforderlich — `audio_element_identifier` (die ID des zu steuernden Audio-Elements)
 
 ## Vorheriger Titel (`audio_previous_track`)
-- **Beschreibung:** Wechselt zum vorherigen Titel in einem Audioelement
-- **Wert erforderlich:** Ja - `audio_element_identifier` (die ID des zu steuernden Audioelements)
 
-## Titel-Lautstärke setzen (`set_audio_element_volume`)
-- **Beschreibung:** Setzt die Lautstärke eines Audioelements (0.0 bis 1.0)
-- **Wert erforderlich:** Ja - `element_identifier:volume`
+**Zweck:** Wechselt zum vorherigen Titel in einem [Audio-Element](./elements#audio)
 
-## Titel abspielen/Pause umschalten (`audio_toggle_play`)
-- **Beschreibung:** Schaltet Wiedergabe/Pause des aktuellen Titels eines Audioelements um
-- **Wert erforderlich:** Ja - `audio_element_identifier`
+**Wert:** Erforderlich — `audio_element_identifier` (die ID des zu steuernden Audio-Elements)
+
+## Lautstärke des Titels setzen (`set_audio_element_volume`)
+
+**Zweck:** Setzt die Lautstärke eines [Audio-Elements](./elements#audio) (`0.0` bis `1.0`)
+
+**Wert:** Erforderlich — `element_identifier:volume`
+
+## Titel abspielen/pausieren umschalten (`audio_toggle_play`)
+
+**Zweck:** Schaltet den aktuellen Titel eines [Audio-Elements](./elements#audio) zwischen Abspielen und Pause um
+
+**Wert:** Erforderlich — `audio_element_identifier`
 
 ## Audio abspielen (`play_audio`)
-- **Beschreibung:** Spielt eine Audioressource einmal ab. Die Aktion verfolgt das von ihr gestartete Audio, damit es später mit `stop_all_action_audios` gestoppt werden kann.
-- **Wert erforderlich:** Ja - JSON-Konfiguration mit `audioSource`, `soundChannel` und `baseVolume`
-- **Beispielwert:** `{"audioSource":"[source:local]/config/fancymenu/assets/example.ogg","soundChannel":"master","baseVolume":1.0}`
 
-## Alle Aktions-Audios stoppen (`stop_all_action_audios`)
-- **Beschreibung:** Stoppt alle Audiotracks, die durch die Aktion **Audio abspielen** gestartet wurden. Dies stoppt keine Audio-Elemente, keine Menü-Öffnen/Schließen-Sounds, keine Button-Sounds oder andere Audiosysteme.
-- **Wert erforderlich:** Nein
+**Zweck:** Spielt eine Audioressource einmal ab. Audio, das durch diese Aktion gestartet wurde, kann später mit [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios) gestoppt werden.
 
-## Videoelement-Lautstärke setzen (`set_video_element_volume`)
-- **Beschreibung:** Setzt die Lautstärke eines Videoelements (0.0 bis 1.0)
-- **Wert erforderlich:** Ja - `video_element_identifier:volume`
+**Wert:** Erforderlich — JSON-Konfiguration mit `audioSource`, `soundChannel` und `baseVolume`
 
-## Videoelement-Abspielzeit setzen (`set_video_element_play_time`)
-- **Beschreibung:** Springt ein Videoelement zu einem Zeitstempel in Millisekunden
-- **Wert erforderlich:** Ja - `video_element_identifier:timestamp_ms`
+**Beispiel:** `{"audioSource":"[source:local]/config/fancymenu/assets/example.ogg","soundChannel":"master","baseVolume":1.0}`
 
-## Pausenzustand des Videoelements umschalten (`toggle_video_element_pause_state`)
-- **Beschreibung:** Schaltet den Pausenzustand eines Videoelements um
-- **Wert erforderlich:** Ja - `video_element_identifier`
+**Verhalten:**
 
-## Video-Menühintergrund-Lautstärke setzen (`set_video_menu_background_volume`)
-- **Beschreibung:** Setzt die Lautstärke eines Video-Menühintergrunds (0.0 bis 1.0)
-- **Wert erforderlich:** Ja - `background_identifier:volume`
+- `baseVolume` wird auf `0.0`–`1.0` begrenzt.
+- Ein unbekannter Sound-Kanal verwendet den Master-Kanal.
+- Die Aktion kann nicht von einem asynchronen [Ticker](./elements#ticker) ausgeführt werden; FancyMenu zeigt stattdessen einen Fehler an.
+- FancyMenu wartet bis zu zehn Sekunden, bis die Audioressource bereit ist.
+- Erfolgreich gestartete Titel können mit [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios) gestoppt werden.
 
-> Um die Kennung eines Hintergrunds zu erhalten, klicke mit der rechten Maustaste auf den Editor-Hintergrund und dann auf „Hintergrund-Kennung kopieren“.
-{.is-info}
+## Alle Action-Audios stoppen (`stop_all_action_audios`)
 
-## Video-Menühintergrund-Abspielzeit setzen (`set_video_menu_background_play_time`)
-- **Beschreibung:** Springt einen Video-Menühintergrund zu einem Zeitstempel in Millisekunden
-- **Wert erforderlich:** Ja - `background_identifier:timestamp_ms`
+**Zweck:** Stoppt alle Audiospuren, die von der Aktion [**Play Audio**](#play-audio-play_audio) gestartet wurden. Dies stoppt keine [Audio-Elemente](./elements#audio), Menü-Öffnen-/Schließen-Sounds, Button-Sounds oder andere Audiosysteme.
 
-> Um die Kennung eines Hintergrunds zu erhalten, klicke mit der rechten Maustaste auf den Editor-Hintergrund und dann auf „Hintergrund-Kennung kopieren“.
-{.is-info}
+**Wert:** Nicht erforderlich
 
-## Pausenzustand des Video-Menühintergrunds umschalten (`toggle_video_menu_background_pause_state`)
-- **Beschreibung:** Schaltet den Pausenzustand eines Video-Menühintergrunds um
-- **Wert erforderlich:** Ja - `background_identifier`
+## Lautstärke des Video-Elements setzen (`set_video_element_volume`)
 
-> Um die Kennung eines Hintergrunds zu erhalten, klicke mit der rechten Maustaste auf den Editor-Hintergrund und dann auf „Hintergrund-Kennung kopieren“.
-{.is-info}
+**Zweck:** Setzt die Lautstärke eines [Video-Elements](./video) (`0.0` bis `1.0`)
+
+**Wert:** Erforderlich — `video_element_identifier:volume`
+
+## Wiedergabezeit des Video-Elements setzen (`set_video_element_play_time`)
+
+**Zweck:** Springt in einem [Video-Element](./video) zu einem Zeitstempel in Millisekunden
+
+**Wert:** Erforderlich — `video_element_identifier:timestamp_ms`
+
+## Pausenzustand des Video-Elements umschalten (`toggle_video_element_pause_state`)
+
+**Zweck:** Schaltet den Pausenzustand eines [Video-Elements](./video) um
+
+**Wert:** Erforderlich — `video_element_identifier`
+
+## Lautstärke des Video-Hintergrunds setzen (`set_video_menu_background_volume`)
+
+**Zweck:** Setzt die Lautstärke eines [Video-Menühintergrunds](./video) (`0.0` bis `1.0`)
+
+**Wert:** Erforderlich — `background_identifier:volume`
+
+> [!NOTE]
+> Um die Kennung eines Hintergrunds zu erhalten, klicke mit der rechten Maustaste auf den Editor-Hintergrund und dann auf „Background Identifier kopieren“.
+
+## Wiedergabezeit des Video-Hintergrunds setzen (`set_video_menu_background_play_time`)
+
+**Zweck:** Springt in einem [Video-Menühintergrund](./video) zu einem Zeitstempel in Millisekunden
+
+**Wert:** Erforderlich — `background_identifier:timestamp_ms`
+
+> [!NOTE]
+> Um die Kennung eines Hintergrunds zu erhalten, klicke mit der rechten Maustaste auf den Editor-Hintergrund und dann auf „Background Identifier kopieren“.
+
+## Pausenzustand des Video-Hintergrunds umschalten (`toggle_video_menu_background_pause_state`)
+
+**Zweck:** Schaltet den Pausenzustand eines [Video-Menühintergrunds](./video) um
+
+**Wert:** Erforderlich — `background_identifier`
+
+> [!NOTE]
+> Um die Kennung eines Hintergrunds zu erhalten, klicke mit der rechten Maustaste auf den Editor-Hintergrund und dann auf „Background Identifier kopieren“.
 
 ## Layout umschalten (`toggle_layout`)
-- **Beschreibung:** Schaltet ein Layout anhand seines Namens um (Aktivieren/Deaktivieren)
-- **Wert erforderlich:** Ja - `layout_name`
+
+**Zweck:** Schaltet ein Layout (aktivieren/deaktivieren) über seinen Dateinamen ohne `.txt` um
+
+**Wert:** Erforderlich — `layout_name`
 
 ## Layout aktivieren (`enable_layout`)
-- **Beschreibung:** Aktiviert ein Layout anhand seines Namens
-- **Wert erforderlich:** Ja - `layout_name`
+
+**Zweck:** Aktiviert und speichert ein Layout über seinen Dateinamen ohne `.txt`
+
+**Wert:** Erforderlich — `layout_name`
 
 ## Layout deaktivieren (`disable_layout`)
-- **Beschreibung:** Deaktiviert ein Layout anhand seines Namens
-- **Wert erforderlich:** Ja - `layout_name`
+
+**Zweck:** Deaktiviert und speichert ein Layout über seinen Dateinamen ohne `.txt`
+
+**Wert:** Erforderlich — `layout_name`
+
+Alle drei Layout-Aktionen speichern den Zustand in der Layout-Datei und aktualisieren den aktuellen Bildschirm sofort. Verwende den Groß-/Kleinschreibung-sensitiven Dateinamen ohne `.txt`.
 
 ## Bildschirm oder benutzerdefinierte GUI öffnen (`opengui`)
-- **Beschreibung:** Öffnet einen Bildschirm anhand seiner Kennung (Vanilla, Mod oder benutzerdefinierte GUI)
-- **Wert erforderlich:** Ja - `screen_identifier`
 
-> Diese Aktion **funktioniert nicht für jeden Bildschirm**, insbesondere nicht für Mod-Bildschirme. Wenn die Aktion einen Bildschirm nicht öffnen kann, wird ein Fehler angezeigt. In diesem Fall kannst du nicht viel tun, denn wahrscheinlich ist der Bildschirm zu komplex, um von FancyMenu automatisch geöffnet zu werden.
-> 
-> Eine manuelle Kompatibilität für Mod-Bildschirme wird von FancyMenu-Seite aus ebenfalls nicht mehr hinzugefügt, da die Unterstützung für alle Mods da draußen ewig dauern würde, sorry. In den meisten Fällen ist es in diesem Fall auch nicht empfehlenswert, den Entwickler des anderen Mods zu kontaktieren, da es, wenn FancyMenu den Bildschirm nicht öffnen kann, keinen einfachen Weg gibt, Unterstützung dafür hinzuzufügen. Die empfohlene Umgehungslösung ist, die Aktion **„Vanilla/Mod-Button nachahmen“** zu verwenden, um einen Button nachzuahmen, der den jeweiligen Bildschirm öffnet. Wenn es keinen Button gibt, hast du leider Pech.
-{.is-info}
+**Zweck:** Öffnet einen Bildschirm über seine Kennung (Vanilla, Mod oder benutzerdefinierte GUI)
+
+**Wert:** Erforderlich — `screen_identifier`
+
+Kopiere die exakte, Groß-/Kleinschreibung-sensible Kennung aus dem Debug-Overlay [Screen Identifiers](./screen-identifiers).
+
+Einige Mod-Bildschirme können nicht direkt erstellt werden. Wenn das Öffnen fehlschlägt, verwende [**Mimic Vanilla/Mod Button**](#mimic-vanillamod-button-mimicbutton) auf einem Widget, das normalerweise diesen Bildschirm öffnet.
 
 ## Bildschirm schließen (`closegui`)
-- **Beschreibung:** Schließt den aktiven Bildschirm
-- **Wert erforderlich:** Nein
+
+**Zweck:** Schließt den aktiven Bildschirm
+
+**Wert:** Nicht erforderlich
 
 ## Bildschirm aktualisieren (`update_screen`)
-- **Beschreibung:** Initialisiert den aktuellen Bildschirm neu
-- **Wert erforderlich:** Nein
+
+**Zweck:** Initialisiert den aktuellen Bildschirm neu
+
+**Wert:** Nicht erforderlich
 
 ## Zurück zum letzten Bildschirm (`back_to_last_screen`)
-- **Beschreibung:** Geht zum vorherigen Bildschirm zurück (dem vor dem aktuellen)
-- **Wert erforderlich:** Nein
+
+**Zweck:** Kehrt zum Elternbildschirm einer [benutzerdefinierten GUI](./custom-guis) oder zur zuletzt geschlossenen Bildschirminstanz zurück
+
+**Wert:** Nicht erforderlich
 
 ## Server beitreten (`joinserver`)
-- **Beschreibung:** Verbindet den Spieler mit einem Minecraft-Server
-- **Wert erforderlich:** Ja - `server_ip:port`
+
+**Zweck:** Verbindet den Spieler mit einem Minecraft-Server
+
+**Wert:** Erforderlich — `server_ip` oder `server_ip:port`
+
+Diese Aktion kann nicht ausgeführt werden, während bereits eine Welt oder ein Server geladen ist. Wenn der Port weggelassen wird, wird `25565` verwendet. Wenn die Adresse nicht in Minecrafts gespeicherter Serverliste enthalten ist, fügt FancyMenu sie hinzu und speichert sie.
 
 ## Welt betreten (`loadworld`)
-- **Beschreibung:** Betritt eine Minecraft-Welt
-- **Wert erforderlich:** Ja - `world_folder_name`
 
-## Letzte Welt/letzten Server betreten/beitreten (`join_last_world`)
-- **Beschreibung:** Betritt/beitritt der letzten Welt oder dem letzten Server, in dem der Spieler war
-- **Wert erforderlich:** Nein
+**Zweck:** Betritt eine Minecraft-Welt
+
+**Wert:** Erforderlich — `world_folder_name`
+
+Der Wert ist der Name des Speicherordners. Die Aktion hat keine Wirkung, wenn dieser Spielstand nicht existiert oder bereits eine andere Welt/ein anderer Server geladen ist.
+
+## Letzte Welt/letzten Server betreten/joinen (`join_last_world`)
+
+**Zweck:** Betritt/joint die letzte Welt oder den letzten Server, auf dem sich der Spieler befand
+
+**Wert:** Nicht erforderlich
+
+Diese Aktion kann nicht ausgeführt werden, während bereits eine andere Welt/ein anderer Server geladen ist. Ein gespeicherter Server, der nicht in Minecrafts gespeicherter Serverliste enthalten ist, wird vor dem Verbinden hinzugefügt und gespeichert.
 
 ## Welt oder Server verlassen (`disconnect_server_or_world`)
-- **Beschreibung:** Verlässt eine Welt oder einen Server und öffnet einen angegebenen Bildschirm
-- **Wert erforderlich:** Ja - `screen_identifier`
+
+**Zweck:** Verlässt eine Welt oder einen Server und öffnet einen angegebenen Bildschirm
+
+**Wert:** Erforderlich — `screen_identifier`
+
+Diese Aktion wird nur ausgeführt, während eine Welt und ein Spieler geladen sind. Das Ziel kann eine Kennung einer [benutzerdefinierten GUI](./custom-guis) oder eine von FancyMenu konstruierbare [Bildschirmkennung](./screen-identifiers) sein. Wenn das Ziel nicht geöffnet werden kann, kehrt FancyMenu zum Titelbildschirm zurück.
 
 ## Minecraft beenden (`quitgame`)
-- **Beschreibung:** Beendet Minecraft vollständig
-- **Wert erforderlich:** Nein
+
+**Zweck:** Beendet Minecraft vollständig
+
+**Wert:** Nicht erforderlich
 
 ## Chatnachricht/Befehl senden (`sendmessage`)
-- **Beschreibung:** Sendet eine Chatnachricht oder führt einen Chatbefehl aus
-- **Wert erforderlich:** Ja - `message_text` oder `/command_text`
 
-## Befehl als integrierter Server ausführen (`execute_command_as_integrated_server`)
-- **Beschreibung:** Führt in Einzelspieler den Befehl zwangsweise als integrierten Server aus und ignoriert dabei Berechtigungen und die Cheat-Einstellung.
-- **Wert erforderlich:** Ja - Befehlstext, zum Beispiel `/give @p minecraft:diamond 1`
+**Zweck:** Sendet eine Chatnachricht oder führt einen Chatbefehl aus. Nachrichtentext unterstützt [FancyMenu-Formatierungscodes](./text-formatting#minecraft-text-formatting).
 
-> Diese Aktion funktioniert nur im Einzelspieler, solange die Welt nicht für LAN geöffnet ist. In Mehrspieler-Servern tut sie absichtlich nichts.
-{.is-warning}
+**Wert:** Erforderlich — `message_text` oder `/command_text`
 
-## In Chat einfügen (`paste_to_chat`)
-- **Beschreibung:** Fügt Text in das Chat-Eingabefeld ein (anhängen oder ersetzen)
-- **Wert erforderlich:** Ja - `true:Text` oder `false:Text`
+## Befehl als integrierten Server ausführen (`execute_command_as_integrated_server`)
 
-## Im Chat anzeigen [Clientseitig] (`display_in_chat_client_side`)
-- **Beschreibung:** Gibt Text direkt im lokalen Chat aus (kein Server)
-- **Wert erforderlich:** Ja - `text_or_json`
+**Zweck:** Führt einen Befehl im Einzelspieler als integrierten Server erzwungen aus und ignoriert dabei Berechtigungen und die Cheat-Einstellung.
+
+**Wert:** Erforderlich — Befehlstext, zum Beispiel `/give @p minecraft:diamond 1`
+
+> [!WARNING]
+> Diese Aktion funktioniert nur im Einzelspieler, solange die Welt **nicht für LAN geöffnet** ist. Sie tut absichtlich nichts, wenn kein integrierter Server existiert oder wenn der integrierte Server für LAN freigegeben ist.
+
+## In den Chat einfügen (`paste_to_chat`)
+
+**Zweck:** Fügt formatierten Text in das Chat-Eingabefeld ein, während ein Spieler/eine Welt geladen ist
+
+**Wert:** Erforderlich — `true:Text` oder `false:Text`
+
+Wenn der Chat nicht bereits offen ist, öffnet FancyMenu ihn und setzt den Eingabetext. Wenn der Chat bereits offen ist, fügt `true` an den vorhandenen Inhalt an und `false` ersetzt ihn.
+
+## Im Chat anzeigen [Client-seitig] (`display_in_chat_client_side`)
+
+**Zweck:** Zeigt eine clientseitige Chatnachricht an, während eine Welt oder ein Server geladen ist. Es wird nichts an den Server gesendet.
+
+**Wert:** Erforderlich — `text_or_json`
+
+Der Wert kann reiner Text oder eine serialisierte Minecraft-Textkomponente sein. Die Aktion hat keine Wirkung, wenn keine Welt geladen ist.
 
 ## FM-Daten an Server senden (`send_fm_data_to_server`)
-- **Beschreibung:** Sendet benutzerdefinierte Textdaten über den FM-Data-Paketkanal an den aktuellen FancyMenu-Server.
-- **Wert erforderlich:** Ja - `data_identifier||data`
+
+**Zweck:** Sendet [FM-Daten](./fm-data) an den aktuellen FancyMenu-Server.
+
+**Wert:** Erforderlich — `data_identifier||data`
 
 ## Mit Remote-Server verbinden (`connect_to_remote_server`)
-- **Beschreibung:** Öffnet oder verwendet erneut eine vom Client initiierte WebSocket-Verbindung zu einem externen Remote-Server.
-- **Wert erforderlich:** Ja - Remote-Server-URL, zum Beispiel `wss://example.com/ws`
+
+**Zweck:** Öffnet oder verwendet erneut eine vom Client initiierte WebSocket-Verbindung zu einem externen Remote-Server.
+
+**Wert:** Erforderlich — URL des Remote-Servers, zum Beispiel `wss://example.com/ws`
+
+Siehe [Remote Server Communication](./remote-server-communication#url-modes) für zulässige URL-Formen.
 
 ## Daten an Remote-Server senden (`send_data_to_remote_server`)
-- **Beschreibung:** Öffnet oder verwendet erneut eine Verbindung zum Remote-Server und sendet Textdaten dorthin.
-- **Wert erforderlich:** Ja - `remote_server_url||data`
 
-## Verbindung zu Remote-Server trennen (`close_remote_server_connection`)
-- **Beschreibung:** Schließt eine bestimmte Remote-Server-Verbindung anhand der Request-ID.
-- **Wert erforderlich:** Ja - Request-ID, meist aus einer Remote-Server-Listener-Variable wie `$$request_id`
+**Zweck:** Öffnet oder verwendet erneut eine Remote-Server-Verbindung und sendet Textdaten dorthin.
+
+**Wert:** Erforderlich — `remote_server_url||data`
+
+## Verbindung zu Remote-Server schließen (`close_remote_server_connection`)
+
+**Zweck:** Schließt eine bestimmte Remote-Server-Verbindung anhand der Request-ID.
+
+**Wert:** Erforderlich — Request-ID, normalerweise `$$request_id` aus [**On Remote Server Connected**](./listeners#on-remote-server-connected-remote_server_connected)
 
 ## Alle Remote-Server-Verbindungen schließen (`close_all_remote_server_connections`)
-- **Beschreibung:** Schließt alle aktiven, von FancyMenu geöffneten Remote-Server-Verbindungen.
-- **Wert erforderlich:** Nein
+
+**Zweck:** Schließt alle aktiven, von FancyMenu geöffneten Remote-Server-Verbindungen.
+
+**Wert:** Nicht erforderlich
 
 ## URL im Browser öffnen (`openlink`)
-- **Beschreibung:** Öffnet einen Link in deinem Standardbrowser
-- **Wert erforderlich:** Ja - `https://example.com`
 
-## Text in die Zwischenablage kopieren (`copytoclipboard`)
-- **Beschreibung:** Kopiert Text in die Zwischenablage
-- **Wert erforderlich:** Ja - `text_to_copy`
+**Zweck:** Übergibt eine URL an den Standard-Handler des Betriebssystems, ohne eine FancyMenu-Bestätigungsabfrage anzuzeigen
 
-## In das Spiel-Log schreiben (`print_to_log`)
-- **Beschreibung:** Schreibt eine Zeile in das Spiel-Log
-- **Wert erforderlich:** Ja - `text_to_log`
+**Wert:** Erforderlich — `https://example.com`
+
+Verwende vertrauenswürdige `https://`-Links. FancyMenu zeigt keine Bestätigungsabfrage an, bevor die URL an das Betriebssystem übergeben wird.
+
+## Text in Zwischenablage kopieren (`copytoclipboard`)
+
+**Zweck:** Kopiert Text in die Zwischenablage
+
+**Wert:** Erforderlich — `text_to_copy`
+
+## In das Spielprotokoll schreiben (`print_to_log`)
+
+**Zweck:** Schreibt eine Zeile in das Spielprotokoll
+
+**Wert:** Erforderlich — `text_to_log`
 
 ## Variablenwert setzen (FM-Variable) (`set_variable`)
-- **Beschreibung:** Speichert Textinhalt in einer FancyMenu-Variable
-- **Wert erforderlich:** Ja - `variable_name:variable_value`
+
+**Zweck:** Speichert Textinhalt in einer [FancyMenu-Variable](./variables)
+
+**Wert:** Erforderlich — `variable_name:variable_value`
+
+Der erste Doppelpunkt trennt den Namen vom Wert. Spätere Doppelpunkte bleiben Teil des Werts. Änderungen werden sofort gespeichert.
 
 ## Alle Variablen löschen (FM-Variable) (`clear_variables`)
-- **Beschreibung:** Löscht ALLE von FancyMenu gespeicherten Variablen
-- **Wert erforderlich:** Nein
+
+**Zweck:** Löscht alle gespeicherten Werte von [FancyMenu-Variablen](./variables)
+
+**Wert:** Nicht erforderlich
 
 ## HTTP-Anfrage senden (`send_http_request`)
-- **Beschreibung:** Sendet eine HTTP-Anfrage; kann die Antwort in einer Variable speichern
-- **Wert erforderlich:** Ja - HTTP-Anfrage-Konfiguration
 
-> Mit dieser Aktion kannst du Daten an REST-APIs, Webhooks oder jeden beliebigen HTTP-Endpunkt senden.
-> Unterstützt verschiedene Authentifizierungsmethoden, benutzerdefinierte Header und unterschiedliche Anfragearten.
-> 
-> Mit dieser Aktion kannst du außerdem die Antwort der Anfrage in einer FancyMenu-Variable für die spätere Verwendung speichern!
-{.is-info}
+**Zweck:** Startet im Hintergrund eine HTTP/HTTPS-Anfrage; kann die Antwort protokollieren und/oder in einer Variable speichern
+
+**Wert:** Erforderlich — HTTP-Anfragekonfiguration
+
+| Einstellung | Verhalten |
+|---|---|
+| URL | HTTP- oder HTTPS-Endpunkt |
+| Methode | `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD` oder `OPTIONS` |
+| Body | Wird für Methoden außer `GET` und `HEAD` gesendet |
+| Content type | `Content-Type`-Wert der Anfrage |
+| Timeout | Sekunden für Verbindungs- und Antwortlesezeit |
+| Log response | Liest die Antwort und schreibt sie ins Protokoll |
+| Response variable | Liest die Antwort und speichert sie nach Abschluss der Anfrage |
+| Single-line response | Entfernt Zeilenumbrüche der Antwort vor dem Speichern |
+| Authentication | Keine, Basic, Bearer oder API-Schlüssel |
+| Headers | Optionale benutzerdefinierte Request-Header |
+
+Anfragen werden asynchron ausgeführt, daher wartet die nächste Aktion nicht. Antwortkörper werden nur gelesen, wenn die Protokollierung aktiviert ist oder eine Antwortvariable konfiguriert wurde; Fehlerantworten werden als Nicht-Erfolgs-Antwort gelesen. Speichere keine Passwörter oder Zugriffstoken in der Aktionskonfiguration.
 
 ## Ressourcenpaket verwalten (`manage_resource_pack`)
-- **Beschreibung:** Ein Ressourcenpaket anhand des Anzeigenamens aktivieren/deaktivieren/umschalten (optional mit Neuladen)
-- **Wert erforderlich:** Ja - `pack_name|||MODE|||reload_bool`
+
+**Zweck:** Aktiviert, deaktiviert oder schaltet ein Ressourcenpaket um, optional mit Neuladen
+
+**Wert:** Erforderlich — `pack_name_or_id|||MODE|||reload_bool`
+
+Anzeigenamen und interne Paket-IDs werden ohne Beachtung der Groß-/Kleinschreibung verglichen. Als erforderlich markierte Pakete können nicht deaktiviert werden.
 
 ## Ressourcenpakete neu laden (`reload_resource_packs`)
-- **Beschreibung:** Lädt Ressourcenpakete neu (5s Abklingzeit)
-- **Wert erforderlich:** Nein
+
+**Zweck:** Lädt Minecrafts Ressourcenpakete neu. Eine eingebaute fünfsekündige Abklingzeit ignoriert wiederholte Auslöser während dieses Zeitraums, um Reload-Spam zu verhindern.
+
+**Wert:** Nicht erforderlich
 
 ## FancyMenu neu laden (`reloadmenu`)
-- **Beschreibung:** Lädt FancyMenu neu, einschließlich Panoramen, Diashows und aller Ressourcen (aufwendig)
-- **Wert erforderlich:** Nein
 
-> Diese Aktion hat **große Auswirkungen auf die Leistung** und kann Lags verursachen, wenn sie in Tickern verwendet wird. Es wird nicht empfohlen, diese Aktion in etwas anderem als einem Button zu verwenden.
-{.is-warning}
+**Zweck:** Lädt Layouts, [benutzerdefinierte GUIs](./custom-guis), [Panoramen](./panoramas), [Diashows](./slideshows), Einstellungen und von FancyMenu verwaltete Ressourcen neu
+
+**Wert:** Nicht erforderlich
+
+Dies lädt Minecraft-Ressourcenpakete nicht neu. Verwende dafür [**Ressourcenpakete neu laden**](#ressourcenpakete-neu-laden-reload_resource_packs).
+
+> [!WARNING]
+> Das Neuladen ist teuer. Triggere es über eine bewusste Button-Aktion, nicht über einen [Ticker](./elements#ticker) oder einen häufig ausgelösten [Listener](./listeners).
 
 ## Element-Animator umschalten (`toggle_element_animator`)
-- **Beschreibung:** Schaltet den Wiedergabestatus eines Element-Animators um
-- **Wert erforderlich:** Ja - `animator_identifier`
+
+**Zweck:** Schaltet den gespeicherten Wiedergabestatus um und setzt die passende aktive Animator-Zeitleiste zurück
+
+**Wert:** Erforderlich — `animator_identifier`
+
+Siehe [Element Animator](./element-animator) für Einrichtung und Kennungsdetails.
 
 ## Element-Animator aktivieren (`enable_element_animator`)
-- **Beschreibung:** Aktiviert einen Element-Animator
-- **Wert erforderlich:** Ja - `animator_identifier`
+
+**Zweck:** Aktiviert die Wiedergabe; eine aktive Animator-Zeitleiste wird nur zurückgesetzt, wenn der Status von deaktiviert zu aktiviert wechselt
+
+**Wert:** Erforderlich — `animator_identifier`
 
 ## Element-Animator deaktivieren (`disable_element_animator`)
-- **Beschreibung:** Deaktiviert einen Element-Animator
-- **Wert erforderlich:** Ja - `animator_identifier`
+
+**Zweck:** Deaktiviert die Wiedergabe und setzt die passende aktive Animator-Zeitleiste zurück
+
+**Wert:** Erforderlich — `animator_identifier`
 
 ## Element-Animator zurücksetzen (`reset_element_animator`)
-- **Beschreibung:** Setzt die Zeitleiste/den Zustand eines Element-Animators zurück
-- **Wert erforderlich:** Ja - `animator_identifier`
 
-## Vanilla/Mod-Button nachahmen (`mimicbutton`)
-- **Beschreibung:** Imitiert die Klickaktion eines Vanilla- oder Mod-Buttons
-- **Wert erforderlich:** Ja - `screen_identifier:widget_locator`
+**Zweck:** Setzt die passende aktive Animator-Zeitleiste zurück, ohne zu ändern, ob die Wiedergabe aktiviert ist
 
-## Keybind nachahmen (`mimic_keybind`)
-- **Beschreibung:** Führt eine Minecraft-Tastenkombination aus (optional gedrückt halten)
-- **Wert erforderlich:** Ja - `keybind_id|||keep_pressed_bool|||duration_ms`
+**Wert:** Erforderlich — `animator_identifier`
+
+## Vanilla-/Mod-Button nachahmen (`mimicbutton`)
+
+**Zweck:** Imitiert die Klickaktion eines Vanilla- oder Mod-Buttons
+
+**Wert:** Erforderlich — der vollständige [Widget-Locator](./widget-locators), zum Beispiel `example.menu.identifier:505280`
+
+## Tastenkürzel nachahmen (`mimic_keybind`)
+
+**Zweck:** Führt eine Minecraft-Tastatur- oder Maus-Tastenbelegung aus, optional mit gedrücktem Halten
+
+**Wert:** Erforderlich — `keybind_id|||keep_pressed_bool|||duration_ms`
+
+| Feld | Bedeutung |
+|---|---|
+| `keybind_id` | Minecraft-Keybind-Kennung, etwa `key.jump` |
+| `keep_pressed_bool` | `true`, um die Taste zu halten; `false` für einen normalen Druck |
+| `duration_ms` | Haltedauer, wenn `keep_pressed_bool` `true` ist; Standard ist `1000` |
 
 ## Wert eines Texteingabefelds setzen (`set_text_input_field_value`)
-- **Beschreibung:** Setzt den Wert eines benutzerdefinierten oder Vanilla-Eingabefelds anhand der Elementkennung.
-- **Wert erforderlich:** Ja - `element_identifier|||new_value|||force_set_when_inactive`
+
+**Zweck:** Setzt den Wert eines benutzerdefinierten oder Vanilla-[Texteingabefelds](./elements#text-input-field) anhand der Elementkennung.
+
+**Wert:** Erforderlich — `element_identifier|||new_value|||force_set_when_inactive`
+
+Die drei Felder müssen mit dem Triple-Pipe-Trennzeichen `|||` getrennt werden. Setze `force_set_when_inactive` auf `true`, um auch ein deaktiviertes Eingabefeld zu aktualisieren; wenn es `false` ist, bleiben inaktive Felder unverändert.
 
 ## Datei im Spielverzeichnis erstellen (`create_file_in_game_dir`)
-- **Beschreibung:** Erstellt eine leere Datei im Spielverzeichnis (Instanz-Root). Akzeptiert das Präfix `.minecraft/`, um das Standardverzeichnis des Launcher-Profils anzusprechen (kann vom aktuellen Instanzverzeichnis abweichen).
-- **Wert erforderlich:** Ja - `file_path`
+
+**Zweck:** Erstellt eine leere Datei relativ zum aktiven Spielverzeichnis. Akzeptiert das Präfix `.minecraft/`, um das herkömmliche Minecraft-Verzeichnis anzusprechen (das vom aktuellen Instanzverzeichnis abweichen kann).
+
+**Wert:** Erforderlich — `file_path`
+
+Beispiel: `config/some_mod_folder/new_file.txt`. Fehlende übergeordnete Verzeichnisse werden erstellt; eine vorhandene Datei bleibt unverändert.
 
 ## Datei/Ordner im Spielverzeichnis löschen (`delete_file_in_game_dir`)
-- **Beschreibung:** Löscht eine Datei oder einen Ordner im Spielverzeichnis (Instanz-Root). Akzeptiert das Präfix `.minecraft/`, um das Standard-Launcher-Profil anzusprechen (kann vom laufenden Instanzverzeichnis abweichen). Hänge `*` an, um **alle Dateien direkt innerhalb** eines Ordners zu löschen (ignoriert Unterordner; behält den Ordner).
-- **Wert erforderlich:** Ja - `target_path`
+
+**Zweck:** Löscht eine Datei oder löscht einen Ordner rekursiv relativ zum aktiven Spielverzeichnis. Akzeptiert `.minecraft/`, um das herkömmliche Minecraft-Verzeichnis anzusprechen. Füge `*` an, um **alle Dateien direkt in** einem Ordner zu löschen (ignoriert Unterverzeichnisse und lässt den Ordner bestehen).
+
+**Wert:** Erforderlich — `target_path`
+
+Zum Beispiel löscht `config/downloads/*` die Dateien direkt in `config/downloads/`, durchläuft aber weder Unterverzeichnisse noch löscht es diese.
 
 ## Datei/Ordner im Spielverzeichnis kopieren (`copy_file_in_game_dir`)
-- **Beschreibung:** Kopiert innerhalb des Spielverzeichnisses (Instanz-Root); das Präfix `.minecraft/` zielt auf das Standard-Launcher-Profil (nicht immer die aktuelle Instanz). Hänge `*` an den **Quellpfad** an, um jede Datei direkt innerhalb dieses Ordners zu kopieren (ignoriert Unterordner); das Ziel muss ein Verzeichnis sein und darf kein `*` verwenden.
-- **Wert erforderlich:** Ja - `source||destination`
+
+**Zweck:** Kopiert innerhalb des aktiven Spielverzeichnisses; `.minecraft/` zielt auf das herkömmliche Minecraft-Verzeichnis. Ein benannter Ordner wird rekursiv kopiert. Füge `*` an den **Quellpfad** an, um nur alle direkten Kinddateien zu kopieren; das Ziel muss ein Verzeichnis sein und darf kein `*` verwenden.
+
+**Wert:** Erforderlich — `source||destination`
+
+Zum Beispiel kopiert `config/source/*||config/destination/` nur die Dateien direkt in `config/source/`. Bei einer Wildcard-Quelle erstellt FancyMenu das Zielverzeichnis bei Bedarf, kopiert aber keine Quell-Unterverzeichnisse. Das Kopieren lehnt vorhandene Ziel-/Konfliktdaten statt Überschreiben ab.
 
 ## Datei/Ordner im Spielverzeichnis verschieben (`move_file_in_game_dir`)
-- **Beschreibung:** Verschiebt innerhalb des Spielverzeichnisses (Instanz-Root); das Präfix `.minecraft/` zielt auf das Standard-Launcher-Profil (kann von der aktuellen Instanz abweichen). Hänge `*` an den **Quellpfad** an, um jede Datei direkt innerhalb dieses Ordners zu verschieben (ignoriert Unterordner); das Ziel muss ein Verzeichnis sein und darf kein `*` verwenden.
-- **Wert erforderlich:** Ja - `source||destination`
+
+**Zweck:** Verschiebt innerhalb des aktiven Spielverzeichnisses; `.minecraft/` zielt auf das herkömmliche Minecraft-Verzeichnis. Füge `*` an den **Quellpfad** an, um nur alle direkten Kinddateien zu verschieben; das Ziel muss ein Verzeichnis sein und darf kein `*` verwenden.
+
+**Wert:** Erforderlich — `source||destination`
+
+Zum Beispiel verschiebt `config/source/*||config/destination/` nur die Dateien direkt in `config/source/`. Bei einer Wildcard-Quelle erstellt FancyMenu das Zielverzeichnis bei Bedarf, lässt aber Quell-Unterverzeichnisse bestehen. Das Verschieben lehnt vorhandene Ziel-/Konfliktdaten statt Überschreiben ab.
 
 ## Datei/Ordner im Spielverzeichnis umbenennen (`rename_file_in_game_dir`)
-- **Beschreibung:** Benennt eine Datei oder einen Ordner innerhalb des Spielverzeichnisses (Instanz-Root) um; das Präfix `.minecraft/` zielt auf das Standard-Launcher-Profil (kann von der aktuellen Instanz abweichen). Der Inhalt bleibt erhalten, nur der Name ändert sich.
-- **Wert erforderlich:** Ja - `path||new_name`
 
-## Datei ins Spielverzeichnis herunterladen (`download_file_to_game_dir`)
-- **Beschreibung:** Lädt eine Datei asynchron in das Spielverzeichnis (Instanz-Root) herunter; das Präfix `.minecraft/` zielt auf das Standard-Launcher-Profil (nicht unbedingt die laufende Instanz). Gib den **Zielordner** an; der Dateiname wird automatisch aus Headern/URL abgeleitet.
-- **Wert erforderlich:** Ja - `url||target_folder`
+**Zweck:** Benennt eine Datei oder einen Ordner innerhalb seines aktuellen Elternverzeichnisses um; `.minecraft/` zielt auf das herkömmliche Minecraft-Verzeichnis. Behält den Inhalt bei und lehnt einen bereits vorhandenen Zieldateinamen ab.
 
-## ZIP-Datei im Spielverzeichnis entpacken (`extract_zip_file_in_game_dir`)
-- **Beschreibung:** Entpackt eine ZIP-Datei in einen Zielordner innerhalb des Spielverzeichnisses oder des Standardverzeichnisses `.minecraft`. Löst beim Abschluss den Listener **On ZIP Extracted via Action** aus.
-- **Wert erforderlich:** Ja - `source_zip_path||target_folder_path`
+**Wert:** Erforderlich — `path||new_name`
+
+## Datei in das Spielverzeichnis herunterladen (`download_file_to_game_dir`)
+
+**Zweck:** Lädt im Hintergrund eine Datei in ein Verzeichnis relativ zum aktiven Spielverzeichnis herunter; `.minecraft/` zielt auf das herkömmliche Minecraft-Verzeichnis.
+
+**Wert:** Erforderlich — `url||target_folder`
+
+Das zweite Feld ist ein **Zielverzeichnis**, nicht ein vollständiger Zieldateipfad. FancyMenu erstellt das Verzeichnis bei Bedarf und bestimmt den Dateinamen aus dem `Content-Disposition`-Header der Antwort und weicht dann auf den URL-Pfad aus. Der aufgelöste Name wird vor der Verwendung URL-dekodiert und bereinigt; wenn keine Quelle einen verwendbaren Namen liefert, erzeugt FancyMenu einen. Eine vorhandene Datei mit demselben Namen wird überschrieben.
+
+Der [**On File Downloaded via Action**-Listener](./listeners#on-file-downloaded-via-action-file_downloaded_via_action) wird nach erfolgreichen und fehlgeschlagenen Downloadversuchen ausgelöst und stellt die URL, den aufgelösten Zielpfad und den Erfolgsstatus bereit.
+
+Bei Erfolg ist `$$target_file_path` der gespeicherte Dateipfad. Bei Fehlschlag kann es nur das Zielverzeichnis enthalten, da kein endgültiger Dateiname aufgelöst wurde.
+
+## ZIP-Datei im Spielverzeichnis extrahieren (`extract_zip_file_in_game_dir`)
+
+**Zweck:** Extrahiert ein ZIP in einen Zielordner innerhalb des aktiven Spielverzeichnisses oder des herkömmlichen `.minecraft`-Verzeichnisses. Löst [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) aus, wenn fertig.
+
+**Wert:** Erforderlich — `source_zip_path||target_folder_path`
+
+Vorhandene Dateien mit übereinstimmenden Namen werden ersetzt. Extrahiere nur vertrauenswürdige ZIP-Dateien.
 
 ## Datei/Ordner im Spielverzeichnis öffnen (`open_file_folder_in_game_dir`)
-- **Beschreibung:** Öffnet eine Datei oder einen Ordner mit der Standardanwendung des Betriebssystems. Der Zielpfad muss aus Sicherheitsgründen innerhalb des Spielverzeichnisses oder des Standardverzeichnisses `.minecraft` liegen.
-- **Wert erforderlich:** Ja - `target_path`
+
+**Zweck:** Öffnet eine Datei oder einen Ordner mit der Standardanwendung des Betriebssystems. Das Ziel muss aus Sicherheitsgründen innerhalb des Spielverzeichnisses oder des Standard-`.minecraft`-Verzeichnisses bleiben.
+
+**Wert:** Erforderlich — `target_path`
 
 ## Datei im Spielverzeichnis schreiben (`write_file_in_game_dir`)
-- **Beschreibung:** Schreibt Text in das Spielverzeichnis oder hängt ihn dort an (Instanz-Root); das Präfix `.minecraft/` zielt auf das Standard-Launcher-Profil (kann von dieser Instanz abweichen). Erstellt die Datei, falls sie fehlt. Unterstützt `\n` im Wert für Zeilenumbrüche; der Anfügemodus wird durch den letzten booleschen Wert gesteuert.
-- **Wert erforderlich:** Ja - `path|||content|||append_bool`
 
-## Datei aus dem System auswählen (`select_file_to_game_dir`)
-- **Beschreibung:** Öffnet einen nativen Dateiauswahldialog (beliebiger Ort) und kopiert die ausgewählte Datei in das Spielverzeichnis (Instanz-Root) oder in das Standardverzeichnis `.minecraft/` bei Präfix (dieses Standardverzeichnis kann von dieser Instanz abweichen). Unterstützt Filter für Dateiendungen, ein benutzerdefiniertes Filter-Label und optionales Überschreiben.
-- **Wert erforderlich:** Ja - Auswahlkonfiguration
+**Zweck:** Schreibt oder hängt Text relativ zum aktiven Spielverzeichnis an; `.minecraft/` zielt auf das herkömmliche Minecraft-Verzeichnis. Erstellt die Datei und übergeordnete Ordner, falls sie fehlen. `\n` fügt Zeilenumbrüche ein; `append_bool=false` ersetzt eine vorhandene Datei.
+
+**Wert:** Erforderlich — `path|||content|||append_bool`
+
+## Datei vom System auswählen (`select_file_to_game_dir`)
+
+**Zweck:** Öffnet einen nativen Dateiauswahldialog und kopiert die ausgewählte Datei ins aktive Spielverzeichnis oder bei Präfix `.minecraft/` in das herkömmliche Verzeichnis. Unterstützt Erweiterungsfilter, ein benutzerdefiniertes Filterlabel und einen Überschreibungs-Schalter.
+
+**Wert:** Erforderlich — `target_path|||filter_description|||extensions|||overwrite_bool`
+
+`target_path` ist der vollständige Zieldateipfad. Trenne mehrere Erweiterungen mit `;` oder `,`, zum Beispiel `png;jpg`; eine leere Erweiterungsliste erlaubt alle Dateien. Wenn `overwrite_bool` `false` ist, schlägt die Aktion fehl, anstatt eine vorhandene Zieldatei zu ersetzen.
+
+Der [**On File Selected**-Listener](./listeners#on-file-selected-file_selected_via_action) wird ausgelöst, wenn die Datei kopiert wurde, der Dialog abgebrochen wurde oder die Auswahl fehlgeschlagen ist. Er stellt den ausgewählten Pfad, den aufgelösten Zielpfad, Erfolgs-/Abbruchstatus und einen Fehlergrund bereit.
 
 ## Toast anzeigen (`show_toast`)
-- **Beschreibung:** Zeigt eine konfigurierbare Toast-Benachrichtigung an
-- **Wert erforderlich:** Ja - Toast-Konfiguration
+
+**Zweck:** Zeigt eine konfigurierbare Toast-Benachrichtigung an
+
+**Wert:** Erforderlich — JSON-Toast-Konfiguration
+
+Der Editor speichert diese Aktion als JSON. Verwende nach Möglichkeit das Konfigurationsfenster statt den Wert manuell zu bearbeiten.
+
+| Feld | Bedeutung |
+|---|---|
+| `width` | Auf `120`–`320` Pixel begrenzt |
+| `durationMs` | Auf `1000`–`600000` Millisekunden begrenzt |
+| `title` | Reiner Text, eine serialisierte Minecraft-Textkomponente oder leer |
+| `message` | Reiner Text, eine serialisierte Textkomponente oder leer |
+| `iconSource` | Optionale [Bildquelle](./resources) |
+| `backgroundSource` | Optionale [Bildquelle](./resources) |
 
 ## Scheduler starten (`start_scheduler`)
-- **Beschreibung:** Startet einen Scheduler anhand seiner Scheduler-ID.
-- **Wert erforderlich:** Ja - `scheduler_id`
+
+**Zweck:** Startet einen Scheduler über seine Scheduler-ID.
+
+**Wert:** Erforderlich — `scheduler_id`
+
+Siehe [Schedulers](./schedulers) zum Erstellen und Verwalten von Scheduler-IDs.
 
 ## Scheduler stoppen (`stop_scheduler`)
-- **Beschreibung:** Stoppt einen Scheduler anhand seiner Scheduler-ID.
-- **Wert erforderlich:** Ja - `scheduler_id`
+
+**Zweck:** Stoppt einen Scheduler über seine Scheduler-ID.
+
+**Wert:** Erforderlich — `scheduler_id`
 
 ## Minecraft-Option setzen (`edit_minecraft_option`)
-- **Beschreibung:** Bearbeitet eine Minecraft-Konfigurationsoption
-- **Wert erforderlich:** Ja - `option_name:set_to_value`
+
+**Zweck:** Bearbeitet eine Minecraft-Konfigurationsoption
+
+**Wert:** Erforderlich — `option_name:set_to_value`
