@@ -1,48 +1,56 @@
 ---
 title: 自定义 GUI
-description: 如何向游戏中添加一个新的 GUI 屏幕。
+description: 创建并配置新的 GUI 界面。
 ---
-
 # 自定义 GUI
 
-FancyMenu 允许你自定义已有的 GUI 屏幕，同时也允许你添加全新的屏幕并为其填充元素。
+自定义 GUI 是你可以用 FancyMenu [元素](./elements) 填充的新界面。
 
-# 添加新屏幕
+> [!CAUTION]
+> 自定义 GUI 可以运行操作。仅从你信任的来源导入它们。
 
-要添加一个新屏幕，请前往 **Customization -> Custom GUIs -> Manage Custom GUIs**。
+# 创建自定义 GUI
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+1. 打开 **自定义 -> 自定义 GUI -> 管理自定义 GUI**。
+2. 选择 **新建 GUI**。
+3. 输入标识符并配置界面设置。
+4. 选择 **完成**，然后从管理器中打开新 GUI。
+5. 像其他界面一样创建并编辑其布局。
 
-在下一个菜单中，点击 **New GUI**。
+标识符必须唯一，并使用编辑器接受的小写、适用于文件名的字符。空白、无效或重复的标识符无法保存。
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+自定义 GUI 始终启用界面自定义；其自定义开关不能被禁用。
 
-在这里，你需要为新的 GUI 提供一个唯一的标识符，并且你还可以自定义基础屏幕行为的其他部分。
-当你完成后，按下 **Done**。
+# 界面设置
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+| 设置 | 行为 |
+|---|---|
+| 允许 ESC | 允许按 Esc 关闭 GUI 并返回其父界面 |
+| 暂停游戏/世界 | 在打开 GUI 时暂停单人游戏 |
+| 渲染世界背景 | 在 GUI 后方显示已加载的世界 |
+| 世界背景遮罩 | 在世界上添加标准的模糊/暗化遮罩 |
+| 弹出模式 | 让父界面在自定义 GUI 后方保持可见 |
+| 弹出背景遮罩 | 在弹出模式下对父界面添加模糊/色调遮罩 |
 
-现在你已经拥有了一个新的空白 GUI。要打开它，请在 **Manage Custom GUIs** 菜单中选中该 GUI，然后点击 **Open GUI**。
+关闭自定义 GUI 时，如果存在父界面，则会返回到父界面。
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
+# 打开自定义 GUI
 
-这将打开一个仍然相当空的 GUI 屏幕。要让它不那么空，只需像为其他屏幕一样为它创建一个新的布局即可。
+使用完全一致的自定义 GUI 标识符，通过以下任一方式：
 
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
+- [**打开界面或自定义 GUI** 操作](./action-scripts#open-screen-or-custom-gui-opengui)
+- [`/openguiscreen` 命令](./commands#openguiscreen)
 
-# 通过动作打开 GUI
+# 覆盖现有界面
 
-最后一步是让普通用户能够访问你的 GUI。最简单的方法是使用带有按钮、滑块或 ticker 的 **Open Screen or Custom GUI** 动作。
+当某个界面打开时，自定义 GUI 可以替换原版或模组界面。
 
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
+1. 创建替代用的自定义 GUI。
+2. 打开你想替换的界面。
+3. 启用 **自定义 -> 设置 -> 高级自定义模式**。
+4. 选择 **自定义 -> 自定义 GUI -> 用自定义 GUI 覆盖当前界面**。
+5. 选择替代用的自定义 GUI。
 
-# 通过命令打开 GUI
+通过 **自定义 -> 自定义 GUI -> 管理已覆盖界面** 管理已保存的覆盖项。
 
-你也可以通过[in-game command](./commands#openguiscreen) 打开你的自定义 GUI。
-这甚至允许你远程为其他用户打开该 GUI！
-
-# 弹出模式
-
-从 FancyMenu v3.8.0 开始，自定义 GUI 支持“Popup Mode”，它会让它们看起来像是在另一个屏幕之上弹出的窗口（即自定义 GUI 打开时所来自的上一个屏幕）。你可以在每个自定义 GUI 的设置中分别切换此选项。
-
-FancyMenu 3.9.0 还增加了一个选项：当在世界中时，可为自定义 GUI 切换屏幕背景遮罩。需要时可用它来禁用或保留在游戏过程中打开的自定义 GUI 背后的模糊/暗色遮罩。
+覆盖会跳过原始界面，因此请测试其导航以及任何依赖原始界面行为的功能。
