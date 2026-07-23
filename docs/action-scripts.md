@@ -18,20 +18,26 @@ An **action** is a task or job that FancyMenu runs when triggered. For example, 
 
 # What Are Statements?
 
-To create more complex behavior, FancyMenu supports basic control statements in action scripts. These include:
+To create more complex behavior, FancyMenu supports control statements in action scripts:
 
-- **If Statement:** Runs a block of actions only if its [requirements](./conditions) are met.
-- **Else-If Statement:** Checks another set of [requirements](./conditions) if the preceding *if* or *else-if* was not met.
-- **Else Statement:** Runs if none of the preceding requirements are met.
-- **While Statement:** Repeats a block while its [requirements](./conditions) remain true. It stops after three seconds to prevent infinite loops; do not use it as a timer.
-- **Comment:** Adds a note inside the script for organization. Comments do not run any action.
+| Statement | Behavior |
+|---|---|
+| **If** | Runs its actions only when its [requirements](./conditions) are met. |
+| **Else-If** | Checks another set of [requirements](./conditions) when the preceding **If** or **Else-If** did not run. |
+| **Else** | Runs when none of the preceding **If** or **Else-If** requirements are met. |
+| **While** | Repeats its actions while its [requirements](./conditions) remain true. It stops after three seconds to prevent infinite loops; do not use it as a timer. |
+| **Comment** | Adds a note inside the script for organization and does not run an action. |
+
+# What Are Blocks?
+
+Blocks delay or schedule a group of actions without stopping the rest of the script:
 
 | Block | Behavior |
 |---|---|
 | **Delay** | Starts a countdown without stopping the rest of the script. Its nested actions become eligible after the delay; screen reinitialization resets the countdown. |
 | **Execute Later** | Schedules a new execution of its nested actions after the delay every time the block is reached. |
 
-By combining these statements with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
+By combining statements and blocks with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
 
 Actions run from top to bottom. A failed action is logged, then the script continues.
 
