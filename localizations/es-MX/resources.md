@@ -4,60 +4,43 @@ description: >-
   Cómo funcionan los recursos en FancyMenu. Cubre ubicaciones de recursos,
   recursos locales y recursos web.
 ---
-
 # Recursos
 
-El sistema de recursos de FancyMenu te permite usar recursos del propio cargador de recursos de Minecraft (**Paquetes de recursos**), recursos **locales** (archivos del sistema del cliente) y recursos de la **web** (archivos almacenados en línea).
+Los campos de recursos pueden cargar contenido desde:
 
-Casi todas las entradas de recursos, ya sean imágenes, audio, video o texto, se configuran mediante el selector de recursos de FancyMenu. Hay algunas excepciones, como cuando se establece una ruta de origen para un placeholder o una acción, pero en la mayoría de los casos los recursos se configuran con la misma interfaz del selector de recursos.
+- **Minecraft:** una ubicación de recurso proporcionada por Minecraft o por un paquete de recursos.
+- **Local:** un archivo en la instancia activa del juego.
+- **Web:** una URL directa a un archivo.
 
-Cuando configuras una entrada de recurso mediante la interfaz del selector de recursos, básicamente eliges una llamada "fuente de recurso" (así les llama FancyMenu), que puede ser una ruta, un enlace o una ubicación de recurso, dependiendo del tipo de fuente.
-
-FancyMenu 3.9.0 agrega un explorador de recursos de Minecraft al selector de recursos. Esto te permite explorar los recursos cargados mediante paquetes de recursos como si fueran un directorio, en lugar de escribir manualmente cada ubicación de recurso.
+La mayoría de los campos de imagen, audio, video y texto usan el mismo selector de recursos. El selector incluye un explorador para contenido de Minecraft y de paquetes de recursos.
 
 # Recursos de Minecraft (Paquetes de recursos)
 
-Minecraft usa las llamadas "ubicaciones de recursos" para "apuntar" a un recurso.
+Las ubicaciones de recursos usan `namespace:path`. El namespace es el directorio inmediatamente debajo de `assets`, y la ruta es todo lo que está debajo de ese namespace.
 
-Las ubicaciones de recursos escritas como texto constan de dos partes, separadas por dos puntos (`:`).
-La primera parte es el **espacio de nombres** y la segunda parte es el resto de la **ruta al recurso**, incluido el nombre del recurso con la extensión del archivo.
+Por ejemplo, considera una imagen de un paquete de recursos almacenada en `/assets/custom_resources/images/image.png`.
+Su ubicación de recurso es `custom_resources:images/image.png`.
 
-El **espacio de nombres** de una ubicación de recurso siempre es solo el **directorio/carpeta de nivel superior** de la ruta completa al recurso.
-
-Así que digamos que cargas un paquete de recursos con un recurso llamado `image.png` que está almacenado en `/assets/custom_resources/images/image.png`.
-En este caso, el **espacio de nombres** de la ubicación del recurso sería `custom_resources`, porque `/assets/` es solo la ubicación desde donde Minecraft carga todos sus recursos, así que `custom_resources` es el **directorio de nivel superior** del recurso.
-Esto significa que `images/image.png` es el **resto de la ruta** al recurso.
-
-Por lo tanto, la ubicación de recurso correcta para el recurso `image.png` sería:
-`custom_resources:images/image.png`
-
-> **Dato curioso**: Como Minecraft tiene la mayoría de sus recursos almacenados en `/assets/minecraft/`, el **espacio de nombres** de la mayoría de los recursos de Minecraft es `minecraft`.
-{.is-info}
+> [!NOTE]
+> Los recursos integrados de Minecraft normalmente usan el namespace `minecraft`.
 
 # Recursos locales
 
-La forma más sencilla de cargar recursos es simplemente usar archivos locales almacenados en el cliente (y, en la mayoría de los casos, incluidos con los modpacks).
+Guarda los recursos locales en `<game-directory>/config/fancymenu/assets/`. `<game-directory>` es la carpeta de la instancia activa, que puede ser diferente de `.minecraft`.
 
-FancyMenu solo permite cargar recursos locales almacenados en `/config/fancymenu/assets/`, así que asegúrate de guardar ahí todos tus recursos.
+Los campos de recursos pueden mostrar la misma ruta como `/config/fancymenu/assets/example.png`. En esos campos, la `/` inicial sigue significando `<game-directory>`; no es una ruta de raíz del sistema de archivos.
 
-Esto también hace que sea muy fácil [incluir recursos locales con tus modpacks](./modpacks), ya que la mayoría de los sistemas de modpacks (CurseForge, Modrinth, etc.) admiten por defecto incluir carpetas de configuración de mods.
+Estos archivos se pueden [incluir con un modpack](./modpacks) a través de su carpeta de configuración.
+
+Para ver un mapa completo de las rutas de diseño, recursos, configuración y estado generado de FancyMenu, consulta [Ubicaciones de almacenamiento de datos](./data-storage-locations).
 
 # Recursos web
 
-Cuando necesitas cambiar recursos dinámicamente sin tener que actualizar tu modpack, los recursos **web** son la mejor opción.
+Usa una URL directa al archivo, por ejemplo `https://example-domain.net/image.png`. Las páginas y los enlaces de redirección son más lentos y tienen más probabilidades de fallar que las URL directas que terminan con el nombre y la extensión del recurso.
 
-Un recurso web es básicamente solo la **URL** de un archivo almacenado en un servidor, así que por ejemplo `https://example-domain.net/image.png`.
+# Marcadores de posición en orígenes de recursos
 
-Asegúrate de usar siempre **URLs DIRECTAS**, es decir, URLs que terminen con el **nombre de archivo y la extensión** del recurso, tal como en el ejemplo anterior.
-Usar URLs no directas afecta el rendimiento y es más probable que falle.
+Los campos de recursos con selector pueden usar [marcadores de posición](./placeholders) en rutas locales, URL y ubicaciones de recursos de Minecraft. Selecciona **Abrir en el editor** junto al campo de origen para editarlo directamente.
 
-# Placeholders en fuentes de recursos
-
-Es posible usar los placeholders de FancyMenu en las fuentes de recursos, como la ruta a una fuente local, la URL de una fuente web o la ubicación del recurso de Minecraft.
-
-Esto permite actualizar fuentes dinámicamente, como cambiar la fuente de imagen del fondo de un menú al establecer una variable de FancyMenu, para mostrar un fondo diferente según el valor de la variable.
-
-Puedes editar manualmente la fuente haciendo clic en el botón **Abrir en el editor** a la derecha del campo de entrada de la fuente del recurso.
-
-> Ten en cuenta que esto solo aplica a las entradas de recursos que usan la interfaz normal del selector de recursos. Es posible que *algunas* entradas de recursos que no usan el selector **NO** admitan placeholders o no se actualicen dinámicamente cuando cambie el placeholder.
-{.is-warning}
+> [!WARNING]
+> Las entradas de recursos que no usan el selector normal pueden no admitir marcadores de posición o actualizaciones en vivo de la fuente.
