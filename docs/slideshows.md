@@ -17,11 +17,13 @@ FancyMenu allows you to add slideshows and display them in menus and as menu bac
 
 # Making a Slideshow
 
-Every slideshow has to be in its own folder **inside** the slideshows directory located at `/config/fancymenu/slideshows/`.
+Every slideshow has to be in its own folder inside `<game-directory>/config/fancymenu/slideshows/`.
+
+`<game-directory>` is the active launcher instance, which is not always the default `.minecraft` directory.
 
 ![1](https://user-images.githubusercontent.com/35544624/105209961-b823e600-5b4a-11eb-8ed2-1016d3b05815.png)
 
-To make a slideshow get recognized as one by the system, it needs to have a properties file located in its slideshow folder, so if you've named your slideshow folder `myslideshow`, the properties file should be located at `/config/fancymenu/slideshows/myslideshow/properties.txt`.
+To make a slideshow get recognized, it needs a properties file in its own folder. If the slideshow folder is named `myslideshow`, the file belongs at `<game-directory>/config/fancymenu/slideshows/myslideshow/properties.txt`.
 
 **This file always needs to be named `properties.txt`!**
 For now, only create the **empty** properties file and move on to the next step.
@@ -30,19 +32,18 @@ For now, only create the **empty** properties file and move on to the next step.
 
 ## Adding Images
 
-A slideshow needs images (duh), so let's add some!
+A slideshow needs images, so let's add some.
 
-> Your slideshow images need to be **PNG** files! No JPEGs, GIFs, APNGs or FMAs!
-{.is-danger}
+Slideshow images must use `.png` or `.jpg`. Other image extensions, including `.jpeg`, are ignored.
 
 All images of your slideshow go to an extra folder **inside** your slideshow folder (`myslideshow` in the example above).
 This folder's name needs to be `images`.
 
 ![3](https://user-images.githubusercontent.com/35544624/105210833-d9d19d00-5b4b-11eb-8ae7-528ad156e27a.png)
 
-Now place all your slideshow images in the `images` folder.
-They get ordered alphabetically (respecting numbers), so just name them something like `image_1.png`, `image_2.png` and so on.
-In my example, `image_1.png` would be displayed first and `image_2.png` after.
+Now place all slideshow images in the `images` folder.
+
+When `randomize = false`, images play in alphabetical filename order. `image_10.png` comes before `image_2.png`, so use names such as `image_01.png`, `image_02.png`, and `image_10.png`.
 
 <br>
 <img width="548" alt="Screenshot_2" src="https://github.com/user-attachments/assets/f58ecbfa-affa-4071-8a84-18ed27a6cfee">
@@ -51,6 +52,18 @@ In my example, `image_1.png` would be displayed first and `image_2.png` after.
 
 At the beginning you've created an empty `properties.txt` file in your slideshow folder.
 This file needs to be filled with some important stuff now.
+
+The complete directory structure should look like this:
+
+```text
+<game-directory>/config/fancymenu/slideshows/
+└── myslideshow/
+    ├── properties.txt
+    ├── overlay.png          # optional
+    └── images/
+        ├── image_01.png
+        └── image_02.jpg
+```
 
 Every slideshow properties file should look like this:
 
@@ -68,42 +81,36 @@ slideshow-meta {
    randomize = false
 }
 ```
-Only the variables inside the `slideshow-meta` section can be changed!
+Keep the `type = slideshow` line and the `slideshow-meta` section. Edit the listed values rather than the structural lines.
 
 ### name
 
-This is the name, or better the identifier, of your slideshow.
-Slideshow names need to be **unique**, so it's not possible to have two slideshows with the same name!
+This is the case-sensitive identifier used to select the slideshow. It is required and must be unique; duplicate names make only one slideshow available.
 
 ### width | height
 
-The base `width` and base `height` of your slideshow.
-Used by FancyMenu to calculate the aspect ratio.
+The base width and height in GUI-scaled pixels. FancyMenu also uses them to calculate the aspect ratio.
 
 ### x | y
 
-The `x` and `y` position of your slideshow.
-More for debugging purposes, so just set both to `0`.
+The base top-left position in GUI-scaled pixels. Standard Slideshow elements and menu backgrounds use their own position instead, so keep both values at `0`.
 
 ### duration
 
-The duration in **seconds** for how long every image is displayed before switching to the next one.
-Suppports decimal values!
+How many seconds an image stays visible before the next transition. Decimals use a period, for example `5.5`. Use a value greater than `0`.
 
 ### fadespeed
 
-The speed of the fade animation when switching to the next image.
-This value is a speed multiplicator. For example, `1.0` is default speed, `2.0` doubles the speed and `0.5` will make it half as fast as default.
-Negative values are not supported.
+The fade-speed multiplier. `1.0` is the default, `2.0` is twice as fast, and `0.5` is half as fast. Use a value greater than `0`.
 
 ### randomize
 
-If the slideshow images should play in random order (`true`) or not (`false`).
+Set this to `true` for random order or `false` for filename order. Random mode avoids showing the same image twice in a row.
 
 # Using the Slideshow
 
 All important steps are done and your slideshow should be ready now, so lets test it!
 
-To load your new (or edited) slideshow into FancyMenu, reload the mod via **Customization -> Reload FancyMenu**.
+To load a new or edited slideshow into FancyMenu, use **Customization -> Reload FancyMenu** or restart the client.
 
 Now you can use your slideshow in the **Slideshow** element or as menu background (right-click the layout editor background -> **Menu Background**).

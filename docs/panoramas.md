@@ -30,13 +30,14 @@ You can find some of them by searching for `minecraft panorama mod`, but one of 
 
 After you got your 6 panorama images, you'll need to move them to the right place!
 
-FancyMenu's panorama directory is located at `.minecraft/config/fancymenu/panoramas`.
-This is the directory for all panoramas that you want to use in the mod.
+FancyMenu's panorama directory is `<game-directory>/config/fancymenu/panoramas/`.
+
+`<game-directory>` is the active launcher instance, which is not always the default `.minecraft` directory.
 
 ## The Panorama Folder
 
 Every panorama has its own folder.
-You will need to create a new folder in `.minecraft/config/fancymenu/panoramas` if you want to add a new panorama.
+Create a new folder in `<game-directory>/config/fancymenu/panoramas/` for every panorama.
 In my example, I will name the folder `mypanorama`.
 
 ![1](https://user-images.githubusercontent.com/35544624/100791916-2802d380-341a-11eb-8e32-f9913e93a38c.png)
@@ -61,29 +62,22 @@ panorama-meta {
   start_rotation = 0
 }
 ```
-Only the variables inside the `panorama-meta` section can be changed!
+Keep the `type = panorama` line and the `panorama-meta` section. Edit the listed values rather than the structural lines.
 
 #### name
-This has to be the **unique** name of your panorama.
-It's not possible to load two panoramas with the same name!
-You will use this name later to identify your panorama.
+This is the case-sensitive identifier used to select the panorama. It is required and must be unique; duplicate names make only one panorama available.
 
 #### speed
-The speed at which your panorama rotates.
-This value is a speed multiplicator. For example, `1.0` is default speed, `2.0` doubles the speed and `0.5` will half it.
-Negative values are not supported, use decimal values to slow the speed.
+The rotation-speed multiplier. `1.0` is the default, `2.0` is twice as fast, and `0.5` is half as fast. Use a value greater than `0`.
 
 #### fov
-The field of view.
-The default FOV is `85.0`.
-Using too big or small values here will break the panorama. Just play around with it to find the FOV you want.
+The field of view in degrees. The default is `85.0`.
 
 #### angle
-The vertical angle at which the panorama is viewed.
-The default angle is `25.0`.
+The vertical viewing angle in degrees. The default is `25.0`.
 
 #### start_rotation
-The rotation angle (horizontal) at which the panorama should start. Value between 0 and 360.
+The initial horizontal rotation in degrees, from `0` to `360`.
 
 <br>
 
@@ -93,7 +87,7 @@ The second mandatory thing your panorama folder needs is the actual image folder
 
 This folder's name needs to be `panorama`.
 
-Put all your panorama images in it, but don't forget to name them correctly like shown in the [video](https://www.youtube.com/watch?v=F7jMd3zsjZQ&t) above!
+Put exactly six panorama images in it, named `panorama_0.png` through `panorama_5.png`. These names are exact and can be case-sensitive depending on the filesystem.
 
 ![3](https://user-images.githubusercontent.com/35544624/100791922-29340080-341a-11eb-8174-874a180d0485.png)
 
@@ -104,12 +98,25 @@ Put all your panorama images in it, but don't forget to name them correctly like
 
 The last step is **optional** and can be skipped if you don't want an overlay over your panorama.
 
-If you want to add a vignette or other types of overlays to your panorama, you can add one named 'overlay.png'.
-Keep in mind that only PNG is supported for the overlay and that the file name always needs to be 'overlay.png'!
+If you want to add a vignette or another overlay, add a PNG named exactly `overlay.png` next to `properties.txt`.
 
 ### Checking Everything Again
 
-You should now have a folder located at `.minecraft/config/fancymenu/panoramas`, containing a `properties.txt` file, another folder named `panorama` and maybe an overlay named `overlay.png`.
+You should now have this structure. The files belong inside the individual `mypanorama` directory, not directly in the shared `panoramas` directory.
+
+```text
+<game-directory>/config/fancymenu/panoramas/
+└── mypanorama/
+    ├── properties.txt
+    ├── overlay.png          # optional
+    └── panorama/
+        ├── panorama_0.png
+        ├── panorama_1.png
+        ├── panorama_2.png
+        ├── panorama_3.png
+        ├── panorama_4.png
+        └── panorama_5.png
+```
 
 ![2](https://user-images.githubusercontent.com/35544624/100791920-29340080-341a-11eb-8e26-98a7fd2ad7eb.png)
 

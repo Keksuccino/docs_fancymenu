@@ -62,7 +62,7 @@ In the save menu, make sure to:
 
 ## Using the APNG in FancyMenu
 
-Now you can copy your APNG file to `/config/fancymenu/assets/`. Then you will be able to use it for nearly everything that accepts images.
+Now copy your APNG file to `<game-directory>/config/fancymenu/assets/`. Then you will be able to use it for nearly everything that accepts images.
 
 > It is **really important** that the APNG file name ends with `.apng`!
 > FancyMenu will not be able to identify the image as APNG if it's not ending with `.apng`.

@@ -4,7 +4,7 @@ description: About screen identifiers and how to find the identifier of a screen
 ---
 # Screen Identifiers
 
-FancyMenu uses screen identifiers to know which screen a layout belongs to, to point to a button in a specific screen and other things that require the mod to communicate with or customize a specific screen.
+FancyMenu uses screen identifiers to target layouts, Vanilla widgets, screen actions, and screen overrides. Identifiers are case-sensitive, so copy them exactly from the debug overlay.
 
 # Finding the Identifier of a Screen
 

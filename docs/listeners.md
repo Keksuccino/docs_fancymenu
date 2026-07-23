@@ -10,30 +10,31 @@ dateCreated: 2025-11-23T08:24:21.102Z
 
 # Listeners
 
-Starting with FancyMenu v3.8.0, there is a new feature called "listeners".
+Listeners run action scripts when specific events happen. They are not tied to an open screen, so they can also run while playing or loading.
 
-Listeners execute action scripts when specific client or gameplay events happen.
-They can expose variables to actions, placeholders, and requirements nested in the listener.
+Listeners can provide `$$` values, such as a pressed key or clicked mouse button, to their actions and requirements.
 
-Other than most things in FancyMenu, listeners are not locked to a screen or overlay. They constantly run in the background, listening to their events. As soon as a listener gets fired, it executes its action script, even if there is no screen open at that time.
+> [!CAUTION]
+> A listener can run file, network, command, clipboard, resource-pack, or link actions without a screen being open. Import listeners only from sources you trust.
 
 # Using Listeners
 
-To create a new listener that listeners to an event and executes an action script, click on **menu bar -> Customization -> Manage Listeners** while **NOT** in the layout editor. There you can find an easy-to-use UI for creating and managing listeners.
+Outside the Layout Editor, open **menu bar -> Customization -> Manage Listeners** to create or edit listeners.
 
 <img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/manage_listeners.png?raw=true" alt="Manage listeners" style="max-width:800px;width:100%;height:auto;">
 
 # Listener Variables
 
-Listeners often expose a special type of variable for its nested actions, requirements and placeholders.
-These variables can be accessed like placeholders (they are effectively placeholders).
-
-You use these variables by simply using their names with the `$$` prefix in text inputs, similar to how you would use a normal placeholder.
+Listeners can provide read-only values to their actions and requirements. Use their `$$` names in supported text fields.
 
 For example, if you use the **On Keyboard Key Pressed** listener and want to print the key name to the log via the **Print to Log** action, you would use something like `Key pressed! The key is: $$key_name` as input for the message the action should print. The variable placeholder will later get replaced with the actual name of the key.
 
-> Even tho these are called "variables", they are in no way related to FancyMenu's normal [variable system](/variables). You can't set these variables, since they are **read-only**. You also can't use any actions, requirements and placeholders meant for FancyMenu's variable system with these special listener variables, so using **Get Variable Value [FM Variable]**, **Is Variable Value [FM Variable]** or **Set Variable Value [FM Variable]** will not work for listener variables.
+> Listener variables are separate from FancyMenu's [stored variables](/variables). Stored-variable actions, requirements, and placeholders do not work with `$$` values.
 {.is-warning}
+
+Listener variable names are case-sensitive and only work inside that listener's script.
+
+Treat values from chat, remote servers, files, and user input as untrusted. Do not insert them directly into paths, URLs, or commands.
 
 # Listeners in Detail
 

@@ -161,7 +161,7 @@ So to show the Web resource `https://example-website.net/image.png`, do this:
 Images can also be **hyperlinks** by wrapping the whole image text line in a **hyperlink** like that:
 `[![](https://example-website.net/image.png)](https://example-website.net)`
 
-> Local resources need to be in `/config/fancymenu/assets/` !
+> Local resources need to be in `<game-directory>/config/fancymenu/assets/`!
 {.is-warning}
 
 ## Quote

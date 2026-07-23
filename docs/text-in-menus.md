@@ -10,7 +10,7 @@ This element is scrollable, has full Markdown support and line wrapping, which m
 
 # Text Content
 
-The Text element can fetch its content in many ways. It allows you to set a source for its text content, which can be a direct plain text input, a local text file in FancyMenu's `assets` folder (`/config/fancymenu/assets/`), a web text file (via URL) or a local text file loaded via resource pack.
+The Text element can fetch its content in many ways. It allows you to set a source for its text content, which can be a direct plain text input, a local text file in FancyMenu's assets directory (`<game-directory>/config/fancymenu/assets/`), a web text file (via URL) or a local text file loaded via resource pack.
 
 Using the web source type as text source is especially useful if you want to make something like a changelog that's always up-to-date or a news tickers and similar things, without the need to release an update for your modpack.
 

@@ -200,4 +200,4 @@ That's it! You now have a (hopefully) working FMA file!
 
 You can use AFMA/FMA files like any other animated texture/image format. FancyMenu sees it as normal image, so you can use it everywhere you can set a texture to something, like **Image elements or Image menu backgrounds**.
 
-Make sure the AFMA/FMA file is in the `/config/fancymenu/assets/` folder, because FancyMenu can only pick textures and other resources from its `assets` folder.
+Make sure the AFMA/FMA file is in `<game-directory>/config/fancymenu/assets/`, because FancyMenu can only pick normal local textures and other resources from its assets directory.

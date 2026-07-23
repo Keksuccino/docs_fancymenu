@@ -12,6 +12,9 @@ dateCreated: 2025-04-14T20:14:26.193Z
 
 FancyMenu allows you to customize existing GUI screens, but it also allows you to add completely new ones and fill it with elements.
 
+> [!CAUTION]
+> Custom GUIs can run actions. Import them only from sources you trust.
+
 # Adding a New Screen
 
 To add a new screen, navigate to **Customization -> Custom GUIs -> Manage Custom GUIs**.
@@ -24,6 +27,8 @@ In the next menu, click on **New GUI**.
 
 Here you need to give your new GUI a unique identifier and you can customize other parts of the basic screeen behavior.
 When you're done, press **Done**.
+
+Use a unique lowercase identifier. Identifiers are case-sensitive.
 
 ![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
 
@@ -38,6 +43,8 @@ This will open the still pretty empty GUI screen. To make it less empty, just cr
 # Opening the GUI via Action
 
 The last part is to give normal users access to your GUI. The easiest way to do that is to use the **Open Screen or Custom GUI** action with a button, slider or ticker.
+
+Enter the Custom GUI identifier exactly as shown in the manager.
 
 ![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
 

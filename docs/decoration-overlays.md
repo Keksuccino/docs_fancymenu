@@ -101,7 +101,7 @@ To start over after death, left-click the gravestone. You can also use **Reset B
 
 ## Persistence and Customization
 
-Buddy state is saved automatically about every two minutes and when its screen closes. Pet state and leveling state use separate JSON files for each overlay instance inside `<game_root>/fancymenu_data/buddy/`. See [Data Storage Locations](./data-storage-locations) for the complete FancyMenu path reference.
+Buddy state is saved automatically about every two minutes and when its screen closes. Pet state and leveling state use separate JSON files for each overlay instance inside `<game-directory>/fancymenu_data/buddy/`. See [Data Storage Locations](./data-storage-locations) for the complete FancyMenu path reference.
 
 The overlay settings also let you replace Buddy's sprite atlas, interaction items, need icons, status-screen textures, and gravestone. Advanced stat settings control decay, activity costs and gains, care effectiveness, maximum poop count, and whether death is enabled.
 

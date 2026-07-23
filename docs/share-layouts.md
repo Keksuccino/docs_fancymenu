@@ -8,8 +8,11 @@ editor: markdown
 dateCreated: 2025-04-14T20:16:02.771Z
 ---
 
-The process of sharing a layout is very similar to [including it in a modpack](/modpacks), so just check the [Modpacks page](/modpacks) for more information.
+# Importing and Exporting Layouts
 
-Instead of moving the config files to a modpack, you "move" it to the other Minecraft instance of your friend, etc.
+> [!CAUTION]
+> Shared setups can run actions. Import them only from sources you trust.
 
-Just send your friend the config folder as ZIP and let them do the steps to copy the folder to their instance.
+Follow the [Modpacks guide](/modpacks), but copy the setup into the recipient's Minecraft instance instead of a modpack.
+
+Package the required files from `<game-directory>/config/fancymenu/` plus any explicitly referenced assets. `<game-directory>` is the active launcher/profile directory and is not necessarily `.minecraft`.

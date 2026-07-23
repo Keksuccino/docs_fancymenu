@@ -79,7 +79,7 @@ If you now want to add translated versions, like German, copy the content from t
 
 For German, you would then save the file as `de_de.json`. For other languages, please check [this Minecraft wiki page](https://minecraft.wiki/w/Language) for the correct language code for your language and name the file after it. Search for the **"in-game locale code"** for your language.
 
-## Creating a Minecraft Resource Pack for MC 1.21.4
+## Creating a Minecraft Resource Pack for Minecraft 26.2
 
 Now that your localization files are ready, we need a way to load them in Minecraft. For that, we will use a resource pack. We will make the pack to be enabled by default and we can even hide it if we don't want modpack users to mess with it.
 
@@ -96,13 +96,13 @@ A **resource pack** is a ZIP file that holds files that change the game's look a
    ```json
    {
      "pack": {
-       "pack_format": 16,
+       "pack_format": 88,
        "description": "My Custom Pack with Localizations"
      }
    }
    ```
    
-   *Note: `pack_format` 16 is for Minecraft 1.21.4.*
+   *Note: resource-pack format `88` is the format reported by Minecraft 26.2. Other Minecraft versions can require a different value.*
 
 3. **Add Your Localization Files:**  
    Inside your resource pack folder, create the following folder structure:
@@ -143,7 +143,7 @@ The **Resource Pack Overrides** mod makes it possible enable resource packs by d
    Download and install the mod from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/resource-pack-overrides) or [Modrinth](https://modrinth.com/mod/resource-pack-overrides).
 
 2. **Locate the Config File:**  
-   Find the file at `.minecraft/config/resourcepackoverrides.json`.  
+   Find the file at `<game-directory>/config/resourcepackoverrides.json`.
    *If the file does not exist, create it manually.*
 
 3. **Edit the Config File:**  
@@ -172,7 +172,7 @@ You can hide your resource pack so players do not see it in the resource pack se
 ### How to Hide It
 
 1. **Edit the Config File Again:**  
-   In the same file `.minecraft/config/resourcepackoverrides.json`, add an override for your pack:
+   In the same file `<game-directory>/config/resourcepackoverrides.json`, add an override for your pack:
    
    ```json
    {

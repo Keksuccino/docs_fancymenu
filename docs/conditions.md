@@ -9,28 +9,46 @@ dateCreated: 2025-04-14T20:14:22.175Z
 ---
 
 # Requirements
-Requirements (aka. "loading requirements") allow you to make parts of your layouts visible or invisible based on various conditions like if an element is hovered, the window has a specific size or if you're currently in a world.
 
-They can also be used in action scripts of buttons, sliders, tickers and everything else with an action script input.
+Requirements (called **Loading Requirements** in some menus) show or hide content based on conditions such as hover state, window size, or whether a world is loaded.
+
+You can use them on elements, whole layouts, and action scripts.
 
 # Adding Requirements to Elements
+
 To add one or more requirements to elements, just right-click the element and click on **Loading Requirements**.
 
+Requirements are checked while the menu is open, so elements update when a condition changes.
+
 # Layout-wide Requirements
-You can also change the visibity of whole layouts by right-clicking the **editor background** and then clicking on **Loading Requirements [Layout-Wide]**.
+
+You can also change the visibility of whole layouts by right-clicking the **editor background** and then clicking on **Loading Requirements [Layout-Wide]**.
+
+When a layout-wide result changes, FancyMenu rebuilds the current screen and applies the layouts whose requirements now pass.
 
 # Action Scripts
+
 Requirements can also be used in action scripts.
 You can add them in the action script editor screen and use them to execute specific actions only if the condition of the requirement is met.
 
+# Combining Requirements
+
+- Requirements outside groups use **AND**, so all of them must pass.
+- Inside a group, choose **AND** or **OR**.
+- Use **IF NOT** to invert one requirement.
+
+These rules are the same for elements, layouts, and action scripts.
+
 # Requirement Values
-Some requirements need you to set some values to work properly. If that's the case, the requirement screen should tell you to set all values first, but if not, just check if the **Edit Requirement Value** button is clickable when adding the requirement.
-Always check the requirement's description if you're not sure what to set as value.
-Some value inputs even support **TAB auto completion**.
+
+For requirements that need a value, use **Edit Requirement Value** and follow the description shown in the editor. Some fields support **TAB** completion.
+
+If an imported requirement no longer works after changing FancyMenu or add-ons, edit it in the requirements screen and check `logs/latest.log` for errors.
 
 FancyMenu 3.9.0 reworks the Manage Requirements window to use a right-click context menu, keyboard navigation, search, undo/redo (`CTRL + Z` / `CTRL + Y`) and `CTRL + S` as the **Done** shortcut.
 
 # Requirements in Detail
+
 The following list contains most, if not all, requirements available in FancyMenu. It is possible that the list is sometimes a bit outdated due to updates for the mod.
 
 ## Is Element Hovered

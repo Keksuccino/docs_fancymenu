@@ -10,7 +10,7 @@ dateCreated: 2025-04-14T20:16:28.294Z
 
 # Variables in FancyMenu
 
-Variables are a powerful feature in FancyMenu that let you store and reuse information throughout your menu customizations. They work like containers where you can put different types of data, give each container a name, and then access that data later using the variable name. Variables open up a world of possibilities for creating dynamic menus that change based on conditions you define.
+Variables store text values that layouts, actions, placeholders, requirements, listeners, schedulers, and Custom GUIs can reuse.
 
 ## Creating Variables
 
@@ -60,7 +60,7 @@ Now that you have variables holding data, you can use that data in different par
 * **Nested Placeholders**: You can even use variables inside other placeholders! The click counting example above demonstrated this by using the **Get Stored Variable** placeholder inside the **Calculator** placeholder.
 
 * **Actions**: Variables can be used in actions to create dynamic behavior based on variable values. Here are a few examples:
-    - Use an **IF** statement in an action script to check a variable's value using a combination of the **Is Number** loading requirement and the **Get Stored Variable** action and perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
+    - Use an **IF** statement in an action script to check a variable's value using a combination of the **Is Number** requirement and the **Get Stored Variable** placeholder, then perform different actions based on the result. For instance, you could have a button that says "You've clicked me X times!" and use an IF block to show a special message if the number of clicks is over 10.
     - Combine the **Get Stored Variable** placeholder with the **Copy to Clipboard** action to let users copy the value of a variable to their clipboard.
     - Use variables in the **Open GUI** action to load different screens based on the user's progress or preferences, which you track with variables.
 
@@ -74,4 +74,18 @@ Here are a few examples to inspire your own variable usage:
 
 3. **Tutorial Progress**: Add variables to track the player's progress through a tutorial, like `tutorial_step`. Increment the variable as they complete each step, and use loading requirements to gradually reveal more of the menu.
 
-Variables combined with FancyMenu's other features give you incredible flexibility to create menus that are tailored to each player's actions and preferences. Experiment with different variable setups to unlock the full potential of your menu customizations!
+## Persistence, Scope, and Storage
+
+Variables are shared across the current Minecraft instance. They are not separated per layout, world, server, or player.
+
+Values are saved immediately in `<game-directory>/config/fancymenu/user_variables.db` and survive restarts.
+
+- **Reset on Launch** empties that variable the next time the game starts.
+- **Clear All Variables** removes all stored variable values.
+- Names are case-sensitive. Use simple, unique names such as `tutorial_step`.
+
+The **Get Stored Variable** placeholder returns `0` when the named variable does not exist or when its stored value is empty. This fallback matters in comparisons and calculator expressions.
+
+The **Set Variable** action uses `variable_name:variable_value` and splits at the first colon, so the value may contain more colons.
+
+Do not store passwords, tokens, or other secrets in FancyMenu variables. They are readable configuration data.

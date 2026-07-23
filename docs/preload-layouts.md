@@ -27,7 +27,7 @@ To add a resource to FancyMenu's resource pre-loader, just click on **Pre-Load R
 
 This will open a menu that lets you add local resources, web resources and resource pack resources to a list.
 
-Every resource in this list will get pre-loaded every time the game reloads its resources, so basically every time the resource loading screen is visible.
+Resources in this list are loaded during startup and Minecraft resource reloads. This increases loading time and memory use, so only add resources that must appear immediately.
 
 <br>
 
@@ -35,4 +35,6 @@ Every resource in this list will get pre-loaded every time the game reloads its 
 
 # Pre-Loading Slideshows & Panoramas
 
-You can also add slideshows and panoramas to the list of resources to pre-load, which will help fixing issues with panorama or slideshow images showing as black/missing image first or flicker for a moment.
+Adding a slideshow loads all of its images and optional overlay. Adding a panorama loads all six faces and its optional overlay.
+
+**Customization -> Reload FancyMenu** does not run the pre-loader. Use a Minecraft resource reload or restart the game after changing the preload list.

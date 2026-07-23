@@ -41,7 +41,9 @@ So the correct resource location to the `image.png` resource would be:
 
 The easiest way to load resources is to simply use local files stored on the client (and in most cases shipped with modpacks).
 
-FancyMenu only allows loading local resources stored in `/config/fancymenu/assets/`, so make sure to store all your resources there!
+Store local resources in `<game-directory>/config/fancymenu/assets/`. `<game-directory>` is the active instance folder, which may differ from `.minecraft`.
+
+Resource fields may show the same path as `/config/fancymenu/assets/example.png`. In those fields, the leading `/` still means `<game-directory>`; it is not a filesystem-root path.
 
 This also makes it really easy to [ship local resource with your modpacks](./modpacks), since most modpack systems (CurseForge, Modrinth, etc.) support shipping mod config folders by default.
 

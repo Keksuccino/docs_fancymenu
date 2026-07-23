@@ -4,7 +4,7 @@ description: How to use placeholders.
 ---
 # Placeholders
 
-Placeholders are dynamic values that get replaced with actual content when they are used. In FancyMenu, placeholders allow you to insert dynamic content into various elements like text, buttons, and loading requirements. Think of them as variables that get evaluated and replaced with their actual values when your layouts are displayed.
+Placeholders insert live values into text, buttons, requirements, and other supported fields.
 
 # General Information
 
@@ -20,7 +20,7 @@ For example, to display the player's name:
 ```
 
 ## Nesting Placeholders
-One of the most powerful features of FancyMenu's placeholder system is the ability to nest placeholders within other placeholders. This means you can use the output of one placeholder as an input for another.
+You can use one placeholder inside another placeholder's value.
 
 Example of nested placeholders:
 ```
@@ -29,7 +29,7 @@ Example of nested placeholders:
 This example takes the maximum RAM value and divides it by 1024 to convert it from MB to GB.
 
 > [!IMPORTANT]
-> Unlike real JSON, nested placeholders do **not** get **escaped** by using `\`. This is very important, because placeholders will stop working when escaped (obviously). Placeholders just use a JSON-like syntax. They are not real JSON.
+> This is FancyMenu syntax, not JSON. Nested placeholders use the exact unescaped form shown above, so JSON formatters will reject or rewrite them. Placeholder names are case-sensitive; malformed or unknown placeholders remain visible as text and are logged.
 
 # Using Placeholders
 
@@ -64,28 +64,28 @@ Returns the current Minecraft version.
 ```
 {"placeholder":"mcversion"}
 ```
-Example output: `1.19.2`
+Example output: the running Minecraft version
 
 ## Mod Loader Version (loaderver)
-Returns the version of the mod loader (Forge/Fabric).
+Returns the version of the mod loader (Fabric/NeoForge).
 ```
 {"placeholder":"loaderver"}
 ```
-Example output: `43.2.0`
+Example output: the installed loader version
 
 ## Mod Loader Name (loadername)
 Returns the name of the mod loader.
 ```
 {"placeholder":"loadername"}
 ```
-Example output: `Forge`
+Example output: `Fabric`
 
 ## Mod Version (modversion)
 Returns the version of a specific mod.
 ```
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
-Example output: `2.14.9`
+Example output: the installed mod version
 
 ## Total Mods Count (totalmods)
 Returns the total number of mods installed.
@@ -734,7 +734,7 @@ Returns the Minecraft version of a server.
 ```
 {"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
 ```
-Example output: `1.19.2`
+Example output: the server's reported Minecraft version
 
 ## Year (realtimeyear)
 Returns the current year.
@@ -1142,6 +1142,8 @@ Example output: Text content from the URL
 
 ## Random Text (randomtext)
 Returns a random line from a text file, URL, or direct plain text. The text changes at specified intervals.
+
+In placeholder values, `/config/...` means `<game-directory>/config/...`; it is not a filesystem-root path. See [Resources](./resources#local-resources).
 ```
 {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
 ```

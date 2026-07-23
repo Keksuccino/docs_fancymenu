@@ -7,6 +7,9 @@ description: 'How to use action scripts with buttons, sliders, tickers and more.
 
 FancyMenu lets you add interactivity to your menus by assigning **actions** to elements. These actions run when a button is clicked, ticker is ticking, slider gets used, or when a screen opens or closes. You can also build advanced action scripts using simple control statements, such as **if**, **else-if**, **else**, and **while**, to control which actions run and when.
 
+> [!CAUTION]
+> Imported action scripts can modify files, contact servers, open links, or run commands. Use only sources you trust.
+
 <img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="Action script editor" style="max-width:800px;width:100%;height:auto;">
 
 # What Are Actions?
@@ -20,12 +23,16 @@ To create more complex behavior, FancyMenu supports basic control statements in 
 - **If Statement:** Runs a block of actions only if a specified [condition](/en/conditions) is met.
 - **Else-If Statement:** Checks another [condition](/en/conditions) if the preceding *if* (or earlier *else-if*) wasn't met.
 - **Else Statement:** Runs if none of the preceding [conditions](/en/conditions) are met.
-- **While Statement:** Repeats a block of actions continuously while a [condition](/en/conditions) remains true (with a built‑in timeout to prevent infinite loops).
-- **Delay Block:** Waits for the specified time before running its contained actions. The rest of the script keeps running while the delay counts down.
-- **Execute Later Block:** Queues contained actions to run on the main thread after a millisecond delay.
+- **While Statement:** Repeats a block while a [condition](/en/conditions) remains true. It stops after three seconds to prevent infinite loops; do not use it as a timer.
+- **Delay Block:** Runs its block after the delay when the surrounding script is triggered again.
+- **Execute Later Block:** Runs its block automatically after the given millisecond delay.
 - **Comment:** Adds a note inside the script for organization. Comments do not run any action.
 
 By combining these statements with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
+
+Actions run from top to bottom. A failed action is logged, then the script continues.
+
+Downloads, ZIP extraction, and HTTP requests finish later. The next action does not wait, so use the matching completion listener when another action depends on the result.
 
 # Where Can You Use Action Scripts?
 
@@ -61,6 +68,14 @@ The `$$` placeholders are special. Some features of FancyMenu will provide these
 For example, if actions are used within a slider, using `$$value` in the action will be replaced with the slider's current value.
 
 When using actions in listeners, every listener will provide its own unique set of variables/placeholders for getting more information about the listener, like pressed mouse button, entered structure, etc.
+
+`$$` names are case-sensitive and only work in the script that provides them. See [Listeners](./listeners#listener-variables).
+
+## Action Value Delimiters
+
+Use the exact delimiter shown for each action: `:`, `||`, or `|||`. There is no escape syntax for delimiters inside a field.
+
+Placeholders are replaced before the value is split. For `set_variable`, only the first colon separates the name from the value, so later colons remain part of the value.
 
 # How to Set Up and Edit Actions
 
@@ -165,20 +180,24 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 {.is-info}
 
 ## Toggle Layout (`toggle_layout`)
-- **Description:** Toggles a layout (Enable/Disable) by its name
+- **Description:** Toggles a layout (Enable/Disable) by its filename without `.txt`
 - **Value Required:** Yes - `layout_name`
 
+The change is saved in the layout file and the current screen updates immediately. Use the case-sensitive layout filename without `.txt`.
+
 ## Enable Layout (`enable_layout`)
-- **Description:** Enables a layout by its name
+- **Description:** Enables and saves a layout by its filename without `.txt`
 - **Value Required:** Yes - `layout_name`
 
 ## Disable Layout (`disable_layout`)
-- **Description:** Disables a layout by its name
+- **Description:** Disables and saves a layout by its filename without `.txt`
 - **Value Required:** Yes - `layout_name`
 
 ## Open Screen or Custom GUI (`opengui`)
 - **Description:** Opens a screen by its identifier (vanilla, mod, or custom GUI)
 - **Value Required:** Yes - `screen_identifier`
+
+Copy the exact, case-sensitive identifier from the [Screen Identifiers](./screen-identifiers) debug overlay.
 
 > This action **will not work for every screen**, especially mod screens. If the action fails to open a screen, it will show an error. There is not much you can do in that case, because then it's probably a screen that is too complex to get opened automatically by FancyMenu.
 > 
@@ -194,7 +213,7 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Value Required:** No
 
 ## Back to Last Screen (`back_to_last_screen`)
-- **Description:** Goes back to the previous screen (the one before the current)
+- **Description:** Returns to a Custom GUI's parent or to the one most recently closed screen instance
 - **Value Required:** No
 
 ## Join Server (`joinserver`)
@@ -257,8 +276,10 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Value Required:** No
 
 ## Open URL in Browser (`openlink`)
-- **Description:** Opens a link in your default browser
+- **Description:** Passes a URL to the operating system's default handler without a FancyMenu confirmation prompt
 - **Value Required:** Yes - `https://example.com`
+
+Use trusted `https://` links. FancyMenu does not show a confirmation prompt before passing the URL to the operating system.
 
 ## Copy Text to Clipboard (`copytoclipboard`)
 - **Description:** Copies text to the clipboard
@@ -272,12 +293,14 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Description:** Stores text content in a FancyMenu variable
 - **Value Required:** Yes - `variable_name:variable_value`
 
+The first colon separates the name from the value. Later colons remain part of the value. Changes are saved immediately.
+
 ## Clear All Variables (FM Variable) (`clear_variables`)
 - **Description:** Clears ALL of FancyMenu's stored variables
 - **Value Required:** No
 
 ## Send HTTP Request (`send_http_request`)
-- **Description:** Sends an HTTP request; can store the response in a variable
+- **Description:** Starts an HTTP/HTTPS request in the background; can log and/or store the response in a variable
 - **Value Required:** Yes - HTTP request configuration
 
 > This action allows you to send data to REST APIs, webhooks, or any HTTP endpoint.
@@ -285,6 +308,8 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 > 
 > This action also allows you to store the response of the request in a FancyMenu variable for later use!
 {.is-info}
+
+The next script action does not wait for the response. Do not store passwords or access tokens in the action configuration.
 
 ## Manage Resource Pack (`manage_resource_pack`)
 - **Description:** Enable/disable/toggle a resource pack by display name (optional reload)
@@ -295,8 +320,10 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 - **Value Required:** No
 
 ## Reload FancyMenu (`reloadmenu`)
-- **Description:** Reloads FancyMenu, including panoramas, slideshows and all resources (heavy)
+- **Description:** Reloads FancyMenu layouts, Custom GUIs, panoramas, slideshows, settings, and FancyMenu-managed resources
 - **Value Required:** No
+
+This does not reload Minecraft resource packs. Use `reload_resource_packs` for that.
 
 > This action has a **big impact on performance** and can cause lags if used in Tickers. It is not recommended to use this action in anything else than a button.
 {.is-warning}
@@ -332,33 +359,35 @@ This list contains most, if not all, actions available in FancyMenu. It's possib
 The three fields must be separated with the triple-pipe delimiter `|||`. Set `force_set_when_inactive` to `true` to update a disabled input field too; when it is `false`, inactive fields are left unchanged.
 
 ## Create File in Game Directory (`create_file_in_game_dir`)
-- **Description:** Creates an empty file in the game directory (instance root). Accepts the `.minecraft/` prefix to target the default launcher profile directory (may differ from the current instance dir).
+- **Description:** Creates an empty file relative to the active game directory. Accepts the `.minecraft/` prefix to target the conventional Minecraft directory (which may differ from the current instance).
 - **Value Required:** Yes - `file_path`
 
+Example: `config/some_mod_folder/new_file.txt`. Missing parent directories are created; an existing file is left unchanged.
+
 ## Delete File/Folder in Game Directory (`delete_file_in_game_dir`)
-- **Description:** Deletes a file or folder in the game directory (instance root). Accepts `.minecraft/` prefix to hit the default launcher profile (can differ from the running instance). Append `*` to delete **all files directly inside** a folder (ignores sub-directories; keeps the folder).
+- **Description:** Deletes a file or recursively deletes a folder relative to the active game directory. Accepts `.minecraft/` to target the conventional Minecraft directory. Append `*` to delete **all files directly inside** a folder (ignores subdirectories and keeps the folder).
 - **Value Required:** Yes - `target_path`
 
 For example, `config/downloads/*` deletes the files directly inside `config/downloads/`, but it neither traverses nor deletes its sub-directories.
 
 ## Copy File/Folder in Game Directory (`copy_file_in_game_dir`)
-- **Description:** Copies within the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not always the current instance). Append `*` to the **source** path to copy every file directly inside that folder (ignores sub-directories); destination must be a directory and cannot use `*`.
+- **Description:** Copies within the active game directory; `.minecraft/` targets the conventional Minecraft directory. A named directory is copied recursively. Append `*` to the **source** path to copy every direct child file only; destination must be a directory and cannot use `*`.
 - **Value Required:** Yes - `source||destination`
 
-For example, `config/source/*||config/destination/` copies only the files directly inside `config/source/`. With a wildcard source, FancyMenu creates the destination directory when needed but does not copy any source sub-directories.
+For example, `config/source/*||config/destination/` copies only the files directly inside `config/source/`. With a wildcard source, FancyMenu creates the destination directory when needed but does not copy any source subdirectories. Copy refuses any existing destination/colliding file instead of overwriting it.
 
 ## Move File/Folder in Game Directory (`move_file_in_game_dir`)
-- **Description:** Moves within the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from the current instance). Append `*` to the **source** path to move every file directly inside that folder (ignores sub-directories); destination must be a directory and cannot use `*`.
+- **Description:** Moves within the active game directory; `.minecraft/` targets the conventional Minecraft directory. Append `*` to the **source** path to move every direct child file only; destination must be a directory and cannot use `*`.
 - **Value Required:** Yes - `source||destination`
 
-For example, `config/source/*||config/destination/` moves only the files directly inside `config/source/`. With a wildcard source, FancyMenu creates the destination directory when needed but leaves source sub-directories in place.
+For example, `config/source/*||config/destination/` moves only the files directly inside `config/source/`. With a wildcard source, FancyMenu creates the destination directory when needed but leaves source subdirectories in place. Move refuses an existing destination/colliding file instead of overwriting it.
 
 ## Rename File/Folder in Game Directory (`rename_file_in_game_dir`)
-- **Description:** Renames a file or folder inside the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from current instance). Keeps contents intact, only the name changes.
+- **Description:** Renames a file or folder within its current parent directory; `.minecraft/` targets the conventional Minecraft directory. Keeps contents intact and refuses an existing target name.
 - **Value Required:** Yes - `path||new_name`
 
 ## Download File to Game Directory (`download_file_to_game_dir`)
-- **Description:** Downloads a file asynchronously into the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (not necessarily the running instance).
+- **Description:** Downloads a file in the background to a directory relative to the active game directory; `.minecraft/` targets the conventional Minecraft directory.
 - **Value Required:** Yes - `url||target_folder`
 
 The second field is a **target directory**, not a complete destination file path. FancyMenu creates the directory when needed and determines the filename from the response's `Content-Disposition` header, then falls back to the URL path. The resolved name is URL-decoded and sanitized before use; if neither source provides a usable name, FancyMenu generates one. An existing file with the same name is overwritten.
@@ -366,19 +395,21 @@ The second field is a **target directory**, not a complete destination file path
 The [**On File Downloaded via Action** listener](./listeners#on-file-downloaded-via-action) fires after both successful and failed download attempts and exposes the URL, resolved target path, and success state.
 
 ## Extract ZIP File In Game Directory (`extract_zip_file_in_game_dir`)
-- **Description:** Extracts a ZIP file into a target folder inside the game directory or default `.minecraft` directory. Triggers the **On ZIP Extracted via Action** listener when finished.
+- **Description:** Extracts a ZIP into a target folder inside the active game directory or conventional `.minecraft` directory. Triggers **On ZIP Extracted via Action** when finished.
 - **Value Required:** Yes - `source_zip_path||target_folder_path`
+
+Existing files with matching names are replaced. Extract only trusted ZIP files.
 
 ## Open File/Folder In Game Directory (`open_file_folder_in_game_dir`)
 - **Description:** Opens a file or folder with the operating system's default app. The target must stay inside the game directory or the default `.minecraft` directory for safety reasons.
 - **Value Required:** Yes - `target_path`
 
 ## Write File in Game Directory (`write_file_in_game_dir`)
-- **Description:** Writes or appends text inside the game directory (instance root); `.minecraft/` prefix targets the default launcher profile (may differ from this instance). Creates the file if missing. Supports `\n` in the value to insert line breaks; append mode controlled by the final boolean.
+- **Description:** Writes or appends text relative to the active game directory; `.minecraft/` targets the conventional Minecraft directory. Creates the file and parents if missing. `\n` inserts line breaks; `append_bool=false` replaces an existing file.
 - **Value Required:** Yes - `path|||content|||append_bool`
 
 ## Select File from System (`select_file_to_game_dir`)
-- **Description:** Opens a native file picker (any location) and copies the selected file into the game directory (instance root) or default `.minecraft/` when prefixed (that default may differ from this instance). Supports extension filters, custom filter label, and optional overwrite toggle.
+- **Description:** Opens a native file picker and copies the selected file inside the active game directory, or conventional `.minecraft/` when prefixed. Supports extension filters, a custom filter label, and an overwrite toggle.
 - **Value Required:** Yes - `target_path|||filter_description|||extensions|||overwrite_bool`
 
 `target_path` is the complete destination file path. Separate multiple extensions with `;` or `,`, for example `png;jpg`; a blank extension list allows all files. If `overwrite_bool` is `false`, the action fails instead of replacing an existing destination file.

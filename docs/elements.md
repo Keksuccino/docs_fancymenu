@@ -65,7 +65,7 @@ A standard checkbox that can be toggled on or off. It can execute actions upon b
 *   **Key Features:**
     *   **Actions on Toggle:** Executes [Action Scripts](https://docs.fancymenu.net/en/action-scripts) when its state changes. The current state (`true` or `false`) can be accessed within its actions.
     *   **Variable Mode:** Can be linked directly to a FancyMenu variable, making the checkbox state read from and write to that variable.
-    *   **Persistent State:** When Variable Mode is disabled, the checkbox automatically saves its state by element identifier and restores it after restarting the game. These states are stored in `<game_root>/checkbox_states.json`. In Variable Mode, the linked FancyMenu variable is the checkbox's state source instead.
+    *   **Persistent State:** When Variable Mode is disabled, the checkbox automatically saves its state by element identifier and restores it after restarting the game. These states are stored in `<game-directory>/checkbox_states.json`. In Variable Mode, the linked FancyMenu variable is the checkbox's state source instead.
     *   **Custom Appearance:** Supports custom textures for the background (in normal, hover, and inactive states) and the checkmark itself.
 
 ## Text Input Field
@@ -171,7 +171,7 @@ Renders a custom GLSL shader inside an element.
     *   **Uniforms:** Exposes FancyMenu and input uniforms. See the [GLSL Shader API](https://docs.fancymenu.net/en/glsl-shader-api) page for details.
 
 ## Slideshow
-Displays a sequence of images. Its images and `properties.txt` configuration file live in the slideshow's own subdirectory under `/config/fancymenu/slideshows/`.
+Displays a sequence of images. Its images and `properties.txt` configuration file live in the slideshow's own subdirectory under `<game-directory>/config/fancymenu/slideshows/`.
 
 *   **Use Cases:**
     *   A rotating gallery of in-game screenshots.
@@ -240,7 +240,7 @@ For newer Minecraft versions (1.21.5+), the official MCEF projects do not provid
     *   **Media Control:** Offers options to mute media, loop videos, and hide video controls on the loaded page.
 
 ### Loading Local HTML Files
-The Browser element lets you load local HTML documents in `/config/fancymenu/assets/`! This means you can display local browser-rendered content for fancy looking changelogs and more.
+The Browser element lets you load local HTML documents from `<game-directory>/config/fancymenu/assets/`. This means you can display local browser-rendered content for fancy looking changelogs and more.
 
 To load a local HTML file, start your URL with `file:///`, followed by the SHORT file path, for example `/config/fancymenu/assets/cool_changelog.html`, which makes it look like this: `file:///config/fancymenu/assets/cool_changelog.html`.
 
