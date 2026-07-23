@@ -26,16 +26,16 @@ To create more complex behavior, FancyMenu supports control statements in action
 | **Else-If** | Checks another set of [requirements](./conditions) when the preceding **If** or **Else-If** did not run. |
 | **Else** | Runs when none of the preceding **If** or **Else-If** requirements are met. |
 | **While** | Repeats its actions while its [requirements](./conditions) remain true. It stops after three seconds to prevent infinite loops; do not use it as a timer. |
-| **Comment** | Adds a note inside the script for organization and does not run an action. |
 
 # What Are Blocks?
 
-Blocks delay or schedule a group of actions without stopping the rest of the script:
+The editor lists script entries that are not statements as blocks:
 
 | Block | Behavior |
 |---|---|
 | **Delay** | Starts a countdown without stopping the rest of the script. Its nested actions become eligible after the delay; screen reinitialization resets the countdown. |
 | **Execute Later** | Schedules a new execution of its nested actions after the delay every time the block is reached. |
+| **Comment** | Adds a note inside the script for organization and does not run an action. |
 
 By combining statements and blocks with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
 
