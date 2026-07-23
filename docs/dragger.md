@@ -1,16 +1,10 @@
 ---
 title: Dragger
 description: Let users move anchored elements outside the editor.
-published: true
-date: 2025-07-05T19:19:41.915Z
-tags:
-editor: markdown
-dateCreated: 2025-07-05T19:19:37.358Z
 ---
-
 # Dragger
 
-A Dragger is an invisible element that users can move with the mouse outside the layout editor.
+A Dragger is an invisible element that users can move with the mouse outside the layout editor. You can anchor other elements to it, so they get moved with the Dragger.
 
 1. Add a [**Dragger** element](./elements#dragger).
 2. Anchor the elements that should move to the Dragger.
