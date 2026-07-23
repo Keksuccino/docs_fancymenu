@@ -2,7 +2,6 @@
 title: Action Scripts
 description: 'How to use action scripts with buttons, sliders, tickers and more.'
 ---
-
 # Action Scripts
 
 Action scripts run configured tasks when a [Button](./elements#button) is clicked, a [Ticker](./elements#ticker) updates, a [Slider](./elements#slider) changes, a screen opens or closes, or another supported event occurs. Statements such as **if**, **else-if**, **else**, and **while** add conditional control.
@@ -29,7 +28,7 @@ To create more complex behavior, FancyMenu supports control statements in action
 
 # Blocks
 
-The editor lists script entries that are not statements as blocks:
+Blocks can be added to scripts, and provide useful features for having more control over the script execution flow/timing, and provide some useful QoL features:
 
 | Block | Behavior |
 |---|---|
