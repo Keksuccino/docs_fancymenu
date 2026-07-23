@@ -1,28 +1,12 @@
 ---
 title: Decoration Overlays
 description: Add fullscreen visual overlays to menus in the FancyMenu layout editor.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags:
-editor: markdown
-dateCreated: 2026-05-03T11:01:52.000Z
 ---
-
 # Decoration Overlays
 
 Decoration Overlays are fullscreen effects that render in front of your menu elements.
 
 They are useful when you want to add atmosphere or motion to a menu without building those effects manually.
-
-Common examples:
-
-- Add **Snowfall** for a winter menu with snow buildup.
-- Add **Rainfall** for a storm look with puddles and drips.
-- Add **Fireflies** for a calm night-style menu.
-- Add **String Lights** for festive or decorative menu themes.
-- Add **Leaves**, **Fireworks**, or **Confetti** for seasonal/event menus.
-- Add **Buddy** for an interactive virtual pet with needs, activities, progression, and persistent state.
-- Add the **Browser** overlay to show a fullscreen webpage/video layer.
 
 # Where To Find It
 
