@@ -37,7 +37,7 @@ The editor lists script entries that are not statements as blocks:
 | **Execute Later** | Schedules a new execution of its nested actions after the delay every time the block is reached. |
 | **Comment** | Adds a note inside the script for organization and does not run an action. |
 
-By combining statements and blocks with actions, you can build dynamic and conditional behavior, for example, checking if a player's health is low before sending a warning message or repeating an update until a condition changes.
+# Script Execution
 
 Actions run from top to bottom. A failed action is logged, then the script continues.
 
