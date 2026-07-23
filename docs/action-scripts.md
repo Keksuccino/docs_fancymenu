@@ -16,7 +16,7 @@ Action scripts run configured tasks when a [Button](./elements#button) is clicke
 
 An **action** is a task or job that FancyMenu runs when triggered. For example, an action might open a new screen, send a chat message, or adjust the volume of an [Audio element](./elements#audio). In FancyMenu's editor, actions are configured with a value (if needed) that provides extra details—such as a URL or server address.
 
-# What Are Statements?
+# Statements
 
 To create more complex behavior, FancyMenu supports control statements in action scripts:
 
@@ -27,7 +27,7 @@ To create more complex behavior, FancyMenu supports control statements in action
 | **Else** | Runs when none of the preceding **If** or **Else-If** requirements are met. |
 | **While** | Repeats its actions while its [requirements](./conditions) remain true. It stops after three seconds to prevent infinite loops; do not use it as a timer. |
 
-# What Are Blocks?
+# Blocks
 
 The editor lists script entries that are not statements as blocks:
 
