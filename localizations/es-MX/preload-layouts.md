@@ -1,35 +1,35 @@
 ---
-title: Precargar recursos
+title: Recursos de precarga
 description: >-
-  Cómo precargar recursos para que estén listos para usarse una vez que el juego
+  Cómo precargar recursos para que estén listos para usarse cuando el juego
   termine de cargar.
 ---
+# Recursos de precarga
 
-# Precargar recursos
-
-En algunos casos se recomienda precargar recursos.
-Esto se necesita principalmente para imágenes de alta resolución, archivos de audio y recursos web en general.
-
-Precargar recursos puede ayudar a evitar posibles parpadeos de imágenes o que los archivos de audio no empiecen a reproducirse lo suficientemente rápido.
-
-También se recomienda precargar animaciones (archivos AFMA/FMA) para que se reproduzcan sin problemas y no se retrasen ni muestren una pantalla negra cuando se cargan por primera vez.
+La precarga prepara recursos seleccionados antes de que un menú los necesite. Úsala para recursos que de otra forma parpadean, muestran un primer fotograma negro o aparecen tarde.
 
 # Agregar recursos al precargador
 
-Para agregar un recurso al precargador de recursos de FancyMenu, solo haz clic en **Precargar recursos** dentro de **Personalización**.
+Abre **Personalización -> Recursos de precarga**.
 
 <br>
 
-<img width="350" alt="Captura de pantalla_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
+<img width="350" alt="Screenshot_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
 
-Esto abrirá un menú que te permite agregar recursos locales, recursos web y recursos de paquetes de recursos a una lista.
+La lista acepta recursos compatibles de imagen, animación, audio, video y texto desde archivos locales, URLs web o paquetes de recursos. No precarga una página activa de [Browser](./elements#browser).
 
-Cada recurso de esta lista se precargará cada vez que el juego vuelva a cargar sus recursos, es decir, básicamente cada vez que la pantalla de carga de recursos esté visible.
+El precargador se inicia durante el arranque del juego y las recargas de recursos de Minecraft. Espera a que cada entrada termine o falle antes de continuar, con un límite de dos minutos por entrada.
+
+Los recursos cargados permanecen en caché hasta que FancyMenu libera los recursos durante una recarga o al cerrar el cliente. **Personalización -> Recargar FancyMenu** libera la caché, pero no vuelve a ejecutar el precargador.
+
+La precarga aumenta el tiempo de carga y el uso de RAM/VRAM. Agrega solo los recursos que deban estar listos de inmediato; elimina entradas grandes si el cliente se queda sin memoria.
 
 <br>
 
-<img width="731" alt="Captura de pantalla_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
+<img width="731" alt="Screenshot_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
 
-# Precargar presentaciones y panoramas
+# Precarga de presentaciones y panoramas
 
-También puedes agregar presentaciones y panoramas a la lista de recursos para precargar, lo que ayudará a corregir problemas con imágenes de panoramas o presentaciones que aparezcan en negro o como imagen faltante al principio, o que parpadeen por un momento.
+Agregar una [presentación](./slideshows) carga todas sus imágenes y la superposición opcional. Agregar un [panorama](./panoramas) carga las seis caras y su superposición opcional.
+
+**Personalización -> Recargar FancyMenu** no ejecuta el precargador. Usa una recarga de recursos de Minecraft o reinicia el juego después de cambiar la lista de precarga.
