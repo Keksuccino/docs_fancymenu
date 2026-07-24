@@ -1,20 +1,13 @@
 ---
 title: Essential Mod
-description: Jak dostosować interfejs Essential.
+description: Jak dostosować interfejs użytkownika Essential.
 ---
-
 # Essential
 
-Najnowsze wersje moda Essential dodały zgodność z FancyMenu, co oznacza, że powinieneś teraz móc w pełni dostosować wszystkie elementy, które Essential dodaje do ekranu tytułowego i ekranu pauzy!
+Essential zapewnia integrację z FancyMenu dla elementów, które dodaje do ekranów tytułowego i pauzy.
 
-Szczegółowy przewodnik po dostosowywaniu interfejsu Essential znajdziesz na [tej stronie wiki](https://essential.gg/wiki/fancymenu) w wiki Essential!
+Zobacz [przewodnik Essential dotyczący FancyMenu](https://essential.gg/wiki/fancymenu), aby poznać obsługiwany proces dostosowywania.
 
-# Problemy z dostosowywaniem
+# Problemy z dostosowaniem
 
-Jeśli podczas dostosowywania elementów Essential napotkasz jakiś błąd lub niedogodność, jest to niemal zawsze spowodowane przez Essential i to twórcy Essential muszą to naprawić po swojej stronie.
-
-Zgłoś błąd/problem zespołowi Essential za pośrednictwem ich Discorda lub GitHuba.
-
-# Linki użyte na tej stronie
-
-- Strona wiki Essential o FancyMenu: https://essential.gg/wiki/fancymenu
+Essential zapewnia własną integrację z FancyMenu. Jeśli widżet należący do Essential jest brakujący lub zachowuje się inaczej niż zwykły widżet Minecrafta, odtwórz problem w aktualnych wersjach i zgłoś go do projektu, który jest właścicielem tego widżetu.
