@@ -1,48 +1,56 @@
 ---
 title: GUIs Personalizadas
-description: Como adicionar uma nova tela de GUI ao jogo.
+description: Crie e configure novas telas de GUI.
 ---
-
 # GUIs Personalizadas
 
-O FancyMenu permite personalizar telas de GUI existentes, mas também permite adicionar telas totalmente novas e preenchê-las com elementos.
+GUIs Personalizadas são novas telas que você pode preencher com [elementos](./elements) do FancyMenu.
 
-# Adicionando uma Nova Tela
+> [!CAUTION]
+> GUIs Personalizadas podem executar ações. Importe-as apenas de fontes em que você confia.
 
-Para adicionar uma nova tela, navegue até **Personalização -> GUIs Personalizadas -> Gerenciar GUIs Personalizadas**.
+# Criando uma GUI Personalizada
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+1. Abra **Personalização -> GUIs Personalizadas -> Gerenciar GUIs Personalizadas**.
+2. Selecione **Nova GUI**.
+3. Insira um identificador e configure as opções da tela.
+4. Selecione **Concluído** e, em seguida, abra a nova GUI pelo gerenciador.
+5. Crie e edite seu layout como qualquer outra tela.
 
-No próximo menu, clique em **Nova GUI**.
+Os identificadores podem usar letras minúsculas, números, `.`, `_` e `-`. Eles não podem conter espaços e devem ser exclusivos. Identificadores vazios, inválidos ou duplicados não podem ser salvos.
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+As GUIs Personalizadas sempre têm a personalização de tela ativada; a opção de alternância de personalização não pode ser desativada.
 
-Aqui você precisa dar à sua nova GUI um identificador exclusivo e pode personalizar outras partes do comportamento básico da tela.
-Quando terminar, pressione **Concluído**.
+# Configurações da Tela
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+| Configuração | Comportamento |
+|---|---|
+| Permitir ESC | Permite que a tecla Escape feche a GUI e retorne à tela pai |
+| Pausar Jogo/Mundo | Pausa o modo singleplayer enquanto a GUI estiver aberta |
+| Renderizar Fundo do Mundo | Mostra o mundo carregado atrás da GUI |
+| Sobreposição do Fundo do Mundo | Adiciona a sobreposição padrão de blur/escurecimento sobre o mundo |
+| Modo Pop-up | Mantém a tela pai visível atrás da GUI Personalizada |
+| Sobreposição do Fundo do Pop-up | Adiciona blur/tintura sobre a tela pai no Modo Pop-up |
 
-Agora você tem uma nova GUI vazia. Para abri-la, selecione a GUI no menu **Gerenciar GUIs Personalizadas** e clique em **Abrir GUI**.
+O Modo Pop-up não mescla as duas telas. A GUI Personalizada continua sendo a tela ativa enquanto sua tela pai é renderizada atrás dela. Fechar a GUI Personalizada retorna a essa tela pai quando houver uma.
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
+# Abrindo uma GUI Personalizada
 
-Isso abrirá a tela de GUI ainda bem vazia. Para deixá-la menos vazia, basta criar um novo layout para ela, como faria com qualquer outra tela.
+Use o identificador exato da GUI Personalizada com uma destas opções:
 
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
+- A ação [**Abrir Tela ou GUI Personalizada**](./action-scripts#open-screen-or-custom-gui-opengui).
+- O comando [`/openguiscreen`](./commands#openguiscreen).
 
-# Abrindo a GUI via Ação
+# Substituindo uma Tela Existente
 
-A última etapa é dar aos usuários normais acesso à sua GUI. A maneira mais fácil de fazer isso é usar a ação **Abrir Tela ou GUI Personalizada** com um botão, slider ou ticker.
+Uma GUI Personalizada pode substituir uma tela Vanilla ou de mod sempre que essa tela for aberta.
 
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
+1. Crie a GUI Personalizada de substituição.
+2. Abra a tela que você deseja substituir.
+3. Ative **Personalização -> Configurações -> Modo Avançado de Personalização**.
+4. Selecione **Personalização -> GUIs Personalizadas -> Substituir Atual por GUI Personalizada**.
+5. Escolha a GUI Personalizada de substituição.
 
-# Abrindo a GUI via Comando
+Gerencie as substituições salvas em **Personalização -> GUIs Personalizadas -> Gerenciar Telas Substituídas**.
 
-Você também pode abrir sua GUI personalizada por meio de um [comando no jogo](./commands#openguiscreen).
-Isso até permite abrir a GUI remotamente para outros usuários!
-
-# Modo Popup
-
-A partir do FancyMenu v3.8.0, as GUIs Personalizadas oferecem suporte a um "Modo Popup" que faz com que elas pareçam um popup sendo aberto sobre outra tela (a tela anterior de onde a GUI Personalizada foi aberta). Essa configuração pode ser ativada individualmente para cada GUI Personalizada em suas configurações.
-
-O FancyMenu 3.9.0 também adiciona uma opção para ativar ou desativar a sobreposição de fundo da tela para GUIs Personalizadas enquanto estiver em um mundo. Use-a quando quiser desativar ou manter o desfoque/escurecimento atrás de uma GUI Personalizada aberta sobre a jogabilidade.
+Uma substituição ignora a tela original, então teste a navegação dela e quaisquer recursos que dependam do comportamento da tela original.
