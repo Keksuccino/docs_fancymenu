@@ -1,76 +1,43 @@
 ---
 title: Música de Fundo do Menu
-description: Como personalizar a música reproduzida nos menus.
+description: Personalize a música tocada nos menus.
 ---
-
 # Música de Fundo do Menu
 
-É possível substituir a música padrão de fundo dos menus do Minecraft por faixas personalizadas ou simplesmente desativar a música Vanilla normal que toca nos menus.
+O FancyMenu pode desativar a música de menu da Vanilla, reproduzir uma lista global de faixas ou usar [elementos de Áudio](./elements#audio) para música específica de cada layout.
 
-# Desativando a Música Vanilla
+# Música Global do Menu
 
-O FancyMenu oferece várias maneiras de desativar a música de menu Vanilla. Isso pode ser útil se você planeja reproduzir outras faixas de áudio nas telas ou se simplesmente não quer que nenhuma música toque em algumas telas.
+Abra [**Personalizações Globais**](./global-customizations) em **Customização -> Personalizações Globais** fora do editor de layout.
 
-## Globalmente
+Use estas configurações:
 
-Se você não quiser música em nenhum menu, esta é a maneira mais fácil de fazer isso.
+- **Reproduzir Música de Menu da Vanilla** ativa ou desativa globalmente a música de menu da Vanilla.
+- **Faixas de Música Personalizada do Menu** gerencia a lista global de faixas substitutas.
 
-Para desativar ou substituir globalmente a música de menu Vanilla no FancyMenu 3.9.0+, vá até a barra de menus do FancyMenu no topo das telas e clique em **Customization -> Global Customizations**. As Global Customizations podem substituir a música do menu sem exigir um resource pack e sem precisar habilitar personalizações para cada tela.
+> [!IMPORTANT]
+> As faixas personalizadas globais do menu só tocam quando nenhum mundo está carregado, como na tela de título. Use um elemento [**Áudio**](./elements#audio) para áudio de menu dentro do mundo.
 
-<br>
-<img width="600" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/d829a35e-f23f-42a9-ad79-193de73b499b">
+As faixas globais usam o canal de som Music. A primeira faixa começa após cerca de cinco segundos; as faixas seguintes usam um atraso aleatório de cerca de um a trinta segundos. A seleção é aleatória e evita repetir imediatamente a faixa anterior quando há mais de uma faixa configurada.
 
-> Desativar a música padrão do Minecraft irá desativá-la em todas as telas, não apenas na atual.
-{.is-info}
+# Controle de Música por Tela
 
-## Por Tela
+Adicione um elemento [**Controlador de Música**](./elements#music-controller) a um layout para controlar a música da Vanilla para aquela tela:
 
-Se você quiser mais controle sobre onde a música dos menus Vanilla deve tocar, você deve usar o elemento **Music Controller**. Esse elemento é adicionado aos layouts como qualquer outro, clicando com o **botão direito no fundo do editor** e depois em **New Element -> Music Controller**.
+1. Clique com o botão direito no fundo do editor.
+2. Selecione **Novo Elemento -> Controlador de Música**.
+3. Configure separadamente Música do Menu e Música do Mundo.
 
-Ao **clicar com o botão direito** no elemento, você pode personalizar quais tipos de música tocada nos menus devem ser desativados (música normal de menu e música do mundo que continua tocando em telas que não pausam o jogo, como a tela do Inventário).
+O elemento suporta [requisitos de carregamento](./conditions).
 
-> Esse elemento oferece suporte a **requisitos de carregamento**, então você tem ainda mais controle sobre quando a música Vanilla deve tocar!
-{.is-info}
+Desativar a música do menu com um Controlador de Música também impede que a lista global de faixas personalizadas do menu toque naquela tela.
 
+# Música Personalizada com Elementos de Áudio
 
-# Adicionando Música Personalizada
+Use um elemento [**Áudio**](./elements#audio) quando você precisar de:
 
-Agora podemos adicionar a música de fundo personalizada de fato.
+- Música diferente em telas diferentes.
+- Música em telas dentro do mundo.
+- Requisitos de layout, playlists ordenadas, configurações de embaralhamento, volume ou controle de canal.
 
-Se você quiser tocar a mesma música personalizada em todas as telas e precisar de controle no nível do layout, você deve usar um **layout universal**, que é carregado em todas as telas que têm personalizações habilitadas. Para uma substituição global simples da música do menu, use [Global Customizations](/global-customizations) em vez disso.
-
-Ao usar um layout universal, a música irá **continuar tocando** ao ir de um menu com o layout habilitado para outro com o mesmo layout habilitado.
-
-Se você quiser tocar músicas diferentes por tela, use layouts normais.
-
-Neste exemplo, usaremos **layouts universais**.
-
-Adicione um novo elemento **Audio** ao layout universal, que funcionará como nosso tocador de música de fundo.
-
-<br>
-<img width="400" alt="Screenshot_2" src="https://gist.github.com/assets/35544624/bddf8f46-47c5-4a00-a6f7-b5ca1df8ae67">
-
-Agora adicione a ele as faixas que devem tocar ao fundo.
-
-<br>
-<img width="300" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/824dcb90-3bd5-4c0b-96d0-e581a7c2f9f7">
-
-Basicamente, é isso.
-Você também pode definir o elemento Audio para o modo aleatório e alterar seu canal de som, se necessário.
-
-Salve o layout e saia do editor.
-
-# Habilitando Personalizações para Todos os Menus
-
-Usamos um **layout universal** neste exemplo, porque queremos que nossa música de fundo toque em várias telas.
-
-Como os layouts só são carregados em telas que têm **personalizações habilitadas**, agora precisamos habilitá-las para todas as telas em que queremos que a música toque.
-
-Para fazer isso, clique em **Customization** e habilite **Current Screen Customization**.
-
-<br>
-<img width="320" alt="Screenshot_5" src="https://gist.github.com/assets/35544624/2f6527b7-ae14-4e82-abc6-3572cc6490b2">
-
-Repita isso para todas as telas em que você quer que sua música de fundo personalizada toque.
-
-E é isso! Agora você tem música de fundo personalizada nos menus do Minecraft!
+Coloque um elemento [Áudio](./elements#audio) em um [Layout Universal](./universal-layouts) para manter o mesmo player ativo entre as telas suportadas que carregam esse layout. A personalização de tela deve estar ativada em cada tela comum na qual o layout universal deve ser aplicado.
