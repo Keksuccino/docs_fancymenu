@@ -2,56 +2,59 @@
 title: Видео (MP4)
 description: Что нужно знать об использовании видео в FancyMenu.
 ---
-
 # Видео
 
-FancyMenu поддерживает воспроизведение MP4-видео в качестве элементов, фонов меню и содержимого Game Intro.
+FancyMenu поддерживает воспроизведение MP4-видео как [элементов](./elements#video), [фонов меню](./menu-backgrounds) и контента [Game Intro](./game-intro).
 
-В FancyMenu 3.9.0 появился новый нативный элемент **Video** и фоновое изображение меню **Video**, работающие на Watermedia V3. Старый тип элемента/фона **Video [MCEF]** считается устаревшим и должен использоваться только для старых макетов, которым он всё ещё нужен.
+Нативный [**Video**-элемент](./elements#video) и фон меню **Video** используют Watermedia V3. Старые типы **Video [MCEF]** устарели и должны оставаться только в тех макетах, которым они всё ещё нужны.
 
-Также доступны следующие **действия** для управления видеофонами и видеоэлементами:
+Также доступны следующие **действия** для управления фоновыми видео и видеоэлементами:
 
-- **Set Video Element Volume** — установить громкость видеоэлемента
-- **Set Video Element Play Time** — перемотать видеоэлемент к отметке времени в миллисекундах
-- **Toggle Video Element Paused State** — переключить состояние паузы видеоэлемента
-- **Set Video Background Volume** — установить громкость видеофона меню
-- **Set Video Background Play Time** — перемотать видеофон меню к отметке времени в миллисекундах
-- **Toggle Video Background Paused State** — переключить состояние паузы видеофона меню
+- [**Set Video Element Volume**](./action-scripts#set-video-element-volume-set_video_element_volume) задаёт громкость Video-элемента.
+- [**Set Video Element Play Time**](./action-scripts#set-video-element-play-time-set_video_element_play_time) перемещает Video-элемент к указанной временной метке в миллисекундах.
+- [**Toggle Video Element Paused State**](./action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) переключает состояние паузы Video-элемента.
+- [**Set Video Background Volume**](./action-scripts#set-video-background-volume-set_video_menu_background_volume) задаёт громкость фона меню Video.
+- [**Set Video Background Play Time**](./action-scripts#set-video-background-play-time-set_video_menu_background_play_time) перемещает фон меню Video к указанной временной метке в миллисекундах.
+- [**Toggle Video Background Paused State**](./action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state) переключает состояние паузы фона меню Video.
 
-А также следующие **плейсхолдеры** для получения информации о видеофонах и видеоэлементах:
+И следующие **плейсхолдеры** для получения информации о фоновых видео и элементах:
 
-- **Video Element Volume** — получить громкость видеоэлемента
-- **Video Element Duration** — получить длительность видеоэлемента
-- **Video Element Play Time** — получить текущее время воспроизведения (прогресс) видеоэлемента
-- **Video Element Paused State** — получить состояние паузы видеоэлемента (true/false)
-- **Video Background Volume** — получить громкость видеофона меню
-- **Video Background Duration** — получить длительность видеофона меню
-- **Video Background Play Time** — получить текущее время воспроизведения (прогресс) видеофона меню
-- **Video Background Paused State** — получить состояние паузы видеофона меню (true/false)
+- [**Video Element Volume**](./placeholders#video-element-volume-video_element_vol) возвращает громкость Video-элемента.
+- [**Video Element Duration**](./placeholders#video-element-duration-video_element_duration) возвращает длительность Video-элемента.
+- [**Video Element Play Time**](./placeholders#video-element-play-time-video_element_playtime) возвращает текущий прогресс Video-элемента.
+- [**Video Element Paused State**](./placeholders#video-element-paused-state-video_element_paused_state) возвращает, находится ли Video-элемент на паузе.
+- [**Video Background Volume**](./placeholders#video-background-volume-video_background_vol) возвращает громкость фона меню Video.
+- [**Video Background Duration**](./placeholders#video-background-duration-video_background_duration) возвращает длительность фона меню Video.
+- [**Video Background Play Time**](./placeholders#video-background-play-time-video_background_playtime) возвращает текущий прогресс фона меню Video.
+- [**Video Background Paused State**](./placeholders#video-background-paused-state-video_background_paused_state) возвращает, находится ли фон меню Video на паузе.
 
-Плейсхолдеры длительности и времени воспроизведения по умолчанию возвращают `MM:SS`. Установите `output_as_timestamp` в `true`, если нужны временные метки в миллисекундах. Для плейсхолдеров времени воспроизведения по-прежнему можно использовать `show_percentage`, чтобы получать значения прогресса от 0 до 100.
+Плейсхолдеры длительности и времени воспроизведения по умолчанию возвращают значение в формате `MM:SS`. Установите `output_as_timestamp` в `true`, если вам нужны временные метки в миллисекундах. Плейсхолдеры времени воспроизведения по-прежнему могут использовать `show_percentage` для значений прогресса от 0 до 100.
 
-В FancyMenu 3.9.0 также появился слушатель **On Video Playback Status Changed**, который может реагировать на `PLAYING`, `PAUSED`, `STOPPED` и `FINISHED`.
+Значения громкости и состояния паузы — это метаданные контроллера, связанные с идентификатором. Значения длительности и времени воспроизведения требуют, чтобы соответствующий Video-элемент или фон были активны и готовы на текущем экране.
+
+[**On Video Playback Status Changed** listener](./listeners#on-video-playback-status-changed-video_playback_status_changed) может реагировать на `PLAYING`, `PAUSED`, `STOPPED` и `FINISHED`.
 
 ## Требования
 
-Чтобы использовать новый нативный тип Video-элемента и фона меню, необходимо установить:
+Чтобы использовать новый нативный Video-элемент и тип фона меню, необходимо установить:
 
 - **Watermedia V3**
 - **Watermedia Binaries V3**
 
 Это необязательные зависимости, поэтому их нужно добавлять в экземпляр вручную, если вам нужна поддержка видео.
 
-Устаревший тип **Video [MCEF]** по-прежнему использует MCEF. Для новых макетов используйте вместо него нативный тип Video на базе Watermedia.
+Нативное воспроизведение видео также требует OpenGL-рендерер. Воспроизведение через Watermedia недоступно, пока Minecraft использует Vulkan; переключитесь на OpenGL, чтобы использовать Video-элементы, фоны меню Video и [Game Intro с видео](./game-intro).
+
+Устаревший тип **Video [MCEF]** по-прежнему использует MCEF. Для новых макетов используйте вместо него нативный Video-тип на базе Watermedia.
 
 ## Видео на экранах загрузки
 
 Поддержка видео НЕ работает на экранах загрузки (экран загрузки игры/ресурсов и экран загрузки мира).
 
-Это также означает, что вам НЕ следует добавлять видео на экран загрузки игры через **Drippy Loading Screen**, поскольку в большинстве случаев это не будет работать.
+Это также означает, что НЕ следует добавлять видео на экран загрузки игры через **Drippy Loading Screen**, поскольку в большинстве случаев это не будет работать.
 
-Вместо этого на экранах загрузки лучше использовать короткие и простые файлы AFMA/FMA, так как пользователи обычно не замечают их повторной загрузки, если анимация достаточно простая и короткая.
+Вместо этого используйте короткие и простые [AFMA/FMA-анимации](./fma) на экранах загрузки.
 
 ## Устранение неполадок
 
-Если у вас возникают проблемы с нативной поддержкой видео, сначала убедитесь, что установлены и соответствуют вашей версии Minecraft/модлоадера как Watermedia V3, так и Watermedia Binaries V3.
+Если нативное видео не воспроизводится, убедитесь, что Watermedia V3 и Watermedia Binaries V3 соответствуют вашей версии Minecraft/модлоадера, и что Minecraft использует OpenGL вместо Vulkan.
