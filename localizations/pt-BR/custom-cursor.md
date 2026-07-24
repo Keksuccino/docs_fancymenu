@@ -1,12 +1,15 @@
 ---
 title: Cursor Personalizado
-description: Como fazer os menus usarem um cursor de mouse personalizado.
+description: Como fazer menus usarem um cursor de mouse personalizado.
 ---
+# Cursor Personalizado
 
-# Cursor de Mouse Personalizado
+Adicione um elemento [**Cursor**](./elements#cursor) a um layout para substituir o cursor do sistema nessa tela:
 
-O FancyMenu permite definir um cursor de mouse personalizado por tela.
+1. Selecione **Novo Elemento -> Cursor**.
+2. Defina uma textura PNG com cor RGBA.
+3. Defina **Hotspot X** e **Hotspot Y** para o pixel da textura onde os cliques devem ocorrer.
+4. Ative a pré-visualização no editor quando quiser verificar o cursor أثناء edição.
+5. Use um [Layout Universal](./universal-layouts) quando o mesmo cursor deva aparecer em várias telas compatíveis.
 
-Para fazer isso, basta adicionar um novo elemento **Cursor** a um layout e clicar com o botão direito nele para definir uma textura de cursor.
-
-Se você quiser que o cursor personalizado apareça em todas as telas, deve usar um **layout universal**.
+Texturas de cursor pequenas, como `32×32` ou `64×64`, são recomendadas. A aparência e o comportamento do cursor podem variar de acordo com o sistema operacional.
