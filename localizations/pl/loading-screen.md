@@ -2,5 +2,6 @@
 title: Ekran ładowania
 description: Jak edytować ekran ładowania gry Minecraft (czyli ekran powitalny).
 ---
+# Ekran ładowania
 
-FancyMenu nie obsługuje bezpośrednio ekranu ładowania gry Minecraft (czyli ekranu powitalnego), ale możesz do tego użyć **[Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen)**, który jest **dodatkiem** do FancyMenu!
+FancyMenu nie dostosowuje ekranu powitalnego/ładowania Minecrafta. Użyj do tego dodatku [Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen).
