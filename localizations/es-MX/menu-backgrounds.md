@@ -1,58 +1,57 @@
 ---
 title: Fondos del menú
 description: >-
-  Cómo configurar fondos personalizados para los menús (imágenes, animaciones)
-  para las pantallas.
+  Cómo configurar fondos personalizados del menú (imágenes, animaciones) para
+  las pantallas.
 ---
-
 # Fondos del menú
 
-FancyMenu te permite configurar fondos personalizados para los menús. Puedes usar imágenes, texturas animadas, presentaciones de diapositivas, panoramas cúbicos, colores, navegadores, videos, shaders GLSL y más.
+FancyMenu te permite configurar fondos personalizados para los menús. Puedes usar imágenes, texturas animadas, presentaciones, panoramas cúbicos, colores, navegadores, videos, shaders GLSL y más.
 
 # Configurar un fondo
 
-En FancyMenu 3.9.0+, la personalización del fondo del menú se hace directamente desde el menú contextual del editor de diseño:
+La personalización del fondo del menú está disponible desde el menú contextual del editor de diseño:
 
 1. Abre el editor de diseño.
 2. Haz clic derecho sobre el fondo del editor.
 3. Abre **Fondos del menú**.
-4. Habilita y configura el o los tipos de fondo que quieras.
+4. Habilita y configura el/los tipo(s) de fondo que quieras.
 
 Los tipos de fondo más comunes incluyen:
 
 - Vanilla
-- Image
-- Slideshow
-- Cubic Panorama
+- Imagen
+- Presentación
+- Panorama cúbico
 - Color (HEX)
-- Browser
+- Navegador
 - Video
-- GLSL Shader
-- Video [MCEF] (deprecated)
-- y más..
+- Shader GLSL
+- Video [MCEF] (obsoleto)
+- Tipos de fondo adicionales del complemento
 
-El antiguo tipo de fondo **Video [MCEF]** está obsoleto en FancyMenu 3.9.0. Usa el nuevo fondo nativo **Video**, impulsado por Watermedia V3, para los diseños nuevos.
+El antiguo tipo de fondo **Video [MCEF]** está obsoleto. Usa el [**Video** nativo](./video) impulsado por Watermedia V3 para los diseños nuevos.
 
 # Quitar el fondo personalizado
 
-Abre **Fondos del menú** otra vez y desactiva o elimina el tipo de fondo personalizado que ya no quieras. Si no hay ningún tipo de fondo personalizado activo, la pantalla volverá a su comportamiento normal de fondo vanilla.
+Abre **Fondos del menú** de nuevo y deshabilita o elimina el tipo de fondo personalizado que ya no quieras. Si no hay ningún tipo de fondo personalizado activo, la pantalla volverá a su comportamiento normal de fondo vanilla.
 
-# Superposición de fondos
+# Apilar fondos
 
-FancyMenu 3.9.0 permite habilitar varios tipos de fondo de menú en un mismo diseño. Los fondos activos se renderizan como una pila, así que puedes combinar una imagen o panorama base con superposiciones translúcidas, capas de navegador, capas de shader, capas de paralaje y otros efectos.
+Se pueden habilitar varios tipos de fondo del menú en un mismo diseño. Los fondos activos se renderizan como una pila, así que una imagen base o un panorama se puede combinar con capas translúcidas de navegador, shader, paralaje u otras.
 
-Si también tienes varios diseños activos, sus pilas de fondo también pueden combinarse. Para ordenar los diseños y hacer que aparezcan en un orden específico, haz clic derecho sobre el fondo del editor y luego haz clic en **Índice del diseño**.
+Si además tienes varios diseños activos, sus pilas de fondo también se pueden combinar. Para ordenar los diseños y hacer que aparezcan en un orden específico, haz clic derecho en el fondo del editor y luego haz clic en **Índice de diseño**.
 
 # Fondos transparentes
 
-Como no hay nada detrás de los fondos, no es posible hacer transparente el fondo que está hasta abajo, porque eso provocaría fallas gráficas; pero sí es totalmente posible usar transparencia en configuraciones de fondos apilados, siempre y cuando el de abajo se mantenga con opacidad completa. De esa forma puedes tener capas de fondo translúcidas encima de la capa inferior.
+FancyMenu renderiza una capa base negra detrás de los fondos personalizados activos. Por eso, los píxeles transparentes en el fondo más inferior muestran negro. Usa un fondo base opaco y luego apila fondos translúcidos encima.
 
-Para hacer translúcida una imagen de fondo, usa el editor de imágenes que prefieras.
+Para hacer translúcida una imagen de fondo, usa el editor de imágenes de tu preferencia.
 
-# Fondos del navegador
+# Fondos de navegador
 
-El tipo de fondo **Browser** funciona igual que el elemento Browser, pero ocupa toda la pantalla y recibe foco automáticamente. Esto es útil para contenido web de pantalla completa, páginas HTML locales o capas de video web.
+El tipo de fondo **Navegador** funciona como el [elemento de navegador](./elements#browser), pero ocupa toda la pantalla y se enfoca automáticamente. Esto es útil para contenido web en pantalla completa, páginas HTML locales o capas de video web.
 
-# Fondos de shaders GLSL
+# Fondos de shader GLSL
 
-El tipo de fondo **GLSL Shader** renderiza shaders GLSL personalizados y admite la creación de shaders al estilo de Shadertoy. Consulta la página [API de Shader GLSL](/glsl-shader-api) para ver los uniformes compatibles y la estructura del shader.
+El tipo de fondo **Shader GLSL** renderiza shaders GLSL personalizados y es compatible con la creación de shaders al estilo Shadertoy. Consulta la página de [API de Shader GLSL](/glsl-shader-api) para ver los uniformes compatibles y la estructura del shader.
