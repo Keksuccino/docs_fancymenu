@@ -1,53 +1,18 @@
 ---
-title: 幻灯片
-description: 如何制作和使用幻灯片。
+title: 幻灯片播放
+description: 创建并使用图片幻灯片播放。
 ---
-# 幻灯片
+# 幻灯片播放
 
-FancyMenu 允许你添加幻灯片，并将它们显示在菜单中以及作为菜单背景。
+每个幻灯片播放在下面都有自己的目录：
 
-> **重要**：如果你使用的是 Windows，别忘了开启 [文件扩展名](https://vtcri.kayako.com/article/296-view-file-extensions-windows-10)，否则以后你将无法看到文件名的重要部分！
-{.is-warning}
+```text
+<game-directory>/config/fancymenu/slideshows/
+```
 
-# 制作幻灯片
+`<game-directory>` 是当前活动的启动器实例，可能与常规的 `.minecraft` 目录不同。
 
-每个幻灯片都必须放在 `<game-directory>/config/fancymenu/slideshows/` 下自己独立的文件夹中。
-
-`<game-directory>` 指的是当前启动器实例，它不一定是默认的 `.minecraft` 目录。
-
-![1](https://user-images.githubusercontent.com/35544624/105209961-b823e600-5b4a-11eb-8ed2-1016d3b05815.png)
-
-要让幻灯片被识别，它所在的文件夹中需要有一个属性文件。如果幻灯片文件夹名为 `myslideshow`，那么该文件应放在 `<game-directory>/config/fancymenu/slideshows/myslideshow/properties.txt`。
-
-**这个文件始终必须命名为 `properties.txt`！**
-目前先只创建一个**空的**属性文件，然后继续下一步。
-
-![2](https://user-images.githubusercontent.com/35544624/105210016-cbcf4c80-5b4a-11eb-84ad-9aa735340287.png)
-
-## 添加图片
-
-幻灯片需要图片，所以我们来添加一些。
-
-幻灯片图片必须使用 `.png` 或 `.jpg`。其他图片扩展名，包括 `.jpeg`，都会被忽略。
-
-幻灯片的所有图片都放在幻灯片文件夹（上例中的 `myslideshow`）里面的一个额外文件夹中。
-这个文件夹的名称必须是 `images`。
-
-![3](https://user-images.githubusercontent.com/35544624/105210833-d9d19d00-5b4b-11eb-8ae7-528ad156e27a.png)
-
-现在把所有幻灯片图片放入 `images` 文件夹。
-
-当 `randomize = false` 时，图片会按文件名的字母顺序播放。`image_10.png` 会排在 `image_2.png` 前面，所以请使用诸如 `image_01.png`、`image_02.png` 和 `image_10.png` 这样的命名。
-
-<br>
-<img width="548" alt="Screenshot_2" src="https://github.com/user-attachments/assets/f58ecbfa-affa-4071-8a84-18ed27a6cfee">
-
-## 向属性文件添加内容
-
-一开始，你已经在幻灯片文件夹中创建了一个空的 `properties.txt` 文件。
-现在这个文件需要填入一些重要内容。
-
-完整的目录结构应如下所示：
+# 目录结构
 
 ```text
 <game-directory>/config/fancymenu/slideshows/
@@ -59,52 +24,42 @@ FancyMenu 允许你添加幻灯片，并将它们显示在菜单中以及作为�
         └── image_02.jpg
 ```
 
-每个幻灯片的属性文件都应如下所示：
+图片必须使用 `.png` 或 `.jpg`；其他扩展名（包括 `.jpeg`）都会被忽略。
 
-```
+当 `randomize = false` 时，图片会按文件名的字母顺序播放，不区分大小写。请使用带前导零的名称，例如 `image_01.png`、`image_02.png` 和 `image_10.png`。
+
+# `properties.txt`
+
+```text
 type = slideshow
 
 slideshow-meta {
-   name = cool_slideshow
-   width = 1920
-   height = 1080
-   x = 0
-   y = 0
-   duration = 5.0
-   fadespeed = 12.0
-   randomize = false
+  name = cool_slideshow
+  width = 1920
+  height = 1080
+  x = 0
+  y = 0
+  duration = 5.0
+  fadespeed = 12.0
+  randomize = false
 }
 ```
-请保留 `type = slideshow` 这一行和 `slideshow-meta` 部分。请编辑列出的值，而不是结构行。
 
-### name
+| 属性 | 含义 |
+|---|---|
+| `name` | 必填，运行时标识符，区分大小写；请保持唯一 |
+| `width`, `height` | GUI 缩放后的基准像素大小，以及源图像的宽高比 |
+| `x`, `y` | 基准左上角位置；普通元素和背景会使用各自的位置，因此请保持为 `0` |
+| `duration` | 两次切换开始之间的最少秒数；包括淡入淡出时间，且必须大于 `0` |
+| `fadespeed` | 淡出/淡入速度倍数；`1.0` 为默认值，数值越高淡出越快，且必须大于 `0` |
+| `randomize` | `true` 表示随机选择，`false` 表示按文件名顺序 |
 
-这是用于选择该幻灯片的区分大小写的标识符。它是必需的，并且必须唯一；如果名称重复，只会有一个幻灯片可用。
+只有 `name` 是必填项。默认值为 `width = 50`、`height = 50`、`x = 0`、`y = 0`、`duration = 10.0`、`fadespeed = 1.0` 和 `randomize = false`。请保持 `type = slideshow` 和 `slideshow-meta` 不变；每行只写一个 `key = value`，小数点使用英文句点。
 
-### width | height
+布局会选择 `name` 的值，而不是目录名。重复的名称不会被拒绝，目录扫描顺序决定保留哪个幻灯片播放。请确保在 slideshows 目录内名称唯一。
 
-以 GUI 缩放像素为单位的基础宽度和高度。FancyMenu 也会使用它们来计算宽高比。
+随机模式会在每次切换时独立选择，并在有多个图片可用时避免立即重复。计时使用真实时间；如果淡出/淡入时间长于 `duration`，则下一次切换会延后；如果一个幻灯片播放在隐藏后再次显示，可能会立即推进到下一张。
 
-### x | y
+# 使用幻灯片播放
 
-以 GUI 缩放像素为单位的基础左上角位置。标准幻灯片元素和菜单背景会使用它们自己的位置，因此请将这两个值都保持为 `0`。
-
-### duration
-
-在切换到下一张之前，一张图片保持可见的秒数。小数点使用英文句点，例如 `5.5`。请使用大于 `0` 的值。
-
-### fadespeed
-
-淡入淡出速度的倍率。`1.0` 为默认值，`2.0` 表示快两倍，`0.5` 表示慢一半。请使用大于 `0` 的值。
-
-### randomize
-
-将其设为 `true` 表示随机顺序，设为 `false` 表示按文件名顺序。随机模式会避免连续显示同一张图片。
-
-# 使用幻灯片
-
-所有重要步骤都已完成，你的幻灯片现在应该已经准备好了，来测试一下吧！
-
-要将新的或已编辑的幻灯片加载到 FancyMenu 中，请使用 **Customization -> Reload FancyMenu**，或者重启客户端。
-
-现在你可以在 **Slideshow** 元素中使用你的幻灯片，或者将其用作菜单背景（在布局编辑器背景上右键 -> **Menu Background**）。
+通过 **Customization -> Reload FancyMenu** 重新加载 FancyMenu，或重启客户端。使用 [**Slideshow** 元素](./elements#slideshow)，或者在布局编辑器背景上右键，选择 [**Menu Backgrounds**](./menu-backgrounds) -> **Slideshow**。
