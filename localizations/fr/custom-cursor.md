@@ -1,12 +1,17 @@
 ---
 title: Curseur personnalisé
-description: Comment faire pour que les menus utilisent un curseur de souris personnalisé.
+description: >-
+  Comment faire en sorte que les menus utilisent un curseur de souris
+  personnalisé.
 ---
-
 # Curseur de souris personnalisé
 
-FancyMenu vous permet de définir un curseur de souris personnalisé pour chaque écran.
+Ajoutez un [élément **Cursor**](./elements#cursor) à une mise en page pour remplacer le curseur système sur cet écran :
 
-Pour cela, il vous suffit d’ajouter un nouvel élément **Curseur** à une mise en page, puis de faire un clic droit dessus pour définir une texture de curseur.
+1. Sélectionnez **New Element -> Cursor**.
+2. Définissez une texture PNG avec couleur RGBA.
+3. Réglez **Hotspot X** et **Hotspot Y** sur le pixel de la texture où les clics doivent se produire.
+4. Activez l’aperçu de l’éditeur lorsque vous souhaitez vérifier le curseur pendant l’édition.
+5. Utilisez une [mise en page universelle](./universal-layouts) lorsque le même curseur doit apparaître sur plusieurs écrans pris en charge.
 
-Si vous souhaitez que le curseur personnalisé apparaisse sur tous les écrans, vous devez utiliser une **mise en page universelle**.
+Il est recommandé d’utiliser de petites textures de curseur, comme `32×32` ou `64×64`. L’apparence et le comportement du curseur peuvent varier selon le système d’exploitation.
