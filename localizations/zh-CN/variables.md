@@ -2,10 +2,9 @@
 title: 变量
 description: 如何创建和使用变量。
 ---
-
 # FancyMenu 中的变量
 
-变量是 FancyMenu 中一个强大的功能，它可以让你在整个菜单自定义过程中存储和重复使用信息。它们就像容器一样，你可以往里面放入不同类型的数据，为每个容器命名，然后在之后通过变量名访问这些数据。变量为创建会根据你定义的条件而变化的动态菜单打开了无限可能。
+变量用于存储文本值，布局、动作、占位符、条件、监听器、计划任务以及自定义 GUI 都可以重复使用这些值。
 
 ## 创建变量
 
@@ -17,56 +16,70 @@ description: 如何创建和使用变量。
 4. 在出现的“Manage Variables”界面中，点击 **Add Variable** 按钮。
 5. 为新变量输入名称，然后点击 **OK**。
 
-就这样！你的变量已经可以使用了。你可以在“Manage Variables”界面中看到它被列出。
+就这样！你的变量已经可以使用了。你可以在“Manage Variables”界面中看到它。
 
-FancyMenu 3.9.0 重新设计了“Manage Variables”窗口。重要操作可通过右键上下文菜单使用，列表支持键盘导航，变量可以复制/粘贴，改动可以撤销/重做，输入会开始搜索，**DEL** 可删除所选变量，**CTRL + S** 可确认窗口。
+Manage Variables 窗口支持右键上下文菜单、键盘导航、复制/粘贴、撤销/重做、输入搜索、按 **Delete** 删除，以及使用 **Ctrl/Command + S** 保存。
 
 ## 设置变量值
 
-空变量本身并没有太大用处。要让变量真正发挥作用，你需要把数据写入其中。在 FancyMenu 中，这被称为“设置变量值”。
+空变量本身并没有太大作用。要让变量发挥作用，你需要向其中写入数据。在 FancyMenu 中，这称为“设置变量值”。
 
 设置变量值主要有两种方式：
 
-1. 在“Manage Variables”界面中，在列表里找到该变量，点击它，然后点击 **Set Value**。输入你想要存储的数据。
+1. 在“Manage Variables”界面中，在列表里找到该变量，点击它，然后点击 **Set Value**。输入你想保存的数据。
 
-2. 在自定义菜单时，将 **Set Variable** 动作用于按钮、滑块或滚动文字（Ticker）元素。使用这个动作时，你需要指定变量名称以及要存储的值。例如，当有人点击带有此动作的按钮时，变量就会更新为新的值。
+2. 在自定义菜单时，将 [**Set Variable Value** 动作](./action-scripts#set-variable-value-fm-variable-set_variable)用于 [Button](./elements#button)、[Slider](./elements#slider) 或 [Ticker](./elements#ticker) 元素。
 
-例如，假设你创建了一个名为 `clicks` 的变量，用来统计按钮被按下的次数。你可以把 **Set Variable** 动作添加到按钮上，并在动作值中使用一个占位符来在每次点击时递增计数，如下所示：
+例如，创建一个名为 `clicks` 的变量，并将 [**Set Variable Value** 动作](./action-scripts#set-variable-value-fm-variable-set_variable)添加到一个按钮上：
 
 ```
 clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
 ```
 
-其工作原理如下：
-1. **Get Stored Variable** 占位符会读取 `clicks` 变量的当前值。
-2. **Calculator** 占位符会在该值基础上加 1。
-3. 然后结果会通过 **Set Variable** 动作重新存回 `clicks` 变量。
+其工作方式如下：
+1. [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable) 获取 `clicks` 变量的当前值。
+2. [**Calculator** 占位符](./placeholders#calculator-calc) 将该值加 1。
+3. 结果通过 [**Set Variable Value** 动作](./action-scripts#set-variable-value-fm-variable-set_variable) 写回到 `clicks` 中。
 
-这样，每次点击按钮时，`clicks` 变量都会加 1，从而有效统计总点击次数。
+因此，每次点击按钮时，`clicks` 变量都会加 1，从而实际上记录总点击次数。
 
 ## 使用变量
 
-现在你已经拥有了存有数据的变量，可以在菜单自定义的不同部分中使用这些数据：
+现在你已经有了保存数据的变量，可以在菜单自定义的不同部分中使用这些数据：
 
-* **加载条件**：你可以在加载条件中检查变量值，以控制某些菜单元素何时显示。例如，你可以结合 **Is Number** 条件和 **Get Stored Variable** 占位符，让某个元素只有在 `clicks` 变量大于 5 时才显示。
+* [**加载条件**](./conditions)：检查变量值以控制元素何时显示。例如，将 [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) 与 [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable) 结合使用，当 `clicks` 大于 5 时显示某个元素。
 
-* **占位符**：可以使用 **Get Stored Variable** 占位符把变量插入到文本中。如果你有一个文本元素，可以使用 `{"placeholder":"getvariable","values":{"name":"clicks"}}` 来显示“clicks”变量的当前值。
+* **占位符**：使用 [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable) 将变量插入文本中，例如 `{"placeholder":"getvariable","values":{"name":"clicks"}}`。
 
-* **嵌套占位符**：你甚至可以在其他占位符中使用变量！上面的点击计数示例就是通过在 **Calculator** 占位符中使用 **Get Stored Variable** 占位符来实现的。
+* **嵌套占位符**：你可以在 [**Calculator** 占位符](./placeholders#calculator-calc) 中使用 [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable)。
 
-* **动作**：变量也可以用于动作中，以便根据变量值创建动态行为。以下是一些示例：
-    - 在动作脚本中使用 **IF** 语句，结合 **Is Number** 加载条件和 **Get Stored Variable** 动作来检查变量值，并根据结果执行不同操作。例如，你可以有一个按钮显示“你已经点击我 X 次了！”，并使用一个 IF 块在点击次数超过 10 时显示特殊消息。
-    - 将 **Get Stored Variable** 占位符与 **Copy to Clipboard** 动作结合使用，让用户可以把变量值复制到剪贴板。
-    - 在 **Open GUI** 动作中使用变量，根据用户的进度或偏好加载不同界面，而这些进度或偏好由变量跟踪。
+* **动作**：变量可以创建动态行为：
+  - 在 [动作脚本](./action-scripts#what-are-statements) 中使用 **IF** 语句，并结合 [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) 和 [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable)。
+  - 将 [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable) 与 [**Copy Text to Clipboard**](./action-scripts#copy-text-to-clipboard-copytoclipboard) 结合使用。
+  - 在 [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui) 中使用变量，根据已保存的进度或偏好来选择界面。
 
 ## 变量示例
 
-以下是一些示例，帮助你获得灵感并开始使用变量：
+下面是一些示例，帮助你获得灵感并开始使用变量：
 
-1. **高分**：创建一个 `highscore` 变量，并添加一个按钮，在玩家当前分数高于现有值时将其设置为当前分数。然后使用 **Get Stored Variable** 占位符在菜单中显示最高分。
+1. **高分**：创建一个 `highscore` 变量，并做一个按钮，在玩家当前分数高于现有值时将其设为当前分数。使用 [**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable) 显示它。
 
-2. **难度选择器**：为不同的游戏难度创建变量，例如 `easy`、`medium` 和 `hard`。使用按钮来设置难度变量，并根据所选难度显示或隐藏元素。
+2. **难度选择器**：为不同的游戏难度创建变量，例如 `easy`、`medium` 和 `hard`。使用按钮设置难度变量，并根据所选难度显示/隐藏元素。
 
-3. **教程进度**：添加变量来跟踪玩家在教程中的进度，例如 `tutorial_step`。随着他们完成每一步而递增该变量，并使用加载条件逐步显示更多菜单内容。
+3. **教程进度**：添加变量来跟踪玩家在教程中的进度，例如 `tutorial_step`。每完成一步就递增该变量，并使用加载条件逐步显示更多菜单内容。
 
-变量与 FancyMenu 的其他功能结合使用时，能让你拥有极高的灵活性，为每位玩家的行为和偏好量身定制菜单。尝试不同的变量配置，释放你菜单自定义的全部潜力吧！
+## 持久性、作用域和存储
+
+变量在当前 Minecraft 实例中共享。它们不会按布局、世界、服务器或玩家分别隔离。
+
+值会立即保存到 `<game-directory>/config/fancymenu/user_variables.db`，并会在重启后保留。
+
+- **Reset on Launch** 会在下次游戏启动时清空该变量。
+- [**Clear All Variables**](./action-scripts#clear-all-variables-fm-variable-clear_variables) 会移除所有已存储的变量值。
+- 名称区分大小写。请使用简单且唯一的名称，例如 `tutorial_step`。
+
+当命名的变量不存在，或其存储值为空时，[**Get Stored Variable** 占位符](./placeholders#get-variable-value-fm-variable-getvariable) 会返回 `0`。这个默认值在比较和计算器表达式中很重要。
+
+[**Set Variable Value** 动作](./action-scripts#set-variable-value-fm-variable-set_variable) 使用 `variable_name:variable_value` 格式，并在第一个冒号处拆分，因此值中可以包含更多冒号。
+
+不要在 FancyMenu 变量中存储密码、令牌或其他机密信息。它们属于可读的配置数据。
