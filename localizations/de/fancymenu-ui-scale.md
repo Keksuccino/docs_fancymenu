@@ -1,6 +1,6 @@
 ---
 title: FancyMenus UI-Skalierung
-description: Wie die Skalierung der FancyMenu-Benutzeroberfläche geändert wird.
+description: Wie man die Skalierung der Benutzeroberfläche von FancyMenu ändert.
 ---
 
 # FancyMenus UI-Skalierung
@@ -9,6 +9,6 @@ Die Benutzeroberfläche von FancyMenu (z. B. die Menüleiste und Kontextmenüs) 
 
 Falls die Benutzeroberfläche von FancyMenu für dich zu klein oder zu groß aussieht, kannst du die UI-Skalierung über **Menüleiste -> Anpassung -> Einstellungen -> FancyMenus UI** ändern.
 
-FancyMenu 3.9.0 fügt weitere Optionen für die UI-Skalierung hinzu. Wenn die UI-Skalierung auf **Auto** gesetzt ist, beträgt die kleinste automatische Skalierung jetzt `1.25`; du kannst weiterhin manuell die Skalierung `1` wählen, wenn dir das lieber ist.
+Wenn die UI-Skalierung auf **Auto** gesetzt ist, beträgt die kleinste automatische Skalierung `1.25`. Du kannst die Skalierung manuell auf `1` festlegen.
 
-Die einzige Ausnahme davon sind die eigentlichen Vollbildfenster, die von FancyMenu hinzugefügt werden, wie zum Beispiel der Bildschirm zur Verwaltung von Variablen oder der Layout-Editor. Diese Bildschirme verwenden in den meisten Fällen die normale GUI-Skalierung von Minecraft, aber es ist möglich, dass einige Bildschirme eine andere automatische Skalierungslogik verwenden, um automatisch in kleinerer Skalierung angezeigt zu werden, wenn das Fenster sonst zu klein wäre, um den gesamten Inhalt des Bildschirms aufzunehmen.
+Die einzige Ausnahme davon sind die eigentlichen Vollbild-Ansichten, die von FancyMenu hinzugefügt werden, wie die Ansicht zur Verwaltung von Variablen oder der Layout-Editor. Diese Ansichten verwenden in den meisten Fällen die normale GUI-Skalierung von Minecraft, aber es ist möglich, dass einige Ansichten eine andere Auto-Skalierungslogik verwenden, um sie automatisch in einer kleineren Skalierung anzuzeigen, wenn das Fenster andernfalls zu klein wäre, um den gesamten Inhalt der Ansicht darzustellen.

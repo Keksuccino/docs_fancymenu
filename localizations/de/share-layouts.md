@@ -3,8 +3,11 @@ title: Layouts importieren/exportieren
 description: Wie man Layouts mit anderen teilt.
 ---
 
-Der Vorgang zum Teilen eines Layouts ist dem [Einbinden in ein Modpack](/modpacks) sehr ähnlich. Schau dir daher einfach die [Modpacks-Seite](/modpacks) für weitere Informationen an.
+# Layouts importieren und exportieren
 
-Anstatt die Konfigurationsdateien in ein Modpack zu verschieben, „verschiebst“ du sie in die andere Minecraft-Instanz deines Freundes usw.
+> [!CAUTION]
+> Geteilte Setups können Aktionen ausführen. Importiere sie nur aus Quellen, denen du vertraust.
 
-Schicke deinem Freund einfach den Konfigurationsordner als ZIP und lass ihn die Schritte ausführen, um den Ordner in seine Instanz zu kopieren.
+Folge der [Modpacks-Anleitung](/modpacks), kopiere das Setup jedoch in die Minecraft-Instanz des Empfängers statt in ein Modpack.
+
+Packe die benötigten Dateien aus `<game-directory>/config/fancymenu/` zusammen mit allen ausdrücklich referenzierten Assets. `<game-directory>` ist das aktive Launcher-/Profilverzeichnis und nicht unbedingt `.minecraft`.
