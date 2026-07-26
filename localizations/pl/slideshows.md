@@ -1,104 +1,65 @@
 ---
 title: Pokazy slajdów
-description: Jak tworzyć i używać pokazów slajdów.
+description: Twórz i używaj pokazów slajdów z obrazami.
 ---
-
 # Pokazy slajdów
 
-FancyMenu pozwala dodawać pokazy slajdów i wyświetlać je w menu oraz jako tła menu.
+Każdy pokaz slajdów ma własny katalog poniżej:
 
-> **WAŻNE**: Jeśli używasz systemu Windows, nie zapomnij włączyć [rozszerzeń plików](https://vtcri.kayako.com/article/296-view-file-extensions-windows-10), ponieważ w przeciwnym razie później nie będziesz w stanie zobaczyć ważnych części nazw plików!
-{.is-warning}
-
-# Tworzenie pokazu slajdów
-
-Każdy pokaz slajdów musi znajdować się we własnym folderze **wewnątrz** katalogu pokazów slajdów znajdującego się w `/config/fancymenu/slideshows/`.
-
-![1](https://user-images.githubusercontent.com/35544624/105209961-b823e600-5b4a-11eb-8ed2-1016d3b05815.png)
-
-Aby system rozpoznał coś jako pokaz slajdów, w jego folderze musi znajdować się plik właściwości, więc jeśli nazwałeś folder pokazu slajdów `myslideshow`, plik właściwości powinien znajdować się w `/config/fancymenu/slideshows/myslideshow/properties.txt`.
-
-**Ten plik zawsze musi nazywać się `properties.txt`!**
-Na razie utwórz tylko **pusty** plik właściwości i przejdź do następnego kroku.
-
-![2](https://user-images.githubusercontent.com/35544624/105210016-cbcf4c80-5b4a-11eb-84ad-9aa735340287.png)
-
-## Dodawanie obrazów
-
-Pokaz slajdów potrzebuje obrazów (oczywiście), więc dodajmy kilka!
-
-> Obrazy do pokazu slajdów muszą być plikami **PNG**! Żadnych JPEG-ów, GIF-ów, APNG ani FMA!
-{.is-danger}
-
-Wszystkie obrazy pokazu slajdów trafiają do dodatkowego folderu **wewnątrz** folderu pokazu slajdów (w powyższym przykładzie `myslideshow`).
-Ten folder musi mieć nazwę `images`.
-
-![3](https://user-images.githubusercontent.com/35544624/105210833-d9d19d00-5b4b-11eb-8ae7-528ad156e27a.png)
-
-Teraz umieść wszystkie obrazy pokazu slajdów w folderze `images`.
-Będą one sortowane alfabetycznie (z uwzględnieniem liczb), więc po prostu nadaj im nazwy w stylu `image_1.png`, `image_2.png` itd.
-W moim przykładzie `image_1.png` będzie wyświetlany jako pierwszy, a `image_2.png` po nim.
-
-<br>
-<img width="548" alt="Screenshot_2" src="https://github.com/user-attachments/assets/f58ecbfa-affa-4071-8a84-18ed27a6cfee">
-
-## Dodawanie zawartości do pliku właściwości
-
-Na początku utworzyłeś pusty plik `properties.txt` w folderze pokazu slajdów.
-Teraz plik ten trzeba wypełnić ważnymi danymi.
-
-Każdy plik właściwości pokazu slajdów powinien wyglądać tak:
-
+```text
+<game-directory>/config/fancymenu/slideshows/
 ```
+
+`<game-directory>` to aktywna instancja launchera, która może różnić się od standardowego katalogu `.minecraft`.
+
+# Struktura katalogów
+
+```text
+<game-directory>/config/fancymenu/slideshows/
+└── myslideshow/
+    ├── properties.txt
+    ├── overlay.png          # opcjonalne
+    └── images/
+        ├── image_01.png
+        └── image_02.jpg
+```
+
+Obrazy muszą mieć rozszerzenie `.png` lub `.jpg`; inne rozszerzenia, w tym `.jpeg`, są ignorowane.
+
+Gdy `randomize = false`, obrazy odtwarzane są w kolejności alfabetycznej nazw plików, bez rozróżniania wielkości liter. Używaj nazw z zerami wiodącymi, takich jak `image_01.png`, `image_02.png` i `image_10.png`.
+
+# `properties.txt`
+
+```text
 type = slideshow
 
 slideshow-meta {
-   name = cool_slideshow
-   width = 1920
-   height = 1080
-   x = 0
-   y = 0
-   duration = 5.0
-   fadespeed = 12.0
-   randomize = false
+  name = cool_slideshow
+  width = 1920
+  height = 1080
+  x = 0
+  y = 0
+  duration = 5.0
+  fadespeed = 12.0
+  randomize = false
 }
 ```
-Tylko zmienne wewnątrz sekcji `slideshow-meta` mogą być zmieniane!
 
-### name
+| Właściwość | Znaczenie |
+|---|---|
+| `name` | Wymagany, rozróżniany wielkością liter identyfikator używany w czasie działania; zachowaj jego unikalność |
+| `width`, `height` | Bazowy rozmiar w pikselach skalowanych przez GUI oraz źródłowe proporcje obrazu |
+| `x`, `y` | Bazowa pozycja lewego górnego rogu; zwykłe elementy i tła używają własnej pozycji, więc pozostaw je na `0` |
+| `duration` | Minimalna liczba sekund między rozpoczęciami przejść; obejmuje czas zanikania i musi być większa od `0` |
+| `fadespeed` | Mnożnik szybkości zanikania; `1.0` to wartość domyślna, wyższe wartości przyspieszają zanikanie, a wartość musi być większa od `0` |
+| `randomize` | `true` dla losowego wyboru lub `false` dla kolejności według nazw plików |
 
-To jest nazwa, a właściwie identyfikator, twojego pokazu slajdów.
-Nazwy pokazów slajdów muszą być **unikalne**, więc nie da się mieć dwóch pokazów slajdów o tej samej nazwie!
+Tylko `name` jest wymagane. Wartości domyślne to `width = 50`, `height = 50`, `x = 0`, `y = 0`, `duration = 10.0`, `fadespeed = 1.0` oraz `randomize = false`. Pozostaw `type = slideshow` i `slideshow-meta` bez zmian; zapisuj jedną parę `key = value` w każdej linii i używaj kropki jako separatora dziesiętnego.
 
-### width | height
+Układy korzystają z wartości `name`, a nie z nazwy katalogu. Duplikaty nazw nie są odrzucane, a kolejność skanowania katalogów decyduje o tym, który pokaz slajdów pozostanie dostępny. Dbaj o unikalność nazw w obrębie katalogu slideshows.
 
-Bazowe `width` i `height` twojego pokazu slajdów.
-Używane przez FancyMenu do obliczania proporcji obrazu.
-
-### x | y
-
-Pozycja `x` i `y` twojego pokazu slajdów.
-Bardziej do celów debugowania, więc ustaw oba na `0`.
-
-### duration
-
-Czas trwania w **sekundach**, przez jaki każdy obraz jest wyświetlany przed przejściem do następnego.
-Obsługuje wartości dziesiętne!
-
-### fadespeed
-
-Prędkość animacji zanikania podczas przechodzenia do następnego obrazu.
-Ta wartość jest mnożnikiem prędkości. Na przykład `1.0` to domyślna prędkość, `2.0` podwaja prędkość, a `0.5` spowolni ją o połowę względem domyślnej.
-Wartości ujemne nie są obsługiwane.
-
-### randomize
-
-Czy obrazy pokazu slajdów mają być odtwarzane w losowej kolejności (`true`), czy nie (`false`).
+Tryb losowy wybiera obraz niezależnie przy każdym przejściu i unika natychmiastowego powtórzenia, gdy dostępnych jest kilka obrazów. Czas jest liczony w czasie rzeczywistym; zanikanie trwające dłużej niż `duration` opóźnia następne przejście, a powrót do pokazu slajdów po jego ukryciu może od razu przejść do kolejnego slajdu.
 
 # Korzystanie z pokazu slajdów
 
-Wszystkie ważne kroki są już wykonane i twój pokaz slajdów powinien być gotowy, więc przetestujmy go!
-
-Aby wczytać nowy (lub edytowany) pokaz slajdów do FancyMenu, przeładuj mod przez **Customization -> Reload FancyMenu**.
-
-Teraz możesz użyć swojego pokazu slajdów jako elementu **Slideshow** lub jako tła menu (kliknij prawym przyciskiem myszy tło edytora układu -> **Menu Background**).
+Załaduj ponownie FancyMenu przez **Dostosowywanie -> Załaduj ponownie FancyMenu** albo uruchom klienta ponownie. Użyj elementu [**Pokaz slajdów**](./elements#slideshow) albo kliknij prawym przyciskiem myszy tło edytora układu i wybierz [**Tła menu**](./menu-backgrounds) -> **Pokaz slajdów**.
