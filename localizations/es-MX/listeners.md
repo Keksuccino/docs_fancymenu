@@ -1,114 +1,116 @@
 ---
-title: Escuchadores
-description: Cómo crear y usar escuchadores en FancyMenu.
+title: Oyentes
+description: Cómo crear y usar oyentes en FancyMenu.
 ---
+# Oyentes
 
-# Escuchadores
+Los oyentes ejecutan [scripts de acción](./action-scripts) cuando ocurren eventos específicos. No están ligados a una pantalla abierta, así que también pueden ejecutarse mientras juegas o cargas.
 
-A partir de FancyMenu v3.8.0, hay una nueva función llamada "escuchadores".
+Los oyentes pueden proporcionar valores `$$`, como una tecla presionada o un botón del mouse hecho clic, a sus acciones y requisitos.
 
-Los escuchadores ejecutan scripts de acciones cuando ocurren eventos específicos del cliente o de la jugabilidad.
-Pueden exponer variables para acciones, placeholders y requisitos anidados dentro del escuchador.
+> [!CAUTION]
+> Un oyente puede ejecutar acciones de archivo, red, comandos, portapapeles, paquete de recursos o enlaces sin que haya una pantalla abierta. Importa oyentes solo de fuentes en las que confíes.
 
-A diferencia de la mayoría de las cosas en FancyMenu, los escuchadores no están ligados a una pantalla o superposición. Se ejecutan constantemente en segundo plano, escuchando sus eventos. En cuanto se dispara un escuchador, ejecuta su script de acciones, incluso si no hay ninguna pantalla abierta en ese momento.
+# Uso de oyentes
 
-# Uso de los escuchadores
+Fuera del Editor de diseños, abre **barra de menú -> Personalización -> Administrar oyentes** para crear o editar oyentes.
 
-Para crear un nuevo escuchador que escuche un evento y ejecute un script de acciones, haz clic en **barra de menú -> Personalización -> Administrar escuchadores** mientras **NO** estés en el editor de diseño. Ahí encontrarás una interfaz fácil de usar para crear y administrar escuchadores.
+<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/manage_listeners.png?raw=true" alt="Administrar oyentes" style="max-width:800px;width:100%;height:auto;">
 
-<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/manage_listeners.png?raw=true" alt="Administrar escuchadores" style="max-width:800px;width:100%;height:auto;">
+# Variables de los oyentes
 
-# Variables del escuchador
+Los oyentes pueden proporcionar valores de solo lectura para sus acciones y requisitos. Usa sus nombres `$$` en los campos de texto compatibles.
 
-Los escuchadores a menudo exponen un tipo especial de variable para sus acciones, requisitos y placeholders anidados.
-Estas variables se pueden acceder como placeholders (en efecto, son placeholders).
+Por ejemplo, usa [**Al presionar una tecla del teclado**](#on-keyboard-key-pressed-keyboard_key_pressed) con la [acción **Imprimir en el registro del juego**](./action-scripts#print-to-game-log-print_to_log). El valor `¡Tecla presionada! La tecla es: $$key_name` inserta el nombre de la tecla presionada.
 
-Puedes usar estas variables simplemente escribiendo sus nombres con el prefijo `$$` en campos de texto, de forma similar a como usarías un placeholder normal.
+> [!WARNING]
+> Las variables de los oyentes son independientes de las [variables almacenadas](./variables) de FancyMenu. Las acciones, requisitos y marcadores de posición de variables almacenadas no funcionan con valores `$$`.
 
-Por ejemplo, si usas el escuchador **On Keyboard Key Pressed** y quieres imprimir el nombre de la tecla en el registro mediante la acción **Print to Log**, usarías algo como `¡Tecla presionada! La tecla es: $$key_name` como entrada para el mensaje que la acción debe imprimir. El placeholder de la variable luego se reemplazará con el nombre real de la tecla.
+Los nombres de variables de los oyentes distinguen entre mayúsculas y minúsculas y solo funcionan dentro del script de ese oyente.
 
-> Aunque se llaman "variables", no tienen ninguna relación con el [sistema de variables](/variables) normal de FancyMenu. No puedes establecer estas variables, ya que son **de solo lectura**. Tampoco puedes usar acciones, requisitos ni placeholders pensados para el sistema de variables de FancyMenu con estas variables especiales del escuchador, así que **Get Variable Value [FM Variable]**, **Is Variable Value [FM Variable]** o **Set Variable Value [FM Variable]** no funcionarán con variables de escuchador.
-{.is-warning}
+Trata como no confiables los valores provenientes del chat, servidores remotos, archivos y la entrada del usuario. No los insertes directamente en rutas, URL o comandos.
 
-# Escuchadores en detalle
+Las variables de los oyentes son cadenas. Cuando la información no esté disponible, un oyente puede devolver un valor centinela documentado como `ERROR`, `UNKNOWN`, `NONE`, `EMPTY`, `0`, `-1` o una cadena vacía. Prueba estos valores antes de insertar datos de oyentes en rutas, comandos o URL.
 
-Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de FancyMenu. Es posible que la lista no siempre esté actualizada debido a las actualizaciones del mod.
+# Oyentes en detalle
 
-## On Markdown Text Clicked
-- Se activa cuando se hace clic en texto Markdown con un evento `click:`, por ejemplo `[Abrir](click:open_menu)`.
+Esta sección enumera los oyentes integrados de FancyMenu.
+
+## Al hacer clic en texto Markdown (`text_clicked`)
+- Se activa cuando se hace clic en [texto Markdown con un evento `click:`](./text-formatting#click-and-hover-events), por ejemplo `[Abrir](click:open_menu)`.
 - Variables:
   - `$$text_event_id` – ID del evento del enlace Markdown
 
-## On Markdown Text Hovered
-- Se activa cuando se pasa el cursor sobre texto Markdown con un evento `hover:`, por ejemplo `[Pista](hover:show_hint)`.
+## Al pasar el cursor sobre texto Markdown (`text_hovered`)
+- Se activa cuando se pasa el cursor sobre [texto Markdown con un evento `hover:`](./text-formatting#click-and-hover-events), por ejemplo `[Pista](hover:show_hint)`.
 - Variables:
   - `$$text_event_id` – ID del evento del enlace Markdown
 
-## On ZIP Extracted via Action
-- Se activa cuando termina la acción **Extract ZIP File In Game Directory**.
+## Al extraer un ZIP mediante una acción (`zip_extracted_via_action`)
+- Se activa cuando termina la [acción **Extraer archivo ZIP en el directorio del juego**](./action-scripts#extract-zip-file-in-game-directory-extract_zip_file_in_game_dir).
 - Variables:
-  - `$$source_zip_path` – ruta de origen del ZIP resuelta
-  - `$$target_folder_path` – ruta de destino de extracción resuelta
+  - `$$source_zip_path` – ruta de origen normalizada visible para el usuario; las rutas del directorio del juego pueden devolverse como `/...`, mientras que las rutas convencionales del directorio de Minecraft pueden usar `.minecraft/...`
+  - `$$target_folder_path` – ruta de destino normalizada visible para el usuario usando las mismas formas de ruta
   - `$$extract_succeeded` – true/false
   - `$$failure_reason` – texto de error cuando falla la extracción
 
-## On Element Spawned
-- Se activa cuando un elemento se genera mediante una acción o un flujo de generación de elementos con script.
+## Al generarse un elemento (`element_spawned_via_action`)
+- Se activa cuando una función o complemento compatible de FancyMenu genera dinámicamente una instancia de elemento.
 - Variables:
   - `$$element_type` – tipo de elemento generado
   - `$$element_identifier` – identificador del elemento generado
-  - `$$target_screen` – identificador de la pantalla destino
+  - `$$target_screen` – identificador de la pantalla de destino
 
-## On Animated Texture Started Playing
-- Se activa cuando una textura animada comienza a reproducirse.
+## Al empezar a reproducirse una textura animada (`animated_texture_started_playing`)
+- Se activa cuando una [textura animada](./fma) comienza a reproducirse.
 - Variables:
   - `$$texture_source` – origen de la textura
   - `$$texture_source_type` – tipo de origen
   - `$$texture_will_restart` – true/false
 
-## On Animated Texture Finished Playing
+## Al terminar de reproducirse una textura animada (`animated_texture_finished_playing`)
 - Se activa cuando una textura animada termina de reproducirse.
 - Variables:
   - `$$texture_source`
   - `$$texture_source_type`
   - `$$texture_will_restart`
 
-## On Video Playback Status Changed
-- Se activa cuando un elemento de video o el fondo de video del menú cambia su estado de reproducción.
+## Al cambiar el estado de reproducción de video (`video_playback_status_changed`)
+- Se activa cuando un [elemento de video o fondo de menú](./video) cambia su estado de reproducción.
 - Variables:
   - `$$video_source` – origen del video
   - `$$video_source_type` – tipo de origen
   - `$$is_looping` – true/false
   - `$$new_status` – `PLAYING`, `STOPPED`, `PAUSED` o `FINISHED`
 
-## On System Message Received in Chat
-- Se activa cuando el cliente recibe un mensaje de chat del sistema, como una respuesta de comando.
+## Al recibir un mensaje del sistema en el chat (`system_message_received_in_chat`)
+- Se activa cuando el cliente recibe un mensaje del chat del sistema, como una respuesta de comando.
 - Variables:
   - `$$system_message_string` – mensaje en texto plano
   - `$$system_message_component` – componente JSON
 
-## On FM Data Received
-- Se activa cuando un servidor envía FM Data a este cliente mediante `/fmdata send`.
+## Al recibir datos de FM (`fm_data_received`)
+- Se activa cuando un servidor envía [FM Data](./fm-data) a este cliente mediante `/fmdata send`.
 - Variables:
   - `$$data_identifier` – cadena del identificador de datos
   - `$$data` – carga útil de datos
   - `$$sent_by` – IP del servidor o `integrated_server`
 
-## On Remote Server Connected
-- Se activa cuando FancyMenu inicializa una conexión con un servidor remoto.
+## Al conectarse a un servidor remoto (`remote_server_connected`)
+- Se activa después de que una [conexión a servidor remoto](./remote-server-communication) se abre correctamente.
 - Variables:
   - `$$request_id` – ID de solicitud en caché
   - `$$remote_server_url` – URL del servidor remoto
 
-## On Remote Server Data Received
-- Se activa cuando se reciben datos de texto de un servidor remoto conectado.
+## Al recibir datos de un servidor remoto (`remote_server_data_received`)
+- Se activa cuando se reciben datos de texto desde un servidor remoto conectado.
 - Variables:
   - `$$request_id` – ID de solicitud
   - `$$remote_server_url` – URL del servidor remoto
   - `$$data` – carga útil recibida
 
-## On Remote Server Connection Closed
-- Se activa cuando se cierra una conexión con un servidor remoto.
+## Al cerrarse la conexión con un servidor remoto (`remote_server_connection_closed`)
+- Se activa cuando una conexión con un servidor remoto se cierra.
 - Variables:
   - `$$request_id` – ID de solicitud
   - `$$remote_server_url` – URL del servidor remoto
@@ -116,72 +118,72 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$crashed` – TRUE si la conexión falló inesperadamente
   - `$$unknown_close_reason` – TRUE si no había una razón de cierre conocida disponible
 
-## On Keyboard Key Pressed
-- Se activa cada vez que se presiona una tecla (se repite mientras se mantiene presionada; funciona en pantallas y en el juego).
+## Al presionar una tecla del teclado (`keyboard_key_pressed`)
+- Se activa cada vez que se presiona una tecla (se repite mientras se mantiene presionada; funciona en pantallas y dentro del juego).
 - Variables:
   - `$$key_name` – nombre visible de la tecla
   - `$$key_keycode` – código de tecla GLFW
   - `$$key_scancode` – código de escaneo GLFW
   - `$$key_modifiers` – máscara de bits de modificadores activos
 
-## On Keyboard Key Released
-- Se activa cuando se suelta una tecla (pantallas y en el juego).
+## Al soltar una tecla del teclado (`keyboard_key_released`)
+- Se activa cuando se suelta una tecla (pantallas y dentro del juego).
 - Variables:
   - `$$key_name`
   - `$$key_keycode`
   - `$$key_scancode`
   - `$$key_modifiers`
 
-## On Keyboard Character Typed in Screen
+## Al escribir un carácter del teclado en pantalla (`keyboard_char_typed`)
 - Se activa cuando se escribe un carácter mientras hay una pantalla abierta.
 - Variables:
   - `$$char` – carácter escrito
 
-## On Mouse Moved in Screen
+## Al mover el mouse en pantalla (`mouse_moved`)
 - Se activa cada vez que el mouse se mueve mientras hay una pantalla abierta.
 - Variables:
   - `$$mouse_pos_x` – X actual
   - `$$mouse_pos_y` – Y actual
-  - `$$mouse_move_delta_x` – delta en X desde el último evento
-  - `$$mouse_move_delta_y` – delta en Y desde el último evento
+  - `$$mouse_move_delta_x` – delta X desde el último evento
+  - `$$mouse_move_delta_y` – delta Y desde el último evento
 
-## On Mouse Button Clicked
-- Se activa cuando se presiona un botón del mouse (pantallas y en el juego).
+## Al hacer clic en un botón del mouse (`mouse_button_clicked`)
+- Se activa cuando se presiona un botón del mouse (pantallas y dentro del juego).
 - Variables:
-  - `$$button` – izquierdo/derecho/medio
+  - `$$button` – izquierdo/derecho/central
   - `$$mouse_pos_x` – X actual
   - `$$mouse_pos_y` – Y actual
 
-## On Mouse Button Released
-- Se activa cuando se suelta un botón del mouse (pantallas y en el juego).
+## Al soltar un botón del mouse (`mouse_button_released`)
+- Se activa cuando se suelta un botón del mouse (pantallas y dentro del juego).
 - Variables:
   - `$$button`
   - `$$mouse_pos_x`
   - `$$mouse_pos_y`
 
-## On Mouse Scrolled in Screen
+## Al desplazarse con la rueda del mouse en pantalla (`mouse_scrolled`)
 - Se activa cuando se desplaza la rueda del mouse mientras hay una pantalla abierta.
 - Variables:
   - `$$scroll_delta_y` – cantidad de desplazamiento vertical
 
-## On Screen Opened
-- Se ejecuta justo después de que cualquier pantalla se vuelve activa; se puede usar para anularla.
+## Al abrir una pantalla (`screen_open`)
+- Se ejecuta justo después de que cualquier pantalla se active; puede usarse para reemplazarla.
 - Variables:
   - `$$screen_identifier` – identificador de la pantalla abierta
 
-## On Screen Closed
-- Se ejecuta inmediatamente después de que una pantalla se cierra.
+## Al cerrar una pantalla (`screen_close`)
+- Se ejecuta inmediatamente después de que una pantalla se cierre.
 - Variables:
   - `$$screen_identifier` – identificador de la pantalla cerrada
 
-## On Quit Minecraft
+## Al salir de Minecraft (`quit_minecraft`)
 - Se activa una vez cuando el cliente comienza a cerrarse.
 - Variables:
-  - `$$timestamp_millis` – milisegundos desde epoch cuando se sale
+  - `$$timestamp_millis` – milisegundos desde la época cuando se sale
   - `$$timestamp_iso` – marca de tiempo ISO-8601 del momento de salida
 
-## On Death
-- Se ejecuta cuando se abre la pantalla de muerte vanilla para el jugador local.
+## Al morir (`player_death`)
+- Se ejecuta cuando se abre la pantalla de muerte de vanilla para el jugador local.
 - Variables:
   - `$$days_survived` – días desde la última muerte
   - `$$death_reason_string` – causa en texto plano
@@ -190,22 +192,22 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$death_pos_y` – coordenada Y de la muerte
   - `$$death_pos_z` – coordenada Z de la muerte
 
-## On Variable Updated [FM Variable]
-- Se activa cada vez que se establece o actualiza una variable de FancyMenu.
+## Al actualizarse una variable [variable de FM] (`fm_variable_updated`)
+- Se activa cada vez que se establece o actualiza una [variable de FancyMenu](./variables).
 - Variables:
   - `$$var_name` – nombre de la variable
   - `$$old_value` – valor anterior
   - `$$new_value` – valor nuevo
 
-## On File Downloaded via Action
-- Se activa después de que termina la acción “Download File to Game Directory”.
+## Al descargarse un archivo mediante una acción (`file_downloaded_via_action`)
+- Se activa después de que termina la [acción **Descargar archivo al directorio del juego**](./action-scripts#download-file-to-game-directory-download_file_to_game_dir).
 - Variables:
   - `$$download_url` – origen de la descarga
-  - `$$target_file_path` – ruta del archivo guardado
+  - `$$target_file_path` – ruta del archivo guardado si fue exitosa; si falla, puede contener solo el directorio de destino porque no se resolvió un nombre de archivo final
   - `$$download_succeeded` – true/false
 
-## On File Selected
-- Se activa después de que se completa la acción “Select File”.
+## Al seleccionar un archivo (`file_selected_via_action`)
+- Se activa después de que se completa la [acción **Seleccionar archivo del sistema**](./action-scripts#select-file-from-system-select_file_to_game_dir).
 - Variables:
   - `$$selected_file_path` – ruta absoluta del archivo elegido o vacío si se canceló
   - `$$target_file_path` – ruta resuelta dentro de la instancia
@@ -213,64 +215,64 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$selection_cancelled` – true si se cerró el diálogo
   - `$$failure_reason` – información del error si falla
 
-## On Chat Message Received
-- Se activa cuando una línea normal de chat de un jugador aparece en el cliente.
+## Al recibir un mensaje de chat (`chat_message_received`)
+- Se activa cuando aparece en el cliente una línea normal de chat de jugador.
 - Variables:
   - `$$chat_message_string` – línea en texto plano
   - `$$chat_message_component` – componente JSON completo
   - `$$sender_uuid` – UUID del remitente o ERROR
   - `$$sender_name` – nombre del remitente o ERROR
 
-## On Chat Message Sent
+## Al enviar un mensaje de chat (`chat_message_sent`)
 - Se activa cuando el jugador local envía un mensaje de chat.
 - Variables:
   - `$$chat_message_string` – línea en texto plano
   - `$$chat_message_component` – componente JSON completo
 
-## On Effect Gained
+## Al obtener un efecto (`effect_gained`)
 - Se activa cuando el jugador obtiene un efecto de estado.
 - Variables:
   - `$$effect_key` – ubicación de recurso del efecto
   - `$$effect_type` – positivo/negativo/neutro
   - `$$effect_duration` – ticks restantes
 
-## On Effect Lost
+## Al perder un efecto (`effect_lost`)
 - Se activa cuando el jugador pierde un efecto de estado.
 - Variables:
   - `$$effect_key` – efecto expirado
   - `$$effect_type` – categoría
 
-## On Experience Changed
-- Se activa cada vez que cambia la XP total del jugador.
+## Al cambiar la experiencia (`experience_changed`)
+- Se activa cada vez que cambia la experiencia total del jugador.
 - Variables:
   - `$$new_experience_amount` – después del cambio
   - `$$old_experience_amount` – antes del cambio
-  - `$$is_level_up` – TRUE si el nivel aumentó
+  - `$$is_level_up` – TRUE si subió de nivel
 
-## On Damage Taken
+## Al recibir daño (`damage_taken`)
 - Se activa una vez por golpe cuando el jugador recibe daño.
 - Variables:
-  - `$$damage_amount` – salud removida
+  - `$$damage_amount` – salud eliminada
   - `$$damage_type` – ubicación de recurso del tipo de daño
-  - `$$is_fatal_damage` – TRUE si fue letal
+  - `$$is_fatal_damage` – TRUE si es letal
   - `$$damage_source` – ubicación de recurso del atacante o NONE
 
-## On Started Freezing
+## Al empezar a congelarse (`started_freezing`)
 - Se activa cuando el jugador empieza a congelarse.
 - Variables:
   - `$$freezing_intensity` – 0.0 nada, 1.0 completamente congelado
 
-## On Stopped Freezing
+## Al dejar de congelarse (`stopped_freezing`)
 - Se activa cuando el jugador deja de congelarse.
 - Variables:
   - (ninguna)
 
-## On Fully Frozen
+## Al congelarse por completo (`fully_frozen`)
 - Se activa una vez cuando el jugador queda completamente congelado.
 - Variables:
   - (ninguna)
 
-## On Start Looking At Block
+## Al empezar a mirar un bloque (`start_looking_at_block`)
 - Se activa una vez cuando la mira apunta por primera vez a un bloque (distancia máxima de 20 bloques).
 - Variables:
   - `$$block_key` – bloque objetivo
@@ -279,7 +281,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$block_pos_z` – Z del bloque
   - `$$distance_to_player` – de los ojos al punto de impacto
 
-## On Stop Looking At Block
+## Al dejar de mirar un bloque (`stop_looking_at_block`)
 - Se activa cuando la mira deja de apuntar a un bloque (reporta el último bloque objetivo, máximo 20 bloques).
 - Variables:
   - `$$block_key`
@@ -288,7 +290,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$block_pos_z`
   - `$$distance_to_player`
 
-## On Start Looking At Entity
+## Al empezar a mirar una entidad (`start_looking_at_entity`)
 - Se activa una vez cuando la mira apunta por primera vez a una entidad (máximo 20 bloques).
 - Variables:
   - `$$entity_key` – tipo de entidad objetivo
@@ -298,7 +300,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Stop Looking At Entity
+## Al dejar de mirar una entidad (`stop_looking_at_entity`)
 - Se activa cuando la mira deja de apuntar a una entidad (reporta la última entidad objetivo, máximo 20 bloques).
 - Variables:
   - `$$entity_key`
@@ -308,8 +310,8 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Spawned
-- **Requiere FancyMenu en el servidor.** Se activa cuando cualquier entidad aparece en cualquier parte del mundo/servidor conectado.
+## Al aparecer una entidad (`entity_spawned`)
+- **Requiere FancyMenu en el servidor.** Detección aproximada del área de la estructura; puede activarse cerca, encima o debajo de la estructura.
 - Variables:
   - `$$entity_key`
   - `$$distance_to_player` – −1 si está en otra dimensión
@@ -320,7 +322,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$dimension_key`
   - `$$is_same_dimension_as_player`
 
-## On Entity Died
+## Al morir una entidad (`entity_died`)
 - **Requiere FancyMenu en el servidor.** Se activa cuando cualquier entidad muere en el mundo/servidor conectado.
 - Variables:
   - `$$entity_key`
@@ -336,7 +338,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_killed_by_key`
   - `$$entity_killed_by_uuid`
 
-## On Entity Starts Being In Sight
+## Al comenzar una entidad a estar en vista (`entity_starts_being_in_sight`)
 - Se activa cuando una entidad se vuelve visible por primera vez dentro de 200 bloques.
 - Variables:
   - `$$entity_key`
@@ -346,8 +348,8 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Stops Being In Sight
-- Se activa cuando una entidad que antes era visible sale de la vista o se mueve más allá de 200 bloques.
+## Al dejar de estar en vista una entidad (`entity_stops_being_in_sight`)
+- Se activa cuando una entidad previamente visible sale de la vista o se aleja más de 200 bloques.
 - Variables:
   - `$$entity_key`
   - `$$distance_to_player`
@@ -356,7 +358,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Interacted With Entity
+## Al interactuar con una entidad (`entity_interacted`)
 - Se activa cuando el jugador interactúa correctamente con una entidad.
 - Variables:
   - `$$entity_key`
@@ -365,7 +367,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Mounted
+## Al montar una entidad (`entity_mounted`)
 - Se activa cuando el jugador comienza a montar una entidad.
 - Variables:
   - `$$entity_key`
@@ -374,7 +376,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Unmounted
+## Al desmontar una entidad (`entity_unmounted`)
 - Se activa cuando el jugador deja de montar su entidad actual.
 - Variables:
   - `$$entity_key`
@@ -383,7 +385,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Block Broke
+## Al romper un bloque (`block_broke`)
 - Se activa cuando el jugador rompe un bloque.
 - Variables:
   - `$$block_key`
@@ -392,7 +394,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Block Placed
+## Al colocar un bloque (`block_placed`)
 - Se activa cuando el jugador coloca un bloque.
 - Variables:
   - `$$block_key`
@@ -400,7 +402,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Interacted With Block
+## Al interactuar con un bloque (`interacted_with_block`)
 - Se activa cuando el jugador interactúa correctamente con un bloque.
 - Variables:
   - `$$block_key`
@@ -408,7 +410,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Stepping On Block
+## Al pisar un bloque (`stepping_on_block`)
 - Se activa cuando el jugador pisa un bloque.
 - Variables:
   - `$$block_key`
@@ -416,62 +418,62 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Enter Biome
+## Al entrar a un bioma (`enter_biome`)
 - Se activa cuando el jugador entra en un bioma nuevo.
 - Variables:
-  - `$$biome_key` – bioma al que se entró
+  - `$$biome_key` – bioma al que entró
 
-## On Leave Biome
-- Se activa cuando el jugador sale de su bioma actual.
+## Al salir de un bioma (`leave_biome`)
+- Se activa cuando el jugador sale del bioma actual.
 - Variables:
   - `$$biome_key` – bioma que acaba de dejar
 
-## On Enter Structure
-- **Requiere FancyMenu en el servidor.** Detección aproximada del área de estructuras; puede activarse cerca, arriba o debajo de la estructura.
+## Al entrar en una estructura (`enter_structure`)
+- **Requiere FancyMenu en el servidor.** Detección aproximada del área de la estructura; puede activarse cerca de la estructura, por encima o por debajo.
 - Variables:
-  - `$$structure_key` – estructura a la que se entró
+  - `$$structure_key` – estructura a la que entró
 
-## On Leave Structure
+## Al salir de una estructura (`leave_structure`)
 - **Requiere FancyMenu en el servidor.** Detección aproximada; puede activarse cerca de la huella de la estructura.
 - Variables:
   - `$$structure_key` – estructura que acaba de dejar
 
-## On Enter Structure (High Precision)
-- **Requiere FancyMenu en el servidor.** Se activa cuando el jugador entra en los volúmenes de colisión de una estructura.
+## Al entrar en una estructura (alta precisión) (`enter_structure_high_precision`)
+- **Requiere FancyMenu en el servidor.** Se activa cuando el jugador entra en las cajas delimitadoras de una estructura.
 - Variables:
   - `$$structure_key`
 
-## On Leave Structure (High Precision)
-- **Requiere FancyMenu en el servidor.** Se activa después de que el jugador salga de los volúmenes de colisión de una estructura.
+## Al salir de una estructura (alta precisión) (`leave_structure_high_precision`)
+- **Requiere FancyMenu en el servidor.** Se activa después de que el jugador salga de las cajas delimitadoras de una estructura.
 - Variables:
   - `$$structure_key`
 
-## On Dimension Entered
-- Se activa cuando el jugador entra en una nueva dimensión.
+## Al entrar en una dimensión (`enter_dimension`)
+- Se activa cuando el jugador entra en una dimensión nueva.
 - Variables:
-  - `$$dimension_key` – dimensión a la que se entró
+  - `$$dimension_key` – dimensión a la que entró
 
-## On Start Swimming
-- Se activa cuando el jugador comienza a nadar.
+## Al empezar a nadar (`start_swimming`)
+- Se activa cuando el jugador empieza a nadar.
 - Variables:
   - `$$fluid_type` – ubicación de recurso del fluido
 
-## On Stop Swimming
+## Al dejar de nadar (`stop_swimming`)
 - Se activa cuando el jugador deja de nadar.
 - Variables:
   - `$$fluid_type` – fluido en el que dejó de nadar
 
-## On Start Touching Fluid
+## Al empezar a tocar un fluido (`start_touching_fluid`)
 - Se activa cuando el jugador comienza a tocar un fluido.
 - Variables:
   - `$$fluid_type` – fluido tocado
 
-## On Stop Touching Fluid
+## Al dejar de tocar un fluido (`stop_touching_fluid`)
 - Se activa cuando el jugador deja de tocar un fluido.
 - Variables:
   - `$$fluid_type` – fluido que ya no se toca
 
-## On Music Track Started
+## Al iniciar una pista de música (`music_track_started`)
 - Se activa cuando comienza una nueva pista de música.
 - Variables:
   - `$$track_resource_location` – archivo de audio
@@ -479,7 +481,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$track_artist` – artista o UNKNOWN
   - `$$track_duration_ms` – milisegundos (0 si se desconoce)
 
-## On Music Track Stopped
+## Al detenerse una pista de música (`music_track_stopped`)
 - Se activa cuando la pista de música actual termina o es reemplazada.
 - Variables:
   - `$$track_resource_location`
@@ -487,85 +489,85 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$track_artist`
   - `$$track_duration_ms`
 
-## On World Sound Triggered
+## Al activarse un sonido del mundo (`world_sound_triggered`)
 - Se activa cuando un sonido posicional del mundo comienza cerca del jugador.
 - Variables:
   - `$$sound_resource_location` – archivo de sonido
-  - `$$sound_display_name` – nombre de subtítulo cuando esté disponible
+  - `$$sound_display_name` – nombre del subtítulo cuando esté disponible
   - `$$sound_origin_pos_x`
   - `$$sound_origin_pos_y`
   - `$$sound_origin_pos_z`
   - `$$sound_origin_distance_to_player`
-  - `$$sound_origin_direction_from_player` – grados 0–360 relativos a la dirección a la que se mira
+  - `$$sound_origin_direction_from_player` – grados 0–360 relativos a la dirección hacia la que miras
 
-## On Weather Changed
-- Se activa cuando el clima cambia global o localmente (un cambio de bioma o entrar a interiores puede volver a activarlo).
+## Al cambiar el clima (`weather_changed`)
+- Se activa cuando el clima cambia global o localmente (un cambio de bioma o entrar en interiores puede activarlo de nuevo).
 - Variables:
-  - `$$weather_type` – despejado/lluvia/tormenta
+  - `$$weather_type` – clear/rain/thunder
   - `$$weather_can_snow` – TRUE si se renderiza nieve
   - `$$weather_can_rain` – TRUE si se renderiza lluvia
 
-## On Started Burning
-- Se activa cuando el jugador comienza a arder.
+## Al empezar a arder (`started_burning`)
+- Se activa cuando el jugador empieza a arder.
 - Variables:
   - (ninguna)
 
-## On Stopped Burning
+## Al dejar de arder (`stopped_burning`)
 - Se activa cuando el jugador deja de arder.
 - Variables:
   - (ninguna)
 
-## On Started Drowning
-- Se activa cuando el jugador empieza a recibir daño por ahogamiento.
+## Al empezar a ahogarse (`started_drowning`)
+- Se activa cuando el jugador comienza a recibir daño por ahogo.
 - Variables:
   - (ninguna)
 
-## On Position Changed
+## Al cambiar la posición (`position_changed`)
 - Se activa cada vez que cambia la posición de bloque del jugador.
 - Variables:
   - `$$old_pos_x` – bloque X anterior
   - `$$old_pos_y` – bloque Y anterior
   - `$$old_pos_z` – bloque Z anterior
-  - `$$new_pos_x` – bloque X nuevo
-  - `$$new_pos_y` – bloque Y nuevo
-  - `$$new_pos_z` – bloque Z nuevo
+  - `$$new_pos_x` – nuevo bloque X
+  - `$$new_pos_y` – nuevo bloque Y
+  - `$$new_pos_z` – nuevo bloque Z
 
-## On Started Running
-- Se activa cuando el jugador empieza a correr rápido.
+## Al empezar a correr (`started_running`)
+- Se activa cuando el jugador empieza a esprintar.
 - Variables:
   - (ninguna)
 
-## On Stopped Running
-- Se activa cuando el jugador deja de correr rápido.
+## Al dejar de correr (`stopped_running`)
+- Se activa cuando el jugador deja de esprintar.
 - Variables:
   - (ninguna)
 
-## On Jump
+## Al saltar (`jump`)
 - Se activa cada vez que el jugador salta.
 - Variables:
   - (ninguna)
 
-## On Server Joined
+## Al unirse a un servidor (`server_joined`)
 - Se activa después de unirse correctamente a un servidor multijugador.
 - Variables:
   - `$$server_ip` – dirección del servidor al que se unió
 
-## On Server Left
+## Al salir de un servidor (`server_left`)
 - Se activa después de desconectarse de un servidor multijugador.
 - Variables:
   - `$$server_ip` – dirección del servidor que se dejó
 
-## Singleplayer World Entered
-- Se activa después de que un mundo de un jugador termina de cargar y se devuelve el control.
+## Al entrar a un mundo de un jugador (`world_entered`)
+- Se activa después de que un mundo de un jugador termina de cargarse y se devuelve el control.
 - Variables:
   - `$$world_name` – nombre visible
   - `$$world_save_path` – carpeta de guardado absoluta
   - `$$world_difficulty` – clave de dificultad
-  - `$$world_cheats_allowed` – TRUE si los trucos están habilitados
-  - `$$world_icon_path` – ruta absoluta del ícono
+  - `$$world_cheats_allowed` – TRUE si los trucos están activados
+  - `$$world_icon_path` – ruta absoluta del icono
   - `$$world_is_first_join` – TRUE en la primera visita
 
-## Singleplayer World Left
+## Al salir de un mundo de un jugador (`world_left`)
 - Se activa después de que un mundo de un jugador se cierra y termina de guardarse.
 - Variables:
   - `$$world_name`
@@ -574,19 +576,19 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$world_cheats_allowed`
   - `$$world_icon_path`
 
-## On Other Player Joined World/Server
-- Se activa cuando otro jugador entra al mundo/servidor actual.
+## Al unirse otro jugador al mundo/servidor (`other_player_joined_world`)
+- Se activa cuando otro jugador se une al mundo/servidor actual.
 - Variables:
   - `$$player_name` – nombre del jugador que se une
   - `$$player_uuid` – UUID
 
-## On Other Player Left World/Server
+## Al salir otro jugador del mundo/servidor (`other_player_left_world`)
 - Se activa cuando otro jugador sale del mundo/servidor actual.
 - Variables:
   - `$$player_name`
   - `$$player_uuid`
 
-## On Other Player Died
+## Al morir otro jugador (`other_player_died`)
 - Se activa cuando otro jugador en el mundo actual muere.
 - Variables:
   - `$$player_name`
@@ -595,29 +597,29 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$death_pos_y`
   - `$$death_pos_z`
 
-## On Item Picked Up
+## Al recoger un objeto (`item_picked_up`)
 - Se activa cuando el jugador recoge una entidad de objeto.
 - Variables:
   - `$$item_key` – ubicación de recurso del objeto recogido
 
-## On Item Dropped
+## Al tirar un objeto (`item_dropped`)
 - Se activa cuando el jugador tira un objeto de su inventario.
 - Variables:
   - `$$item_key` – ubicación de recurso del objeto tirado
 
-## On Item Consumed
+## Al consumir un objeto (`item_consumed`)
 - Se activa cuando el jugador termina de consumir un objeto.
 - Variables:
   - `$$item_key` – objeto consumido
 
-## On Item Hovered in Inventory
+## Al pasar el cursor sobre un objeto en el inventario (`item_hovered_in_inventory`)
 - Se activa cuando el usuario pasa el cursor sobre un objeto en cualquier pantalla de inventario.
 - Variables:
   - `$$item_key` – ubicación de recurso del objeto señalado
   - `$$item_display_name_string` – nombre visible del objeto en texto plano
   - `$$item_display_name_json` – nombre visible del objeto como componente JSON
 
-## On Item Used
+## Al usar un objeto (`item_used`)
 - Se activa cuando el jugador usa un objeto.
 - Variables:
   - `$$item_key` – objeto usado
@@ -628,7 +630,7 @@ Esta lista debería incluir la mayoría, si no es que todos, los escuchadores de
   - `$$target_pos_y` – Y objetivo o -1
   - `$$target_pos_z` – Z objetivo o -1
 
-## On Item Broke
+## Al romperse un objeto (`item_broke`)
 - Se activa cuando un objeto en el inventario del jugador se rompe.
 - Variables:
   - `$$item_key` – objeto roto
