@@ -4,7 +4,7 @@ description: Cómo usar marcadores de posición.
 ---
 # Marcadores de posición
 
-Los marcadores de posición son valores dinámicos que se reemplazan con contenido real cuando se usan. En FancyMenu, los marcadores de posición te permiten insertar contenido dinámico en varios elementos como texto, botones y requisitos de carga. Piénsalos como variables que se evalúan y se reemplazan por sus valores reales cuando se muestran tus diseños.
+Los marcadores de posición insertan valores en vivo en texto, botones, requisitos y otros campos compatibles.
 
 # Información general
 
@@ -19,8 +19,8 @@ Por ejemplo, para mostrar el nombre del jugador:
 {"placeholder":"playername"}
 ```
 
-## Marcadores de posición anidados
-Una de las funciones más potentes del sistema de marcadores de posición de FancyMenu es que puedes anidarlos dentro de otros marcadores de posición. Esto significa que puedes usar la salida de un marcador de posición como entrada de otro.
+## Anidar marcadores de posición
+Puedes usar un marcador de posición dentro del valor de otro marcador de posición.
 
 Ejemplo de marcadores de posición anidados:
 ```
@@ -29,102 +29,182 @@ Ejemplo de marcadores de posición anidados:
 Este ejemplo toma el valor máximo de RAM y lo divide entre 1024 para convertirlo de MB a GB.
 
 > [!IMPORTANT]
-> A diferencia del JSON real, los marcadores de posición anidados **no** se **escapan** usando `\`. Esto es muy importante, porque los marcadores de posición dejarán de funcionar cuando se escapen (obviamente). Los marcadores de posición solo usan una sintaxis parecida a JSON. No son JSON real.
+> Esta es sintaxis de FancyMenu, no JSON. Los marcadores de posición anidados usan la forma exacta sin escape que se muestra arriba, así que los formateadores de JSON los rechazarán o reescribirán. Los nombres de los marcadores de posición distinguen mayúsculas y minúsculas; los marcadores de posición mal formados o desconocidos seguirán visibles como texto y se registrarán.
 
 # Uso de marcadores de posición
 
-La mayoría de los elementos que tienen entradas de texto admiten marcadores de posición. Puedes ver si una entrada de texto los admite al editarla. Si al editar el texto se abre el **editor de texto** de pantalla completa, entonces admite marcadores de posición.
+La mayoría de los elementos que tienen entradas de texto admiten marcadores de posición. Puedes ver si una entrada de texto los admite cuando la editas. Si se abre el **editor de texto** a pantalla completa al editar el texto, sí admite marcadores de posición.
 
 Para encontrar una **lista de todos los marcadores de posición**, solo haz clic en el botón **Marcadores de posición** en la **esquina superior derecha** del **editor de texto**.
 
-Hay una **barra de búsqueda** en la parte superior de la lista de marcadores de posición que te permite buscarlos.
+En la parte superior de la lista de marcadores de posición hay una **barra de búsqueda** que te permite buscar marcadores de posición.
 
-Al hacer clic en un marcador de posición en la lista, se pegará en el contenido de texto.
+Al hacer clic en un marcador de posición de la lista, se pegará en el contenido del texto.
 
 # Marcadores de posición en detalle
 
-Esta lista contiene la mayoría, si no es que todos, los marcadores de posición disponibles en FancyMenu. La lista puede quedar un poco desactualizada debido a actualizaciones del mod.
+Esta sección enumera los marcadores de posición integrados de FancyMenu.
 
-## Nombre del jugador (playername)
-Devuelve el nombre de usuario del jugador actual.
+## Resultados no disponibles
+
+La salida de los marcadores de posición siempre es texto. Cuando no hay datos disponibles, el resultado depende del marcador de posición: los valores de respaldo comunes son una cadena vacía, `0`, `0.0`, `00:00`, `false`, `UNKNOWN` o `ERROR`. Las entradas con un estado de respaldo específico lo indican directamente; prueba el valor de respaldo antes de usar salida dependiente del entorno en un [requisito](./conditions), ruta, comando o URL.
+
+## Nombre del jugador (`playername`)
+
+**Propósito:** Devuelve el nombre de usuario del jugador actual.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"playername"}
 ```
-Salida de ejemplo: `Steve`
 
-## UUID del jugador (playeruuid)
-Devuelve el identificador único del jugador.
+**Salida:** `Steve`
+
+## UUID del jugador (`playeruuid`)
+
+**Propósito:** Devuelve el identificador único del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"playeruuid"}
 ```
-Salida de ejemplo: `c8cde7fe-7ced-11eb-9439-0242ac130002`
 
-## Versión de Minecraft (mcversion)
-Devuelve la versión actual de Minecraft.
+**Salida:** `c8cde7fe-7ced-11eb-9439-0242ac130002`
+
+## Versión de Minecraft (`mcversion`)
+
+**Propósito:** Devuelve la versión actual de Minecraft.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"mcversion"}
 ```
-Salida de ejemplo: `1.19.2`
 
-## Versión del cargador de mods (loaderver)
-Devuelve la versión del cargador de mods (Forge/Fabric).
+**Salida:** `1.21.1`
+
+## Versión del cargador de mods (`loaderver`)
+
+**Propósito:** Devuelve la versión del cargador de mods (Fabric/NeoForge).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"loaderver"}
 ```
-Salida de ejemplo: `43.2.0`
 
-## Nombre del cargador de mods (loadername)
-Devuelve el nombre del cargador de mods.
+**Salida:** `0.16.14`
+
+## Nombre del cargador de mods (`loadername`)
+
+**Propósito:** Devuelve el nombre del cargador de mods.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"loadername"}
 ```
-Salida de ejemplo: `Forge`
 
-## Versión del mod (modversion)
-Devuelve la versión de un mod específico.
-```
-{"placeholder":"modversion","values":{"modid":"fancymenu"}}
-```
-Salida de ejemplo: `2.14.9`
+**Salida:** `Fabric`
 
-## Conteo total de mods (totalmods)
-Devuelve el número total de mods instalados.
+## Versión del mod (`modversion`)
+
+**Propósito:** Devuelve la versión de un mod específico.
+
+**Valores:** `modid`
+
+**Ejemplo:**
+
+```
+{"placeholder":"modversion","values":{"modid":"example_mod"}}
+```
+
+**Salida:** `1.2.3`
+
+## Conteo total de mods (`totalmods`)
+
+**Propósito:** Devuelve un conteo aproximado de archivos de mods basado en el directorio `mods` y el número de mods cargados. No cuenta de forma confiable todos los mods deshabilitados.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"totalmods"}
 ```
-Salida de ejemplo: `45`
 
-## Conteo de mods activos (loadedmods)
-Devuelve el número de mods cargados actualmente.
+**Salida:** `45`
+
+## Conteo de mods activos (`loadedmods`)
+
+**Propósito:** Devuelve el número de mods actualmente cargados.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"loadedmods"}
 ```
-Salida de ejemplo: `43`
 
-## Progreso de carga del mundo (world_load_progress)
-Devuelve el progreso actual de carga del mundo como porcentaje.
+**Salida:** `43`
+
+## Progreso de carga del mundo (`world_load_progress`)
+
+**Propósito:** Devuelve el progreso actual de carga del mundo en porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"world_load_progress"}
 ```
-Salida de ejemplo: `75`
 
-## Valor de opción de Minecraft (minecraft_option_value)
-Devuelve el valor de una opción de Minecraft.
+**Salida:** `75`
+
+## Valor de opción de Minecraft (`minecraft_option_value`)
+
+**Propósito:** Devuelve el valor de una opción de Minecraft.
+
+**Valores:** `name`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"minecraft_option_value","values":{"name":"fov"}}
 ```
-Salida de ejemplo: `70`
 
-## Último mundo o servidor (last_world_server)
-Devuelve información sobre el último mundo o servidor al que se accedió.
+**Salida:** `70`
+
+## Último mundo o servidor (`last_world_server`)
+
+**Propósito:** Devuelve información sobre el último mundo o servidor al que se accedió.
+
+**Valores:** `type`, `full_world_path`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
 ```
 Parámetros:
 - `type`: Determina qué tipo de información devolver
-  - `"both"`: Devuelve el último mundo o servidor al que se accedió (predeterminado)
-  - `"server"`: Solo devuelve si lo último accedido fue un servidor
-  - `"world"`: Solo devuelve si lo último accedido fue un mundo
+  - `"both"`: Devuelve el último mundo o servidor accedido (predeterminado)
+  - `"server"`: Solo devuelve si el último acceso fue a un servidor
+  - `"world"`: Solo devuelve si el último acceso fue a un mundo
 - `full_world_path`: Controla cómo se muestran las rutas de los mundos
   - `"true"`: Devuelve la ruta completa del mundo (predeterminado)
   - `"false"`: Devuelve solo el nombre del mundo sin la ruta (no afecta a los servidores)
@@ -134,846 +214,1673 @@ Ejemplos:
 - Mundo con ruta completa: `saves/New World`
 - Mundo sin ruta completa: `New World`
 
-## Ancho de la pantalla (guiwidth)
-Devuelve el ancho actual de la pantalla.
+## Ancho de pantalla (`guiwidth`)
+
+**Propósito:** Devuelve el ancho actual de la pantalla en píxeles escalados por GUI, no en píxeles físicos del monitor.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"guiwidth"}
 ```
-Salida de ejemplo: `1920`
 
-## Alto de la pantalla (guiheight)
-Devuelve el alto actual de la pantalla.
+**Salida:** `960`
+
+## Alto de pantalla (`guiheight`)
+
+**Propósito:** Devuelve el alto actual de la pantalla en píxeles escalados por GUI, no en píxeles físicos del monitor.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"guiheight"}
 ```
-Salida de ejemplo: `1080`
 
-## Identificador de la pantalla actual (screenid)
-Devuelve el identificador de la pantalla actual.
+**Salida:** `540`
+
+## Identificador de pantalla actual (`screenid`)
+
+**Propósito:** Devuelve el identificador de la pantalla actual.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"screenid"}
 ```
-Salida de ejemplo: `title_screen`
 
-## Ancho del elemento (elementwidth)
-Devuelve el ancho de un elemento específico.
+**Salida:** `title_screen`
+
+## Ancho del elemento (`elementwidth`)
+
+**Propósito:** Devuelve el ancho de un elemento específico.
+
+**Valores:** `id`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"elementwidth","values":{"id":"my_button"}}
 ```
-Salida de ejemplo: `200`
 
-## Alto del elemento (elementheight)
-Devuelve el alto de un elemento específico.
+**Salida:** `200`
+
+## Alto del elemento (`elementheight`)
+
+**Propósito:** Devuelve la altura de un elemento específico.
+
+**Valores:** `id`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"elementheight","values":{"id":"my_button"}}
 ```
-Salida de ejemplo: `20`
 
-## Posición X del elemento (elementposx)
-Devuelve la posición X de un elemento específico.
+**Salida:** `20`
+
+## Posición X del elemento (`elementposx`)
+
+**Propósito:** Devuelve la posición X de un elemento específico.
+
+**Valores:** `id`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"elementposx","values":{"id":"my_button"}}
 ```
-Salida de ejemplo: `150`
 
-## Posición Y del elemento (elementposy)
-Devuelve la posición Y de un elemento específico.
+**Salida:** `150`
+
+## Posición Y del elemento (`elementposy`)
+
+**Propósito:** Devuelve la posición Y de un elemento específico.
+
+**Valores:** `id`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"elementposy","values":{"id":"my_button"}}
 ```
-Salida de ejemplo: `100`
 
-## Posición X del mouse (mouseposx)
-Devuelve la posición X actual del mouse.
+**Salida:** `100`
+
+## Posición X del mouse (`mouseposx`)
+
+**Propósito:** Devuelve la posición X actual del mouse.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"mouseposx"}
 ```
-Salida de ejemplo: `960`
 
-## Posición Y del mouse (mouseposy)
-Devuelve la posición Y actual del mouse.
+**Salida:** `960`
+
+## Posición Y del mouse (`mouseposy`)
+
+**Propósito:** Devuelve la posición Y actual del mouse.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"mouseposy"}
 ```
-Salida de ejemplo: `540`
 
-## Clics por segundo (clicks_per_second)
-Devuelve los clics por segundo actuales para un botón del mouse.
+**Salida:** `540`
+
+## Clics por segundo (`clicks_per_second`)
+
+**Propósito:** Devuelve los clics por segundo actuales para un botón del mouse.
+
+**Valores:** `mouse_button`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
 ```
 Parámetros:
 - `mouse_button`: `left` o `right`
 
-Salida de ejemplo: `8`
+**Salida:** `8`
 
-## Escala de la interfaz (guiscale)
-Devuelve la escala actual de la interfaz.
+## Escala de GUI (`guiscale`)
+
+**Propósito:** Devuelve la escala actual de la GUI.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"guiscale"}
 ```
-Salida de ejemplo: `2`
 
-## Etiqueta/texto de widget vanilla (vanillabuttonlabel)
-Devuelve la etiqueta o texto de un widget/botón vanilla.
+**Salida:** `2`
+
+## Etiqueta/texto de widget/ botón de Vanilla (`vanillabuttonlabel`)
+
+**Propósito:** Devuelve la etiqueta o el texto de un widget/botón de Vanilla.
+
+**Valores:** `locator`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
 ```
-Salida de ejemplo: `Options...`
 
-## Valor de campo de entrada de texto (text_input_field_value)
-Devuelve el valor actual de un campo de entrada de texto personalizado o vanilla por identificador de elemento.
+**Salida:** `Options...`
+
+## Valor de campo de entrada de texto (`text_input_field_value`)
+
+**Propósito:** Devuelve el valor actual de un campo de entrada de texto personalizado o de Vanilla por identificador de elemento.
+
+**Valores:** `element_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
 ```
-Salida de ejemplo: `Hello World`
 
-## Salud actual del jugador (current_player_health)
-Devuelve los puntos de salud actuales del jugador.
+**Salida:** `Hello World`
+
+## Salud actual del jugador (`current_player_health`)
+
+**Propósito:** Devuelve los puntos de salud actuales del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_health"}
 ```
-Salida de ejemplo: `20.0`
 
-## Salud máxima del jugador (max_player_health)
-Devuelve los puntos máximos de salud del jugador.
+**Salida:** `20.0`
+
+## Salud máxima del jugador (`max_player_health`)
+
+**Propósito:** Devuelve los puntos máximos de salud del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"max_player_health"}
 ```
-Salida de ejemplo: `20.0`
 
-## Salud actual del jugador (porcentaje) (current_player_health_percent)
-Devuelve la salud del jugador como porcentaje.
+**Salida:** `20.0`
+
+## Salud actual del jugador (porcentaje) (`current_player_health_percent`)
+
+**Propósito:** Devuelve la salud del jugador como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_health_percent"}
 ```
-Salida de ejemplo: `100`
 
-## Salud de absorción actual del jugador (current_player_absorption_health)
-Devuelve los puntos de salud de absorción del jugador (corazones dorados).
+**Salida:** `100`
+
+## Salud de absorción actual del jugador (`current_player_absorption_health`)
+
+**Propósito:** Devuelve los puntos de salud de absorción del jugador (corazones dorados).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_absorption_health"}
 ```
-Salida de ejemplo: `4.0`
 
-## Salud máxima de absorción del jugador (max_player_absorption_health)
-Devuelve la salud máxima de absorción.
+**Salida:** `4.0`
+
+## Salud de absorción máxima del jugador (`max_player_absorption_health`)
+
+**Propósito:** Devuelve la salud de absorción máxima.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"max_player_absorption_health"}
 ```
-Salida de ejemplo: `4.0`
 
-## Salud de absorción actual del jugador (porcentaje) (current_player_absorption_health_percent)
-Devuelve la salud de absorción del jugador como porcentaje.
+**Salida:** `4.0`
+
+## Salud de absorción actual del jugador (porcentaje) (`current_player_absorption_health_percent`)
+
+**Propósito:** Devuelve la salud de absorción del jugador como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_absorption_health_percent"}
 ```
-Salida de ejemplo: `100`
 
-## Nivel de hambre actual del jugador (current_player_hunger)
-Devuelve el nivel actual de hambre del jugador.
+**Salida:** `100`
+
+## Nivel de comida actual del jugador (`current_player_hunger`)
+
+**Propósito:** Devuelve el nivel actual de hambre del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_hunger"}
 ```
-Salida de ejemplo: `20`
 
-## Nivel máximo de hambre del jugador (max_player_hunger)
-Devuelve el nivel máximo de hambre.
+**Salida:** `20`
+
+## Nivel máximo de comida del jugador (`max_player_hunger`)
+
+**Propósito:** Devuelve el nivel máximo de hambre.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"max_player_hunger"}
 ```
-Salida de ejemplo: `20`
 
-## Nivel de hambre actual del jugador (porcentaje) (current_player_hunger_percent)
-Devuelve el hambre del jugador como porcentaje.
+**Salida:** `20`
+
+## Nivel de comida actual del jugador (porcentaje) (`current_player_hunger_percent`)
+
+**Propósito:** Devuelve el hambre del jugador como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_hunger_percent"}
 ```
-Salida de ejemplo: `100`
 
-## Saturación de hambre actual del jugador (current_player_hunger_saturation)
-Devuelve el valor actual de saturación de hambre del jugador.
+**Salida:** `100`
+
+## Saturación de hambre actual del jugador (`current_player_hunger_saturation`)
+
+**Propósito:** Devuelve el valor actual de saturación de hambre del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_hunger_saturation"}
 ```
-Salida de ejemplo: `5.0`
 
-## Armadura actual del jugador (current_player_armor)
-Devuelve el valor actual de armadura del jugador.
+**Salida:** `5.0`
+
+## Armadura actual del jugador (`current_player_armor`)
+
+**Propósito:** Devuelve el valor actual de armadura del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_armor"}
 ```
-Salida de ejemplo: `20`
 
-## Dureza de la armadura del jugador (player_armor_toughness)
-Devuelve el valor total de dureza de la armadura del jugador.
+**Salida:** `20`
+
+## Resistencia de armadura del jugador (`player_armor_toughness`)
+
+**Propósito:** Devuelve el valor total de resistencia de armadura del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_armor_toughness"}
 ```
-Salida de ejemplo: `8.0`
 
-## Armadura máxima del jugador (max_player_armor)
-Devuelve el valor máximo de armadura.
+**Salida:** `8.0`
+
+## Armadura máxima del jugador (`max_player_armor`)
+
+**Propósito:** Devuelve el valor máximo de armadura.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"max_player_armor"}
 ```
-Salida de ejemplo: `20`
 
-## Armadura actual del jugador (porcentaje) (current_player_armor_percent)
-Devuelve la armadura del jugador como porcentaje.
+**Salida:** `20`
+
+## Armadura actual del jugador (porcentaje) (`current_player_armor_percent`)
+
+**Propósito:** Devuelve la armadura del jugador como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_armor_percent"}
 ```
-Salida de ejemplo: `100`
 
-## Nivel de oxígeno actual del jugador (current_player_oxygen)
-Devuelve el nivel actual de oxígeno del jugador (burbujas de aire).
+**Salida:** `100`
+
+## Nivel de oxígeno actual del jugador (`current_player_oxygen`)
+
+**Propósito:** Devuelve el nivel actual de oxígeno del jugador (burbujas de aire).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_oxygen"}
 ```
-Salida de ejemplo: `300`
 
-## Nivel máximo de oxígeno del jugador (max_player_oxygen)
-Devuelve el nivel máximo de oxígeno.
+**Salida:** `300`
+
+## Nivel máximo de oxígeno del jugador (`max_player_oxygen`)
+
+**Propósito:** Devuelve el nivel máximo de oxígeno.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"max_player_oxygen"}
 ```
-Salida de ejemplo: `300`
 
-## Nivel de oxígeno actual del jugador (porcentaje) (current_player_oxygen_percent)
-Devuelve el nivel de oxígeno del jugador como porcentaje.
+**Salida:** `300`
+
+## Nivel de oxígeno actual del jugador (porcentaje) (`current_player_oxygen_percent`)
+
+**Propósito:** Devuelve el nivel de oxígeno del jugador como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_oxygen_percent"}
 ```
-Salida de ejemplo: `100`
 
-## Nivel actual del jugador (current_player_level)
-Devuelve el nivel de experiencia actual del jugador.
+**Salida:** `100`
+
+## Nivel actual del jugador (`current_player_level`)
+
+**Propósito:** Devuelve el nivel actual de experiencia del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_level"}
 ```
-Salida de ejemplo: `30`
 
-## Experiencia actual del jugador (current_player_exp)
-Devuelve los puntos totales de experiencia del jugador.
+**Salida:** `30`
+
+## Experiencia actual del jugador (`current_player_exp`)
+
+**Propósito:** Devuelve los puntos totales de experiencia del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_exp"}
 ```
-Salida de ejemplo: `1250`
 
-## Progreso de experiencia del jugador (porcentaje) (current_player_exp_progress)
-Devuelve el progreso de experiencia del jugador hacia el siguiente nivel como porcentaje.
+**Salida:** `1250`
+
+## Progreso de experiencia del jugador (porcentaje) (`current_player_exp_progress`)
+
+**Propósito:** Devuelve el progreso de experiencia del jugador hacia el siguiente nivel como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_player_exp_progress"}
 ```
-Salida de ejemplo: `75`
 
-## Fuerza de ataque del jugador (porcentaje) (player_attack_strength)
-Devuelve el tiempo de reutilización del ataque del jugador como porcentaje.
+**Salida:** `75`
+
+## Fuerza de ataque del jugador (porcentaje) (`player_attack_strength`)
+
+**Propósito:** Devuelve el tiempo de reutilización del ataque del jugador como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_attack_strength"}
 ```
-Salida de ejemplo: `100`
 
-## Modo de juego del jugador (player_gamemode)
-Devuelve el modo de juego actual del jugador.
+**Salida:** `100`
+
+## Modo de juego del jugador (`player_gamemode`)
+
+**Propósito:** Devuelve el modo de juego actual del jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_gamemode"}
 ```
-Salida de ejemplo: `survival`
 
-## Dirección de visión del jugador (player_view_direction)
-Devuelve la dirección hacia la que mira el jugador.
+**Salida:** `survival`
+
+## Dirección de vista del jugador (`player_view_direction`)
+
+**Propósito:** Devuelve la dirección hacia la que mira el jugador.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_view_direction"}
 ```
-Salida de ejemplo: `north`
 
-## Coordenada X del jugador (player_x_coordinate)
-Devuelve la posición X del jugador en el mundo.
+**Salida:** `north`
+
+## Coordenada X del jugador (`player_x_coordinate`)
+
+**Propósito:** Devuelve la posición X del jugador en el mundo.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_x_coordinate"}
 ```
-Salida de ejemplo: `125`
 
-## Coordenada Y del jugador (player_y_coordinate)
-Devuelve la posición Y del jugador en el mundo.
+**Salida:** `125`
+
+## Coordenada Y del jugador (`player_y_coordinate`)
+
+**Propósito:** Devuelve la posición Y del jugador en el mundo.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_y_coordinate"}
 ```
-Salida de ejemplo: `64`
 
-## Coordenada Z del jugador (player_z_coordinate)
-Devuelve la posición Z del jugador en el mundo.
+**Salida:** `64`
+
+## Coordenada Z del jugador (`player_z_coordinate`)
+
+**Propósito:** Devuelve la posición Z del jugador en el mundo.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_z_coordinate"}
 ```
-Salida de ejemplo: `-250`
 
-## Salud actual de la montura (current_mount_health)
-Devuelve la salud actual de la entidad que el jugador está montando.
+**Salida:** `-250`
+
+## Salud actual de la montura (`current_mount_health`)
+
+**Propósito:** Devuelve la salud actual de la entidad que el jugador está montando.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_mount_health"}
 ```
-Salida de ejemplo: `30.0`
 
-## Salud máxima de la montura (max_mount_health)
-Devuelve la salud máxima de la entidad que el jugador está montando.
+**Salida:** `30.0`
+
+## Salud máxima de la montura (`max_mount_health`)
+
+**Propósito:** Devuelve la salud máxima de la entidad que el jugador está montando.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"max_mount_health"}
 ```
-Salida de ejemplo: `30.0`
 
-## Salud actual de la montura (porcentaje) (current_mount_health_percent)
-Devuelve la salud de la montura como porcentaje.
+**Salida:** `30.0`
+
+## Salud actual de la montura (porcentaje) (`current_mount_health_percent`)
+
+**Propósito:** Devuelve la salud de la montura como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_mount_health_percent"}
 ```
-Salida de ejemplo: `100`
 
-## Medidor actual de salto de la montura (porcentaje) (current_mount_jump_meter)
-Devuelve el valor del medidor de potencia de salto de la montura.
+**Salida:** `100`
+
+## Medidor actual de salto de la montura (porcentaje) (`current_mount_jump_meter`)
+
+**Propósito:** Devuelve el valor del medidor de potencia de salto de la montura.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_mount_jump_meter"}
 ```
-Salida de ejemplo: `75`
 
-## Salud actual del jefe (porcentaje) (current_boss_health)
-Devuelve la salud del jefe activo.
-```
-{"placeholder":"current_boss_health"}
-```
-Salida de ejemplo: `150.0`
+**Salida:** `75`
 
-## Nombre del jefe (boss_name)
-Devuelve el nombre del jefe activo.
+## Salud actual del jefe (porcentaje) (`current_boss_health`)
+
+**Propósito:** Devuelve la salud de un jefe activo seleccionado como un porcentaje entero de `0` a `100`. `boss_index` empieza en cero; `0` selecciona la primera barra de jefe.
+
+**Valores:** `boss_index`
+
+**Ejemplo:**
+
+```
+{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
+```
+
+**Salida:** `75`
+
+## Nombre del jefe (`boss_name`)
+
+**Propósito:** Devuelve el nombre del jefe activo.
+
+**Valores:** `boss_index`, `as_json`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
 ```
-Salida de ejemplo: `Ender Dragon`
 
-## Conteo de jefes (boss_count)
-Devuelve el número de jefes activos.
+**Salida:** `Ender Dragon`
+
+## Conteo de jefes (`boss_count`)
+
+**Propósito:** Devuelve el número de jefes activos.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"boss_count"}
 ```
-Salida de ejemplo: `1`
 
-## Conteo de efectos activos (effects_count)
-Devuelve el número de efectos de poción activos.
+**Salida:** `1`
+
+## Conteo de efectos activos (`effects_count`)
+
+**Propósito:** Devuelve el número de efectos de poción activos.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"effects_count"}
 ```
-Salida de ejemplo: `3`
 
-## Efecto activo (active_effect)
-Devuelve información sobre un efecto activo específico.
+**Salida:** `3`
+
+## Efecto activo (`active_effect`)
+
+**Propósito:** Devuelve información sobre un efecto activo específico.
+
+**Valores:** `effect_index`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"active_effect","values":{"effect_index":"0"}}
 ```
-Salida de ejemplo: `minecraft:speed`
 
-## Casilla seleccionada de la barra rápida (active_hotbar_slot)
-Devuelve la casilla de la barra rápida seleccionada actualmente (0-8).
+**Salida:** `minecraft:speed`
+
+## Ranura seleccionada de la barra rápida (`active_hotbar_slot`)
+
+**Propósito:** Devuelve la ranura de la barra rápida actualmente seleccionada (0-8).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"active_hotbar_slot"}
 ```
-Salida de ejemplo: `4`
 
-## Ítem de la casilla (slot_item)
-Devuelve información sobre un ítem en una casilla específica del inventario.
+**Salida:** `4`
+
+## Objeto de la ranura (`slot_item`)
+
+**Propósito:** Devuelve información sobre un objeto en una ranura específica del inventario.
+
+**Valores:** `slot`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"slot_item","values":{"slot":"0"}}
 ```
-Salida de ejemplo: `minecraft:diamond_sword`
 
-## Cantidad de ítems en la casilla (slot_item_count)
-Devuelve el tamaño de la pila del ítem en una casilla específica del inventario del jugador.
+**Salida:** `minecraft:diamond_sword`
+
+## Cantidad de objeto en la ranura (`slot_item_count`)
+
+**Propósito:** Devuelve el tamaño del stack del objeto en una ranura específica del inventario del jugador.
+
+**Valores:** `slot`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"slot_item_count","values":{"slot":"0"}}
 ```
-Salida de ejemplo: `64`
 
-## Durabilidad del ítem en la casilla (slot_item_durability)
-Devuelve información de durabilidad del ítem en una casilla específica del inventario del jugador.
+**Salida:** `64`
+
+## Durabilidad del objeto en la ranura (`slot_item_durability`)
+
+**Propósito:** Devuelve información de durabilidad del objeto en una ranura específica del inventario del jugador.
+
+**Valores:** `slot`, `format`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
 ```
 Parámetros:
-- `slot`: Número de casilla del inventario del jugador.
+- `slot`: Número de ranura del inventario del jugador.
 - `format`: `current`, `remaining`, `max`, `damage`, `percentage` o `percent`.
 
-Salida de ejemplo: `87`
+**Salida:** `87`
 
-## Nombre mostrado del ítem en la casilla (slot_item_display_name_fm)
-Devuelve el nombre mostrado del ítem en una casilla específica como un componente de texto JSON. En modo espectador, las casillas de la barra rápida pueden resolver los nombres de los ítems del menú espectador, a menos que `ignore_spectator` sea `true`.
+## Nombre visible del objeto en la ranura (`slot_item_display_name_fm`)
+
+**Propósito:** Devuelve el nombre visible del objeto en una ranura específica como un componente de texto JSON. En modo espectador, las ranuras de la barra rápida pueden resolver nombres de objetos del menú de espectador a menos que `ignore_spectator` sea `true`.
+
+**Valores:** `slot`, `ignore_spectator`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
 ```
-Salida de ejemplo: `{"text":"Diamond Sword","color":"aqua"}`
 
-## Conteo de ítems en el inventario (inventory_item_count)
-Devuelve el conteo total de un tipo de ítem en el inventario del jugador. Si `item` está vacío, cuenta todas las pilas de ítems en el inventario.
+**Salida:** `{"text":"Diamond Sword","color":"aqua"}`
+
+## Conteo de objetos del inventario (`inventory_item_count`)
+
+**Propósito:** Devuelve el número total de objetos coincidentes en el inventario del jugador. Cuando `item` está vacío, suma los tamaños de stack de todas las ranuras ocupadas del inventario.
+
+**Valores:** `item`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
 ```
-Salida de ejemplo: `12`
 
-## Cantidad de restauración de comida en la casilla del inventario (inventory_slot_food_point_restore_amount)
-Devuelve los puntos de hambre restaurados por el ítem de comida en la casilla dada del inventario del jugador.
+**Salida:** `12`
+
+## Cantidad de restauración de comida en la ranura del inventario (`inventory_slot_food_point_restore_amount`)
+
+**Propósito:** Devuelve los puntos de hambre que restaura el objeto de comida en la ranura indicada del inventario del jugador.
+
+**Valores:** `slot`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
 ```
-Salida de ejemplo: `4.0`
 
-## Ítem del inventario apuntado por el cursor (hovered_inventory_item)
-Devuelve la clave del ítem que actualmente está bajo el cursor en una pantalla de inventario.
+**Salida:** `4.0`
+
+## Objeto del inventario sobre el que pasa el cursor (`hovered_inventory_item`)
+
+**Propósito:** Devuelve la clave del objeto sobre el que está el cursor actualmente en una pantalla de inventario.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"hovered_inventory_item"}
 ```
-Salida de ejemplo: `minecraft:apple`
 
-## Tiempo del juego del mundo (game_time)
-Devuelve el contador actual de ticks del tiempo en el juego.
+**Salida:** `minecraft:apple`
+
+## Tiempo de juego del mundo (`game_time`)
+
+**Propósito:** Devuelve el contador actual de ticks del tiempo en el juego.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"game_time"}
 ```
-Salida de ejemplo: `18000`
 
-## Hora del día del mundo (world_daytime)
-Devuelve la hora actual del día del mundo.
+**Salida:** `18000`
+
+## Hora del día del mundo (`world_daytime`)
+
+**Propósito:** Devuelve la hora actual del día del mundo.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"world_daytime"}
 ```
-Salida de ejemplo: `13000`
 
-## Hora del día del mundo (world_daytime_hour)
-Devuelve el componente de hora del tiempo del mundo. Por defecto usa formato de 24 horas; establece `twelve_hour_format` en `"true"` para formato de 12 horas.
+**Salida:** `13000`
+
+## Hora del día del mundo (`world_daytime_hour`)
+
+**Propósito:** Devuelve el componente de hora del tiempo del mundo. De forma predeterminada usa formato de 24 horas; establece `twelve_hour_format` en `"true"` para formato de 12 horas.
+
+**Valores:** `twelve_hour_format`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
 ```
-Salida de ejemplo: `12`
 
-## Minuto del día del mundo (world_daytime_minute)
-Devuelve el componente de minuto del tiempo del mundo (00-59).
+**Salida:** `12`
+
+## Minuto de la hora del mundo (`world_daytime_minute`)
+
+**Propósito:** Devuelve el componente de minuto del tiempo del mundo (00-59).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"world_daytime_minute"}
 ```
-Salida de ejemplo: `30`
 
-## Dificultad del mundo (world_difficulty)
-Devuelve la dificultad actual del mundo.
+**Salida:** `30`
+
+## Dificultad del mundo (`world_difficulty`)
+
+**Propósito:** Devuelve la dificultad actual del mundo.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"world_difficulty"}
 ```
-Salida de ejemplo: `normal`
 
-## Semilla del mundo actual (current_world_seed)
-Devuelve la semilla del mundo de un solo jugador actual. Devuelve un valor vacío cuando la semilla no está disponible.
+**Salida:** `normal`
+
+## Semilla del mundo actual (`current_world_seed`)
+
+**Propósito:** Devuelve la semilla del mundo actual de un solo jugador. Devuelve un valor vacío cuando la semilla no está disponible.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_world_seed"}
 ```
-Salida de ejemplo: `123456789`
 
-## Bioma actual (current_biome)
-Devuelve el bioma en el que se encuentra actualmente el jugador. Establece `as_key` en `"false"` para devolver un nombre traducido/visible cuando esté disponible.
+**Salida:** `123456789`
+
+## Bioma actual (`current_biome`)
+
+**Propósito:** Devuelve el bioma en el que se encuentra actualmente el jugador. Establece `as_key` en `"false"` para devolver un nombre traducido/visible cuando esté disponible.
+
+**Valores:** `as_key`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_biome","values":{"as_key":"true"}}
 ```
-Salida de ejemplo: `minecraft:plains`
 
-## Dimensión actual (current_dimension)
-Devuelve la dimensión en la que se encuentra actualmente el jugador. Establece `as_key` en `"false"` para devolver un nombre traducido/visible cuando esté disponible.
+**Salida:** `minecraft:plains`
+
+## Dimensión actual (`current_dimension`)
+
+**Propósito:** Devuelve la dimensión en la que se encuentra actualmente el jugador. Establece `as_key` en `"false"` para devolver un nombre traducido/visible cuando esté disponible.
+
+**Valores:** `as_key`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_dimension","values":{"as_key":"true"}}
 ```
-Salida de ejemplo: `minecraft:overworld`
 
-## Valor de gamerule (gamerule_value)
-Devuelve el valor actual de una gamerule en el mundo/servidor cargado. Los mundos de servidor requieren FancyMenu en el servidor.
+**Salida:** `minecraft:overworld`
+
+## Valor de gamerule (`gamerule_value`)
+
+**Propósito:** Devuelve el valor actual de una gamerule en el mundo/servidor cargado. Los mundos de servidor requieren FancyMenu en el servidor.
+
+**Valores:** `name`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
 ```
-Salida de ejemplo: `true`
 
-## Categoría del ítem (item_category)
-Devuelve la categoría de pestaña creativa de un ítem. Establece `as_key` en `"true"` para devolver la clave de la categoría en lugar del nombre visible.
+**Salida:** `true`
+
+## Categoría del objeto (`item_category`)
+
+**Propósito:** Devuelve la categoría de la pestaña creativa de un objeto. Establece `as_key` en `"true"` para devolver la clave de la categoría en lugar del nombre visible.
+
+**Valores:** `item`, `as_key`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
 ```
-Salida de ejemplo: `Combat`
 
-## Título/subtítulo actual del HUD (current_title)
-Devuelve el texto del título que se muestra actualmente.
+**Salida:** `Combat`
+
+## Título/subtítulo actual del HUD (`current_title`)
+
+**Propósito:** Devuelve el texto del título que se muestra actualmente.
+
+**Valores:** `is_subtitle`, `as_json`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
 ```
-Salida de ejemplo: `Game Over!`
 
-## Mensaje de la barra de acción (action_bar_message_fm)
-Devuelve el mensaje actual de la barra de acción vanilla encima de la barra rápida.
+**Salida:** `Game Over!`
+
+## Mensaje de barra de acción (`action_bar_message_fm`)
+
+**Propósito:** Devuelve el mensaje actual de la barra de acción de Vanilla como un componente de texto serializado de Minecraft.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"action_bar_message_fm"}
 ```
-Salida de ejemplo: `You may not rest now`
 
-## Tiempo del mensaje de la barra de acción (action_bar_message_time_fm)
-Devuelve cuántos ticks más se mostrará el mensaje actual de la barra de acción vanilla.
+**Salida:** `{"text":"You may not rest now","color":"red"}`
+
+## Tiempo del mensaje de barra de acción (`action_bar_message_time_fm`)
+
+**Propósito:** Devuelve cuántos ticks más se seguirá mostrando el mensaje actual de la barra de acción de Vanilla.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"action_bar_message_time_fm"}
 ```
-Salida de ejemplo: `42`
 
-## Rotación X de la cámara (camera_rotation_x_fm)
-Devuelve el pitch actual de la cámara en grados.
+**Salida:** `42`
+
+## Rotación X de la cámara (`camera_rotation_x_fm`)
+
+**Propósito:** Devuelve la inclinación actual de la cámara en grados.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"camera_rotation_x_fm"}
 ```
-Salida de ejemplo: `12.5`
 
-## Rotación Y de la cámara (camera_rotation_y_fm)
-Devuelve el yaw actual de la cámara en grados.
+**Salida:** `12.5`
+
+## Rotación Y de la cámara (`camera_rotation_y_fm`)
+
+**Propósito:** Devuelve el giro horizontal actual de la cámara en grados.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"camera_rotation_y_fm"}
 ```
-Salida de ejemplo: `-90.0`
 
-## Delta X de rotación de la cámara (camera_rotation_delta_x_fm)
-Devuelve el cambio por tick en el pitch de la cámara.
+**Salida:** `-90.0`
+
+## Delta de rotación X de la cámara (`camera_rotation_delta_x_fm`)
+
+**Propósito:** Devuelve el cambio por tick en la inclinación de la cámara.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"camera_rotation_delta_x_fm"}
 ```
-Salida de ejemplo: `0.4`
 
-## Delta Y de rotación de la cámara (camera_rotation_delta_y_fm)
-Devuelve el cambio por tick en el yaw de la cámara.
+**Salida:** `0.4`
+
+## Delta de rotación Y de la cámara (`camera_rotation_delta_y_fm`)
+
+**Propósito:** Devuelve el cambio por tick en el giro horizontal de la cámara.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"camera_rotation_delta_y_fm"}
 ```
-Salida de ejemplo: `-1.2`
 
-## Tiempo del ítem resaltado (highlighted_item_time_fm)
-Devuelve cuántos ticks más se mostrará el nombre del ítem resaltado encima de la barra rápida.
+**Salida:** `-1.2`
+
+## Tiempo del objeto resaltado (`highlighted_item_time_fm`)
+
+**Propósito:** Devuelve cuántos ticks más se mostrará el nombre del objeto resaltado encima de la barra rápida.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"highlighted_item_time_fm"}
 ```
-Salida de ejemplo: `30`
 
-## Progreso de uso de ítem del jugador (player_item_use_progress_fm)
-Devuelve el progreso actual de uso de ítem de `0.0` a `1.0`.
+**Salida:** `30`
+
+## Progreso de uso de objeto del jugador (`player_item_use_progress_fm`)
+
+**Propósito:** Devuelve el progreso actual de uso del objeto de `0.0` a `1.0`.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_item_use_progress_fm"}
 ```
-Salida de ejemplo: `0.65`
 
-## Delta X de posición del jugador (player_position_delta_x_fm)
-Devuelve el cambio por tick en la posición del jugador en el eje X.
+**Salida:** `0.65`
+
+## Delta de posición X del jugador (`player_position_delta_x_fm`)
+
+**Propósito:** Devuelve el cambio por tick en la posición del jugador en el eje X.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_position_delta_x_fm"}
 ```
-Salida de ejemplo: `0.0`
 
-## Delta Y de posición del jugador (player_position_delta_y_fm)
-Devuelve el cambio por tick en la posición del jugador en el eje Y.
+**Salida:** `0.0`
+
+## Delta de posición Y del jugador (`player_position_delta_y_fm`)
+
+**Propósito:** Devuelve el cambio por tick en la posición del jugador en el eje Y.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_position_delta_y_fm"}
 ```
-Salida de ejemplo: `-0.08`
 
-## Delta Z de posición del jugador (player_position_delta_z_fm)
-Devuelve el cambio por tick en la posición del jugador en el eje Z.
+**Salida:** `-0.08`
+
+## Delta de posición Z del jugador (`player_position_delta_z_fm`)
+
+**Propósito:** Devuelve el cambio por tick en la posición del jugador en el eje Z.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"player_position_delta_z_fm"}
 ```
-Salida de ejemplo: `0.12`
 
-## IP actual del servidor (current_server_ip)
-Devuelve la IP del servidor al que estás conectado.
+**Salida:** `0.12`
+
+## IP actual del servidor (`current_server_ip`)
+
+**Propósito:** Devuelve la IP del servidor conectado.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"current_server_ip"}
 ```
-Salida de ejemplo: `mc.hypixel.net`
 
-## Lista de jugadores del mundo (world_players_list)
-Devuelve una lista de todos los jugadores actualmente en el mundo.
+**Salida:** `mc.hypixel.net`
+
+## Lista de jugadores del mundo (`world_players_list`)
+
+**Propósito:** Devuelve una lista de todos los jugadores que están actualmente en el mundo.
+
+**Valores:** `separator`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"world_players_list","values":{"separator":", "}}
 ```
-Salida de ejemplo: `Steve, Alex, Notch`
 
-## MOTD del servidor (servermotd)
-Devuelve el mensaje del día de un servidor.
+**Salida:** `Steve, Alex, Notch`
+
+## MOTD del servidor (`servermotd`)
+
+**Propósito:** Devuelve el Mensaje del Día de un servidor.
+
+**Valores:** `ip`, `line`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
 ```
-Salida de ejemplo: `Welcome to Hypixel!`
 
-## PING del servidor (serverping)
-Devuelve la latencia a un servidor en milisegundos.
+**Salida:** `Welcome to Hypixel!`
+
+## PING del servidor (`serverping`)
+
+**Propósito:** Devuelve el ping a un servidor en milisegundos.
+
+**Valores:** `ip`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
 ```
-Salida de ejemplo: `54`
 
-## Cantidad de jugadores en el servidor (serverplayercount)
-Devuelve la cantidad de jugadores de un servidor.
+**Salida:** `54`
+
+## Conteo de jugadores del servidor (`serverplayercount`)
+
+**Propósito:** Devuelve la cantidad de jugadores de un servidor.
+
+**Valores:** `ip`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
 ```
-Salida de ejemplo: `25000/30000`
 
-## Estado del servidor (serverstatus)
-Devuelve el estado en línea/fuera de línea de un servidor.
+**Salida:** `25000/30000`
+
+## Estado del servidor (`serverstatus`)
+
+**Propósito:** Devuelve el estado en línea o fuera de línea de un servidor.
+
+**Valores:** `ip`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
 ```
-Salida de ejemplo: `§aOnline` o `§cOffline`
 
-## Versión del servidor (serverversion)
-Devuelve la versión de Minecraft de un servidor.
+**Salida:** `§aOnline` o `§cOffline`
+
+## Versión del servidor (`serverversion`)
+
+**Propósito:** Devuelve la versión de Minecraft de un servidor.
+
+**Valores:** `ip`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
 ```
-Salida de ejemplo: `1.19.2`
 
-## Año (realtimeyear)
-Devuelve el año actual.
+**Salida:** `1.21.1`
+
+> [!NOTE]
+> Los marcadores de posición en tiempo real de abajo aceptan un valor `timezone`. Usa un identificador de zona horaria de Java, como `UTC`, `Europe/Berlin` o `America/New_York`; omítelo o usa `system` para la zona horaria del sistema. `unix_time` siempre devuelve la marca de tiempo Unix y no tiene valor `timezone`.
+
+## Año (`realtimeyear`)
+
+**Propósito:** Devuelve el año actual.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"realtimeyear"}
 ```
-Salida de ejemplo: `2024`
 
-## Mes (realtimemonth)
-Devuelve el mes actual (01-12).
+**Salida:** `2024`
+
+## Mes (`realtimemonth`)
+
+**Propósito:** Devuelve el mes actual (01-12).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"realtimemonth"}
 ```
-Salida de ejemplo: `01`
 
-## Día (realtimeday)
-Devuelve el día actual del mes (01-31).
+**Salida:** `01`
+
+## Día (`realtimeday`)
+
+**Propósito:** Devuelve el día actual del mes (01-31).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"realtimeday"}
 ```
-Salida de ejemplo: `27`
 
-## Hora (realtimehour)
-Devuelve la hora actual. Por defecto usa formato de 24 horas; establece `twelve_hour_format` en `"true"` para formato de 12 horas.
+**Salida:** `27`
+
+## Hora (`realtimehour`)
+
+**Propósito:** Devuelve la hora actual. De forma predeterminada usa formato de 24 horas; establece `twelve_hour_format` en `"true"` para formato de 12 horas.
+
+**Valores:** `twelve_hour_format`, `timezone`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
 ```
-Salida de ejemplo: `14`
 
-## Minuto (realtimeminute)
-Devuelve el minuto actual (00-59).
+**Salida:** `14`
+
+## Minuto (`realtimeminute`)
+
+**Propósito:** Devuelve el minuto actual (00-59).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"realtimeminute"}
 ```
-Salida de ejemplo: `30`
 
-## Segundo (realtimesecond)
-Devuelve el segundo actual (00-59).
+**Salida:** `30`
+
+## Segundo (`realtimesecond`)
+
+**Propósito:** Devuelve el segundo actual (00-59).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"realtimesecond"}
 ```
-Salida de ejemplo: `45`
 
-## Tiempo actual en milisegundos (marca de tiempo Unix) (unix_time)
-Devuelve la marca de tiempo Unix actual en milisegundos.
+**Salida:** `45`
+
+## Tiempo actual en milisegundos (marca de tiempo Unix) (`unix_time`)
+
+**Propósito:** Devuelve la marca de tiempo Unix actual en milisegundos.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"unix_time"}
 ```
-Salida de ejemplo: `1716552478123`
 
-> Los marcadores de posición de tiempo real (`realtimeyear`, `realtimemonth`, `realtimeday`, `realtimehour`, `realtimeminute`, `realtimesecond` y `unix_time`) admiten un valor `timezone`. Usa identificadores de zona horaria de Java normales como `UTC`, `Europe/Berlin` o `America/New_York`; omítelo o usa `system` para la zona horaria del sistema.
-{.is-info}
+**Salida:** `1716552478123`
 
-## Información de CPU (cpuinfo)
-Devuelve información sobre la CPU.
+## Información de CPU (`cpuinfo`)
+
+**Propósito:** Devuelve información sobre la CPU.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"cpuinfo"}
 ```
-Salida de ejemplo: `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
 
-## Uso de CPU (JVM) (jvmcpu)
-Devuelve el uso de CPU de la JVM como porcentaje.
+**Salida:** `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
+
+## Uso de CPU (JVM) (`jvmcpu`)
+
+**Propósito:** Devuelve el uso de CPU de la JVM como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"jvmcpu"}
 ```
-Salida de ejemplo: `25.5`
 
-## Uso de CPU (SO) (oscpu)
-Devuelve el uso de CPU del sistema operativo como porcentaje.
+**Salida:** `25.5`
+
+## Uso de CPU (SO) (`oscpu`)
+
+**Propósito:** Devuelve el uso de CPU del sistema operativo como porcentaje.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"oscpu"}
 ```
-Salida de ejemplo: `42.8`
 
-## Información de GPU (gpuinfo)
-Devuelve información sobre la GPU.
+**Salida:** `42.8`
+
+## Información de GPU (`gpuinfo`)
+
+**Propósito:** Devuelve el nombre reportado para el dispositivo de renderizado activo de Minecraft. No garantiza identificar una GPU física específica.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"gpuinfo"}
 ```
-Salida de ejemplo: `NVIDIA GeForce RTX 3080`
 
-## Versión de Java (javaver)
-Devuelve la versión de Java.
+**Salida:** `NVIDIA GeForce RTX 3080`
+
+## Versión de Java (`javaver`)
+
+**Propósito:** Devuelve la versión de Java.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"javaver"}
 ```
-Salida de ejemplo: `17.0.2`
 
-## Máquina virtual de Java (jvmname)
-Devuelve el nombre de la máquina virtual de Java.
+**Salida:** `17.0.2`
+
+## Máquina virtual de Java (`jvmname`)
+
+**Propósito:** Devuelve el nombre de la Máquina Virtual de Java.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"jvmname"}
 ```
-Salida de ejemplo: `OpenJDK 64-Bit Server VM`
 
-## Versión de OpenGL (glver)
-Devuelve la versión de OpenGL.
+**Salida:** `OpenJDK 64-Bit Server VM`
+
+## Versión de OpenGL (`glver`)
+
+**Propósito:** Devuelve información del controlador del dispositivo de renderizado activo de Minecraft. A pesar del nombre heredado `glver`, no se garantiza que el valor sea solo una cadena de versión de OpenGL.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"glver"}
 ```
-Salida de ejemplo: `4.6.0 NVIDIA 516.94`
 
-## Nombre del sistema operativo (osname)
-Devuelve el nombre del sistema operativo.
+**Salida:** `4.6.0 NVIDIA 516.94`
+
+## Nombre del sistema operativo (`osname`)
+
+**Propósito:** Devuelve el nombre del sistema operativo.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"osname"}
 ```
-Salida de ejemplo: `Windows 10`
 
-## FPS (fotogramas por segundo) (fps)
-Devuelve los fotogramas por segundo actuales.
+**Salida:** `Windows 10`
+
+## FPS (fotogramas por segundo) (`fps`)
+
+**Propósito:** Devuelve los fotogramas por segundo actuales.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"fps"}
 ```
-Salida de ejemplo: `120`
 
-## RAM usada en MB (usedram)
-Devuelve la cantidad de RAM que se está usando actualmente (MB).
+**Salida:** `120`
+
+## RAM usada en MB (`usedram`)
+
+**Propósito:** Devuelve la cantidad de RAM actualmente en uso (MB).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"usedram"}
 ```
-Salida de ejemplo: `4096`
 
-## RAM máxima en MB (maxram)
-Devuelve la RAM máxima asignada (MB).
+**Salida:** `4096`
+
+## RAM máxima en MB (`maxram`)
+
+**Propósito:** Devuelve la cantidad máxima de RAM asignada (MB).
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"maxram"}
 ```
-Salida de ejemplo: `8192`
 
-## RAM usada en %% (percentram)
-Devuelve el porcentaje de RAM que se está usando actualmente.
+**Salida:** `8192`
+
+## RAM usada en %% (`percentram`)
+
+**Propósito:** Devuelve el porcentaje de RAM que se está usando actualmente.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"percentram"}
 ```
-Salida de ejemplo: `50`
 
-## Volumen de elemento de audio (audio_element_vol)
-Devuelve el volumen de un elemento de audio.
+**Salida:** `50`
+
+## Volumen del elemento de audio (`audio_element_vol`)
+
+**Propósito:** Devuelve el volumen de un elemento de audio.
+
+**Valores:** `element_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
 ```
-Salida de ejemplo: `0.5`
 
-## Pista de audio actual (audio_element_current_track)
-Devuelve el nombre de la pista de un elemento de audio.
-```
-{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Cool Track Name"}}
-```
-Salida de ejemplo: `Cool Track Name`
+**Salida:** `0.5`
 
-## Duración de audio (audio_duration)
-Devuelve la duración total de una pista de audio en formato MM:SS.
+## Pista de audio actual (`audio_element_current_track`)
+
+**Propósito:** Devuelve el nombre de la pista de un elemento de audio.
+
+**Valores:** `element_identifier`, `display_name_mappings`
+
+**Ejemplo:**
+
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Menu Theme%:%track2.ogg=>Credits Theme"}}
+```
+
+En `display_name_mappings`, `=>` separa un nombre de archivo de su nombre visible y `%:%` separa mapeos.
+
+**Salida:** `Menu Theme`
+
+## Duración de audio (`audio_duration`)
+
+**Propósito:** Devuelve la duración de la [Audio element](./elements#audio) pista cargada actual en formato `MM:SS`. La pista puede estar reproduciéndose, en pausa o detenida.
+
+**Valores:** `element_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
 ```
-Salida de ejemplo: `03:45`
 
-## Tiempo reproducido de audio (audio_playtime)
-Devuelve el tiempo reproducido actual de una pista de audio. Establece `show_percentage` en `"true"` para obtener un valor de progreso de 0-100 en lugar de `MM:SS`.
+**Salida:** `03:45`
+
+## Tiempo de reproducción de audio (`audio_playtime`)
+
+**Propósito:** Devuelve el tiempo de reproducción actual de una pista de audio. Establece `show_percentage` en `"true"` para obtener un valor de progreso de 0-100 en lugar de `MM:SS`.
+
+**Valores:** `element_identifier`, `show_percentage`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
 ```
-Salida de ejemplo: `01:30` (o `45` cuando `show_percentage` es `"true"`)
 
-## Estado de reproducción de audio (audio_playing_state)
-Devuelve si un elemento de audio se está reproduciendo (true/false).
+**Salida:** `01:30` (o `45` cuando `show_percentage` es `"true"`)
+
+**Resultado no disponible:** `00:00`, o `0` en modo porcentaje. El valor actual está disponible mientras la pista se está reproduciendo o está en pausa; las pistas detenidas, faltantes o no listas usan el resultado no disponible.
+
+## Estado de reproducción de audio (`audio_playing_state`)
+
+**Propósito:** Devuelve si un elemento de audio se está reproduciendo (true/false).
+
+**Valores:** `element_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
 ```
-Salida de ejemplo: `true`
 
-## Volumen de elemento de video (video_element_vol)
-Devuelve el nivel de volumen de un elemento de video (0.0 a 1.0).
+**Salida:** `true`
+
+## Volumen del elemento de video (`video_element_vol`)
+
+**Propósito:** Devuelve el nivel de volumen de un elemento de video (0.0 a 1.0).
+
+**Valores:** `element_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
 ```
-Salida de ejemplo: `0.5`
 
-## Duración de elemento de video (video_element_duration)
-Devuelve la duración total de un elemento de video en formato `MM:SS`. Establece `output_as_timestamp` en `"true"` para devolver una marca de tiempo en milisegundos.
+**Salida:** `0.5`
+
+## Duración del elemento de video (`video_element_duration`)
+
+**Propósito:** Devuelve la duración total de un elemento de video en formato `MM:SS`. Establece `output_as_timestamp` en `"true"` para devolver una marca de tiempo en milisegundos.
+
+**Valores:** `element_identifier`, `output_as_timestamp`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
 ```
-Salida de ejemplo: `02:00` (o `120000` cuando `output_as_timestamp` es `"true"`)
 
-## Tiempo reproducido de elemento de video (video_element_playtime)
-Devuelve el tiempo actual de reproducción (progreso) de un elemento de video en formato `MM:SS`. Establece `show_percentage` en `"true"` para un valor de progreso de 0-100, o `output_as_timestamp` en `"true"` para milisegundos.
+**Salida:** `02:00` (o `120000` cuando `output_as_timestamp` es `"true"`)
+
+## Tiempo de reproducción del elemento de video (`video_element_playtime`)
+
+**Propósito:** Devuelve el tiempo de reproducción actual (progreso) de un elemento de video en formato `MM:SS`. Establece `show_percentage` en `"true"` para un valor de progreso de 0-100, o `output_as_timestamp` en `"true"` para milisegundos.
+
+**Valores:** `element_identifier`, `show_percentage`, `output_as_timestamp`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
 ```
-Salida de ejemplo: `00:45` (o `38` como porcentaje, o `45200` como marca de tiempo)
 
-## Estado de pausa de elemento de video (video_element_paused_state)
-Devuelve si un elemento de video está en pausa (true/false).
+**Salida:** `00:45` (o `38` como porcentaje, o `45200` como marca de tiempo)
+
+## Estado en pausa del elemento de video (`video_element_paused_state`)
+
+**Propósito:** Devuelve si un elemento de video está en pausa (true/false).
+
+**Valores:** `element_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
 ```
-Salida de ejemplo: `false`
 
-## Volumen de fondo de video (video_background_vol)
-Devuelve el nivel de volumen de un fondo de video del menú (0.0 a 1.0).
+**Salida:** `false`
+
+## Volumen del fondo de video (`video_background_vol`)
+
+**Propósito:** Devuelve el nivel de volumen de un fondo de video del menú (0.0 a 1.0).
+
+**Valores:** `background_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
 ```
-Salida de ejemplo: `0.7`
 
-## Duración de fondo de video (video_background_duration)
-Devuelve la duración total de un fondo de video del menú en formato `MM:SS`. Establece `output_as_timestamp` en `"true"` para devolver una marca de tiempo en milisegundos.
+**Salida:** `0.7`
+
+## Duración del fondo de video (`video_background_duration`)
+
+**Propósito:** Devuelve la duración total de un fondo de video del menú en formato `MM:SS`. Establece `output_as_timestamp` en `"true"` para devolver una marca de tiempo en milisegundos.
+
+**Valores:** `background_identifier`, `output_as_timestamp`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
 ```
-Salida de ejemplo: `03:00` (o `180000` cuando `output_as_timestamp` es `"true"`)
 
-## Tiempo reproducido de fondo de video (video_background_playtime)
-Devuelve el tiempo actual de reproducción (progreso) de un fondo de video del menú en formato `MM:SS`. Establece `show_percentage` en `"true"` para un valor de progreso de 0-100, o `output_as_timestamp` en `"true"` para milisegundos.
+**Salida:** `03:00` (o `180000` cuando `output_as_timestamp` es `"true"`)
+
+## Tiempo de reproducción del fondo de video (`video_background_playtime`)
+
+**Propósito:** Devuelve el tiempo de reproducción actual (progreso) de un fondo de video del menú en formato `MM:SS`. Establece `show_percentage` en `"true"` para un valor de progreso de 0-100, o `output_as_timestamp` en `"true"` para milisegundos.
+
+**Valores:** `background_identifier`, `show_percentage`, `output_as_timestamp`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
 ```
-Salida de ejemplo: `01:00` (o `33` como porcentaje, o `60500` como marca de tiempo)
 
-## Estado de pausa de fondo de video (video_background_paused_state)
-Devuelve si un fondo de video del menú está en pausa (true/false).
+**Salida:** `01:00` (o `33` como porcentaje, o `60500` como marca de tiempo)
+
+## Estado en pausa del fondo de video (`video_background_paused_state`)
+
+**Propósito:** Devuelve si un fondo de video del menú está en pausa (true/false).
+
+**Valores:** `background_identifier`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
 ```
-Salida de ejemplo: `true`
 
-## Calculadora (calc)
-El marcador de posición de calculadora es una herramienta poderosa que te permite realizar cálculos matemáticos dentro de tus diseños. Admite una amplia gama de operaciones matemáticas y puede trabajar tanto con números decimales como enteros.
+**Salida:** `true`
+
+## Calculadora (`calc`)
+
+**Propósito:** El marcador de posición de calculadora es una herramienta poderosa que te permite realizar cálculos matemáticos dentro de tus diseños. Es compatible con una amplia gama de operaciones matemáticas y puede trabajar tanto con números decimales como enteros.
+
+**Valores:** `decimal`, `expression`
 
 ### Sintaxis básica
+
+**Ejemplo:**
+
 ```
 {"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
 ```
 
 La calculadora tiene dos parámetros principales:
 - `decimal`: Determina si el resultado debe incluir decimales (`true`) o redondearse a enteros (`false`)
-- `expression`: La expresión matemática que se va a evaluar
+- `expression`: La expresión matemática a evaluar
 
 ### Operaciones compatibles
 La calculadora admite estas operaciones matemáticas:
@@ -986,210 +1893,380 @@ La calculadora admite estas operaciones matemáticas:
 - Valor absoluto: `abs()`
 - Logaritmos: `log()`, `ln()`
 
-## Número aleatorio (random_number)
-Genera un número aleatorio dentro de un rango especificado.
+## Número aleatorio (`random_number`)
+
+**Propósito:** Genera un número aleatorio dentro de un rango específico.
+
+**Valores:** `min`, `max`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"random_number","values":{"min":"1","max":"100"}}
 ```
-Salida de ejemplo: `42`
 
-## Número máximo (maxnum)
-Devuelve el mayor de dos números.
+**Salida:** `42`
+
+## Número máximo (`maxnum`)
+
+**Propósito:** Devuelve el mayor de dos números.
+
+**Valores:** `first`, `second`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"maxnum","values":{"first":"10","second":"20"}}
 ```
-Salida de ejemplo: `20`
 
-## Número mínimo (minnum)
-Devuelve el menor de dos números.
+**Salida:** `20`
+
+## Número mínimo (`minnum`)
+
+**Propósito:** Devuelve el menor de dos números.
+
+**Valores:** `first`, `second`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"minnum","values":{"first":"10","second":"20"}}
 ```
-Salida de ejemplo: `10`
 
-## Número absoluto (absnum)
-Devuelve el valor absoluto de un número.
+**Salida:** `10`
+
+## Número absoluto (`absnum`)
+
+**Propósito:** Devuelve el valor absoluto de un número.
+
+**Valores:** `num`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
-Salida de ejemplo: `10.5`
 
-## Negar número (negnum)
-Devuelve el valor negado de un número.
+**Salida:** `10.5`
+
+## Hacer negativo un número (`negnum`)
+
+**Propósito:** Convierte un número positivo en negativo. Los valores cero y los que ya son negativos se devuelven sin cambios.
+
+**Valores:** `num`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
-Salida de ejemplo: `-10.5`
 
-## *pi* (Matemáticas) (math_pi)
-Devuelve el valor de π.
+**Salida:** `-10.5`
+
+## *pi* (Matemáticas) (`math_pi`)
+
+**Propósito:** Devuelve el valor de π.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"math_pi"}
 ```
-Salida de ejemplo: `3.141592653589793`
 
-## Seno trigonométrico (Matemáticas) (math_sin)
-Devuelve el seno de un ángulo.
-```
-{"placeholder":"math_sin","values":{"angle":"45"}}
-```
-Salida de ejemplo: `0.7071067811865476`
+**Salida:** `3.141592653589793`
 
-## Coseno trigonométrico (Matemáticas) (math_cos)
-Devuelve el coseno de un ángulo.
-```
-{"placeholder":"math_cos","values":{"angle":"45"}}
-```
-Salida de ejemplo: `0.7071067811865476`
+## Seno trigonométrico (Matemáticas) (`math_sin`)
 
-## Tangente trigonométrica (Matemáticas) (math_tan)
-Devuelve la tangente de un ángulo.
-```
-{"placeholder":"math_tan","values":{"angle":"45"}}
-```
-Salida de ejemplo: `1.0`
+**Propósito:** Devuelve el seno de un ángulo en radianes. Convierte primero los valores en grados a radianes.
 
-## Piso (Matemáticas) (math_floor)
-Redondea un número hacia abajo al entero más cercano.
+**Valores:** `angle`
+
+**Ejemplo:**
+
+```
+{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
+```
+
+**Salida:** `1.0`
+
+## Coseno trigonométrico (Matemáticas) (`math_cos`)
+
+**Propósito:** Devuelve el coseno de un ángulo en radianes. Convierte primero los valores en grados a radianes.
+
+**Valores:** `angle`
+
+**Ejemplo:**
+
+```
+{"placeholder":"math_cos","values":{"angle":"0"}}
+```
+
+**Salida:** `1.0`
+
+## Tangente trigonométrica (Matemáticas) (`math_tan`)
+
+**Propósito:** Devuelve la tangente de un ángulo en radianes. Convierte primero los valores en grados a radianes.
+
+**Valores:** `angle`
+
+**Ejemplo:**
+
+```
+{"placeholder":"math_tan","values":{"angle":"0"}}
+```
+
+**Salida:** `0.0`
+
+## Piso (Matemáticas) (`math_floor`)
+
+**Propósito:** Devuelve el piso matemático de un número, formateado con el sufijo decimal `.0`.
+
+**Valores:** `num`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"math_floor","values":{"num":"3.14"}}
 ```
-Salida de ejemplo: `3`
 
-## Techo (Matemáticas) (math_ceil)
-Redondea un número hacia arriba al entero más cercano.
+**Salida:** `3.0`
+
+## Techo (Matemáticas) (`math_ceil`)
+
+**Propósito:** Devuelve el techo matemático de un número, formateado con el sufijo decimal `.0`.
+
+**Valores:** `num`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"math_ceil","values":{"num":"3.14"}}
 ```
-Salida de ejemplo: `4`
 
-## Redondear (Matemáticas) (math_round)
-Redondea un número. Por defecto redondea al entero más cercano; establece `decimals` en un número no negativo para redondear a esa cantidad de decimales.
+**Salida:** `4.0`
+
+Usa [**Round**](#round-math-math_round) o [**Calculator**](#calculator-calc) con la salida decimal desactivada cuando necesites texto entero sin `.0`.
+
+## Redondear (Matemáticas) (`math_round`)
+
+**Propósito:** Redondea un número. De forma predeterminada lo redondea al entero más cercano; establece `decimals` en un número no negativo para redondear a esa cantidad de decimales.
+
+**Valores:** `num`, `decimals`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
-Salida de ejemplo: `3.14` (con `decimals:-1` o si se omite → `3`)
 
-## Signo (Matemáticas) (math_sign)
-Devuelve el signo de un número (1 para positivo, -1 para negativo, 0 para cero).
+**Salida:** `3.14` (con `decimals:-1` o si se omite → `3`)
+
+## Signo (Matemáticas) (`math_sign`)
+
+**Propósito:** Devuelve el signo de un número (1 para positivo, -1 para negativo, 0 para cero).
+
+**Valores:** `num`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"math_sign","values":{"num":"-3.14"}}
 ```
-Salida de ejemplo: `-1`
 
-## Seno hiperbólico (Matemáticas) (math_sinh)
-Devuelve el seno hiperbólico de un ángulo.
-```
-{"placeholder":"math_sinh","values":{"angle":"1"}}
-```
-Salida de ejemplo: `1.1752011936438014`
+**Salida:** `-1`
 
-## Coseno hiperbólico (Matemáticas) (math_cosh)
-Devuelve el coseno hiperbólico de un ángulo.
-```
-{"placeholder":"math_cosh","values":{"angle":"1"}}
-```
-Salida de ejemplo: `1.5430806348152437`
+## Seno hiperbólico (Matemáticas) (`math_sinh`)
 
-## Tangente hiperbólica (Matemáticas) (math_tanh)
-Devuelve la tangente hiperbólica de un ángulo.
-```
-{"placeholder":"math_tanh","values":{"angle":"1"}}
-```
-Salida de ejemplo: `0.7615941559557649`
+**Propósito:** Devuelve el seno hiperbólico de un número.
 
-## Dividir texto (split_text)
-Divide el texto usando un delimitador especificado.
+**Valores:** `num`
+
+**Ejemplo:**
+
+```
+{"placeholder":"math_sinh","values":{"num":"1"}}
+```
+
+**Salida:** `1.1752011936438014`
+
+## Coseno hiperbólico (Matemáticas) (`math_cosh`)
+
+**Propósito:** Devuelve el coseno hiperbólico de un número.
+
+**Valores:** `num`
+
+**Ejemplo:**
+
+```
+{"placeholder":"math_cosh","values":{"num":"1"}}
+```
+
+**Salida:** `1.5430806348152437`
+
+## Tangente hiperbólica (Matemáticas) (`math_tanh`)
+
+**Propósito:** Devuelve la tangente hiperbólica de un número.
+
+**Valores:** `num`
+
+**Ejemplo:**
+
+```
+{"placeholder":"math_tanh","values":{"num":"1"}}
+```
+
+**Salida:** `0.7615941559557649`
+
+## Dividir texto (`split_text`)
+
+**Propósito:** Divide texto usando un delimitador especificado.
+
+**Valores:** `input`, `regex`, `max_parts`, `split_index`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
 ```
-Salida de ejemplo: `world`
 
-## Recortar texto (trim_text)
-Elimina espacios en blanco al inicio y al final.
+**Salida:** `world`
+
+## Recortar texto (`trim_text`)
+
+**Propósito:** Elimina espacios en blanco al inicio y al final.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"trim_text","values":{"text":"  hello world  "}}
 ```
-Salida de ejemplo: `hello world`
 
-## Cortar texto (crop_text)
-Elimina caracteres del inicio y del final del texto.
+**Salida:** `hello world`
+
+## Recortar texto por caracteres (`crop_text`)
+
+**Propósito:** Elimina caracteres del inicio y del final del texto.
+
+**Valores:** `text`, `remove_from_start`, `remove_from_end`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
 ```
-Salida de ejemplo: `ello worl`
 
-## Stringify (stringify)
-Convierte un texto en cadena escapando todos los caracteres de sintaxis.
+**Salida:** `ello worl`
+
+## Convertir a cadena (`stringify`)
+
+**Propósito:** Convierte un texto en una cadena escapando todos los caracteres de sintaxis.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
 ```
-Salida de ejemplo: `text with \{special\} \"characters\"`
 
-## Localizar texto (local)
-Recupera texto localizado para una clave.
+**Salida:** `text with \{special\} \"characters\"`
+
+## Localizar texto (`local`)
+
+**Propósito:** Recupera texto localizado para una clave.
+
+**Valores:** `key`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"local","values":{"key":"menu.singleplayer"}}
 ```
-Salida de ejemplo: `Singleplayer`
 
-## Texto web (webtext)
-Recupera contenido de texto desde una URL web.
+**Salida:** `Singleplayer`
+
+## Texto web (`webtext`)
+
+**Propósito:** Recupera contenido de texto desde una URL web.
+
+**Valores:** `link`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
 ```
-Salida de ejemplo: Contenido de texto de la URL
 
-## Texto aleatorio (randomtext)
-Devuelve una línea aleatoria de un archivo de texto, una URL o texto plano directo. El texto cambia en intervalos especificados.
+**Salida:** `Welcome to the server!`
+
+## Texto aleatorio (`randomtext`)
+
+**Propósito:** Devuelve una línea aleatoria de un archivo de texto, una URL o texto plano directo. El texto cambia a intervalos especificados. El contenido de archivos y URLs se actualiza aproximadamente cada 30 segundos; el contenido de texto plano directo permanece en caché porque no necesita recargarse.
+
+**Valores:** `source`, `interval`
+
+En los valores de los marcadores de posición, `/config/...` significa `<game-directory>/config/...`; no es una ruta de la raíz del sistema de archivos. Consulta [Recursos](./resources#local-resources).
+
+**Ejemplo:**
+
 ```
 {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
 ```
 Parámetros:
-- `source`: El origen de las líneas de texto (sustituye al parámetro antiguo `path`)
+- `source`: La fuente de las líneas de texto (reemplaza el parámetro antiguo `path`)
   - Ruta de archivo: `/config/fancymenu/assets/quotes.txt`
   - URL: `https://example.com/quotes.txt`
   - Texto plano: `Line 1\nLine 2\nLine 3`
 - `interval`: Tiempo en segundos entre cambios de texto
 
-El marcador de posición ahora admite tres tipos de origen:
-1. **Archivos locales**: Archivos de texto de tu directorio del juego
+Ahora el marcador de posición admite tres tipos de fuente:
+1. **Archivos locales**: archivos de texto desde tu directorio del juego
    ```
    {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
    ```
-2. **URLs**: Archivos de texto remotos de internet
+2. **URLs**: archivos de texto remotos desde internet
    ```
    {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
    ```
-3. **Texto plano**: Entrada de texto directa con líneas separadas por `\n`
+3. **Texto plano**: entrada de texto directa con líneas separadas por `\n`
    ```
    {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
    ```
 
 Nota: Los marcadores de posición antiguos que usan `path` en lugar de `source` seguirán funcionando.
 
-## Analizador JSON (json)
-Analiza datos JSON de un archivo, una URL o contenido JSON directo, y extrae valores usando expresiones JSON path.
+## Analizador JSON (`json`)
+
+**Propósito:** Analiza datos JSON desde un archivo, una URL o contenido JSON directo, y extrae valores usando expresiones JSON path.
+
+**Valores:** `source`, `json_path`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
 ```
 Parámetros:
-- `source`: El origen de los datos JSON
+- `source`: La fuente de los datos JSON
   - Ruta de archivo: `/config/fancymenu/assets/data.json`
   - URL: `https://api.example.com/data.json`
   - JSON directo: `{"name":"Steve","level":42}`
 - `json_path`: La expresión JSON path para extraer datos
 
-El marcador de posición ahora admite tres tipos de origen:
-1. **Archivos locales**: Archivos JSON de tu directorio del juego
+Ahora el marcador de posición admite tres tipos de fuente:
+1. **Archivos locales**: archivos JSON desde tu directorio del juego
    ```
    {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
    ```
-2. **URLs**: Datos JSON remotos de APIs o servicios web
+2. **URLs**: datos JSON remotos desde APIs o servicios web
    ```
    {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
    ```
-3. **JSON directo**: Contenido JSON en línea
+3. **JSON directo**: contenido JSON en línea
    ```
    {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
    ```
@@ -1197,122 +2274,237 @@ El marcador de posición ahora admite tres tipos de origen:
 Ejemplos de JSON path:
 - `$.name` - Obtiene el campo "name" desde la raíz
 - `$.player.level` - Obtiene el campo anidado "level" dentro de "player"
-- `$.items[0].id` - Obtiene el "id" del primer elemento de un arreglo
+- `$.items[0].id` - Obtiene el "id" del primer elemento en un arreglo
 - `$.scores.*` - Obtiene todos los valores del objeto "scores"
 
-## Ruta absoluta de archivo/carpeta (absolute_path)
-Devuelve la ruta absoluta de un archivo.
+## Ruta absoluta de archivo/carpeta (`absolute_path`)
+
+**Propósito:** Devuelve la ruta absoluta de un archivo.
+
+**Valores:** `short_path`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
 ```
-Salida de ejemplo: `C:/Users/Username/AppData/Roaming/.minecraft/relative/path/to/file.txt`
 
-## Conteo de caracteres del texto (text_character_count)
-Devuelve el número de caracteres en el texto dado.
+**Salida:** `C:/Games/PrismLauncher/instances/My Pack/relative/path/to/file.txt`
+
+## Conteo de caracteres de texto (`text_character_count`)
+
+**Propósito:** Devuelve el número de caracteres en el texto dado.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"text_character_count","values":{"text":"Hello World!"}}
 ```
-Salida de ejemplo: `12`
 
-## Ancho del texto (text_width)
-Devuelve el ancho en píxeles del texto dado cuando se renderiza.
+**Salida:** `12`
+
+## Ancho de texto (`text_width`)
+
+**Propósito:** Devuelve el ancho en píxeles del texto dado al renderizarse.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"text_width","values":{"text":"Hello World!"}}
 ```
-Salida de ejemplo: `66`
 
-## Texto en mayúsculas (uppercase_text)
-Convierte el texto de entrada a todas mayúsculas.
+**Salida:** `66`
+
+## Texto en mayúsculas (`uppercase_text`)
+
+**Propósito:** Convierte el texto de entrada a todas mayúsculas.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"uppercase_text","values":{"text":"Hello World"}}
 ```
-Salida de ejemplo: `HELLO WORLD`
 
-## Texto en minúsculas (lowercase_text)
-Convierte el texto de entrada a todas minúsculas.
+**Salida:** `HELLO WORLD`
+
+## Texto en minúsculas (`lowercase_text`)
+
+**Propósito:** Convierte el texto de entrada a todas minúsculas.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"lowercase_text","values":{"text":"Hello World"}}
 ```
-Salida de ejemplo: `hello world`
 
-## Texto en formato de título (title_case_text)
-Convierte el texto de entrada a formato de título.
+**Salida:** `hello world`
+
+## Texto en formato título (`title_case_text`)
+
+**Propósito:** Convierte el texto de entrada a formato título.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
-Salida de ejemplo: `Hello World`
 
-## Texto en formato de oración (sentence_case_text)
-Convierte el texto de entrada a formato de oración.
+**Salida:** `Hello World`
+
+## Texto en formato oración (`sentence_case_text`)
+
+**Propósito:** Convierte el texto de entrada a formato oración.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
 ```
-Salida de ejemplo: `Hello world. This is fancymenu!`
 
-## Texto en snake_case (snake_case_text)
-Convierte el texto de entrada a `snake_case`.
+**Salida:** `Hello world. This is fancymenu!`
+
+## Texto en snake case (`snake_case_text`)
+
+**Propósito:** Convierte el texto de entrada a `snake_case`.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
-Salida de ejemplo: `hello_world`
 
-## Texto en kebab-case (kebab_case_text)
-Convierte el texto de entrada a `kebab-case`.
+**Salida:** `hello_world`
+
+## Texto en kebab-case (`kebab_case_text`)
+
+**Propósito:** Convierte el texto de entrada a `kebab-case`.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
-Salida de ejemplo: `hello-world`
 
-## Texto en mayúsculas y minúsculas alternadas (alternating_case_text)
-Convierte el texto de entrada a mayúsculas y minúsculas alternadas.
+**Salida:** `hello-world`
+
+## Texto en mayúsculas/minúsculas alternadas (`alternating_case_text`)
+
+**Propósito:** Convierte el texto de entrada a mayúsculas y minúsculas alternadas.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
-Salida de ejemplo: `aLtErNaTiNg CaSe`
 
-## Alternar mayúsculas/minúsculas (toggle_case_text)
-Cambia entre mayúsculas y minúsculas cada letra del texto de entrada.
+**Salida:** `aLtErNaTiNg CaSe`
+
+## Alternar mayúsculas y minúsculas (`toggle_case_text`)
+
+**Propósito:** Alterna el uso de mayúsculas y minúsculas en cada letra del texto de entrada.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
-Salida de ejemplo: `tOGGLE cASE`
 
-## Codificar a Base64 (base64_encode)
-Codifica el texto dado como Base64.
+**Salida:** `tOGGLE cASE`
+
+## Codificar a Base64 (`base64_encode`)
+
+**Propósito:** Codifica el texto dado como Base64.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"base64_encode","values":{"text":"Hello World"}}
 ```
-Salida de ejemplo: `SGVsbG8gV29ybGQ=`
 
-## Decodificar de Base64 (base64_decode)
-Decodifica una cadena Base64 de vuelta a texto plano.
+**Salida:** `SGVsbG8gV29ybGQ=`
+
+## Decodificar desde Base64 (`base64_decode`)
+
+**Propósito:** Decodifica una cadena Base64 de vuelta a texto plano.
+
+**Valores:** `text`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
 ```
-Salida de ejemplo: `Hello World`
 
-## Texto de archivo (file_text)
-Devuelve líneas de texto de un archivo o URL. Puede devolver todas las líneas o solo las últimas X líneas.
+**Salida:** `Hello World`
+
+## Texto de archivo (`file_text`)
+
+**Propósito:** Devuelve líneas de texto desde un archivo o URL. Puede devolver todas las líneas o solo las últimas X líneas.
+
+**Valores:** `path_or_url`, `mode`, `separator`, `last_lines`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
 ```
 Parámetros:
-- `path_or_url`: Ruta de archivo o URL desde la que se leerá
-- `mode`: Puede ser `"all"` (devuelve todas las líneas) o `"last"` (devuelve solo las últimas X líneas)
-- `separator`: Texto con el que se unirán las líneas (predeterminado: `"\n"`)
+- `path_or_url`: Ruta de archivo o URL desde la que leer
+- `mode`: `"all"` (devuelve todas las líneas) o `"last"` (devuelve solo las últimas X líneas)
+- `separator`: Texto usado entre líneas (predeterminado: `"\n"`)
 - `last_lines`: Número de líneas a devolver cuando `mode` es `"last"` (predeterminado: `"1"`)
 
-Salida de ejemplo: Depende del contenido del archivo
+**Salida:**
 
-## Contenido del portapapeles (clipboard_content)
-Devuelve el contenido de texto actual almacenado en el portapapeles del sistema.
+```text
+First line
+Second line
+```
+
+## Contenido del portapapeles (`clipboard_content`)
+
+**Propósito:** Devuelve el contenido de texto actual almacenado en el portapapeles del sistema.
+
+**Valores:** Ninguno
+
+**Ejemplo:**
+
 ```
 {"placeholder":"clipboard_content"}
 ```
-Salida de ejemplo: Cualquier texto que esté actualmente en el portapapeles
 
-## Reemplazar texto (replace_text)
-Reemplaza texto en una cadena usando texto literal o expresiones regulares.
+**Salida:** `Hello from the clipboard`
+
+## Reemplazar texto (`replace_text`)
+
+**Propósito:** Reemplaza texto en una cadena usando texto literal o expresiones regulares.
+
+**Valores:** `text`, `search`, `replacement`, `use_regex`, `replace_all`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
 ```
@@ -1321,112 +2513,188 @@ Parámetros:
 - `search`: El texto o patrón regex que se buscará
 - `replacement`: El texto de reemplazo
 - `use_regex`: Si se usa regex (`"true"`) o coincidencia literal (`"false"`)
-- `replace_all`: Reemplazar todas las apariciones (`"true"`) o solo la primera (`"false"`)
+- `replace_all`: Reemplaza todas las ocurrencias (`"true"`) o solo la primera (`"false"`)
 
-Salida de ejemplo: `Hello FancyMenu! This is a test.`
+**Salida:** `Hello FancyMenu! This is a test.`
 
-## Cambiar según caso (switch_case)
-Realiza una operación switch-case basada en un valor.
+## Estructura switch-case (`switch_case`)
+
+**Propósito:** Realiza una operación switch-case basada en un valor.
+
+**Valores:** `value`, `cases`, `default`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
 ```
-Salida de ejemplo: `first case` (si el valor es 1)
 
-## Obtener valor de variable (variable de FM) (getvariable)
-Recupera el valor de una variable guardada previamente.
+**Salida:** `first case` (si el valor es 1)
+
+## Obtener valor de variable (variable de FM) (`getvariable`)
+
+**Propósito:** Recupera el valor de una variable almacenada previamente.
+
+**Valores:** `name`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"getvariable","values":{"name":"some_variable"}}
 ```
-Salida de ejemplo: Depende del valor almacenado
 
-## Obtener datos NBT (nbt_data_get)
-Recupera datos NBT en el cliente (similar al comando `/data get`). Usa la variante del servidor `nbt_data_get_server` cuando estés conectado a un servidor y necesites valores autoritativos del lado del servidor.
+**Salida:** `42`
+
+## Obtener datos NBT (`nbt_data_get`)
+
+**Propósito:** Recupera datos NBT del lado del cliente (similar al comando `/data get`). Usa la variante del servidor `nbt_data_get_server` cuando estés conectado a un servidor y necesites valores autorizados del lado del servidor.
+
+**Valores:** `source_type`, `entity_selector`, `nbt_path`, `scale`, `return_type`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
 Parámetros:
-- `source_type`: Puede ser `"entity"` o `"block"`
-- `entity_selector`: Selector de entidad como `@s`, `@p`, `@e`, o UUID/nombre (para entidades)
+- `source_type`: `"entity"` o `"block"`
+- `entity_selector`: Selector de entidades como `@s`, `@p`, `@e`, o UUID/nombre (para entidades)
 - `block_pos`: Posición del bloque en formato `"x y z"` (para bloques)
-- `nbt_path`: La ruta NBT que se recuperará
+- `nbt_path`: La ruta NBT a recuperar
 - `scale`: Factor de escala opcional para valores numéricos (predeterminado: `"1.0"`)
 - `return_type`: Cómo devolver los datos:
   - `"value"`: Predeterminado, devuelve el valor (con escala opcional para números)
   - `"string"`: Devuelve los datos NBT reales como cadena
-  - `"snbt"`: Devuelve como SNBT (NBT formateado)
+  - `"snbt"`: Devuelve como SNBT (NBT con formato)
   - `"json"`: Devuelve como componente formateado en JSON (para etiquetas compuestas)
 
-Salida de ejemplo: `20` (para el nivel de comida)
+**Salida:** `20` (para el nivel de comida)
 
-## Obtener datos NBT (lado del servidor) (nbt_data_get_server)
-Consulta datos NBT del lado del servidor (usando un paquete) y almacena en caché los resultados por poco tiempo. Los valores reflejan el marcador de posición del lado del cliente.
+## Obtener datos NBT (lado del servidor) (`nbt_data_get_server`)
+
+**Propósito:** Consulta datos NBT del lado del servidor (usando un paquete) y almacena en caché los resultados brevemente. Los valores coinciden con el marcador de posición del lado del cliente.
+
+**Valores:** `source_type`, `entity_selector`, `block_pos`, `storage_id`, `nbt_path`, `scale`, `return_type`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
 ```
-Salida de ejemplo: `minecraft:diamond_sword`
 
-## Último mensaje de muerte (lastdeathmessage)
-Devuelve el último mensaje de muerte registrado del jugador cliente. Establece `as_json_component` en `"true"` para obtener el componente de texto JSON en bruto.
+**Salida:** `minecraft:diamond_sword`
+
+## Último mensaje de muerte (`lastdeathmessage`)
+
+**Propósito:** Devuelve el último mensaje de muerte registrado del jugador cliente. Establece `as_json_component` en `"true"` para obtener el componente de texto JSON sin procesar.
+
+**Valores:** `as_json_component`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
-Salida de ejemplo: `Steve was slain by Zombie`
 
-## Duración de funcionamiento (uptime_duration)
-Devuelve cuánto tiempo ha estado cargado FancyMenu. Por defecto el valor está en segundos; establece `output_as_millis` en `"true"` para recibir milisegundos.
+**Salida:** `Steve was slain by Zombie`
+
+## Duración del tiempo de actividad (`uptime_duration`)
+
+**Propósito:** Devuelve cuánto tiempo ha estado cargado FancyMenu. De forma predeterminada el valor está en segundos; establece `output_as_millis` en `"true"` para recibir milisegundos.
+
+**Valores:** `output_as_millis`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
 ```
-Salida de ejemplo: `742` (segundos desde la carga)
 
-## Nombres de guardados del mundo (level_save_names)
-Enumera todos los nombres de guardados de mundos locales unidos por el separador elegido. Se ejecuta en el hilo del cliente.
+**Salida:** `742` (segundos desde la carga)
+
+## Nombres de guardados del mundo (`level_save_names`)
+
+**Propósito:** Lista todos los nombres de guardados de mundos locales unidos por el separador elegido. Se ejecuta en el hilo del cliente.
+
+**Valores:** `separator`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
-Salida de ejemplo: `Creative Test, Survival World, Hardcore`
 
-## Datos de guardado del mundo (level_save_data)
-Devuelve los datos serializados del nivel para el nombre de mundo dado (debe coincidir con el nombre mostrado en la lista de guardados).
+**Salida:** `Creative Test, Survival World, Hardcore`
+
+## Datos del guardado del mundo (`level_save_data`)
+
+**Propósito:** Devuelve datos serializados del nivel para el nombre de mundo dado (debe coincidir con el nombre visible mostrado en la lista de guardados).
+
+**Valores:** `level_name`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
 ```
-Salida de ejemplo: `{"name":"Survival World","gameMode":"survival",...}`
 
-## Conversor de base numérica (number_base_convert)
-Convierte un número (entero o fraccionario) de una base a otra (2–36). Usa decimal por defecto si no se proporcionan bases.
+**Salida:** `{"name":"Survival World","gameMode":"survival",...}`
+
+## Convertidor de base numérica (`number_base_convert`)
+
+**Propósito:** Convierte un número (entero o fraccionario) de una base a otra (2–36). Usa decimal por defecto si no se especifican bases.
+
+**Valores:** `input`, `from_base`, `to_base`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
 ```
-Salida de ejemplo: `43.8`
 
-## Tamaño de archivo (file_size)
-Devuelve el tamaño de un archivo local en bytes. Solo se permiten rutas locales.
+**Salida:** `43.8`
+
+## Tamaño de archivo (`file_size`)
+
+**Propósito:** Devuelve el tamaño de un archivo local en bytes. Solo se permiten rutas locales.
+
+**Valores:** `path`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
 ```
-Salida de ejemplo: `1284`
 
-## MD5 de archivo (file_md5)
-Devuelve el hash MD5 de un archivo local como una cadena hexadecimal en minúsculas.
+**Salida:** `1284`
+
+## MD5 de archivo (`file_md5`)
+
+**Propósito:** Devuelve el hash MD5 de un archivo local como una cadena hexadecimal en minúsculas.
+
+**Valores:** `path`
+
+**Ejemplo:**
+
 ```
 {"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
 ```
-Salida de ejemplo: `d41d8cd98f00b204e9800998ecf8427e`
+
+**Salida:** `d41d8cd98f00b204e9800998ecf8427e`
 
 # Ejemplos prácticos
 
-## Crear una vista dinámica de memoria
+## Crear una visualización dinámica de memoria
 ```
 RAM usada: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholder":"percentram"}%)
 ```
 
 ## Hacer un reloj en tiempo real
 ```
-{"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}:{"placeholder":"realtimesecond"}
+{"placeholder":"realtimehour","values":{"timezone":"system"}}:{"placeholder":"realtimeminute","values":{"timezone":"system"}}:{"placeholder":"realtimesecond","values":{"timezone":"system"}}
 ```
 
-## Crear una vista de información del sistema
+## Crear una visualización de información del sistema
 ```
 SO: {"placeholder":"osname"}
 CPU: {"placeholder":"cpuinfo"}
@@ -1438,7 +2706,7 @@ Java: {"placeholder":"javaver"}
 ```
 Salud: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
 Armadura: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
-Nivel de XP: {"placeholder":"current_player_level"}
+Nivel XP: {"placeholder":"current_player_level"}
 ```
 
 ## Cálculo complejo con marcadores de posición anidados
@@ -1455,15 +2723,15 @@ Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordin
 
 # Mejores prácticas
 
-1. **Cacha las operaciones costosas**: Algunos marcadores de posición (como los que leen información del sistema) pueden consumir recursos. Considera usar variables para almacenar sus valores si necesitas usarlos varias veces.
+1. **Cacha las operaciones costosas**: Algunos marcadores de posición (como los que leen información del sistema) pueden consumir muchos recursos. Considera usar variables para almacenar sus valores si necesitas usarlos varias veces.
 
-2. **Usa configuraciones decimales adecuadas**: Al trabajar con cálculos, usa el parámetro `decimal` de forma apropiada. Establécelo en `false` cuando necesites enteros y en `true` cuando necesites valores decimales precisos.
+2. **Usa configuraciones de decimales adecuadas**: Cuando trabajes con cálculos, usa el parámetro `decimal` de forma apropiada. Establécelo en `false` cuando necesites enteros y en `true` cuando necesites valores decimales precisos.
 
-3. **Maneja valores faltantes**: Siempre considera qué debe pasar si un marcador de posición no devuelve ningún valor. Tal vez quieras proporcionar valores predeterminados en esos casos.
+3. **Maneja valores faltantes**: Siempre considera qué debe pasar si un marcador de posición no devuelve un valor. Quizá quieras proporcionar valores predeterminados en esos casos.
 
 4. **Prueba el rendimiento**: Al usar muchos marcadores de posición o estructuras anidadas complejas, prueba el impacto en el rendimiento, especialmente en sistemas de gama baja.
 
-5. **Usa dimensiones avanzadas de tamaño/posición**: Para elementos dinámicos de la interfaz, combina marcadores de posición con tamaño y posicionamiento avanzados para crear diseños responsivos.
+5. **Usa tamaño/posicionamiento avanzado**: Para elementos dinámicos de la interfaz, combina marcadores de posición con tamaño y posicionamiento avanzados para crear diseños responsivos.
 
 6. **Combínalos con variables**: Usa marcadores de posición junto con variables para contenido aún más dinámico que pueda actualizarse mediante acciones.
 
@@ -1472,7 +2740,7 @@ Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordin
 ## El marcador de posición no se actualiza
 Si el valor de un marcador de posición no se actualiza como esperas, revisa:
 - Si el marcador de posición está formateado correctamente
-- Si estás usando la mayúscula/minúscula correcta para los IDs de los marcadores de posición
+- Si estás usando la capitalización correcta para los IDs de los marcadores de posición
 - Si el marcador de posición requiere condiciones específicas para actualizarse
 
 ## Los marcadores de posición anidados no funcionan
@@ -1482,7 +2750,7 @@ Al anidar marcadores de posición:
 
 ## Problemas de rendimiento
 Si notas problemas de rendimiento:
-- Reduce la cantidad de marcadores de posición utilizados
+- Reduce la cantidad de marcadores de posición usados
 - Evita anidamientos innecesarios
-- Considera usar variables para valores consultados con frecuencia
-- Usa el marcador de posición apropiado para tus necesidades (por ejemplo, no uses marcadores de posición de tiempo real cuando valores estáticos sean suficientes)
+- Considera usar variables para valores de acceso frecuente
+- Usa el marcador de posición apropiado para tu necesidad (por ejemplo, no uses marcadores de posición en tiempo real cuando valores estáticos sean suficientes)
