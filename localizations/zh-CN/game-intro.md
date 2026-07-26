@@ -1,20 +1,26 @@
 ---
 title: 游戏介绍
-description: 在游戏首次显示标题界面之前播放动画内容。
+description: 在游戏首次显示标题屏幕之前播放动画内容。
 ---
+# 游戏介绍
 
-# 游戏开场动画
+游戏介绍会在标题屏幕首次出现之前播放一段动画图片或视频。
 
-你知道那些在启动游戏时播放的酷炫小视频吗？
-FancyMenu 让你能在 Minecraft 中实现它们！
+# 设置
 
-# 作为开场的 APNG、GIF 和视频
+通过 **自定义 -> 全局自定义** 打开 [**全局自定义**](./global-customizations)，然后配置以下设置：
 
-FancyMenu 支持动画纹理，并且从 FancyMenu 3.9.0 开始，也支持将视频作为游戏开场内容。
+| 设置 | 行为 |
+|---|---|
+| 设置游戏介绍 | 选择本地、网页或 Minecraft 资源的动画图片或视频 |
+| 游戏介绍跳过 | 允许按任意键或鼠标单击跳过介绍 |
+| 游戏介绍淡出 | 将介绍淡出到目标屏幕 |
+| 自定义跳过文本 | 用纯文本或本地化键替换默认的跳过提示 |
+| 游戏介绍音量 | 将基础音量设置为 `0.0` 到 `1.0` |
+| 游戏介绍声音通道 | 选择 Minecraft 的声音类别 |
+| 重新触发游戏介绍 | 再次播放已配置的介绍以便测试 |
 
-要在 FancyMenu 3.9.0+ 中设置开场内容，请打开 FancyMenu 的**菜单栏**，然后进入 **Customization -> Global Customizations**，在其中配置 **Game Intro**。
-
-视频开场支持声音，包括音量和声音通道设置。原生视频支持需要 **Watermedia V3** 和 **Watermedia Binaries V3**。
+视频介绍需要 **Watermedia V3**、**Watermedia Binaries V3** 以及 OpenGL 渲染器。使用 Vulkan 时无法进行 Watermedia 视频播放。当无法播放时，FancyMenu 会在介绍屏幕上显示说明。请参阅 [视频](./video#requirements)。
 
 <br>
 <img width="700" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/71cec75b-33f1-4a21-9f18-d0adc7ceebb6">
