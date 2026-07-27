@@ -1,20 +1,20 @@
 ---
-title: Elementos Rotacionáveis
-description: Elementos rotacionáveis no FancyMenu.
+title: Elementos Rotativos
+description: Elementos rotativos no FancyMenu.
 ---
 
-# Elementos Rotacionáveis
+# Elementos Rotativos
 
-A partir do FancyMenu v3.8.0, é possível rotacionar **a maioria** dos elementos!
+A maioria dos elementos pode ser rotacionada.
 
-Para rotacionar um elemento, selecione-o no editor de layout e, se você vir uma forma circular ao redor do elemento, ele deve ter um manipulador preso a ele que você pode arrastar para rotacionar o elemento em torno de seu eixo.
+Selecione um elemento no editor de layout. Se a rotação for suportada, um guia circular e um manipulador aparecerão ao redor dele. Arraste o manipulador para girar o elemento.
 
-Se não houver uma forma circular ao redor do elemento, você não pode rotacioná-lo.
+Se não houver uma forma circular ao redor do elemento, você não pode girá-lo.
 
 # Avançado
 
-Você também pode clicar com o botão direito no elemento para definir manualmente os valores de rotação por meio de uma entrada de texto direta. Essa entrada direta suporta [placeholders](/placeholders), então você pode alterar dinamicamente a rotação do elemento ao combiná-la com placeholders para obter valores de variáveis do FancyMenu ou algo semelhante.
+Você também pode clicar com o botão direito no elemento para definir manualmente os valores de rotação por meio de uma entrada de texto direta. Essa entrada direta oferece suporte a [placeholders](/placeholders), então você pode alterar dinamicamente a rotação do elemento ao combiná-la com placeholders para obter valores variáveis do FancyMenu ou algo semelhante.
 
 # Botões, Sliders e Outros Elementos Interativos
 
-No caso de elementos interativos, rotacioná-los é possível, mas a rotação é apenas visual. Então o botão, por exemplo, ainda só responderá a cliques dentro de sua área original, mesmo que a rotação talvez o tenha movido parcialmente para fora dessa área.
+A rotação é apenas visual para elementos interativos. Um botão rotacionado ainda aceita cliques dentro de sua área original, não rotacionada.

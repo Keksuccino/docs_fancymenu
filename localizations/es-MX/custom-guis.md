@@ -1,48 +1,57 @@
 ---
 title: GUIs personalizadas
-description: Cómo agregar una nueva pantalla de GUI al juego.
+description: Crea y configura nuevas pantallas de GUI.
 ---
 
 # GUIs personalizadas
 
-FancyMenu te permite personalizar las pantallas de GUI existentes, pero también te permite agregar pantallas completamente nuevas y llenarlas con elementos.
+Las GUIs personalizadas son nuevas pantallas que puedes llenar con [elementos](./elements) de FancyMenu.
 
-# Agregar una nueva pantalla
+> [!CAUTION]
+> Las GUIs personalizadas pueden ejecutar acciones. Impórtalas solo de fuentes en las que confíes.
 
-Para agregar una nueva pantalla, ve a **Personalización -> GUIs personalizadas -> Administrar GUIs personalizadas**.
+# Crear una GUI personalizada
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+1. Abre **Personalización -> GUIs personalizadas -> Administrar GUIs personalizadas**.
+2. Selecciona **Nueva GUI**.
+3. Ingresa un identificador y configura los ajustes de la pantalla.
+4. Selecciona **Hecho** y luego abre la nueva GUI desde el administrador.
+5. Crea y edita su diseño como cualquier otra pantalla.
 
-En el siguiente menú, haz clic en **Nueva GUI**.
+Los identificadores pueden usar letras minúsculas, dígitos, `.`, `_` y `-`. No pueden contener espacios y deben ser únicos. Los identificadores vacíos, inválidos o duplicados no se pueden guardar.
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+Las GUIs personalizadas siempre tienen habilitada la personalización de pantalla; su interruptor de personalización no se puede desactivar.
 
-Aquí necesitas darle a tu nueva GUI un identificador único y puedes personalizar otras partes del comportamiento básico de la pantalla.
-Cuando termines, presiona **Listo**.
+# Ajustes de pantalla
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+| Ajuste | Comportamiento |
+|---|---|
+| Permitir ESC | Permite que Escape cierre la GUI y regrese a su pantalla principal |
+| Pausar juego/mundo | Pausa el modo individual mientras la GUI está abierta |
+| Renderizar fondo del mundo | Muestra el mundo cargado detrás de la GUI |
+| Superposición del fondo del mundo | Agrega el desenfoque/oscurecimiento estándar sobre el mundo |
+| Modo emergente | Mantiene visible la pantalla principal detrás de la GUI personalizada |
+| Superposición del fondo emergente | Agrega desenfoque/tono sobre la pantalla principal en el Modo emergente |
 
-Ahora tienes una nueva GUI vacía. Para abrirla, selecciona la GUI en el menú **Administrar GUIs personalizadas** y haz clic en **Abrir GUI**.
+El Modo emergente no combina ambas pantallas. La GUI personalizada sigue siendo la pantalla activa mientras su pantalla principal se renderiza detrás. Al cerrar la GUI personalizada, regresarás a esa pantalla principal cuando exista una.
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
+# Abrir una GUI personalizada
 
-Esto abrirá la pantalla de GUI todavía bastante vacía. Para hacerla menos vacía, solo crea un nuevo diseño para ella como lo harías con cualquier otra pantalla.
+Usa el identificador exacto de la GUI personalizada con cualquiera de estas opciones:
 
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
+- La [**acción Abrir pantalla o GUI personalizada**](./action-scripts#open-screen-or-custom-gui-opengui).
+- El comando [`/openguiscreen`](./commands#openguiscreen).
 
-# Abrir la GUI mediante una acción
+# Reemplazar una pantalla existente
 
-La última parte es darle a los usuarios normales acceso a tu GUI. La forma más sencilla de hacerlo es usar la acción **Abrir pantalla o GUI personalizada** con un botón, control deslizante o ticker.
+Una GUI personalizada puede reemplazar una pantalla de Vanilla o de un mod cada vez que esa pantalla se abra.
 
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
+1. Crea la GUI personalizada de reemplazo.
+2. Abre la pantalla que quieres reemplazar.
+3. Activa **Personalización -> Ajustes -> Modo de personalización avanzada**.
+4. Selecciona **Personalización -> GUIs personalizadas -> Reemplazar pantalla actual con GUI personalizada**.
+5. Elige la GUI personalizada de reemplazo.
 
-# Abrir la GUI mediante un comando
+Administra los reemplazos guardados en **Personalización -> GUIs personalizadas -> Administrar pantallas reemplazadas**.
 
-También puedes abrir tu GUI personalizada mediante un [comando dentro del juego](./commands#openguiscreen).
-¡Esto incluso te permite abrir la GUI de forma remota para otros usuarios!
-
-# Modo emergente
-
-A partir de FancyMenu v3.8.0, las GUIs personalizadas son compatibles con un "Modo emergente" que hace que se vean como una ventana emergente que se abre encima de otra pantalla (la pantalla anterior desde la que se abrió la GUI personalizada). Esta opción se puede activar o desactivar de forma individual para cada GUI personalizada en su configuración.
-
-FancyMenu 3.9.0 también agrega una opción para activar o desactivar la superposición de fondo de la pantalla para las GUIs personalizadas mientras estás en un mundo. Úsala cuando quieras deshabilitar o conservar el desenfoque/la tintura oscura detrás de una GUI personalizada abierta sobre el juego.
+Un reemplazo omite la pantalla original, así que prueba su navegación y cualquier función que dependa del comportamiento de la pantalla original.

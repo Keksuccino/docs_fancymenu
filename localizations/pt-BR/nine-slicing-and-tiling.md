@@ -1,104 +1,42 @@
 ---
-title: Nine-Slicing e Tiling
-description: Como usar nine-slicing e tiling no FancyMenu.
+title: Nine-Slicing e Tile
+description: Redimensione texturas com bordas ou repita texturas sem emendas.
 ---
 
-# Nine-Slicing e Tiling
+# Nine-Slicing e Tile
 
-Ao criar menus legais no Minecraft com o FancyMenu, talvez você queira usar imagens que precisem ser redimensionadas corretamente ou repetidas em padrões. Este guia explica como usar **Nine-Slicing** e **Tiling** (também chamado de texturas repetidas) para deixar seus menus incríveis!
+Nine-slicing preserva os cantos e bordas de uma textura enquanto estica seu centro. Tile repete uma textura em vez de esticá-la.
 
-# O que é Nine-Slicing?
+<img src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/nine_slicing_example.png" alt="Regiões de nine-slice" style="max-width:500px;height:auto;" />
 
-Nine-slicing é uma técnica que permite esticar uma imagem para qualquer tamanho sem deixá-la com aparência estranha. Ela funciona dividindo sua imagem em nove partes (como um jogo da velha). Os cantos permanecem do mesmo tamanho, as bordas se esticam em uma direção e o centro se estica nas duas direções.
+# Suporte a Nine-Slicing
 
-<img src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/nine_slicing_example.png" alt="Exemplo de Nine-Slice" style="max-width: 500px; height: auto;" />
+| Área | Destinos compatíveis |
+|---|---|
+| Widgets | Texturas de [Button](./elements#button) e [Slider](./elements#slider); [estilos globais de botão e slider](./global-customizations#button-visuals) |
+| Imagens e painéis | [Elementos de imagem](./elements#image) |
+| Barras de progresso | [Texturas de preenchimento e fundo](./elements#progress-bar) |
+| Tooltips | [Texturas de fundo personalizadas](./elements#tooltip) |
 
-## Onde posso usar Nine-Slicing?
+# Configurando Nine-Slicing
 
-No FancyMenu, o Nine-Slicing está disponível para:
-- **Elementos de Botão** (tanto botões personalizados quanto ao editar botões do Vanilla)
-- **Texturas de Barra de Progresso** (texturas da barra e do fundo)
+1. Defina a textura de destino.
+2. Ative a opção **Nine-Slice**.
+3. Defina os tamanhos das bordas para corresponder à área fixa da borda na textura de origem.
+4. Redimensione o elemento e ajuste os valores das bordas se os cantos ou as bordas ficarem distorcidos.
 
-## Como usar Nine-Slicing com Botões
+As configurações de Button e Image usam tamanhos de borda X/Y. Barras de Progresso e Tooltips expõem valores de borda separados quando necessário.
 
-1. **Crie ou selecione um Elemento de Botão** no editor de layout.
-2. Clique com o botão direito no botão e procure a opção "Button Textures".
-3. Defina as texturas de fundo do botão (estados normal, hover e inativo).
-4. Ative a opção "Nine-Slice Custom Background".
-5. Defina as **Nine-Slice Background X-Borders** (tamanho das bordas esquerda e direita).
-6. Defina as **Nine-Slice Background Y-Borders** (tamanho das bordas superior e inferior).
+# Suporte a Tile
 
-### Dicas para Nine-Slicing em Botões
+Texturas repetidas estão disponíveis para:
 
-- Use uma imagem com bordas e cantos bem definidos.
-- Os valores de borda (X e Y) informam ao FancyMenu quantos pixels de cada extremidade devem ser tratados como borda.
-- Um valor típico pode ser 5 pixels tanto para as bordas X quanto Y.
-- Os cantos sempre permanecerão do mesmo tamanho, enquanto as partes centrais se esticarão para preencher o botão.
+- [Elementos de imagem](./elements#image).
+- [Planos de fundo de imagem do menu](./menu-backgrounds).
+- [Texturas de cabeçalho e rodapé de listas roláveis](./customizing-scrollable-screens).
 
-# O que é Tiling?
+Ative **Repeat Texture** em um elemento de imagem ou em um plano de fundo de imagem. Para telas roláveis, use as opções de repetição no menu de personalização do cabeçalho/rodapé.
 
-Tiling (também chamado de texturas repetidas) permite preencher uma área grande com uma imagem pequena, repetindo-a como azulejos em um piso. Isso é perfeito para fundos ou imagens grandes em que você quer que um padrão continue.
+Use uma textura de origem sem emendas; bordas que não se alinham criam linhas visíveis entre os tiles.
 
-## Onde posso usar Tiling?
-
-No FancyMenu, o Tiling está disponível para:
-- **Elementos de Imagem**
-- **Fundos de Menu de Imagem**
-
-## Como usar Tiling com Elementos de Imagem
-
-1. **Crie ou selecione um Elemento de Imagem** no editor de layout.
-2. Clique com o botão direito na imagem e procure "Image Source" para definir sua textura.
-3. Encontre e ative a opção **"Repeat Texture"**.
-4. Redimensione seu elemento de imagem para ver a textura se repetir e preencher o espaço.
-
-## Como usar Tiling com Fundos de Menu
-
-1. Abra **Menu Backgrounds** no menu de contexto de fundo do editor de layout.
-2. Escolha o tipo de fundo **Image**.
-3. Selecione sua imagem de fundo.
-4. Ative a opção **"Repeat Texture"**.
-5. Seu fundo agora repetirá a textura para preencher toda a tela.
-
-# Criando Boas Texturas para Nine-Slicing e Tiling
-
-## Para Nine-Slicing:
-- Crie texturas com bordas e cantos bem definidos.
-- Certifique-se de que suas bordas estejam claras e com largura consistente.
-- Teste diferentes tamanhos de borda para encontrar o que funciona melhor.
-- Botões geralmente funcionam bem com bordas de 3 a 5 pixels.
-
-## Para Tiling:
-- Crie texturas contínuas que possam se conectar consigo mesmas em todos os lados.
-- Mantenha os padrões simples para evitar confusão visual.
-- Teste sua textura repetindo-a primeiro em uma área pequena.
-
-# Exemplos
-
-## Exemplo de Botão com Nine-Slice
-Um botão simples pode começar como uma imagem de 30x30 com bordas de 5 pixels em todos os lados. Quando você torna o botão maior, os cantos permanecem com 5x5 pixels, enquanto as bordas e o centro se esticam para se ajustar ao tamanho do botão.
-
-## Exemplo de Fundo em Tiling
-Um pequeno tile de 64x64 com um padrão discreto pode ser repetido para preencher todo o fundo do seu menu, independentemente do tamanho da tela.
-
-# Problemas Comuns e Soluções
-
-## Meu botão com nine-slicing parece esticado ou distorcido:
-- Seus valores de borda podem estar muito pequenos ou muito grandes
-- Tente alterar os valores de borda para combinar com sua textura real
-
-## Meu fundo com tiling tem emendas visíveis:
-- Sua textura não é contínua
-- Tente editar sua imagem para garantir que as bordas se encaixem perfeitamente
-
-## Minhas texturas ficam borradas quando redimensionadas:
-- Use texturas de maior resolução
-- Mantenha seus designs simples, com linhas limpas
-
-# Lembre-se
-
-- **Nine-Slicing** é perfeito para elementos de UI que precisam mudar de tamanho sem perder a aparência (como botões).
-- **Tiling** é ótimo para preencher áreas grandes com um padrão (como fundos).
-- Ambos os recursos ajudam sua interface a ficar bonita em qualquer resolução ou tamanho de tela!
-
-Agora vá criar menus incríveis no Minecraft com botões perfeitamente esticados e belos fundos em tiling!
+Nine-slicing e repetição são modos separados. Se ambas as opções forem exibidas para um destino, escolha a que corresponde ao comportamento de escalonamento desejado.

@@ -1,147 +1,62 @@
 ---
-title: Shortcuts & Tastenkombinationen
+title: Kurzbefehle & Tastenkombinationen
 description: >-
-  Tastenkombinationen für den Layout-Editor, den Texteditor und andere Bereiche
-  von FancyMenu.
+  Kurzbefehle für den Layout-Editor, Texteditor und andere
+  FancyMenu-Bildschirme.
 ---
 
-# Shortcuts & Tastenkombinationen
+# Kurzbefehle & Tastenkombinationen
 
-FancyMenu hat viele nützliche Tastenkombinationen, die das Arbeiten mit dem **Layout-Editor** und anderen Bereichen des Mods einfacher und effizienter machen.
+**Tastenkombinationsmodifikator:** Verwende `Ctrl` unter Windows/Linux und `Command` unter macOS, sofern unterstützt.
 
 # Layout-Editor
 
-<br>
-
-## STRG + Linksklick
-
-Du kannst mehrere Elemente auswählen, indem du **STRG** gedrückt hältst, während du auf Elemente **links klickst**.
-Es ist außerdem möglich, mehrere Elemente mit der Maus **zu ziehen/verschieben**, indem du **STRG** gedrückt hältst.
-
-## UMSCHALT + Elementgröße ändern
-
-Wenn du beim Ändern der Größe von Elementen **UMSCHALT** gedrückt hältst, bleibt das Seitenverhältnis erhalten.
-
-## Pfeiltasten
-
-Mit den Pfeiltasten kannst du ausgewählte Elemente mit maximaler Genauigkeit **verschieben**.
-
-## STRG + A
-
-Alle Elemente auf einmal auswählen.
-
-## STRG + C
-
-Alle ausgewählten Elemente in die Zwischenablage **kopieren**.
-
-## STRG + V
-
-Alle Elemente einfügen, die sich derzeit in der Zwischenablage befinden.
-Dies funktioniert auch von einem Layout in ein anderes, sodass du Elemente in Layout A kopieren und in Layout B einfügen kannst.
-
-## STRG + S
-
-Das Layout schnell **speichern**.
-
-## STRG + ALT + L
-
-Den Layout-Editor schnell mit dem zuletzt bearbeiteten Layout öffnen.
-
-## STRG + Z
-
-Die letzte Aktion **rückgängig machen**.
-
-## STRG + Y
-
-Eine zuvor rückgängig gemachte Aktion **wiederholen**.
-
-## STRG + G
-
-Das **Raster** schnell ein- oder ausschalten.
-
-## O
-
-Wenn du **O** gedrückt hältst, wird die Überlagerung des Ankerpunkts angezeigt, sofern ihre Sichtbarkeit in **Fenster -> Sichtbarkeit der Anker-Überlagerung** auf **Bei Tastendruck anzeigen** gesetzt ist.
-
-## ENTF
-
-Alle ausgewählten Elemente **löschen**.
+| Tastenkombination | Aktion |
+|---|---|
+| `Ctrl/Command + Linksklick` | Mehrere Elemente auswählen oder ziehen |
+| `Shift + Größe ändern` | Das Seitenverhältnis des Elements beibehalten |
+| Pfeiltasten | Ausgewählte Elemente präzise verschieben |
+| `Ctrl/Command + A` | Alle Elemente auswählen |
+| `Ctrl/Command + C` | Ausgewählte Elemente kopieren |
+| `Ctrl/Command + V` | Kopierte Elemente einfügen, auch in ein anderes Layout |
+| `Ctrl/Command + S` | Das Layout speichern |
+| `Ctrl/Command + Z` | Rückgängig |
+| `Ctrl/Command + Y` | Wiederholen |
+| `Ctrl/Command + G` | Raster ein- oder ausschalten |
+| `O` | Ankerpunkte anzeigen, solange die Taste gedrückt gehalten wird, wenn **Fenster -> Sichtbarkeit der Anker-Überlagerung** auf **Bei Tastendruck anzeigen** gesetzt ist |
+| `Delete` | Ausgewählte Elemente löschen |
 
 # Texteditor
 
-<br>
+| Tastenkombination | Aktion |
+|---|---|
+| `Ctrl/Command + C` | Ausgewählten Text kopieren |
+| `Ctrl/Command + V` | Text einfügen |
+| `Ctrl/Command + Z` | Rückgängig |
+| `Ctrl/Command + Y` | Wiederholen |
+| `Ctrl/Command + A` | Gesamten Text auswählen |
+| `Ctrl/Command + D` | Die aktuelle Zeile duplizieren |
+| `Ctrl/Command + U` | Ausgewählten Text ausschneiden |
+| `Alt + Pfeil hoch/runter` | Die aktuelle Zeile verschieben |
+| `Ctrl/Command + Pos1/Ende` | Zum Anfang oder Ende des Textes springen |
+| `Ctrl/Command + G` | **Gehe zu Zeile** öffnen |
+| `Ctrl/Command + S` | Den Editor bestätigen |
+| `Shift + Pfeiltasten` | Die Textauswahl erweitern |
+| Pfeiltasten | Den Cursor bewegen |
 
-## STRG + C
+# Globale Menü-Kurzbefehle
 
-Den ausgewählten Text in die Zwischenablage **kopieren**.
+Diese Kurzbefehle verwenden exakt die Kombination `Ctrl + Alt`:
 
-## STRG + V
-
-Text einfügen, der sich derzeit in der Zwischenablage befindet.
-
-## STRG + Z
-
-Die letzte Aktion **rückgängig machen**.
-
-## STRG + Y
-
-Eine zuvor rückgängig gemachte Aktion **wiederholen**.
-
-## STRG + A
-
-Den gesamten Text **auswählen**.
-
-## STRG + D
-
-Die aktuelle Zeile **duplizieren**.
-
-## STRG + U
-
-Den ausgewählten Text **ausschneiden**.
-
-## ALT + Pfeil nach oben / Pfeil nach unten
-
-Die aktuelle Zeile nach oben oder unten verschieben.
-
-## STRG + Pos1 / STRG + Ende
-
-Den Cursor an den Anfang oder das Ende des Textes bewegen.
-
-## STRG + G
-
-Die Eingabe **Zu Zeile springen** öffnen.
-
-## STRG + S
-
-Den Editor bestätigen, genau wie beim Klicken auf **Fertig**.
-
-## UMSCHALT + Pfeiltasten
-
-Text auswählen/hervorheben, während du den Cursor bewegst.
-
-## Pfeiltasten
-
-Mit den Pfeiltasten kannst du den Cursor im Text bewegen.
-
-# In Menüs
-
-<br>
-
-## STRG + ALT + C
-
-Die Sichtbarkeit der **Menüleiste** von FancyMenu oben in Menüs ein- oder ausschalten.
-
-## STRG + ALT + R
-
-FancyMenu **neu laden**.
-Dies umfasst ein vollständiges Neuladen von Ressourcen/Assets, und die meisten Caches werden geleert.
-
-## STRG + ALT + D
-
-Die Sichtbarkeit des **Debug-Overlays** von FancyMenu ein- oder ausschalten.
+| Tastenkombination | Aktion |
+|---|---|
+| `Ctrl + Alt + L` | Den Layout-Editor mit dem zuletzt bearbeiteten Layout öffnen |
+| `Ctrl + Alt + C` | Die Menüleiste von FancyMenu ein- oder ausschalten |
+| `Ctrl + Alt + R` | FancyMenu und die von ihm verwalteten Ressourcen/Caches neu laden |
+| `Ctrl + Alt + D` | Das Debug-Overlay von FancyMenu ein- oder ausschalten |
 
 # Bearbeitungsfenster
 
-Viele Bearbeitungsfenster von FancyMenu in v3.9.0 unterstützen die Tastaturnavigation mit **Pfeiltasten** und **Eingabe**. Viele Fenster verwenden außerdem **STRG + S** als Tastenkürzel für **Fertig** und **ESC** als **Abbrechen**.
+Die Bearbeitungsfenster von FancyMenu unterstützen die Tastaturnavigation mit Pfeiltasten und `Enter`. Viele verwenden außerdem `Ctrl/Command + S` für **Fertig** und `Escape` für **Abbrechen**.
 
-Die überarbeiteten Fenster **Action Script Editor**, **Manage Requirements** und **Manage Variables** unterstützen außerdem Kontextmenüs per Rechtsklick, Suche, Rückgängig/Wiederholen sowie Tastaturnavigation für ihre Listen.
+Die Editoren für Action Scripts, Anforderungen und Variablen unterstützen außerdem Kontextmenüs per Rechtsklick, Suche, Rückgängig/Wiederholen und die Tastaturnavigation in Listen.

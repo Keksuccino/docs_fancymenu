@@ -1,14 +1,15 @@
 ---
-title: Dragger
-description: Como arrastar elementos em menus usando o elemento Dragger.
+title: Arrastador
+description: Permite que os usuários movam elementos fixados para fora do editor.
 ---
+# Arrastador
 
-# Dragger
+Um Arrastador é um elemento invisível que os usuários podem mover com o mouse fora do editor de layout. Você pode fixar outros elementos a ele para que sejam movidos junto com o Arrastador.
 
-O elemento Dragger é um elemento no FancyMenu que permite tornar menus interativos de uma forma um tanto incomum. O Dragger é um elemento que pode ser arrastado com o mouse FORA do editor, o que significa que os usuários basicamente podem pegar o elemento e movê-lo.
+1. Adicione um [**elemento Arrastador**](./elements#dragger).
+2. Fixe os elementos que devem se mover ao Arrastador.
+3. Ajuste o tamanho e a posição do Arrastador sobre a área visível que os usuários devem arrastar.
 
-Isso é legal e tudo mais, mas mover um elemento que não faz mais nada é meio inútil, certo? Bem, não, porque você pode anexar outros elementos a ele definindo o elemento Dragger como ponto de ancoragem para os outros elementos que devem se mover junto com o Dragger.
+Ative **Salvar deslocamento do arrasto do usuário** para manter a posição arrastada entre aberturas de tela e reinicializações do jogo. Desative essa opção quando o deslocamento deve ser redefinido.
 
-O deslocamento de posição dos elementos Dragger é persistente e é salvo entre reinicializações do jogo, o que basicamente significa que, quando um usuário move o Dragger, ele permanece nessa posição "personalizada", mesmo ao reiniciar o jogo.
-
-O elemento Dragger só fica visível no editor e invisível fora dele, então certifique-se de usar outro elemento como "corpo" para ele, se quiser que o usuário veja onde fica a área arrastável.
+O Arrastador é visível apenas no editor. Use uma [Imagem](./elements#image), [Forma](./elements#rectangle-shape) ou outro elemento fixado como sua parte visível.

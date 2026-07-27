@@ -5,73 +5,70 @@ description: Aplica ajustes globales de FancyMenu que afectan a todas las pantal
 
 # Personalizaciones globales
 
-Las Personalizaciones globales son ajustes de FancyMenu que se aplican a toda la interfaz del juego.
-Úsalas cuando quieras un estilo o comportamiento coherente en todas partes, en lugar de editar cada diseño de pantalla por separado.
-
-> [!INFO]
-> A diferencia de la mayoría de las funciones de personalización de FancyMenu, las Personalizaciones globales funcionan incluso si las personalizaciones normales de pantalla están desactivadas.
-> No requieren habilitar las personalizaciones por pantalla, lo que significa que un solo cambio puede afectar a todas las pantallas de inmediato.
+Las personalizaciones globales aplican ajustes compartidos de la interfaz y del inicio sin editar el diseño de cada pantalla. Funcionan incluso cuando la personalización normal de pantallas está desactivada.
 
 Ejemplos habituales:
 
 - Usar un único estilo compartido de botones y deslizadores para todas las pantallas.
-- Reemplazar globalmente el fondo del menú, el panorama y la música del menú.
+- Sustituir globalmente el fondo del menú, el panorama y la música del menú.
 - Aplicar globalmente el comportamiento de inicio/ventana (escala de la interfaz, pantalla completa, título/icono de la ventana).
-- Reemplazar globalmente las ტექsuras de los botones de Minecraft sin un paquete de recursos.
-- Reemplazar globalmente la música del menú de Minecraft sin un paquete de recursos.
+- Sustituir globalmente las texturas de los botones de Vanilla sin un paquete de recursos.
+- Sustituir globalmente la música del menú de Vanilla sin un paquete de recursos.
 
 # Dónde encontrarlas
 
-Abre la **barra de menú** de FancyMenu mientras **no** estés en el editor de diseños y, después, ve a **Customization -> Global Customizations**.
-
-# Inicio rápido
-
-1. Abre **Customization -> Global Customizations**.
-2. Elige una categoría para empezar (por ejemplo, **Custom Button Textures**).
-3. Configura las opciones de esa categoría (selectores de recursos, interruptores o campos numéricos).
-4. Prueba el resultado en varias pantallas.
-5. Ajusta con detalle los parámetros relacionados (por ejemplo, transparencia, estilos de etiquetas, bordes de nine-slice).
+Abre la **barra de menú** de FancyMenu mientras **no** estés en el editor de diseños y luego ve a **Personalización -> Personalizaciones globales**.
 
 # Qué puedes personalizar
 
 ## Comportamiento global e inicio
 
-- **Game Intro** (un vídeo o animación de introducción que se reproduce antes de que aparezca la pantalla de título)
-- **Singleplayer Screen World Icons**
-- **Multiplayer Screen Server Icons**
-- **Seamless World Loading** (usa una captura del mundo como fondo de la pantalla de carga del mundo)
-- **Custom Window Icon**
-- **Custom Window Title**
-- **Default GUI Scale**
-- **Force Fullscreen on Launch**
+- [**Intro del juego**](./game-intro) (un vídeo o animación de introducción que se reproduce antes de la pantalla de título)
+- **Iconos del mundo en la pantalla de un jugador**
+- **Iconos de servidores en la pantalla multijugador**
+- [**Carga continua del mundo**](./seamless-world-loading) (usa una captura reciente del mundo como fondo de la pantalla de carga)
+- [**Icono personalizado de la ventana**](./window-customization#custom-icon)
+- [**Título personalizado de la ventana**](./window-customization#custom-title)
+- **Escala de la interfaz predeterminada**
+- **Forzar pantalla completa al iniciar**
 
 ## Aspecto de los botones
 
-- **Custom Button Textures** (estados Normal/Al pasar el cursor/Inactivo, modo transparente, nine-slice + tamaños de borde)
-- **Button Labels** (subrayado al pasar el cursor, color base/al pasar el cursor, escala, sombra)
+- **Texturas personalizadas de botones** (estados Normal/Al pasar el ratón/Inactivo, modo transparente, [nine-slice](./nine-slicing-and-tiling) + tamaños de borde)
+- **Etiquetas de los botones** (subrayado al pasar el ratón, color base/al pasar el ratón, escala, sombra)
 
 ## Aspecto de los deslizadores
 
-- **Custom Slider Textures**
-- **Slider Background Texture** (textura, modo transparente, nine-slice + tamaños de borde)
-- **Slider Handle Textures** (estados Normal/Al pasar el cursor/Inactivo, nine-slice + tamaños de borde)
-- **Slider Labels** (subrayado al pasar el cursor, color base/al pasar el cursor, escala, sombra)
+- **Texturas personalizadas de deslizadores**
+- **Textura de fondo del deslizador** (textura, modo transparente, [nine-slice](./nine-slicing-and-tiling) + tamaños de borde)
+- **Texturas del control del deslizador** (estados Normal/Al pasar el ratón/Inactivo, [nine-slice](./nine-slicing-and-tiling) + tamaños de borde)
+- **Etiquetas de los deslizadores** (subrayado al pasar el ratón, color base/al pasar el ratón, escala, sombra)
 
 ## Aspecto y audio del menú
 
-- **Custom Menu Background Texture**
-- **Custom Menu Background Panorama**
-- **Play Vanilla Menu Music** (activar o desactivar la reproducción de la música del menú de Minecraft)
-- **Custom Menu Music Tracks**
-- **Custom Button/Slider Click Sound**
+- [**Textura personalizada del fondo del menú**](./menu-backgrounds)
+- [**Panorama personalizado del fondo del menú**](./panoramas)
+- **Reproducir música del menú de Vanilla** (activar/desactivar la música del menú de Vanilla)
+- [**Pistas de música personalizadas del menú**](./background-music)
+- **Sonido personalizado al hacer clic en botones/deslizadores**
 
-# Custom Menu Music Tracks
+# Pistas de música personalizadas del menú
 
-Usa **Custom Menu Music Tracks** para crear una lista aleatoria de canciones para los menús.
+Usa **Pistas de música personalizadas del menú** para crear una lista aleatoria de pistas para los menús.
 
-Las pistas personalizadas configuradas reemplazan la música del menú de Minecraft en los menús.
+> [!IMPORTANT]
+> Las pistas globales personalizadas del menú solo se reproducen cuando no hay ningún mundo cargado, como en la pantalla de título. Usa un elemento de [**Audio**](./elements#audio) para audio del menú dentro del mundo.
 
-- Abre **Custom Menu Music Tracks** para abrir **Manage Menu Music Tracks**.
-- Usa **Add Track** para añadir fuentes de audio.
-- Usa **Remove Track** para eliminar una entrada.
-- Usa **Clear Tracks** para eliminar todas las entradas.
+Las pistas configuradas usan el canal de sonido Music y sustituyen la música del menú de Vanilla en los menús compatibles sin mundo.
+
+- La primera pista empieza después de unos cinco segundos.
+- Las siguientes pistas empiezan tras un retardo aleatorio de entre uno y treinta segundos.
+- Las pistas se seleccionan aleatoriamente.
+- Con varias pistas, la pista anterior no se selecciona dos veces seguidas.
+
+Gestiona la lista de pistas desde **Pistas de música personalizadas del menú**:
+
+- Abre **Pistas de música personalizadas del menú** para abrir **Gestionar pistas de música del menú**.
+- Usa **Añadir pista** para agregar fuentes de audio.
+- Usa **Eliminar pista** para quitar una entrada.
+- Usa **Borrar pistas** para eliminar todas las entradas.

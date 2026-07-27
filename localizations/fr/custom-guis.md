@@ -1,48 +1,57 @@
 ---
-title: Interfaces graphiques personnalisées
-description: Comment ajouter un nouvel écran d’interface graphique au jeu.
+title: GUI personnalisées
+description: Créez et configurez de nouveaux écrans GUI.
 ---
 
-# Interfaces graphiques personnalisées
+# GUI personnalisées
 
-FancyMenu vous permet de personnaliser les écrans d’interface graphique existants, mais aussi d’en ajouter de complètement nouveaux et de les remplir d’éléments.
+Les GUI personnalisées sont de nouveaux écrans que vous pouvez remplir avec des [éléments](./elements) FancyMenu.
 
-# Ajouter un nouvel écran
+> [!CAUTION]
+> Les GUI personnalisées peuvent exécuter des actions. Importez-les uniquement depuis des sources de confiance.
 
-Pour ajouter un nouvel écran, allez dans **Personnalisation -> Interfaces graphiques personnalisées -> Gérer les interfaces graphiques personnalisées**.
+# Créer une GUI personnalisée
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+1. Ouvrez **Personnalisation -> GUI personnalisées -> Gérer les GUI personnalisées**.
+2. Sélectionnez **Nouvelle GUI**.
+3. Saisissez un identifiant et configurez les paramètres de l’écran.
+4. Sélectionnez **Terminé**, puis ouvrez la nouvelle GUI depuis le gestionnaire.
+5. Créez et modifiez sa disposition comme pour n’importe quel autre écran.
 
-Dans le menu suivant, cliquez sur **Nouvelle interface graphique**.
+Les identifiants peuvent utiliser des lettres minuscules, des chiffres, `.`, `_` et `-`. Ils ne peuvent pas contenir d’espaces et doivent être uniques. Les identifiants vides, invalides ou en double ne peuvent pas être enregistrés.
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+Les GUI personnalisées ont toujours la personnalisation de l’écran activée ; leur bouton d’activation de la personnalisation ne peut pas être désactivé.
 
-Ici, vous devez donner à votre nouvelle interface graphique un identifiant unique, et vous pouvez personnaliser d’autres aspects du comportement de base de l’écran.
-Quand vous avez terminé, appuyez sur **Terminé**.
+# Paramètres de l’écran
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+| Paramètre | Comportement |
+|---|---|
+| Autoriser ESC | Permet à Échap de fermer la GUI et de revenir à son écran parent |
+| Mettre le jeu/monde en pause | Met en pause le mode solo pendant que la GUI est ouverte |
+| Afficher l’arrière-plan du monde | Affiche le monde chargé derrière la GUI |
+| Superposition d’arrière-plan du monde | Ajoute le flou/l’assombrissement standard au-dessus du monde |
+| Mode popup | Conserve l’écran parent visible derrière la GUI personnalisée |
+| Superposition d’arrière-plan du popup | Ajoute un flou/une teinte au-dessus de l’écran parent en mode popup |
 
-Vous avez maintenant une nouvelle interface graphique vide. Pour l’ouvrir, sélectionnez l’interface dans le menu **Gérer les interfaces graphiques personnalisées** et cliquez sur **Ouvrir l’interface**.
+Le mode popup ne fusionne pas les deux écrans. La GUI personnalisée reste l’écran actif tandis que son parent est rendu derrière elle. Fermer la GUI personnalisée revient à cet écran parent lorsqu’il en existe un.
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
+# Ouvrir une GUI personnalisée
 
-Cela ouvrira l’écran d’interface graphique encore assez vide. Pour le rendre moins vide, créez simplement une nouvelle mise en page comme vous le feriez pour n’importe quel autre écran.
+Utilisez l’identifiant exact de la GUI personnalisée avec l’une des méthodes suivantes :
 
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
+- L’[**action Ouvrir un écran ou une GUI personnalisée**](./action-scripts#open-screen-or-custom-gui-opengui).
+- La [commande `/openguiscreen`](./commands#openguiscreen).
 
-# Ouvrir l’interface via une action
+# Remplacer un écran existant
 
-La dernière étape consiste à donner aux utilisateurs normaux accès à votre interface. Le moyen le plus simple est d’utiliser l’action **Ouvrir un écran ou une interface graphique personnalisée** avec un bouton, un curseur ou un ticker.
+Une GUI personnalisée peut remplacer un écran Vanilla ou de mod chaque fois que cet écran s’ouvre.
 
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
+1. Créez la GUI personnalisée de remplacement.
+2. Ouvrez l’écran que vous souhaitez remplacer.
+3. Activez **Personnalisation -> Paramètres -> Mode de personnalisation avancée**.
+4. Sélectionnez **Personnalisation -> GUI personnalisées -> Remplacer l’écran actuel par une GUI personnalisée**.
+5. Choisissez la GUI personnalisée de remplacement.
 
-# Ouvrir l’interface via une commande
+Gérez les remplacements enregistrés via **Personnalisation -> GUI personnalisées -> Gérer les écrans remplacés**.
 
-Vous pouvez également ouvrir votre interface graphique personnalisée via une [commande en jeu](./commands#openguiscreen).
-Cela vous permet même d’ouvrir l’interface à distance pour d’autres utilisateurs !
-
-# Mode popup
-
-À partir de FancyMenu v3.8.0, les interfaces graphiques personnalisées prennent en charge un « mode popup » qui leur donne l’apparence d’une fenêtre contextuelle s’ouvrant au-dessus d’un autre écran (l’écran précédent depuis lequel l’interface graphique personnalisée a été ouverte). Ce réglage peut être activé ou désactivé individuellement pour chaque interface graphique personnalisée dans ses paramètres.
-
-FancyMenu 3.9.0 ajoute également une option permettant d’activer ou de désactiver la superposition d’arrière-plan de l’écran pour les interfaces graphiques personnalisées en jeu. Utilisez-la si vous souhaitez désactiver ou conserver le flou / l’assombrissement derrière une interface graphique personnalisée ouverte pendant le jeu.
+Un remplacement ignore l’écran d’origine, alors testez sa navigation ainsi que toute fonctionnalité qui dépend du comportement de l’écran d’origine.

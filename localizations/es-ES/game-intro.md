@@ -1,22 +1,29 @@
 ---
-title: Introducción del juego
+title: Intro del juego
 description: >-
-  Reproduce contenido animado antes de que el juego muestre la pantalla de
-  título por primera vez.
+  Reproduce contenido animado antes de que la pantalla de título aparezca por
+  primera vez.
 ---
 
-# Introducciones del juego
+# Intros del juego
 
-¿Conoces esos pequeños vídeos tan chulos que se reproducen cuando inicias un juego?
-¡FancyMenu te permite hacerlo en Minecraft!
+Las intros del juego reproducen una imagen o un vídeo animado antes de que aparezca por primera vez la pantalla de título.
 
-# APNG, GIF y vídeos como introducción
+# Configuración
 
-FancyMenu admite texturas animadas y, a partir de FancyMenu 3.9.0, vídeos como contenido de introducción del juego.
+Abre [**Personalizaciones globales**](./global-customizations) a través de **Personalización -> Personalizaciones globales**, y después configura estos ajustes:
 
-Para configurar el contenido de introducción en FancyMenu 3.9.0+, ve a la **barra de menús** de FancyMenu y después a **Personalización -> Personalizaciones globales** para configurar allí **Introducción del juego**.
+| Ajuste | Comportamiento |
+|---|---|
+| Establecer intro del juego | Selecciona una imagen o vídeo animado local, web o de recursos de Minecraft |
+| Omitir intro del juego | Permite omitir la intro con cualquier tecla o clic del ratón |
+| Desvanecimiento de la intro del juego | Desvanece la intro hacia la pantalla de destino |
+| Texto personalizado de omisión | Sustituye el aviso predeterminado de omitir por texto sin formato o una clave de localización |
+| Volumen de la intro del juego | Establece el volumen base de `0.0` a `1.0` |
+| Canal de sonido de la intro del juego | Selecciona la categoría de sonido de Minecraft |
+| Volver a activar la intro del juego | Reproduce de nuevo la intro configurada para pruebas |
 
-Las introducciones en vídeo admiten sonido, incluyendo ajustes de volumen y de canal de audio. La compatibilidad nativa con vídeo requiere **Watermedia V3** y **Watermedia Binaries V3**.
+Las intros de vídeo requieren **Watermedia V3**, **Watermedia Binaries V3** y un renderizador OpenGL. La reproducción de vídeo de Watermedia no está disponible con Vulkan. Cuando la reproducción no está disponible, FancyMenu muestra una explicación sobre la pantalla de la intro. Consulta [Vídeos](./video#requirements).
 
 <br>
-<img width="700" alt="Captura de pantalla_1" src="https://gist.github.com/assets/35544624/71cec75b-33f1-4a21-9f18-d0adc7ceebb6">
+<img width="700" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/71cec75b-33f1-4a21-9f18-d0adc7ceebb6">

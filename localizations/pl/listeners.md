@@ -5,282 +5,285 @@ description: Jak tworzyć i używać nasłuchiwaczy w FancyMenu.
 
 # Nasłuchiwacze
 
-Począwszy od FancyMenu v3.8.0, dostępna jest nowa funkcja o nazwie „nasłuchiwacze”.
+Nasłuchiwacze uruchamiają [skrypty akcji](./action-scripts) w określonych momentach, gdy wystąpią konkretne zdarzenia. Nie są powiązane z otwartym ekranem, więc mogą działać także podczas gry lub ładowania.
 
-Nasłuchiwacze wykonują skrypty akcji, gdy wystąpią określone zdarzenia klienta lub rozgrywki.
-Mogą one udostępniać zmienne dla akcji, placeholderów i wymagań zagnieżdżonych w nasłuchiwaczu.
+Nasłuchiwacze mogą przekazywać do swoich akcji i wymagań wartości `$$`, takie jak wciśnięty klawisz lub kliknięty przycisk myszy.
 
-W przeciwieństwie do większości rzeczy w FancyMenu, nasłuchiwacze nie są przypisane do ekranu ani nakładki. Działają cały czas w tle, nasłuchując swoich zdarzeń. Gdy tylko nasłuchiwacz zostanie wywołany, wykonuje swój skrypt akcji, nawet jeśli w danym momencie nie jest otwarty żaden ekran.
+> [!CAUTION]
+> Nasłuchiwacz może uruchamiać akcje związane z plikami, siecią, komendami, schowkiem, paczką zasobów lub linkami bez otwartego ekranu. Importuj nasłuchiwacze tylko z zaufanych źródeł.
 
 # Używanie nasłuchiwaczy
 
-Aby utworzyć nowy nasłuchiwacz, który nasłuchuje zdarzenia i wykonuje skrypt akcji, kliknij **menu bar -> Customization -> Manage Listeners**, będąc **NIE** w edytorze układu. Znajdziesz tam prosty w obsłudze interfejs do tworzenia i zarządzania nasłuchiwaczami.
+Poza Edytorem Układu otwórz **menu bar -> Customization -> Manage Listeners**, aby utworzyć lub edytować nasłuchiwacze.
 
 <img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/manage_listeners.png?raw=true" alt="Zarządzanie nasłuchiwaczami" style="max-width:800px;width:100%;height:auto;">
 
 # Zmienne nasłuchiwaczy
 
-Nasłuchiwacze często udostępniają specjalny typ zmiennych dla swoich zagnieżdżonych akcji, wymagań i placeholderów.
-Do tych zmiennych można odwoływać się jak do placeholderów (w praktyce są one placeholderami).
+Nasłuchiwacze mogą przekazywać do swoich akcji i wymagań wartości tylko do odczytu. Używaj ich nazw `$$` w obsługiwanych polach tekstowych.
 
-Używa się ich po prostu, wpisując ich nazwy z prefiksem `$$` w polach tekstowych, podobnie jak w przypadku zwykłego placeholdera.
+Na przykład użyj [**On Keyboard Key Pressed**](#on-keyboard-key-pressed-keyboard_key_pressed) wraz z akcją [**Print to Game Log**](./action-scripts#print-to-game-log-print_to_log). Wartość `Key pressed! The key is: $$key_name` wstawia nazwę wciśniętego klawisza.
 
-Na przykład, jeśli używasz nasłuchiwacza **On Keyboard Key Pressed** i chcesz wypisać nazwę klawisza do logu za pomocą akcji **Print to Log**, możesz użyć czegoś takiego jak `Key pressed! The key is: $$key_name` jako treści wiadomości, którą ma wypisać akcja. Placeholder zmiennej zostanie później zastąpiony rzeczywistą nazwą klawisza.
+> [!WARNING]
+> Zmienne nasłuchiwaczy są oddzielone od [zapisanych zmiennych](./variables) FancyMenu. Akcje, wymagania i placeholdery dotyczące zapisanych zmiennych nie działają z wartościami `$$`.
 
-> Mimo że nazywają się „zmiennymi”, nie mają one żadnego związku ze zwykłym [systemem zmiennych](/variables) FancyMenu. Nie można ich ustawiać, ponieważ są **tylko do odczytu**. Nie można też używać akcji, wymagań ani placeholderów przeznaczonych dla systemu zmiennych FancyMenu z tymi specjalnymi zmiennymi nasłuchiwaczy, więc **Get Variable Value [FM Variable]**, **Is Variable Value [FM Variable]** ani **Set Variable Value [FM Variable]** nie będą działać dla zmiennych nasłuchiwaczy.
-{.is-warning}
+Nazwy zmiennych nasłuchiwaczy rozróżniają wielkość liter i działają tylko wewnątrz skryptu danego nasłuchiwacza.
+
+Traktuj wartości pochodzące z czatu, zdalnych serwerów, plików i danych wprowadzonych przez użytkownika jako niezaufane. Nie wstawiaj ich bezpośrednio do ścieżek, adresów URL ani poleceń.
+
+Zmienne nasłuchiwaczy są ciągami tekstowymi. Gdy informacja jest niedostępna, nasłuchiwacz może zwrócić udokumentowaną wartość zastępczą, taką jak `ERROR`, `UNKNOWN`, `NONE`, `EMPTY`, `0`, `-1` lub pusty ciąg. Testuj te wartości przed wstawieniem danych z nasłuchiwacza do ścieżek, poleceń lub adresów URL.
 
 # Nasłuchiwacze szczegółowo
 
-Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze FancyMenu. Możliwe, że nie zawsze jest ona aktualna z powodu aktualizacji moda.
+Ta sekcja zawiera wbudowane nasłuchiwacze FancyMenu.
 
-## On Markdown Text Clicked
-- Wyzwalane, gdy kliknięty zostanie tekst Markdown ze zdarzeniem `click:`, na przykład `[Open](click:open_menu)`.
+## Po kliknięciu tekstu Markdown (`text_clicked`)
+- Uruchamia się, gdy kliknięty zostanie [tekst Markdown z wydarzeniem `click:`](./text-formatting#click-and-hover-events), na przykład `[Otwórz](click:open_menu)`.
 - Zmienne:
-  - `$$text_event_id` – ID zdarzenia z linku Markdown
+  - `$$text_event_id` – identyfikator wydarzenia z linku Markdown
 
-## On Markdown Text Hovered
-- Wyzwalane, gdy najedzie się kursorem na tekst Markdown ze zdarzeniem `hover:`, na przykład `[Hint](hover:show_hint)`.
+## Po najechaniu na tekst Markdown (`text_hovered`)
+- Uruchamia się, gdy kursor znajdzie się nad [tekstem Markdown z wydarzeniem `hover:`](./text-formatting#click-and-hover-events), na przykład `[Wskazówka](hover:show_hint)`.
 - Zmienne:
-  - `$$text_event_id` – ID zdarzenia z linku Markdown
+  - `$$text_event_id` – identyfikator wydarzenia z linku Markdown
 
-## On ZIP Extracted via Action
-- Wyzwalane, gdy zakończy się akcja **Extract ZIP File In Game Directory**.
+## Po rozpakowaniu ZIP przez akcję (`zip_extracted_via_action`)
+- Uruchamia się po zakończeniu akcji [**Extract ZIP File In Game Directory**](./action-scripts#extract-zip-file-in-game-directory-extract_zip_file_in_game_dir).
 - Zmienne:
-  - `$$source_zip_path` – rozpoznana ścieżka źródłowego pliku ZIP
-  - `$$target_folder_path` – rozpoznana ścieżka docelowego rozpakowania
+  - `$$source_zip_path` – znormalizowana ścieżka źródłowa widoczna dla użytkownika; ścieżki katalogu gry mogą być zwracane jako `/...`, a standardowe ścieżki katalogu Minecrafta mogą używać `.minecraft/...`
+  - `$$target_folder_path` – znormalizowana ścieżka docelowa widoczna dla użytkownika, używająca tych samych form ścieżek
   - `$$extract_succeeded` – true/false
-  - `$$failure_reason` – tekst błędu, gdy rozpakowanie się nie powiodło
+  - `$$failure_reason` – tekst błędu, gdy rozpakowywanie się nie powiodło
 
-## On Element Spawned
-- Wyzwalane, gdy element zostaje utworzony za pomocą akcji lub przepływu tworzenia elementu przez skrypt.
+## Po utworzeniu elementu (`element_spawned_via_action`)
+- Uruchamia się, gdy obsługiwana funkcja FancyMenu lub dodatek dynamicznie tworzy instancję elementu.
 - Zmienne:
   - `$$element_type` – typ utworzonego elementu
   - `$$element_identifier` – identyfikator utworzonego elementu
-  - `$$target_screen` – identyfikator ekranu docelowego
+  - `$$target_screen` – identyfikator docelowego ekranu
 
-## On Animated Texture Started Playing
-- Wyzwalane, gdy animowana tekstura zaczyna się odtwarzać.
+## Po rozpoczęciu odtwarzania animowanej tekstury (`animated_texture_started_playing`)
+- Uruchamia się, gdy [animowana tekstura](./fma) zaczyna się odtwarzać.
 - Zmienne:
   - `$$texture_source` – źródło tekstury
   - `$$texture_source_type` – typ źródła
   - `$$texture_will_restart` – true/false
 
-## On Animated Texture Finished Playing
-- Wyzwalane, gdy animowana tekstura kończy odtwarzanie.
+## Po zakończeniu odtwarzania animowanej tekstury (`animated_texture_finished_playing`)
+- Uruchamia się, gdy animowana tekstura kończy odtwarzanie.
 - Zmienne:
   - `$$texture_source`
   - `$$texture_source_type`
   - `$$texture_will_restart`
 
-## On Video Playback Status Changed
-- Wyzwalane, gdy element wideo lub tło menu wideo zmienia status odtwarzania.
+## Po zmianie statusu odtwarzania wideo (`video_playback_status_changed`)
+- Uruchamia się, gdy [element wideo lub tło menu](./video) zmienia status odtwarzania.
 - Zmienne:
   - `$$video_source` – źródło wideo
   - `$$video_source_type` – typ źródła
   - `$$is_looping` – true/false
   - `$$new_status` – `PLAYING`, `STOPPED`, `PAUSED` lub `FINISHED`
 
-## On System Message Received in Chat
-- Wyzwalane, gdy klient otrzyma wiadomość systemową na czacie, np. odpowiedź na komendę.
+## Po otrzymaniu komunikatu systemowego na czacie (`system_message_received_in_chat`)
+- Uruchamia się, gdy klient otrzyma systemową wiadomość czatu, na przykład odpowiedź na komendę.
 - Zmienne:
-  - `$$system_message_string` – zwykły tekst wiadomości
+  - `$$system_message_string` – wiadomość jako zwykły tekst
   - `$$system_message_component` – komponent JSON
 
-## On FM Data Received
-- Wyzwalane, gdy serwer wysyła dane FM do tego klienta przez `/fmdata send`.
+## Po odebraniu FM Data (`fm_data_received`)
+- Uruchamia się, gdy serwer wyśle do tego klienta [FM Data](./fm-data) przez `/fmdata send`.
 - Zmienne:
-  - `$$data_identifier` – identyfikator danych jako tekst
+  - `$$data_identifier` – ciąg identyfikujący dane
   - `$$data` – ładunek danych
-  - `$$sent_by` – IP serwera lub `integrated_server`
+  - `$$sent_by` – adres IP serwera lub `integrated_server`
 
-## On Remote Server Connected
-- Wyzwalane, gdy FancyMenu inicjuje połączenie z serwerem zdalnym.
+## Po połączeniu ze zdalnym serwerem (`remote_server_connected`)
+- Uruchamia się po pomyślnym nawiązaniu [połączenia ze zdalnym serwerem](./remote-server-communication).
 - Zmienne:
   - `$$request_id` – zapisany identyfikator żądania
-  - `$$remote_server_url` – adres URL serwera zdalnego
+  - `$$remote_server_url` – adres URL zdalnego serwera
 
-## On Remote Server Data Received
-- Wyzwalane, gdy z połączonego serwera zdalnego otrzymane zostaną dane tekstowe.
+## Po odebraniu danych ze zdalnego serwera (`remote_server_data_received`)
+- Uruchamia się, gdy tekstowe dane zostaną odebrane z podłączonego zdalnego serwera.
 - Zmienne:
   - `$$request_id` – identyfikator żądania
-  - `$$remote_server_url` – adres URL serwera zdalnego
-  - `$$data` – otrzymany ładunek
+  - `$$remote_server_url` – adres URL zdalnego serwera
+  - `$$data` – odebrany ładunek
 
-## On Remote Server Connection Closed
-- Wyzwalane, gdy połączenie z serwerem zdalnym zostanie zamknięte.
+## Po zamknięciu połączenia ze zdalnym serwerem (`remote_server_connection_closed`)
+- Uruchamia się, gdy połączenie ze zdalnym serwerem zostanie zamknięte.
 - Zmienne:
   - `$$request_id` – identyfikator żądania
-  - `$$remote_server_url` – adres URL serwera zdalnego
-  - `$$intentionally_closed` – TRUE, jeśli zamknięto je akcją
-  - `$$crashed` – TRUE, jeśli połączenie uległo nieoczekiwanemu awaryjnemu zamknięciu
-  - `$$unknown_close_reason` – TRUE, jeśli nie było znanej przyczyny zamknięcia
+  - `$$remote_server_url` – adres URL zdalnego serwera
+  - `$$intentionally_closed` – TRUE, jeśli zamknięto przez akcję
+  - `$$crashed` – TRUE, jeśli połączenie niespodziewanie uległo awarii
+  - `$$unknown_close_reason` – TRUE, jeśli nie było znanego powodu zamknięcia
 
-## On Keyboard Key Pressed
-- Wyzwalane za każdym naciśnięciem klawisza (powtarza się przy przytrzymaniu; działa w ekranach i w grze).
+## Po wciśnięciu klawisza (`keyboard_key_pressed`)
+- Uruchamia się za każdym razem, gdy klawisz zostanie wciśnięty (powtarza się przy przytrzymaniu; działa w ekranach i w grze).
 - Zmienne:
-  - `$$key_name` – nazwa wyświetlana klawisza
+  - `$$key_name` – wyświetlana nazwa klawisza
   - `$$key_keycode` – kod klawisza GLFW
   - `$$key_scancode` – kod skanowania GLFW
   - `$$key_modifiers` – aktywna maska bitowa modyfikatorów
 
-## On Keyboard Key Released
-- Wyzwalane po zwolnieniu klawisza (w ekranach i w grze).
+## Po zwolnieniu klawisza (`keyboard_key_released`)
+- Uruchamia się, gdy klawisz zostanie zwolniony (ekrany i gra).
 - Zmienne:
   - `$$key_name`
   - `$$key_keycode`
   - `$$key_scancode`
   - `$$key_modifiers`
 
-## On Keyboard Character Typed in Screen
-- Wyzwalane, gdy wpisywany jest znak przy otwartym ekranie.
+## Po wpisaniu znaku klawiaturą na ekranie (`keyboard_char_typed`)
+- Uruchamia się, gdy wpisany zostanie znak, a ekran jest otwarty.
 - Zmienne:
   - `$$char` – wpisany znak
 
-## On Mouse Moved in Screen
-- Wyzwalane za każdym razem, gdy mysz porusza się przy otwartym ekranie.
+## Po ruchu myszy na ekranie (`mouse_moved`)
+- Uruchamia się za każdym razem, gdy mysz porusza się, gdy ekran jest otwarty.
 - Zmienne:
   - `$$mouse_pos_x` – bieżące X
   - `$$mouse_pos_y` – bieżące Y
-  - `$$mouse_move_delta_x` – różnica X od ostatniego zdarzenia
-  - `$$mouse_move_delta_y` – różnica Y od ostatniego zdarzenia
+  - `$$mouse_move_delta_x` – przesunięcie X od ostatniego zdarzenia
+  - `$$mouse_move_delta_y` – przesunięcie Y od ostatniego zdarzenia
 
-## On Mouse Button Clicked
-- Wyzwalane, gdy wciśnięty zostanie przycisk myszy (w ekranach i w grze).
+## Po kliknięciu przycisku myszy (`mouse_button_clicked`)
+- Uruchamia się, gdy przycisk myszy zostanie wciśnięty (ekrany i gra).
 - Zmienne:
   - `$$button` – lewy/prawy/środkowy
   - `$$mouse_pos_x` – bieżące X
   - `$$mouse_pos_y` – bieżące Y
 
-## On Mouse Button Released
-- Wyzwalane, gdy przycisk myszy zostanie zwolniony (w ekranach i w grze).
+## Po zwolnieniu przycisku myszy (`mouse_button_released`)
+- Uruchamia się, gdy przycisk myszy zostanie zwolniony (ekrany i gra).
 - Zmienne:
   - `$$button`
   - `$$mouse_pos_x`
   - `$$mouse_pos_y`
 
-## On Mouse Scrolled in Screen
-- Wyzwalane, gdy kółko myszy zostanie przewinięte przy otwartym ekranie.
+## Po przewinięciu myszy na ekranie (`mouse_scrolled`)
+- Uruchamia się, gdy kółko myszy zostanie przewinięte, gdy ekran jest otwarty.
 - Zmienne:
   - `$$scroll_delta_y` – pionowa wartość przewinięcia
 
-## On Screen Opened
-- Uruchamiane zaraz po tym, jak jakikolwiek ekran stanie się aktywny; można użyć do jego nadpisania.
+## Po otwarciu ekranu (`screen_open`)
+- Uruchamia się zaraz po aktywacji dowolnego ekranu; może służyć do jego nadpisania.
 - Zmienne:
   - `$$screen_identifier` – identyfikator otwartego ekranu
 
-## On Screen Closed
-- Uruchamiane natychmiast po zamknięciu ekranu.
+## Po zamknięciu ekranu (`screen_close`)
+- Uruchamia się natychmiast po zamknięciu ekranu.
 - Zmienne:
   - `$$screen_identifier` – identyfikator zamkniętego ekranu
 
-## On Quit Minecraft
-- Wyzwalane raz, gdy klient zaczyna się zamykać.
+## Po wyjściu z Minecrafta (`quit_minecraft`)
+- Uruchamia się raz, gdy klient zaczyna się zamykać.
 - Zmienne:
-  - `$$timestamp_millis` – epoch millis w momencie wyjścia
+  - `$$timestamp_millis` – czas epoki w milisekundach w momencie wyjścia
   - `$$timestamp_iso` – znacznik czasu ISO-8601 momentu wyjścia
 
-## On Death
-- Uruchamiane, gdy dla lokalnego gracza otwiera się domyślny ekran śmierci.
+## Po śmierci (`player_death`)
+- Uruchamia się, gdy dla lokalnego gracza otwiera się standardowy ekran śmierci.
 - Zmienne:
-  - `$$days_survived` – dni od ostatniej śmierci
-  - `$$death_reason_string` – przyczyna w zwykłym tekście
+  - `$$days_survived` – liczba dni od ostatniej śmierci
+  - `$$death_reason_string` – przyczyna jako zwykły tekst
   - `$$death_reason_component` – przyczyna jako komponent JSON
   - `$$death_pos_x` – współrzędna X śmierci
   - `$$death_pos_y` – współrzędna Y śmierci
   - `$$death_pos_z` – współrzędna Z śmierci
 
-## On Variable Updated [FM Variable]
-- Wyzwalane za każdym razem, gdy zmienna FancyMenu zostanie ustawiona/zaktualizowana.
+## Po aktualizacji zmiennej [FM Variable] (`fm_variable_updated`)
+- Uruchamia się za każdym razem, gdy [zmienna FancyMenu](./variables) zostanie ustawiona lub zaktualizowana.
 - Zmienne:
   - `$$var_name` – nazwa zmiennej
   - `$$old_value` – poprzednia wartość
   - `$$new_value` – nowa wartość
 
-## On File Downloaded via Action
-- Wyzwalane po zakończeniu akcji „Download File to Game Directory”.
+## Po pobraniu pliku przez akcję (`file_downloaded_via_action`)
+- Uruchamia się po zakończeniu akcji [**Download File to Game Directory**](./action-scripts#download-file-to-game-directory-download_file_to_game_dir).
 - Zmienne:
   - `$$download_url` – źródło pobierania
-  - `$$target_file_path` – zapisana ścieżka pliku
+  - `$$target_file_path` – zapisana ścieżka pliku po powodzeniu; w przypadku niepowodzenia może zawierać tylko katalog docelowy, ponieważ nie udało się ustalić końcowej nazwy pliku
   - `$$download_succeeded` – true/false
 
-## On File Selected
-- Wyzwalane po zakończeniu akcji „Select File”.
+## Po wybraniu pliku (`file_selected_via_action`)
+- Uruchamia się po zakończeniu akcji [**Select File from System**](./action-scripts#select-file-from-system-select_file_to_game_dir).
 - Zmienne:
-  - `$$selected_file_path` – pełna wybrana ścieżka pliku lub pusta, jeśli anulowano
-  - `$$target_file_path` – rozpoznana ścieżka wewnątrz instancji
+  - `$$selected_file_path` – pełna ścieżka wybranego pliku lub pusta, jeśli anulowano
+  - `$$target_file_path` – rozwiązana ścieżka wewnątrz instancji
   - `$$selection_succeeded` – true, jeśli kopiowanie się powiodło
   - `$$selection_cancelled` – true, jeśli okno zostało zamknięte
   - `$$failure_reason` – informacje o błędzie w przypadku niepowodzenia
 
-## On Chat Message Received
-- Wyzwalane, gdy zwykła wiadomość czatu gracza pojawi się u klienta.
+## Po odebraniu wiadomości czatu (`chat_message_received`)
+- Uruchamia się, gdy na kliencie pojawi się zwykła linia czatu gracza.
 - Zmienne:
-  - `$$chat_message_string` – zwykły tekst linii
+  - `$$chat_message_string` – linia jako zwykły tekst
   - `$$chat_message_component` – pełny komponent JSON
   - `$$sender_uuid` – UUID nadawcy lub ERROR
   - `$$sender_name` – nazwa nadawcy lub ERROR
 
-## On Chat Message Sent
-- Wyzwalane, gdy lokalny gracz wyśle wiadomość na czacie.
+## Po wysłaniu wiadomości czatu (`chat_message_sent`)
+- Uruchamia się, gdy lokalny gracz wyśle wiadomość na czacie.
 - Zmienne:
-  - `$$chat_message_string` – zwykły tekst linii
+  - `$$chat_message_string` – linia jako zwykły tekst
   - `$$chat_message_component` – pełny komponent JSON
 
-## On Effect Gained
-- Wyzwalane, gdy gracz otrzyma efekt statusu.
+## Po zdobyciu efektu (`effect_gained`)
+- Uruchamia się, gdy gracz zyska efekt statusu.
 - Zmienne:
   - `$$effect_key` – lokalizacja zasobu efektu
   - `$$effect_type` – pozytywny/negatywny/neutralny
   - `$$effect_duration` – pozostałe ticki
 
-## On Effect Lost
-- Wyzwalane, gdy gracz straci efekt statusu.
+## Po utracie efektu (`effect_lost`)
+- Uruchamia się, gdy gracz straci efekt statusu.
 - Zmienne:
   - `$$effect_key` – wygasły efekt
   - `$$effect_type` – kategoria
 
-## On Experience Changed
-- Wyzwalane za każdym razem, gdy zmienia się całkowite XP gracza.
+## Po zmianie doświadczenia (`experience_changed`)
+- Uruchamia się za każdym razem, gdy zmienia się łączna liczba punktów XP gracza.
 - Zmienne:
   - `$$new_experience_amount` – po zmianie
   - `$$old_experience_amount` – przed zmianą
   - `$$is_level_up` – TRUE, jeśli poziom wzrósł
 
-## On Damage Taken
-- Wyzwalane raz na każde trafienie, gdy gracz otrzymuje obrażenia.
+## Po otrzymaniu obrażeń (`damage_taken`)
+- Uruchamia się raz na trafienie, gdy gracz otrzymuje obrażenia.
 - Zmienne:
   - `$$damage_amount` – utracone zdrowie
   - `$$damage_type` – lokalizacja zasobu typu obrażeń
-  - `$$is_fatal_damage` – TRUE, jeśli obrażenia są śmiertelne
+  - `$$is_fatal_damage` – TRUE, jeśli śmiertelne
   - `$$damage_source` – lokalizacja zasobu atakującego lub NONE
 
-## On Started Freezing
-- Wyzwalane, gdy gracz zaczyna zamarzać.
+## Po rozpoczęciu zamarzania (`started_freezing`)
+- Uruchamia się, gdy gracz zaczyna zamarzać.
 - Zmienne:
-  - `$$freezing_intensity` – 0.0 brak, 1.0 całkowite zamarznięcie
+  - `$$freezing_intensity` – 0.0 brak, 1.0 całkowicie zamarznięty
 
-## On Stopped Freezing
-- Wyzwalane, gdy gracz przestaje zamarzać.
+## Po zakończeniu zamarzania (`stopped_freezing`)
+- Uruchamia się, gdy gracz przestaje zamarzać.
 - Zmienne:
   - (brak)
 
-## On Fully Frozen
-- Wyzwalane raz, gdy gracz zostaje całkowicie zamrożony.
+## Po całkowitym zamarznięciu (`fully_frozen`)
+- Uruchamia się raz, gdy gracz stanie się całkowicie zamarznięty.
 - Zmienne:
   - (brak)
 
-## On Start Looking At Block
-- Wyzwalane raz, gdy celownik po raz pierwszy wskazuje blok (maks. odległość 20 bloków).
+## Po rozpoczęciu patrzenia na blok (`start_looking_at_block`)
+- Uruchamia się raz, gdy celownik po raz pierwszy wskazuje blok (maksymalnie 20 bloków odległości).
 - Zmienne:
-  - `$$block_key` – wskazywany blok
+  - `$$block_key` – celowany blok
   - `$$block_pos_x` – X bloku
   - `$$block_pos_y` – Y bloku
   - `$$block_pos_z` – Z bloku
   - `$$distance_to_player` – od oczu do punktu trafienia
 
-## On Stop Looking At Block
-- Wyzwalane, gdy celownik przestaje wskazywać blok (zgłasza ostatnio wskazywany blok, maks. 20 bloków).
+## Po zakończeniu patrzenia na blok (`stop_looking_at_block`)
+- Uruchamia się, gdy celownik przestaje wskazywać blok (raportuje ostatni celowany blok, maksymalnie 20 bloków).
 - Zmienne:
   - `$$block_key`
   - `$$block_pos_x`
@@ -288,18 +291,18 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$block_pos_z`
   - `$$distance_to_player`
 
-## On Start Looking At Entity
-- Wyzwalane raz, gdy celownik po raz pierwszy wskazuje encję (maks. 20 bloków).
+## Po rozpoczęciu patrzenia na encję (`start_looking_at_entity`)
+- Uruchamia się raz, gdy celownik po raz pierwszy wskazuje encję (maksymalnie 20 bloków).
 - Zmienne:
-  - `$$entity_key` – wskazywany typ encji
+  - `$$entity_key` – typ celowanej encji
   - `$$distance_to_player`
   - `$$entity_pos_x`
   - `$$entity_pos_y`
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Stop Looking At Entity
-- Wyzwalane, gdy celownik przestaje wskazywać encję (zgłasza ostatnio wskazywaną encję, maks. 20 bloków).
+## Po zakończeniu patrzenia na encję (`stop_looking_at_entity`)
+- Uruchamia się, gdy celownik przestaje wskazywać encję (raportuje ostatnią celowaną encję, maksymalnie 20 bloków).
 - Zmienne:
   - `$$entity_key`
   - `$$distance_to_player`
@@ -308,11 +311,11 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Spawned
-- **Wymaga FancyMenu na serwerze.** Wyzwalane, gdy jakakolwiek encja pojawi się gdziekolwiek w połączonym świecie/na serwerze.
+## Po pojawieniu się encji (`entity_spawned`)
+- **Wymaga FancyMenu na serwerze.** Uruchamia się, gdy jakakolwiek encja pojawi się gdziekolwiek w połączonym świecie/na serwerze.
 - Zmienne:
   - `$$entity_key`
-  - `$$distance_to_player` – −1, jeśli inny wymiar
+  - `$$distance_to_player` – −1, jeśli w inym wymiarze
   - `$$entity_pos_x`
   - `$$entity_pos_y`
   - `$$entity_pos_z`
@@ -320,11 +323,11 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$dimension_key`
   - `$$is_same_dimension_as_player`
 
-## On Entity Died
-- **Wymaga FancyMenu na serwerze.** Wyzwalane, gdy jakakolwiek encja umrze w połączonym świecie/na serwerze.
+## Po śmierci encji (`entity_died`)
+- **Wymaga FancyMenu na serwerze.** Uruchamia się, gdy jakakolwiek encja umrze w połączonym świecie/na serwerze.
 - Zmienne:
   - `$$entity_key`
-  - `$$distance_to_player` – −1, jeśli inny wymiar
+  - `$$distance_to_player` – −1, jeśli w inym wymiarze
   - `$$death_pos_x`
   - `$$death_pos_y`
   - `$$death_pos_z`
@@ -336,8 +339,8 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_killed_by_key`
   - `$$entity_killed_by_uuid`
 
-## On Entity Starts Being In Sight
-- Wyzwalane, gdy encja po raz pierwszy staje się widoczna w odległości do 200 bloków.
+## Po rozpoczęciu widoczności encji (`entity_starts_being_in_sight`)
+- Uruchamia się, gdy encja po raz pierwszy staje się widoczna w promieniu 200 bloków.
 - Zmienne:
   - `$$entity_key`
   - `$$distance_to_player`
@@ -346,8 +349,8 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Stops Being In Sight
-- Wyzwalane, gdy wcześniej widoczna encja znika z pola widzenia lub oddala się ponad 200 bloków.
+## Po zakończeniu widoczności encji (`entity_stops_being_in_sight`)
+- Uruchamia się, gdy wcześniej widoczna encja znika z pola widzenia lub oddala się poza 200 bloków.
 - Zmienne:
   - `$$entity_key`
   - `$$distance_to_player`
@@ -356,8 +359,8 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Interacted With Entity
-- Wyzwalane, gdy gracz skutecznie wejdzie w interakcję z encją.
+## Po interakcji z encją (`entity_interacted`)
+- Uruchamia się, gdy gracz pomyślnie wejdzie w interakcję z encją.
 - Zmienne:
   - `$$entity_key`
   - `$$entity_pos_x`
@@ -365,8 +368,8 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Mounted
-- Wyzwalane, gdy gracz zaczyna jeździć na encji.
+## Po wejściu na encję (`entity_mounted`)
+- Uruchamia się, gdy gracz zaczyna jechać na encji.
 - Zmienne:
   - `$$entity_key`
   - `$$entity_pos_x`
@@ -374,8 +377,8 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Entity Unmounted
-- Wyzwalane, gdy gracz przestaje jeździć na swojej aktualnej encji.
+## Po zejściu z encji (`entity_unmounted`)
+- Uruchamia się, gdy gracz przestaje jechać na aktualnej encji.
 - Zmienne:
   - `$$entity_key`
   - `$$entity_pos_x`
@@ -383,8 +386,8 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$entity_pos_z`
   - `$$entity_uuid`
 
-## On Block Broke
-- Wyzwalane, gdy gracz niszczy blok.
+## Po zniszczeniu bloku (`block_broke`)
+- Uruchamia się, gdy gracz zniszczy blok.
 - Zmienne:
   - `$$block_key`
   - `$$broke_with_item_key` – użyte narzędzie lub EMPTY
@@ -392,136 +395,136 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Block Placed
-- Wyzwalane, gdy gracz stawia blok.
+## Po postawieniu bloku (`block_placed`)
+- Uruchamia się, gdy gracz postawi blok.
 - Zmienne:
   - `$$block_key`
   - `$$block_pos_x`
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Interacted With Block
-- Wyzwalane, gdy gracz skutecznie wejdzie w interakcję z blokiem.
+## Po interakcji z blokiem (`interacted_with_block`)
+- Uruchamia się, gdy gracz pomyślnie wejdzie w interakcję z blokiem.
 - Zmienne:
   - `$$block_key`
   - `$$block_pos_x`
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Stepping On Block
-- Wyzwalane, gdy gracz staje na bloku.
+## Po wejściu na blok (`stepping_on_block`)
+- Uruchamia się, gdy gracz stanie na bloku.
 - Zmienne:
   - `$$block_key`
   - `$$block_pos_x`
   - `$$block_pos_y`
   - `$$block_pos_z`
 
-## On Enter Biome
-- Wyzwalane, gdy gracz wchodzi do nowego biomu.
+## Po wejściu do biomu (`enter_biome`)
+- Uruchamia się, gdy gracz wchodzi do nowego biomu.
 - Zmienne:
-  - `$$biome_key` – biom, do którego wszedł
+  - `$$biome_key` – biom, do którego weszto
 
-## On Leave Biome
-- Wyzwalane, gdy gracz opuszcza aktualny biom.
+## Po opuszczeniu biomu (`leave_biome`)
+- Uruchamia się, gdy gracz opuszcza obecny biom.
 - Zmienne:
-  - `$$biome_key` – biom, który właśnie opuścił
+  - `$$biome_key` – biom, który właśnie opuściono
 
-## On Enter Structure
-- **Wymaga FancyMenu na serwerze.** Zgrubne wykrywanie obszaru struktury; może zostać wyzwolone w pobliżu/nad/pod strukturą.
+## Po wejściu do struktury (`enter_structure`)
+- **Wymaga FancyMenu na serwerze.** Grube wykrywanie obszaru struktury; może uruchamiać się w pobliżu, nad lub pod strukturą.
 - Zmienne:
-  - `$$structure_key` – struktura, do której wszedł
+  - `$$structure_key` – struktura, do której weszto
 
-## On Leave Structure
-- **Wymaga FancyMenu na serwerze.** Zgrubne wykrywanie; może zostać wyzwolone w pobliżu zarysu struktury.
+## Po opuszczeniu struktury (`leave_structure`)
+- **Wymaga FancyMenu na serwerze.** Grube wykrywanie; może uruchamiać się w pobliżu zasięgu struktury.
 - Zmienne:
-  - `$$structure_key` – struktura, którą właśnie opuścił
+  - `$$structure_key` – struktura, którą właśnie opuszczono
 
-## On Enter Structure (High Precision)
-- **Wymaga FancyMenu na serwerze.** Wyzwalane, gdy gracz wejdzie do brył ograniczających struktury.
+## Po wejściu do struktury (wysoka precyzja) (`enter_structure_high_precision`)
+- **Wymaga FancyMenu na serwerze.** Uruchamia się, gdy gracz wejdzie do brył ograniczających struktury.
 - Zmienne:
   - `$$structure_key`
 
-## On Leave Structure (High Precision)
-- **Wymaga FancyMenu na serwerze.** Wyzwalane po wyjściu gracza poza bryły ograniczające struktury.
+## Po opuszczeniu struktury (wysoka precyzja) (`leave_structure_high_precision`)
+- **Wymaga FancyMenu na serwerze.** Uruchamia się po wyjściu gracza z brył ograniczających struktury.
 - Zmienne:
   - `$$structure_key`
 
-## On Dimension Entered
-- Wyzwalane, gdy gracz wchodzi do nowego wymiaru.
+## Po wejściu do wymiaru (`enter_dimension`)
+- Uruchamia się, gdy gracz wchodzi do nowego wymiaru.
 - Zmienne:
-  - `$$dimension_key` – wymiar, do którego wszedł
+  - `$$dimension_key` – wymiar, do którego weszto
 
-## On Start Swimming
-- Wyzwalane, gdy gracz zaczyna pływać.
+## Po rozpoczęciu pływania (`start_swimming`)
+- Uruchamia się, gdy gracz zaczyna pływać.
 - Zmienne:
   - `$$fluid_type` – lokalizacja zasobu płynu
 
-## On Stop Swimming
-- Wyzwalane, gdy gracz przestaje pływać.
+## Po zatrzymaniu pływania (`stop_swimming`)
+- Uruchamia się, gdy gracz przestaje pływać.
 - Zmienne:
-  - `$$fluid_type` – płyn, w którym pływanie się zakończyło
+  - `$$fluid_type` – płyn, w którym pływanie się zatrzymało
 
-## On Start Touching Fluid
-- Wyzwalane, gdy gracz zaczyna dotykać płynu.
+## Po rozpoczęciu dotykania płynu (`start_touching_fluid`)
+- Uruchamia się, gdy gracz zaczyna dotykać płynu.
 - Zmienne:
   - `$$fluid_type` – dotykany płyn
 
-## On Stop Touching Fluid
-- Wyzwalane, gdy gracz przestaje dotykać płynu.
+## Po zakończeniu dotykania płynu (`stop_touching_fluid`)
+- Uruchamia się, gdy gracz przestaje dotykać płynu.
 - Zmienne:
   - `$$fluid_type` – płyn, którego gracz już nie dotyka
 
-## On Music Track Started
-- Wyzwalane, gdy zaczyna się nowy utwór muzyczny.
+## Po rozpoczęciu utworu muzycznego (`music_track_started`)
+- Uruchamia się, gdy zaczyna się nowy utwór muzyczny.
 - Zmienne:
   - `$$track_resource_location` – plik audio
   - `$$track_display_name` – czytelna nazwa lub UNKNOWN
   - `$$track_artist` – wykonawca lub UNKNOWN
   - `$$track_duration_ms` – milisekundy (0, jeśli nieznane)
 
-## On Music Track Stopped
-- Wyzwalane, gdy bieżący utwór muzyczny kończy się lub zostaje zastąpiony.
+## Po zatrzymaniu utworu muzycznego (`music_track_stopped`)
+- Uruchamia się, gdy bieżący utwór muzyczny kończy się lub zostaje zastąpiony.
 - Zmienne:
   - `$$track_resource_location`
   - `$$track_display_name`
   - `$$track_artist`
   - `$$track_duration_ms`
 
-## On World Sound Triggered
-- Wyzwalane, gdy dźwięk świata o określonej pozycji rozpoczyna się w pobliżu gracza.
+## Po wyzwoleniu dźwięku świata (`world_sound_triggered`)
+- Uruchamia się, gdy dźwięk świata o określonej pozycji zaczyna się w pobliżu gracza.
 - Zmienne:
   - `$$sound_resource_location` – plik dźwiękowy
-  - `$$sound_display_name` – nazwa napisu pomocniczego, jeśli dostępna
+  - `$$sound_display_name` – nazwa napisu, jeśli dostępna
   - `$$sound_origin_pos_x`
   - `$$sound_origin_pos_y`
   - `$$sound_origin_pos_z`
   - `$$sound_origin_distance_to_player`
   - `$$sound_origin_direction_from_player` – stopnie 0–360 względem kierunku patrzenia
 
-## On Weather Changed
-- Wyzwalane, gdy pogoda zmienia się globalnie lub lokalnie (zmiana biomu albo wejście do wnętrza może uruchomić je ponownie).
+## Po zmianie pogody (`weather_changed`)
+- Uruchamia się, gdy pogoda zmienia się globalnie lub lokalnie (zmiana biomu albo wejście do pomieszczenia może ponownie ją wywołać).
 - Zmienne:
   - `$$weather_type` – clear/rain/thunder
-  - `$$weather_can_snow` – TRUE, jeśli renderowany jest śnieg
-  - `$$weather_can_rain` – TRUE, jeśli renderowany jest deszcz
+  - `$$weather_can_snow` – TRUE, jeśli renderuje się śnieg
+  - `$$weather_can_rain` – TRUE, jeśli renderuje się deszcz
 
-## On Started Burning
-- Wyzwalane, gdy gracz zaczyna płonąć.
+## Po rozpoczęciu palenia (`started_burning`)
+- Uruchamia się, gdy gracz zaczyna się palić.
 - Zmienne:
   - (brak)
 
-## On Stopped Burning
-- Wyzwalane, gdy gracz przestaje płonąć.
+## Po zatrzymaniu palenia (`stopped_burning`)
+- Uruchamia się, gdy gracz przestaje się palić.
 - Zmienne:
   - (brak)
 
-## On Started Drowning
-- Wyzwalane, gdy gracz zaczyna otrzymywać obrażenia od utonięcia.
+## Po rozpoczęciu topienia się (`started_drowning`)
+- Uruchamia się, gdy gracz zaczyna otrzymywać obrażenia od utonięcia.
 - Zmienne:
   - (brak)
 
-## On Position Changed
-- Wyzwalane za każdym razem, gdy zmienia się blokowa pozycja gracza.
+## Po zmianie pozycji (`position_changed`)
+- Uruchamia się za każdym razem, gdy zmienia się blokowa pozycja gracza.
 - Zmienne:
   - `$$old_pos_x` – poprzedni X bloku
   - `$$old_pos_y` – poprzedni Y bloku
@@ -530,43 +533,43 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$new_pos_y` – nowy Y bloku
   - `$$new_pos_z` – nowy Z bloku
 
-## On Started Running
-- Wyzwalane, gdy gracz zaczyna sprintować.
+## Po rozpoczęciu biegu (`started_running`)
+- Uruchamia się, gdy gracz zaczyna sprintować.
 - Zmienne:
   - (brak)
 
-## On Stopped Running
-- Wyzwalane, gdy gracz przestaje sprintować.
+## Po zatrzymaniu biegu (`stopped_running`)
+- Uruchamia się, gdy gracz przestaje sprintować.
 - Zmienne:
   - (brak)
 
-## On Jump
-- Wyzwalane za każdym razem, gdy gracz skacze.
+## Po skoku (`jump`)
+- Uruchamia się za każdym razem, gdy gracz skacze.
 - Zmienne:
   - (brak)
 
-## On Server Joined
-- Wyzwalane po pomyślnym dołączeniu do serwera wieloosobowego.
+## Po dołączeniu do serwera (`server_joined`)
+- Uruchamia się po pomyślnym dołączeniu do serwera wieloosobowego.
 - Zmienne:
   - `$$server_ip` – adres dołączonego serwera
 
-## On Server Left
-- Wyzwalane po rozłączeniu z serwera wieloosobowego.
+## Po opuszczeniu serwera (`server_left`)
+- Uruchamia się po rozłączeniu z serwerem wieloosobowym.
 - Zmienne:
   - `$$server_ip` – adres opuszczonego serwera
 
-## Singleplayer World Entered
-- Wyzwalane po zakończeniu ładowania świata jednoosobowego i przywróceniu kontroli.
+## Po wejściu do świata singleplayer (`world_entered`)
+- Uruchamia się po zakończeniu ładowania świata singleplayer i przywróceniu kontroli.
 - Zmienne:
   - `$$world_name` – nazwa wyświetlana
   - `$$world_save_path` – pełna ścieżka folderu zapisu
   - `$$world_difficulty` – klucz trudności
   - `$$world_cheats_allowed` – TRUE, jeśli kody są włączone
   - `$$world_icon_path` – pełna ścieżka ikony
-  - `$$world_is_first_join` – TRUE przy pierwszej wizycie
+  - `$$world_is_first_join` – TRUE przy pierwszym wejściu
 
-## Singleplayer World Left
-- Wyzwalane po zamknięciu świata jednoosobowego i zakończeniu zapisu.
+## Po wyjściu ze świata singleplayer (`world_left`)
+- Uruchamia się po zamknięciu świata singleplayer i zakończeniu zapisu.
 - Zmienne:
   - `$$world_name`
   - `$$world_save_path`
@@ -574,20 +577,20 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$world_cheats_allowed`
   - `$$world_icon_path`
 
-## On Other Player Joined World/Server
-- Wyzwalane, gdy inny gracz dołącza do bieżącego świata/serwera.
+## Po dołączeniu innego gracza do świata/serwera (`other_player_joined_world`)
+- Uruchamia się, gdy inny gracz dołącza do bieżącego świata/serwera.
 - Zmienne:
   - `$$player_name` – nazwa dołączającego gracza
   - `$$player_uuid` – UUID
 
-## On Other Player Left World/Server
-- Wyzwalane, gdy inny gracz opuszcza bieżący świat/serwer.
+## Po opuszczeniu świata/serwera przez innego gracza (`other_player_left_world`)
+- Uruchamia się, gdy inny gracz opuszcza bieżący świat/serwer.
 - Zmienne:
   - `$$player_name`
   - `$$player_uuid`
 
-## On Other Player Died
-- Wyzwalane, gdy inny gracz w bieżącym świecie umiera.
+## Po śmierci innego gracza (`other_player_died`)
+- Uruchamia się, gdy inny gracz w bieżącym świecie umiera.
 - Zmienne:
   - `$$player_name`
   - `$$player_uuid`
@@ -595,41 +598,41 @@ Ta lista powinna zawierać większość, jeśli nie wszystkie, nasłuchiwacze Fa
   - `$$death_pos_y`
   - `$$death_pos_z`
 
-## On Item Picked Up
-- Wyzwalane, gdy gracz podnosi encję przedmiotu.
+## Po podniesieniu przedmiotu (`item_picked_up`)
+- Uruchamia się, gdy gracz podnosi encję przedmiotu.
 - Zmienne:
   - `$$item_key` – lokalizacja zasobu podniesionego przedmiotu
 
-## On Item Dropped
-- Wyzwalane, gdy gracz wyrzuca przedmiot z ekwipunku.
+## Po wyrzuceniu przedmiotu (`item_dropped`)
+- Uruchamia się, gdy gracz wyrzuca przedmiot z ekwipunku.
 - Zmienne:
   - `$$item_key` – lokalizacja zasobu wyrzuconego przedmiotu
 
-## On Item Consumed
-- Wyzwalane, gdy gracz kończy konsumowanie przedmiotu.
+## Po zużyciu przedmiotu (`item_consumed`)
+- Uruchamia się, gdy gracz kończy konsumowanie przedmiotu.
 - Zmienne:
-  - `$$item_key` – skonsumowany przedmiot
+  - `$$item_key` – zużyty przedmiot
 
-## On Item Hovered in Inventory
-- Wyzwalane, gdy użytkownik najedzie na przedmiot w dowolnym ekranie ekwipunku.
+## Po najechaniu na przedmiot w ekwipunku (`item_hovered_in_inventory`)
+- Uruchamia się, gdy użytkownik najeżdża na przedmiot w dowolnym ekranie ekwipunku.
 - Zmienne:
-  - `$$item_key` – lokalizacja zasobu wskazanego przedmiotu
-  - `$$item_display_name_string` – nazwa przedmiotu w zwykłym tekście
+  - `$$item_key` – lokalizacja zasobu najechanego przedmiotu
+  - `$$item_display_name_string` – nazwa przedmiotu jako zwykły tekst
   - `$$item_display_name_json` – nazwa przedmiotu jako komponent JSON
 
-## On Item Used
-- Wyzwalane, gdy gracz używa przedmiotu.
+## Po użyciu przedmiotu (`item_used`)
+- Uruchamia się, gdy gracz używa przedmiotu.
 - Zmienne:
   - `$$item_key` – użyty przedmiot
   - `$$used_on_type` – block/entity/self/none
-  - `$$used_on_entity_key` – docelowy typ encji lub puste
+  - `$$used_on_entity_key` – typ docelowej encji lub puste
   - `$$used_on_block_key` – docelowy blok lub puste
   - `$$target_pos_x` – docelowy X lub -1
   - `$$target_pos_y` – docelowy Y lub -1
   - `$$target_pos_z` – docelowy Z lub -1
 
-## On Item Broke
-- Wyzwalane, gdy przedmiot w ekwipunku gracza się psuje.
+## Po zepsuciu przedmiotu (`item_broke`)
+- Uruchamia się, gdy przedmiot w ekwipunku gracza ulega zniszczeniu.
 - Zmienne:
   - `$$item_key` – zepsuty przedmiot
   - `$$item_type` – tool/armor/other

@@ -1,16 +1,20 @@
 ---
 title: Compartilhamento de Dados Cliente < - > Servidor
-description: Envie e receba dados personalizados entre servidor e cliente com o FancyMenu.
+description: >-
+  Envie e receba dados personalizados entre o servidor e o cliente com o
+  FancyMenu.
 ---
 
-# FM Data
+# Dados FM
 
-O sistema "FM Data" permite enviar dados de texto personalizados entre o servidor e o cliente.
+O sistema "Dados FM" permite enviar dados de texto personalizados entre o servidor e o cliente.
 
-Toda mensagem do FM Data tem:
+Cada subcomando de `/fmdata` requer **nível de permissão 2** (Game Master / OP nível 2).
+
+Cada mensagem de Dados FM tem:
 
 1. Um **identificador de dados** (que tipo de mensagem é esta)
-2. Um **valor de dados** (o conteúdo em si)
+2. Um **valor de dados** (o conteúdo real)
 
 Ideia de exemplo:
 
@@ -30,19 +34,19 @@ Ideia de exemplo:
 Use:
 
 ```mcfunction
-/fmdata send <target_player> <data_identifier> <string_data>
+/fmdata send <target_players> <data_identifier> <string_data>
 ```
 
 Exemplos:
 
 ```mcfunction
 /fmdata send Player761 hud.food 18/20
-/fmdata send @a "atualização do valor de comida" "18 de 20"
+/fmdata send @a "food value update" "18 of 20"
 ```
 
 Observações:
 
-- `<target_player>` aceita seletores normais de jogadores, como `@a`, `@p`, `@s`
+- `<target_players>` aceita nomes de jogadores e seletores como `@a`, `@p` e `@s`
 - Use aspas para valores com espaços
 
 # Cliente: Receber Dados
@@ -60,13 +64,13 @@ Variáveis disponíveis:
 `$$sent_by` é:
 
 - IP do servidor no modo multijogador
-- `integrated_server` no modo individual
+- `integrated_server` no modo singleplayer
 
 Casos de uso comuns:
 
 - Atualizar elementos de texto
-- Disparar ações de menu
-- Executar lógica com base no identificador/dados recebidos
+- Disparar ações do menu
+- Executar lógica com base no identificador/dado recebido
 
 # Cliente -> Servidor
 
@@ -76,8 +80,8 @@ Use a ação do FancyMenu:
 
 A ação tem 2 entradas:
 
-1. Identificador de Dados
-2. Dados
+1. Data Identifier
+2. Data
 
 O servidor pode então processar os dados recebidos com `/fmdata listener ...`.
 
@@ -94,7 +98,7 @@ Gerencie-os com:
 - `/fmdata listener edit ...`
 - `/fmdata listener remove ...`
 
-## Sintaxe de Adição / Edição
+## Sintaxe de Adicionar / Editar
 
 ```mcfunction
 /fmdata listener add <unique_listener_name> <matching_type_identifier> <matching_type_data> <ignore_case_identifier> <ignore_case_data> <fire_for_player> <listen_for_identifier> <listen_for_data> <commands_to_execute_on_fire>
@@ -126,7 +130,7 @@ Gerencie-os com:
 - `listen_for_data` aceita curinga `*` (sempre corresponde)
 - `fire_for_player` usa seletores normais de jogadores (por exemplo `@a`, `@p`, `Player761`)
 
-## Comandos ao Ser Acionado
+## Comandos ao Ser Disparado
 
 `commands_to_execute_on_fire` é uma única entrada de texto.
 
@@ -135,14 +139,14 @@ Gerencie-os com:
 
 Você pode usar dois placeholders especiais aqui que são substituídos imediatamente antes da execução dos comandos:
 
-- `%fm_sender%` -> jogador que enviou o FM Data
+- `%fm_sender%` -> jogador que enviou os Dados FM
 - `%fm_data%` -> valor de dados recebido do cliente
 
 Os comandos são executados como comandos do servidor.
 
 ## Exemplos de Comandos
 
-Reaja a um clique de botão de qualquer jogador:
+Reaja a um pressionamento de botão de qualquer jogador:
 
 ```mcfunction
 /fmdata listener add button_ping equals equals false false @a ui.button pressed "tellraw @a {\"text\":\"%fm_sender% pressionou o botão\"}"
@@ -154,9 +158,9 @@ Execute vários comandos quando os dados contiverem `gold`:
 /fmdata listener add reward equals contains false true @a reward "gold" "say Recompensa de %fm_sender%: %fm_data%|||effect give %fm_sender% minecraft:speed 3 1 true"
 ```
 
-# Dados de Boas-vindas
+# Dados de Boas-Vindas
 
-Os dados de boas-vindas enviam FM Data para os jogadores correspondentes quando eles entram.
+Os dados de boas-vindas enviam Dados FM para os jogadores correspondentes quando eles entram.
 
 Gerencie as entradas com:
 
@@ -165,7 +169,7 @@ Gerencie as entradas com:
 - `/fmdata welcome_data edit ...`
 - `/fmdata welcome_data remove ...`
 
-## Sintaxe de Adição / Edição
+## Sintaxe de Adicionar / Editar
 
 ```mcfunction
 /fmdata welcome_data add <unique_welcome_data_name> <target_player> <data_identifier> <string_data>
@@ -201,10 +205,10 @@ Envie dados de boas-vindas apenas para um jogador:
 /fmdata welcome_data add welcome_vip Player761 hud.vip "Benefícios VIP ativados"
 ```
 
-# Boas Práticas
+# Melhores Práticas
 
 1. Use identificadores claros como `hud.food`, `menu.shop.open`, `quest.progress`.
 2. Mantenha o formato dos dados consistente para cada identificador.
 3. Comece simples: teste com `/fmdata send` antes de criar listeners complexos.
-4. Use `@a` somente quando você realmente quiser um comportamento global.
+4. Use `@a` apenas quando realmente quiser um comportamento global.
 5. Use `/fmdata listener list` e `/fmdata welcome_data list` para manter as configurações organizadas.

@@ -1,14 +1,15 @@
 ---
 title: Arrastrador
-description: Cómo arrastrar elementos en menús usando el elemento Arrastrador.
+description: Permite que los usuarios muevan elementos anclados fuera del editor.
 ---
-
 # Arrastrador
 
-El elemento Arrastrador es un elemento en FancyMenu que te permite hacer los menús interactivos de una manera bastante poco común. El Arrastrador es un elemento que se puede arrastrar con el mouse FUERA del editor, lo que significa que básicamente los usuarios pueden agarrar el elemento y moverlo.
+Un Arrastrador es un elemento invisible que los usuarios pueden mover con el mouse fuera del editor de diseño. Puedes anclar otros elementos a él para que se muevan junto con el Arrastrador.
 
-Eso está bien y todo, pero mover un elemento que no hace nada más es bastante inútil, ¿no? Bueno, no, porque puedes adjuntar otros elementos a él configurando el elemento Arrastrador como punto de anclaje para los demás elementos que deban moverse junto con el Arrastrador.
+1. Agrega un elemento [**Arrastrador**](./elements#dragger).
+2. Ancla al Arrastrador los elementos que deban moverse.
+3. Ajusta el tamaño y la posición del Arrastrador sobre el área visible que los usuarios deben poder arrastrar.
 
-El desplazamiento de posición de los elementos Arrastrador es persistente y se guarda entre reinicios del juego, lo que básicamente significa que cuando un usuario mueve el Arrastrador, este se queda en esa posición "personalizada", incluso al reiniciar el juego.
+Habilita **Guardar desplazamiento del arrastre del usuario** para conservar la posición arrastrada entre la apertura de pantallas y los reinicios del juego. Desactívalo cuando el desplazamiento deba restablecerse.
 
-El elemento Arrastrador solo es visible en el editor e invisible fuera de él, así que asegúrate de usar otro elemento como "cuerpo" para él, si quieres que el usuario vea dónde está el área arrastrable.
+El Arrastrador solo es visible en el editor. Usa una [Imagen](./elements#image), [Forma](./elements#rectangle-shape) u otro elemento anclado como su cuerpo visible.

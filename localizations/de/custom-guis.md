@@ -1,48 +1,57 @@
 ---
 title: Benutzerdefinierte GUIs
-description: Wie man dem Spiel einen neuen GUI-Bildschirm hinzufügt.
+description: Neue GUI-Bildschirme erstellen und konfigurieren.
 ---
 
 # Benutzerdefinierte GUIs
 
-FancyMenu erlaubt dir, bestehende GUI-Bildschirme anzupassen, aber du kannst damit auch komplett neue hinzufügen und mit Elementen füllen.
+Benutzerdefinierte GUIs sind neue Bildschirme, die du mit FancyMenu-[Elementen](./elements) füllen kannst.
 
-# Einen neuen Bildschirm hinzufügen
+> [!CAUTION]
+> Benutzerdefinierte GUIs können Aktionen ausführen. Importiere sie nur aus Quellen, denen du vertraust.
 
-Um einen neuen Bildschirm hinzuzufügen, gehe zu **Anpassung -> Benutzerdefinierte GUIs -> Benutzerdefinierte GUIs verwalten**.
+# Eine benutzerdefinierte GUI erstellen
 
-![custom_gui_1](https://github.com/Keksuccino/FancyMenu/assets/35544624/23e704ee-ccb5-434d-b75f-f4418399d9b7)
+1. Öffne **Anpassung -> Benutzerdefinierte GUIs -> Benutzerdefinierte GUIs verwalten**.
+2. Wähle **Neue GUI**.
+3. Gib eine Kennung ein und konfiguriere die Bildschirmeinstellungen.
+4. Wähle **Fertig** und öffne dann die neue GUI im Manager.
+5. Erstelle und bearbeite ihr Layout wie bei jedem anderen Bildschirm.
 
-Klicke im nächsten Menü auf **Neue GUI**.
+Kennungen dürfen Kleinbuchstaben, Ziffern, `.`, `_` und `-` enthalten. Sie dürfen keine Leerzeichen enthalten und müssen eindeutig sein. Leere, ungültige oder doppelte Kennungen können nicht gespeichert werden.
 
-![custom_gui_2](https://github.com/Keksuccino/FancyMenu/assets/35544624/035454e8-b089-4b9a-9092-89a193c0eacd)
+Benutzerdefinierte GUIs haben die Bildschirmanpassung immer aktiviert; ihr Schalter zur Anpassung kann nicht deaktiviert werden.
 
-Hier musst du deiner neuen GUI eine eindeutige Kennung geben, und du kannst weitere Teile des grundlegenden Bildschirmverhaltens anpassen.
-Wenn du fertig bist, drücke **Fertig**.
+# Bildschirmeinstellungen
 
-![custom_gui_3](https://github.com/Keksuccino/FancyMenu/assets/35544624/1fbed3f9-9c81-4c73-85c7-d152146c55d8)
+| Einstellung | Verhalten |
+|---|---|
+| ESC erlauben | Ermöglicht es der Escape-Taste, die GUI zu schließen und zum übergeordneten Bildschirm zurückzukehren |
+| Spiel/Welt pausieren | Pausiert den Einzelspieler-Modus, während die GUI geöffnet ist |
+| Welt-Hintergrund rendern | Zeigt die geladene Welt hinter der GUI an |
+| Welt-Hintergrund-Overlay | Fügt der Welt das standardmäßige Unschärfe-/Dunkel-Overlay hinzu |
+| Popup-Modus | Lässt den übergeordneten Bildschirm hinter der benutzerdefinierten GUI sichtbar |
+| Popup-Hintergrund-Overlay | Fügt im Popup-Modus Unschärfe/Tönung über dem übergeordneten Bildschirm hinzu |
 
-Jetzt hast du eine neue leere GUI. Um sie zu öffnen, wähle die GUI im Menü **Benutzerdefinierte GUIs verwalten** aus und klicke auf **GUI öffnen**.
+Der Popup-Modus verbindet die beiden Bildschirme nicht. Die benutzerdefinierte GUI bleibt der aktive Bildschirm, während ihr übergeordneter Bildschirm dahinter dargestellt wird. Das Schließen der benutzerdefinierten GUI führt zurück zu diesem übergeordneten Bildschirm, sofern einer vorhanden ist.
 
-![custom_gui_4](https://github.com/Keksuccino/FancyMenu/assets/35544624/b2e6a4b7-540d-4bf2-9dce-09bfff11ae7e)
+# Eine benutzerdefinierte GUI öffnen
 
-Dadurch wird der noch ziemlich leere GUI-Bildschirm geöffnet. Um ihn weniger leer zu machen, erstelle einfach ein neues Layout dafür, so wie du es auch bei jedem anderen Bildschirm tun würdest.
+Verwende die genaue Kennung der benutzerdefinierten GUI mit entweder:
 
-![custom_gui_5](https://github.com/Keksuccino/FancyMenu/assets/35544624/e7e06a5f-46b3-48f1-9ad9-96a7565c97a9)
+- der Aktion [**Bildschirm oder benutzerdefinierte GUI öffnen**](./action-scripts#open-screen-or-custom-gui-opengui).
+- dem Befehl [`/openguiscreen`](./commands#openguiscreen).
 
-# Die GUI über eine Aktion öffnen
+# Einen vorhandenen Bildschirm überschreiben
 
-Der letzte Schritt besteht darin, normalen Nutzern Zugriff auf deine GUI zu geben. Der einfachste Weg dafür ist die Aktion **Bildschirm oder benutzerdefinierte GUI öffnen** mit einem Button, Slider oder Ticker zu verwenden.
+Eine benutzerdefinierte GUI kann einen Vanilla- oder Mod-Bildschirm ersetzen, sobald dieser geöffnet wird.
 
-![custom_gui_6](https://github.com/Keksuccino/FancyMenu/assets/35544624/b5cc6518-3fc4-4715-96d4-44b65ab7831d)
+1. Erstelle die ersetzende benutzerdefinierte GUI.
+2. Öffne den Bildschirm, den du ersetzen möchtest.
+3. Aktiviere **Anpassung -> Einstellungen -> Erweiterter Anpassungsmodus**.
+4. Wähle **Anpassung -> Benutzerdefinierte GUIs -> Aktuellen Bildschirm mit benutzerdefinierter GUI überschreiben**.
+5. Wähle die ersetzende benutzerdefinierte GUI aus.
 
-# Die GUI über einen Befehl öffnen
+Verwalte gespeicherte Überschreibungen über **Anpassung -> Benutzerdefinierte GUIs -> Überschriebene Bildschirme verwalten**.
 
-Du kannst deine benutzerdefinierte GUI auch über einen [In-Game-Befehl](./commands#openguiscreen) öffnen.
-Das ermöglicht sogar, die GUI aus der Ferne für andere Nutzer zu öffnen!
-
-# Popup-Modus
-
-Ab FancyMenu v3.8.0 unterstützen benutzerdefinierte GUIs einen „Popup-Modus“, der sie so erscheinen lässt, als würde ein Popup über einem anderen Bildschirm geöffnet werden (dem vorherigen Bildschirm, von dem aus die benutzerdefinierte GUI geöffnet wurde). Diese Einstellung kann für jede benutzerdefinierte GUI in ihren Einstellungen einzeln umgeschaltet werden.
-
-FancyMenu 3.9.0 fügt außerdem eine Option hinzu, um das Bildschirm-Hintergrund-Overlay für benutzerdefinierte GUIs innerhalb einer Welt umzuschalten. Verwende sie, wenn du die Unschärfe oder dunkle Tönung hinter einer benutzerdefinierten GUI deaktivieren oder beibehalten möchtest, die über dem Spiel geöffnet wurde.
+Eine Überschreibung umgeht den ursprünglichen Bildschirm. Teste daher die Navigation und alle Funktionen, die vom Verhalten des ursprünglichen Bildschirms abhängen.

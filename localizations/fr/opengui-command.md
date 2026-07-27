@@ -1,29 +1,24 @@
 ---
-title: Ouvrir les interfaces par commande
-description: Comment ouvrir des interfaces Vanilla et personnalisées via une commande.
+title: Ouvrir des interfaces via commande
+description: Comment ouvrir des interfaces Vanilla et personnalisées via commande.
 ---
 
-# Ouvrir des interfaces par commande
+# Ouvrir des interfaces via commande
 
-FancyMenu est fourni avec une commande qui vous permet d’ouvrir des interfaces Vanilla et personnalisées via une commande.
-Vous pouvez même ouvrir à distance des interfaces pour **d’autres joueurs** en installant FancyMenu à la fois sur le **serveur et les clients**.
+La commande `/openguiscreen` ouvre les interfaces Vanilla, des mods et les [interfaces personnalisées](./custom-guis). Elle peut cibler d’autres joueurs lorsque FancyMenu est installé sur le serveur et sur leurs clients.
 
-Pour ouvrir une interface, utilisez simplement la commande `/openguiscreen <screen_identifier> <target_player>`.
+Pour ouvrir une interface, utilisez `/openguiscreen <screen_identifier> [<target_players>]`.
 
-Remplacez `<screen_identifier>` par l’identifiant réel du menu de l’interface que vous souhaitez ouvrir.
-Il peut s’agir de l’identifiant de votre interface personnalisée (créée avec FancyMenu) ou de l’identifiant normal du menu d’une interface Vanilla/mod.
+Remplacez `<screen_identifier>` par l’identifiant exact, sensible à la casse, de l’interface personnalisée ou de l’écran Vanilla/du mod.
 
-Pour obtenir **l’identifiant du menu des interfaces Vanilla/mod**, ouvrez le menu dont vous voulez connaître l’identifiant et সকtivez la **superposition de débogage** de FancyMenu via **Personnalisation -> Superposition de débogage**. Vous pouvez ensuite cliquer sur l’identifiant affiché sur la première ligne pour le copier dans votre presse-papiers.
+Pour trouver un identifiant, ouvrez l’écran cible et सक्रियez la superposition de débogage avec **CTRL + ALT + D**. Sélectionnez l’identifiant sur sa première ligne pour le copier. Consultez [Identifiants d’écran](./screen-identifiers).
 
 ![copy_identifier](https://github.com/Keksuccino/FancyMenu/assets/35544624/dd6c53d9-d2bd-4810-be03-3741e326bd5a)
 
-Laissez l’argument `<target_player>` vide pour ouvrir l’interface pour votre client, ou choisissez un joueur (ou plusieurs joueurs) pour ouvrir l’interface.
-Gardez à l’esprit que l’autre joueur doit avoir FancyMenu installé sur son client.
+Omettez `[<target_players>]` pour ouvrir l’interface pour vous-même, ou utilisez un nom de joueur ou un sélecteur tel que `@a` pour l’ouvrir pour un ou plusieurs joueurs. Fournir l’argument de cible nécessite le niveau de permission 2 (Game Master / OP niveau 2), même si la cible est vous-même, et chaque joueur ciblé doit avoir FancyMenu installé sur son client.
 
-Cette commande ne fonctionnera pas pour tous les écrans, en particulier les écrans de mods. Si la commande échoue à ouvrir un écran, un message d’erreur s’affichera. Il n’y a pas grand-chose à faire dans ce cas, car il s’agit probablement d’un écran trop complexe pour être ouvert automatiquement par FancyMenu.
+Tous les écrans de mods ne peuvent pas être créés directement. FancyMenu affiche une erreur lorsqu’un écran cible n’est pas pris en charge. Dans une configuration locale, utilisez [**Bouton Imiter Vanilla/Mod**](./action-scripts#mimic-vanillamod-button-mimicbutton) sur le widget qui l’ouvre normalement.
 
-Je n’ajouterai plus non plus de compatibilité manuelle pour les écrans de mods, car ajouter une compatibilité pour tous les mods existants me prendrait une éternité, désolé.
+# Fermer des interfaces via commande
 
-# Fermer des interfaces par commande
-
-Dans le cas rare où vous en auriez besoin, il existe aussi une commande `/closeguiscreen <target_player>` qui ferme l’écran actuel.
+Dans le cas rare où vous en avez besoin, `/closeguiscreen [<target_players>]` ferme l’écran actuel. La commande vous affecte lorsque la cible est omise ; fournir l’argument de cible nécessite le niveau de permission 2.

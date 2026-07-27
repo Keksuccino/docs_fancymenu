@@ -5,20 +5,23 @@ description: Cómo incluir diseños en un modpack.
 
 # FancyMenu en Modpacks
 
-Incluir tu configuración de FancyMenu en un modpack es muy fácil y solo toma unos pasos sencillos.
+Incluir tu configuración de FancyMenu en un modpack es muy fácil y solo requiere unos cuantos pasos sencillos.
 
-> Esta página es **SOLO** para configuraciones de FancyMenu hechas por completo en **FancyMenu v3+**, así que si usas una configuración antigua (hecha en v2 y convertida a v3), algunos pasos podrían ser diferentes.
-{.is-warning}
+> [!CAUTION]
+> Las configuraciones de FancyMenu pueden ejecutar acciones. Impórtalas solo desde fuentes en las que confíes.
 
-# Incluir la Configuración de FancyMenu en Tu Modpack
+> [!WARNING]
+> Esta página es **SOLO** para configuraciones de FancyMenu creadas completamente en **FancyMenu v3+**. Si usas una configuración heredada (hecha en v2 y convertida a v3), algunos pasos podrían ser diferentes.
+
+# Incluir la configuración de FancyMenu en tu modpack
 
 Lo principal que necesitas hacer es copiar una carpeta especial que FancyMenu usa para guardar todos tus diseños.
 
-## Lo que necesitarás encontrar
+## Lo que necesitas encontrar
 
-1. **Tu carpeta de "instancia de Minecraft":** Esta es la carpeta principal en tu computadora donde se almacenan todos los archivos de una configuración específica de Minecraft (como aquella en la que diseñaste tus menús). Launchers como CurseForge y Modrinth llaman a esto "instancias" o "perfiles".
-2. **La carpeta `config`:** Dentro de la carpeta de tu instancia de Minecraft, normalmente hay una carpeta llamada `config`. Aquí es donde muchos mods guardan sus ajustes.
-3. **La carpeta `fancymenu`:** Dentro de esa carpeta `config`, FancyMenu crea su propia carpeta llamada `fancymenu`. ¡Esa es la carpeta de oro que necesitamos!
+1. **Tu carpeta de "Instancia de Minecraft":** Esta es la carpeta principal en tu computadora donde se guardan todos los archivos de una configuración específica de Minecraft (como aquella en la que diseñaste tus menús). Lanzadores como CurseForge y Modrinth la llaman "instancias" o "perfiles".
+2. **La carpeta `config`:** Dentro de la carpeta de tu instancia de Minecraft, normalmente hay una carpeta llamada `config`. Ahí es donde muchos mods guardan su configuración.
+3. **La carpeta `fancymenu`:** Dentro de esa carpeta `config`, FancyMenu crea su propia carpeta llamada `fancymenu`. ¡Esa es la carpeta dorada que necesitamos!
 
 ## Cómo encontrar la ubicación de guardado de la instancia
 
@@ -40,37 +43,37 @@ Lo principal que necesitas hacer es copiar una carpeta especial que FancyMenu us
 
 <img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
 
-### Para otros launchers
+### Para otros lanzadores
 
 Busca una opción similar como "Open Folder", "Open Instance Folder" o "View Files" para tu configuración específica de Minecraft.
 
-## Copiar la Configuración de FancyMenu
+## Copiar la configuración de FancyMenu
 
-1. Ve a la carpeta `config` de tu instancia del MODPACK (la que quieres que reciba tu configuración).
-2. Si ya existe una carpeta `fancymenu` dentro, ELÍMINAla.
-3. Abre la carpeta `config` de la instancia ORIGEN (la que tiene la configuración que quieres usar).
-4. Copia la carpeta `fancymenu` dentro de la carpeta `config` de tu instancia ORIGEN a la carpeta `config` de tu instancia del MODPACK.
-5. Listo. Eso es todo. Reinicia tu instancia del modpack y deberías ver que la configuración se carga.
+1. Ve a la carpeta `config` de tu instancia del MODPACK (la que quieres usar como destino para copiar tu configuración).
+2. Si hay una carpeta `fancymenu` dentro, ELIMÍNALA.
+3. Abre la carpeta `config` de la instancia FUENTE (la que quieres usar como origen de la configuración).
+4. Copia la carpeta `fancymenu` dentro de la carpeta `config` de tu instancia FUENTE a la carpeta `config` de tu instancia del MODPACK.
+5. Listo. Eso es todo. Reinicia tu instancia del modpack ahora y deberías ver que la configuración se carga.
 
-> Ten en cuenta que las configuraciones antiguas hechas en FancyMenu v2 (incluso si se convirtieron a v3) permitían guardar recursos de los diseños fuera de la carpeta `/config/fancymenu/assets/` de FancyMenu, así que en ese caso debes asegurarte de incluir también todos tus recursos en el modpack.
-{.is-danger}
+> [!CAUTION]
+> Ten en cuenta que las configuraciones heredadas antiguas hechas en FancyMenu v2 (incluso si se convirtieron a v3) permitían almacenar recursos de diseño fuera de la carpeta `<game-directory>/config/fancymenu/assets/` de FancyMenu, así que en ese caso debes asegurarte de incluir también todos tus recursos en el modpack.
 
-# Desactivar la Barra de Menú y las Teclas Rápidas
+# Deshabilitar la barra de menú y las teclas rápidas
 
-Seguramente no quieres mantener visible la barra de menú de FancyMenu en tu modpack, así que deberías desactivarla. Pero como la gente todavía puede presionar la tecla rápida para volver a mostrarla, hagamos algo un poco más *agresivo*.
+Seguramente no quieres mantener visible la barra de menú de FancyMenu en tu modpack, así que deberías deshabilitarla. Pero como la gente todavía puede presionar la tecla rápida para volver a hacerla visible, hagamos algo un poco más *agresivo*.
 
-Ve a `/config/fancymenu/options.txt` y abre el archivo en un editor de texto.
+Ve a `<game-directory>/config/fancymenu/options.txt` y abre el archivo en un editor de texto.
 
-Ahora configura `modpack_mode` en `true` y guarda el archivo.
-Esto desactivará por completo todos los overlays y teclas rápidas.
+Ahora establece `modpack_mode` en `true` y guarda el archivo.
+Esto deshabilitará por completo todos los overlays y teclas rápidas.
 
-Para poder editar tus diseños otra vez, vuelve a configurar la opción de la configuración en `false`.
+Para poder editar tus diseños otra vez, vuelve a cambiar la opción de configuración a `false`.
 
-# Desactivar la Pantalla de Bienvenida
+# Deshabilitar la pantalla de bienvenida
 
-Esto no debería ser necesario en la mayoría de los casos, pero si todavía no cerraste la pantalla de bienvenida (la pantalla que te indica que leas la documentación), asegúrate de poner `show_welcome_screen` en `false` en `/config/fancymenu/options.txt`.
+Esto no debería ser necesario en la mayoría de los casos, pero si todavía no has cerrado la pantalla de bienvenida (la pantalla que te indica que leas la documentación), asegúrate de establecer `show_welcome_screen` en `false` en `<game-directory>/config/fancymenu/options.txt`.
 
-La pantalla solo se muestra una vez y se desactiva sola al hacer clic en el botón **Open Documentation**, así que de nuevo, hacerlo manualmente no debería ser necesario en la mayoría de los casos.
+La pantalla solo aparece una vez y se desactiva sola al hacer clic en el botón **Open Documentation**, así que, de nuevo, hacerlo manualmente no debería ser necesario en la mayoría de los casos.
 
 <br>
 <img width="630" alt="Screenshot_1" src="https://github.com/user-attachments/assets/4383b39f-f55a-4eb8-8142-34a425474bb3">

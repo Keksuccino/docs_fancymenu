@@ -1,29 +1,24 @@
 ---
-title: コマンドで GUI を開く
-description: コマンドを使ってバニラおよびカスタム GUI を開く方法。
+title: コマンドでGUIを開く
+description: コマンドを使って Vanilla およびカスタムGUIを開く方法。
 ---
 
-# コマンドで GUI を開く
+# コマンドでGUIを開く
 
-FancyMenu には、コマンドでバニラおよびカスタム GUI を開けるコマンドが付属しています。
-**サーバー** と **クライアント** の両方に FancyMenu を導入していれば、**他のプレイヤー** の GUI もリモートで開けます。
+`/openguiscreen` コマンドは、Vanilla、mod、[カスタムGUI](./custom-guis) を開きます。FancyMenu がサーバーとクライアントの両方に導入されている場合、他のプレイヤーを対象にすることもできます。
 
-GUI を開くには、`/openguiscreen <screen_identifier> <target_player>` コマンドを使用してください。
+GUI を開くには、`/openguiscreen <screen_identifier> [<target_players>]` を使用します。
 
-`<screen_identifier>` は、開きたい GUI の実際のメニュー識別子に置き換えてください。
-これは、FancyMenu で作成したカスタム GUI の識別子でも、バニラ/Mod GUI の通常のメニュー識別子でも構いません。
+`<screen_identifier>` には、カスタムGUIまたは Vanilla/mod 画面の正確な識別子を、大文字小文字も含めてそのまま指定してください。
 
-**バニラ/Mod GUI のメニュー識別子** を確認するには、識別子を知りたいメニューを開き、**Customization -> Debug Overlay** から FancyMenu の **デバッグオーバーレイ** を有効にします。すると、最初の行に表示されている識別子をクリックしてクリップボードにコピーできます。
+識別子を確認するには、対象の画面を開いて **CTRL + ALT + D** でデバッグオーバーレイを有効にします。1行目に表示される識別子を選択するとコピーできます。詳しくは [画面識別子](./screen-identifiers) を参照してください。
 
 ![copy_identifier](https://github.com/Keksuccino/FancyMenu/assets/35544624/dd6c53d9-d2bd-4810-be03-3741e326bd5a)
 
-`<target_player>` 引数を空欄にすると自分のクライアントで GUI が開きます。プレイヤー名を指定すると、そのプレイヤー（または複数プレイヤー）に対して GUI を開けます。
-ただし、相手プレイヤーのクライアントにも FancyMenu がインストールされている必要があります。
+`[<target_players>]` を省略すると自分自身に GUI を開きます。`@a` のようなプレイヤー名やセレクターを使うと、1人または複数のプレイヤーに対して開けます。対象引数を指定するには権限レベル 2（Game Master / OP レベル 2）が必要です。たとえ自分自身を指定する場合でも必要で、対象となる各プレイヤーのクライアントにも FancyMenu が導入されている必要があります。
 
-このコマンドはすべての画面で動作するわけではなく、特に Mod の画面では動作しないことがあります。コマンドで画面を開けなかった場合はエラーが表示されます。その場合、FancyMenu で自動的に開くには画面が複雑すぎる可能性が高いため、できることはあまりありません。
+すべての mod 画面を直接作成できるわけではありません。対象画面が非対応の場合、FancyMenu はエラーを表示します。ローカルレイアウトでは、通常その画面を開くウィジェットに [**Vanilla/Mod ボタンを模倣**](./action-scripts#mimic-vanillamod-button-mimicbutton) を使用してください。
 
-今後は、Mod の画面に対する互換性を手動で追加することもしません。世の中のすべての Mod に対応させるにはあまりにも時間がかかるため、ご了承ください。
+# コマンドでGUIを閉じる
 
-# コマンドで GUI を閉じる
-
-必要になることはまれですが、現在の画面を閉じる `/closeguiscreen <target_player>` コマンドもあります。
+必要になることはまれですが、`/closeguiscreen [<target_players>]` で現在の画面を閉じられます。対象を省略した場合は自分に対して動作します。対象引数を指定するには権限レベル 2 が必要です。

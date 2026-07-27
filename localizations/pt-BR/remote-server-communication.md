@@ -7,29 +7,29 @@ description: >-
 
 # Comunicação com Servidor Remoto
 
-O sistema de "Comunicação com Servidor Remoto" permite que clientes do FancyMenu se comuniquem com servidores externos usando conexões WebSocket.
+O sistema de "Comunicação com Servidor Remoto" permite que os clientes FancyMenu se comuniquem com servidores externos usando conexões WebSocket.
 
 Todos os dados são baseados em texto:
 
-- Texto simples é suportado
-- JSON é suportado (como texto normal)
+- Texto simples é compatível
+- JSON é compatível (como texto normal)
 
-Cada URL de servidor recebe um único **ID de requisição** em cache durante a execução.
-O FancyMenu usa esse ID para rastrear a conexão e expô-lo em variáveis de listener.
+Cada URL de servidor recebe um único **ID de solicitação** em cache durante a execução.
+O FancyMenu usa esse ID para rastrear a conexão e expô-lo nas variáveis dos listeners.
 
 # Início Rápido
 
-1. Adicione a ação **Conectar ao Servidor Remoto** (opcional, mas útil para abrir antecipadamente)
-2. Adicione a ação **Enviar Dados ao Servidor Remoto** com a mesma URL
-3. Adicione o listener **Ao Receber Dados do Servidor Remoto** para reagir às respostas
-4. Use **Ao Conectar ao Servidor Remoto** / **Ao Fechar Conexão com o Servidor Remoto** para lógica de estado da conexão
-5. Feche as conexões quando necessário com as ações de fechamento
+1. Adicione [**Conectar ao Servidor Remoto**](#connect-to-remote-server) quando a conexão deve ser aberta cedo.
+2. Adicione [**Enviar Dados ao Servidor Remoto**](#send-data-to-remote-server) com a mesma URL.
+3. Adicione [**Ao Receber Dados do Servidor Remoto**](#on-remote-server-data-received) para reagir às respostas.
+4. Use [**Ao Servidor Remoto Conectado**](#on-remote-server-connected) e [**Ao Servidor Remoto com Conexão Fechada**](#on-remote-server-connection-closed) para lógica de estado da conexão.
+5. Feche conexões com [**Fechar Conexão com Servidor Remoto**](#close-remote-server-connection) ou [**Fechar Todas as Conexões com Servidores Remotos**](#close-all-remote-server-connections).
 
 # Ações
 
 ## Conectar ao Servidor Remoto
 
-Inicializa uma conexão com um servidor remoto sem enviar dados de payload.
+Abre ou reutiliza uma conexão com servidor remoto sem enviar dados de payload.
 
 Entrada:
 
@@ -44,23 +44,23 @@ Entradas:
 1. URL do Servidor Remoto
 2. Dados
 
-## Fechar Conexão com o Servidor Remoto
+## Fechar Conexão com Servidor Remoto
 
-Fecha uma conexão por ID da requisição.
+Fecha uma conexão pelo ID de solicitação.
 
 Entrada:
 
-- ID da Requisição da Conexão
+- ID da Solicitação da Conexão
 
 ## Fechar Todas as Conexões com Servidores Remotos
 
-Fecha todas as conexões com servidores remotos atualmente ativas.
+Fecha todas as conexões com servidores remotos que estiverem ativas no momento.
 
 # Listeners
 
-## Ao Conectar ao Servidor Remoto
+## Ao Servidor Remoto Conectado
 
-Dispara quando uma conexão com servidor remoto é inicializada.
+Dispara após uma conexão com servidor remoto ser aberta com sucesso.
 
 Variáveis:
 
@@ -77,7 +77,7 @@ Variáveis:
 - `$$remote_server_url`
 - `$$data`
 
-## Ao Fechar Conexão com o Servidor Remoto
+## Ao Servidor Remoto com Conexão Fechada
 
 Dispara quando uma conexão com servidor remoto é encerrada.
 
@@ -93,24 +93,22 @@ Variáveis:
 
 - As conexões são **iniciadas pelo cliente**
 - O FancyMenu mantém as conexões ativas em segundo plano
-- Se uma conexão travar ou atingir timeout, o FancyMenu tenta novamente a cada 10 segundos
-- Quando uma conexão com falha é restaurada, o FancyMenu registra uma mensagem de restauração
+- Se uma conexão travar ou expirar, o FancyMenu tenta novamente a cada 10 segundos
+- Quando uma conexão travada é restaurada, o FancyMenu registra uma mensagem de restauração
 - Mensagens de saída não enviadas são enfileiradas com uma **idade máxima de 30 segundos**
-- Mensagens enfileiradas com mais de 30 segundos são descartadas
+- Mensagens na fila com mais de 30 segundos são descartadas
 
 # Modos de URL
 
-- `wss://` = seguro (TLS), recomendado
-- `ws://` = sem criptografia, útil para testes locais
+- `wss://` é usado como escrito e é recomendado.
+- `ws://` é usado como escrito e não é criptografado.
+- `https://` é convertido para `wss://`.
+- `http://` é convertido para `ws://`.
+- Um host sem esquema é prefixado com `wss://`.
+- Outros esquemas de URL explícitos são rejeitados.
 
-Exemplo de URL local:
+Prefira URLs explícitas com `wss://`. Exemplo de URL local:
 
 - `ws://127.0.0.1:8765`
 
-# Melhores Práticas
-
-1. Use uma URL estável por serviço de backend.
-2. Mantenha o formato do payload consistente para cada caso de uso.
-3. Trate conexões fechadas/com falha com lógica de interface de fallback.
-4. Use as ações de fechamento quando seu fluxo terminar.
-5. Use `wss://` para ambientes de produção.
+Use uma URL estável por serviço, trate os estados de listener de conexão fechada/travada e feche as conexões quando elas não forem mais necessárias.

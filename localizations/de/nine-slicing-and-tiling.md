@@ -1,104 +1,42 @@
 ---
-title: Nine-Slicing und Kacheln
-description: Wie man Nine-Slicing und Kacheln in FancyMenu verwendet.
+title: Nine-Slicing & Kachelung
+description: Skaliert gerahmte Texturen oder wiederholt nahtlose Texturen.
 ---
 
-# Nine-Slicing und Kacheln
+# Nine-Slicing und Kachelung
 
-Wenn du in Minecraft mit FancyMenu coole Menüs gestaltest, möchtest du vielleicht Bilder verwenden, die sich korrekt skalieren oder in Mustern wiederholen lassen. Dieser Leitfaden erklärt, wie du **Nine-Slicing** und **Kacheln** (auch als sich wiederholende Texturen bezeichnet) verwendest, damit deine Menüs großartig aussehen!
+Nine-Slicing bewahrt die Ecken und Ränder einer Textur, während ihre Mitte gestreckt wird. Kachelung wiederholt eine Textur, anstatt sie zu strecken.
 
-# Was ist Nine-Slicing?
+<img src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/nine_slicing_example.png" alt="Nine-slice regions" style="max-width:500px;height:auto;" />
 
-Nine-Slicing ist eine Technik, mit der du ein Bild auf jede beliebige Größe strecken kannst, ohne dass es seltsam aussieht. Dabei wird dein Bild in neun Teile unterteilt (wie ein Tic-Tac-Toe-Feld). Die Ecken bleiben gleich groß, die Kanten werden nur in eine Richtung gestreckt und die Mitte wird in beide Richtungen gestreckt.
+# Unterstützung für Nine-Slicing
 
-<img src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/nine_slicing_example.png" alt="Nine-Slice-Beispiel" style="max-width: 500px; height: auto;" />
+| Bereich | Unterstützte Ziele |
+|---|---|
+| Widgets | Texturen für [Button](./elements#button) und [Slider](./elements#slider); [globale Button- und Slider-Stile](./global-customizations#button-visuals) |
+| Bilder und Panels | [Bildelemente](./elements#image) |
+| Fortschrittsbalken | [Füll- und Hintergrundtexturen](./elements#progress-bar) |
+| Tooltips | [Benutzerdefinierte Hintergrundtexturen](./elements#tooltip) |
 
-## Wo kann ich Nine-Slicing verwenden?
+# Nine-Slicing konfigurieren
 
-In FancyMenu ist Nine-Slicing verfügbar für:
-- **Button-Elemente** (sowohl benutzerdefinierte Buttons als auch beim Bearbeiten von Vanilla-Buttons)
-- **Fortschrittsbalken-Texturen** (Balken- und Hintergrundtexturen)
+1. Legen Sie die Zieltextur fest.
+2. Aktivieren Sie die Option **Nine-Slice**.
+3. Stellen Sie die Randgrößen so ein, dass sie dem festen Randbereich in der Quelltextur entsprechen.
+4. Ändern Sie die Größe des Elements und passen Sie die Randwerte an, falls die Ecken oder Kanten verzerrt werden.
 
-## So verwendest du Nine-Slicing bei Buttons
+Die Einstellungen für Buttons und Bilder verwenden X-/Y-Randgrößen. Fortschrittsbalken und Tooltips bieten bei Bedarf separate Kantenwerte an.
 
-1. **Erstelle oder wähle ein Button-Element** in deinem Layout-Editor aus.
-2. Klicke mit der rechten Maustaste auf den Button und suche nach der Option „Button Textures“.
-3. Lege die Hintergrundtexturen deines Buttons fest (Normal-, Hover- und Inaktiv-Zustand).
-4. Aktiviere die Option „Nine-Slice Custom Background“.
-5. Setze die **Nine-Slice Background X-Borders** (linke und rechte Randgröße).
-6. Setze die **Nine-Slice Background Y-Borders** (obere und untere Randgröße).
+# Unterstützung für Kachelung
 
-### Tipps für Nine-Slicing bei Buttons
+Wiederholte Texturen sind verfügbar für:
 
-- Verwende ein Bild mit klaren Rändern und Ecken.
-- Die Randwerte (X und Y) teilen FancyMenu mit, wie viele Pixel von jeder Kante als Rand behandelt werden sollen.
-- Ein typischer Wert könnte bei X- und Y-Rändern jeweils 5 Pixel sein.
-- Die Ecken bleiben immer gleich groß, während sich die mittleren Bereiche ausdehnen, um den Button zu füllen.
+- [Bildelemente](./elements#image).
+- [Bild-Hintergründe von Menüs](./menu-backgrounds).
+- [Header- und Footer-Texturen von Scroll-Listen](./customizing-scrollable-screens).
 
-# Was ist Kacheln?
+Aktivieren Sie **Textur wiederholen** bei einem Bildelement oder Bild-Hintergrund. Für scrollbare Bildschirme verwenden Sie die Wiederholungsoptionen im Anpassungsmenü für Header/Footer.
 
-Kacheln (auch als sich wiederholende Texturen bezeichnet) ermöglichen es dir, einen großen Bereich mit einem kleinen Bild zu füllen, indem es wie Fliesen auf einem Boden wiederholt wird. Das ist perfekt für Hintergründe oder große Bilder, bei denen du möchtest, dass ein Muster fortgesetzt wird.
+Verwenden Sie eine nahtlose Quelltextur; nicht passende Kanten erzeugen sichtbare Linien zwischen den Kacheln.
 
-## Wo kann ich Kacheln verwenden?
-
-In FancyMenu ist Kacheln verfügbar für:
-- **Bild-Elemente**
-- **Bild-Menühintergründe**
-
-## So verwendest du Kacheln bei Bild-Elementen
-
-1. **Erstelle oder wähle ein Bild-Element** in deinem Layout-Editor aus.
-2. Klicke mit der rechten Maustaste auf das Bild und suche nach „Image Source“, um deine Textur festzulegen.
-3. Finde die Option **„Repeat Texture“** und aktiviere sie.
-4. Skaliere dein Bild-Element, um zu sehen, wie sich die Textur wiederholt und den Bereich füllt.
-
-## So verwendest du Kacheln bei Menühintergründen
-
-1. Öffne **Menu Backgrounds** über das Kontextmenü für Hintergründe im Layout-Editor.
-2. Wähle den Hintergrundtyp **Image**.
-3. Wähle dein Hintergrundbild aus.
-4. Aktiviere die Option **„Repeat Texture“**.
-5. Dein Hintergrund wiederholt nun die Textur, um den gesamten Bildschirm zu füllen.
-
-# Gute Texturen für Nine-Slicing und Kacheln erstellen
-
-## Für Nine-Slicing:
-- Erstelle Texturen mit klar erkennbaren Rändern und Ecken.
-- Achte darauf, dass deine Ränder deutlich und gleich breit sind.
-- Teste verschiedene Randgrößen, um herauszufinden, was am besten funktioniert.
-- Buttons funktionieren meist gut mit Rändern von 3 bis 5 Pixeln.
-
-## Für Kacheln:
-- Erstelle nahtlose Texturen, die an allen Seiten mit sich selbst verbunden werden können.
-- Halte Muster einfach, um visuelle Unruhe zu vermeiden.
-- Teste deine Textur zunächst, indem du sie in einem kleinen Bereich wiederholen lässt.
-
-# Beispiele
-
-## Beispiel für einen Nine-Sliced-Button
-Ein einfacher Button könnte zunächst ein 30x30-Bild mit 5-Pixel-Rändern auf allen Seiten sein. Wenn du den Button größer machst, bleiben die Ecken bei 5x5 Pixeln, während sich die Kanten und die Mitte an die Größe des Buttons anpassen.
-
-## Beispiel für einen gekachelten Hintergrund
-Eine kleine 64x64-Kachel mit einem dezenten Muster kann wiederholt werden, um deinen gesamten Menühintergrund zu füllen, unabhängig von der Bildschirmgröße.
-
-# Häufige Probleme und Lösungen
-
-## Mein nine-sliced Button wirkt gestreckt oder verzerrt:
-- Deine Randwerte sind möglicherweise zu klein oder zu groß
-- Ändere die Randwerte so, dass sie zu deiner tatsächlichen Textur passen
-
-## Mein gekachelter Hintergrund hat sichtbare Nähte:
-- Deine Textur ist nicht nahtlos
-- Bearbeite dein Bild so, dass die Kanten perfekt zusammenpassen
-
-## Meine Texturen sehen beim Skalieren unscharf aus:
-- Verwende Texturen mit höherer Auflösung
-- Halte deine Designs einfach und mit klaren Linien
-
-# Merke dir
-
-- **Nine-Slicing** ist perfekt für UI-Elemente, die ihre Größe ändern müssen, dabei aber ihr Aussehen behalten sollen (wie Buttons).
-- **Kacheln** ist ideal, um große Bereiche mit einem Muster zu füllen (wie Hintergründe).
-- Beide Funktionen helfen dabei, dass deine UI bei jeder Auflösung und Bildschirmgröße gut aussieht!
-
-Jetzt kannst du fantastische Minecraft-Menüs mit perfekt gestreckten Buttons und schönen gekachelten Hintergründen erstellen!
+Nine-Slicing und Wiederholung sind getrennte Modi. Wenn für ein Ziel beide Optionen angezeigt werden, wählen Sie diejenige aus, die dem gewünschten Skalierungsverhalten entspricht.

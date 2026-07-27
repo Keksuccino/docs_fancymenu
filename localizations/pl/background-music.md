@@ -1,76 +1,44 @@
 ---
 title: Muzyka w tle menu
-description: Jak dostosować muzykę odtwarzaną w menu.
+description: Dostosuj muzykę odtwarzaną w menu.
 ---
 
 # Muzyka w tle menu
 
-Możesz zastąpić domyślną muzykę tła menu Minecrafta własnymi utworami albo po prostu wyłączyć normalną muzykę Vanilla, która odtwarza się w menu.
+FancyMenu może wyłączyć domyślną muzykę menu Vanilla, odtwarzać globalną listę utworów albo używać elementów [Audio](./elements#audio) do muzyki zależnej od układu.
 
-# Wyłączanie muzyki Vanilla
+# Globalna muzyka menu
 
-FancyMenu oferuje kilka sposobów na wyłączenie muzyki Vanilla w menu. Może to być przydatne, jeśli planujesz odtwarzać inne ścieżki audio na ekranach albo po prostu nie chcesz, aby w niektórych ekranach w ogóle grała muzyka.
+Otwórz [**Global Customizations**](./global-customizations) przez **Customization -> Global Customizations** poza edytorem układu.
 
-## Globalnie
+Użyj tych ustawień:
 
-Jeśli chcesz, aby w menu nie było żadnej muzyki, to jest najprostszy sposób.
+- **Play Vanilla Menu Music** włącza lub wyłącza globalnie domyślną muzykę menu Vanilla.
+- **Custom Menu Music Tracks** zarządza globalną listą zastępczych utworów.
 
-Aby globalnie wyłączyć lub zastąpić muzykę Vanilla w menu w FancyMenu 3.9.0+, przejdź do paska menu FancyMenu u góry ekranu i kliknij **Dostosowanie -> Globalne dostosowania**. Globalne dostosowania mogą zastąpić muzykę menu bez wymagania paczki zasobów i bez włączania dostosowań dla każdego ekranu.
+> [!IMPORTANT]
+> Globalne niestandardowe utwory menu odtwarzają się tylko wtedy, gdy nie jest załadowany żaden świat, na przykład na ekranie tytułowym. Użyj elementu [**Audio**](./elements#audio) dla muzyki menu podczas przebywania w świecie.
 
-<br>
-<img width="600" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/d829a35e-f23f-42a9-ad79-193de73b499b">
+Globalne utwory używają kanału dźwiękowego Music. Pierwszy utwór startuje po około pięciu sekundach; kolejne utwory używają losowego opóźnienia od około jednej do trzydziestu sekund. Wybór jest losowy i unika natychmiastowego powtórzenia poprzedniego utworu, gdy skonfigurowano więcej niż jeden utwór.
 
-> Wyłączenie domyślnej muzyki Minecrafta spowoduje jej wyłączenie na każdym ekranie, a nie tylko na bieżącym.
-{.is-info}
+# Sterowanie muzyką dla konkretnego ekranu
 
-## Dla konkretnego ekranu
+Dodaj element [**Music Controller**](./elements#music-controller) do układu, aby sterować domyślną muzyką Vanilla dla tego ekranu:
 
-Jeśli chcesz mieć większą kontrolę nad tym, gdzie ma odtwarzać się muzyka Vanilla w menu, powinieneś użyć elementu **Music Controller**. Ten element dodaje się do układów tak jak każdy inny element, klikając **prawym przyciskiem myszy na tło edytora**, a następnie wybierając **New Element -> Music Controller**.
+1. Kliknij prawym przyciskiem myszy tło edytora.
+2. Wybierz **New Element -> Music Controller**.
+3. Skonfiguruj osobno Menu Music i World Music.
 
-Klikając **prawym przyciskiem myszy** element, możesz dostosować, jakie rodzaje muzyki odtwarzanej w menu mają być wyłączone (zwykła muzyka menu oraz muzyka świata, która nadal gra na ekranach niepauzujących gry, takich jak ekran ekwipunku).
+Ten element obsługuje [wymagania ładowania](./conditions).
 
-> Ten element obsługuje **wymagania ładowania**, więc masz jeszcze większą kontrolę nad tym, kiedy ma grać muzyka Vanilla!
-{.is-info}
+Wyłączenie muzyki menu za pomocą Music Controllera zapobiega również odtwarzaniu globalnej, niestandardowej listy utworów menu na tym ekranie.
 
+# Własna muzyka z elementami Audio
 
-# Dodawanie własnej muzyki
+Użyj elementu [**Audio**](./elements#audio), gdy potrzebujesz:
 
-Teraz możemy dodać właściwą własną muzykę w tle.
+- Innej muzyki na różnych ekranach.
+- Muzyki na ekranach w świecie.
+- Wymagań układu, list odtwarzania w kolejności, ustawień losowania, głośności lub kontroli kanału.
 
-Jeśli chcesz odtwarzać tę samą własną muzykę na wszystkich ekranach i potrzebujesz kontroli na poziomie układu, powinieneś użyć **układu uniwersalnego**, który ładuje się na każdym ekranie, na którym włączono dostosowania. Do prostego globalnego zastąpienia muzyki menu użyj zamiast tego [Globalnych dostosowań](/global-customizations).
-
-Podczas korzystania z układu uniwersalnego muzyka będzie **kontynuować odtwarzanie** podczas przechodzenia z jednego menu z włączonym tym układem do innego menu z tym samym włączonym układem.
-
-Jeśli chcesz odtwarzać inną muzykę dla każdego ekranu, użyj zwykłych układów.
-
-W tym przykładzie użyjemy **układów uniwersalnych**.
-
-Dodaj nowy element **Audio** do układu uniwersalnego, który będzie pełnił rolę odtwarzacza muzyki w tle.
-
-<br>
-<img width="400" alt="Screenshot_2" src="https://gist.github.com/assets/35544624/bddf8f46-47c5-4a00-a6f7-b5ca1df8ae67">
-
-Teraz dodaj do niego utwory, które mają być odtwarzane w tle.
-
-<br>
-<img width="300" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/824dcb90-3bd5-4c0b-96d0-e581a7c2f9f7">
-
-To w zasadzie wszystko.
-W razie potrzeby możesz też ustawić element Audio w tryb losowego odtwarzania i zmienić jego kanał dźwięku.
-
-Zapisz układ i wyjdź z edytora.
-
-# Włączanie dostosowań dla wszystkich menu
-
-W tym przykładzie użyliśmy **układu uniwersalnego**, ponieważ chcemy, aby nasza muzyka w tle odtwarzała się na wielu ekranach.
-
-Ponieważ układy ładują się tylko na ekranach, na których włączono **dostosowania**, musimy teraz włączyć je dla każdego ekranu, na którym ma grać muzyka.
-
-Aby to zrobić, kliknij **Dostosowanie** i włącz **Dostosowanie bieżącego ekranu**.
-
-<br>
-<img width="320" alt="Screenshot_5" src="https://gist.github.com/assets/35544624/2f6527b7-ae14-4e82-abc6-3572cc6490b2">
-
-Powtórz to dla każdego ekranu, na którym ma odtwarzać się twoja własna muzyka w tle.
-
-I to wszystko! Teraz masz własną muzykę w tle w menu Minecrafta!
+Umieść element [Audio](./elements#audio) w [Universal Layout](./universal-layouts), aby ten sam odtwarzacz pozostał aktywny na obsługiwanych ekranach, które ładują ten układ. Dostosowanie ekranu musi być włączone na każdym zwykłym ekranie, na którym ma obowiązywać układ uniwersalny.

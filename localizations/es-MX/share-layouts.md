@@ -3,8 +3,11 @@ title: Importar/Exportar diseños
 description: Cómo compartir diseños con otras personas.
 ---
 
-El proceso de compartir un diseño es muy similar a [incluirlo en un modpack](/modpacks), así que solo revisa la [página de Modpacks](/modpacks) para más información.
+# Importar y exportar diseños
 
-En lugar de mover los archivos de configuración a un modpack, lo "mueves" a la otra instancia de Minecraft de tu amigo, etc.
+> [!CAUTION]
+> Las configuraciones compartidas pueden ejecutar acciones. Impórtalas solo desde fuentes en las que confíes.
 
-Solo envíale a tu amigo la carpeta de configuración en un archivo ZIP y deja que siga los pasos para copiar la carpeta a su instancia.
+Sigue la [guía de Modpacks](/modpacks), pero copia la configuración en la instancia de Minecraft del destinatario en lugar de en un modpack.
+
+Empaqueta los archivos requeridos de `<game-directory>/config/fancymenu/`, además de cualquier recurso referenciado explícitamente. `<game-directory>` es el directorio activo del launcher/perfil y no necesariamente `.minecraft`.

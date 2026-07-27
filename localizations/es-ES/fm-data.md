@@ -5,16 +5,18 @@ description: >-
   FancyMenu.
 ---
 
-# FM Data
+# Datos FM
 
-El sistema "FM Data" te permite enviar datos de texto personalizados entre el servidor y el cliente.
+El sistema "Datos FM" te permite enviar datos de texto personalizados entre el servidor y el cliente.
 
-Cada mensaje de FM Data tiene:
+Cada subcomando de `/fmdata` requiere **nivel de permiso 2** (Game Master / OP nivel 2).
+
+Cada mensaje de Datos FM tiene:
 
 1. Un **identificador de datos** (qué tipo de mensaje es)
 2. Un **valor de datos** (el contenido real)
 
-Idea de ejemplo:
+Ejemplo de idea:
 
 - Identificador: `hud.food`
 - Datos: `18/20`
@@ -22,7 +24,7 @@ Idea de ejemplo:
 # Inicio rápido
 
 1. El servidor envía datos con `/fmdata send ...`
-2. El cliente los recibe con el listener de FancyMenu **On FM Data Received**
+2. El cliente los recibe con el oyente de FancyMenu **On FM Data Received**
 3. El cliente también puede enviar datos de vuelta con la acción **Send FM Data To Server**
 4. El servidor puede reaccionar automáticamente con `/fmdata listener ...`
 5. El servidor puede enviar datos automáticamente al entrar con `/fmdata welcome_data ...`
@@ -32,7 +34,7 @@ Idea de ejemplo:
 Usa:
 
 ```mcfunction
-/fmdata send <target_player> <data_identifier> <string_data>
+/fmdata send <target_players> <data_identifier> <string_data>
 ```
 
 Ejemplos:
@@ -44,12 +46,12 @@ Ejemplos:
 
 Notas:
 
-- `<target_player>` admite selectores de jugador normales como `@a`, `@p`, `@s`
+- `<target_players>` admite nombres de jugadores y selectores como `@a`, `@p` y `@s`
 - Usa comillas para valores con espacios
 
 # Cliente: recibir datos
 
-Usa el listener de FancyMenu:
+Usa el oyente de FancyMenu:
 
 - **On FM Data Received**
 
@@ -67,8 +69,8 @@ Variables disponibles:
 Casos de uso habituales:
 
 - Actualizar elementos de texto
-- Activar acciones del menú
-- Ejecutar lógica según el identificador/dato recibido
+- Disparar acciones del menú
+- Ejecutar lógica basada en el identificador/datos entrantes
 
 # Cliente -> Servidor
 
@@ -81,13 +83,13 @@ La acción tiene 2 entradas:
 1. Identificador de datos
 2. Datos
 
-Después, el servidor puede procesar los datos entrantes con `/fmdata listener ...`.
+El servidor puede procesar después los datos entrantes con `/fmdata listener ...`.
 
-# Listeners del servidor
+# Oyentes del servidor
 
-Los listeners del servidor escuchan los datos entrantes de los clientes y pueden ejecutar uno o varios comandos cuando se activan.
+Los oyentes del servidor escuchan los datos entrantes de los clientes y pueden ejecutar uno o varios comandos cuando se activan.
 
-Los listeners del servidor se guardan y permanecen activos después de reiniciar.
+Los oyentes del servidor se guardan y siguen activos después de reiniciar.
 
 Gestionarlos con:
 
@@ -124,33 +126,33 @@ Gestionarlos con:
 ## Reglas de coincidencia
 
 - `ignore_case_identifier` y `ignore_case_data` son conmutadores true/false
-- `listen_for_identifier` admite el comodín `*` (siempre coincide)
-- `listen_for_data` admite el comodín `*` (siempre coincide)
+- `listen_for_identifier` admite el comodín `*` (coincide siempre)
+- `listen_for_data` admite el comodín `*` (coincide siempre)
 - `fire_for_player` usa selectores de jugador normales (por ejemplo `@a`, `@p`, `Player761`)
 
 ## Comandos al activarse
 
-`commands_to_execute_on_fire` es una única entrada de texto.
+`commands_to_execute_on_fire` es un único campo de texto.
 
 - Separa varios comandos con `|||`
 - Escapa un separador literal como `\|\|\|`
 
-Aquí puedes usar dos marcadores especiales que se reemplazan justo antes de ejecutar los comandos:
+Aquí puedes usar dos marcadores de posición especiales que se sustituyen justo antes de ejecutar los comandos:
 
-- `%fm_sender%` -> jugador que envió los FM Data
+- `%fm_sender%` -> jugador que envió los Datos FM
 - `%fm_data%` -> valor de datos recibido del cliente
 
 Los comandos se ejecutan como comandos del servidor.
 
-## Ejemplos de comandos
+## Comandos de ejemplo
 
-Responder a una pulsación de botón de cualquier jugador:
+Reaccionar a una pulsación de botón de cualquier jugador:
 
 ```mcfunction
 /fmdata listener add button_ping equals equals false false @a ui.button pressed "tellraw @a {\"text\":\"%fm_sender% ha pulsado el botón\"}"
 ```
 
-Ejecutar varios comandos cuando los datos contengan `gold`:
+Ejecutar varios comandos cuando los datos contienen `gold`:
 
 ```mcfunction
 /fmdata listener add reward equals contains false true @a reward "gold" "say Recompensa de %fm_sender%: %fm_data%|||effect give %fm_sender% minecraft:speed 3 1 true"
@@ -158,9 +160,9 @@ Ejecutar varios comandos cuando los datos contengan `gold`:
 
 # Datos de bienvenida
 
-Los datos de bienvenida envían FM Data a los jugadores que coincidan cuando entran.
+Los datos de bienvenida envían Datos FM a los jugadores que coincidan cuando entran al servidor.
 
-Gestiona las entradas con:
+Gestionar entradas con:
 
 - `/fmdata welcome_data list`
 - `/fmdata welcome_data add ...`
@@ -186,10 +188,10 @@ Gestiona las entradas con:
 Notas:
 
 - `<target_player>` admite selectores normales como `@a`, `@p`, `@s`
-- Los datos se envían a los jugadores que coincidan cuando entren
+- Los datos se envían a los jugadores que coincidan cuando entran
 - Las entradas se guardan y se cargan automáticamente
 
-## Ejemplos de comandos
+## Comandos de ejemplo
 
 Enviar datos de bienvenida a todos los jugadores que entren:
 
@@ -207,6 +209,6 @@ Enviar datos de bienvenida solo a un jugador:
 
 1. Usa identificadores claros como `hud.food`, `menu.shop.open`, `quest.progress`.
 2. Mantén un formato de datos coherente para cada identificador.
-3. Empieza por algo sencillo: prueba con `/fmdata send` antes de crear listeners complejos.
+3. Empieza por algo sencillo: prueba con `/fmdata send` antes de crear oyentes complejos.
 4. Usa `@a` solo cuando realmente quieras un comportamiento global.
 5. Usa `/fmdata listener list` y `/fmdata welcome_data list` para mantener las configuraciones limpias.

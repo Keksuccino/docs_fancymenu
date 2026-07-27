@@ -1,63 +1,47 @@
 ---
 title: Ressourcen
 description: >-
-  Wie Ressourcen in FancyMenu funktionieren. Deckt Ressourcenorte, lokale
-  Ressourcen und Web-Ressourcen ab.
+  Wie Ressourcen in FancyMenu funktionieren. Behandelt Ressourcenspeicherorte,
+  lokale Ressourcen und Web-Ressourcen.
 ---
 
 # Ressourcen
 
-Das Ressourcen-System von FancyMenu ermöglicht es dir, Ressourcen aus Minecrafts eigenem Resource-Loader (**Ressourcenpakete**), **lokalen** Ressourcen (Dateien vom Client-System) und **Web-Quellen** (online gespeicherte Dateien) zu verwenden.
+Ressourcenfelder können Inhalte aus folgenden Quellen laden:
 
-Fast alle Ressourceneingaben – egal ob Bilder, Audio, Video oder Text – werden über den Ressourcen-Auswahldialog von FancyMenu festgelegt. Es gibt einige Ausnahmen, etwa wenn ein Quellpfad für einen Platzhalter oder eine Aktion gesetzt wird, aber in den meisten Fällen legst du Ressourcen über dieselbe Ressourcen-Auswahloberfläche fest.
+- **Minecraft:** ein von Minecraft oder einem Ressourcenpaket bereitgestellter Ressourcenpfad.
+- **Lokal:** eine Datei in der aktiven Spielinstanz.
+- **Web:** eine direkte Datei-URL.
 
-Wenn du eine Ressourceneingabe über die Ressourcen-Auswahloberfläche festlegst, wählst du im Grunde eine sogenannte „Ressourcenquelle“ (so nennt FancyMenu sie), die je nach Quellentyp ein Pfad, ein Link oder eine Ressourcenadresse sein kann.
-
-FancyMenu 3.9.0 fügt dem Ressourcen-Auswahldialog einen Minecraft-Ressourcenbrowser hinzu. Damit kannst du über Ressourcenpakete geladene Ressourcen wie ein Verzeichnis durchsuchen, anstatt jede Ressourcenadresse manuell einzugeben.
+Die meisten Bild-, Audio-, Video- und Textfelder verwenden denselben Ressourcenauswahldialog. Der Auswahldialog enthält einen Browser für Minecraft- und Ressourcenpaket-Inhalte.
 
 # Minecraft-Ressourcen (Ressourcenpakete)
 
-Minecraft verwendet sogenannte „Ressourcenadressen“, um auf eine Ressource zu „verweisen“.
+Ressourcenpfade verwenden `namespace:path`. Der Namespace ist das Verzeichnis direkt unter `assets`, und der Pfad umfasst alles unterhalb dieses Namespace.
 
-Als Text geschriebene Ressourcenadressen bestehen aus zwei Teilen, getrennt durch einen Doppelpunkt (`:`).
-Der erste Teil ist der **Namespace** und der zweite Teil ist der Rest des **Pfads zur Ressource**, einschließlich des Ressourcennamens mit Dateiendung.
+Betrachten Sie zum Beispiel ein Bild in einem Ressourcenpaket, das unter `/assets/custom_resources/images/image.png` gespeichert ist.
+Sein Ressourcenpfad ist `custom_resources:images/image.png`.
 
-Der **Namespace** einer Ressourcenadresse ist immer einfach das **oberste Verzeichnis/der oberste Ordner** des vollständigen Pfads zur Ressource.
-
-Nehmen wir also an, du lädst ein Ressourcenpaket mit einer Ressource namens `image.png`, die unter `/assets/custom_resources/images/image.png` gespeichert ist.
-In diesem Fall wäre der **Namespace** der Ressourcenadresse `custom_resources`, weil `/assets/` nur der Ort ist, von dem aus Minecraft alle seine Ressourcen lädt. `custom_resources` ist also das **oberste Verzeichnis** der Ressource.
-Das bedeutet, dass `images/image.png` der **Rest des Pfads** zur Ressource ist.
-
-Die korrekte Ressourcenadresse für die Ressource `image.png` wäre also:
-`custom_resources:images/image.png`
-
-> **Fun Fact**: Da Minecraft den Großteil seiner Ressourcen unter `/assets/minecraft/` speichert, ist der **Namespace** der meisten Minecraft-Ressourcen `minecraft`.
-{.is-info}
+> [!NOTE]
+> Die integrierten Ressourcen von Minecraft verwenden normalerweise den Namespace `minecraft`.
 
 # Lokale Ressourcen
 
-Der einfachste Weg, Ressourcen zu laden, ist, einfach lokale Dateien zu verwenden, die auf dem Client gespeichert sind (und in den meisten Fällen mit Modpacks ausgeliefert werden).
+Speichern Sie lokale Ressourcen in `<game-directory>/config/fancymenu/assets/`. `<game-directory>` ist der Ordner der aktiven Instanz, der sich von `.minecraft` unterscheiden kann.
 
-FancyMenu erlaubt das Laden lokaler Ressourcen nur aus `/config/fancymenu/assets/`, also stelle sicher, dass du alle deine Ressourcen dort speicherst!
+Ressourcenfelder können denselben Pfad als `/config/fancymenu/assets/example.png` anzeigen. In diesen Feldern bedeutet der führende `/` weiterhin `<game-directory>`; es ist kein Pfad zum Stammverzeichnis des Dateisystems.
 
-Das macht es außerdem sehr einfach, [lokale Ressourcen mit deinen Modpacks auszuliefern](./modpacks), da die meisten Modpack-Systeme (CurseForge, Modrinth usw.) das Ausliefern von Mod-Konfigurationsordnern standardmäßig unterstützen.
+Diese Dateien können über ihren Config-Ordner mit einem [Modpack mitgeliefert](./modpacks) werden.
+
+Eine vollständige Übersicht über die Pfade von FancyMenu für Layout, Ressourcen, Konfiguration und generierten Status finden Sie unter [Datenspeicherorte](./data-storage-locations).
 
 # Web-Ressourcen
 
-Wenn du Ressourcen dynamisch ändern möchtest, ohne dein Modpack aktualisieren zu müssen, sind **Web**-Ressourcen die beste Wahl.
-
-Eine Web-Ressource ist im Grunde einfach die **URL** zu einer auf einem Server gespeicherten Datei, also zum Beispiel `https://example-domain.net/image.png`.
-
-Achte darauf, immer **DIREKTE URLs** zu verwenden, also URLs, die mit dem **Dateinamen und der Dateiendung** der Ressource enden, genau wie die Beispiel-URL oben.
-Die Verwendung nicht-direkter URLs verschlechtert die Leistung und führt eher zu Fehlern.
+Verwenden Sie eine direkte URL zur Datei, z. B. `https://example-domain.net/image.png`. Seiten und Weiterleitungslinks sind langsamer und fehleranfälliger als direkte URLs, die auf den Dateinamen und die Dateiendung der Ressource enden.
 
 # Platzhalter in Ressourcenquellen
 
-Es ist möglich, FancyMenus Platzhalter in Ressourcenquellen zu verwenden, etwa im Pfad zu einer lokalen Quelle, in der URL zu einer Web-Quelle oder in der Ressourcenadresse zu einer Minecraft-Ressource.
+Ressourcenfelder mit Auswahldialog können [Platzhalter](./placeholders) in lokalen Pfaden, URLs und Minecraft-Ressourcenpfaden verwenden. Wählen Sie neben dem Quellenfeld **Im Editor öffnen**, um es direkt zu bearbeiten.
 
-Dadurch kannst du Quellen dynamisch aktualisieren, zum Beispiel die Bildquelle eines Menü-Hintergrunds ändern, wenn du eine FancyMenu-Variable setzt, um je nach Wert der Variable einen anderen Hintergrund anzuzeigen.
-
-Du kannst die Quelle manuell bearbeiten, indem du auf die Schaltfläche **Im Editor öffnen** rechts neben dem Eingabefeld der Ressourcenquelle klickst.
-
-> Beachte, dass dies nur für Ressourceneingaben gilt, die die normale Ressourcen-Auswahloberfläche verwenden. Es ist möglich, dass *einige* Ressourceneingaben, die den Auswahldialog nicht verwenden, Platzhalter **NICHT** unterstützen oder sich nicht dynamisch aktualisieren, wenn sich der Platzhalter ändert.
-{.is-warning}
+> [!WARNING]
+> Ressourceneingaben, die nicht den normalen Auswahldialog verwenden, unterstützen möglicherweise keine Platzhalter oder Live-Quellenaktualisierungen.

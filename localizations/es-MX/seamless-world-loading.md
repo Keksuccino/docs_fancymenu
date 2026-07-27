@@ -1,28 +1,26 @@
 ---
-title: Carga continua del mundo
-description: >-
-  Usa la última vista de tu mundo/servidor como fondo de carga para la siguiente
-  vez.
+title: Carga fluida del mundo
+description: Usa una vista reciente del mundo como el siguiente fondo de carga.
 ---
 
-# Carga continua del mundo
+# Carga fluida del mundo
 
-La Carga continua del mundo toma una captura de pantalla cuando sales de un mundo o servidor y la usa como fondo de carga la siguiente vez.
+La Carga fluida del mundo usa una vista reciente de un mundo o servidor como el fondo de la siguiente pantalla de carga.
 
-Esto hace que las transiciones de carga se sientan más fluidas porque la pantalla de carga coincidirá con lo que verás cuando termine de cargar.
-
-# Dónde encontrarlo
-
-Abre la **barra de menú** de FancyMenu mientras **no** estés en el editor de diseños, luego ve a **Customization -> Global Customizations**.
-
-# Activar / Desactivar
-
-1. Abre **Customization -> Global Customizations**.
-2. Busca **Seamless World Loading**.
-3. Cámbialo a **Enabled** o **Disabled**.
+Actívalo desde [**Personalización -> Personalizaciones globales**](./global-customizations) -> **Carga fluida del mundo**.
 
 # Cómo funciona
 
-- Cuando está activado, FancyMenu guarda una captura de pantalla cuando sales de un mundo/servidor.
-- En la siguiente carga, esa captura se usa como fondo de carga.
-- Primer uso: si todavía no existe ninguna captura, no habrá nada que mostrar hasta que salgas una vez de un mundo/servidor.
+- FancyMenu captura periódicamente el cuadro actual mientras estás en un mundo o servidor rastreado.
+- La captura más reciente se guarda cuando sales.
+- Cada mundo y servidor tiene su propio nombre de archivo PNG con hash.
+- FancyMenu precarga hasta cinco capturas recientes de mundos y cinco capturas recientes de servidores.
+- No se muestra nada para un destino hasta que se haya guardado su primera captura.
+
+Las capturas se almacenan en:
+
+```text
+<game-directory>/fancymenu_data/seamless_world_loading/
+```
+
+Las capturas de pantalla pueden contener cualquier cosa visible en el mundo al momento de capturarse. Desactivar la Carga fluida del mundo detiene la captura y su uso, pero no elimina los archivos PNG existentes. Elimina las capturas no deseadas del directorio mientras el juego esté cerrado.

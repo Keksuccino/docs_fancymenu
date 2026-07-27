@@ -1,22 +1,24 @@
 ---
-title: Client < - > Server Datenaustausch
+title: Client < - > Server-Datenaustausch
 description: >-
-  Sende und empfange benutzerdefinierte Daten zwischen Server und Client mit
-  FancyMenu.
+  Benutzerdefinierte Daten zwischen Server und Client mit FancyMenu senden und
+  empfangen.
 ---
 
 # FM Data
 
 Das System „FM Data“ ermöglicht es dir, benutzerdefinierte Textdaten zwischen Server und Client zu senden.
 
+Jeder Unterbefehl von `/fmdata` erfordert **Berechtigungsstufe 2** (Game Master / OP Stufe 2).
+
 Jede FM-Data-Nachricht hat:
 
-1. Einen **Datenbezeichner** (welche Art von Nachricht dies ist)
+1. Eine **Datenkennung** (welche Art von Nachricht dies ist)
 2. Einen **Datenwert** (der eigentliche Inhalt)
 
-Beispielidee:
+Beispiel:
 
-- Bezeichner: `hud.food`
+- Kennung: `hud.food`
 - Daten: `18/20`
 
 # Schnellstart
@@ -25,14 +27,14 @@ Beispielidee:
 2. Client empfängt sie mit dem FancyMenu-Listener **On FM Data Received**
 3. Client kann Daten auch mit der Aktion **Send FM Data To Server** zurücksenden
 4. Server kann automatisch mit `/fmdata listener ...` reagieren
-5. Server kann Daten beim Beitritt automatisch mit `/fmdata welcome_data ...` senden
+5. Server kann beim Beitreten automatisch Daten mit `/fmdata welcome_data ...` senden
 
 # Server -> Client
 
 Verwende:
 
 ```mcfunction
-/fmdata send <target_player> <data_identifier> <string_data>
+/fmdata send <target_players> <data_identifier> <string_data>
 ```
 
 Beispiele:
@@ -44,7 +46,7 @@ Beispiele:
 
 Hinweise:
 
-- `<target_player>` unterstützt normale Spielerauswahlen wie `@a`, `@p`, `@s`
+- `<target_players>` unterstützt Spielernamen und Selektoren wie `@a`, `@p` und `@s`
 - Verwende Anführungszeichen für Werte mit Leerzeichen
 
 # Client: Daten empfangen
@@ -61,14 +63,14 @@ Verfügbare Variablen:
 
 `$$sent_by` ist:
 
-- Server-IP im Multiplayer
+- Server-IP im Mehrspieler
 - `integrated_server` im Einzelspieler
 
 Häufige Anwendungsfälle:
 
 - Textelemente aktualisieren
 - Menüaktionen auslösen
-- Logik basierend auf eingehendem Bezeichner/Datenwert ausführen
+- Logik basierend auf eingehender Kennung / Daten ausführen
 
 # Client -> Server
 
@@ -78,7 +80,7 @@ Verwende die FancyMenu-Aktion:
 
 Die Aktion hat 2 Eingaben:
 
-1. Datenbezeichner
+1. Datenkennung
 2. Daten
 
 Der Server kann eingehende Daten dann mit `/fmdata listener ...` verarbeiten.
@@ -96,7 +98,7 @@ Verwalte sie mit:
 - `/fmdata listener edit ...`
 - `/fmdata listener remove ...`
 
-## Syntax für Hinzufügen / Bearbeiten
+## Syntax zum Hinzufügen / Bearbeiten
 
 ```mcfunction
 /fmdata listener add <unique_listener_name> <matching_type_identifier> <matching_type_data> <ignore_case_identifier> <ignore_case_data> <fire_for_player> <listen_for_identifier> <listen_for_data> <commands_to_execute_on_fire>
@@ -112,7 +114,7 @@ Verwalte sie mit:
 /fmdata listener remove <listener_name>
 ```
 
-## Vergleichstypen
+## Abgleichtypen
 
 `matching_type_identifier` und `matching_type_data` können sein:
 
@@ -121,33 +123,33 @@ Verwalte sie mit:
 - `starts_with`
 - `ends_with`
 
-## Vergleichsregeln
+## Abgleichregeln
 
-- `ignore_case_identifier` und `ignore_case_data` sind Umschalter für true/false
-- `listen_for_identifier` unterstützt den Platzhalter `*` (passt immer)
-- `listen_for_data` unterstützt den Platzhalter `*` (passt immer)
-- `fire_for_player` verwendet normale Spielerauswahlen (zum Beispiel `@a`, `@p`, `Player761`)
+- `ignore_case_identifier` und `ignore_case_data` sind Umschalter mit true/false
+- `listen_for_identifier` unterstützt Platzhalter `*` (passt immer)
+- `listen_for_data` unterstützt Platzhalter `*` (passt immer)
+- `fire_for_player` verwendet normale Spieler-Selektoren (zum Beispiel `@a`, `@p`, `Player761`)
 
-## Befehle beim Auslösen
+## Befehle bei Auslösung
 
-`commands_to_execute_on_fire` ist ein einzelnes Texteingabefeld.
+`commands_to_execute_on_fire` ist eine einzelne Texteingabe.
 
 - Trenne mehrere Befehle mit `|||`
-- Maskiere einen literalen Trenner als `\|\|\|`
+- Maskiere einen literalen Separator als `\|\|\|`
 
 Hier kannst du zwei spezielle Platzhalter verwenden, die direkt vor der Ausführung der Befehle ersetzt werden:
 
-- `%fm_sender%` -> Spieler, der die FM-Daten gesendet hat
-- `%fm_data%` -> vom Client empfangener Datenwert
+- `%fm_sender%` -> Spieler, der die FM Data gesendet hat
+- `%fm_data%` -> von Client empfangener Datenwert
 
-Befehle werden als Server-Befehle ausgeführt.
+Befehle werden als Serverbefehle ausgeführt.
 
-## Befehlsbeispiele
+## Beispielbefehle
 
-Auf einen Tastendruck eines beliebigen Spielers reagieren:
+Auf einen Tastendruck von einem beliebigen Spieler reagieren:
 
 ```mcfunction
-/fmdata listener add button_ping equals equals false false @a ui.button pressed "tellraw @a {\"text\":\"%fm_sender% hat den Button gedrückt\"}"
+/fmdata listener add button_ping equals equals false false @a ui.button pressed "tellraw @a {\"text\":\"%fm_sender% hat den Knopf gedrückt\"}"
 ```
 
 Mehrere Befehle ausführen, wenn Daten `gold` enthalten:
@@ -167,7 +169,7 @@ Verwalte Einträge mit:
 - `/fmdata welcome_data edit ...`
 - `/fmdata welcome_data remove ...`
 
-## Syntax für Hinzufügen / Bearbeiten
+## Syntax zum Hinzufügen / Bearbeiten
 
 ```mcfunction
 /fmdata welcome_data add <unique_welcome_data_name> <target_player> <data_identifier> <string_data>
@@ -185,11 +187,11 @@ Verwalte Einträge mit:
 
 Hinweise:
 
-- `<target_player>` unterstützt normale Auswahlen wie `@a`, `@p`, `@s`
+- `<target_player>` unterstützt normale Selektoren wie `@a`, `@p`, `@s`
 - Daten werden an passende Spieler gesendet, wenn sie beitreten
 - Einträge werden automatisch gespeichert und geladen
 
-## Befehlsbeispiele
+## Beispielbefehle
 
 Willkommensdaten an alle beitretenden Spieler senden:
 
@@ -205,8 +207,8 @@ Willkommensdaten nur an einen Spieler senden:
 
 # Best Practices
 
-1. Verwende klare Bezeichner wie `hud.food`, `menu.shop.open`, `quest.progress`.
-2. Halte das Datenformat für jeden Bezeichner konsistent.
-3. Fang einfach an: Teste zuerst mit `/fmdata send`, bevor du komplexe Listener erstellst.
-4. Verwende `@a` nur, wenn du wirklich globales Verhalten möchtest.
+1. Verwende klare Kennungen wie `hud.food`, `menu.shop.open`, `quest.progress`.
+2. Halte das Datenformat für jede Kennung konsistent.
+3. Fang einfach an: Teste zuerst mit `/fmdata send`, bevor du komplexe Listener baust.
+4. Verwende `@a` nur, wenn du wirklich globales Verhalten willst.
 5. Nutze `/fmdata listener list` und `/fmdata welcome_data list`, um Konfigurationen sauber zu halten.

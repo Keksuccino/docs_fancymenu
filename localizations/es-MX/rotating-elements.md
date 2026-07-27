@@ -1,20 +1,20 @@
 ---
-title: Elementos giratorios
-description: Girar elementos en FancyMenu.
+title: Elementos rotatorios
+description: Rotación de elementos en FancyMenu.
 ---
 
-# Elementos giratorios
+# Elementos rotatorios
 
-A partir de FancyMenu v3.8.0, ¡es posible girar **la mayoría** de los elementos!
+La mayoría de los elementos se pueden rotar.
 
-Para girar un elemento, selecciónalo en el editor de diseño y, si ves una forma circular alrededor del elemento, debería tener un controlador adjunto que puedes agarrar para girar el elemento alrededor de su eje.
+Selecciona un elemento en el editor de diseño. Si la rotación es compatible, aparecerá a su alrededor una guía circular y un controlador. Arrastra el controlador para rotar el elemento.
 
-Si no hay una forma circular alrededor del elemento, no puedes girarlo.
+Si no hay una forma circular alrededor del elemento, no puedes rotarlo.
 
 # Avanzado
 
-También puedes hacer clic derecho sobre el elemento para establecer manualmente los valores de rotación mediante una entrada de texto directa. Esta entrada directa admite [placeholders](/placeholders), así que puedes cambiar dinámicamente la rotación del elemento al combinarla con placeholders para obtener valores de variables de FancyMenu o algo similar.
+También puedes hacer clic derecho en el elemento para establecer manualmente los valores de rotación mediante una entrada de texto directa. Esta entrada directa admite [placeholders](/placeholders), así que puedes cambiar dinámicamente la rotación del elemento al combinarla con placeholders para obtener valores de variables de FancyMenu o similares.
 
-# Botones, controles deslizantes y otros elementos interactivos
+# Botones, deslizadores y otros elementos interactivos
 
-En el caso de elementos interactivos, girarlos es posible, pero la rotación es solo visual; por ejemplo, el botón seguirá respondiendo únicamente a los clics dentro de su área original, aunque la rotación pueda haberlo movido parcialmente fuera de esa área.
+La rotación es solo visual para los elementos interactivos. Un botón rotado sigue aceptando clics dentro de su área original, sin rotar.

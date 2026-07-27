@@ -1,10 +1,13 @@
 ---
-title: Import/Export układów
+title: Importowanie i eksportowanie układów
 description: Jak udostępniać układy innym.
 ---
 
-Proces udostępniania układu jest bardzo podobny do [dodawania go do modpacka](/modpacks), więc po więcej informacji zajrzyj na [stronę Modpacki](/modpacks).
+# Importowanie i eksportowanie układów
 
-Zamiast przenosić pliki konfiguracyjne do modpacka, „przenosisz” je do innej instancji Minecrafta swojego znajomego itp.
+> [!CAUTION]
+> Udostępniane konfiguracje mogą uruchamiać działania. Importuj je wyłącznie ze źródeł, którym ufasz.
 
-Po prostu wyślij znajomemu folder config jako ZIP i niech wykona kroki, aby skopiować folder do swojej instancji.
+Postępuj zgodnie z [przewodnikiem po paczkach modów](/modpacks), ale skopiuj konfigurację do instancji Minecraft odbiorcy zamiast do paczki modów.
+
+Spakuj wymagane pliki z `<game-directory>/config/fancymenu/` oraz wszelkie wyraźnie wskazane zasoby. `<game-directory>` to aktywny katalog launchera/profilu i niekoniecznie jest to `.minecraft`.

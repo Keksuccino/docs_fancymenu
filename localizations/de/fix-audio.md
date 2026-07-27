@@ -1,52 +1,18 @@
 ---
-title: Audiodateien reparieren
-description: 'Wie man Audiodateien repariert, falls FancyMenu sie nicht abspielen kann.'
+title: Audiodateien beheben
+description: 'Probleme mit Audiodateien beheben, die FancyMenu nicht abspielen kann.'
 ---
 
-# Audiodateien reparieren
+# Audiodateien beheben
 
-Minecraft ist bei den Audiodateien, die es abspielt, ein wenig wählerisch.
-Manchmal funktionieren Audiodateien in anderen Audioplayern problemlos, aber FancyMenu kann sie nicht abspielen.
-Falls das der Fall ist, kannst du versuchen, die Audiodatei zu reparieren, damit sie in Minecraft funktioniert.
+Wenn eine Audiodatei an anderer Stelle abgespielt wird, aber nicht in FancyMenu, kodiere sie erneut als OGG oder PCM-WAV. Bei WAV-Dateien versuche es mit 48 kHz, 16-Bit-Audio.
 
-# OGG-Dateien
+Du kannst FFmpeg oder einen anderen vertrauenswürdigen Audiokonverter verwenden. Eine erneute Kodierung ist auch dann sinnvoll, wenn die aktuelle Dateiendung und die gemeldeten Einstellungen bereits korrekt aussehen.
 
-In den meisten Fällen lassen sich OGG-Dateien ganz einfach reparieren.
+# Prüfungen
 
-90 % deiner Probleme mit Audiodateien lassen sich schon dadurch beheben, dass du die Datei einfach erneut konvertierst.
-
-1. Gehe zu https://convertio.co/ogg-mp3/ und konvertiere deine OGG-Datei in MP3.
-2. Gehe zu https://convertio.co/mp3-ogg/ und konvertiere die MP3-Datei aus dem letzten Schritt wieder zurück in OGG.
-
-Die Datei sollte jetzt problemlos funktionieren.
-Wenn sie immer noch nicht funktioniert, stelle sicher, dass es keine extrem große Audiodatei ist, und prüfe, ob die Audiodatei in anderen Audioplayern abgespielt werden kann.
-
-# WAV-Dateien
-
-Bei WAV-Dateien sind es meistens eine nicht unterstützte Sample-Rate und ähnliche Dinge, die dazu führen, dass die Audiodatei in Minecraft nicht korrekt funktioniert.
-
-Stelle sicher, dass deine Audiodatei:
-
-- Eine Sample-Rate von 48 kHz hat
-- Eine Bittiefe von 16 Bit hat
-- Eine gültige WAV-Datei ist, die außerhalb von MC funktioniert
-
-Du kannst deine Audiodatei ganz einfach mit dieser Website auf die richtige Bit- und Sample-Rate (neu)konvertieren:
-https://audio.online-convert.com/convert-to-wav
-
-**WICHTIG:**
-Auch wenn du denkst, dass deine Audiodatei bereits das richtige Format sowie die richtige Bit- und Sample-Rate hat, konvertiere sie bitte trotzdem erneut mit der oben genannten Website.
-
-# Andere Ursachen
-
-Manchmal ist nicht die Datei beschädigt, sondern andere Dinge sind nicht richtig konfiguriert usw.
-
-## Zu leise
-
-Vielleicht ist die Lautstärke in Minecraft für dich zu niedrig, um die Audiodatei zu hören.
-Stelle sicher, dass der MASTER-Kanal und alle anderen Kanäle laut genug eingestellt sind.
-
-## Mod-Konflikt
-
-Vielleicht ist ein anderes Mod mit dem Audiosystem inkompatibel, das meine Mods verwenden.
-In diesem Fall eröffne bitte ein Issue auf GitHub, vielen Dank.
+- Bestätige, dass die erneut kodierte Datei in einem anderen Audioplayer abgespielt wird.
+- Halte sehr große Audiodateien von speicherempfindlichen Bildschirmen fern.
+- Überprüfe den ausgewählten Soundkanal des [Audio-Elements](./elements#audio) oder der Aktion.
+- Prüfe die Hauptlautstärke von Minecraft und die Lautstärke des ausgewählten Kanals.
+- Wenn die Audioausgabe weiterhin fehlschlägt, teste ohne andere Mods, die Minecraft-Audio ersetzen oder verarbeiten.

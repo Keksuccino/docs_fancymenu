@@ -1,29 +1,24 @@
 ---
 title: GUIs per Befehl öffnen
-description: Wie Vanilla- und benutzerdefinierte GUIs per Befehl geöffnet werden.
+description: Wie man Vanilla- und benutzerdefinierte GUIs per Befehl öffnet.
 ---
 
 # GUIs per Befehl öffnen
 
-FancyMenu bringt einen Befehl mit, mit dem du Vanilla- und benutzerdefinierte GUIs per Befehl öffnen kannst.
-Wenn FancyMenu sowohl auf dem **Server** als auch auf den **Clients** installiert ist, kannst du GUIs sogar aus der Ferne für **andere Spieler** öffnen.
+Der Befehl `/openguiscreen` öffnet Vanilla-, Mod- und [benutzerdefinierte GUIs](./custom-guis). Er kann andere Spieler ansprechen, wenn FancyMenu auf dem Server und auf deren Clients installiert ist.
 
-Um ein GUI zu öffnen, verwende einfach den Befehl `/openguiscreen <screen_identifier> <target_player>`.
+Um ein GUI zu öffnen, verwende `/openguiscreen <screen_identifier> [<target_players>]`.
 
-Ersetze `<screen_identifier>` durch die tatsächliche Menü-ID des GUIs, das du öffnen möchtest.
-Das kann die ID deines benutzerdefinierten GUIs (erstellt mit FancyMenu) oder die normale Menü-ID eines Vanilla-/Mod-GUIs sein.
+Ersetze `<screen_identifier>` durch den exakten, groß-/kleinschreibungssensitiven Bezeichner des benutzerdefinierten GUIs oder des Vanilla-/Mod-Bildschirms.
 
-Um die **Menü-ID von Vanilla-/Mod-GUIs** herauszufinden, öffne das gewünschte Menü und aktiviere dann das **Debug-Overlay** von FancyMenu über **Customization -> Debug Overlay**. Anschließend kannst du auf die als erste Zeile angezeigte ID klicken, um sie in die Zwischenablage zu kopieren.
+Um einen Bezeichner zu finden, öffne den gewünschten Bildschirm und aktiviere das Debug-Overlay mit **STRG + ALT + D**. Wähle den Bezeichner in der ersten Zeile aus, um ihn zu kopieren. Siehe [Bildschirm-Bezeichner](./screen-identifiers).
 
 ![copy_identifier](https://github.com/Keksuccino/FancyMenu/assets/35544624/dd6c53d9-d2bd-4810-be03-3741e326bd5a)
 
-Lasse das Argument `<target_player>` leer, um das GUI für deinen Client zu öffnen, oder wähle einen Spieler (oder mehrere Spieler) aus, für den bzw. die das GUI geöffnet werden soll.
-Beachte, dass der andere Spieler FancyMenu auf seinem Client installiert haben muss.
+Lasse `[<target_players>]` weg, um das GUI für dich selbst zu öffnen, oder verwende einen Spielernamen oder einen Selektor wie `@a`, um es für einen oder mehrere Spieler zu öffnen. Das Angeben des Ziel-Arguments erfordert Berechtigungsstufe 2 (Game Master / OP-Stufe 2), selbst wenn du dich selbst angibst, und jeder Zielspieler muss FancyMenu auf seinem Client installiert haben.
 
-Dieser Befehl funktioniert nicht für jeden Bildschirm, insbesondere nicht für Mod-Bildschirme. Wenn der Befehl einen Bildschirm nicht öffnen kann, wird ein Fehler angezeigt. In diesem Fall kannst du leider nicht viel tun, da es sich dann wahrscheinlich um einen Bildschirm handelt, der zu komplex ist, um von FancyMenu automatisch geöffnet zu werden.
-
-Ich werde auch keine manuelle Kompatibilität mehr für Mod-Bildschirme hinzufügen, da es ewig dauern würde, für all die Mods da draußen Unterstützung einzubauen, sorry.
+Nicht jeder Mod-Bildschirm kann direkt erstellt werden. FancyMenu zeigt einen Fehler an, wenn ein Zielbildschirm nicht unterstützt wird. Verwende in einem lokalen Layout [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) auf dem Widget, das ihn normalerweise öffnet.
 
 # GUIs per Befehl schließen
 
-Falls du es einmal brauchst, gibt es auch den Befehl `/closeguiscreen <target_player>`, der den aktuellen Bildschirm schließt.
+Falls du es ausnahmsweise brauchst, schließt `/closeguiscreen [<target_players>]` den aktuellen Bildschirm. Ohne Zielangabe betrifft der Befehl dich selbst; das Angeben des Ziel-Arguments erfordert Berechtigungsstufe 2.

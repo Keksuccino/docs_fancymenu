@@ -1,187 +1,121 @@
 ---
-title: NBT-Daten-Placeholder
-description: Wie man den NBT-Daten-Placeholder verwendet.
+title: NBT-Daten-Platzhalter
+description: 'Liest NBT-Daten von Entitäten, Blöcken und Speicher.'
 ---
 
+# NBT-Daten-Platzhalter
 
-# NBT-Daten abrufen
+FancyMenu stellt zwei NBT-Platzhalter bereit:
 
-Diese Platzhalter sind in FancyMenu v3.8.0+ verfügbar.
+| Platzhalter | Läuft auf | Verfügbare Daten |
+|---|---|---|
+| `nbt_data_get` | Client | Vom Client sichtbare Entitäten und Block-Entitäten |
+| `nbt_data_get_server` | Server | Vanilla-`/data get`-Ziele; erfordert FancyMenu auf dem Server |
 
-Die Platzhalter **Client NBT Data Get** und **Server NBT Data Get** ermöglichen es dir, NBT-Daten (Named Binary Tag) von Entitäten und Blöcken in Minecraft abzurufen, ähnlich dem Befehl `/data get`. Das ist extrem nützlich, um dynamische Layouts zu erstellen, die auf den Spielzustand, Spielerstats oder Weltbedingungen reagieren.
+# Client-seitiger Platzhalter
 
-> Dieser Platzhalter ist besonders leistungsstark für modifiziertes Gameplay, da er auf benutzerdefinierte NBT-Daten zugreifen kann, die Mods zu Entitäten und Spielern hinzufügen. Egal, ob du mit Magie-Mods spielst, die Manasysteme hinzufügen, mit RPG-Mods mit benutzerdefinierten Stats oder mit Technologie-Mods mit Energiewerten – du kannst diese modifizierten Werte in deinen UI-Layouts anzeigen.
-{.is-info}
-
-## Übersicht
-
-Diese Platzhalter extrahieren spezifische Werte aus NBT-Datenstrukturen mithilfe von NBT-Pfaden. Du kannst Spielerleben, Hunger, Inventargegenstände, Blockzustände, modifizierte Attribute wie Mana oder Energie und vieles mehr abrufen.
-
-Die clientseitige Version des Platzhalters hat den großen Vorteil, dass sie rein clientseitig funktioniert, du FancyMenu also nicht auf dem Server benötigst. Allerdings ist sie dadurch auch deutlich eingeschränkter, da nicht alle NBT-Daten jederzeit für alle Clients sichtbar sind.
-
-Die serverseitige Version erfordert, dass FancyMenu auf dem Server installiert ist, bietet dafür aber **volle Unterstützung** für praktisch **alles**, was als NBT gespeichert ist.
-
-Diese Seite konzentriert sich auf die clientseitige Version (`nbt_data_get`), aber alles funktioniert für die serverseitige Version (`nbt_data_get_server`) sehr ähnlich.
-
-## Platzhalter-Syntax
-
-```
+```text
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health"}}
 ```
 
-## Erforderliche Werte
+## Werte
 
-| Wert | Beschreibung | Optionen |
-|-------|-------------|---------|
-| `source_type` | Der Typ der Datenquelle | `entity` oder `block` |
-| `nbt_path` | Der abzufragende NBT-Pfad | z. B. `Health`, `foodLevel`, `Pos[0]`, `Inventory[0].id` |
+| Wert | Erforderlich | Beschreibung |
+|---|---|---|
+| `source_type` | Ja | `entity` oder `block` |
+| `entity_selector` | Für Entitäten | Client-seitiger Selektor, UUID oder exakter Entitätsname |
+| `block_pos` | Für Blöcke | Drei absolute Ganzzahl-Koordinaten, z. B. `100 64 -200` |
+| `nbt_path` | Ja | NBT-Pfad, z. B. `Health`, `Pos[0]` oder `Inventory[0].id` |
+| `scale` | Nein | Multipliziert numerische `value`-Ergebnisse; Standard `1.0` |
+| `return_type` | Nein | `value`, `string`, `snbt` oder `json`; Standard `value` |
 
-## Bedingte Werte
+Client-seitige Blockpositionen unterstützen keine `~`- oder `^`-Koordinaten.
 
-Je nach `source_type` benötigst du einen dieser Werte:
+## Client-Entitätsselektoren
 
-| Wert | Erforderlich wenn | Beschreibung | Format |
-|-------|--------------|-------------|--------|
-| `entity_selector` | `source_type` ist `entity` | Wählt aus, welche Entität abgefragt werden soll | `@s` (selbst), `@p` (nächster Spieler), `@e` (nächste Entität), UUID oder Entitätsname |
-| `block_pos` | `source_type` ist `block` | Die Koordinaten des Blocks | `x y z` (z. B. `100 64 -200`) |
+| Selektor | Anfangsziele | Standardreihenfolge |
+|---|---|---|
+| `@s` | Lokaler Spieler | Selbst |
+| `@p` | Spieler | Nächster |
+| `@a` | Spieler | Client-Iterationsreihenfolge |
+| `@r` | Spieler | Zufällig |
+| `@e` | Alle client-sichtbaren Entitäten | Client-Iterationsreihenfolge |
 
-## Optionale Werte
+`@e` wählt nicht automatisch die nächstgelegene Entität aus, außer du fügst `sort=nearest` hinzu. Direkte UUID- und exakte Entitätsnamen-Suche werden ebenfalls unterstützt.
 
-| Wert | Beschreibung | Standard | Optionen |
-|-------|-------------|---------|---------|
-| `scale` | Skalierungsfaktor für numerische Werte | `1.0` | Beliebige Dezimalzahl |
-| `return_type` | Wie die zurückgegebenen Daten formatiert werden | `value` | `value` (numerisch/Größe), `string` (Text), `snbt` (formatiertes NBT), `json` (JSON-Format) |
+Unterstützte Selektoroptionen:
 
-## Rückgabetypen erklärt
+| Option | Beschreibung |
+|---|---|
+| `type` | Entitäts-ID; mit `!` voranstellen, um auszuschließen |
+| `name` | Exakter Anzeigename; mit `!` voranstellen, um auszuschließen |
+| `tag` | Entitäts-Tag; mit `!` voranstellen, um auszuschließen |
+| `limit` | Positive Ergebnisbegrenzung |
+| `sort` | `nearest`, `furthest`, `random` oder `arbitrary` |
+| `distance` | Vanille-Entfernungsbereich, z. B. `..10` oder `5..20` |
+| `x`, `y`, `z` | Suchursprung; akzeptiert absolute Werte und `~`-Offsets |
+| `dx`, `dy`, `dz` | Größe der Suchbox vom Ursprung aus |
 
-- **`value`** - Gibt numerische Werte oder Größen zurück (Standard)
-  - Bei Zahlen: gibt die Zahl zurück (optional skaliert)
-  - Bei Strings: gibt die Länge des Strings zurück
-  - Bei Listen/Arrays: gibt die Anzahl der Elemente zurück
-  - Bei Compounds: gibt die Anzahl der Tags zurück
+Lokale `^`-Koordinaten und andere Vanille-Selektoroptionen werden vom Client-Platzhalter nicht unterstützt.
 
-- **`string`** - Gibt den tatsächlichen String-Wert der NBT-Daten zurück
+Beispiel:
 
-- **`snbt`** - Gibt die Daten im SNBT-Format (Stringified NBT) zurück
+```text
+{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@e[type=minecraft:zombie,sort=nearest,limit=1,distance=..20]","nbt_path":"Health"}}
+```
 
-- **`json`** - Gibt die Daten im JSON-Format zurück (nur für Compound-Tags)
+## Rückgabetypen
+
+| Typ | Ergebnis |
+|---|---|
+| `value` | Numerische Tags werden numerisch formatiert und `scale` wird angewendet; String-Tags geben ihren Text zurück; andere Tags geben SNBT-ähnlichen Text zurück |
+| `string` | Gibt den String-Wert des Tags zurück oder einen leeren String, wenn der Tag keinen String-Wert hat |
+| `snbt` | Gibt die SNBT-Darstellung des Tags zurück |
+| `json` | Nur für Compound-Tags: gibt eine serialisierte Minecraft-Textkomponente mit formatierter NBT-Ausgabe zurück |
+
+Der client-seitige `json`-Modus ist keine direkte NBT-zu-JSON-Konvertierung.
 
 ## Beispiele
 
-### Spielerleben abrufen
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health"}}
-```
+Spieler-Hunger:
 
-### Hungerlevel des Spielers abrufen
-```json
+```text
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel"}}
 ```
 
-### X-Koordinate des Spielers abrufen
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Pos[0]"}}
-```
+Erste Hotbar-Gegenstands-ID:
 
-### Gegenstand im ersten Hotbar-Slot abrufen
-```json
+```text
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Inventory[{Slot:0b}].id","return_type":"string"}}
 ```
 
-### Blockdaten an einer bestimmten Position abrufen
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"block","block_pos":"100 64 -200","nbt_path":"Items[0].Count"}}
+Gegenstandsanzahl einer Block-Entität:
+
+```text
+{"placeholder":"nbt_data_get","values":{"source_type":"block","block_pos":"100 64 -200","nbt_path":"Items[0].count"}}
 ```
 
-### Skalierten Gesundheitsprozentsatz abrufen (Gesundheit * 5)
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health","scale":"5"}}
+# Server-seitiger Platzhalter
+
+`nbt_data_get_server` folgt dem Verhalten von `/data get` auf dem Server und unterstützt:
+
+- Vollständige serverseitige Entitätsselektoren.
+- Block-Ziele mit absoluten, relativen (`~`) oder lokalen (`^`) Koordinaten.
+- Kommando-Speicher über `source_type:"storage"`.
+
+```text
+{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health","return_type":"value"}}
 ```
 
-## Verfügbare NBT-Pfade finden
+Der Platzhalter gibt einen leeren Wert zurück, bis die Server-Antwort eintrifft. Antworten werden kurzzeitig zwischengespeichert, um übermäßige Anfragen zu vermeiden.
 
-### Methode 1: Den Befehl `/data get` verwenden (empfohlen)
+# NBT-Pfade finden
 
-Der einfachste Weg, verfügbare NBT-Pfade zu entdecken, ist, den Befehl `/data get` im Spiel ohne einen Pfad zu verwenden:
+Verwende den passenden Befehl ohne NBT-Pfad, um verfügbare Daten zu prüfen:
 
-1. **Für Entitäten:** `/data get entity @p`
-2. **Für Blöcke:** `/data get block <x> <y> <z>`
-
-Dadurch werden alle verfügbaren NBT-Daten für das Ziel angezeigt, sodass du die genauen Pfade siehst, die du verwenden kannst.
-
-#### Die Ausgabe verstehen
-
-Wenn du `/data get entity @p` ausführst, siehst du eine Ausgabe ähnlich dieser:
-
-```
-Player616 has the following entity data: {Brain: {memories: {}}, 
-HurtByTimestamp: 0, SleepTimer: 0s, Invulnerable: 0b, FallFlying: 
-0b, PortalCooldown: 0, AbsorptionAmount: 0.0f, abilities: 
-{invulnerable: 1b, mayfly: 1b, instabuild: 1b, walkSpeed: 0.1f, 
-mayBuild: 1b, flying: 1b, flySpeed: 0.05f}, FallDistance: 0.0f, 
-recipeBook: {recipes: ["minecraft:crafting_table"]}, 
-DeathTime: 0s, XpSeed: -380875747, XpTotal: 0, UUID: [I; 1379890089, -1732753738, 
--2135065633, -718799804], playerGameType: 1, seenCredits: 
-0b, Motion: [0.0d, 0.0d, 0.0d], Health: 20.0f, foodSaturationLevel: 
-5.0f, ...}
+```text
+/data get entity @s
+/data get block 100 64 -200
 ```
 
-Um einen gültigen Pfad aus dieser Ausgabe zu extrahieren:
-
-1. **Einfache Werte** - Verwende den Schlüsselnamen direkt:
-   - `Health: 20.0f` → Pfad: `Health`
-   - Beispiel: `{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health"}}`
-
-2. **Verschachtelte Werte** - Verwende Punktnotation, um auf verschachtelte Daten zuzugreifen:
-   - `abilities: {walkSpeed: 0.1f}` → Pfad: `abilities.walkSpeed`
-   - Beispiel: `{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"abilities.walkSpeed"}}`
-
-3. **Array-Werte** - Verwende eckige Klammern mit Indexzahlen:
-   - `Motion: [0.0d, 0.0d, 0.0d]` → Pfad für die Y-Bewegung: `Motion[1]`
-   - Beispiel: `{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Motion[1]"}}`
-
-### Methode 2: NBT-Autocomplete-Mod
-
-Für eine einfachere Ermittlung von NBT-Pfaden solltest du das **NBT Autocomplete**-Mod installieren:
-- Verfügbar für Fabric und Forge (Minecraft 1.21.x)
-- Bietet Ingame-Autovervollständigungsvorschläge beim Tippen von Befehlen
-- Zeigt verfügbare Tag-Namen und Typen an
-- [Modrinth](https://modrinth.com/mod/nbt-autocomplete) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/nbt-autocomplete)
-
-## Häufige NBT-Pfade
-
-### Spieler-Entität
-- `Health` - Aktuelle Gesundheit (float)
-- `foodLevel` - Hungerlevel (int, 0-20)
-- `foodSaturationLevel` - Sättigungslevel (float)
-- `XpLevel` - Erfahrungsstufe (int)
-- `XpP` - Erfahrungsfortschritt (float, 0.0-1.0)
-- `Pos[0]`, `Pos[1]`, `Pos[2]` - X-, Y-, Z-Koordinaten
-- `Inventory` - Spieler-Inventararray
-- `SelectedItemSlot` - Der aktuell ausgewählte Hotbar-Slot (int, 0-8)
-
-### Häufige Block-NBTs
-- `Items` - Inhalt von Behältern (Truhen, Öfen usw.)
-- `CustomName` - Benutzerdefinierter Name des Blocks
-- `Lock` - Sperrstring für Behälter
-
-### Häufige Beispiele für modifizierte NBT-Daten
-- **Magie-Mods**: Speichern Mana oft als `playerMana`, `mana.current` oder ähnlich
-- **Technik-Mods**: Energiewerte wie `energy`, `forgeEnergy` oder `energyStorage.energy`
-- **RPG-Mods**: Benutzerdefinierte Stats wie `customStats.strength`, `rpgAttributes.level`
-
-Um modifizierte NBT-Pfade zu finden, verwende `/data get entity @p`, während der Mod aktiv ist, und achte auf die benutzerdefinierten Tags, die der Mod hinzugefügt hat.
-
-## Einschränkungen
-
-- **Kein Speicherzugriff auf dem Client** - Die Datenquelle „storage“ wird clientseitig nicht unterstützt (nur serverseitig)
-- **Leistung** - Häufiger Zugriff auf NBT-Daten kann die Leistung beeinträchtigen
-- Gibt einen leeren String zurück, wenn der Pfad ungültig ist oder auf die Daten nicht zugegriffen werden kann
-
-## Tipps
-
-1. Teste deine NBT-Pfade immer zuerst im Spiel mit `/data get`
-2. Verwende den Parameter `scale`, um Werte in Prozente oder andere nützliche Formate umzuwandeln
-3. Denke daran, dass einige NBT-Daten möglicherweise nicht mit dem Client synchronisiert werden
-4. Entitätsselektoren sind auf Entitäten innerhalb der Renderdistanz beschränkt
-5. Bei modifizierten Inhalten solltest du die Dokumentation des Mods prüfen oder `/data get` verwenden, um benutzerdefinierte NBT-Pfade zu entdecken
+Client-seitige Ergebnisse sind auf Daten beschränkt, die mit dem Client synchronisiert werden. Ungültige Ziele oder Pfade geben einen leeren String zurück und schreiben Details in `logs/latest.log`.

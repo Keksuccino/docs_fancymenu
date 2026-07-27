@@ -1,20 +1,20 @@
 ---
-title: Elemente drehen
+title: Drehbare Elemente
 description: Elemente in FancyMenu drehen.
 ---
 
-# Elemente drehen
+# Drehbare Elemente
 
-Seit FancyMenu v3.8.0 ist es möglich, **die meisten** Elemente zu drehen!
+Die meisten Elemente können gedreht werden.
 
-Um ein Element zu drehen, wähle es im Layout-Editor aus. Wenn du einen kreisförmigen Rahmen um das Element siehst, sollte daran ein Griff vorhanden sein, den du greifen kannst, um das Element um seine Achse zu drehen.
+Wähle im Layout-Editor ein Element aus. Wenn Rotation unterstützt wird, erscheint darum eine kreisförmige Hilfslinie mit einem Ziehpunkt. Ziehe den Ziehpunkt, um das Element zu drehen.
 
-Wenn sich kein Kreis um das Element befindet, kannst du es nicht drehen.
+Wenn kein Kreis um das Element angezeigt wird, kannst du es nicht drehen.
 
 # Erweitert
 
-Du kannst auch mit der rechten Maustaste auf das Element klicken, um Rotationswerte manuell über eine direkte Texteingabe festzulegen. Diese direkte Eingabe unterstützt [Platzhalter](/placeholders), sodass du die Drehung des Elements dynamisch ändern kannst, indem du sie mit Platzhaltern kombinierst, um FancyMenu-Variablenwerte oder Ähnliches zu erhalten.
+Du kannst das Element auch per Rechtsklick öffnen, um Rotationswerte manuell über eine direkte Texteingabe festzulegen. Diese direkte Eingabe unterstützt [Platzhalter](/placeholders), sodass du die Rotation des Elements dynamisch ändern kannst, wenn du sie mit Platzhaltern kombinierst, um FancyMenu-Variablenwerte oder Ähnliches zu verwenden.
 
-# Buttons, Slider und andere interaktive Elemente
+# Schaltflächen, Schieberegler und andere interaktive Elemente
 
-Bei interaktiven Elementen ist eine Drehung zwar möglich, aber sie ist nur visuell. Der Button zum Beispiel reagiert weiterhin nur auf Klicks innerhalb seines ursprünglichen Bereichs, auch wenn die Drehung ihn teilweise aus diesem Bereich verschoben hat.
+Bei interaktiven Elementen ist die Drehung nur visuell. Eine gedrehte Schaltfläche nimmt Klicks weiterhin nur innerhalb ihres ursprünglichen, ungedrehten Bereichs an.

@@ -1,16 +1,17 @@
 ---
-title: Dragger
+title: Déplaceur
 description: >-
-  Comment faire glisser des éléments dans les menus à l’aide de l’élément
-  Dragger.
+  Permet aux utilisateurs de déplacer des éléments ancrés en dehors de
+  l’éditeur.
 ---
+# Déplaceur
 
-# Dragger
+Un Déplaceur est un élément invisible que les utilisateurs peuvent déplacer avec la souris en dehors de l’éditeur de mise en page. Vous pouvez y ancrer d’autres éléments afin qu’ils se déplacent avec le Déplaceur.
 
-L’élément Dragger est un élément de FancyMenu qui vous permet de rendre les menus interactifs d’une manière plutôt inhabituelle. Le Dragger est un élément que l’on peut faire glisser avec la souris EN DEHORS de l’éditeur, ce qui signifie que les utilisateurs peuvent simplement saisir l’élément et le déplacer.
+1. Ajoutez un élément [**Déplaceur**](./elements#dragger).
+2. Ancrez les éléments qui doivent se déplacer au Déplaceur.
+3. Dimensionnez et positionnez le Déplaceur au-dessus de la zone visible que les utilisateurs doivent attraper.
 
-C’est sympa, mais déplacer un élément qui ne fait rien d’autre, c’est assez inutile, non ? Eh bien non, parce que vous pouvez lui attacher d’autres éléments en définissant l’élément Dragger comme point d’ancrage pour les autres éléments qui doivent se déplacer avec lui.
+Activez **Enregistrer le décalage du glisser de l’utilisateur** pour conserver la position déplacée entre les ouvertures d’écran et les redémarrages du jeu. Désactivez cette option lorsque le décalage doit être réinitialisé.
 
-Le décalage de position des éléments Dragger est persistant et est enregistré entre les redémarrages du jeu, ce qui signifie simplement que lorsque l’utilisateur déplace le Dragger, il reste à cette position « personnalisée », même après avoir redémarré le jeu.
-
-L’élément Dragger n’est visible que dans l’éditeur et invisible en dehors, alors assurez-vous d’utiliser un autre élément comme « corps » si vous voulez que l’utilisateur voie où se trouve la zone de glissement.
+Le Déplaceur est visible uniquement dans l’éditeur. Utilisez une [Image](./elements#image), une [Forme](./elements#rectangle-shape) ou un autre élément ancré comme partie visible.

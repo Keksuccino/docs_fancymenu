@@ -1,35 +1,35 @@
 ---
 title: Kommunikation mit Remote-Servern
 description: >-
-  Senden und empfangen Sie benutzerdefinierte Textdaten zwischen
-  FancyMenu-Clients und externen Servern.
+  Sende und empfange benutzerdefinierte Textdaten zwischen FancyMenu-Clients und
+  externen Servern.
 ---
 
 # Kommunikation mit Remote-Servern
 
-Das System „Kommunikation mit Remote-Servern“ ermöglicht FancyMenu-Clients die Kommunikation mit externen Servern über WebSocket-Verbindungen.
+Das System „Kommunikation mit Remote-Servern“ ermöglicht es FancyMenu-Clients, über WebSocket-Verbindungen mit externen Servern zu kommunizieren.
 
 Alle Daten sind textbasiert:
 
-- Klartext wird unterstützt
+- Reiner Text wird unterstützt
 - JSON wird unterstützt (als normaler Text)
 
-Jede Server-URL erhält zur Laufzeit eine zwischengespeicherte **Request-ID**.
+Jede Server-URL erhält während der Laufzeit eine zwischengespeicherte **Anforderungs-ID**.
 FancyMenu verwendet diese ID, um die Verbindung zu verfolgen und sie in Listener-Variablen bereitzustellen.
 
-# Schnellstart
+# Kurzanleitung
 
-1. Aktion **Mit Remote-Server verbinden** hinzufügen (optional, aber nützlich zum frühzeitigen Öffnen)
-2. Aktion **Daten an Remote-Server senden** mit derselben URL hinzufügen
-3. Listener **Bei Empfang von Remote-Server-Daten** hinzufügen, um auf Antworten zu reagieren
-4. **Bei Remote-Server verbunden** / **Bei Remote-Server-Verbindung geschlossen** für Logik zum Verbindungsstatus verwenden
-5. Verbindungen bei Bedarf mit Schließen-Aktionen schließen
+1. Füge [**Mit Remote-Server verbinden**](#connect-to-remote-server) hinzu, wenn die Verbindung früh geöffnet werden soll.
+2. Füge [**Daten an Remote-Server senden**](#send-data-to-remote-server) mit derselben URL hinzu.
+3. Füge [**Bei Empfang von Daten vom Remote-Server**](#on-remote-server-data-received) hinzu, um auf Antworten zu reagieren.
+4. Verwende [**Bei Verbindung mit Remote-Server**](#on-remote-server-connected) und [**Bei geschlossener Remote-Server-Verbindung**](#on-remote-server-connection-closed) für Logik zum Verbindungsstatus.
+5. Schließe Verbindungen mit [**Remote-Server-Verbindung schließen**](#close-remote-server-connection) oder [**Alle Remote-Server-Verbindungen schließen**](#close-all-remote-server-connections).
 
 # Aktionen
 
 ## Mit Remote-Server verbinden
 
-Initialisiert eine Remote-Server-Verbindung, ohne Nutzlastdaten zu senden.
+Öffnet oder verwendet erneut eine Remote-Server-Verbindung, ohne Nutzdaten zu senden.
 
 Eingabe:
 
@@ -37,7 +37,7 @@ Eingabe:
 
 ## Daten an Remote-Server senden
 
-Stellt eine Verbindung her (oder verwendet eine vorhandene Verbindung erneut) und sendet Textdaten.
+Verbindet sich (oder verwendet eine bestehende Verbindung erneut) und sendet Textdaten.
 
 Eingaben:
 
@@ -46,28 +46,28 @@ Eingaben:
 
 ## Remote-Server-Verbindung schließen
 
-Schließt eine Verbindung anhand der Request-ID.
+Schließt eine Verbindung anhand der Anforderungs-ID.
 
 Eingabe:
 
-- Verbindungs-Request-ID
+- Verbindungs-Anforderungs-ID
 
 ## Alle Remote-Server-Verbindungen schließen
 
-Schließt alle derzeit aktiven Remote-Server-Verbindungen.
+Schließt alle aktuell aktiven Remote-Server-Verbindungen.
 
 # Listener
 
-## Bei Remote-Server verbunden
+## Bei Verbindung mit Remote-Server
 
-Wird ausgelöst, wenn eine Remote-Server-Verbindung initialisiert wird.
+Wird ausgelöst, nachdem eine Remote-Server-Verbindung erfolgreich geöffnet wurde.
 
 Variablen:
 
 - `$$request_id`
 - `$$remote_server_url`
 
-## Bei Empfang von Remote-Server-Daten
+## Bei Empfang von Daten vom Remote-Server
 
 Wird ausgelöst, wenn Daten von einem verbundenen Remote-Server empfangen werden.
 
@@ -77,7 +77,7 @@ Variablen:
 - `$$remote_server_url`
 - `$$data`
 
-## Bei Remote-Server-Verbindung geschlossen
+## Bei geschlossener Remote-Server-Verbindung
 
 Wird ausgelöst, wenn eine Remote-Server-Verbindung geschlossen wird.
 
@@ -93,24 +93,22 @@ Variablen:
 
 - Verbindungen werden **vom Client initiiert**
 - FancyMenu hält Verbindungen im Hintergrund aktiv
-- Wenn eine Verbindung abstürzt oder ein Timeout auftritt, versucht FancyMenu es alle 10 Sekunden erneut
+- Wenn eine Verbindung abstürzt oder ein Timeout auftritt, versucht FancyMenu alle 10 Sekunden erneut eine Verbindung herzustellen
 - Wenn eine abgestürzte Verbindung wiederhergestellt wird, protokolliert FancyMenu eine Wiederherstellungsnachricht
-- Ausgehende, noch nicht gesendete Nachrichten werden mit einer **maximalen Altersgrenze von 30 Sekunden** in eine Warteschlange gestellt
+- Ausgehende, noch nicht gesendete Nachrichten werden mit einer **maximalen Lebensdauer von 30 Sekunden** in eine Warteschlange eingereiht
 - Nachrichten in der Warteschlange, die älter als 30 Sekunden sind, werden verworfen
 
 # URL-Modi
 
-- `wss://` = sicher (TLS), empfohlen
-- `ws://` = unverschlüsselt, nützlich für lokale Tests
+- `wss://` wird wie geschrieben verwendet und wird empfohlen.
+- `ws://` wird wie geschrieben verwendet und ist unverschlüsselt.
+- `https://` wird in `wss://` umgewandelt.
+- `http://` wird in `ws://` umgewandelt.
+- Ein nackter Host wird mit `wss://` vorangestellt.
+- Andere explizite URL-Schemata werden abgelehnt.
 
-Beispiel für eine lokale URL:
+Bevorzuge explizite `wss://`-URLs. Beispiel für eine lokale URL:
 
 - `ws://127.0.0.1:8765`
 
-# Best Practices
-
-1. Verwenden Sie pro Backend-Dienst eine stabile URL.
-2. Halten Sie das Nachrichtenformat für jeden Anwendungsfall konsistent.
-3. Behandeln Sie geschlossene/abgestürzte Verbindungen mit Fallback-UI-Logik.
-4. Verwenden Sie Schließen-Aktionen, wenn Ihr Ablauf abgeschlossen ist.
-5. Verwenden Sie `wss://` für Produktionsumgebungen.
+Verwende pro Dienst eine stabile URL, behandle die Listener-Zustände „geschlossen/abgestürzt“ und schließe Verbindungen, wenn sie nicht mehr benötigt werden.

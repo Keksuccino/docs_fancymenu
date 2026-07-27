@@ -5,54 +5,76 @@ description: Los comandos de FancyMenu y cómo usarlos.
 
 # Comandos
 
-FancyMenu añade algunos comandos al juego que pueden ser muy útiles al combinarlos con otros mods, como FTB Quests.
+FancyMenu añade algunos comandos al juego que pueden ser muy útiles al combinarlos con otros mods como FTB Quests.
 
-> FancyMenu debe estar en el **SERVIDOR** (y en el cliente) para usar comandos en multijugador.
-{.is-warning}
+> [!WARNING]
+> ¡FancyMenu debe estar en el **SERVIDOR** (y en el cliente) para usar comandos en Multijugador!
+
+## Jugadores objetivo y permisos
+
+El argumento de jugador objetivo de `/openguiscreen`, `/closeguiscreen` y `/fmlayout` es opcional. Cuando un jugador lo omite, el comando afecta a ese jugador. Cuando se proporciona un objetivo, se pueden usar nombres de jugador normales y selectores como `@a`.
+
+- Proporcionar el argumento de objetivo a `/openguiscreen` o `/closeguiscreen` requiere **nivel de permiso 2** (Game Master / nivel OP 2), incluso si nombra al origen del comando.
+- Proporcionar el argumento de objetivo a `/fmlayout` requiere **nivel de permiso 3** (Admin / nivel OP 3), incluso si nombra al origen del comando.
+- Cada subcomando de `/fmdata` requiere **nivel de permiso 2** (Game Master / nivel OP 2).
+
+Para los tres comandos con objetivos opcionales, omitir el objetivo solo funciona cuando la fuente del comando es un jugador. La consola del servidor debe proporcionar un objetivo y cumplir el requisito de permiso del argumento objetivo.
 
 ## /openguiscreen
 
-El comando `/openguiscreen` te permite abrir una GUI (vanilla/de mods y GUIs personalizadas).
-Incluso puede abrir GUIs de forma remota para otros jugadores cuando FancyMenu está instalado tanto en el servidor como en los clientes.
+El comando `/openguiscreen` abre una GUI de Vanilla, de un mod o una [GUI personalizada](./custom-guis). Puede dirigirse a otros jugadores cuando FancyMenu está instalado en el servidor y en sus clientes.
 
-Para una descripción más detallada de este comando, consulta la página [Abrir GUIs por comando](/opengui-command).
+Consulta [Abrir GUIs mediante comando](./opengui-command) y [Identificadores de pantalla](./screen-identifiers).
 
-Este comando no funcionará con todas las pantallas, especialmente con las pantallas de mods. Si el comando no consigue abrir una pantalla, mostrará un error. No hay mucho que puedas hacer en ese caso, porque probablemente sea una pantalla demasiado compleja como para que FancyMenu la abra automáticamente.
+No todas las pantallas de mods pueden crearse directamente. FancyMenu muestra un error cuando una pantalla de destino no es compatible. En un diseño local, usa [**Botón imitar Vanilla/Mod**](./action-scripts#mimic-vanillamod-button-mimicbutton) en el widget que normalmente la abre.
 
-Tampoco añadiré compatibilidad manualmente para las pantallas de mods a partir de ahora, porque añadir compatibilidad para todos los mods que existen me llevaría una eternidad, lo siento.
-
-**Uso:** `/openguiscreen <screen_identifier> <target_player>`
+**Uso:** `/openguiscreen <screen_identifier> [<target_players>]`
 
 ## /closeguiscreen
 
-El comando `/closeguiscreen` te permite cerrar la GUI actual.
+El comando `/closeguiscreen` cierra la pantalla actual para la fuente del comando o para los jugadores seleccionados. Es útil con mods de misiones, eventos o automatización que puedan ejecutar comandos.
 
-¿Eh? ¿Dices que esto no sirve para nada?
-Bueno, sí, pero en realidad no.
+**Uso:** `/closeguiscreen [<target_players>]`
 
-Este comando es útil cuando se usan mods que activan comandos en acciones concretas.
-Así que sí, este comando es absolutamente inútil si lo usas sin otros mods, ¡pero puede ser realmente útil si tienes instalados los mods adecuados!
+## /fmlayout
 
-**Uso:** `/closeguiscreen <target_player>`
+El comando `/fmlayout` establece si un diseño está activado en uno o más clientes. Usa el nombre del diseño exactamente como aparece en FancyMenu y pon entre comillas los nombres que contengan espacios.
+
+**Uso:** `/fmlayout <layout_name> <true|false> [<target_players>]`
+
+Ejemplos:
+
+- `/fmlayout quest_complete true` activa `quest_complete` para el jugador que ejecuta el comando.
+- `/fmlayout quest_complete false @a` lo desactiva para todos los jugadores conectados. Proporcionar el argumento de objetivo requiere nivel de permiso 3.
 
 ## /fmvariable
 
-El comando `/fmvariable` te permite establecer y obtener variables de FancyMenu.
+El comando `/fmvariable` establece y lee [variables de FancyMenu](./variables).
 
-Para ejecutar este comando como otro jugador en servidores, puedes usar el comando de vanilla `/execute as`.
-Así que, por ejemplo, si quieres ejecutar el comando `/fmvariable` como el jugador `ExamplePlayer`, escribirías:
-`/execute as ExamplePlayer run fmvariable...`.
+Para ejecutar este comando como otro jugador, usa el comando `/execute as` de Vanilla:
+`/execute as ExamplePlayer run fmvariable ...`
 
-**Uso:** `/fmvariable <get_or_set> <variable_name> [<set_to_value>] [<send_chat_feedback>]`
+**Uso:**
+
+- `/fmvariable get <variable_name>`
+- `/fmvariable set <variable_name> <send_chat_feedback> <set_to_value>`
 
 ### Obtener
-Para **obtener el valor de una variable**, usa el subcomando `get` de esta forma:
+
+Para **obtener el valor de una variable**, usa el subcomando `get` así:
 `/fmvariable get some_variable`
 
 Entonces el valor de esta variable se mostrará en tu chat.
 
 ### Establecer
-Para **establecer una variable**, usa el subcomando `set` de esta forma:
-`/fmvariable set some_variable new_value true`
 
-El último argumento sirve para indicar si quieres recibir mensajes en el chat, es decir, si quieres que este comando imprima mensajes en tu chat.
+Para **establecer una variable**, coloca el booleano de confirmación en chat antes del nuevo valor:
+`/fmvariable set some_variable true new_value`
+
+El argumento `send_chat_feedback` controla si FancyMenu confirma el cambio en el chat. El argumento `set_to_value` consume el resto del comando, por lo que el valor puede contener espacios. Por ejemplo, `/fmvariable set greeting false Hello from FancyMenu` almacena `Hello from FancyMenu` sin mostrar una confirmación de éxito.
+
+## /fmdata
+
+El comando `/fmdata` envía datos personalizados entre el servidor y los clientes de FancyMenu, gestiona escuchadores del lado del servidor y configura los datos que se envían cuando los jugadores se conectan. Cada subcomando de `/fmdata` requiere nivel de permiso 2.
+
+Consulta [FM Data](./fm-data) para ver todos los subcomandos, la sintaxis y los ejemplos.

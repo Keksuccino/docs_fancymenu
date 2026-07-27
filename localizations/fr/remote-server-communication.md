@@ -7,29 +7,29 @@ description: >-
 
 # Communication avec un serveur distant
 
-Le système de « Communication avec un serveur distant » permet aux clients FancyMenu de communiquer avec des serveurs externes via des connexions WebSocket.
+Le système de « Communication avec un serveur distant » permet aux clients FancyMenu de communiquer avec des serveurs externes à l’aide de connexions WebSocket.
 
 Toutes les données sont basées sur du texte :
 
 - Le texte brut est pris en charge
-- Le JSON est pris en charge (en tant que texte normal)
+- JSON est pris en charge (en tant que texte normal)
 
 Chaque URL de serveur reçoit un seul **ID de requête** mis en cache pendant l’exécution.
-FancyMenu utilise cet ID pour suivre la connexion et l’exposer dans les variables des listeners.
+FancyMenu utilise cet ID pour suivre la connexion et l’exposer dans les variables des écouteurs.
 
 # Démarrage rapide
 
-1. Ajoutez l’action **Se connecter à un serveur distant** (facultatif, mais utile pour ouvrir la connexion tôt)
-2. Ajoutez l’action **Envoyer des données au serveur distant** avec la même URL
-3. Ajoutez le listener **À la réception de données du serveur distant** pour réagir aux réponses
-4. Utilisez **Lors de la connexion au serveur distant** / **Lors de la fermeture de la connexion au serveur distant** pour la logique d’état de connexion
-5. Fermez les connexions lorsque nécessaire avec les actions de fermeture
+1. Ajoutez [**Se connecter au serveur distant**](#se-connecter-au-serveur-distant) lorsque la connexion doit s’ouvrir tôt.
+2. Ajoutez [**Envoyer des données au serveur distant**](#envoyer-des-donnees-au-serveur-distant) avec la même URL.
+3. Ajoutez [**À la réception de données du serveur distant**](#a-la-reception-de-donnees-du-serveur-distant) pour réagir aux réponses.
+4. Utilisez [**Lors de la connexion au serveur distant**](#lors-de-la-connexion-au-serveur-distant) et [**Lors de la fermeture de la connexion au serveur distant**](#lors-de-la-fermeture-de-la-connexion-au-serveur-distant) pour la logique d’état de connexion.
+5. Fermez les connexions avec [**Fermer la connexion au serveur distant**](#fermer-la-connexion-au-serveur-distant) ou [**Fermer toutes les connexions au serveur distant**](#fermer-toutes-les-connexions-au-serveur-distant).
 
 # Actions
 
-## Se connecter à un serveur distant
+## Se connecter au serveur distant
 
-Initialise une connexion à un serveur distant sans envoyer de données de charge utile.
+Ouvre ou réutilise une connexion à un serveur distant sans envoyer de données utiles.
 
 Entrée :
 
@@ -46,21 +46,21 @@ Entrées :
 
 ## Fermer la connexion au serveur distant
 
-Ferme une connexion à l’aide de l’ID de requête.
+Ferme une connexion à partir de son ID de requête.
 
 Entrée :
 
-- ID de requête de la connexion
+- ID de requête de connexion
 
 ## Fermer toutes les connexions au serveur distant
 
-Ferme toutes les connexions actives au serveur distant.
+Ferme toutes les connexions au serveur distant actuellement actives.
 
-# Listeners
+# Écouteurs
 
 ## Lors de la connexion au serveur distant
 
-Déclenché lorsqu’une connexion à un serveur distant est initialisée.
+Déclenché après l’ouverture réussie d’une connexion à un serveur distant.
 
 Variables :
 
@@ -94,23 +94,21 @@ Variables :
 - Les connexions sont **initiées par le client**
 - FancyMenu maintient les connexions actives en arrière-plan
 - Si une connexion plante ou expire, FancyMenu réessaie toutes les 10 secondes
-- Lorsqu’une connexion en échec est restaurée, FancyMenu consigne un message de restauration
+- Lorsqu’une connexion plantée est restaurée, FancyMenu enregistre un message de restauration
 - Les messages sortants non envoyés sont mis en file d’attente avec une **durée de vie maximale de 30 secondes**
-- Les messages en file d’attente datant de plus de 30 secondes sont abandonnés
+- Les messages en file d’attente âgés de plus de 30 secondes sont supprimés
 
 # Modes d’URL
 
-- `wss://` = sécurisé (TLS), recommandé
-- `ws://` = non chiffré, utile pour les tests locaux
+- `wss://` est utilisé tel quel et est recommandé.
+- `ws://` est utilisé tel quel et n’est pas chiffré.
+- `https://` est converti en `wss://`.
+- `http://` est converti en `ws://`.
+- Un hôte seul est préfixé par `wss://`.
+- Les autres schémas d’URL explicites sont rejetés.
 
-Exemple d’URL locale :
+Privilégiez des URL explicites en `wss://`. Exemple d’URL locale :
 
 - `ws://127.0.0.1:8765`
 
-# Bonnes pratiques
-
-1. Utilisez une URL stable par service backend.
-2. Conservez un format de charge utile cohérent pour chaque cas d’utilisation.
-3. Gérez les connexions fermées ou en échec avec une logique d’interface de secours.
-4. Utilisez les actions de fermeture lorsque votre flux est terminé.
-5. Utilisez `wss://` pour les environnements de production.
+Utilisez une URL stable par service, gérez les états d’écouteur fermé/planté et fermez les connexions lorsqu’elles ne sont plus nécessaires.

@@ -1,20 +1,15 @@
 ---
 title: Globale Anpassungen
-description: 'Wende globale FancyMenu-Änderungen an, die alle Bildschirme betreffen.'
+description: 'Wende globale FancyMenu-Anpassungen an, die alle Bildschirme betreffen.'
 ---
 
 # Globale Anpassungen
 
-Globale Anpassungen sind FancyMenu-Änderungen, die für die gesamte Spieloberfläche gelten.
-Verwende sie, wenn du überall einen einheitlichen Stil bzw. ein einheitliches Verhalten möchtest, statt jedes Bildschirm-Layout einzeln zu bearbeiten.
-
-> [!INFO]
-> Im Gegensatz zu den meisten FancyMenu-Anpassungsfunktionen funktionieren Globale Anpassungen auch dann, wenn normale Bildschirm-Anpassungen deaktiviert sind.
-> Sie erfordern **keine** Aktivierung von Anpassungen pro Bildschirm, was bedeutet, dass eine Änderung sofort alle Bildschirme betreffen kann.
+Globale Anpassungen wenden gemeinsame UI- und Start-Einstellungen an, ohne jedes einzelne Bildschirm-Layout zu bearbeiten. Sie funktionieren auch dann, wenn die normale Bildschirm-Anpassung deaktiviert ist.
 
 Typische Beispiele:
 
-- Einen gemeinsamen Stil für Buttons und Schieberegler auf allen Bildschirmen verwenden.
+- Einen gemeinsamen Button- und Slider-Stil für alle Bildschirme verwenden.
 - Menü-Hintergrund, Panorama und Menü-Musik global ersetzen.
 - Globales Start-/Fensterverhalten anwenden (GUI-Skalierung, Vollbild, Fenstertitel/-symbol).
 - Vanilla-Button-Texturen global ohne Resource Pack ersetzen.
@@ -24,54 +19,56 @@ Typische Beispiele:
 
 Öffne die **Menüleiste** von FancyMenu, während du **nicht** im Layout-Editor bist, dann **Anpassung -> Globale Anpassungen**.
 
-# Schnellstart
-
-1. Öffne **Anpassung -> Globale Anpassungen**.
-2. Wähle zum Start eine Kategorie aus (z. B. **Benutzerdefinierte Button-Texturen**).
-3. Konfiguriere die Optionen in dieser Kategorie (Ressourcenauswahl, Umschalter oder Zahleneingaben).
-4. Teste das Ergebnis auf mehreren Bildschirmen.
-5. Feineinstellungen für verwandte Optionen vornehmen (z. B. Transparenz, Beschriftungsstile, Nine-Slice-Ränder).
-
 # Was du anpassen kannst
 
 ## Globales Verhalten und Start
 
-- **Spiel-Intro** (ein Intro-Video oder eine Animation, die vor dem Erscheinen des Titelbildschirms abgespielt wird)
-- **Welt-Icons im Einzelspielerbildschirm**
-- **Server-Icons im Mehrspielerbildschirm**
-- **Nahtloses Laden von Welten** (verwendet einen Screenshot der Welt als Hintergrund des Welt-Ladebildschirms)
-- **Benutzerdefiniertes Fenstersymbol**
-- **Benutzerdefinierter Fenstertitel**
+- [**Spiel-Intro**](./game-intro) (ein Intro-Video oder eine Animation, die vor dem Titelscreen abgespielt wird)
+- **Welt-Symbole im Einzelspieler-Bildschirm**
+- **Server-Symbole im Mehrspieler-Bildschirm**
+- [**Nahtloses Weltladen**](./seamless-world-loading) (verwendet einen aktuellen Weltscreenshot als Hintergrund des Ladebildschirms)
+- [**Benutzerdefiniertes Fenstersymbol**](./window-customization#custom-icon)
+- [**Benutzerdefinierter Fenstertitel**](./window-customization#custom-title)
 - **Standard-GUI-Skalierung**
-- **Vollbild beim Start erzwingen**
+- **Beim Starten Vollbild erzwingen**
 
-## Button-Optik
+## Button-Design
 
-- **Benutzerdefinierte Button-Texturen** (Zustände Normal/Hover/Inaktiv, transparenter Modus, Nine-Slice + Rahmenstärken)
+- **Benutzerdefinierte Button-Texturen** (Normal-/Hover-/Inaktiv-Zustand, transparenter Modus, [Nine-Slice](./nine-slicing-and-tiling) + Randgrößen)
 - **Button-Beschriftungen** (Unterstreichung bei Hover, Basis-/Hover-Farbe, Skalierung, Schatten)
 
-## Schieberegler-Optik
+## Slider-Design
 
-- **Benutzerdefinierte Schieberegler-Texturen**
-- **Schieberegler-Hintergrundtextur** (Textur, transparenter Modus, Nine-Slice + Rahmenstärken)
-- **Schieberegler-Grifftexturen** (Zustände Normal/Hover/Inaktiv, Nine-Slice + Rahmenstärken)
-- **Schieberegler-Beschriftungen** (Unterstreichung bei Hover, Basis-/Hover-Farbe, Skalierung, Schatten)
+- **Benutzerdefinierte Slider-Texturen**
+- **Slider-Hintergrundtextur** (Textur, transparenter Modus, [Nine-Slice](./nine-slicing-and-tiling) + Randgrößen)
+- **Slider-Grifftexturen** (Normal-/Hover-/Inaktiv-Zustand, [Nine-Slice](./nine-slicing-and-tiling) + Randgrößen)
+- **Slider-Beschriftungen** (Unterstreichung bei Hover, Basis-/Hover-Farbe, Skalierung, Schatten)
 
-## Menü-Optik und Audio
+## Menü-Design und Audio
 
-- **Benutzerdefinierte Menü-Hintergrundtextur**
-- **Benutzerdefiniertes Menü-Hintergrundpanorama**
-- **Vanilla-Menü-Musik abspielen** (aktiviert/deaktiviert das Abspielen der Vanilla-Menü-Musik)
-- **Benutzerdefinierte Menü-Musiktitel**
-- **Benutzerdefinierter Klicksound für Button/Schieberegler**
+- [**Benutzerdefinierte Menü-Hintergrundtextur**](./menu-backgrounds)
+- [**Benutzerdefiniertes Menü-Hintergrundpanorama**](./panoramas)
+- **Vanilla-Menü-Musik abspielen** (Abspielen der Vanilla-Menü-Musik aktivieren/deaktivieren)
+- [**Benutzerdefinierte Menü-Musiktitel**](./background-music)
+- **Benutzerdefinierter Klick-Sound für Button/Slider**
 
 # Benutzerdefinierte Menü-Musiktitel
 
 Verwende **Benutzerdefinierte Menü-Musiktitel**, um eine zufällige Titelliste für Menüs zu erstellen.
 
-Die konfigurierten benutzerdefinierten Titel ersetzen die Vanilla-Menü-Musik in Menüs.
+> [!IMPORTANT]
+> Globale benutzerdefinierte Menü-Titel werden nur abgespielt, wenn keine Welt geladen ist, z. B. auf dem Titelscreen. Verwende ein [**Audio**-Element](./elements#audio) für Menü-Audio innerhalb einer Welt.
+
+Konfigurierte Titel verwenden den Musik-Soundkanal und ersetzen die Vanilla-Menü-Musik in unterstützten Menüs ohne geladene Welt.
+
+- Der erste Titel startet nach etwa fünf Sekunden.
+- Weitere Titel starten nach einer zufälligen Verzögerung von etwa ein bis dreißig Sekunden.
+- Titel werden zufällig ausgewählt.
+- Bei mehreren Titeln wird der vorherige Titel nicht zweimal hintereinander ausgewählt.
+
+Verwalte die Titelliste über **Benutzerdefinierte Menü-Musiktitel**:
 
 - Öffne **Benutzerdefinierte Menü-Musiktitel**, um **Menü-Musiktitel verwalten** zu öffnen.
 - Verwende **Titel hinzufügen**, um Audioquellen hinzuzufügen.
-- Verwende **Titel entfernen**, um einen Eintrag zu löschen.
+- Verwende **Titel entfernen**, um einen Eintrag zu entfernen.
 - Verwende **Titel löschen**, um alle Einträge zu entfernen.

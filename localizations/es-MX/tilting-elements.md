@@ -5,16 +5,16 @@ description: Cómo inclinar elementos en FancyMenu.
 
 # Elementos inclinables
 
-A partir de FancyMenu v3.8.0, ¡es posible inclinar **la mayoría** de los elementos vertical y horizontalmente!
+La mayoría de los elementos se pueden inclinar vertical y horizontalmente.
 
-Para inclinar un elemento, selecciónalo en el editor de diseño. Si ves dos líneas con un control de arrastre unido a ellas (una línea vertical y una línea horizontal) que no sean el borde del elemento, puedes usar esos controles para inclinar el elemento en la dirección deseada.
+Selecciona un elemento en el editor de diseño. Si admite inclinación, aparecerán guías verticales y horizontales con controles alrededor. Arrastra un control para inclinar el elemento en ese eje.
 
-Si no hay líneas con controles de arrastre en el elemento, no puedes inclinarlo.
+Si el elemento no tiene líneas con controles, no puedes inclinarlo.
 
 # Avanzado
 
-También puedes hacer clic derecho sobre el elemento para establecer manualmente los valores de inclinación mediante entrada de texto directa. Esta entrada directa admite [placeholders](/placeholders), así que puedes cambiar dinámicamente la inclinación del elemento al combinarla con placeholders para obtener valores de variables de FancyMenu o algo similar.
+También puedes hacer clic derecho sobre el elemento para establecer manualmente los valores de inclinación mediante una entrada de texto directa. Esta entrada directa admite [placeholders](/placeholders), así que puedes cambiar dinámicamente la inclinación del elemento al combinarla con placeholders para obtener valores de variables de FancyMenu o algo similar.
 
 # Botones, deslizadores y otros elementos interactivos
 
-En el caso de elementos interactivos, sí es posible inclinarlos, pero la inclinación solo es visual. Por ejemplo, el botón seguirá respondiendo únicamente a clics dentro de su área original, aunque la inclinación pueda haberlo movido parcialmente fuera de esa zona.
+La inclinación es solo visual para los elementos interactivos. Un botón inclinado sigue aceptando clics dentro de su área original, sin inclinar.

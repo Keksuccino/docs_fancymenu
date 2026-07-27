@@ -1,145 +1,60 @@
 ---
 title: 快捷键与按键绑定
-description: FancyMenu 中布局编辑器、文本编辑器以及其他部分的快捷键。
+description: 布局编辑器、文本编辑器以及 FancyMenu 其他界面的快捷键。
 ---
 
 # 快捷键与按键绑定
 
-FancyMenu 提供了许多实用快捷键，让你在使用 **布局编辑器** 和模组的其他部分时更加轻松高效。
+**快捷键修饰键：** 在支持的情况下，Windows/Linux 使用 `Ctrl`，macOS 使用 `Command`。
 
 # 布局编辑器
 
-<br>
-
-## CTRL + 左键单击
-
-按住 **CTRL** 的同时 **左键单击** 元素，可以选择多个元素。
-按住 **CTRL** 也可以用鼠标 **拖动/移动多个元素**。
-
-## SHIFT + 调整元素大小
-
-在调整元素大小时按住 SHIFT，会保持其宽高比。
-
-## 方向键
-
-方向键可用于以最高精度 **移动** 已选元素。
-
-## CTRL + A
-
-一次选中所有元素。
-
-## CTRL + C
-
-将所有已选元素 **复制** 到剪贴板。
-
-## CTRL + V
-
-**粘贴** 当前剪贴板中的所有元素。
-这也可以在不同布局之间使用，因此你可以在布局 A 中复制元素，然后粘贴到布局 B 中。
-
-## CTRL + S
-
-快速 **保存** 布局。
-
-## CTRL + ALT + L
-
-快速打开最后编辑过的布局的布局编辑器。
-
-## CTRL + Z
-
-**撤销** 上一步操作。
-
-## CTRL + Y
-
-**重做** 之前撤销的操作。
-
-## CTRL + G
-
-快速切换 **网格** 显示。
-
-## O
-
-当 **Window -> Anchor Overlay Visibility** 中的可见性设置为 **Show On Key Press** 时，按住 **O** 会显示锚点覆盖层。
-
-## DEL
-
-**删除** 所有已选元素。
+| 快捷键 | 操作 |
+|---|---|
+| `Ctrl/Command + 左键单击` | 选择或拖动多个元素 |
+| `Shift + 调整大小` | 保持元素的宽高比 |
+| 方向键 | 精确移动所选元素 |
+| `Ctrl/Command + A` | 选择所有元素 |
+| `Ctrl/Command + C` | 复制所选元素 |
+| `Ctrl/Command + V` | 粘贴已复制的元素，包括粘贴到其他布局中 |
+| `Ctrl/Command + S` | 保存布局 |
+| `Ctrl/Command + Z` | 撤销 |
+| `Ctrl/Command + Y` | 重做 |
+| `Ctrl/Command + G` | 切换网格显示 |
+| `O` | 在按住时显示锚点，当 **Window -> Anchor Overlay Visibility** 设置为 **Show On Key Press** 时有效 |
+| `Delete` | 删除所选元素 |
 
 # 文本编辑器
 
-<br>
+| 快捷键 | 操作 |
+|---|---|
+| `Ctrl/Command + C` | 复制所选文本 |
+| `Ctrl/Command + V` | 粘贴文本 |
+| `Ctrl/Command + Z` | 撤销 |
+| `Ctrl/Command + Y` | 重做 |
+| `Ctrl/Command + A` | 全选文本 |
+| `Ctrl/Command + D` | 复制当前行 |
+| `Ctrl/Command + U` | 剪切所选文本 |
+| `Alt + 上/下方向键` | 移动当前行 |
+| `Ctrl/Command + Home/End` | 移动到文本开头或结尾 |
+| `Ctrl/Command + G` | 打开 **跳转到行** |
+| `Ctrl/Command + S` | 确认编辑器 |
+| `Shift + 方向键` | 扩展文本选区 |
+| 方向键 | 移动光标 |
 
-## CTRL + C
+# 全局菜单快捷键
 
-将选中文本 **复制** 到剪贴板。
+这些快捷键使用精确的 `Ctrl + Alt` 组合：
 
-## CTRL + V
-
-**粘贴** 当前剪贴板中的文本。
-
-## CTRL + Z
-
-**撤销** 上一步操作。
-
-## CTRL + Y
-
-**重做** 之前撤销的操作。
-
-## CTRL + A
-
-**全选** 文本。
-
-## CTRL + D
-
-**复制** 当前行。
-
-## CTRL + U
-
-**剪切** 选中文本。
-
-## ALT + 上箭头 / 下箭头
-
-将当前行上移或下移。
-
-## CTRL + Home / CTRL + End
-
-将光标移动到文本开头或结尾。
-
-## CTRL + G
-
-打开 **转到行** 输入框。
-
-## CTRL + S
-
-确认编辑器，效果与点击 **完成** 相同。
-
-## SHIFT + 方向键
-
-在移动光标的同时选择/高亮文本。
-
-## 方向键
-
-方向键可用于在文本中移动光标。
-
-# 在菜单中
-
-<br>
-
-## CTRL + ALT + C
-
-切换 FancyMenu 菜单顶部 **菜单栏** 的可见性。
-
-## CTRL + ALT + R
-
-**重新加载** FancyMenu。
-这包括完整的资源/素材重载，并且大多数缓存都会被清除。
-
-## CTRL + ALT + D
-
-切换 FancyMenu **调试覆盖层** 的可见性。
+| 快捷键 | 操作 |
+|---|---|
+| `Ctrl + Alt + L` | 打开上次编辑的布局编辑器 |
+| `Ctrl + Alt + C` | 切换 FancyMenu 的菜单栏显示 |
+| `Ctrl + Alt + R` | 重新加载 FancyMenu 及其受管理的资源/缓存 |
+| `Ctrl + Alt + D` | 切换 FancyMenu 的调试覆盖层 |
 
 # 编辑窗口
 
-FancyMenu v3.9.0 中的许多编辑窗口都支持使用 **方向键** 和 **Enter** 进行键盘导航。许多窗口还使用 **CTRL + S** 作为 **完成** 的快捷键，使用 **ESC** 作为 **取消**。
+FancyMenu 的编辑窗口支持使用方向键和 `Enter` 进行键盘导航。许多窗口还使用 `Ctrl/Command + S` 表示 **完成**，并使用 `Escape` 表示 **取消**。
 
-重新设计的“动作脚本编辑器”、“管理需求”和“管理变量”窗口也支持右键上下文菜单、搜索、撤销/重做，以及列表的键盘导航。
+Action Script、Requirements 和 Variables 编辑器也支持右键上下文菜单、搜索、撤销/重做以及键盘列表导航。

@@ -1,147 +1,62 @@
 ---
 title: Raccourcis et combinaisons de touches
 description: >-
-  Raccourcis pour l’éditeur de disposition, l’éditeur de texte et d’autres
-  parties de FancyMenu.
+  Raccourcis pour l'éditeur de mise en page, l'éditeur de texte et d'autres
+  écrans de FancyMenu.
 ---
 
 # Raccourcis et combinaisons de touches
 
-FancyMenu propose de nombreux raccourcis utiles qui rendent le travail avec l’**éditeur de disposition** et les autres parties du mod plus simple et plus efficace.
+**Modificateur de raccourci :** utilisez `Ctrl` sur Windows/Linux et `Command` sur macOS lorsque c'est pris en charge.
 
-# Éditeur de disposition
+# Éditeur de mise en page
 
-<br>
-
-## CTRL + Clic gauche
-
-Vous pouvez sélectionner plusieurs éléments en maintenant **CTRL** enfoncé pendant un **clic gauche** sur les éléments.
-Il est également possible de **faire glisser/déplacer plusieurs éléments** avec la souris en maintenant **CTRL** enfoncé.
-
-## SHIFT + Redimensionnement d’un élément
-
-Maintenir SHIFT pendant le redimensionnement d’un élément préservera son ratio d’aspect.
-
-## Touches fléchées
-
-Les touches fléchées peuvent être utilisées pour **déplacer** les éléments sélectionnés avec une précision maximale.
-
-## CTRL + A
-
-Sélectionne tous les éléments en une seule fois.
-
-## CTRL + C
-
-**Copie** tous les éléments sélectionnés dans le presse-papiers.
-
-## CTRL + V
-
-**Colle** tous les éléments qui se trouvent actuellement dans le presse-papiers.
-Cela fonctionne aussi d’une disposition à une autre : vous pouvez donc copier des éléments dans la disposition A et les coller dans la disposition B.
-
-## CTRL + S
-
-**Enregistre** rapidement la disposition.
-
-## CTRL + ALT + L
-
-Ouvre rapidement l’éditeur de disposition avec la dernière disposition modifiée.
-
-## CTRL + Z
-
-**Annule** la dernière action.
-
-## CTRL + Y
-
-**Rétablit** une action annulée précédemment.
-
-## CTRL + G
-
-Active ou désactive rapidement la **grille**.
-
-## O
-
-Maintenir **O** enfoncé affiche la superposition du point d’ancrage si sa visibilité est réglée sur **Afficher lors de l’appui sur une touche** dans **Fenêtre -> Visibilité de la superposition d’ancrage**.
-
-## SUPPR
-
-**Supprime** tous les éléments sélectionnés.
+| Raccourci | Action |
+|---|---|
+| `Ctrl/Command + clic gauche` | Sélectionner ou faire glisser plusieurs éléments |
+| `Shift + redimensionnement` | Conserver le ratio d'aspect de l'élément |
+| Touches fléchées | Déplacer précisément les éléments sélectionnés |
+| `Ctrl/Command + A` | Sélectionner tous les éléments |
+| `Ctrl/Command + C` | Copier les éléments sélectionnés |
+| `Ctrl/Command + V` | Coller les éléments copiés, y compris dans une autre mise en page |
+| `Ctrl/Command + S` | Enregistrer la mise en page |
+| `Ctrl/Command + Z` | Annuler |
+| `Ctrl/Command + Y` | Rétablir |
+| `Ctrl/Command + G` | Basculer l'affichage de la grille |
+| `O` | Afficher les points d'ancrage tant que la touche est maintenue lorsque **Fenêtre -> Visibilité de la superposition d'ancrage** est réglé sur **Afficher à l'appui d'une touche** |
+| `Delete` | Supprimer les éléments sélectionnés |
 
 # Éditeur de texte
 
-<br>
+| Raccourci | Action |
+|---|---|
+| `Ctrl/Command + C` | Copier le texte sélectionné |
+| `Ctrl/Command + V` | Coller le texte |
+| `Ctrl/Command + Z` | Annuler |
+| `Ctrl/Command + Y` | Rétablir |
+| `Ctrl/Command + A` | Sélectionner tout le texte |
+| `Ctrl/Command + D` | Dupliquer la ligne actuelle |
+| `Ctrl/Command + U` | Couper le texte sélectionné |
+| `Alt + flèche haut/bas` | Déplacer la ligne actuelle |
+| `Ctrl/Command + Origine/Fin` | Aller au début ou à la fin du texte |
+| `Ctrl/Command + G` | Ouvrir **Aller à la ligne** |
+| `Ctrl/Command + S` | Valider l'éditeur |
+| `Shift + touches fléchées` | Étendre la sélection de texte |
+| Touches fléchées | Déplacer le curseur |
 
-## CTRL + C
+# Raccourcis globaux du menu
 
-**Copie** le texte sélectionné dans le presse-papiers.
+Ces raccourcis utilisent exactement la combinaison `Ctrl + Alt` :
 
-## CTRL + V
+| Raccourci | Action |
+|---|---|
+| `Ctrl + Alt + L` | Ouvrir l'éditeur de mise en page avec la dernière mise en page modifiée |
+| `Ctrl + Alt + C` | Basculer la barre de menu de FancyMenu |
+| `Ctrl + Alt + R` | Recharger FancyMenu et ses ressources/caches gérés |
+| `Ctrl + Alt + D` | Basculer la superposition de débogage de FancyMenu |
 
-**Colle** le texte qui se trouve actuellement dans le presse-papiers.
+# Fenêtres d'édition
 
-## CTRL + Z
+Les fenêtres d'édition de FancyMenu prennent en charge la navigation au clavier avec les touches fléchées et `Enter`. Beaucoup utilisent aussi `Ctrl/Command + S` pour **Terminé** et `Escape` pour **Annuler**.
 
-**Annule** la dernière action.
-
-## CTRL + Y
-
-**Rétablit** une action annulée précédemment.
-
-## CTRL + A
-
-**Sélectionne** tout le texte.
-
-## CTRL + D
-
-**Duplique** la ligne actuelle.
-
-## CTRL + U
-
-**Coupe** le texte sélectionné.
-
-## ALT + Flèche haut / Flèche bas
-
-Déplace la ligne actuelle vers le haut ou vers le bas.
-
-## CTRL + Début / CTRL + Fin
-
-Déplace le curseur au début ou à la fin du texte.
-
-## CTRL + G
-
-Ouvre le champ **Aller à la ligne**.
-
-## CTRL + S
-
-Valide l’éditeur, comme si vous cliquiez sur **Terminé**.
-
-## SHIFT + Touches fléchées
-
-Sélectionne/surligne du texte pendant le déplacement du curseur.
-
-## Touches fléchées
-
-Les touches fléchées peuvent être utilisées pour déplacer le curseur dans le texte.
-
-# Dans les menus
-
-<br>
-
-## CTRL + ALT + C
-
-Affiche ou masque la **barre de menu** de FancyMenu en haut des menus.
-
-## CTRL + ALT + R
-
-**Recharge** FancyMenu.
-Cela inclut un rechargement complet des ressources/actifs et la plupart des caches sont vidés.
-
-## CTRL + ALT + D
-
-Affiche ou masque la **superposition de débogage** de FancyMenu.
-
-# Fenêtres d’édition
-
-De nombreuses fenêtres d’édition de FancyMenu dans la version 3.9.0 prennent en charge la navigation au clavier avec les **touches fléchées** et **Entrée**. Beaucoup de fenêtres utilisent également **CTRL + S** comme raccourci pour **Terminé** et **ÉCHAP** comme **Annuler**.
-
-Les fenêtres Action Script Editor, Manage Requirements et Manage Variables, remaniées, prennent également en charge les menus contextuels au clic droit, la recherche, annuler/rétablir et la navigation au clavier pour leurs listes.
+Les éditeurs de script d'action, de conditions requises et de variables prennent également en charge les menus contextuels au clic droit, la recherche, annuler/rétablir et la navigation dans les listes au clavier.

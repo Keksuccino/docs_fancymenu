@@ -1,8 +1,10 @@
 ---
 title: Pantalla de carga
 description: >-
-  Cómo editar la pantalla de carga del juego de Minecraft (también llamada
-  pantalla de inicio).
+  Cómo editar la pantalla de carga de Minecraft (también conocida como pantalla
+  de bienvenida).
 ---
 
-FancyMenu no es compatible directamente con la pantalla de carga del juego de Minecraft (también llamada pantalla de inicio), pero puedes usar **[Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen)** para ello, ¡que es un **complemento** para FancyMenu!
+# Pantalla de carga
+
+FancyMenu no personaliza la pantalla de bienvenida/carga de Minecraft. Usa el complemento [Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen) para eso.

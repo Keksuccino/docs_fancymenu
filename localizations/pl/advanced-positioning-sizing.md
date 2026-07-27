@@ -1,45 +1,45 @@
 ---
-title: Zaawansowane pozycjonowanie i skalowanie
-description: Jak używać zaawansowanego pozycjonowania i skalowania elementów.
+title: Zaawansowane pozycjonowanie i rozmiar
+description: Jak korzystać z zaawansowanego pozycjonowania i ustalania rozmiaru elementów.
 ---
-# Zaawansowane pozycjonowanie i skalowanie
+# Zaawansowane pozycjonowanie i rozmiar
 
-Zaawansowane pozycjonowanie/skalowanie pozwala Ci mieć **pełną kontrolę nad pozycją i rozmiarem Twoich elementów**. Jest to bardzo potężne, ale też **znacznie bardziej czasochłonne** niż korzystanie z automatycznego skalowania i pozycjonowania FancyMenu.
+Zaawansowane pozycjonowanie i rozmiar daje bezpośrednią kontrolę nad współrzędnymi i wymiarami elementu.
 
-> Jeśli chcesz tylko, aby elementy lepiej skalowały się wraz z **skalą GUI** Minecrafta, zaleca się zamiast tego użycie automatycznego skalowania na poziomie układu, które można włączyć, najpierw wymuszając skalę GUI w menu otwieranym po kliknięciu prawym przyciskiem myszy tła edytora, a następnie włączając **Auto-Scaling** w tym samym menu.
-{.is-warning}
+> [!WARNING]
+> Aby dopasować do skali GUI, najpierw wypróbuj **Auto-Scaling** dla całego układu. Kliknij prawym przyciskiem myszy tło edytora, wymuś skalę GUI, a następnie włącz **Auto-Scaling** w tym samym menu.
 
 
-# Włączanie trybu zaawansowanego pozycjonowania/skalowania
+# Włączanie trybu zaawansowanego pozycjonowania/rozmiaru
 
-Aby **włączyć** zaawansowane pozycjonowanie/skalowanie dla elementu, **kliknij go prawym przyciskiem myszy** i wybierz **Advanced Positioning** lub **Advanced Sizing**.
+Aby włączyć zaawansowane pozycjonowanie lub rozmiar dla elementu, **kliknij go prawym przyciskiem myszy** i wybierz **Advanced Positioning** lub **Advanced Sizing**.
 Element automatycznie przełączy się w tryb zaawansowany, gdy ustawisz zaawansowaną wartość pozycji lub rozmiaru.
 
-Aby to **wyłączyć** i wrócić do normalnego pozycjonowania/skalowania, **wyczyść wszystkie wartości pozycjonowania/skalowania**.
+Aby to **wyłączyć** i wrócić do normalnego pozycjonowania/rozmiaru, **wyczyść wszystkie wartości pozycjonowania/rozmiaru**.
 
+> [!WARNING]
 > Gdy element znajduje się w trybie Advanced Sizing/Positioning, zmiana rozmiaru i/lub przesuwanie elementu może być wyłączone lub ograniczone.
-{.is-warning}
 
 # Obliczanie pozycji/rozmiarów
 
-Powodem, dla którego zaawansowane pozycjonowanie/skalowanie jest tak potężne, jest to, że możesz używać **placeholderów** w wartościach pozycji/rozmiaru.
+Zaawansowane wartości pozycji i rozmiaru obsługują [placeholders](./placeholders).
 
-Dzięki temu możesz używać placeholdera **Calculator** (znajdującego się w kategorii placeholderów **Advanced**) w połączeniu z placeholderami z kategorii **GUI**, takimi jak **Screen Width**, **GUI Scale**, **Element Width** i inne.
+Dzięki temu możesz łączyć placeholder [**Calculator**](./placeholders#calculator-calc) z placeholderami GUI, takimi jak [**Screen Width**](./placeholders#screen-width-guiwidth), [**GUI Scale**](./placeholders#gui-scale-guiscale) oraz [**Element Width**](./placeholders#element-width-elementwidth).
 
-> Możesz dodawać placeholdery, klikając przycisk **Placeholders** w prawym górnym rogu edytora tekstu. Jeśli nie widzisz tego przycisku, edytowana treść **nie obsługuje** placeholderów.
-{.is-info}
+> [!NOTE]
+> Możesz dodać placeholdery, klikając przycisk **Placeholders** w prawym górnym rogu edytora tekstu. Jeśli nie widzisz tego przycisku, treść, którą chcesz edytować, **nie obsługuje** placeholderów.
 
-Aby coś obliczyć za pomocą placeholdera **Calculator**, zamień przykładowe wyrażenie na własne. Możesz używać zagnieżdżonych placeholderów w wyrażeniu, więc możesz tam korzystać m.in. z rozmiaru ekranu, rozmiaru elementu itd.
+Aby obliczyć coś za pomocą [placeholdera **Calculator**](./placeholders#calculator-calc), zastąp przykładowe wyrażenie własnym. Zagnieżdżone placeholdery mogą dostarczać wymiary ekranu lub elementu.
 
-Na przykład ten placeholder po prostu obliczy `1 + 1` i później wyświetli się jako `2`:
+Ten przykład zwraca `2`:
 
 `{"placeholder":"calc","values":{"expression":"1 + 1","decimal":"false"}}`
 
-Zmienna `decimal` jest ustawiona na `false`, co jest ważne w przypadku większości obliczeń pozycji/rozmiarów, więc podczas pracy z zaawansowanym pozycjonowaniem/skalowaniem ustawiaj ją zawsze na `false`.
+Zostaw `decimal` ustawione na `false`, aby wykonywać obliczenia pozycji i rozmiaru w całych pikselach.
 
-Poniższy kalkulator używa placeholdera **Screen Width** i dzieli go przez `2`:
+Poniższy kalkulator używa [placeholdera **Screen Width**](./placeholders#screen-width-guiwidth) i dzieli go przez `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
 
 > [!IMPORTANT]
-> Gdy **Advanced Positioning** jest włączone, **punkt zakotwiczenia** oraz wszelkie inne funkcje elementu związane z pozycją będą **ignorowane**. Advanced Positioning zawsze używa lewego górnego rogu (X0 Y0) jako punktu początkowego, tak jak robi to domyślna logika GUI Minecrafta. Jedynym ustawieniem, które Advanced Positioning uwzględnia, jest **Stay on Screen**.
+> **Advanced Positioning** ignoruje punkt zakotwiczenia elementu i używa lewego górnego rogu ekranu (`X0 Y0`) jako punktu odniesienia. Opcja **Stay on Screen** nadal ma zastosowanie.

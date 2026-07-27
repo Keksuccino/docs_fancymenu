@@ -1,15 +1,15 @@
 ---
-title: Éléments inclinés
+title: Éléments inclinables
 description: Comment incliner des éléments dans FancyMenu.
 ---
 
-# Éléments inclinés
+# Éléments inclinables
 
-À partir de FancyMenu v3.8.0, il est possible d’incliner **la plupart** des éléments verticalement et horizontalement !
+La plupart des éléments peuvent être inclinés verticalement et horizontalement.
 
-Pour incliner un élément, sélectionnez-le dans l’éditeur de mise en page. Si vous voyez deux lignes avec une poignée accrochée à chacune (une ligne verticale, une ligne horizontale) qui ne correspondent pas à la bordure de l’élément, vous pouvez saisir les poignées pour incliner l’élément dans la direction souhaitée.
+Sélectionnez un élément dans l’éditeur de mise en page. Si l’inclinaison est prise en charge, des repères verticaux et horizontaux avec des poignées apparaissent autour de l’élément. Faites glisser une poignée pour incliner l’élément sur cet axe.
 
-S’il n’y a aucune ligne avec des poignées sur l’élément, vous ne pouvez pas l’incliner.
+S’il n’y a pas de lignes avec des poignées sur l’élément, vous ne pouvez pas l’incliner.
 
 # Avancé
 
@@ -17,4 +17,4 @@ Vous pouvez aussi faire un clic droit sur l’élément pour définir manuelleme
 
 # Boutons, curseurs et autres éléments interactifs
 
-Dans le cas des éléments interactifs, il est possible de les incliner, mais l’inclinaison est uniquement visuelle. Ainsi, le bouton, par exemple, ne réagira toujours qu’aux clics à l’intérieur de sa zone d’origine, même si l’inclinaison l’a en partie déplacé en dehors de cette zone.
+L’inclinaison est uniquement visuelle pour les éléments interactifs. Un bouton incliné accepte toujours les clics dans sa zone d’origine, non inclinée.

@@ -5,16 +5,10 @@ description: So passt du die Benutzeroberfläche von Essential an.
 
 # Essential
 
-Neuere Versionen des Essential-Mods haben die Unterstützung für FancyMenu hinzugefügt. Das bedeutet, dass du jetzt alle Elemente, die Essential zum Titelbildschirm und Pausenbildschirm hinzufügt, vollständig anpassen solltest!
+Essential bietet eine FancyMenu-Integration für Elemente, die es zu den Titelscreen- und Pausenscreens hinzufügt.
 
-Eine ausführliche Anleitung dazu, wie du die Benutzeroberfläche von Essential anpassen kannst, findest du auf [dieser Wiki-Seite](https://essential.gg/wiki/fancymenu) im Essential-Wiki!
+Siehe [Essentials FancyMenu-Anleitung](https://essential.gg/wiki/fancymenu) für den unterstützten Anpassungs-Workflow.
 
-# Probleme bei der Anpassung
+# Anpassungsprobleme
 
-Wenn du beim Anpassen von Essential-Elementen auf einen Fehler oder eine Unannehmlichkeit stößt, wird das fast immer von Essential verursacht, und die Essential-Entwickler müssen das auf ihrer Seite beheben.
-
-Du solltest den Fehler/das Problem dem Essential-Team über ihren Discord oder GitHub melden.
-
-# Links, die auf dieser Seite verwendet werden
-
-- Essential-Wiki-Seite über FancyMenu: https://essential.gg/wiki/fancymenu
+Essential stellt seine FancyMenu-Integration bereit. Wenn ein von Essential bereitgestelltes Widget fehlt oder sich anders verhält als ein normales Minecraft-Widget, reproduziere das Problem mit aktuellen Versionen und melde es dem Projekt, dem das betroffene Widget gehört.

@@ -5,20 +5,20 @@ description: FancyMenu に対応した APNG 画像の作り方。
 
 # アニメーション PNG 画像
 
-> 新しく大きい、または複雑なアニメーションには、[AFMA/FMA ファイル](/fma) をおすすめします。FancyMenu 3.9.0 では、利用可能な場合に Watermedia V3 + Watermedia Binaries V3 を使って APNG/GIF のデコードを高速化できますが、それでも FancyMenu のアニメーション形式としては AFMA が推奨です。
-{.is-info}
+> [!NOTE]
+> 大きなアニメーションや複雑なアニメーションには、[AFMA ファイル](./fma) の使用をおすすめします。Watermedia V3 と Watermedia Binaries V3 は利用可能な場合、APNG/GIF のデコードを高速化できますが、FancyMenu のアニメーション形式としては引き続き AFMA が推奨です。
 
 
-APNG は PNG 画像のアニメーション版で、GIF のような機能を、完全なロスレス PNG 品質で実現できます！
+APNG は PNG 画像のアニメーション版で、GIF と同じような機能を、完全な非可逆なしの PNG 品質で使うことができます！
 
-FancyMenu には APNG の標準サポートがありますが、対応する APNG には少し制限があります。
-必要なのは、**非圧縮** で **インターレースされていない** APNG です。
+FancyMenu には APNG の組み込みサポートがありますが、対応する APNG には少し条件があります。
+必要なのは、**非圧縮** かつ **インターレースされていない** APNG です。
 
 # APNG アニメーションの作成
 
-良い APNG エディタ、特に圧縮やインターレースを無効にできるものを見つけるのは、かなり難しいです。
+圧縮やインターレースを無効にできるオプションまで備えた、使いやすい APNG エディタを見つけるのは意外と難しいものです。
 
-おすすめのエディタは [ScreenToGif](https://www.screentogif.com/) です。これは本来、画面の GIF や APNG を録画するためのツールですが、録画部分を使わずにそのままエディタへ読み込んで、通常の APNG を作るのにもとても便利です！
+エディタとしておすすめなのは [ScreenToGif](https://www.screentogif.com/) です。これは本来、画面の GIF や APNG を録画するためのツールですが、録画せずに直接エディタを開いて通常の APNG を作るのにもとても便利です。
 
 ## エディタを開く
 
@@ -28,11 +28,11 @@ FancyMenu には APNG の標準サポートがありますが、対応する APN
 
 ## フレームを読み込む
 
-次に、PNG フレームが必要です。エディタにドラッグ＆ドロップしてください。
+次に PNG フレームが必要です。エディタへドラッグ＆ドロップしてください。
 
 ![screentogif_dragndrop](https://github.com/Keksuccino/FancyMenu/assets/35544624/ba4ad4a5-484e-46f1-8efd-90ba764462d8)
 
-## フレーム間隔
+## フレームの遅延時間
 
 フレーム間の遅延を設定するには、編集したいフレームを選択し、**Edit** タブに切り替えて、**Delay (Duration)** セクションの **Override** をクリックします。
 
@@ -40,27 +40,27 @@ FancyMenu には APNG の標準サポートがありますが、対応する APN
 
 ## ループ設定
 
-ループの動作は **Save As** メニューで設定できます。このメニューの開き方は次の手順を見てください。
+ループ動作は **Save As** メニューで設定できます。次の手順でこのメニューを開く方法を確認してください。
 
 ## APNG を書き出す
 
 準備ができたら、もう一度 **File** タブに切り替えて **Save As** をクリックします。
 
-保存メニューでは、以下を必ず設定してください。
-- ファイルタイプを **APNG** にする（最初の設定です。メニューの一番上までスクロールする必要があるかもしれません）
+保存メニューでは、次の点を確認してください。
+- ファイル形式を **APNG** にする（最初の設定。必要ならメニューの一番上までスクロールしてください）
 - **Detect Unchanged Pixels** を無効にする
 
-> このメニューでは **ループ動作** も設定できます！ **Looped Apng** を無効にすると APNG は一切ループしなくなり、有効にすると特定回数のループか無限ループを選べます。
-{.is-info}
+> [!NOTE]
+> このメニューでは **ループ動作** も設定できます。**Looped Apng** を無効にすると APNG はまったくループしなくなり、有効にすると特定回数のループまたは無限ループを選べます。
 
 ![screentogif_save](https://github.com/Keksuccino/FancyMenu/assets/35544624/954353da-45ed-4df8-9f06-c78a0a469fc8)
 
 ## FancyMenu で APNG を使う
 
-これで APNG ファイルを `/config/fancymenu/assets/` にコピーできます。すると、画像を受け付けるほとんどすべての場所で使えるようになります。
+APNG ファイルを `<game-directory>/config/fancymenu/assets/` にコピーします。これで、画像を受け付けるほとんどの場所で使えるようになります。
 
-> APNG ファイル名の末尾が **`.apng`** であることが **非常に重要** です！
-> 末尾が `.apng` でない場合、FancyMenu はその画像を APNG として認識できません。
-{.is-warning}
+> [!WARNING]
+> APNG ファイル名の末尾が **必ず** `.apng` で終わっていることがとても重要です！
+> `.apng` で終わっていない場合、FancyMenu はその画像を APNG として識別できません。
 
 ![screentogif_use_apng](https://github.com/Keksuccino/FancyMenu/assets/35544624/2322da62-4013-451e-9a8b-3df0bf92df54)

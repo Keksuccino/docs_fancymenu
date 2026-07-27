@@ -7,9 +7,11 @@ description: ส่งและรับข้อมูลแบบกำหน�
 
 ระบบ "FM Data" ช่วยให้คุณส่งข้อมูลข้อความแบบกำหนดเองระหว่างเซิร์ฟเวอร์และไคลเอนต์ได้
 
-ข้อความ FM Data ทุกข้อความจะมี:
+ทุกคำสั่งย่อยของ `/fmdata` ต้องใช้ **ระดับสิทธิ์ 2** (Game Master / OP ระดับ 2)
 
-1. **ตัวระบุข้อมูล** (บอกว่านี่คือข้อความประเภทใด)
+ข้อความ FM Data ทุกข้อความมี:
+
+1. **ตัวระบุข้อมูล** (ข้อความนี้เป็นข้อมูลประเภทไหน)
 2. **ค่าข้อมูล** (เนื้อหาจริง)
 
 ตัวอย่างแนวคิด:
@@ -20,17 +22,17 @@ description: ส่งและรับข้อมูลแบบกำหน�
 # เริ่มใช้งานอย่างรวดเร็ว
 
 1. เซิร์ฟเวอร์ส่งข้อมูลด้วย `/fmdata send ...`
-2. ไคลเอนต์รับด้วย listener ของ FancyMenu **On FM Data Received**
+2. ไคลเอนต์รับข้อมูลด้วยตัวฟัง FancyMenu **On FM Data Received**
 3. ไคลเอนต์สามารถส่งข้อมูลกลับได้ด้วยแอ็กชัน **Send FM Data To Server**
 4. เซิร์ฟเวอร์สามารถตอบสนองอัตโนมัติด้วย `/fmdata listener ...`
-5. เซิร์ฟเวอร์สามารถส่งข้อมูลอัตโนมัติเมื่อผู้เล่นเข้าร่วมด้วย `/fmdata welcome_data ...`
+5. เซิร์ฟเวอร์สามารถส่งข้อมูลต้อนรับอัตโนมัติเมื่อเข้าเกมด้วย `/fmdata welcome_data ...`
 
-# เซิร์ฟเวอร์ -> ไคลเอนต์
+# Server -> Client
 
 ใช้:
 
 ```mcfunction
-/fmdata send <target_player> <data_identifier> <string_data>
+/fmdata send <target_players> <data_identifier> <string_data>
 ```
 
 ตัวอย่าง:
@@ -42,12 +44,12 @@ description: ส่งและรับข้อมูลแบบกำหน�
 
 หมายเหตุ:
 
-- `<target_player>` รองรับตัวเลือกผู้เล่นปกติ เช่น `@a`, `@p`, `@s`
-- ใช้เครื่องหมายอัญประกาศสำหรับค่าที่มีช่องว่าง
+- `<target_players>` รองรับชื่อผู้เล่นและตัวเลือก เช่น `@a`, `@p`, และ `@s`
+- ใช้เครื่องหมายอัญประกาศกับค่าที่มีช่องว่าง
 
-# ไคลเอนต์: รับข้อมูล
+# Client: รับข้อมูล
 
-ใช้ listener ของ FancyMenu:
+ใช้ตัวฟัง FancyMenu:
 
 - **On FM Data Received**
 
@@ -68,9 +70,9 @@ description: ส่งและรับข้อมูลแบบกำหน�
 - ทริกเกอร์แอ็กชันของเมนู
 - รันตรรกะตามตัวระบุ/ข้อมูลที่เข้ามา
 
-# ไคลเอนต์ -> เซิร์ฟเวอร์
+# Client -> Server
 
-ใช้แอ็กชันของ FancyMenu:
+ใช้แอ็กชัน FancyMenu:
 
 - **Send FM Data To Server**
 
@@ -83,9 +85,9 @@ description: ส่งและรับข้อมูลแบบกำหน�
 
 # Server Listeners
 
-Server listener จะฟังข้อมูลที่เข้ามาจากไคลเอนต์ และสามารถรันหนึ่งคำสั่งหรือหลายคำสั่งเมื่อถูกทริกเกอร์
+Server listeners จะเฝ้าฟังข้อมูลที่ส่งมาจากไคลเอนต์ และสามารถรันคำสั่งหนึ่งคำสั่งหรือหลายคำสั่งเมื่อถูกทริกเกอร์ได้
 
-Server listener จะถูกบันทึกไว้และยังคงทำงานต่อหลังจากรีสตาร์ต
+Server listeners จะถูกบันทึกไว้และยังคงทำงานต่อหลังรีสตาร์ท
 
 จัดการด้วย:
 
@@ -94,7 +96,7 @@ Server listener จะถูกบันทึกไว้และยังค�
 - `/fmdata listener edit ...`
 - `/fmdata listener remove ...`
 
-## รูปแบบการเพิ่ม / แก้ไข
+## ไวยากรณ์ Add / Edit
 
 ```mcfunction
 /fmdata listener add <unique_listener_name> <matching_type_identifier> <matching_type_data> <ignore_case_identifier> <ignore_case_data> <fire_for_player> <listen_for_identifier> <listen_for_data> <commands_to_execute_on_fire>
@@ -104,7 +106,7 @@ Server listener จะถูกบันทึกไว้และยังค�
 /fmdata listener edit <listener_name> <matching_type_identifier> <matching_type_data> <ignore_case_identifier> <ignore_case_data> <fire_for_player> <listen_for_identifier> <listen_for_data> <commands_to_execute_on_fire>
 ```
 
-## รูปแบบการลบ
+## ไวยากรณ์ Remove
 
 ```mcfunction
 /fmdata listener remove <listener_name>
@@ -121,24 +123,24 @@ Server listener จะถูกบันทึกไว้และยังค�
 
 ## กฎการจับคู่
 
-- `ignore_case_identifier` และ `ignore_case_data` เป็นสวิตช์ true/false
-- `listen_for_identifier` รองรับ wildcard `*` (ตรงเสมอ)
-- `listen_for_data` รองรับ wildcard `*` (ตรงเสมอ)
-- `fire_for_player` ใช้ตัวเลือกผู้เล่นปกติ (เช่น `@a`, `@p`, `Player761`)
+- `ignore_case_identifier` และ `ignore_case_data` เป็นตัวเลือกเปิด/ปิดแบบ true/false
+- `listen_for_identifier` รองรับไวลด์การ์ด `*` (ตรงเสมอ)
+- `listen_for_data` รองรับไวลด์การ์ด `*` (ตรงเสมอ)
+- `fire_for_player` ใช้ตัวเลือกผู้เล่นตามปกติ (เช่น `@a`, `@p`, `Player761`)
 
-## คำสั่งเมื่อถูกทริกเกอร์
+## Commands On Fire
 
-`commands_to_execute_on_fire` เป็นช่องป้อนข้อความเดียว
+`commands_to_execute_on_fire` เป็นช่องข้อความเพียงช่องเดียว
 
 - แยกหลายคำสั่งด้วย `|||`
-- ถ้าต้องการใช้ตัวคั่นจริงแบบตัวอักษร ให้ escape เป็น `\|\|\|`
+- หากต้องการใช้ตัวคั่นแบบตัวอักษรจริง ให้ escape เป็น `\|\|\|`
 
-คุณสามารถใช้ตัวแทนพิเศษ 2 ตัวนี้ ซึ่งจะถูกแทนค่าทันทีก่อนรันคำสั่ง:
+คุณสามารถใช้ placeholder พิเศษ 2 ตัวนี้ได้ ซึ่งจะถูกแทนค่าทันทีก่อนรันคำสั่ง:
 
 - `%fm_sender%` -> ผู้เล่นที่ส่ง FM Data
 - `%fm_data%` -> ค่าข้อมูลที่ได้รับจากไคลเอนต์
 
-คำสั่งจะรันในฐานะคำสั่งของเซิร์ฟเวอร์
+คำสั่งจะถูกรันในฐานะคำสั่งของเซิร์ฟเวอร์
 
 ## ตัวอย่างคำสั่ง
 
@@ -148,7 +150,7 @@ Server listener จะถูกบันทึกไว้และยังค�
 /fmdata listener add button_ping equals equals false false @a ui.button pressed "tellraw @a {\"text\":\"%fm_sender% pressed the button\"}"
 ```
 
-รันหลายคำสั่งเมื่อข้อมูลมี `gold`:
+รันหลายคำสั่งเมื่อข้อมูลมีคำว่า `gold`:
 
 ```mcfunction
 /fmdata listener add reward equals contains false true @a reward "gold" "say Reward from %fm_sender%: %fm_data%|||effect give %fm_sender% minecraft:speed 3 1 true"
@@ -156,7 +158,7 @@ Server listener จะถูกบันทึกไว้และยังค�
 
 # Welcome Data
 
-Welcome data จะส่ง FM Data ไปยังผู้เล่นที่ตรงเงื่อนไขเมื่อพวกเขาเข้าร่วม
+Welcome data จะส่ง FM Data ไปยังผู้เล่นที่ตรงเงื่อนไขเมื่อพวกเขาเข้าร่วมเกม
 
 จัดการรายการด้วย:
 
@@ -165,7 +167,7 @@ Welcome data จะส่ง FM Data ไปยังผู้เล่นที�
 - `/fmdata welcome_data edit ...`
 - `/fmdata welcome_data remove ...`
 
-## รูปแบบการเพิ่ม / แก้ไข
+## ไวยากรณ์ Add / Edit
 
 ```mcfunction
 /fmdata welcome_data add <unique_welcome_data_name> <target_player> <data_identifier> <string_data>
@@ -175,7 +177,7 @@ Welcome data จะส่ง FM Data ไปยังผู้เล่นที�
 /fmdata welcome_data edit <welcome_data_name> <target_player> <data_identifier> <string_data>
 ```
 
-## รูปแบบการลบ
+## ไวยากรณ์ Remove
 
 ```mcfunction
 /fmdata welcome_data remove <welcome_data_name>
@@ -184,27 +186,27 @@ Welcome data จะส่ง FM Data ไปยังผู้เล่นที�
 หมายเหตุ:
 
 - `<target_player>` รองรับตัวเลือกปกติ เช่น `@a`, `@p`, `@s`
-- ข้อมูลจะถูกส่งให้ผู้เล่นที่ตรงเงื่อนไขเมื่อพวกเขาเข้าร่วม
+- ข้อมูลจะถูกส่งไปยังผู้เล่นที่ตรงเงื่อนไขเมื่อพวกเขาเข้าร่วม
 - รายการจะถูกบันทึกและโหลดอัตโนมัติ
 
 ## ตัวอย่างคำสั่ง
 
-ส่ง welcome data ให้ผู้เล่นทุกคนที่เข้าร่วม:
+ส่ง welcome data ไปยังผู้เล่นทุกคนที่เข้าเกม:
 
 ```mcfunction
 /fmdata welcome_data add welcome_all @a hud.welcome "Welcome!"
 ```
 
-ส่ง welcome data ให้ผู้เล่นเพียงคนเดียว:
+ส่ง welcome data ให้เฉพาะผู้เล่นคนเดียว:
 
 ```mcfunction
 /fmdata welcome_data add welcome_vip Player761 hud.vip "VIP perks enabled"
 ```
 
-# แนวทางปฏิบัติที่ดีที่สุด
+# แนวทางที่ดีที่สุด
 
 1. ใช้ตัวระบุที่ชัดเจน เช่น `hud.food`, `menu.shop.open`, `quest.progress`
 2. รักษารูปแบบข้อมูลให้สม่ำเสมอสำหรับตัวระบุแต่ละตัว
-3. เริ่มจากสิ่งง่าย ๆ: ทดสอบด้วย `/fmdata send` ก่อนสร้าง listener ที่ซับซ้อน
+3. เริ่มจากแบบง่าย: ทดสอบด้วย `/fmdata send` ก่อนสร้าง listener ที่ซับซ้อน
 4. ใช้ `@a` เฉพาะเมื่อคุณต้องการให้มีผลกับทุกคนจริง ๆ
-5. ใช้ `/fmdata listener list` และ `/fmdata welcome_data list` เพื่อให้การตั้งค่าดูเป็นระเบียบ
+5. ใช้ `/fmdata listener list` และ `/fmdata welcome_data list` เพื่อให้การตั้งค่ามีความเป็นระเบียบ

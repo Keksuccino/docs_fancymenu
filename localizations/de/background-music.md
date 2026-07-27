@@ -1,76 +1,44 @@
 ---
-title: Menü-Hintergrundmusik
-description: Wie man die in Menüs abgespielte Musik anpasst.
+title: Hintergrundmusik im Menü
+description: Passe die in Menüs abgespielte Musik an.
 ---
 
-# Menü-Hintergrundmusik
+# Hintergrundmusik im Menü
 
-Es ist möglich, die standardmäßige Menü-Hintergrundmusik von Minecraft durch eigene Titel zu ersetzen oder die normale Vanilla-Musik, die in Menüs abgespielt wird, einfach zu deaktivieren.
+FancyMenu kann die Vanilla-Menümusik deaktivieren, eine globale Titelliste abspielen oder [Audio-Elemente](./elements#audio) für layoutspezifische Musik verwenden.
 
-# Vanilla-Musik deaktivieren
+# Globale Menümusik
 
-FancyMenu bietet mehrere Möglichkeiten, die Vanilla-Menümusik zu deaktivieren. Das kann nützlich sein, wenn du andere Audiodateien in Bildschirmen abspielen möchtest oder einfach in einigen Bildschirmen überhaupt keine Musik hören willst.
+Öffne [**Globale Anpassungen**](./global-customizations) außerhalb des Layout-Editors über **Anpassung -> Globale Anpassungen**.
 
-## Global
+Verwende diese Einstellungen:
 
-Wenn du in Menüs überhaupt keine Musik möchtest, ist dies der einfachste Weg.
+- **Vanilla-Menümusik abspielen** aktiviert oder deaktiviert die Vanilla-Menümusik global.
+- **Benutzerdefinierte Menü-Musiktitel** verwaltet die globale Ersatz-Titelliste.
 
-Um die Vanilla-Menümusik in FancyMenu 3.9.0+ global zu deaktivieren oder zu ersetzen, gehe in der Menüleiste oben in den Bildschirmen auf **Customization -> Global Customizations**. Globale Anpassungen können Menümusik ersetzen, ohne dass ein Resource Pack erforderlich ist und ohne dass Anpassungen für jeden Bildschirm aktiviert werden müssen.
+> [!IMPORTANT]
+> Globale benutzerdefinierte Menütitel werden nur abgespielt, wenn keine Welt geladen ist, z. B. auf dem Titelscreen. Verwende ein [**Audio**-Element](./elements#audio) für Menüdudio innerhalb einer Welt.
 
-<br>
-<img width="600" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/d829a35e-f23f-42a9-ad79-193de73b499b">
+Globale Titel verwenden den Musik-Soundkanal. Der erste Titel startet nach etwa fünf Sekunden; spätere Titel verwenden eine zufällige Verzögerung von etwa einer bis dreißig Sekunden. Die Auswahl ist zufällig und vermeidet bei mehr als einem konfigurierten Titel das sofortige Wiederholen des vorherigen Titels.
 
-> Das Deaktivieren der Standardmusik von Minecraft deaktiviert sie in jedem Bildschirm, nicht nur im aktuellen.
-{.is-info}
+# Musiksteuerung pro Bildschirm
 
-## Pro Bildschirm
+Füge einem Layout ein [**Musik-Controller**-Element](./elements#music-controller) hinzu, um die Vanilla-Musik für diesen Bildschirm zu steuern:
 
-Wenn du mehr Kontrolle darüber haben möchtest, wo Vanilla-Menümusik abgespielt werden soll, solltest du das Element **Music Controller** verwenden. Dieses Element wird wie jedes andere Element zu Layouts hinzugefügt, indem du **mit der rechten Maustaste auf den Hintergrund des Editors klickst** und dann auf **New Element -> Music Controller** klickst.
+1. Klicke mit der rechten Maustaste auf den Hintergrund des Editors.
+2. Wähle **Neues Element -> Musik-Controller**.
+3. Konfiguriere Menümusik und Weltmusik separat.
 
-Durch **Rechtsklick** auf das Element kannst du festlegen, welche Arten von Musik, die in Menüs abgespielt werden, deaktiviert werden sollen (normale Menümusik und Weltmusik, die in Bildschirmen weiterläuft, in denen das Spiel nicht pausiert, wie z. B. der Inventarbildschirm).
+Das Element unterstützt [Ladebedingungen](./conditions).
 
-> Dieses Element unterstützt **Ladeanforderungen**, sodass du noch mehr Kontrolle darüber hast, wann Vanilla-Musik abgespielt werden soll!
-{.is-info}
+Das Deaktivieren der Menümusik mit einem Musik-Controller verhindert auch, dass die globale benutzerdefinierte Menü-Titelliste auf diesem Bildschirm abgespielt wird.
 
+# Benutzerdefinierte Musik mit Audio-Elementen
 
-# Eigene Musik hinzufügen
+Verwende ein [**Audio**-Element](./elements#audio), wenn du Folgendes brauchst:
 
-Jetzt können wir die eigentliche benutzerdefinierte Hintergrundmusik hinzufügen.
+- Unterschiedliche Musik auf verschiedenen Bildschirmen.
+- Musik in Bildschirmen innerhalb einer Welt.
+- Layout-Anforderungen, geordnete Wiedergabelisten, Shuffle-Einstellungen, Lautstärke oder Kanalsteuerung.
 
-Wenn du in allen Bildschirmen dieselbe eigene Musik abspielen möchtest und Kontrolle auf Layout-Ebene benötigst, solltest du ein **universelles Layout** verwenden, das in jedem Bildschirm geladen wird, in dem Anpassungen aktiviert sind. Für einen einfachen globalen Ersatz der Menümusik verwende stattdessen [Globale Anpassungen](/global-customizations).
-
-Bei Verwendung eines universellen Layouts wird die Musik **weiter abgespielt**, wenn du von einem Menü mit aktiviertem Layout zu einem anderen mit demselben aktivierten Layout wechselst.
-
-Wenn du pro Bildschirm unterschiedliche Musik abspielen möchtest, verwende normale Layouts.
-
-In diesem Beispiel verwenden wir **universelle Layouts**.
-
-Füge dem universellen Layout ein neues **Audio**-Element hinzu, das als unser Hintergrundmusik-Player dient.
-
-<br>
-<img width="400" alt="Screenshot_2" src="https://gist.github.com/assets/35544624/bddf8f46-47c5-4a00-a6f7-b5ca1df8ae67">
-
-Füge ihm nun Musikstücke hinzu, die im Hintergrund abgespielt werden sollen.
-
-<br>
-<img width="300" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/824dcb90-3bd5-4c0b-96d0-e581a7c2f9f7">
-
-Das war im Grunde schon alles.
-Du kannst das Audio-Element bei Bedarf auch auf den Shuffle-Modus setzen und seinen Sound-Kanal ändern.
-
-Speichere das Layout und verlasse den Editor.
-
-# Anpassungen für alle Menüs aktivieren
-
-Wir haben in diesem Beispiel ein **universelles Layout** verwendet, weil wir möchten, dass unsere Hintergrundmusik in mehreren Bildschirmen abgespielt wird.
-
-Da Layouts nur in Bildschirmen geladen werden, in denen **Anpassungen aktiviert** sind, müssen wir sie jetzt für jeden Bildschirm aktivieren, auf dem unsere Musik abgespielt werden soll.
-
-Klicke dazu auf **Customization** und aktiviere **Current Screen Customization**.
-
-<br>
-<img width="320" alt="Screenshot_5" src="https://gist.github.com/assets/35544624/2f6527b7-ae14-4e82-abc6-3572cc6490b2">
-
-Wiederhole dies für jeden Bildschirm, auf dem deine benutzerdefinierte Hintergrundmusik abgespielt werden soll.
-
-Und das war's! Du hast jetzt eigene Hintergrundmusik in deinen Minecraft-Menüs!
+Platziere ein [Audio-Element](./elements#audio) in einem [universellen Layout](./universal-layouts), um denselben Player auf allen unterstützten Bildschirmen aktiv zu halten, die dieses Layout laden. Die Bildschirmanpassung muss auf jedem normalen Bildschirm aktiviert sein, auf dem das universelle Layout angewendet werden soll.

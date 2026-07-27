@@ -5,20 +5,20 @@ description: Jak tworzyć obrazy APNG zgodne z FancyMenu.
 
 # Animowane obrazy PNG
 
-> W przypadku nowych, dużych lub złożonych animacji lepiej używać plików [AFMA/FMA](/fma). FancyMenu 3.9.0 może korzystać z Watermedia V3 + Watermedia Binaries V3, aby szybciej dekodować APNG/GIF, gdy są dostępne, ale AFMA nadal pozostaje preferowanym formatem animacji w FancyMenu.
-{.is-info}
+> [!NOTE]
+> W przypadku dużych lub złożonych animacji lepiej użyć [plików AFMA](./fma). Watermedia V3 i Watermedia Binaries V3 mogą przyspieszyć dekodowanie APNG/GIF, jeśli są dostępne, ale AFMA pozostaje preferowanym formatem animacji FancyMenu.
 
 
 APNG to animowana wersja obrazów PNG, dzięki czemu można uzyskać te same możliwości co w GIF-ie, ale w pełnej, bezstratnej jakości PNG!
 
-FancyMenu ma wbudowaną obsługę APNG, ale jest dość wybredne co do tego, które APNG są obsługiwane.
-Wymaga **nieskompresowanych** APNG, które **nie są przeplatane**.
+FancyMenu ma wbudowaną obsługę APNG, ale jest dość wybredny, jeśli chodzi o obsługiwane pliki APNG.
+Wymaga APNG **bez kompresji**, które **nie są przeplatane**.
 
 # Tworzenie animacji APNG
 
-Możesz się zdziwić, jak trudno znaleźć dobry edytor APNG, zwłaszcza z opcjami wyłączenia kompresji i przeplatania.
+Możesz się zdziwić, jak trudno jest znaleźć dobry edytor APNG, zwłaszcza z opcjami wyłączenia kompresji i przeplotu.
 
-Świetnym wyborem jest [ScreenToGif](https://www.screentogif.com/), które jest właściwie narzędziem do nagrywania GIF-ów i APNG z ekranu, ale doskonale nadaje się też do tworzenia zwykłych APNG — wystarczy pominąć część nagrywania i od razu wczytać pliki do edytora!
+Świetnym wyborem edytora jest [ScreenToGif](https://www.screentogif.com/), które jest właściwie narzędziem do nagrywania GIF-ów i APNG z ekranu, ale świetnie nadaje się też do tworzenia zwykłych APNG — wystarczy pominąć nagrywanie i od razu wczytać pliki do edytora!
 
 ## Otwórz edytor
 
@@ -28,13 +28,13 @@ Pierwszą rzeczą, którą zobaczysz po otwarciu [ScreenToGif](https://www.scree
 
 ## Wczytaj klatki
 
-Teraz potrzebujesz swoich klatek PNG. Przeciągnij je i upuść do edytora.
+Teraz potrzebujesz swoich klatek PNG. Przeciągnij i upuść je do edytora.
 
 ![screentogif_dragndrop](https://github.com/Keksuccino/FancyMenu/assets/35544624/ba4ad4a5-484e-46f1-8efd-90ba764462d8)
 
-## Opóźnienie klatek
+## Opóźnienie klatki
 
-Aby skonfigurować opóźnienie między klatkami, zaznacz klatkę/klatki, które chcesz edytować, przejdź do zakładki **Edit**, a w sekcji **Delay (Duration)** kliknij **Override**.
+Aby skonfigurować opóźnienie między klatkami, zaznacz klatkę lub klatki, które chcesz edytować, przejdź do zakładki **Edit** i w sekcji **Delay (Duration)** kliknij **Override**.
 
 ![screentogif_delay](https://github.com/Keksuccino/FancyMenu/assets/35544624/a5d93139-3192-4090-b243-e5c0fe299963)
 
@@ -47,20 +47,20 @@ Zachowanie zapętlania można skonfigurować w menu **Save As**. Sprawdź nastę
 Teraz możesz wrócić do zakładki **File** i kliknąć **Save As**.
 
 W menu zapisu upewnij się, że:
-- Ustawisz typ pliku na **APNG** (pierwsze ustawienie; być może trzeba najpierw przewinąć menu do góry)
-- Wyłączysz **Detect Unchanged Pixels**
+- Ustawiono typ pliku na **APNG** (pierwsze ustawienie; może być konieczne przewinięcie menu na samą górę)
+- Wyłączono **Detect Unchanged Pixels**
 
-> Możesz też skonfigurować w tym menu **zachowanie zapętlania**! Wyłączenie **Looped Apng** sprawi, że APNG w ogóle nie będzie się zapętlać, a po włączeniu tej opcji możesz wybrać określoną liczbę powtórzeń albo nieskończone zapętlanie.
-{.is-info}
+> [!NOTE]
+> W tym menu możesz też skonfigurować **zachowanie zapętlania**! Wyłączenie **Looped Apng** spowoduje, że APNG w ogóle nie będzie się zapętlać, a po jego włączeniu możesz wybrać określoną liczbę powtórzeń albo nieskończone zapętlanie.
 
 ![screentogif_save](https://github.com/Keksuccino/FancyMenu/assets/35544624/954353da-45ed-4df8-9f06-c78a0a469fc8)
 
 ## Używanie APNG w FancyMenu
 
-Teraz możesz skopiować plik APNG do `/config/fancymenu/assets/`. Następnie będzie można używać go w prawie wszystkich miejscach, które akceptują obrazy.
+Skopiuj teraz swój plik APNG do `<game-directory>/config/fancymenu/assets/`. Następnie będzie można go używać prawie wszędzie tam, gdzie akceptowane są obrazy.
 
-> To jest **naprawdę ważne**, aby nazwa pliku APNG kończyła się na `.apng`!
-> FancyMenu nie będzie w stanie rozpoznać obrazu jako APNG, jeśli nie będzie on kończył się na `.apng`.
-{.is-warning}
+> [!WARNING]
+> Bardzo ważne jest, aby nazwa pliku APNG kończyła się na `.apng`!
+> FancyMenu nie będzie w stanie rozpoznać obrazu jako APNG, jeśli nie kończy się on na `.apng`.
 
 ![screentogif_use_apng](https://github.com/Keksuccino/FancyMenu/assets/35544624/2322da62-4013-451e-9a8b-3df0bf92df54)

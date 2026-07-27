@@ -1,8 +1,10 @@
 ---
 title: Ladebildschirm
 description: >-
-  So bearbeitest du den Spielladebildschirm von Minecraft (auch Splash Screen
-  genannt).
+  Wie man den Spiel-Ladebildschirm von Minecraft (auch Splash Screen genannt)
+  bearbeitet.
 ---
 
-FancyMenu unterstützt den Spielladebildschirm von Minecraft (auch Splash Screen genannt) nicht direkt, aber du kannst dafür **[Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen)** verwenden, das ein **Addon** für FancyMenu ist!
+# Ladebildschirm
+
+FancyMenu passt den Splash-/Ladebildschirm von Minecraft nicht an. Verwende dafür das Add-on [Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen).

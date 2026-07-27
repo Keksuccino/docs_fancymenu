@@ -5,25 +5,20 @@ description: Como abrir GUIs Vanilla e personalizadas via comando.
 
 # Abrindo GUIs por Comando
 
-O FancyMenu vem com um comando que permite abrir GUIs Vanilla e personalizadas via comando.
-Você até pode abrir GUIs remotamente para **outros jogadores** ao instalar o FancyMenu tanto no **servidor quanto nos clientes**.
+O comando `/openguiscreen` abre GUIs Vanilla, de mods e [GUIs Personalizadas](./custom-guis). Ele pode ser usado para outros jogadores quando o FancyMenu estiver instalado no servidor e nos clientes deles.
 
-Para abrir uma GUI, basta usar o comando `/openguiscreen <screen_identifier> <target_player>`.
+Para abrir uma GUI, use `/openguiscreen <screen_identifier> [<target_players>]`.
 
-Substitua `<screen_identifier>` pelo identificador real do menu da GUI que você quer abrir.
-Isso pode ser o identificador da sua GUI personalizada (criada com o FancyMenu) ou o identificador normal de um menu Vanilla/mod.
+Substitua `<screen_identifier>` pelo identificador exato e sensível a maiúsculas e minúsculas da GUI Personalizada ou da tela Vanilla/de mod.
 
-Para obter o **identificador do menu de GUIs Vanilla/mod**, abra o menu do qual você quer saber o identificador e ative a **sobreposição de depuração** do FancyMenu em **Customization -> Debug Overlay**; depois, você pode clicar no identificador exibido na primeira linha para copiá-lo para a sua área de transferência.
+Para encontrar um identificador, abra a tela desejada e ative a sobreposição de depuração com **CTRL + ALT + D**. Selecione o identificador na primeira linha para copiá-lo. Veja [Identificadores de Tela](./screen-identifiers).
 
 ![copy_identifier](https://github.com/Keksuccino/FancyMenu/assets/35544624/dd6c53d9-d2bd-4810-be03-3741e326bd5a)
 
-Deixe o argumento `<target_player>` vazio para abrir a GUI no seu cliente ou escolha um jogador (ou vários jogadores) para abrir a GUI.
-Lembre-se de que o outro jogador também precisa ter o FancyMenu instalado no cliente dele.
+Omitir `[<target_players>]` abre a GUI para você. Você também pode usar o nome de um jogador ou um seletor, como `@a`, para abri-la para um ou mais jogadores. Informar o argumento de destino requer nível de permissão 2 (Game Master / OP nível 2), mesmo que o alvo seja você mesmo, e cada jogador alvo precisa ter o FancyMenu instalado no cliente.
 
-Este comando não funcionará para todas as telas, especialmente telas de mods. Se o comando falhar ao abrir uma tela, ele mostrará um erro. Não há muito o que fazer nesse caso, porque provavelmente é uma tela complexa demais para ser aberta automaticamente pelo FancyMenu.
-
-Também não vou mais adicionar manualmente compatibilidade para telas de mods, porque adicionar compatibilidade para todos os mods existentes levaria uma eternidade, desculpe.
+Nem toda tela de mod pode ser criada diretamente. O FancyMenu mostra um erro quando a tela de destino não é compatível. Em um layout local, use [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) no widget que normalmente a abriria.
 
 # Fechando GUIs por Comando
 
-No caso raro em que você precisar, também existe o comando `/closeguiscreen <target_player>` que fecha a tela atual.
+No caso raro de você precisar, `/closeguiscreen [<target_players>]` fecha a tela atual. Ele afeta você quando o alvo é omitido; informar o argumento de destino requer nível de permissão 2.

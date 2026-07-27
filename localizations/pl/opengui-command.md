@@ -1,29 +1,24 @@
 ---
 title: Otwieranie GUI za pomocą komendy
-description: Jak otwierać Vanilla i niestandardowe GUI za pomocą komendy.
+description: Jak otwierać standardowe i niestandardowe GUI za pomocą komendy.
 ---
 
 # Otwieranie GUI za pomocą komendy
 
-FancyMenu zawiera komendę, która pozwala otwierać Vanilla i niestandardowe GUI za pomocą komendy.
-Możesz nawet zdalnie otwierać GUI dla **innych graczy**, jeśli zainstalujesz FancyMenu zarówno na **serwerze, jak i na klientach**.
+Komenda `/openguiscreen` otwiera Vanilla, mody oraz [niestandardowe GUI](./custom-guis). Może być używana do innych graczy, gdy FancyMenu jest zainstalowane na serwerze i na ich klientach.
 
-Aby otworzyć GUI, użyj komendy `/openguiscreen <screen_identifier> <target_player>`.
+Aby otworzyć GUI, użyj `/openguiscreen <screen_identifier> [<target_players>]`.
 
-Zastąp `<screen_identifier>` rzeczywistym identyfikatorem menu GUI, które chcesz otworzyć.
-Może to być identyfikator Twojego niestandardowego GUI (utworzonego w FancyMenu) albo zwykły identyfikator menu Vanilla/modu.
+Zastąp `<screen_identifier>` dokładnym, rozróżniającym wielkość liter identyfikatorem niestandardowego GUI lub ekranu Vanilla/moda.
 
-Aby uzyskać **identyfikator menu GUI Vanilla/modu**, otwórz menu, którego identyfikator chcesz poznać, i włącz **nakładkę debugowania** FancyMenu przez **Customization -> Debug Overlay**, a następnie możesz kliknąć identyfikator wyświetlany jako pierwsza linia, aby skopiować go do schowka.
+Aby znaleźć identyfikator, otwórz docelowy ekran i włącz nakładkę debugowania za pomocą **CTRL + ALT + D**. Wybierz identyfikator z jego pierwszej linii, aby go skopiować. Zobacz [Identyfikatory ekranów](./screen-identifiers).
 
 ![copy_identifier](https://github.com/Keksuccino/FancyMenu/assets/35544624/dd6c53d9-d2bd-4810-be03-3741e326bd5a)
 
-Pozostaw argument `<target_player>` pusty, aby otworzyć GUI dla swojego klienta, albo wybierz gracza (lub wielu graczy), dla których GUI ma zostać otwarte.
-Pamiętaj, że drugi gracz musi mieć zainstalowane FancyMenu na swoim kliencie.
+Pomiń `[<target_players>]`, aby otworzyć GUI dla siebie, albo użyj nazwy gracza lub selektora, takiego jak `@a`, aby otworzyć je dla jednego lub więcej graczy. Podanie argumentu celu wymaga poziomu uprawnień 2 (Game Master / OP poziomu 2), nawet jeśli wskazuje na ciebie, a każdy docelowy gracz musi mieć zainstalowane FancyMenu na swoim kliencie.
 
-Ta komenda nie zadziała dla każdego ekranu, szczególnie dla ekranów modów. Jeśli komenda nie otworzy ekranu, zostanie wyświetlony błąd. Niewiele da się wtedy zrobić, ponieważ prawdopodobnie jest to ekran zbyt złożony, aby FancyMenu mogło otworzyć go automatycznie.
-
-Nie będę też już ręcznie dodawać kompatybilności dla ekranów modów, ponieważ dodanie wsparcia dla wszystkich dostępnych modów zajęłoby mi wieki, przepraszam.
+Nie każdy ekran moda można utworzyć bezpośrednio. FancyMenu wyświetla błąd, gdy docelowy ekran nie jest obsługiwany. W układzie lokalnym użyj [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) na widżecie, który normalnie go otwiera.
 
 # Zamykanie GUI za pomocą komendy
 
-W rzadkich przypadkach, gdy jest to potrzebne, dostępna jest też komenda `/closeguiscreen <target_player>`, która zamyka bieżący ekran.
+W rzadkich przypadkach, gdy jest to potrzebne, `/closeguiscreen [<target_players>]` zamyka bieżący ekran. Dotyczy ciebie, gdy argument celu jest pominięty; podanie argumentu celu wymaga poziomu uprawnień 2.

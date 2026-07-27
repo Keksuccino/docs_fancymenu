@@ -1,10 +1,13 @@
 ---
 title: Importer/Exporter des dispositions
-description: Comment partager des dispositions avec d’autres.
+description: Comment partager des dispositions avec d'autres personnes.
 ---
 
-Le processus de partage d’une disposition est très similaire à [son inclusion dans un modpack](/modpacks) ; consultez donc simplement la [page des modpacks](/modpacks) pour plus d’informations.
+# Importer et exporter des dispositions
 
-Au lieu de déplacer les fichiers de configuration vers un modpack, vous les « déplacez » vers l’autre instance Minecraft de votre ami, etc.
+> [!CAUTION]
+> Les configurations partagées peuvent exécuter des actions. Importez-les uniquement depuis des sources de confiance.
 
-Envoyez simplement à votre ami le dossier de configuration sous forme de ZIP et demandez-lui de suivre les étapes pour copier le dossier dans son instance.
+Suivez le [guide des modpacks](/modpacks), mais copiez la configuration dans l'instance Minecraft du destinataire au lieu d'un modpack.
+
+Regroupez les fichiers requis depuis `<game-directory>/config/fancymenu/`, ainsi que toutes les ressources explicitement référencées. `<game-directory>` est le répertoire actif du lanceur/profil et n'est pas nécessairement `.minecraft`.

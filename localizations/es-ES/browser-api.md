@@ -1,28 +1,28 @@
 ---
-title: API JavaScript del navegador
+title: API de JavaScript del navegador
 description: >-
-  Cómo usar la API JavaScript de FancyMenu en funciones del mod basadas en MCEF,
-  como el elemento Browser.
+  Cómo usar la API de JavaScript de FancyMenu en funciones del mod basadas en
+  MCEF, como el elemento Browser.
 ---
 
-# API JavaScript de FancyMenu
+# API de JavaScript de FancyMenu
 
-FancyMenu inyecta un puente JavaScript en cada función basada en MCEF (por ejemplo, el elemento **Browser**). Este puente permite al contenido web:
+FancyMenu inyecta un puente de JavaScript en cada función basada en MCEF (por ejemplo, el elemento **Browser**). El puente permite que el contenido web:
 
-- ejecutar directamente cualquier [acción](./action-scripts) de FancyMenu desde JavaScript,
-- leer de forma asíncrona cualquier [placeholder](/placeholders) de FancyMenu.
+- ejecute directamente desde JavaScript cualquier [acción](./action-scripts) de FancyMenu,
+- lea de forma asíncrona cualquier [placeholder](/placeholders) de FancyMenu.
 
 Dos globales exponen la API:
 - `window.fancymenu` – espacio de nombres principal
 - `window.FancyMenu` – alias (refleja exactamente la misma estructura que `fancymenu`)
 
-Usa el evento `fancymenu-ready`, o la detección de características, para asegurarte de que el puente está disponible antes de llamarlo.
+Usa el evento `fancymenu-ready`, o la detección de capacidades, para asegurarte de que el puente está disponible antes de llamarlo.
 
 ## 1. Espacios de nombres y estructura
 
 - `fancymenu.actions` – ejecuta acciones de FancyMenu desde el navegador.
 - `fancymenu.placeholders` – lee valores de placeholders de FancyMenu de forma asíncrona.
-- `FancyMenu` refleja `fancymenu`, así que ambos exponen los mismos subespacios de nombres.
+- `FancyMenu` refleja `fancymenu`, por lo que ambos exponen los mismos subespacios de nombres.
 
 Las acciones exponen dos ayudantes:
 - `fancymenu.actions.execute(actionType, actionValue?)`
@@ -40,7 +40,7 @@ window.addEventListener('fancymenu-ready', () => {
 });
 ```
 
-El contenido también puede alojarse localmente: coloca archivos HTML en `config/fancymenu/assets/` y cárgalos mediante URL con el formato `file:///config/fancymenu/assets/<name>.html`.
+El contenido también puede alojarse localmente: coloca archivos HTML en `<game-directory>/config/fancymenu/assets/` y cárgalos mediante URLs con el formato `file:///config/fancymenu/assets/<name>.html`.
 
 ## 3. Ejecución de acciones
 
@@ -51,7 +51,7 @@ Usa el espacio de nombres `fancymenu.actions`. Cada llamada refleja las cadenas 
 ```javascript
 fancymenu.actions.execute('quitgame');                // acción sin valor
 fancymenu.actions.execute('opengui', 'title_screen'); // acción con valor
-fancymenu.actions.execute('set_variable', 'hp:20');   // el valor usa el formato name:value
+fancymenu.actions.execute('set_variable', 'hp:20');   // el valor usa el formato nombre:valor
 ```
 
 ### Con callbacks
@@ -61,31 +61,31 @@ fancymenu.actions.executeWithCallback(
     'opengui',
     'title_screen',
     result => console.log('Pantalla de título abierta'),
-    error  => console.error('Error al abrir:', error)
+    error  => console.error('La apertura ha fallado:', error)
 );
 
 // El parámetro value es opcional. Si se omite, pasa los callbacks directamente después de actionType.
 fancymenu.actions.executeWithCallback(
     'quitgame',
     result => console.log('Salida activada'),
-    error  => console.error('Error al salir:', error)
+    error  => console.error('La salida ha fallado:', error)
 );
-
-Los ayudantes heredados `fancymenu.execute(...)` y `fancymenu.executeWithCallback(...)` siguen funcionando y delegan en el espacio de nombres `actions`, así que el contenido existente no necesita cambios inmediatos.
 ```
+
+Los ayudantes heredados `fancymenu.execute(...)` y `fancymenu.executeWithCallback(...)` siguen delegando en el espacio de nombres `actions`.
 
 ### Tipos de acción comunes
 
-- `quitgame` – cierra el juego inmediatamente (sin valor)
-- `back_to_last_screen` – vuelve a la interfaz anterior (sin valor)
-- `opengui` – abre una pantalla de FancyMenu o vanilla (valor: identificador de pantalla)
+- `quitgame` – sale inmediatamente del juego (sin valor)
+- `back_to_last_screen` – vuelve a la GUI anterior (sin valor)
+- `opengui` – abre un menú de FancyMenu o una pantalla de Minecraft vanilla (valor: identificador de la pantalla)
 - `openlink` – abre un navegador (valor: URL)
-- `sendmessage` – publica una línea de chat (valor: texto del mensaje)
-- `set_variable` – asigna una variable de FancyMenu (valor: `name:value`)
-- `joinserver` – conecta a un servidor (valor: dirección)
-- `disconnect_server_or_world` – desconecta y lleva a una pantalla objetivo (valor: identificador de pantalla)
+- `sendmessage` – publica una línea en el chat (valor: texto del mensaje)
+- `set_variable` – asigna una variable de FancyMenu (valor: `nombre:valor`
+- `joinserver` – se conecta a un servidor (valor: dirección)
+- `disconnect_server_or_world` – desconecta y va a una pantalla de destino (valor: identificador de la pantalla)
 
-Todas las acciones que existen en FancyMenu están disponibles a través del puente; consulta los [scripts de acción](./action-scripts) para ver el catálogo completo.
+Todas las acciones que existen en FancyMenu están disponibles a través del puente; consulta los [scripts de acciones](./action-scripts) para ver el catálogo completo.
 
 ## 4. Lectura de placeholders
 
@@ -98,8 +98,8 @@ fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promi
 
 ### Proporcionar variables
 
-- Las variables son cadenas con el formato `name:value`. El puente divide solo en el **primer** carácter dos puntos, así que el valor puede contener más dos puntos.
-- Los nombres y los valores se recortan; se rechazan los nombres vacíos.
+- Las variables son cadenas en formato `nombre:valor`. El puente divide solo por el **primer** dos puntos, así que el valor puede contener más dos puntos.
+- Los nombres y valores se recortan; los nombres vacíos se rechazan.
 - Proporciona tantas variables como requiera el placeholder. Omite las opcionales.
 
 ### Ejemplos
@@ -111,7 +111,7 @@ fancymenu.placeholders.get('playername')
 
 // Una variable
 fancymenu.placeholders.getWithVars('uptime_duration', 'output_as_millis:false')
-    .then(seconds => console.log('Tiempo activo (s):', seconds));
+    .then(seconds => console.log('Tiempo en ejecución (s):', seconds));
 
 // Varias variables
 fancymenu.placeholders.getWithVars(
@@ -135,7 +135,7 @@ interface PlaceholderError {
 }
 ```
 
-Ejemplo de manejo:
+Ejemplo de gestión:
 
 ```javascript
 fancymenu.placeholders.get('unknown')
@@ -164,7 +164,7 @@ fancymenu.placeholders.get('unknown')
     <script>
         function getActions() {
             if (typeof fancymenu === 'undefined') {
-                console.warn('La API de FancyMenu todavía no está disponible.');
+                console.warn('La API de FancyMenu aún no está disponible.');
                 return null;
             }
             return fancymenu.actions || fancymenu;
@@ -205,7 +205,7 @@ fancymenu.placeholders.get('unknown')
 
         function loadPlaceholders() {
             if (typeof fancymenu === 'undefined' || !fancymenu.placeholders) {
-                console.warn('La API de placeholders de FancyMenu todavía no está disponible.');
+                console.warn('La API de placeholders de FancyMenu aún no está disponible.');
                 return;
             }
 
@@ -222,10 +222,10 @@ fancymenu.placeholders.get('unknown')
             ]).then(([playerName, uptimeSeconds, secondFruit]) => {
                 document.getElementById('placeholderOutput').textContent =
                     'Jugador: ' + playerName + '\n' +
-                    'Tiempo activo (segundos): ' + uptimeSeconds + '\n' +
+                    'Tiempo en ejecución (segundos): ' + uptimeSeconds + '\n' +
                     'Segunda fruta: ' + secondFruit;
             }).catch(error => {
-                console.error('La solicitud del placeholder ha fallado:', error);
+                console.error('La solicitud de placeholder ha fallado:', error);
             });
         }
     </script>
@@ -237,13 +237,13 @@ fancymenu.placeholders.get('unknown')
 
 - **Detecta el puente** antes de usarlo, o escucha `fancymenu-ready`.
 - **Gestiona los errores** (callbacks para [acciones](/action-scripts), `.catch` para [placeholders](/placeholders)) para mostrar información útil.
-- **Valida la entrada** antes de pasársela a acciones o variables de [placeholders](/placeholders).
-- **Limita la frecuencia de solicitudes**; evita saturar el puente con llamadas muy seguidas (especialmente bucles de actualización de placeholders).
-- **Seguridad**: las acciones se ejecutan con los permisos normales del jugador. Trata con cuidado los datos proporcionados por el usuario para evitar inyecciones.
+- **Valida la entrada** antes de pasarla a acciones o variables de [placeholder](/placeholders).
+- **Limita la frecuencia de solicitudes**; evita saturar el puente con llamadas muy rápidas (especialmente en bucles de actualización de placeholders).
+- **Seguridad:** el contenido del navegador puede invocar cualquier acción de FancyMenu registrada, incluidas acciones de archivos, red, comandos, portapapeles, resource-pack, enlaces y salida. Carga solo páginas de confianza y valida todos los datos recibidos desde contenido web.
 
 ## 7. Solución de problemas
 
 1. Confirma que la página se carga en un navegador MCEF controlado por FancyMenu.
-2. Comprueba la consola del navegador en busca de errores de JavaScript.
-3. Verifica que el identificador del [placeholder](/placeholders) o el tipo de [acción](/action-scripts) sea correcto y que se proporcionen los valores necesarios.
-4. Revisa el registro de Minecraft (`latest.log`) en busca de mensajes de error de FancyMenu si la ejecución falla de forma inesperada.
+2. Revisa la consola del navegador en busca de errores de JavaScript.
+3. Verifica que el identificador del [placeholder](/placeholders) o el tipo de [acción](/action-scripts) sean correctos y que se proporcionen los valores requeridos.
+4. Consulta el registro de Minecraft (`latest.log`) para ver mensajes de error de FancyMenu si la ejecución falla de forma inesperada.

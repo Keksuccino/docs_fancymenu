@@ -1,187 +1,121 @@
 ---
-title: Plik zastępczy danych NBT
-description: Jak używać pliku zastępczego danych NBT.
+title: Placeholder danych NBT
+description: 'Odczyt danych NBT encji, bloków i pamięci.'
 ---
 
+# Placeholdy danych NBT
 
-# Pobieranie danych NBT
+FancyMenu udostępnia dwa placeholdery NBT:
 
-Te placeholdery są dostępne w FancyMenu v3.8.0+.
+| Placeholder | Działa po stronie | Dostępne dane |
+|---|---|---|
+| `nbt_data_get` | Klient | Encje i byty blokowe widoczne po stronie klienta |
+| `nbt_data_get_server` | Serwer | Cele zgodne z vanilla `/data get`; wymaga FancyMenu na serwerze |
 
-Placeholders **Client NBT Data Get** i **Server NBT Data Get** pozwalają pobierać dane NBT (Named Binary Tag) z encji i bloków w Minecraft, podobnie jak polecenie `/data get`. Jest to niezwykle przydatne do tworzenia dynamicznych układów reagujących na stan gry, statystyki gracza lub warunki świata.
+# Placeholder po stronie klienta
 
-> Ten placeholder jest szczególnie potężny w modowanej rozgrywce, ponieważ może odczytywać niestandardowe dane NBT dodawane przez mody do encji i graczy. Niezależnie od tego, czy grasz z modami magicznymi dodającymi systemy many, modami RPG z własnymi statystykami, czy modami technicznymi z wartościami energii, możesz wyświetlać te zmodyfikowane wartości w swoich interfejsach.
-{.is-info}
-
-## Przegląd
-
-Te placeholdery wyodrębniają konkretne wartości ze структур danych NBT za pomocą ścieżek NBT. Możesz pobierać zdrowie gracza, poziom głodu, przedmioty w ekwipunku, stany bloków, zmodyfikowane atrybuty takie jak mana czy energia i wiele więcej.
-
-Wersja po stronie klienta ma dużą zaletę, że działa wyłącznie po stronie klienta, więc nie potrzebujesz FancyMenu na serwerze, ale jest przez to znacznie bardziej ograniczona, ponieważ nie wszystko związane z danymi NBT jest zawsze widoczne dla wszystkich klientów.
-
-Wersja po stronie serwera wymaga zainstalowania FancyMenu na serwerze, ale zapewnia **pełną obsługę** praktycznie **wszystkiego**, co jest przechowywane jako NBT.
-
-Ta strona skupia się na wersji po stronie klienta (`nbt_data_get`), ale wszystko działa bardzo podobnie także dla wersji po stronie serwera (`nbt_data_get_server`).
-
-## Składnia placeholdera
-
-```
+```text
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health"}}
 ```
 
-## Wymagane wartości
+## Wartości
 
-| Wartość | Opis | Opcje |
-|-------|-------------|---------|
-| `source_type` | Typ źródła danych | `entity` lub `block` |
-| `nbt_path` | Ścieżka NBT do odczytu | np. `Health`, `foodLevel`, `Pos[0]`, `Inventory[0].id` |
+| Wartość | Wymagane | Opis |
+|---|---|---|
+| `source_type` | Tak | `entity` lub `block` |
+| `entity_selector` | Dla encji | Selektor po stronie klienta, UUID lub dokładna nazwa encji |
+| `block_pos` | Dla bloków | Trzy bezwzględne współrzędne całkowite, np. `100 64 -200` |
+| `nbt_path` | Tak | Ścieżka NBT, np. `Health`, `Pos[0]` lub `Inventory[0].id` |
+| `scale` | Nie | Mnoży numeryczne wyniki `value`; domyślnie `1.0` |
+| `return_type` | Nie | `value`, `string`, `snbt` lub `json`; domyślnie `value` |
 
-## Wartości warunkowe
+Pozycje bloków po stronie klienta nie obsługują współrzędnych `~` ani `^`.
 
-W zależności od `source_type`, potrzebujesz jednej z poniższych opcji:
+## Selektory encji po stronie klienta
 
-| Wartość | Wymagana, gdy | Opis | Format |
-|-------|--------------|-------------|--------|
-| `entity_selector` | source_type to `entity` | Wybiera encję do odczytu | `@s` (ja), `@p` (najbliższy gracz), `@e` (najbliższa encja), UUID lub nazwa encji |
-| `block_pos` | source_type to `block` | Współrzędne bloku | `x y z` (np. `100 64 -200`) |
+| Selektor | Początkowe cele | Domyślna kolejność |
+|---|---|---|
+| `@s` | Lokalny gracz | Sama encja |
+| `@p` | Gracze | Najbliższy |
+| `@a` | Gracze | Kolejność iteracji klienta |
+| `@r` | Gracze | Losowo |
+| `@e` | Wszystkie encje widoczne po stronie klienta | Kolejność iteracji klienta |
 
-## Wartości opcjonalne
+`@e` nie wybiera najbliższej encji, chyba że dodasz `sort=nearest`. Obsługiwane są również bezpośrednie wyszukiwanie po UUID i dokładnej nazwie encji.
 
-| Wartość | Opis | Domyślna | Opcje |
-|-------|-------------|---------|---------|
-| `scale` | Współczynnik skalowania dla wartości liczbowych | `1.0` | Dowolna liczba dziesiętna |
-| `return_type` | Jak sformatować zwrócone dane | `value` | `value` (liczba/rozmiar), `string` (tekst), `snbt` (sformatowane NBT), `json` (format JSON) |
+Obsługiwane opcje selektora:
 
-## Wyjaśnienie typów zwracanych danych
+| Opcja | Opis |
+|---|---|
+| `type` | ID encji; dodaj prefiks `!`, aby wykluczyć |
+| `name` | Dokładna nazwa wyświetlana; dodaj prefiks `!`, aby wykluczyć |
+| `tag` | Tag encji; dodaj prefiks `!`, aby wykluczyć |
+| `limit` | Dodatni limit wyników |
+| `sort` | `nearest`, `furthest`, `random` lub `arbitrary` |
+| `distance` | Zakres odległości vanilla, np. `..10` lub `5..20` |
+| `x`, `y`, `z` | Punkt początkowy wyszukiwania; przyjmuje wartości bezwzględne i przesunięcia `~` |
+| `dx`, `dy`, `dz` | Rozmiar obszaru wyszukiwania od punktu początkowego |
 
-- **`value`** - Zwraca wartości liczbowe lub rozmiary (domyślnie)
-  - Dla liczb: zwraca liczbę (opcjonalnie przeskalowaną)
-  - Dla ciągów tekstowych: zwraca długość tekstu
-  - Dla list/tablic: zwraca liczbę elementów
-  - Dla compoundów: zwraca liczbę tagów
+Lokalne współrzędne `^` i inne standardowe opcje selektora vanilla nie są obsługiwane przez placeholder po stronie klienta.
 
-- **`string`** - Zwraca rzeczywistą wartość tekstową danych NBT
+Przykład:
 
-- **`snbt`** - Zwraca dane w formacie SNBT (Stringified NBT)
+```text
+{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@e[type=minecraft:zombie,sort=nearest,limit=1,distance=..20]","nbt_path":"Health"}}
+```
 
-- **`json`** - Zwraca dane w formacie JSON (tylko dla tagów compound)
+## Typy zwracane
+
+| Typ | Wynik |
+|---|---|
+| `value` | Znaczniki numeryczne są formatowane liczbowo i uwzględniają `scale`; znaczniki tekstowe zwracają swój tekst; pozostałe znaczniki zwracają tekst w stylu SNBT |
+| `string` | Zwraca wartość tekstową znacznika albo pusty ciąg, gdy znacznik nie ma wartości tekstowej |
+| `snbt` | Zwraca reprezentację SNBT znacznika |
+| `json` | Tylko dla znaczników złożonych: zwraca serializowany komponent tekstowy Minecrafta zawierający ładnie sformatowany wynik NBT |
+
+Tryb `json` po stronie klienta nie jest bezpośrednią konwersją NBT do JSON.
 
 ## Przykłady
 
-### Pobranie zdrowia gracza
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health"}}
-```
+Głód gracza:
 
-### Pobranie poziomu głodu gracza
-```json
+```text
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel"}}
 ```
 
-### Pobranie współrzędnej X gracza
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Pos[0]"}}
-```
+ID pierwszego przedmiotu w hotbarze:
 
-### Pobranie przedmiotu z pierwszego slotu hotbara
-```json
+```text
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Inventory[{Slot:0b}].id","return_type":"string"}}
 ```
 
-### Pobranie danych bloku na określonej pozycji
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"block","block_pos":"100 64 -200","nbt_path":"Items[0].Count"}}
+Liczba przedmiotów w bycie blokowym:
+
+```text
+{"placeholder":"nbt_data_get","values":{"source_type":"block","block_pos":"100 64 -200","nbt_path":"Items[0].count"}}
 ```
 
-### Pobranie przeskalowanego procentu zdrowia (Health * 5)
-```json
-{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health","scale":"5"}}
+# Placeholder po stronie serwera
+
+`nbt_data_get_server` działa zgodnie z zachowaniem serwerowego `/data get` i obsługuje:
+
+- Pełne selektory encji po stronie serwera.
+- Cele bloków z współrzędnymi bezwzględnymi, względnymi (`~`) lub lokalnymi (`^`).
+- Pamięć komend przez `source_type:"storage"`.
+
+```text
+{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health","return_type":"value"}}
 ```
 
-## Znajdowanie dostępnych ścieżek NBT
+Placeholder zwraca pustą wartość, dopóki nie nadejdzie odpowiedź z serwera. Odpowiedzi są na krótko buforowane, aby uniknąć nadmiernej liczby zapytań.
 
-### Metoda 1: Użycie polecenia `/data get` (zalecane)
+# Znajdowanie ścieżek NBT
 
-Najłatwiejszym sposobem odkrywania dostępnych ścieżek NBT jest użycie w grze polecenia `/data get` bez podawania ścieżki:
+Użyj odpowiedniej komendy bez ścieżki NBT, aby sprawdzić dostępne dane:
 
-1. **Dla encji:** `/data get entity @p`
-2. **Dla bloków:** `/data get block <x> <y> <z>`
-
-Wyświetli to wszystkie dostępne dane NBT dla danego celu, pokazując dokładne ścieżki, z których możesz skorzystać.
-
-#### Zrozumienie wyniku
-
-Gdy uruchomisz `/data get entity @p`, zobaczysz wynik podobny do tego:
-
-```
-Player616 has the following entity data: {Brain: {memories: {}}, 
-HurtByTimestamp: 0, SleepTimer: 0s, Invulnerable: 0b, FallFlying: 
-0b, PortalCooldown: 0, AbsorptionAmount: 0.0f, abilities: 
-{invulnerable: 1b, mayfly: 1b, instabuild: 1b, walkSpeed: 0.1f, 
-mayBuild: 1b, flying: 1b, flySpeed: 0.05f}, FallDistance: 0.0f, 
-recipeBook: {recipes: ["minecraft:crafting_table"]}, 
-DeathTime: 0s, XpSeed: -380875747, XpTotal: 0, UUID: [I; 1379890089, -1732753738, 
--2135065633, -718799804], playerGameType: 1, seenCredits: 
-0b, Motion: [0.0d, 0.0d, 0.0d], Health: 20.0f, foodSaturationLevel: 
-5.0f, ...}
+```text
+/data get entity @s
+/data get block 100 64 -200
 ```
 
-Aby wyodrębnić poprawną ścieżkę z tego wyniku:
-
-1. **Proste wartości** - Użyj bezpośrednio nazwy klucza:
-   - `Health: 20.0f` → Ścieżka: `Health`
-   - Przykład: `{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Health"}}`
-
-2. **Zagnieżdżone wartości** - Użyj zapisu z kropkami, aby uzyskać dostęp do zagnieżdżonych danych:
-   - `abilities: {walkSpeed: 0.1f}` → Ścieżka: `abilities.walkSpeed`
-   - Przykład: `{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"abilities.walkSpeed"}}`
-
-3. **Wartości tablicowe** - Użyj nawiasów kwadratowych z numerami indeksów:
-   - `Motion: [0.0d, 0.0d, 0.0d]` → Ścieżka dla ruchu w osi Y: `Motion[1]`
-   - Przykład: `{"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"Motion[1]"}}`
-
-### Metoda 2: Mod NBT Autocomplete
-
-Aby łatwiej odkrywać ścieżki NBT, rozważ zainstalowanie moda **NBT Autocomplete**:
-- Dostępny dla Fabric i Forge (Minecraft 1.21.x)
-- Zapewnia podpowiedzi autouzupełniania w grze podczas wpisywania poleceń
-- Pokazuje dostępne nazwy tagów i typy
-- [Modrinth](https://modrinth.com/mod/nbt-autocomplete) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/nbt-autocomplete)
-
-## Popularne ścieżki NBT
-
-### Encja gracza
-- `Health` - Aktualne zdrowie (float)
-- `foodLevel` - Poziom głodu (int, 0-20)
-- `foodSaturationLevel` - Poziom nasycenia (float)
-- `XpLevel` - Poziom doświadczenia (int)
-- `XpP` - Postęp doświadczenia (float, 0.0-1.0)
-- `Pos[0]`, `Pos[1]`, `Pos[2]` - Współrzędne X, Y, Z
-- `Inventory` - Tablica ekwipunku gracza
-- `SelectedItemSlot` - Aktualnie wybrany slot hotbara (int, 0-8)
-
-### Popularne NBT bloków
-- `Items` - Zawartość kontenera (skrzynie, piece itd.)
-- `CustomName` - Niestandardowa nazwa bloku
-- `Lock` - Ciąg blokady dla kontenerów
-
-### Przykłady popularnych NBT z modów
-- **Mody magiczne**: Często przechowują manę jako `playerMana`, `mana.current` lub podobnie
-- **Mody techniczne**: Wartości energii, takie jak `energy`, `forgeEnergy` lub `energyStorage.energy`
-- **Mody RPG**: Niestandardowe statystyki, takie jak `customStats.strength`, `rpgAttributes.level`
-
-Aby znaleźć ścieżki NBT dodane przez mody, użyj `/data get entity @p`, gdy mod jest aktywny, i poszukaj niestandardowych tagów dodanych przez mod.
-
-## Ograniczenia
-
-- **Brak dostępu do storage po stronie klienta** - Źródło danych storage nie jest obsługiwane po stronie klienta (tylko po stronie serwera)
-- **Wydajność** - Częste odczytywanie danych NBT może wpływać na wydajność
-- Zwraca pusty ciąg, jeśli ścieżka jest nieprawidłowa lub nie można uzyskać dostępu do danych
-
-## Wskazówki
-
-1. Zawsze najpierw testuj ścieżki NBT w grze za pomocą `/data get`
-2. Użyj parametru `scale`, aby przekształcać wartości na procenty lub inne przydatne formaty
-3. Pamiętaj, że niektóre dane NBT mogą nie być synchronizowane do klienta
-4. Selektory encji są ograniczone do encji znajdujących się w zasięgu renderowania
-5. W przypadku zawartości z modów sprawdź dokumentację moda lub użyj `/data get`, aby odkryć niestandardowe ścieżki NBT
+Wyniki po stronie klienta są ograniczone do danych zsynchronizowanych z klientem. Nieprawidłowe cele lub ścieżki zwracają pusty ciąg i zapisują szczegóły do `logs/latest.log`.

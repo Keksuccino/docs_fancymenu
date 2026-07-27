@@ -10,57 +10,57 @@ description: >-
 Można użyć elementu przycisku jako szablonu dla innych przycisków, a nawet suwaków. Dzięki temu możesz zastosować określony wygląd przycisku/suwaka do WSZYSTKICH przycisków/suwaków w menu, a nawet do wszystkich menu naraz, gdy używasz układu uniwersalnego.
 
 > [!IMPORTANT]
-> Od FancyMenu 3.9.0 zaleca się używanie [Global Customizations](/global-customizations) zamiast Szablonów przycisków/suwaków, gdy tylko jest to możliwe. Mogą one globalnie zastępować domyślne tekstury przycisków i suwaków bez użycia paczki zasobów. Używaj globalnych dostosowań do szerokiego stylizowania interfejsu vanilla, a szablonów tylko wtedy, gdy potrzebujesz zachowania zależnego od układu.
+> W przypadku szerokiego stylizowania standardowych przycisków i suwaków Vanilla preferuj [Global Customizations](./global-customizations). Szablonów przycisków/suwaków używaj wtedy, gdy zachowanie musi być zależne od układu.
 
 # Ważne przed rozpoczęciem
 
-Jeśli chcesz tylko zmienić teksturę pojedynczego przycisku lub suwaka, najprościej i zalecane jest po prostu **kliknąć prawym przyciskiem myszy** przycisk lub suwak (vanilla i własny) w edytorze. Dostępna jest opcja ustawienia **tekstur tła** (oraz tekstur uchwytu suwaka) dla przycisków i suwaków.
+Dla jednego przycisku lub suwaka **kliknij go prawym przyciskiem myszy** w edytorze i edytuj bezpośrednio jego **Background Textures** lub tekstury uchwytu suwaka.
 
-# Czym jest przycisk szablonu?
+# Czym jest przycisk-szablon?
 
-Przycisk szablonu to specjalny rodzaj własnego przycisku w FancyMenu, który pozwala kontrolować wygląd i zachowanie innych przycisków oraz suwaków. To jak stworzenie głównego projektu, którego będą przestrzegać wiele innych elementów.
+Przycisk-szablon to specjalny rodzaj niestandardowego przycisku w FancyMenu, który pozwala kontrolować wygląd i zachowanie innych przycisków oraz suwaków. To jak stworzenie wzorcowego projektu, według którego będą działać liczne inne elementy.
 
-Gdy tworzysz przycisk szablonu, możesz sprawić, że wiele przycisków lub suwaków będzie współdzielić te same:
+Gdy tworzysz przycisk-szablon, możesz sprawić, że wiele przycisków lub suwaków będzie współdzielić te same:
 - Rozmiar (szerokość i wysokość)
-- Pozycję
+- Położenie
 - Widoczność
-- Nieprzezroczystość (jak bardzo są przezroczyste)
+- Przezroczystość (jak bardzo są prześwitujące)
 - Etykiety tekstowe
-- **Tekstury przycisków** (automatycznie współdzielone, gdy ustawione są własne tekstury)
+- **Tekstury przycisku** (automatycznie współdzielone, gdy ustawione są własne tekstury)
 
-To bardzo przydatne, gdy chcesz, aby Twoje menu wyglądało spójnie albo gdy musisz zaktualizować wiele przycisków naraz!
+To bardzo przydatne, gdy chcesz zachować spójny wygląd menu albo gdy musisz zaktualizować wiele przycisków naraz!
 
 # Kto może używać szablonów?
 
-Tylko **własne przyciski** mogą działać jako szablony. Jednak takie szablony można zastosować do:
-- Przycisków vanilla (domyślnych przycisków Minecrafta)
-- Własnych przycisków (przycisków tworzonych w FancyMenu)
-- Suwaków vanilla (np. kontroli głośności)
-- Własnych suwaków (suwaków tworzonych w FancyMenu)
+Tylko **niestandardowe przyciski** mogą działać jako szablony. Jednak takie szablony można stosować do:
+- Przyciski Vanilla (domyślne przyciski Minecrafta)
+- Niestandardowe przyciski (przyciski tworzone w FancyMenu)
+- Suwaki Vanilla (np. sterowanie głośnością)
+- Niestandardowe suwaki (suwaki tworzone w FancyMenu)
 
-# Jak utworzyć przycisk szablonu
+# Jak utworzyć przycisk-szablon
 
 1. Otwórz edytor FancyMenu dla ekranu, który chcesz dostosować
-2. Dodaj nowy własny element przycisku do swojego układu
-3. Kliknij prawym przyciskiem myszy swój nowy przycisk
-4. Wybierz "Template Settings" z menu
+2. Dodaj nowy niestandardowy element przycisku do swojego układu
+3. Kliknij prawym przyciskiem myszy nowy przycisk
+4. Z menu wybierz "Template Settings"
 5. Kliknij "Is Template: ON", aby włączyć tryb szablonu
 
 Twój przycisk będzie teraz gotowy do działania jako szablon dla innych przycisków i suwaków!
 
 # Opcje współdzielenia szablonu
 
-Możesz wybrać, na które typy elementów szablon będzie wpływał:
-- **Buttons** - Twój szablon będzie wpływał tylko na przyciski (zarówno vanilla, jak i własne)
-- **Sliders** - Twój szablon będzie wpływał tylko na suwaki (zarówno vanilla, jak i własne)
+Możesz wybrać, na jakie typy elementów będzie oddziaływać twój szablon:
+- **Buttons** - Twój szablon będzie wpływał tylko na przyciski (zarówno Vanilla, jak i niestandardowe)
+- **Sliders** - Twój szablon będzie wpływał tylko na suwaki (zarówno Vanilla, jak i niestandardowe)
 
 Aby ustawić tę opcję:
-1. Kliknij prawym przyciskiem myszy swój przycisk szablonu
+1. Kliknij prawym przyciskiem myszy swój przycisk-szablon
 2. Przejdź do "Template Settings"
-3. Klikaj "Share With: [Current Option]", aby przełączać między opcjami
+3. Klikaj "Share With: [Current Option]", aby przełączać się między opcjami
 
-> **Ważne**: Możesz mieć dwa aktywne szablony jednocześnie - jeden dla przycisków ORAZ jeden dla suwaków. Oznacza to, że możesz tworzyć oddzielne projekty szablonów dla różnych typów elementów na tym samym ekranie!
-{.is-warning}
+> [!WARNING]
+> **Ważne**: Możesz mieć jednocześnie aktywne dwa szablony — jeden dla przycisków ORAZ jeden dla suwaków. Oznacza to, że możesz tworzyć osobne projekty szablonów dla różnych typów elementów na tym samym ekranie!
 
 
 # Co można szablonować
@@ -69,38 +69,38 @@ Możesz dokładnie kontrolować, które właściwości twój szablon będzie wsp
 
 ## Właściwości, które można włączać i wyłączać:
 
-1. Kliknij prawym przyciskiem myszy swój przycisk szablonu
+1. Kliknij prawym przyciskiem myszy swój przycisk-szablon
 2. Przejdź do "Template Settings" 
 3. Przełącz dowolne z tych opcji:
-   - **Width** - Sprawia, że wszystkie objęte elementy mają taką samą szerokość jak twój szablon
-   - **Height** - Sprawia, że wszystkie objęte elementy mają taką samą wysokość jak twój szablon
-   - **X Position** - Ustawia wszystkie objęte elementy na tej samej współrzędnej X co twój szablon
-   - **Y Position** - Ustawia wszystkie objęte elementy na tej samej współrzędnej Y co twój szablon
+   - **Width** - Ustawia wszystkim objętym elementom taką samą szerokość jak twój szablon
+   - **Height** - Ustawia wszystkim objętym elementom taką samą wysokość jak twój szablon
+   - **X Position** - Ustawia wszystkim objętym elementom tę samą współrzędną X co twój szablon
+   - **Y Position** - Ustawia wszystkim objętym elementom tę samą współrzędną Y co twój szablon
    - **Opacity** - Nadaje wszystkim objętym elementom taką samą przezroczystość jak twój szablon
    - **Visibility** - Kontroluje, czy objęte elementy są pokazywane, czy ukrywane
    - **Label** - Sprawia, że wszystkie objęte elementy używają tego samego tekstu co twój szablon
 
 ## Właściwości, które są zawsze współdzielone:
 
-- **Tekstury przycisków** - Gdy ustawisz własne tekstury na swoim szablonie, zostaną one automatycznie zastosowane do wszystkich objętych elementów
+- **Tekstury przycisku** - Gdy ustawisz własne tekstury na szablonie, zostaną one automatycznie zastosowane do wszystkich objętych elementów
   - W przeciwieństwie do innych właściwości, współdzielenia tekstur nie można wyłączyć
-  - Tekstury są stosowane tylko wtedy, gdy na szablonie rzeczywiście ustawiono własne tekstury
-  - Jeśli nie ustawiono własnych tekstur, zostaną użyte oryginalne tekstury elementu
+  - Tekstury są stosowane tylko wtedy, gdy na szablonie faktycznie ustawiono własne tekstury
+  - Jeśli nie ustawiono własnych tekstur, użyte zostaną oryginalne tekstury elementu
 
 # Dostosowywanie wyglądu szablonu
 
-Twój przycisk szablonu można dostosować tak samo jak każdy inny przycisk:
+Twój przycisk-szablon można dostosować tak samo jak każdy inny przycisk:
 
-1. Kliknij prawym przyciskiem myszy swój przycisk szablonu
+1. Kliknij prawym przyciskiem myszy swój przycisk-szablon
 2. Możesz ustawić:
    - Tekstury przycisku (stany normalny, po najechaniu i nieaktywny)
-   - Etykiety (normalna i po najechaniu)
+   - Etykiety (normalną i po najechaniu)
    - Dźwięki (po najechaniu i kliknięciu)
    - Podpowiedzi
 
 Dla przycisków możesz ustawić własne tekstury dla różnych stanów:
 - Tło normalne (gdy nie ma interakcji)
-- Tło po najechaniu (gdy kursor znajduje się nad nim)
+- Tło po najechaniu (gdy kursor myszy znajduje się nad nim)
 - Tło nieaktywne (gdy przycisk jest wyłączony)
 
 Dla suwaków możesz także ustawić:
@@ -109,24 +109,24 @@ Dla suwaków możesz także ustawić:
 
 # Ważne wskazówki
 
-1. **Przyciski szablonów nie będą widoczne w grze** - są widoczne tylko w edytorze, więc umieść je tam, gdzie jest to wygodne.
+1. **Przyciski-szablony nie będą widoczne w grze** - są widoczne tylko w edytorze, więc umieść je tam, gdzie jest to wygodne.
 
-2. **Możesz mieć dwa aktywne szablony jednocześnie** - jeden szablon dla przycisków i jeden dla suwaków mogą być aktywne w tym samym czasie.
+2. **Możesz mieć aktywne dwa szablony jednocześnie** - jeden szablon dla przycisków i jeden dla suwaków mogą być aktywne w tym samym czasie.
 
-3. **Aktywny jest tylko jeden szablon danego typu** - jeśli masz kilka szablonów przycisków, użyty dla przycisków będzie tylko ten najwyżej na liście elementów. To samo dotyczy szablonów suwaków.
+3. **Aktywny jest tylko jeden szablon danego typu** - jeśli masz wiele szablonów przycisków, tylko ten najwyżej na liście elementów będzie używany dla przycisków. To samo dotyczy szablonów suwaków.
 
-4. **Zmiany w szablonie są aktualizowane natychmiast** - gdy edytujesz swój szablon, wszystkie objęte przyciski i suwaki zaktualizują się od razu.
+4. **Zmiany w szablonie są aktualizowane natychmiast** - gdy edytujesz szablon, wszystkie objęte przyciski i suwaki od razu się zaktualizują.
 
 5. **Używaj właściwego trybu współdzielenia** - pamiętaj, że tryb "Buttons" nie wpływa na suwaki, a tryb "Sliders" nie wpływa na przyciski.
 
-6. **Stosuj właściwości selektywnie** - nie musisz stosować wszystkich właściwości. Na przykład możesz chcieć szablonować tylko tekstury i rozmiar, ale pozwolić elementom zachować ich oryginalne pozycje.
+6. **Stosuj właściwości wybiórczo** - nie musisz stosować wszystkich właściwości. Na przykład możesz chcieć szablonować tylko tekstury i rozmiar, ale pozostawić elementom ich oryginalne pozycje.
 
-7. **Tekstury są zawsze współdzielone po ustawieniu** - w przeciwieństwie do innych właściwości, wszystkie własne tekstury zastosowane do szablonu będą automatycznie współdzielone z pasującymi elementami. Nie trzeba włączać ani wyłączać tej funkcji.
+7. **Tekstury są zawsze współdzielone, gdy są ustawione** - w przeciwieństwie do innych właściwości, wszelkie własne tekstury zastosowane do szablonu będą automatycznie współdzielone z pasującymi elementami. Nie musisz włączać ani wyłączać tej funkcji.
 
-# Przykłady zastosowania
+# Przykładowe zastosowania
 
-- Stwórz spójny styl dla wszystkich przycisków na ekranie
-- Dopasuj wszystkie suwaki do własnego motywu za pomocą osobnego szablonu
-- Stwórz "tryb ukryty", w którym możesz pokazywać/ukrywać wiele przycisków naraz
-- Zmień rozmiar wielu przycisków jednym edytowaniem
-- Nadaj wszystkim przyciskom w menu te same własne tekstury i dźwięki
+- Stworzenie spójnego stylu dla wszystkich przycisków na ekranie
+- Dopasowanie wszystkich suwaków do własnego motywu za pomocą osobnego szablonu
+- Utworzenie trybu "ukrycia", w którym można pokazać lub ukryć wiele przycisków naraz
+- Zmiana rozmiaru wielu przycisków za pomocą jednej edycji
+- Nadanie wszystkim przyciskom w menu tych samych własnych tekstur i dźwięków

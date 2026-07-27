@@ -1,20 +1,20 @@
 ---
-title: Przechylanie elementów
-description: Jak przechylać elementy w FancyMenu.
+title: Pochylanie elementów
+description: Jak pochylać elementy w FancyMenu.
 ---
 
-# Przechylanie elementów
+# Pochylanie elementów
 
-Od FancyMenu v3.8.0 można przechylać **większość** elementów w pionie i poziomie!
+Większość elementów można pochylać w pionie i poziomie.
 
-Aby przechylić element, zaznacz go w edytorze układu. Jeśli zobaczysz dwie linie z uchwytami (jedną pionową i jedną poziomą), które nie są obramowaniem elementu, możesz przeciągnąć uchwyty, aby przechylić element w wybranym kierunku.
+Wybierz element w edytorze układu. Jeśli pochylanie jest obsługiwane, wokół elementu pojawią się pionowe i poziome prowadnice z uchwytami. Przeciągnij uchwyt, aby pochylić element w danej osi.
 
-Jeśli na elemencie nie ma linii z uchwytami, nie można go przechylić.
+Jeśli przy elemencie nie ma linii z uchwytami, nie można go pochylać.
 
 # Zaawansowane
 
-Możesz też kliknąć element prawym przyciskiem myszy, aby ręcznie ustawić wartości przechylenia za pomocą bezpośredniego pola tekstowego. To bezpośrednie wprowadzanie obsługuje [placeholders](/placeholders), więc możesz dynamicznie zmieniać przechylenie elementu, łącząc je z placeholderami, aby uzyskać wartości zmiennych FancyMenu lub podobne.
+Możesz także kliknąć element prawym przyciskiem myszy, aby ręcznie ustawić wartości pochylenia za pomocą bezpośredniego pola tekstowego. To bezpośrednie wprowadzanie obsługuje [placeholders](/placeholders), więc możesz dynamicznie zmieniać pochylenie elementu, łącząc je z placeholderami, aby uzyskać wartości zmiennych FancyMenu lub podobne.
 
 # Przyciski, suwaki i inne elementy interaktywne
 
-W przypadku elementów interaktywnych przechylanie jest możliwe, ale ma ono wyłącznie charakter wizualny, więc na przykład przycisk nadal będzie reagował tylko na kliknięcia wewnątrz swojego pierwotnego obszaru, nawet jeśli przechylenie częściowo przesunęło go poza ten obszar.
+Pochylenie ma charakter wyłącznie wizualny w przypadku elementów interaktywnych. Pochylony przycisk nadal przyjmuje kliknięcia w swoim oryginalnym, niepochylonym obszarze.

@@ -1,19 +1,22 @@
 ---
-title: Modèles de mise en page
+title: Modèles de disposition
 description: >-
-  Comment obtenir des modèles de design prêts à l'emploi pour FancyMenu, Spiffy
-  et Drippy.
+  Comment obtenir des modèles de conception prêts à l’emploi pour FancyMenu,
+  Spiffy et Drippy.
 ---
-# Modèles de mise en page
+# Modèles de disposition
 
-Si vous voulez télécharger des modèles de design pour FancyMenu, ou l'un de ses addons, comme SpiffyHud ou Drippy Loading Screen, le meilleur endroit à consulter est le salon [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) sur le serveur Discord Kekscord (le serveur Discord officiel de Keksuccino pour l'assistance aux mods). Ce salon contient des configurations FancyMenu complètes créées par la communauté, avec des liens de téléchargement pour chacune d'elles.
+Si vous souhaitez télécharger des modèles de conception pour FancyMenu, ou l’un de ses addons, comme SpiffyHud ou Drippy Loading Screen, le meilleur endroit à consulter est le salon [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) sur le serveur Discord Kekscord (le serveur Discord officiel de Keksuccino pour l’assistance aux mods). Ce salon contient des configurations complètes de FancyMenu créées par la communauté, avec des liens de téléchargement pour chacune d’elles.
 
-Tous les messages de modèles suivent le même format. Ils devraient tous contenir un lien de téléchargement vers une configuration FancyMenu complète, incluant un dossier `fancymenu` que vous devez utiliser pour remplacer votre propre `/config/fancymenu/`, comme décrit sur la page [Modpacks](/modpacks).
+Tous les messages de modèles qui s’y trouvent suivent le même schéma. Ils devraient tous proposer un lien de téléchargement vers une configuration complète de FancyMenu contenant un dossier `fancymenu` pour `<game-directory>/config/`, comme décrit sur la page [Modpacks](/modpacks).
 
-Comme ces modèles sont le plus souvent très complexes, il n'est pas recommandé d'essayer de fusionner le modèle avec votre configuration existante. C'est pourquoi vous devriez remplacer le dossier `fancymenu` existant par celui du modèle.
+> [!CAUTION]
+> Les modèles de la communauté peuvent exécuter des actions. Importez-les uniquement depuis des sources de confiance.
+
+Comme ces modèles sont la plupart du temps très complexes, il n’est pas recommandé d’essayer de fusionner le modèle avec votre configuration existante ; c’est pourquoi vous devriez remplacer le dossier `fancymenu` existant par celui du modèle.
 
 # Modifier des modèles ou les utiliser pour des projets
 
-La plupart des modèles dans le salon vous permettent de les modifier, et même de les utiliser dans vos propres projets, comme des modpacks, mais il est très important que vous **vérifiiez dans le message du modèle ce que vous avez le droit d'en faire** !
+La plupart des modèles du salon vous permettent de les modifier, et même de les utiliser dans vos propres projets, comme des modpacks, mais il est très important de **vérifier dans le message du modèle ce que vous êtes autorisé à faire avec** !
 
-Tous ne vous donnent pas l'autorisation complète de tout faire.
+Ils ne vous donnent pas tous la permission de tout faire.

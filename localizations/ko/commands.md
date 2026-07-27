@@ -7,52 +7,74 @@ description: FancyMenu의 명령어와 사용 방법입니다.
 
 FancyMenu는 FTB Quests 같은 다른 모드와 함께 사용할 때 매우 유용할 수 있는 몇 가지 명령어를 게임에 추가합니다.
 
-> 멀티플레이어에서 명령어를 사용하려면 FancyMenu가 **서버**(및 클라이언트)에 설치되어 있어야 합니다!
-{.is-warning}
+> [!WARNING]
+> 멀티플레이에서 명령어를 사용하려면 FancyMenu가 **서버**(및 클라이언트)에 설치되어 있어야 합니다!
+
+## 대상 플레이어 및 권한
+
+`/openguiscreen`, `/closeguiscreen`, `/fmlayout`의 대상 플레이어 인자는 선택 사항입니다. 플레이어가 이를 생략하면 해당 플레이어에게 명령어가 적용됩니다. 대상을 지정하면 일반 플레이어 이름과 `@a` 같은 셀렉터를 사용할 수 있습니다.
+
+- `/openguiscreen` 또는 `/closeguiscreen`에 대상 인자를 지정하려면, 명령어의 실행 주체가 자신이더라도 **권한 레벨 2**(게임 마스터 / OP 레벨 2)가 필요합니다.
+- `/fmlayout`에 대상 인자를 지정하려면, 명령어의 실행 주체가 자신이더라도 **권한 레벨 3**(관리자 / OP 레벨 3)가 필요합니다.
+- 모든 `/fmdata` 하위 명령어는 **권한 레벨 2**(게임 마스터 / OP 레벨 2)가 필요합니다.
+
+선택적 대상을 가진 세 명령어는 명령어 실행 주체가 플레이어일 때만 대상을 생략할 수 있습니다. 서버 콘솔은 반드시 대상을 지정해야 하며, 대상 인자에 필요한 권한 조건도 충족해야 합니다.
 
 ## /openguiscreen
 
-`/openguiscreen` 명령어를 사용하면 GUI(바닐라/모드 및 사용자 지정 GUI)를 열 수 있습니다.
-FancyMenu가 서버와 클라이언트 모두에 설치되어 있다면 다른 플레이어의 GUI를 원격으로 열 수도 있습니다.
+`/openguiscreen` 명령어는 바닐라, 모드 또는 [사용자 지정 GUI](./custom-guis)를 엽니다. FancyMenu가 서버와 해당 클라이언트에 설치되어 있으면 다른 플레이어를 대상으로 할 수 있습니다.
 
-이 명령어에 대한 더 자세한 설명은 [명령어로 GUI 열기](/opengui-command) 페이지를 참고하세요.
+자세한 내용은 [명령어로 GUI 열기](./opengui-command)와 [화면 식별자](./screen-identifiers)를 참조하세요.
 
-이 명령어는 모든 화면에서 작동하지는 않으며, 특히 모드 화면에서는 그렇습니다. 명령어로 화면을 열지 못하면 오류가 표시됩니다. 이런 경우에는 할 수 있는 일이 많지 않은데, 아마도 FancyMenu가 자동으로 열기에는 너무 복잡한 화면이기 때문입니다.
+모든 모드 화면을 직접 생성할 수 있는 것은 아닙니다. 대상 화면이 지원되지 않으면 FancyMenu가 오류를 표시합니다. 로컬 레이아웃에서는, 일반적으로 해당 화면을 여는 위젯에 [**바닐라/모드 버튼 흉내내기**](./action-scripts#mimic-vanillamod-button-mimicbutton)를 사용하세요.
 
-또한 앞으로는 모드 화면에 대한 호환성을 수동으로 추가하지 않을 예정입니다. 모든 모드에 대해 호환성을 추가하려면 너무 오래 걸리기 때문에 양해 부탁드립니다.
-
-**사용법:** `/openguiscreen <screen_identifier> <target_player>`
+**사용법:** `/openguiscreen <screen_identifier> [<target_players>]`
 
 ## /closeguiscreen
 
-`/closeguiscreen` 명령어를 사용하면 현재 GUI를 닫을 수 있습니다.
+`/closeguiscreen` 명령어는 명령어 실행 주체 또는 선택된 플레이어의 현재 화면을 닫습니다. 명령어를 실행할 수 있는 퀘스트, 이벤트, 자동화 모드와 함께 사용할 때 유용합니다.
 
-뭐라고요? 완전히 쓸모없다고요?
-음, 맞기도 하지만 사실은 그렇지 않습니다.
+**사용법:** `/closeguiscreen [<target_players>]`
 
-이 명령어는 특정 동작에 대해 명령어를 실행하는 모드를 사용할 때 유용합니다.
-즉, 다른 모드 없이 이 명령어만 사용하면 사실상 쓸모없지만, 적절한 모드가 설치되어 있다면 매우 유용할 수 있습니다!
+## /fmlayout
 
-**사용법:** `/closeguiscreen <target_player>`
+`/fmlayout` 명령어는 하나 이상의 클라이언트에서 레이아웃을 활성화할지 여부를 설정합니다. 레이아웃 이름은 FancyMenu에 표시되는 그대로 정확히 사용해야 하며, 공백이 포함된 이름은 따옴표로 감싸세요.
+
+**사용법:** `/fmlayout <layout_name> <true|false> [<target_players>]`
+
+예시:
+
+- `/fmlayout quest_complete true`는 명령어를 실행한 플레이어에게 `quest_complete`를 활성화합니다.
+- `/fmlayout quest_complete false @a`는 접속 중인 모든 플레이어에 대해 이를 비활성화합니다. 대상 인자를 지정하려면 권한 레벨 3이 필요합니다.
 
 ## /fmvariable
 
-`/fmvariable` 명령어를 사용하면 FancyMenu 변수를 설정하거나 가져올 수 있습니다.
+`/fmvariable` 명령어는 [FancyMenu 변수](./variables)를 설정하고 읽습니다.
 
-서버에서 다른 플레이어로 이 명령어를 실행하려면 바닐라의 `/execute as` 명령어를 사용할 수 있습니다.
-예를 들어 `ExamplePlayer` 플레이어로 `/fmvariable` 명령어를 실행하고 싶다면, 다음과 같이 입력하면 됩니다:
-`/execute as ExamplePlayer run fmvariable...`.
+이 명령어를 다른 플레이어로 실행하려면 바닐라의 `/execute as` 명령어를 사용하세요:
+`/execute as ExamplePlayer run fmvariable ...`
 
-**사용법:** `/fmvariable <get_or_set> <variable_name> [<set_to_value>] [<send_chat_feedback>]`
+**사용법:**
+
+- `/fmvariable get <variable_name>`
+- `/fmvariable set <variable_name> <send_chat_feedback> <set_to_value>`
 
 ### 가져오기
-변수 값을 **가져오려면** 다음과 같이 `get` 하위 명령어를 사용하세요:
+
+변수 값을 **가져오려면**, 다음처럼 `get` 하위 명령어를 사용하세요:
 `/fmvariable get some_variable`
 
 그러면 이 변수의 값이 채팅에 출력됩니다.
 
 ### 설정
-변수를 **설정하려면** 다음과 같이 `set` 하위 명령어를 사용하세요:
-`/fmvariable set some_variable new_value true`
 
-여기서 마지막 인자는 채팅 피드백을 받을지, 즉 이 명령어가 채팅에 메시지를 출력할지 여부를 설정합니다.
+변수를 **설정하려면**, 새 값 앞에 채팅 피드백 불리언을 넣으세요:
+`/fmvariable set some_variable true new_value`
+
+`send_chat_feedback` 인자는 FancyMenu가 변경 사항을 채팅에 확인 표시할지 여부를 제어합니다. `set_to_value` 인자는 명령어의 나머지 부분을 모두 소비하므로, 값에 공백을 포함할 수 있습니다. 예를 들어 `/fmvariable set greeting false Hello from FancyMenu`는 성공 피드백을 보내지 않고 `Hello from FancyMenu`를 저장합니다.
+
+## /fmdata
+
+`/fmdata` 명령어는 서버와 FancyMenu 클라이언트 간에 사용자 지정 데이터를 전송하고, 서버 측 리스너를 관리하며, 플레이어가 접속할 때 전송될 데이터를 구성합니다. 모든 `/fmdata` 하위 명령어는 권한 레벨 2가 필요합니다.
+
+모든 하위 명령어, 문법, 예시는 [FM 데이터](./fm-data)를 참조하세요.

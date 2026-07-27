@@ -14,60 +14,60 @@ Todos los datos se basan en texto:
 - Se admite texto plano
 - Se admite JSON (como texto normal)
 
-Cada URL de servidor obtiene un solo **ID de solicitud** en caché durante el tiempo de ejecución.
-FancyMenu usa este ID para rastrear la conexión y exponerlo en las variables del listener.
+A cada URL de servidor se le asigna una sola **ID de solicitud** en caché durante el tiempo de ejecución.
+FancyMenu usa esta ID para rastrear la conexión y mostrarla en variables de los listeners.
 
 # Inicio rápido
 
-1. Agrega la acción **Conectar al servidor remoto** (opcional, pero útil para abrir la conexión antes)
-2. Agrega la acción **Enviar datos al servidor remoto** con la misma URL
-3. Agrega el listener **Al recibir datos del servidor remoto** para reaccionar a las respuestas
-4. Usa **Al conectar al servidor remoto** / **Al cerrar la conexión con el servidor remoto** para la lógica de estado de conexión
-5. Cierra las conexiones cuando sea necesario con las acciones de cierre
+1. Agrega [**Conectar al Servidor Remoto**](#connect-to-remote-server) cuando la conexión deba abrirse con anticipación.
+2. Agrega [**Enviar Datos al Servidor Remoto**](#send-data-to-remote-server) con la misma URL.
+3. Agrega [**Al Recibir Datos del Servidor Remoto**](#on-remote-server-data-received) para reaccionar a las respuestas.
+4. Usa [**Al Conectarse al Servidor Remoto**](#on-remote-server-connected) y [**Al Cerrarse la Conexión con el Servidor Remoto**](#on-remote-server-connection-closed) para la lógica de estado de conexión.
+5. Cierra las conexiones con [**Cerrar Conexión del Servidor Remoto**](#close-remote-server-connection) o [**Cerrar Todas las Conexiones del Servidor Remoto**](#close-all-remote-server-connections).
 
 # Acciones
 
-## Conectar al servidor remoto
+## Conectar al Servidor Remoto
 
-Inicializa una conexión con un servidor remoto sin enviar datos de carga útil.
+Abre o reutiliza una conexión con el servidor remoto sin enviar datos de carga útil.
 
 Entrada:
 
-- URL del servidor remoto
+- URL del Servidor Remoto
 
-## Enviar datos al servidor remoto
+## Enviar Datos al Servidor Remoto
 
 Se conecta (o reutiliza una conexión existente) y envía datos de texto.
 
 Entradas:
 
-1. URL del servidor remoto
+1. URL del Servidor Remoto
 2. Datos
 
-## Cerrar conexión con servidor remoto
+## Cerrar Conexión del Servidor Remoto
 
 Cierra una conexión por ID de solicitud.
 
 Entrada:
 
-- ID de solicitud de conexión
+- ID de Solicitud de la Conexión
 
-## Cerrar todas las conexiones con servidores remotos
+## Cerrar Todas las Conexiones del Servidor Remoto
 
-Cierra todas las conexiones activas con servidores remotos.
+Cierra todas las conexiones activas del servidor remoto.
 
 # Listeners
 
-## Al conectar al servidor remoto
+## Al Conectarse al Servidor Remoto
 
-Se activa cuando se inicializa una conexión con un servidor remoto.
+Se activa después de que una conexión con el servidor remoto se abre correctamente.
 
 Variables:
 
 - `$$request_id`
 - `$$remote_server_url`
 
-## Al recibir datos del servidor remoto
+## Al Recibir Datos del Servidor Remoto
 
 Se activa cuando se reciben datos de un servidor remoto conectado.
 
@@ -77,9 +77,9 @@ Variables:
 - `$$remote_server_url`
 - `$$data`
 
-## Al cerrar la conexión con el servidor remoto
+## Al Cerrarse la Conexión con el Servidor Remoto
 
-Se activa cuando se cierra una conexión con un servidor remoto.
+Se activa cuando se cierra una conexión con el servidor remoto.
 
 Variables:
 
@@ -89,28 +89,26 @@ Variables:
 - `$$crashed`
 - `$$unknown_close_reason`
 
-# Comportamiento de la conexión
+# Comportamiento de la Conexión
 
 - Las conexiones son **iniciadas por el cliente**
 - FancyMenu mantiene las conexiones activas en segundo plano
-- Si una conexión falla o expira, FancyMenu lo reintenta cada 10 segundos
-- Cuando una conexión fallida se restablece, FancyMenu registra un mensaje de restauración
+- Si una conexión falla o expira, FancyMenu reintenta cada 10 segundos
+- Cuando se restaura una conexión fallida, FancyMenu registra un mensaje de restauración
 - Los mensajes salientes no enviados se ponen en cola con una **edad máxima de 30 segundos**
-- Los mensajes en cola con más de 30 segundos de antigüedad se descartan
+- Los mensajes en cola con más de 30 segundos se descartan
 
 # Modos de URL
 
-- `wss://` = seguro (TLS), recomendado
-- `ws://` = sin cifrado, útil para pruebas locales
+- `wss://` se usa tal cual y es lo recomendado.
+- `ws://` se usa tal cual y no está cifrado.
+- `https://` se convierte en `wss://`.
+- `http://` se convierte en `ws://`.
+- Un host sin esquema se antepone con `wss://`.
+- Otros esquemas de URL explícitos se rechazan.
 
-Ejemplo de URL local:
+Prefiere URLs explícitas con `wss://`. Ejemplo de URL local:
 
 - `ws://127.0.0.1:8765`
 
-# Mejores prácticas
-
-1. Usa una URL estable por cada servicio de backend.
-2. Mantén un formato de carga útil consistente para cada caso de uso.
-3. Maneja las conexiones cerradas o fallidas con lógica de interfaz de respaldo.
-4. Usa las acciones de cierre cuando tu flujo termine.
-5. Usa `wss://` para entornos de producción.
+Usa una URL estable por servicio, maneja los estados de listener de conexión cerrada/fallida y cierra las conexiones cuando ya no sean necesarias.

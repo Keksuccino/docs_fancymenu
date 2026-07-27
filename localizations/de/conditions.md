@@ -1,401 +1,604 @@
 ---
-title: Bedingungen (Voraussetzungen)
-description: Wie man Ladevoraussetzungen verwendet.
+title: Bedingungen (Anforderungen)
+description: So verwenden Sie Ladeanforderungen.
 ---
 
-# Voraussetzungen
-Voraussetzungen (auch „Ladevoraussetzungen“) ermöglichen es dir, Teile deiner Layouts je nach verschiedenen Bedingungen sichtbar oder unsichtbar zu machen, zum Beispiel wenn ein Element mit der Maus überfahren wird, das Fenster eine bestimmte Größe hat oder du dich gerade in einer Welt befindest.
+# Anforderungen
 
-Sie können auch in Aktionsskripten von Buttons, Schiebereglern, Tickern und allem anderen mit einem Eingabefeld für Aktionsskripte verwendet werden.
+Anforderungen (in manchen Menüs **Loading Requirements** genannt) zeigen Inhalte basierend auf Bedingungen wie Hover-Zustand, Fenstergröße oder ob eine Welt geladen ist, an oder blenden sie aus.
 
-# Voraussetzungen zu Elementen hinzufügen
-Um einem oder mehreren Elementen Voraussetzungen hinzuzufügen, klicke einfach mit der rechten Maustaste auf das Element und dann auf **Ladevoraussetzungen**.
+Sie können sie auf [Elemente](./elements), ganze Layouts und [Aktionsskripte](./action-scripts) anwenden.
 
-# Layoutweite Voraussetzungen
-Du kannst auch die Sichtbarkeit ganzer Layouts ändern, indem du mit der rechten Maustaste auf den **Editor-Hintergrund** klickst und dann auf **Ladevoraussetzungen [Layoutweit]**.
+# Anforderungen zu Elementen hinzufügen
+
+Um einem Element Anforderungen hinzuzufügen, klicken Sie mit der rechten Maustaste darauf und wählen Sie **Loading Requirements**.
+
+Anforderungen werden geprüft, während das Menü geöffnet ist, sodass sich Elemente aktualisieren, wenn sich eine Bedingung ändert.
+
+# Layout-weite Anforderungen
+
+Sie können auch die Sichtbarkeit ganzer Layouts ändern, indem Sie mit der rechten Maustaste auf den **Editor-Hintergrund** klicken und dann auf **Loading Requirements [Layout-Wide]** klicken.
+
+Wenn sich ein layoutweiter Wert ändert, baut FancyMenu den aktuellen Bildschirm neu auf und wendet die Layouts an, deren Anforderungen jetzt erfüllt sind.
 
 # Aktionsskripte
-Voraussetzungen können auch in Aktionsskripten verwendet werden.
-Du kannst sie im Aktionsskript-Editor hinzufügen und damit bestimmte Aktionen nur dann ausführen, wenn die Bedingung der Voraussetzung erfüllt ist.
 
-# Voraussetzungswerte
-Für einige Voraussetzungen musst du Werte festlegen, damit sie korrekt funktionieren. In diesem Fall sollte dich die Voraussetzungsansicht darauf hinweisen, zuerst alle Werte festzulegen. Wenn nicht, prüfe einfach, ob der Button **Voraussetzungswert bearbeiten** beim Hinzufügen der Voraussetzung anklickbar ist.
-Sieh dir immer die Beschreibung der Voraussetzung an, wenn du dir unsicher bist, welcher Wert gesetzt werden muss.
-Einige Werteingaben unterstützen sogar **TAB-Autovervollständigung**.
+Anforderungen können auch in Aktionsskripten verwendet werden.
+Sie können sie im Editorbildschirm für Aktionsskripte hinzufügen und damit bestimmte Aktionen nur ausführen, wenn die Bedingung der Anforderung erfüllt ist.
 
-FancyMenu 3.9.0 überarbeitet das Fenster „Voraussetzungen verwalten“ und nutzt nun ein Rechtsklick-Kontextmenü, Tastaturnavigation, Suche, Rückgängig/Wiederholen (`CTRL + Z` / `CTRL + Y`) sowie `CTRL + S` als Shortcut für **Fertig**.
+# Anforderungen kombinieren
 
-# Voraussetzungen im Detail
-Die folgende Liste enthält die meisten, wenn nicht sogar alle in FancyMenu verfügbaren Voraussetzungen. Es ist möglich, dass die Liste durch Updates für das Mod manchmal etwas veraltet ist.
+- Anforderungen außerhalb von Gruppen verwenden **UND**, daher müssen alle erfüllt sein.
+- Innerhalb einer Gruppe wählen Sie **UND** oder **ODER**.
+- Verwenden Sie **IF NOT**, um eine Anforderung zu invertieren.
 
-## Ist Element überfahren
-Prüft, ob sich ein bestimmtes Element gerade unter dem Mauszeiger befindet.  
-**Wert erforderlich**: Ja - Element-ID des Zielelements (z. B. `some_element_ID`). Die ID kannst du erhalten, indem du im Editor mit der rechten Maustaste auf ein Element klickst.
+Diese Regeln gelten gleichermaßen für Elemente, Layouts und Aktionsskripte.
 
-## Ist Element fokussiert
-Prüft, ob ein bestimmtes Element aktuell den Tastaturfokus hat (zum Beispiel ein Textfeld oder ein fokussierter Button).
-**Wert erforderlich**: Ja - Element-ID des Zielelements (dieselbe ID, die im Editor angezeigt wird)
+# Anforderungswerte
 
-> Das ist nicht dasselbe wie ein nur überfahrenes Element, auch wenn es ähnlich aussieht. Fokussierte Elemente sehen weiterhin „überfahren“ aus, selbst wenn sie nicht mehr überfahren werden. Elemente werden fokussiert, wenn man auf sie klickt oder wenn man die Tastatur benutzt, um durch Menüs zu navigieren.
-{.is-info}
+Für Anforderungen, die einen Wert benötigen, verwenden Sie **Edit Requirement Value** und folgen Sie der im Editor angezeigten Beschreibung. Einige Felder unterstützen die **TAB**-Vervollständigung.
 
-## Ist irgendein Element überfahren
-Prüft, ob sich aktuell irgendein Element im Layout unter dem Mauszeiger befindet.  
-**Wert erforderlich**: Nein
+Wenn eine importierte Anforderung nach einer Änderung an FancyMenu oder Add-ons nicht mehr funktioniert, bearbeiten Sie sie im Anforderungsbildschirm und prüfen Sie `logs/latest.log` auf Fehler.
 
-## Ist irgendein Button überfahren
-Prüft, ob aktuell irgendein Button (Vanilla oder benutzerdefiniert) unter dem Mauszeiger liegt.  
-**Wert erforderlich**: Nein
+Der Anforderungseditor unterstützt ein Rechtsklick-Kontextmenü, Tastaturnavigation, Suche, Rückgängig/Wiederholen (`Ctrl/Command + Z` / `Ctrl/Command + Y`) und `Ctrl/Command + S` zum Speichern.
 
-## Ist Layout aktiviert
-Prüft, ob ein bestimmtes Layout aktuell aktiviert ist.  
-**Wert erforderlich**: Ja - Name des Layouts (z. B. `my_cool_main_menu_layout`)
+# Anforderungen im Detail
 
-## Läuft der Scheduler
-Prüft, ob aktuell ein Scheduler ausgeführt wird.
-**Wert erforderlich**: Ja - Scheduler-ID (z. B. `my_scheduler`)
+In diesem Abschnitt sind die in FancyMenu enthaltenen Standardanforderungen aufgeführt.
 
-## Ist GUI-Skalierung
-Prüft, ob die aktuelle GUI-Skalierung bestimmten Bedingungen entspricht.  
-**Wert erforderlich**: Ja - Kann numerische Werte wie `1`, `2` usw. annehmen
+## Ist Element gehovert (`fancymenu_visibility_requirement_is_element_hovered`)
 
-## Ist Button aktiv
-Prüft, ob ein bestimmter Button aktiv ist (anklickbar).  
-**Wert erforderlich**: Ja - Element-ID des Ziel-Buttons (z. B. "some_element_ID")
+**Zweck:** Prüft, ob sich der Mauszeiger über einem bestimmten Element befindet.
 
-## Ist Bildschirmtitel
-Prüft, ob der ANZEIGETitel des Bildschirms mit einem bestimmten Text oder Lokalisierungsschlüssel übereinstimmt. Hier wird nur der Anzeigename/Titel des Bildschirms geprüft, wie „Optionen“ oder „Pause“. Der Menü-/Bildschirmbezeichner (z. B. `title_screen`) wird NICHT geprüft!
+**Wert:** Erforderlich — [Elementkennung](./element-identifiers) des Zielelements (z. B. `some_element_ID`).
 
-**Wert erforderlich**: Ja - Der genaue Titeltext oder Lokalisierungsschlüssel des Bildschirms
+## Ist Element fokussiert (`is_element_focused`)
 
-## Ist Taste gedrückt
-Prüft, ob eine bestimmte Tastaturtaste aktuell gedrückt wird.  
-**Wert erforderlich**: Ja - Der Tastencode der Zieltaste. Wird über eine UI beim Bearbeiten des Voraussetzungswerts ausgewählt.
+**Zweck:** Prüft, ob ein bestimmtes Element derzeit den Tastaturfokus hat (z. B. ein Textfeld oder eine fokussierte Schaltfläche).
 
-## Ist irgendein Bildschirm offen
-Prüft, ob aktuell ein Bildschirm/მენü geöffnet ist (gibt false zurück, wenn kein Bildschirm angezeigt wird).  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Element-ID des Zielelements (dieselbe ID, die im Editor angezeigt wird)
 
-## Ist MC-Debug-Overlay aktiviert
-Prüft, ob das F3-Debug-Overlay derzeit sichtbar ist.
-**Wert erforderlich**: Nein
+> [!NOTE]
+> Fokus und Hover sind unterschiedliche Zustände. Ein Element kann nach dem Verlassen durch den Mauszeiger sein fokussiertes Aussehen behalten; Klicken oder Tastaturnavigation können ihm den Fokus geben.
 
-## Ist aktiver Cursor-Typ
-Prüft, ob der aktuell aktive Cursor-Typ von FancyMenu einem bestimmten Standard-Cursor-Typ entspricht.
-**Wert erforderlich**: Ja - Cursor-Typ: `normal`, `writing`, `crosshair`, `pointing_hand`, `resize_horizontal`, `resize_vertical`, `resize_nwse`, `resize_nesw`, `resize_all` oder `not_allowed`
+## Ist irgendein Element gehovert (`fancymenu_visibility_requirement_is_any_element_hovered`)
 
-## Ist die Anpassungs-Menüleiste sichtbar
-Prüft, ob die Anpassungs-Menüleiste von FancyMenu derzeit sichtbar ist.
-**Wert erforderlich**: Nein
+**Zweck:** Prüft sichtbare/renderbare Elemente in der aktuell aktiven Anpassungsebene, einschließlich der von gestapelten Layouts beigesteuerten Elemente.
 
-## Ist Modpack-Modus aktiviert
-Prüft, ob der Modpack-Modus von FancyMenu aktiviert ist.
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Maus geklickt
-Prüft, ob eine bestimmte Maustaste gedrückt wird.  
-**Wert erforderlich**: Ja - `left` oder `right`, um anzugeben, welche Maustaste geprüft werden soll
+## Ist irgendeine Schaltfläche gehovert (`fancymenu_visibility_requirement_is_any_button_hovered`)
 
-## Ist Vollbild
-Prüft, ob das Spiel derzeit im Vollbildmodus läuft.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob irgendeine sichtbare/renderbare Vanilla- oder benutzerdefinierte Schaltfläche in der aktuell aktiven Anpassungsebene gehovert ist, einschließlich der von gestapelten Layouts beigesteuerten Schaltflächen.
 
-## Ist Fensterbreite
-Prüft, ob die Breite des Spielfensters bestimmten Werten entspricht.  
-**Wert erforderlich**: Ja - Fensterbreite in Pixeln (z. B. "1920"). Mehrere Werte können durch Kommas getrennt angegeben werden.
+**Wert:** Nicht erforderlich
 
-## Ist Fensterhöhe
-Prüft, ob die Höhe des Spielfensters bestimmten Werten entspricht.  
-**Wert erforderlich**: Ja - Fensterhöhe in Pixeln (z. B. "1080"). Mehrere Werte können durch Kommas getrennt angegeben werden.
+## Ist Layout aktiviert (`fancymenu_visibility_requirement_is_layout_enabled`)
 
-## Ist Fensterbreite größer als
-Prüft, ob die Breite des Spielfensters größer als ein bestimmter Wert ist.  
-**Wert erforderlich**: Ja - Fensterbreite in Pixeln (z. B. "1920")
+**Zweck:** Prüft, ob ein bestimmtes Layout derzeit aktiviert ist.
 
-## Ist Fensterhöhe größer als
-Prüft, ob die Höhe des Spielfensters größer als ein bestimmter Wert ist.  
-**Wert erforderlich**: Ja - Fensterhöhe in Pixeln (z. B. "1080")
+**Wert:** Erforderlich — Der Name des Layouts (z. B. `my_cool_main_menu_layout`)
 
-## Ist Multiplayer
-Prüft, ob sich der Spieler aktuell in einer Multiplayer-Welt befindet.  
-**Wert erforderlich**: Nein
+## Läuft der Scheduler (`fancymenu_visibility_requirement_is_scheduler_running`)
 
-## Ist Singleplayer
-Prüft, ob sich der Spieler aktuell in einer Einzelspieler-Welt befindet.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob ein [Scheduler](./schedulers) derzeit läuft.
 
-## Ist Welt geladen
-Prüft, ob aktuell eine Welt geladen ist.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Scheduler-ID (z. B. `my_scheduler`)
 
-## Ist Adventure
-Prüft, ob sich der Spieler aktuell im Abenteuermodus befindet.  
-**Wert erforderlich**: Nein
+## Ist GUI-Skalierung (`fancymenu_loading_requirement_is_gui_scale`)
 
-## Ist Kreativ
-Prüft, ob sich der Spieler aktuell im Kreativmodus befindet.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob die aktuelle GUI-Skalierung bestimmten Bedingungen entspricht.
 
-## Ist Zuschauer
-Prüft, ob sich der Spieler aktuell im Zuschauermodus befindet.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Verwenden Sie eine Zahl für Gleichheit, `>` für größer als oder `<` für kleiner als.
 
-## Ist Überleben
-Prüft, ob sich der Spieler aktuell im Überlebensmodus befindet.  
-**Wert erforderlich**: Nein
+Mehrere durch Kommas getrennte Bedingungen werden mit UND verknüpft. Zum Beispiel gilt `>1,<4` nur dann, wenn die GUI-Skalierung größer als `1` und kleiner als `4` ist.
 
-## Ist Spielmodus
-Prüft, ob sich der Spieler in einem bestimmten Spielmodus befindet.  
-**Wert erforderlich**: Ja - Name des Spielmodus (z. B. "creative", "survival", "adventure", "spectator")
+## Ist Schaltfläche aktiv (`fancymenu_visibility_requirement_is_button_active`)
 
-## Ist Schwierigkeit
-Prüft, ob die aktuelle Spielschwierigkeit einem bestimmten Wert entspricht.  
-**Wert erforderlich**: Ja - Name der Schwierigkeit (z. B. "peaceful", "easy", "normal", "hard")
+**Zweck:** Prüft, ob eine bestimmte Schaltfläche aktiv (anklickbar) ist.
 
-## Ist Hardcore
-Prüft, ob sich die aktuell geladene Welt im Hardcore-Modus befindet.
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Element-ID der Zielschaltfläche (z. B. "some_element_ID")
 
-## Ist Kameraperspektive
-Prüft, ob die aktuelle Kameraperspektive einer bestimmten Perspektive entspricht.
-**Wert erforderlich**: Ja - `first_person`, `third_person_back` oder `third_person_front`
+## Ist Bildschirmtitel (`is_menu_title`)
 
-## Regnet es
-Prüft, ob es am aktuellen Standort des Spielers gerade regnet.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob der ANGEZEIGTE Titel des Bildschirms mit einem bestimmten Text oder Lokalisierungsschlüssel übereinstimmt. Es wird nur der Anzeigename/Titel des Bildschirms geprüft, wie „Optionen“ oder „Pause“. Die Menü-/Bildschirm-ID (wie `title_screen`) wird NICHT geprüft!
 
-## Gewittert es
-Prüft, ob es in der Welt des Spielers gerade ein Gewitter gibt.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Der exakte Titeltext oder Lokalisierungsschlüssel des Bildschirms
 
-## Ist klares Wetter
-Prüft, ob das Wetter derzeit klar ist (kein Regen oder Gewitter).  
-**Wert erforderlich**: Nein
+## Ist Taste gedrückt (`is_key_pressed`)
 
-## Schneit es
-Prüft, ob es am aktuellen Standort des Spielers gerade schneit.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob eine bestimmte Tastaturtaste derzeit gedrückt wird.
 
-## Läuft der Spieler
-Prüft, ob der Spieler gerade sprintet.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Der Tastencode der Zieltaste. Wird beim Bearbeiten des Anforderungswerts über eine UI ausgewählt.
 
-## Schleicht der Spieler
-Prüft, ob der Spieler gerade schleicht/hockt.  
-**Wert erforderlich**: Nein
+## Ist irgendein Bildschirm offen (`is_any_screen_open`)
 
-## Verwendet der Spieler ein Item
-Prüft, ob der Spieler derzeit ein Item verwendet.
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob derzeit irgendein Bildschirm/მენü geöffnet ist (gibt false zurück, wenn kein Bildschirm angezeigt wird).
 
-## Schwimmt der Spieler
-Prüft, ob der Spieler gerade schwimmt.  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Springt oder fällt der Spieler
-Prüft, ob der Spieler gerade springt.  
-**Wert erforderlich**: Nein
+## Ist MC-Debug-Overlay aktiviert (`is_debug_overlay_enabled`)
 
-## Ist der Spieler unter Wasser
-Prüft, ob sich der Spieler vollständig unter Wasser befindet.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob das F3-Debug-Overlay derzeit sichtbar ist.
 
-## Ist der Spieler im Wasser
-Prüft, ob sich der Spieler im Wasser befindet (kann teilweise eingetaucht sein).  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Ist der Spieler in Lava
-Prüft, ob sich der Spieler in Lava befindet.  
-**Wert erforderlich**: Nein
+## Ist aktiver Cursor-Typ (`is_active_cursor_type`)
 
-## Ist der Spieler in einer Flüssigkeit
-Prüft, ob sich der Spieler in irgendeiner Flüssigkeit befindet (Wasser, Lava usw.).  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob der aktuell aktive Cursor-Typ von FancyMenu mit einem bestimmten Standard-Cursortyp übereinstimmt.
 
-## Reitet der Spieler auf einer Entität/einem Fahrzeug
-Prüft, ob der Spieler auf irgendeiner Entität reitet.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Cursortyp: `normal`, `writing`, `crosshair`, `pointing_hand`, `resize_horizontal`, `resize_vertical`, `resize_nwse`, `resize_nesw`, `resize_all` oder `not_allowed`
 
-## Reitet der Spieler auf einer springbaren Entität
-Prüft, ob der Spieler auf einer Entität reitet, die springen kann (z. B. ein Pferd).  
-**Wert erforderlich**: Nein
+## Ist die Anpassungs-Menüleiste sichtbar (`is_customization_menu_bar_visible`)
 
-## Reitet der Spieler auf einer Entität mit Gesundheit
-Prüft, ob der Spieler auf einer lebenden Entität mit Gesundheit reitet (z. B. Tiere, keine Boote).  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob die Anpassungs-Menüleiste von FancyMenu derzeit sichtbar ist.
 
-## Ist der Spieler in Pulverschnee
-Prüft, ob sich der Spieler derzeit in Pulverschnee befindet.  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## War der Spieler in Pulverschnee
-Prüft, ob sich der Spieler in Pulverschnee befand (für Effekte, die nach dem Verlassen bestehen bleiben).  
-**Wert erforderlich**: Nein
+## Ist Modpack-Modus aktiviert (`is_modpack_mode_enabled`)
 
-## Trägt der Spieler einen Kürbis
-Prüft, ob der Spieler einen ausgehöhlten Kürbis auf dem Kopf trägt.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob der Modpack-Modus von FancyMenu aktiviert ist.
 
-## Fliegt der Spieler mit Elytra
-Prüft, ob der Spieler derzeit mit Elytra fliegt.  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Kreativflug des Spielers
-Prüft, ob der Spieler im Kreativmodus fliegt.  
-**Wert erforderlich**: Nein
+## Maustaste ist gedrückt (`mouse_click`)
 
-## Hat der Spieler Absorptionsherzen
-Prüft, ob der Spieler Absorptionsherzen (goldene Herzen) hat.  
-**Wert erforderlich**: Nein
+**Zweck:** Gibt true zurück, solange eine bestimmte Maustaste gedrückt gehalten wird. Dies ist kein einmaliges Klickereignis; verwenden Sie den [**On Mouse Button Clicked**-Listener](./listeners#on-mouse-button-clicked-mouse_button_clicked), wenn eine Aktion einmal pro Klick ausgeführt werden soll.
 
-## Ist der Spieler vom Wither betroffen
-Prüft, ob der Spieler vom Wither-Effekt betroffen ist.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — `left` oder `right`, um die zu prüfende Maustaste anzugeben
 
-## Ist der Spieler vollständig eingefroren
-Prüft, ob der Spieler vollständig eingefroren ist (normalerweise durch Pulverschnee).  
-**Wert erforderlich**: Nein
+## Ist Vollbild (`fancymenu_loading_requirement_is_fullscreen`)
 
-## Ist der Spieler vergiftet
-Prüft, ob der Spieler vom Gift-Effekt betroffen ist.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob sich das Spiel derzeit im Vollbildmodus befindet.
 
-## Ist der Spieler in einem Biom
-Prüft, ob sich der Spieler in einem bestimmten Biom befindet.  
-**Wert erforderlich**: Ja - Biom-Identifikator (z. B. `minecraft:birch_forest`)
+**Wert:** Nicht erforderlich
 
-## Ist der Spieler in einer Dimension
-Prüft, ob sich der Spieler in einer bestimmten Dimension befindet.  
-**Wert erforderlich**: Ja - Dimensions-Identifikator (z. B. `minecraft:overworld`, `minecraft:the_nether`, `minecraft:the_end`)
+## Ist Fensterbreite (`fancymenu_loading_requirement_is_window_width`)
 
-## Ist der Spieler in einer Struktur
-Prüft, ob sich der Spieler derzeit innerhalb einer bestimmten Struktur befindet. Erfordert FancyMenu auf dem Server für Serverwelten.
-**Wert erforderlich**: Ja - Struktur-Identifikator (z. B. `minecraft:village`)
+**Zweck:** Prüft, ob die Fensterbreite des Spiels bestimmten Werten entspricht.
 
-## Ist eine Entität in der Nähe
-Prüft, ob sich ein bestimmter Entitätstyp innerhalb eines bestimmten Radius um den Spieler befindet.  
-**Wert erforderlich**: Ja - Format: "radius:entity_id" (z. B. `10:minecraft:pig` - prüft, ob sich Schweine innerhalb von 10 Blöcken befinden)
+**Wert:** Erforderlich — Fensterbreite in Pixeln (z. B. "1920"). Mehrere Werte können durch Kommas getrennt angegeben werden.
 
-## Ist Effekt aktiv
-Prüft, ob ein bestimmter Trankeffekt auf dem Spieler aktiv ist.  
-**Wert erforderlich**: Ja - Effekt-Identifikator (z. B. `minecraft:speed`, `minecraft:strength`)
+## Ist Fensterhöhe (`fancymenu_loading_requirement_is_window_height`)
 
-## Ist irgendein Effekt aktiv
-Prüft, ob der Spieler irgendeinen aktiven Trankeffekt hat.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob die Fensterhöhe des Spiels bestimmten Werten entspricht.
 
-## Ist der Spieler linkshändig
-Prüft, ob der Spieler in den Spieleinstellungen auf Linkshänder-Modus eingestellt ist.  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Fensterhöhe in Pixeln (z. B. "1080"). Mehrere Werte können durch Kommas getrennt angegeben werden.
 
-## Ist Inventarslot gefüllt
-Prüft, ob ein bestimmter Inventarslot ein Item enthält.  
-**Wert erforderlich**: Ja - Slotnummer (0-35 für das Hauptinventar, Slots 0-8 sind die Hotbar)
+## Ist Fensterbreite größer als (`fancymenu_loading_requirement_is_window_width_bigger_than`)
 
-## Ist Item im Inventar überfahren
-Prüft, ob sich der Cursor über einem beliebigen Item in einem Inventarbildschirm befindet.
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob die Fensterbreite des Spiels größer als ein bestimmter Wert ist.
 
-## Hält der Cursor ein Inventar-Item
-Prüft, ob der Cursor derzeit einen Inventar-Item-Stack hält.
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Fensterbreite in Pixeln (z. B. "1920")
 
-## Ist Hotbar-Slot ausgewählt
-Prüft, ob ein bestimmter Hotbar-Slot aktuell ausgewählt ist.  
-**Wert erforderlich**: Ja - Hotbar-Slotnummer (0-8)
+## Ist Fensterhöhe größer als (`fancymenu_loading_requirement_is_window_height_bigger_than`)
 
-## Hat der Spieler Berechtigungsstufe
-Prüft, ob der Spieler auf der aktuellen Welt oder dem Server mindestens die angegebene Berechtigungs-/OP-Stufe hat.  
-**Wert erforderlich**: Ja - Berechtigungsstufe (0-4, wobei 4 der Server-Operator ist)
+**Zweck:** Prüft, ob die Fensterhöhe des Spiels größer als ein bestimmter Wert ist.
 
-## Ist Angriffsstärke abgeschwächt
-Prüft, ob die Angriffsstärke des Spielers derzeit abgeschwächt ist (nicht vollständig aufgeladen).  
-**Wert erforderlich**: Nein
+**Wert:** Erforderlich — Fensterhöhe in Pixeln (z. B. "1080")
 
-## Ist reale Uhrzeit: Tag
-Prüft, ob der aktuelle reale Kalendertag mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Tagesnummer (1-31). Mehrere Werte können durch Kommas getrennt angegeben werden.
+## Ist Mehrspieler (`fancymenu_loading_requirement_is_multiplayer`)
 
-## Ist reale Uhrzeit: Stunde
-Prüft, ob die aktuelle reale Stunde mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Stunde im 24-Stunden-Format (0-23). Mehrere Werte können durch Kommas getrennt angegeben werden.
+**Zweck:** Prüft, ob sich der Spieler derzeit in einer Mehrspielerwelt befindet.
 
-## Ist reale Uhrzeit: Minute
-Prüft, ob die aktuelle reale Minute mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Minute (0-59). Mehrere Werte können durch Kommas getrennt angegeben werden.
+**Wert:** Nicht erforderlich
 
-## Ist reale Uhrzeit: Monat
-Prüft, ob der aktuelle reale Monat mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Monatsnummer (1-12, wobei 1 Januar ist). Mehrere Werte können durch Kommas getrennt angegeben werden.
+## Ist Einzelspieler (`fancymenu_loading_requirement_is_singpleplayer`)
 
-## Ist reale Uhrzeit: Sekunde
-Prüft, ob die aktuelle reale Sekunde mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Sekunde (0-59). Mehrere Werte können durch Kommas getrennt angegeben werden.
+**Zweck:** Prüft, ob sich der Spieler derzeit in einer Einzelspielerwelt befindet.
 
-## Ist reale Uhrzeit: Wochentag
-Prüft, ob der aktuelle reale Wochentag mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Wochentag als Zahl (1-7, wobei 1 Sonntag ist). Mehrere Werte können durch Kommas getrennt angegeben werden.
+**Wert:** Nicht erforderlich
 
-## Ist reale Uhrzeit: Jahr
-Prüft, ob das aktuelle reale Jahr mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Vollständiges Jahr (z. B. "2023"). Mehrere Werte können durch Kommas getrennt angegeben werden.
+## Ist Welt geladen (`fancymenu_loading_requirement_is_world_loaded`)
 
-## Datei/Ordner existiert
-Prüft, ob eine bestimmte Datei oder ein bestimmter Ordner auf dem System existiert.  
-**Wert erforderlich**: Ja - Pfad zur Datei oder zum Ordner (absolut oder relativ zum Spielverzeichnis)
+**Zweck:** Prüft, ob derzeit irgendeine Welt geladen ist.
 
-## Ist OS Linux
-Prüft, ob das Betriebssystem Linux ist.  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Ist OS macOS
-Prüft, ob das Betriebssystem macOS ist.  
-**Wert erforderlich**: Nein
+## Ist im Abenteuer-Modus (`fancymenu_visibility_requirement_is_adventure`)
 
-## Ist OS Windows
-Prüft, ob das Betriebssystem Windows ist.  
-**Wert erforderlich**: Nein
+**Zweck:** Prüft, ob sich der Spieler derzeit im Abenteuer-Spielmodus befindet.
 
-## Ist Internetverbindung verfügbar
-Prüft, ob eine aktive Internetverbindung verfügbar ist.  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Ist Spielsprache
-Prüft, ob die aktuelle Spielsprache einem bestimmten Wert entspricht.  
-**Wert erforderlich**: Ja - Sprachcode (z. B. `en_us` für Englisch)
+## Ist im Kreativmodus (`fancymenu_visibility_requirement_is_creative`)
 
-## Ist Mod geladen
-Prüft, ob ein bestimmter Mod geladen ist.  
-**Wert erforderlich**: Ja - Mod-ID (z. B. `fancymenu`, `jei`). Du kannst auch mit `optifine` nach Optifine prüfen. Mehrere Mod-IDs können durch Kommas getrennt angegeben werden.
+**Zweck:** Prüft, ob sich der Spieler derzeit im Kreativ-Spielmodus befindet.
 
-## Ist MCEF geladen
-Prüft, ob MCEF (Minecraft Chromium Embedded Framework) installiert und initialisiert ist.  
-**Wert erforderlich**: Nein
+**Wert:** Nicht erforderlich
 
-## Ist Zahl
-Bietet einen erweiterten Zahlenvergleich mit verschiedenen Vergleichsmodi.  
-**Wert erforderlich**: Ja - Komplexes Format: `["mode":"comparison_mode","number":"value1","compare_with":"value2"]$` wobei `comparison_mode` `equals`, `bigger-than`, `smaller-than`, `bigger-than-or-equals` oder `smaller-than-or-equals` sein kann
+## Ist im Zuschauermodus (`fancymenu_visibility_requirement_is_spectator`)
 
-## Ist Text
-Bietet einen erweiterten Textvergleich mit verschiedenen Vergleichsmodi.  
-**Wert erforderlich**: Ja - Komplexes Format: `["mode":"comparison_mode","text":"text1","compare_with":"text2"]$` wobei `comparison_mode` `equals`, `contains`, `starts-with` oder `ends-with` sein kann
+**Zweck:** Prüft, ob sich der Spieler derzeit im Zuschauermodus befindet.
 
-## Ist Server-IP
-Prüft, ob die aktuelle Server-IP mit einem bestimmten Wert übereinstimmt.  
-**Wert erforderlich**: Ja - Server-IP-Adresse (mit oder ohne Port)
+**Wert:** Nicht erforderlich
 
-## Ist Server online
-Prüft, ob ein bestimmter Server online und erreichbar ist.  
-**Wert erforderlich**: Ja - Server-IP-Adresse (mit oder ohne Port)
+## Ist im Überlebensmodus (`fancymenu_visibility_requirement_is_survival`)
 
-## Ist Ressourcenpaket aktiviert
-Prüft, ob ein bestimmtes Ressourcenpaket derzeit ausgewählt/aktiv ist.  
-**Wert erforderlich**: Ja - Titel des Ressourcenpakets oder Paket-ID (z. B. `Programmer Art` oder die ID des Pakets)
+**Zweck:** Prüft, ob sich der Spieler derzeit im Überlebens-Spielmodus befindet.
 
-## Ist Variablenwert (FM-Variable)
-Prüft, ob eine FancyMenu-Variable einen bestimmten Wert hat.  
-**Wert erforderlich**: Ja - Format: "variable_name:expected_value"
+**Wert:** Nicht erforderlich
 
-## Nur einmal pro Sitzung
-Gibt nur einmal pro Spielsitzung true zurück. Nützlich für einmalige Ankündigungen oder Aktionen.  
-**Wert erforderlich**: Nein
+## Ist Spielmodus (`is_gamemode`)
+
+**Zweck:** Prüft, ob sich der Spieler in einem bestimmten Spielmodus befindet.
+
+**Wert:** Erforderlich — Name des Spielmodus (z. B. "creative", "survival", "adventure", "spectator")
+
+## Ist Schwierigkeit (`is_difficulty`)
+
+**Zweck:** Prüft, ob die aktuelle Spielschwierigkeit einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Name der Schwierigkeit (z. B. "peaceful", "easy", "normal", "hard")
+
+## Ist Hardcore (`is_hardcore`)
+
+**Zweck:** Prüft, ob die aktuell geladene Welt im Hardcore-Modus ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist Kameraperspektive (`is_camera_perspective`)
+
+**Zweck:** Prüft, ob die aktuelle Kameraperspektive mit einer bestimmten Perspektive übereinstimmt.
+
+**Wert:** Erforderlich — `first_person`, `third_person_back` oder `third_person_front`
+
+## Regnet es (`is_raining`)
+
+**Zweck:** Prüft, ob es an der Position des Spielers derzeit regnet.
+
+**Wert:** Nicht erforderlich
+
+## Donnert es (`is_thundering`)
+
+**Zweck:** Prüft, ob es in der Welt des Spielers derzeit ein Gewitter gibt.
+
+**Wert:** Nicht erforderlich
+
+## Ist klares Wetter (`is_clear_weather`)
+
+**Zweck:** Prüft, ob das Wetter derzeit klar ist (kein Regen oder Donner).
+
+**Wert:** Nicht erforderlich
+
+## Schneit es (`is_snowing`)
+
+**Zweck:** Prüft, ob es an der Position des Spielers derzeit schneit.
+
+**Wert:** Nicht erforderlich
+
+## Läuft der Spieler (`is_player_running`)
+
+**Zweck:** Prüft, ob der Spieler derzeit sprintet.
+
+**Wert:** Nicht erforderlich
+
+## Schleicht der Spieler (`is_player_sneaking`)
+
+**Zweck:** Prüft, ob der Spieler derzeit schleicht/hockt.
+
+**Wert:** Nicht erforderlich
+
+## Verwendet der Spieler ein Item (`is_player_using_item`)
+
+**Zweck:** Prüft, ob der Spieler derzeit ein Item verwendet.
+
+**Wert:** Nicht erforderlich
+
+## Schwimmt der Spieler (`is_player_swimming`)
+
+**Zweck:** Prüft, ob der Spieler derzeit schwimmt.
+
+**Wert:** Nicht erforderlich
+
+## Springt oder fällt der Spieler (`is_player_jumping`)
+
+**Zweck:** Gibt true zurück, solange sich der Spieler in der Luft in einem normalen Sprung- oder Fallzustand befindet. Schwimmen, Flüssigkeiten, Elytra-Flug, Schlafen, visuelles Schwimmen und Kriechen sind ausgeschlossen.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler unter Wasser (`is_player_under_water`)
+
+**Zweck:** Prüft, ob der Spieler vollständig unter Wasser ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler im Wasser (`is_player_in_water`)
+
+**Zweck:** Prüft, ob sich der Spieler im Wasser befindet (kann teilweise untergetaucht sein).
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler in Lava (`is_player_in_lava`)
+
+**Zweck:** Prüft, ob sich der Spieler in Lava befindet.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler in einer Flüssigkeit (`is_player_in_fluid`)
+
+**Zweck:** Prüft, ob sich der Spieler in irgendeiner Flüssigkeit befindet (Wasser, Lava usw.).
+
+**Wert:** Nicht erforderlich
+
+## Reitet der Spieler auf einer Entität/Fahrzeug (`is_player_riding_entity`)
+
+**Zweck:** Prüft, ob der Spieler auf irgendeiner Entität reitet.
+
+**Wert:** Nicht erforderlich
+
+## Reitet der Spieler auf einer springbaren Entität (`is_player_riding_jumpable_entity`)
+
+**Zweck:** Prüft, ob der Spieler auf einer Entität reitet, die springen kann (wie ein Pferd).
+
+**Wert:** Nicht erforderlich
+
+## Reitet der Spieler auf einer Entität mit Gesundheit (`is_player_riding_entity_with_health`)
+
+**Zweck:** Prüft, ob der Spieler auf einer lebenden Entität mit Gesundheit reitet (wie Tiere, nicht Boote).
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler im Pulverschnee (`is_player_in_powder_snow`)
+
+**Zweck:** Prüft, ob sich der Spieler derzeit im Pulverschnee befindet.
+
+**Wert:** Nicht erforderlich
+
+## War der Spieler im Pulverschnee (`was_player_in_powder_snow`)
+
+**Zweck:** Prüft, ob sich der Spieler im Pulverschnee befand (für Effekte, die nach dem Verlassen fortbestehen).
+
+**Wert:** Nicht erforderlich
+
+## Trägt der Spieler einen Kürbis (`is_player_wearing_pumpkin`)
+
+**Zweck:** Prüft, ob der Spieler einen ausgehöhlten Kürbis auf dem Kopf trägt.
+
+**Wert:** Nicht erforderlich
+
+## Fliegt der Spieler mit Elytra (`is_player_flying_with_elytra`)
+
+**Zweck:** Prüft, ob der Spieler derzeit mit einer Elytra fliegt.
+
+**Wert:** Nicht erforderlich
+
+## Fliegt der Spieler im Kreativmodus (`is_player_creative_flying`)
+
+**Zweck:** Prüft, ob der Spieler im Kreativmodus fliegt.
+
+**Wert:** Nicht erforderlich
+
+## Hat der Spieler Absorptionsherzen (`has_player_absorption_hearts`)
+
+**Zweck:** Prüft, ob der Spieler Absorptionsherzen (goldene Herzen) hat.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler verwelkt (`is_player_withered`)
+
+**Zweck:** Prüft, ob der Spieler vom Wither-Effekt betroffen ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler vollständig eingefroren (`is_player_fully_frozen`)
+
+**Zweck:** Prüft, ob der Spieler vollständig eingefroren ist (normalerweise durch Pulverschnee).
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler vergiftet (`is_player_poisoned`)
+
+**Zweck:** Prüft, ob der Spieler vom Gift-Effekt betroffen ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler in einem Biom (`is_player_in_biome`)
+
+**Zweck:** Prüft, ob sich der Spieler in einem bestimmten Biom befindet.
+
+**Wert:** Erforderlich — Biom-Kennung (z. B. `minecraft:birch_forest`)
+
+## Ist der Spieler in einer Dimension (`is_player_in_dimension`)
+
+**Zweck:** Prüft, ob sich der Spieler in einer bestimmten Dimension befindet.
+
+**Wert:** Erforderlich — Dimensionskennung (z. B. `minecraft:overworld`, `minecraft:the_nether`, `minecraft:the_end`)
+
+## Ist der Spieler in einer Struktur (`is_player_in_structure`)
+
+**Zweck:** Prüft, ob sich der Spieler derzeit in einer bestimmten Struktur befindet. Für Serverwelten ist FancyMenu auf dem Server erforderlich.
+
+**Wert:** Erforderlich — Strukturkennung (z. B. `minecraft:village`)
+
+## Ist Entität in der Nähe (`is_entity_nearby`)
+
+**Zweck:** Prüft, ob sich ein bestimmter Entitätstyp in einem bestimmten Radius um den Spieler befindet.
+
+**Wert:** Erforderlich — Format: "radius:entity_id" (z. B. `10:minecraft:pig` - prüft auf Schweine innerhalb von 10 Blöcken)
+
+## Ist Effekt aktiv (`is_effect_active`)
+
+**Zweck:** Prüft, ob ein bestimmter Trankeffekt auf dem Spieler aktiv ist.
+
+**Wert:** Erforderlich — Effektkennung (z. B. `minecraft:speed`, `minecraft:strength`)
+
+## Ist irgendein Effekt aktiv (`is_any_effect_active`)
+
+**Zweck:** Prüft, ob der Spieler irgendeinen aktiven Trankeffekt hat.
+
+**Wert:** Nicht erforderlich
+
+## Ist der Spieler linkshändig (`is_left_handed`)
+
+**Zweck:** Prüft, ob der Spieler in den Spieloptionen auf linkshändig eingestellt ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist Inventarslot gefüllt (`is_inventory_slot_filled`)
+
+**Zweck:** Prüft, ob ein bestimmter Inventarslot einen Gegenstand enthält.
+
+**Wert:** Erforderlich — Slotnummer (0-35 für das Hauptinventar, Slots 0-8 sind die Schnellleiste)
+
+## Ist Gegenstand im Inventar gehovert (`is_item_hovered_in_inventory`)
+
+**Zweck:** Prüft, ob der Mauszeiger einen Gegenstand in einem Inventarbildschirm überfährt.
+
+**Wert:** Nicht erforderlich
+
+## Hält der Cursor einen Inventargegenstand (`is_cursor_holding_inventory_item`)
+
+**Zweck:** Prüft, ob der Cursor derzeit einen Inventargegenstand-Stapel hält.
+
+**Wert:** Nicht erforderlich
+
+## Ist Schnellleisten-Slot ausgewählt (`is_hotbar_slot_active`)
+
+**Zweck:** Prüft, ob ein bestimmter Slot der Schnellleiste derzeit ausgewählt ist.
+
+**Wert:** Erforderlich — Slotnummer der Schnellleiste (0-8)
+
+## Hat der Spieler Berechtigungsstufe (`fancymenu_loading_requirement_has_player_permission_level`)
+
+**Zweck:** Prüft, ob der Spieler auf der aktuellen Welt oder dem aktuellen Server mindestens die angegebene Berechtigungs-/OP-Stufe hat.
+
+**Wert:** Erforderlich — Berechtigungsstufe als Zahl (0-4, wobei 4 Server-Operator ist)
+
+## Ist Angriffsstärke abgeschwächt (`is_attack_strength_weakened`)
+
+**Zweck:** Prüft, ob die Angriffsstärke des Spielers derzeit abgeschwächt ist (nicht vollständig aufgeladen).
+
+**Wert:** Nicht erforderlich
+
+## Ist Echtzeit-Tag (`fancymenu_visibility_requirement_is_realtime_day`)
+
+**Zweck:** Prüft, ob der aktuelle reale Tag des Monats einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Tagesnummer (1-31). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Ist Echtzeit-Stunde (`fancymenu_visibility_requirement_is_realtime_hour`)
+
+**Zweck:** Prüft, ob die aktuelle reale Stunde einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Stunde im 24-Stunden-Format (0-23). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Ist Echtzeit-Minute (`fancymenu_visibility_requirement_is_realtime_minute`)
+
+**Zweck:** Prüft, ob die aktuelle reale Minute einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Minute (0-59). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Ist Echtzeit-Monat (`fancymenu_visibility_requirement_is_realtime_month`)
+
+**Zweck:** Prüft, ob der aktuelle reale Monat einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Monatsnummer (1-12, wobei 1 für Januar steht). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Ist Echtzeit-Sekunde (`fancymenu_visibility_requirement_is_realtime_second`)
+
+**Zweck:** Prüft, ob die aktuelle reale Sekunde einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Sekunde (0-59). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Ist Echtzeit-Wochentag (`fancymenu_visibility_requirement_is_realtime_week_day`)
+
+**Zweck:** Prüft, ob der aktuelle reale Wochentag einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Wochentag als Zahl (1-7, wobei 1 Sonntag ist). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Ist Echtzeit-Jahr (`fancymenu_visibility_requirement_is_realtime_year`)
+
+**Zweck:** Prüft, ob das aktuelle reale Jahr einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Vollständiges Jahr (z. B. "2023"). Mehrere Werte können durch Kommas getrennt angegeben werden.
+
+## Datei/Ordner existiert (`fancymenu_loading_requirement_file_exists`)
+
+**Zweck:** Prüft, ob eine Datei oder ein Verzeichnis existiert.
+
+**Wert:** Erforderlich — Ein Pfad relativ zum aktiven Spielverzeichnis oder ein Pfad, der mit `.minecraft/` für das übliche Minecraft-Verzeichnis beginnt. Sowohl Dateien als auch Verzeichnisse zählen als vorhanden.
+
+## Ist OS Linux (`fancymenu_loading_requirement_is_os_linux`)
+
+**Zweck:** Prüft, ob die aktuelle Plattform weder Windows noch macOS ist. Dies entspricht normalerweise Linux-Umgebungen.
+
+**Wert:** Nicht erforderlich
+
+## Ist OS macOS (`fancymenu_loading_requirement_is_os_macos`)
+
+**Zweck:** Prüft, ob das Betriebssystem macOS ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist OS Windows (`fancymenu_loading_requirement_is_os_windows`)
+
+**Zweck:** Prüft, ob das Betriebssystem Windows ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist Internetverbindung verfügbar (`is_internet_connection_available`)
+
+**Zweck:** Prüft, ob eine aktive Internetverbindung verfügbar ist.
+
+**Wert:** Nicht erforderlich
+
+## Ist Spielsprache (`fancymenu_loading_requirement_is_language`)
+
+**Zweck:** Prüft, ob die aktuelle Spielsprache einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Sprachcode (z. B. `en_us` für Englisch)
+
+## Ist Mod geladen (`fancymenu_loading_requirement_is_mod_loaded`)
+
+**Zweck:** Prüft, ob ein bestimmter Mod geladen ist.
+
+**Wert:** Erforderlich — Mod-ID (z. B. `fancymenu`, `jei`). Sie können auch `optifine` für OptiFine prüfen. Mehrere durch Kommas getrennte Mod-IDs werden unterstützt; alle aufgelisteten Mods müssen geladen sein.
+
+## Ist MCEF geladen (`is_mcef_loaded`)
+
+**Zweck:** Prüft, ob MCEF (Minecraft Chromium Embedded Framework) installiert und initialisiert ist. MCEF wird für das [Browser-Element](./elements#browser) und [veraltete MCEF-basierte Video-Typen](./video#requirements) benötigt; [native Video-Funktionen](./video) verwenden Watermedia.
+
+**Wert:** Nicht erforderlich
+
+## Ist Zahl (`fancymenu_visibility_requirement_is_number`)
+
+**Zweck:** Bietet erweiterte Zahlenvergleiche mit verschiedenen Vergleichsmodi.
+
+**Wert:** Erforderlich — Komplexes Format: `["mode":"comparison_mode","number":"value1","compare_with":"value2"]$`, wobei `comparison_mode` `equals`, `bigger-than`, `smaller-than`, `bigger-than-or-equals` oder `smaller-than-or-equals` sein kann
+
+## Ist Text (`fancymenu_visibility_requirement_is_text`)
+
+**Zweck:** Bietet erweiterte Textvergleiche mit verschiedenen Vergleichsmodi.
+
+**Wert:** Erforderlich — Komplexes Format: `["mode":"comparison_mode","text":"text1","compare_with":"text2"]$`, wobei `comparison_mode` `equals`, `contains`, `starts-with` oder `ends-with` sein kann
+
+## Ist Server-IP (`fancymenu_visibility_requirement_is_server_ip`)
+
+**Zweck:** Prüft, ob die aktuelle Server-IP einem bestimmten Wert entspricht.
+
+**Wert:** Erforderlich — Server-IP-Adresse (mit oder ohne Port)
+
+## Ist Server online (`fancymenu_loading_requirement_is_server_online`)
+
+**Zweck:** Prüft, ob ein bestimmter Server online und erreichbar ist.
+
+**Wert:** Erforderlich — Server-IP-Adresse (mit oder ohne Port)
+
+## Ist Ressourcenpaket aktiviert (`is_resource_pack_enabled`)
+
+**Zweck:** Prüft, ob ein bestimmtes Ressourcenpaket derzeit ausgewählt/aktiv ist.
+
+**Wert:** Erforderlich — Titel des Ressourcenpakets oder Paket-ID (z. B. `Programmer Art` oder die ID des Pakets)
+
+## Ist Variablenwert (FM-Variable) (`fancymenu_visibility_requirement_is_variable_value`)
+
+**Zweck:** Prüft, ob eine FancyMenu-Variable einen bestimmten Wert hat.
+
+**Wert:** Erforderlich — Format: "variable_name:expected_value"
+
+## Nur einmal pro Sitzung (`once_per_session`)
+
+**Zweck:** Jede konfigurierte Instanz gibt einmal pro Spielesitzung true zurück. Verschiedene Instanzen werden unabhängig voneinander verfolgt.
+
+**Wert:** Nicht erforderlich

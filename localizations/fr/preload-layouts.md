@@ -1,35 +1,36 @@
 ---
-title: Précharger des ressources
+title: Préchargement des ressources
 description: >-
-  Comment précharger des ressources afin qu’elles soient prêtes à l’emploi une
-  fois le chargement du jeu terminé.
+  Comment précharger des ressources afin qu'elles soient prêtes à l'emploi une
+  fois le jeu terminé de charger.
 ---
 
-# Précharger des ressources
+# Préchargement des ressources
 
-Dans certains cas, il est recommandé de précharger des ressources.
-C’est surtout nécessaire pour les images en haute résolution, les fichiers audio et les ressources web en général.
-
-Le préchargement des ressources peut aider à supprimer un éventuel scintillement des images ou le problème de fichiers audio qui ne démarrent pas assez vite.
-
-Il est également recommandé de précharger les animations (fichiers AFMA/FMA) afin qu’elles se lisent fluidement et ne ralentissent pas, ou n’affichent pas un écran noir lors du premier chargement.
+Le préchargement prépare certaines ressources avant qu'un menu en ait besoin. Utilisez-le pour les ressources qui, autrement, clignotent, affichent une première image noire ou apparaissent trop tard.
 
 # Ajouter des ressources au préchargeur
 
-Pour ajouter une ressource au préchargeur de ressources de FancyMenu, cliquez simplement sur **Précharger des ressources** dans **Personnalisation**.
+Ouvrez **Personnalisation -> Préchargement des ressources**.
 
 <br>
 
 <img width="350" alt="Screenshot_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
 
-Cela ouvrira un menu qui vous permet d’ajouter des ressources locales, des ressources web et des ressources de packs de ressources à une liste.
+La liste accepte les ressources prises en charge : images, animations, audio, vidéo et texte provenant de fichiers locaux, d'URL web ou de packs de ressources. Elle ne précharge pas une page [Browser](./elements#browser) en direct.
 
-Chaque ressource de cette liste sera préchargée à chaque fois que le jeu recharge ses ressources, donc en gros à chaque fois que l’écran de chargement des ressources est visible.
+Le préchargeur démarre pendant le lancement du jeu et lors des rechargements des ressources de Minecraft. Il attend que chaque entrée se termine ou échoue avant de continuer, avec une limite de deux minutes par entrée.
+
+Les ressources chargées restent mises en cache jusqu'à ce que FancyMenu libère les ressources lors d'un rechargement ou de la fermeture du client. **Personnalisation -> Recharger FancyMenu** libère le cache mais n'exécute pas à nouveau le préchargeur.
+
+Le préchargement augmente le temps de chargement ainsi que l'utilisation de la RAM/VRAM. Ajoutez uniquement les ressources qui doivent être prêtes immédiatement ; supprimez les entrées volumineuses si le client manque de mémoire.
 
 <br>
 
 <img width="731" alt="Screenshot_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
 
-# Précharger les diaporamas et panoramas
+# Préchargement des diaporamas et panoramas
 
-Vous pouvez également ajouter des diaporamas et des panoramas à la liste des ressources à précharger, ce qui aidera à corriger les problèmes d’images de panorama ou de diaporama apparaissant d’abord en noir/absentes, ou scintillant brièvement.
+L'ajout d'un [diaporama](./slideshows) charge toutes ses images ainsi que son superposition optionnelle. L'ajout d'un [panorama](./panoramas) charge ses six faces ainsi que sa superposition optionnelle.
+
+**Personnalisation -> Recharger FancyMenu** n'exécute pas le préchargeur. Utilisez un rechargement des ressources de Minecraft ou redémarrez le jeu après avoir modifié la liste de préchargement.

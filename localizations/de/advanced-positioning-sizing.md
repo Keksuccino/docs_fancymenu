@@ -6,42 +6,42 @@ description: >-
 ---
 # Erweiterte Positionierung & Größenanpassung
 
-Die erweiterte Positionierung/Größenanpassung ermöglicht dir, **volle Kontrolle über Position und Größe deiner Elemente** zu haben. Das ist sehr leistungsstark, aber auch **deutlich zeitaufwändiger** als die automatische Größenanpassung und Positionierung von FancyMenu.
+Die erweiterte Positionierung und Größenanpassung gibt dir direkte Kontrolle über die Koordinaten und Abmessungen von Elementen.
 
-> Wenn du nur möchtest, dass Elemente besser mit der **GUI-Skalierung** von Minecraft mitwachsen, wird empfohlen, stattdessen das layoutweite **Auto-Scaling** zu verwenden. Dies kann aktiviert werden, indem du zuerst eine GUI-Skalierung im Menü erzwingst, das sich öffnet, wenn du mit der rechten Maustaste auf den Hintergrund des Editors klickst, und dann im selben Menü **Auto-Scaling** aktivierst.
-{.is-warning}
+> [!WARNING]
+> Für die Anpassung an die GUI-Skalierung probiere zuerst die layoutweite **Auto-Skalierung**. Klicke mit der rechten Maustaste auf den Hintergrund des Editors, erzwinge eine GUI-Skalierung und aktiviere dann **Auto-Skalierung** im selben Menü.
 
 
 # Erweiterte Positionierungs-/Größenanpassungsmodus umschalten
 
-Um die **erweiterte Positionierung/Größenanpassung** für ein Element zu **aktivieren**, klicke es mit der **rechten Maustaste** an und wähle **Erweiterte Positionierung** oder **Erweiterte Größenanpassung**.
-Das Element wechselt automatisch in den erweiterten Modus, wenn du einen erweiterten Positions- oder Größenwert setzt.
+Um die erweiterte Positionierung oder Größenanpassung für ein Element zu aktivieren, klicke **mit der rechten Maustaste** darauf und wähle **Erweiterte Positionierung** oder **Erweiterte Größenanpassung**.
+Das Element wechselt automatisch in den erweiterten Modus, wenn du einen erweiterten Positions- oder Größenwert festlegst.
 
-Um sie zu **deaktivieren** und zur normalen Positionierung/Größenanpassung zurückzukehren, **entferne alle Werte für Positionierung/Größenanpassung**.
+Um es zu **deaktivieren** und zur normalen Positionierung/Größenanpassung zurückzukehren, **lösche alle Positions-/Größenwerte**.
 
+> [!WARNING]
 > Während sich ein Element im Modus für erweiterte Größenanpassung/Positionierung befindet, kann das Ändern der Größe und/oder das Verschieben des Elements deaktiviert oder eingeschränkt sein.
-{.is-warning}
 
 # Positionen/Größen berechnen
 
-Der Grund, warum die erweiterte Positionierung/Größenanpassung so leistungsstark ist, liegt darin, dass du **Platzhalter** in den Positions-/Größenwerten verwenden kannst.
+Erweiterte Positions- und Größenwerte unterstützen [Platzhalter](./placeholders).
 
-Dadurch kannst du den **Calculator**-Platzhalter (zu finden in der Platzhalterkategorie **Erweitert**) zusammen mit Platzhaltern der Kategorie **GUI** verwenden, wie z. B. **Bildschirmbreite**, **GUI-Skalierung**, **Elementbreite** und mehr.
+Dadurch kannst du den [**Rechner**](./placeholders#calculator-calc)-Platzhalter mit GUI-Platzhaltern wie [**Bildschirmbreite**](./placeholders#screen-width-guiwidth), [**GUI-Skalierung**](./placeholders#gui-scale-guiscale) und [**Elementbreite**](./placeholders#element-width-elementwidth) kombinieren.
 
+> [!NOTE]
 > Du kannst Platzhalter hinzufügen, indem du oben rechts im Texteditor auf die Schaltfläche **Platzhalter** klickst. Wenn du diese Schaltfläche nicht siehst, unterstützt der Inhalt, den du bearbeiten möchtest, **keine** Platzhalter.
-{.is-info}
 
-Um mit dem **Calculator**-Platzhalter etwas zu berechnen, ersetze den Beispielausdruck durch deinen eigenen. Du kannst im Ausdruck verschachtelte Platzhalter verwenden, sodass du dort die Bildschirmgröße, Elementgröße usw. einsetzen kannst.
+Um etwas mit dem [**Rechner-Platzhalter**](./placeholders#calculator-calc) zu berechnen, ersetze den Beispielausdruck durch deinen eigenen. Verschachtelte Platzhalter können Bildschirm- oder Elementabmessungen liefern.
 
-Zum Beispiel löst dieser Platzhalter einfach `1 + 1` und wird später als `2` angezeigt:
+Dieses Beispiel gibt `2` zurück:
 
 `{"placeholder":"calc","values":{"expression":"1 + 1","decimal":"false"}}`
 
-Die Variable `decimal` ist auf `false` gesetzt, was für die meisten Berechnungen von Größen/Positionen wichtig ist. Setze sie daher bei der Arbeit mit erweiterter Positionierung/Größenanpassung immer auf `false`.
+Lasse `decimal` auf `false`, um Berechnungen für ganze Pixel bei Position und Größe zu erhalten.
 
-Der folgende Calculator verwendet den Platzhalter **Bildschirmbreite** und teilt ihn durch `2`:
+Der folgende Rechner verwendet den [**Bildschirmbreite**-Platzhalter](./placeholders#screen-width-guiwidth) und teilt ihn durch `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
 
 > [!IMPORTANT]
-> Während **Erweiterte Positionierung** aktiviert ist, werden der **Anker** und alle anderen positionsbezogenen Funktionen des Elements **ignoriert**. Die erweiterte Positionierung verwendet immer die linke obere Ecke (X0 Y0) als Ursprung, genau so, wie es die standardmäßige Minecraft-GUI-Logik tut. Die einzige Einstellung, die die erweiterte Positionierung berücksichtigt, ist **Auf dem Bildschirm bleiben**.
+> **Erweiterte Positionierung** ignoriert den Anker des Elements und verwendet die obere linke Bildschirmecke (`X0 Y0`) als Ursprung. **Auf dem Bildschirm bleiben** gilt weiterhin.

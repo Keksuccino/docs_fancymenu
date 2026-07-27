@@ -1,20 +1,20 @@
 ---
 title: Elementos giratorios
-description: Girar elementos en FancyMenu.
+description: Elementos giratorios en FancyMenu.
 ---
 
 # Elementos giratorios
 
-A partir de FancyMenu v3.8.0, ¡es posible girar **la mayoría** de los elementos!
+La mayoría de los elementos se pueden girar.
 
-Para girar un elemento, selecciónalo en el editor de diseño y, si ves una forma circular alrededor del elemento, debería tener un asa unida a ella que puedes arrastrar para girar el elemento sobre su eje.
+Selecciona un elemento en el editor de diseño. Si admite rotación, aparecerá a su alrededor una guía circular y un controlador. Arrastra el controlador para girar el elemento.
 
-Si no hay una forma circular alrededor del elemento, no puedes girarlo.
+Si no aparece un círculo alrededor del elemento, no puedes girarlo.
 
 # Avanzado
 
-También puedes hacer clic derecho en el elemento para establecer manualmente los valores de rotación mediante una entrada de texto directa. Esta entrada directa admite [marcadores de posición](/placeholders), por lo que puedes cambiar dinámicamente la rotación del elemento al combinarla con marcadores de posición para obtener valores de variables de FancyMenu o algo مشابه.
+También puedes hacer clic derecho en el elemento para establecer manualmente los valores de rotación mediante una entrada de texto directa. Esta entrada directa admite [placeholders](/placeholders), por lo que puedes cambiar dinámicamente la rotación del elemento combinándola con placeholders para obtener valores de variable de FancyMenu o similares.
 
-# Botones, deslizadores y otros elementos interactivos
+# Botones, controles deslizantes y otros elementos interactivos
 
-En el caso de los elementos interactivos, girarlos es posible, pero la rotación es solo visual, por lo que el botón, por ejemplo, seguirá respondiendo solo a los clics dentro de su área original, aunque la rotación quizá lo haya desplazado parcialmente de esa zona.
+La rotación solo es visual en los elementos interactivos. Un botón girado sigue aceptando clics dentro de su área original, sin rotar.

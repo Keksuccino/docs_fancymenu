@@ -1,14 +1,17 @@
 ---
 title: Dragger
-description: Wie man Elemente in Menüs mithilfe des Dragger-Elements ziehen kann.
+description: >-
+  Ermöglicht es Benutzern, verankerte Elemente außerhalb des Editors zu
+  verschieben.
 ---
-
 # Dragger
 
-Das Dragger-Element ist ein Element in FancyMenu, mit dem du Menüs auf eine eher unübliche Weise interaktiv machen kannst. Der Dragger ist ein Element, das mit der Maus AUẞERHALB des Editors gezogen werden kann, was bedeutet, dass Benutzer das Element im Grunde greifen und verschieben können.
+Ein Dragger ist ein unsichtbares Element, das Benutzer mit der Maus außerhalb des Layout-Editors verschieben können. Sie können andere Elemente daran verankern, sodass sie zusammen mit dem Dragger verschoben werden.
 
-Das ist alles schön und gut, aber ein Element zu verschieben, das sonst nichts tut, ist ziemlich sinnlos, oder? Nun, nein, denn du kannst andere Elemente daran anhängen, indem du das Dragger-Element als Ankerpunkt für die anderen Elemente festlegst, die sich mit dem Dragger bewegen sollen.
+1. Fügen Sie ein [**Dragger**-Element](./elements#dragger) hinzu.
+2. Verankern Sie die Elemente, die sich mit dem Dragger bewegen sollen.
+3. Passen Sie Größe und Position des Dragger so an, dass er den sichtbaren Bereich abdeckt, den Benutzer greifen sollen.
 
-Der Positionsversatz von Dragger-Elementen bleibt dauerhaft erhalten und wird über Spielneustarts hinweg gespeichert. Das bedeutet im Grunde, dass ein Benutzer, wenn er den Dragger verschiebt, diese „benutzerdefinierte“ Position behält, selbst wenn das Spiel neu gestartet wird.
+Aktivieren Sie **Save User Drag Offset**, um die verschobene Position über das Öffnen von Bildschirmen und Neustarts des Spiels hinweg beizubehalten. Deaktivieren Sie die Option, wenn der Versatz zurückgesetzt werden soll.
 
-Das Dragger-Element ist nur im Editor sichtbar und außerhalb davon unsichtbar. Verwende daher unbedingt ein anderes Element als „Körper“, wenn der Benutzer sehen soll, wo sich der ziehbare Bereich befindet.
+Der Dragger ist nur im Editor sichtbar. Verwenden Sie ein verankertes [Image](./elements#image), eine [Shape](./elements#rectangle-shape) oder ein anderes Element als sichtbaren Körper.

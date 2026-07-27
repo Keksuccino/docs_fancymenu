@@ -1,20 +1,20 @@
 ---
-title: Neigung von Elementen
+title: Neigen von Elementen
 description: Wie man Elemente in FancyMenu neigt.
 ---
 
-# Neigung von Elementen
+# Neigen von Elementen
 
-Ab FancyMenu v3.8.0 ist es möglich, **die meisten** Elemente vertikal und horizontal zu neigen!
+Die meisten Elemente können vertikal und horizontal geneigt werden.
 
-Um ein Element zu neigen, wähle es im Layout-Editor aus. Wenn du zwei Linien mit einem Griff daran siehst (eine vertikale Linie und eine horizontale Linie), die nicht zum Rahmen des Elements gehören, kannst du die Griffe ziehen, um das Element in die gewünschte Richtung zu neigen.
+Wähle ein Element im Layout-Editor aus. Wenn Neigen unterstützt wird, erscheinen vertikale und horizontale Hilfslinien mit Griffen darum herum. Ziehe einen Griff, um das Element auf dieser Achse zu neigen.
 
-Wenn am Element keine Linien mit Griffen vorhanden sind, kannst du es nicht neigen.
+Wenn am Element keine Linien mit Griffen angezeigt werden, kannst du es nicht neigen.
 
 # Erweitert
 
-Du kannst außerdem das Element per Rechtsklick auswählen, um Neigungswerte manuell über eine direkte Texteingabe festzulegen. Diese Direkteingabe unterstützt [Platzhalter](/placeholders), sodass du die Neigung des Elements dynamisch ändern kannst, indem du sie mit Platzhaltern kombinierst, um FancyMenu-Variablenwerte oder Ähnliches zu verwenden.
+Du kannst auch mit der rechten Maustaste auf das Element klicken, um Neigungswerte manuell über eine direkte Texteingabe festzulegen. Diese direkte Eingabe unterstützt [Platzhalter](/placeholders), sodass du die Neigung des Elements dynamisch ändern kannst, indem du sie mit Platzhaltern kombinierst, um FancyMenu-Variablenwerte oder Ähnliches zu erhalten.
 
-# Buttons, Schieberegler und andere interaktive Elemente
+# Schaltflächen, Schieberegler und andere interaktive Elemente
 
-Bei interaktiven Elementen ist eine Neigung möglich, sie ist jedoch nur visuell. Der Button reagiert zum Beispiel weiterhin nur auf Klicks innerhalb seines ursprünglichen Bereichs, auch wenn die Neigung ihn möglicherweise teilweise aus diesem Bereich verschoben hat.
+Bei interaktiven Elementen ist das Neigen nur visuell. Eine geneigte Schaltfläche akzeptiert Klicks weiterhin innerhalb ihres ursprünglichen, nicht geneigten Bereichs.
