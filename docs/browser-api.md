@@ -1,16 +1,12 @@
 ---
 title: Browser JavaScript API
-description: How to use FancyMenu's JavaScript API in MCEF-based mod features like the Browser element.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-08-24T09:30:22.976Z
+description: >-
+  How to use FancyMenu's JavaScript API in MCEF-based mod features like the
+  Browser element.
 ---
-
 # FancyMenu JavaScript API
 
-FancyMenu injects a JavaScript bridge into every MCEF-backed feature (for example the **Browser** element). The bridge lets web content:
+FancyMenu injects a JavaScript bridge into every [Rinku](https://modrinth.com/mod/rinku)-backed feature (for example the **Browser** element). The bridge lets web content:
 
 - run any FancyMenu [action](./action-scripts) directly from JavaScript,
 - read any FancyMenu [placeholder](/placeholders) asynchronously.
