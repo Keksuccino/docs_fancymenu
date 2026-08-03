@@ -1,13 +1,7 @@
 ---
 title: Conditions (Requirements)
 description: How to use loading requirements.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: loading requirements, loading requirement, requirement, requirements
-editor: markdown
-dateCreated: 2025-04-14T20:14:22.175Z
 ---
-
 # Requirements
 
 Requirements (called **Loading Requirements** in some menus) show or hide content based on conditions such as hover state, window size, or whether a world is loaded.
@@ -560,9 +554,9 @@ Multiple comma-separated conditions are combined with AND. For example, `>1,<4` 
 
 **Value:** Required — Mod ID (e.g., `fancymenu`, `jei`). You can also check for OptiFine with `optifine`. Multiple comma-separated mod IDs are supported; all listed mods must be loaded.
 
-## Is MCEF Loaded (`is_mcef_loaded`)
+## Is Rinku Loaded (`is_rinku_loaded`)
 
-**Purpose:** Checks if MCEF (Minecraft Chromium Embedded Framework) is installed and initialized. MCEF is required for the [Browser element](./elements#browser) and [deprecated MCEF-based video types](./video#requirements); [native Video features](./video) use Watermedia.
+**Purpose:** Checks if [Rinku](https://modrinth.com/mod/rinku) is installed and initialized. [Rinku](https://modrinth.com/mod/rinku) is required for the [Browser element](./elements#browser) and [deprecated Rinku-based video types](./video#requirements); [native Video features](./video) use Watermedia.
 
 **Value:** Not required
 
