@@ -1,7 +1,7 @@
 ---
 title: Browser JavaScript API
 description: >-
-  How to use FancyMenu's JavaScript API in MCEF-based mod features like the
+  How to use FancyMenu's JavaScript API in Rinku-based mod features like the
   Browser element.
 ---
 # FancyMenu JavaScript API
@@ -242,7 +242,7 @@ fancymenu.placeholders.get('unknown')
 
 ## 7. Troubleshooting
 
-1. Confirm the page is loaded in a FancyMenu-controlled MCEF browser.
+1. Confirm the page is loaded in a FancyMenu-controlled Rinku browser.
 2. Check the browser console for JavaScript errors.
 3. Verify the [placeholder](/placeholders) identifier or [action](/action-scripts) type is correct and that required values are supplied.
 4. Review the Minecraft log (`latest.log`) for FancyMenu error messages if execution fails unexpectedly.
