@@ -45,7 +45,7 @@ These are optional dependencies, so they must be added to the instance manually 
 
 Native video playback also requires an OpenGL renderer. Watermedia playback is unavailable while Minecraft uses Vulkan; switch to OpenGL to use Video elements, Video menu backgrounds, and [video Game Intros](./game-intro).
 
-The deprecated **Video [MCEF]** type still uses MCEF. For new layouts, use the native Watermedia-powered Video type instead.
+The deprecated **Video [Rinku]** type still uses [Rinku](https://modrinth.com/mod/rinku). For new layouts, use the native Watermedia-powered Video type instead.
 
 ## Videos in Loading Screens
 
