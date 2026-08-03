@@ -1,13 +1,7 @@
 ---
 title: Elements
 description: Everything to know about FancyMenu's element types.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-07-05T21:09:31.485Z
 ---
-
 # Elements
 
 Elements are the building blocks of your custom layouts in FancyMenu. You can add them to any layout to display information, add interactivity, or create stunning visual effects.
@@ -226,11 +220,9 @@ Renders a player model in the menu.
 ## Browser
 An element that renders a live web page inside the game.
 
-This element requires the **MCEF (Minecraft Chromium Embedded Framework)** mod to be installed and working!
+This element requires the **[Rinku](https://modrinth.com/mod/rinku)** mod to be installed and working!
 
-You can download MCEF from the official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mcef) and [Modrinth](https://modrinth.com/mod/mcef).
-
-For newer Minecraft versions (1.21.5+), the official MCEF projects do not provide builds, but there is a fork with builds for latest Minecraft versions, which can be found [here](https://www.curseforge.com/minecraft/mc-mods/mcef-keksuccino) (CurseForge) and [here](https://modrinth.com/mod/mcef-keksuccino) (Modrinth). This fork is maintained by Keksuccino, to get builds for latest Minecraft versions out as fast as possible.
+You can download Rinku from the official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku) and [Modrinth](https://modrinth.com/mod/rinku).
 
 *   **Use Cases:**
     *   Displaying a server's live Dynmap.
