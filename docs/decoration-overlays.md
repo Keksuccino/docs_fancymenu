@@ -102,4 +102,4 @@ Practical setup examples:
 - Visual-only browser layer: disable **Process** and disable **Consume**.
 
 > [!IMPORTANT]
-> The Browser decoration overlay requires the **MCEF** mod.
+> The Browser decoration overlay requires the **[Rinku](https://modrinth.com/mod/rinku)** mod.
