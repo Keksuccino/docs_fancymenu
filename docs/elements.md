@@ -142,7 +142,7 @@ A highly versatile element for displaying text. It can be used for anything from
 Plays a video file. This is perfect for cinematic intros or decorative looping backgrounds.
 
 > [!WARNING]
-> The native Video element requires **Watermedia V3** and **Watermedia Binaries V3**. The old **Video [MCEF]** element is deprecated.
+> The native Video element requires **Watermedia V3** and **Watermedia Binaries V3**. The old **Video [Rinku]** element is deprecated.
 
 *   **Use Cases:**
     *   An animated modpack or server trailer.
