@@ -1,18 +1,12 @@
 ---
 title: Videos (MP4)
 description: What to know about using videos in FancyMenu.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-06-30T21:24:26.869Z
 ---
-
 # Videos
 
 FancyMenu supports playing MP4 videos as [elements](./elements#video), [menu backgrounds](./menu-backgrounds), and [Game Intro](./game-intro) content.
 
-The native [**Video** element](./elements#video) and **Video** menu background use Watermedia V3. The old **Video [MCEF]** types are deprecated and should only remain in layouts that still need them.
+The native [**Video** element](./elements#video) and **Video** menu background use Watermedia V3. The old **Video [Rinku]** types are deprecated and should only remain in layouts that still need them.
 
 There are also the following **actions** to control video backgrounds and elements:
 
