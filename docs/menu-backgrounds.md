@@ -1,13 +1,7 @@
 ---
 title: Menu Backgrounds
-description: How to set custom menu backgrounds (images, animations) for screens.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-06-10T00:20:13.298Z
+description: 'How to set custom menu backgrounds (images, animations) for screens.'
 ---
-
 # Menu Backgrounds
 
 FancyMenu lets you set custom backgrounds for menus. You can use images, animated textures, slideshows, cubic panoramas, colors, browsers, videos, GLSL shaders and more.
@@ -31,10 +25,10 @@ Common background types include:
 - Browser
 - Video
 - GLSL Shader
-- Video [MCEF] (deprecated)
+- Video [Rinku] (deprecated)
 - Additional add-on background types
 
-The old **Video [MCEF]** background type is deprecated. Use the [native **Video** background](./video) powered by Watermedia V3 for new layouts.
+The old **Video [Rinku]** background type is deprecated. Use the [native **Video** background](./video) powered by Watermedia V3 for new layouts.
 
 # Removing the Custom Background
 
