@@ -1,57 +1,60 @@
 ---
 title: Vídeos (MP4)
-description: Lo que debes saber sobre el uso de vídeos en FancyMenu.
+description: Qué debes saber sobre el uso de vídeos en FancyMenu.
 ---
-
 # Vídeos
 
-FancyMenu admite la reproducción de vídeos MP4 como elementos, fondos de menú y contenido de introducción del juego.
+FancyMenu admite la reproducción de vídeos MP4 como [elementos](./elements#video), [fondos de menú](./menu-backgrounds) y contenido de [Game Intro](./game-intro).
 
-FancyMenu 3.9.0 añade un nuevo elemento nativo **Video** y un fondo de menú **Video** impulsados por Watermedia V3. El antiguo tipo de elemento/fondo **Video [MCEF]** está obsoleto y solo debería mantenerse para diseños antiguos que todavía lo necesiten.
+El [**elemento de vídeo**](./elements#video) nativo y el fondo de menú **Video** usan Watermedia V3. Los antiguos tipos **Video [Rinku]** están obsoletos y solo deberían permanecer en diseños que todavía los necesiten.
 
-También existen las siguientes **acciones** para controlar fondos y elementos de vídeo:
+También existen las siguientes **acciones** para controlar los fondos y elementos de vídeo:
 
-- **Set Video Element Volume** para establecer el volumen de un elemento de vídeo
-- **Set Video Element Play Time** para ir a un instante en milisegundos de un elemento de vídeo
-- **Toggle Video Element Paused State** para alternar el estado de pausa de un elemento de vídeo
-- **Set Video Background Volume** para establecer el volumen de un fondo de menú de vídeo
-- **Set Video Background Play Time** para ir a un instante en milisegundos de un fondo de menú de vídeo
-- **Toggle Video Background Paused State** para alternar el estado de pausa de un fondo de menú de vídeo
+- [**Set Video Element Volume**](./action-scripts#set-video-element-volume-set_video_element_volume) establece el volumen de un elemento de vídeo.
+- [**Set Video Element Play Time**](./action-scripts#set-video-element-play-time-set_video_element_play_time) adelanta o retrocede un elemento de vídeo a una marca de tiempo en milisegundos.
+- [**Toggle Video Element Paused State**](./action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) alterna el estado de pausa de un elemento de vídeo.
+- [**Set Video Background Volume**](./action-scripts#set-video-background-volume-set_video_menu_background_volume) establece el volumen de un fondo de menú de vídeo.
+- [**Set Video Background Play Time**](./action-scripts#set-video-background-play-time-set_video_menu_background_play_time) adelanta o retrocede un fondo de menú de vídeo a una marca de tiempo en milisegundos.
+- [**Toggle Video Background Paused State**](./action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state) alterna el estado de pausa de un fondo de menú de vídeo.
 
-Y los siguientes **placeholders** para obtener información sobre fondos y elementos de vídeo:
+Y los siguientes **marcadores de posición** para obtener información sobre los fondos y elementos de vídeo:
 
-- **Video Element Volume** para obtener el volumen de un elemento de vídeo
-- **Video Element Duration** para obtener la duración de un elemento de vídeo
-- **Video Element Play Time** para obtener el tiempo de reproducción actual (progreso) de un elemento de vídeo
-- **Video Element Paused State** para obtener el estado de pausa (true/false) de un elemento de vídeo
-- **Video Background Volume** para obtener el volumen de un fondo de menú de vídeo
-- **Video Background Duration** para obtener la duración de un fondo de menú de vídeo
-- **Video Background Play Time** para obtener el tiempo de reproducción actual (progreso) de un fondo de menú de vídeo
-- **Video Background Paused State** para obtener el estado de pausa (true/false) de un fondo de menú de vídeo
+- [**Video Element Volume**](./placeholders#video-element-volume-video_element_vol) devuelve el volumen de un elemento de vídeo.
+- [**Video Element Duration**](./placeholders#video-element-duration-video_element_duration) devuelve la duración de un elemento de vídeo.
+- [**Video Element Play Time**](./placeholders#video-element-play-time-video_element_playtime) devuelve el progreso actual de un elemento de vídeo.
+- [**Video Element Paused State**](./placeholders#video-element-paused-state-video_element_paused_state) devuelve si un elemento de vídeo está en pausa.
+- [**Video Background Volume**](./placeholders#video-background-volume-video_background_vol) devuelve el volumen de un fondo de menú de vídeo.
+- [**Video Background Duration**](./placeholders#video-background-duration-video_background_duration) devuelve la duración de un fondo de menú de vídeo.
+- [**Video Background Play Time**](./placeholders#video-background-play-time-video_background_playtime) devuelve el progreso actual de un fondo de menú de vídeo.
+- [**Video Background Paused State**](./placeholders#video-background-paused-state-video_background_paused_state) devuelve si un fondo de menú de vídeo está en pausa.
 
-Los placeholders de duración y tiempo de reproducción devuelven `MM:SS` de forma predeterminada. Establece `output_as_timestamp` en `true` cuando necesites marcas de tiempo en milisegundos. Los placeholders de tiempo de reproducción también pueden usar `show_percentage` para valores de progreso de 0 a 100.
+Los marcadores de posición de duración y tiempo de reproducción devuelven `MM:SS` de forma predeterminada. Establece `output_as_timestamp` en `true` cuando necesites marcas de tiempo en milisegundos. Los marcadores de posición de tiempo de reproducción aún pueden usar `show_percentage` para valores de progreso de 0 a 100.
 
-FancyMenu 3.9.0 también añade el listener **On Video Playback Status Changed**, que puede reaccionar a `PLAYING`, `PAUSED`, `STOPPED` y `FINISHED`.
+Los valores de volumen y estado de pausa son metadatos del controlador asociados con el identificador. Los valores de duración y tiempo de reproducción requieren que el elemento o fondo de vídeo correspondiente esté activo y listo en la pantalla actual.
+
+El [**listener On Video Playback Status Changed**](./listeners#on-video-playback-status-changed-video_playback_status_changed) puede reaccionar a `PLAYING`, `PAUSED`, `STOPPED` y `FINISHED`.
 
 ## Requisitos
 
-Para usar el nuevo elemento nativo Video y el tipo de fondo de menú, necesitas instalar:
+Para usar el nuevo tipo nativo de elemento de vídeo y fondo de menú, necesitas instalar:
 
 - **Watermedia V3**
 - **Watermedia Binaries V3**
 
-Estas son dependencias opcionales, así que debes añadirlas manualmente a la instancia si quieres soporte para vídeo.
+Estas son dependencias opcionales, así que deben añadirse manualmente a la instancia si quieres compatibilidad con vídeo.
 
-El tipo obsoleto **Video [MCEF]** sigue usando MCEF. Para diseños nuevos, usa en su lugar el tipo Video nativo impulsado por Watermedia.
+La reproducción de vídeo nativa también requiere un renderizador OpenGL. La reproducción mediante Watermedia no está disponible mientras Minecraft use Vulkan; cambia a OpenGL para usar elementos de vídeo, fondos de menú de vídeo y [Game Intros de vídeo](./game-intro).
+
+El tipo obsoleto **Video [Rinku]** sigue usando [Rinku](https://modrinth.com/mod/rinku). Para diseños nuevos, usa en su lugar el tipo de vídeo nativo impulsado por Watermedia.
 
 ## Vídeos en pantallas de carga
 
-El soporte de vídeo NO funciona en las pantallas de carga (pantalla de carga del juego/recurso y pantalla de carga del mundo).
+La compatibilidad con vídeo NO funciona en las pantallas de carga (pantalla de carga del juego/recurso y pantalla de carga del mundo).
 
 Esto también significa que NO debes añadir vídeos a la pantalla de carga del juego mediante **Drippy Loading Screen**, ya que en la mayoría de los casos no funcionará.
 
-En su lugar, deberías usar archivos AFMA/FMA cortos y sencillos en las pantallas de carga, ya que los usuarios normalmente no notan que se recarguen cuando la animación es lo bastante simple y breve.
+En su lugar, usa animaciones [AFMA/FMA](./fma) cortas y sencillas en las pantallas de carga.
 
 ## Solución de problemas
 
-Si tienes problemas con el soporte nativo de vídeo, primero confirma que tanto Watermedia V3 como Watermedia Binaries V3 están instalados y coinciden con tu versión de Minecraft/modloader.
+Si el vídeo nativo no se reproduce, confirma que Watermedia V3 y Watermedia Binaries V3 coinciden con la versión de Minecraft/modloader y que Minecraft está usando OpenGL en lugar de Vulkan.
