@@ -2,71 +2,84 @@
 title: Variables
 description: Comment créer et utiliser des variables.
 ---
-
 # Variables dans FancyMenu
 
-Les variables sont une fonctionnalité puissante de FancyMenu qui vous permet de stocker et de réutiliser des informations tout au long de vos personnalisations de menu. Elles fonctionnent comme des conteneurs dans lesquels vous pouvez placer différents types de données, donner un nom à chaque conteneur, puis accéder à ces données plus tard en utilisant le nom de la variable. Les variables ouvrent un monde de possibilités pour créer des menus dynamiques qui changent selon les conditions que vous définissez.
+Les variables stockent des valeurs textuelles que les mises en page, actions, espaces réservés, conditions, écouteurs, planificateurs et interfaces graphiques personnalisées peuvent réutiliser.
 
-## Création de variables
+## Créer des variables
 
 Pour créer une variable dans FancyMenu :
 
-1. Assurez-vous de ne pas être actuellement dans l'éditeur de disposition. 
+1. Assurez-vous de ne pas être actuellement dans l'Éditeur de mise en page.
 2. Cliquez sur la barre de menu en haut de l'écran.
 3. Allez dans **Personnalisation -> Variables -> Gérer les variables**.
-4. Dans l'écran « Gérer les variables » qui apparaît, cliquez sur le bouton **Ajouter une variable**.
-5. Saisissez un nom pour votre nouvelle variable, puis cliquez sur **OK**.
+4. Dans l'écran "Gérer les variables" qui apparaît, cliquez sur le bouton **Ajouter une variable**.
+5. Saisissez un nom pour votre nouvelle variable et cliquez sur **OK**.
 
-C'est tout ! Votre variable est prête à être utilisée. Vous pouvez la voir सूचीnée dans l'écran « Gérer les variables ».
+C'est tout ! Votre variable est prête à être utilisée. Vous pouvez la voir répertoriée dans l'écran "Gérer les variables".
 
-FancyMenu 3.9.0 refond la fenêtre Gérer les variables. Les actions importantes sont disponibles via un menu contextuel au clic droit, la liste prend en charge la navigation au clavier, les variables peuvent être copiées/collées, les modifications peuvent être annulées/rétablies, la saisie lance une recherche, **DEL** supprime la variable sélectionnée et **CTRL + S** valide la fenêtre.
+La fenêtre Gérer les variables prend en charge un menu contextuel au clic droit, la navigation au clavier, copier/coller, annuler/rétablir, la recherche à la saisie, **Suppr** pour supprimer, et **Ctrl/Commande + S** pour enregistrer.
 
-## Définir des valeurs de variable
+## Définir les valeurs des variables
 
-Une variable vide n'est pas très utile à elle seule. Pour que les variables vous servent, vous devez y mettre des données. Dans FancyMenu, cela s'appelle « définir la valeur de la variable ». 
+Une variable vide n'est pas très utile en soi. Pour exploiter les variables, vous devez y placer des données. Dans FancyMenu, cela s'appelle "définir la valeur de la variable".
 
 Il existe deux façons principales de définir la valeur d'une variable :
 
-1. Dans l'écran « Gérer les variables », trouvez la variable dans la liste, cliquez dessus, puis cliquez sur **Définir la valeur**. Saisissez les données que vous souhaitez stocker.
+1. Dans l'écran "Gérer les variables", trouvez la variable dans la liste, cliquez dessus, puis cliquez sur **Définir la valeur**. Saisissez les données que vous souhaitez stocker.
 
-2. Pendant la personnalisation de votre menu, utilisez l'action **Définir une variable** sur un élément Bouton, Curseur ou Défileur. Avec cette action, vous spécifiez le nom de la variable et la valeur à y stocker. Par exemple, lorsque quelqu'un clique sur un bouton doté de cette action, la variable se met à jour avec la nouvelle valeur.
+2. Pendant la personnalisation de votre menu, utilisez l'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable) sur un élément [Bouton](./elements#button), [Curseur](./elements#slider) ou [Ticker](./elements#ticker).
 
-Par exemple, supposons que vous créez une variable nommée `clicks` pour compter le nombre de fois qu'un bouton est pressé. Vous ajouteriez l'action **Définir une variable** au bouton et utiliseriez un placeholder dans la valeur de l'action pour incrémenter le compteur à chaque clic, comme ceci :
+Par exemple, créez une variable nommée `clicks` et ajoutez l'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable) à un bouton :
 
 ```
 clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
 ```
 
 Voici comment cela fonctionne :
-1. Le placeholder **Obtenir la variable stockée** récupère la valeur actuelle de la variable `clicks`.
-2. Le placeholder **Calculatrice** prend cette valeur et y ajoute 1.
-3. Le résultat est ensuite stocké à nouveau dans la variable `clicks` à l'aide de l'action **Définir une variable**.
+1. L'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) récupère la valeur actuelle de la variable `clicks`.
+2. L'[**espace réservé Calculatrice**](./placeholders#calculator-calc) prend cette valeur et lui ajoute 1.
+3. Le résultat est réenregistré dans `clicks` à l'aide de l'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable).
 
-Ainsi, chaque fois que le bouton est cliqué, la variable `clicks` augmente de 1, ce qui compte efficacement le nombre total de clics.
+Ainsi, chaque fois que le bouton est cliqué, la variable `clicks` augmente de 1, comptant ainsi le nombre total de clics.
 
-## Utiliser des variables
+## Utiliser les variables
 
 Maintenant que vos variables contiennent des données, vous pouvez utiliser ces données dans différentes parties de la personnalisation de votre menu :
 
-* **Conditions de chargement** : vous pouvez vérifier la valeur d'une variable dans une condition de chargement afin de contrôler quand certains éléments du menu apparaissent. Par exemple, vous pourriez faire en sorte qu'un élément s'affiche uniquement si la variable `clicks` est supérieure à 5 en utilisant une combinaison de la condition **Est un nombre** et du placeholder **Obtenir la variable stockée**.
+* [**Conditions de chargement**](./conditions) : vérifiez la valeur d'une variable pour contrôler quand des éléments apparaissent. Par exemple, affichez un élément lorsque `clicks` est supérieur à 5 en combinant [**Est un nombre**](./conditions#is-number-fancymenu_visibility_requirement_is_number) avec l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable).
 
-* **Placeholders** : les variables peuvent être insérées dans du texte à l'aide du placeholder **Obtenir la variable stockée**. Si vous avez un élément texte, vous pouvez utiliser `{"placeholder":"getvariable","values":{"name":"clicks"}}` pour afficher la valeur actuelle de la variable « clicks ».
+* **Espaces réservés** : insérez une variable dans du texte avec l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable), par exemple `{"placeholder":"getvariable","values":{"name":"clicks"}}`.
 
-* **Placeholders imbriqués** : vous pouvez même utiliser des variables à l'intérieur d'autres placeholders ! L'exemple de comptage des clics ci-dessus l'a démontré en utilisant le placeholder **Obtenir la variable stockée** à l'intérieur du placeholder **Calculatrice**.
+* **Espaces réservés imbriqués** : vous pouvez utiliser l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) à l'intérieur de l'[**espace réservé Calculatrice**](./placeholders#calculator-calc).
 
-* **Actions** : les variables peuvent être utilisées dans des actions pour créer un comportement dynamique basé sur leurs valeurs. Voici quelques exemples :
-    - Utilisez une instruction **IF** dans un script d'action pour vérifier la valeur d'une variable à l'aide d'une combinaison de la condition de chargement **Est un nombre** et de l'action **Obtenir la variable stockée**, puis effectuez différentes actions selon le résultat. Par exemple, vous pourriez avoir un bouton qui affiche « Vous m'avez cliqué X fois ! » et utiliser un bloc IF pour afficher un message spécial si le nombre de clics est supérieur à 10.
-    - Combinez le placeholder **Obtenir la variable stockée** avec l'action **Copier dans le presse-papiers** pour permettre aux utilisateurs de copier la valeur d'une variable dans leur presse-papiers.
-    - Utilisez des variables dans l'action **Ouvrir l'interface graphique** pour charger différents écrans selon la progression ou les préférences de l'utilisateur, que vous suivez avec des variables.
+* **Actions** : les variables peuvent créer un comportement dynamique :
+  - Utilisez une instruction **IF** dans un [script d'action](./action-scripts#what-are-statements) avec [**Est un nombre**](./conditions#is-number-fancymenu_visibility_requirement_is_number) et l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable).
+  - Combinez l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) avec [**Copier le texte dans le presse-papiers**](./action-scripts#copy-text-to-clipboard-copytoclipboard).
+  - Utilisez des variables dans [**Ouvrir un écran ou une interface graphique personnalisée**](./action-scripts#open-screen-or-custom-gui-opengui) pour sélectionner un écran à partir de la progression ou des préférences enregistrées.
 
 ## Exemples de variables
 
-Voici quelques exemples pour inspirer votre propre utilisation des variables :
+Voici quelques exemples pour vous inspirer dans l'utilisation des variables :
 
-1. **Score élevé** : créez une variable `highscore` et un bouton qui la définit sur le score actuel du joueur s'il est supérieur à la valeur existante. Affichez le score élevé dans le menu à l'aide du placeholder **Obtenir la variable stockée**.
+1. **Score maximal** : créez une variable `highscore` et un bouton qui la définit sur le score actuel du joueur s'il est supérieur à la valeur existante. Affichez-la avec l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable).
 
-2. **Sélecteur de difficulté** : créez des variables pour différentes difficultés de jeu, comme `easy`, `medium` et `hard`. Utilisez des boutons pour définir la variable de difficulté, puis affichez/masquez des éléments selon la difficulté sélectionnée.
+2. **Sélecteur de difficulté** : créez des variables pour différentes difficultés de jeu, comme `easy`, `medium` et `hard`. Utilisez des boutons pour définir la variable de difficulté et afficher/masquer des éléments selon la difficulté sélectionnée.
 
-3. **Progression du tutoriel** : ajoutez des variables pour suivre la progression du joueur dans un tutoriel, comme `tutorial_step`. Incrémentez la variable à mesure qu'il complète chaque étape, et utilisez des conditions de chargement pour révéler progressivement davantage de menu.
+3. **Progression du tutoriel** : ajoutez des variables pour suivre la progression du joueur dans un tutoriel, comme `tutorial_step`. Incrémentez la variable à chaque étape terminée, puis utilisez les conditions de chargement pour révéler progressivement davantage de l'interface.
 
-Les variables, combinées aux autres fonctionnalités de FancyMenu, vous offrent une flexibilité incroyable pour créer des menus adaptés aux actions et préférences de chaque joueur. Essayez différentes configurations de variables pour exploiter tout le potentiel de vos personnalisations de menu !
+## Persistance, portée et stockage
+
+Les variables sont partagées à travers l'instance Minecraft actuelle. Elles ne sont pas séparées par mise en page, monde, serveur ou joueur.
+
+Les valeurs sont enregistrées immédiatement dans `<game-directory>/config/fancymenu/user_variables.db` et persistent après les redémarrages.
+
+- **Réinitialiser au lancement** vide cette variable au prochain démarrage du jeu.
+- [**Effacer toutes les variables**](./action-scripts#clear-all-variables-fm-variable-clear_variables) supprime toutes les valeurs de variables stockées.
+- Les noms sont sensibles à la casse. Utilisez des noms simples et uniques comme `tutorial_step`.
+
+L'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) renvoie `0` lorsque la variable nommée n'existe pas ou lorsque sa valeur stockée est vide. Cette valeur de secours est importante dans les comparaisons et les expressions de calculatrice.
+
+L'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable) utilise `nom_de_variable:valeur_de_variable` et se découpe au premier deux-points, donc la valeur peut contenir plusieurs deux-points.
+
+Ne stockez pas de mots de passe, jetons ou autres secrets dans les variables FancyMenu. Ce sont des données de configuration lisibles.
