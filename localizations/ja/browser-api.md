@@ -1,32 +1,31 @@
 ---
 title: ブラウザ JavaScript API
-description: Browser 要素のような MCEF ベースの MOD 機能で、FancyMenu の JavaScript API を使う方法。
+description: Browser 要素のような Rinku ベースの MOD 機能で FancyMenu の JavaScript API を使う方法。
 ---
-
 # FancyMenu JavaScript API
 
-FancyMenu は、MCEF を利用するすべての機能（たとえば **Browser** 要素）に JavaScript ブリッジを注入します。このブリッジにより、Web コンテンツは次のことができます。
+FancyMenu は、[Rinku](https://modrinth.com/mod/rinku) ベースのすべての機能（たとえば **Browser** 要素）に JavaScript ブリッジを注入します。このブリッジにより、Web コンテンツは次のことができます。
 
-- 任意の FancyMenu [アクション](./action-scripts) を JavaScript から直接実行する
-- 任意の FancyMenu [プレースホルダー](/placeholders) を非同期で読み取る
+- FancyMenu の [アクション](./action-scripts) を JavaScript から直接実行する
+- FancyMenu の [プレースホルダー](/placeholders) を非同期に読み取る
 
-API は 2 つのグローバル変数で公開されます。
-- `window.fancymenu` – メインの名前空間
-- `window.FancyMenu` – 別名（`fancymenu` とまったく同じ形状を持つミラー）
+次の 2 つのグローバル変数から API を利用できます。
+- `window.fancymenu` – 主要な名前空間
+- `window.FancyMenu` – エイリアス（`fancymenu` とまったく同じ構造を持ちます）
 
-呼び出し前にブリッジが利用可能であることを確認するには、`fancymenu-ready` イベントまたは機能検出を使用してください。
+呼び出し前にブリッジが利用可能か確認するには、`fancymenu-ready` イベント、または機能検出を使用してください。
 
 ## 1. 名前空間と構造
 
 - `fancymenu.actions` – ブラウザから FancyMenu のアクションを実行します。
-- `fancymenu.placeholders` – FancyMenu のプレースホルダー値を非同期で読み取ります。
-- `FancyMenu` は `fancymenu` をミラーするため、どちらも同じサブ名前空間を公開します。
+- `fancymenu.placeholders` – FancyMenu のプレースホルダー値を非同期に読み取ります。
+- `FancyMenu` は `fancymenu` をミラーしているため、どちらも同じサブ名前空間を公開します。
 
 アクションには 2 つのヘルパーがあります。
 - `fancymenu.actions.execute(actionType, actionValue?)`
 - `fancymenu.actions.executeWithCallback(actionType, actionValue?, onSuccess?, onFailure?)`
 
-## 2. 利用可能性
+## 2. 利用可能かの確認
 
 ```javascript
 if (typeof fancymenu !== 'undefined') {
@@ -38,13 +37,13 @@ window.addEventListener('fancymenu-ready', () => {
 });
 ```
 
-コンテンツはローカルにも配置できます。`<game-directory>/config/fancymenu/assets/` に HTML ファイルを置き、`file:///config/fancymenu/assets/<name>.html` 形式の URL から読み込んでください。
+コンテンツはローカルに配置することもできます。HTML ファイルを `<game-directory>/config/fancymenu/assets/` に置き、`file:///config/fancymenu/assets/<name>.html` 形式の URL で読み込みます。
 
 ## 3. アクションの実行
 
-`fancymenu.actions` 名前空間を使用します。各呼び出しは、FancyMenu スクリプトで使用されるアクション文字列に対応しています。
+`fancymenu.actions` 名前空間を使用します。各呼び出しは、FancyMenu スクリプトで使われるアクション文字列に対応しています。
 
-### すぐに呼び出す場合
+### 簡単な呼び出し
 
 ```javascript
 fancymenu.actions.execute('quitgame');                // 値なしのアクション
@@ -59,18 +58,18 @@ fancymenu.actions.executeWithCallback(
     'opengui',
     'title_screen',
     result => console.log('タイトル画面を開きました'),
-    error  => console.error('オープン失敗:', error)
+    error  => console.error('開けませんでした:', error)
 );
 
 // value パラメータは省略可能です。省略する場合は、actionType の直後にコールバックを渡します。
 fancymenu.actions.executeWithCallback(
     'quitgame',
-    result => console.log('終了がトリガーされました'),
-    error  => console.error('終了失敗:', error)
+    result => console.log('終了が実行されました'),
+    error  => console.error('終了に失敗しました:', error)
 );
 ```
 
-旧ヘルパーの `fancymenu.execute(...)` と `fancymenu.executeWithCallback(...)` も、引き続き `actions` 名前空間に委譲されます。
+旧式のヘルパー `fancymenu.execute(...)` と `fancymenu.executeWithCallback(...)` も、引き続き `actions` 名前空間に委譲されます。
 
 ### よく使うアクションタイプ
 
@@ -78,16 +77,16 @@ fancymenu.actions.executeWithCallback(
 - `back_to_last_screen` – 直前の GUI に戻ります（値なし）
 - `opengui` – FancyMenu またはバニラの画面を開きます（値: 画面識別子）
 - `openlink` – ブラウザを起動します（値: URL）
-- `sendmessage` – チャット欄にメッセージを投稿します（値: メッセージ本文）
-- `set_variable` – FancyMenu 変数を設定します（値: `name:value`）
+- `sendmessage` – チャットにメッセージを送信します（値: メッセージ本文）
+- `set_variable` – FancyMenu の変数を代入します（値: `name:value`）
 - `joinserver` – サーバーに接続します（値: アドレス）
-- `disconnect_server_or_world` – 切断して対象画面へ移動します（値: 画面識別子）
+- `disconnect_server_or_world` – 切断して指定画面へ移動します（値: 画面識別子）
 
-FancyMenu に存在するすべてのアクションはブリッジ経由で利用できます。完全な一覧は [action scripts](./action-scripts) を参照してください。
+FancyMenu に存在するすべてのアクションは、このブリッジ経由で利用できます。完全な一覧は [action scripts](./action-scripts) を参照してください。
 
 ## 4. プレースホルダーの読み取り
 
-FancyMenu の [プレースホルダー](/placeholders) システムは `fancymenu.placeholders`（および `FancyMenu.placeholders`）から利用できます。どちらのヘルパーメソッドも `Promise<string>` を返します。
+FancyMenu の [プレースホルダー](/placeholders) システムは `fancymenu.placeholders`（および `FancyMenu.placeholders`）を通じて公開されています。どちらのヘルパーも `Promise<string>` を返します。
 
 ```ts
 fancymenu.placeholders.get(identifier: string): Promise<string>
@@ -96,9 +95,9 @@ fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promi
 
 ### 変数の渡し方
 
-- 変数は `name:value` 形式の文字列です。ブリッジは **最初の** コロンだけで分割するため、値にコロンを追加で含めることができます。
-- 名前と値の前後の空白は削除され、空の名前は拒否されます。
-- プレースホルダーが必要とする数だけ変数を渡してください。任意のものは省略できます。
+- 変数は `name:value` 形式の文字列です。ブリッジは **最初の** コロンでのみ分割するため、値にコロンを追加で含めることができます。
+- 名前と値はトリムされ、空の名前は拒否されます。
+- プレースホルダーが必要とする数だけ変数を渡してください。任意の変数は省略できます。
 
 ### 例
 
@@ -118,7 +117,7 @@ fancymenu.placeholders.getWithVars(
     'regex:\\|',
     'max_parts:-1',
     'split_index:1'
-).then(part => console.log('選択された部分:', part));
+).then(part => console.log('Selected part:', part));
 ```
 
 ### エラーモデル
@@ -151,11 +150,11 @@ fancymenu.placeholders.get('unknown')
 <body>
     <h1>ゲーム操作</h1>
     
-    <button onclick="quitGame()">ゲーム終了</button>
+    <button onclick="quitGame()">ゲームを終了</button>
     <button onclick="openTitleScreen()">タイトル画面</button>
     <button onclick="disconnectFromServer()">切断</button>
     <button onclick="setVariable()">変数を設定</button>
-    <button onclick="loadPlaceholders()">プレースホルダーを読み込む</button>
+    <button onclick="loadPlaceholders()">プレースホルダーを読み込み</button>
 
     <div id="placeholderOutput" style="margin-top:16px;font-family:monospace"></div>
     
@@ -180,8 +179,8 @@ fancymenu.placeholders.get('unknown')
             actions.executeWithCallback(
                 'opengui',
                 'title_screen',
-                () => console.log('Title screen opened!'),
-                err => console.error('Error:', err)
+                () => console.log('タイトル画面を開きました!'),
+                err => console.error('エラー:', err)
             );
         }
         
@@ -234,14 +233,14 @@ fancymenu.placeholders.get('unknown')
 ## 6. ベストプラクティスと注意点
 
 - 使用前に **ブリッジを検出** するか、`fancymenu-ready` を監視してください。
-- 有用なフィードバックを表示するため、**エラーを処理** してください（[アクション](/action-scripts) ではコールバック、[プレースホルダー](/placeholders) では `.catch`）。
-- アクションや [プレースホルダー](/placeholders) の変数に渡す前に、**入力を検証** してください。
-- **リクエストをスロットル** し、短時間に連続してブリッジへ大量送信しないでください（特にプレースホルダーの更新ループ）。
-- **セキュリティ:** ブラウザコンテンツは、ファイル、ネットワーク、コマンド、クリップボード、リソースパック、リンク、終了など、登録済みのあらゆる FancyMenu アクションを呼び出せます。信頼できるページのみを読み込み、Web コンテンツから受け取るすべてのデータを検証してください。
+- [アクション](/action-scripts) にはコールバック、[プレースホルダー](/placeholders) には `.catch` を使って **エラーを処理** し、わかりやすいフィードバックを表示してください。
+- アクションや [プレースホルダー](/placeholders) の変数に渡す前に **入力を検証** してください。
+- **リクエストを抑制** し、ブリッジへの連続呼び出しを乱発しないでください（特にプレースホルダー更新ループ）。
+- **セキュリティ:** ブラウザコンテンツは、ファイル・ネットワーク・コマンド・クリップボード・リソースパック・リンク・終了アクションを含む、登録済みの FancyMenu アクションを任意に呼び出せます。信頼できるページのみを読み込み、Web コンテンツから受け取るすべてのデータを検証してください。
 
 ## 7. トラブルシューティング
 
-1. ページが FancyMenu に制御された MCEF ブラウザ内で読み込まれていることを確認します。
-2. ブラウザコンソールで JavaScript エラーを確認します。
-3. [プレースホルダー](/placeholders) の識別子または [アクション](/action-scripts) の種類が正しく、必要な値が指定されていることを確認します。
-4. 予期せず実行に失敗する場合は、Minecraft のログ（`latest.log`）で FancyMenu のエラーメッセージを確認します。
+1. ページが FancyMenu に制御された Rinku ブラウザ内で読み込まれていることを確認します。
+2. ブラウザのコンソールで JavaScript エラーを確認します。
+3. [プレースホルダー](/placeholders) の識別子または [アクション](/action-scripts) の種類が正しいこと、必要な値が渡されていることを確認します。
+4. 予期せず実行に失敗する場合は、Minecraft のログ（`latest.log`）で FancyMenu のエラーメッセージを確認してください。
