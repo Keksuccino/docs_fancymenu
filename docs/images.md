@@ -6,7 +6,7 @@ description: Everything important about image resources in FancyMenu.
 
 FancyMenu supports image resources in many places, like menu backgrounds, button textures, and so much more.
 
-You can use PNG, JPEG, GIF, and APNG image files in FancyMenu, but it is recommended to use PNG for static images whenever possible, and instead of using GIF and APNG for animations, better use [an AFMA file](./afma), which is FancyMenu's own animated image type, because AFMAs are so much more optimized than GIF/APNG, use less RAM, and have a smaller impact on performance.
+You can use PNG, JPEG, GIF, and APNG image files in FancyMenu, but it is recommended to use PNG for static images whenever possible, and instead of using GIF and APNG for animations, better use [an AFMA file](./fma), which is FancyMenu's own animated image type, because AFMAs are so much more optimized than GIF/APNG, use less RAM, and have a smaller impact on performance.
 
 # Converting Images to Supported Formats
 
@@ -32,11 +32,11 @@ WebP files are not supported by FancyMenu, so you need to convert them to PNG: h
 
 # Limiations of Animated Textures
 
-FancyMenu uses its own [AFMA format](./afma) format for optimized animations, which allows [AFMA files](./afma) to have lots of frames at a high resolution, but for legacy animated file types like GIF and APNG, you should stick to the following recommended limits, to not fill your RAM too much or worsen your game's performance too much:
+FancyMenu uses its own [AFMA format](./fma) format for optimized animations, which allows [AFMA files](./fma) to have lots of frames at a high resolution, but for legacy animated file types like GIF and APNG, you should stick to the following recommended limits, to not fill your RAM too much or worsen your game's performance too much:
 
 - Use a maximum for **200 frames** per animation.
 - Use a maximum resolution of **1080p** for your frames.
 - You should not exceed a total of **1000 frames for ALL animations combined**, because even if you use only 200 frames per animation, it will load all of them in memory, so using too many animations at once will still fill your RAM.
 
 > [!IMPORTANT]
-> These limits do NOT apply to [AFMA files](./afma), because AFMAs don't load all their frames into memory, and are a lot more optimized, so they won't have as much impact on performance as legacy animation types.
+> These limits do NOT apply to [AFMA files](./fma), because AFMAs don't load all their frames into memory, and are a lot more optimized, so they won't have as much impact on performance as legacy animation types.
