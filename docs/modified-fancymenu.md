@@ -16,7 +16,7 @@ It normally shows when FancyMenu got modified, but it can also show if your game
 
 This can be due to your **Minecraft instance being broken** in some way, which should make your **reinstall your game**.
 
-Another possible cause for the error is when your **game semi-crashes** on launch because some mods (including FancyMenu) **failed to load properly**. In that case please post your `/logs/latest.log` file in the Discord server or open an issue on GitHub.
+Another possible cause for the error is when your **game semi-crashes** on launch because some mods (including FancyMenu) **failed to load properly**. In that case please post your `/logs/latest.log` file in the [Discord server](https://discord.gg/rhayah27GC) or [open an issue on GitHub](https://github.com/Keksuccino/FancyMenu/issues).
 
 The error can also be triggered due to **using a bad mod launcher** (most cracked/pirate launchers trigger the bug, so please buy the game). Recommended launchers that are stable and work great with FancyMenu are the **official CurseForge launcher and the official Modrinth launcher**.
 
