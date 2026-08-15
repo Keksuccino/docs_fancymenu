@@ -4,7 +4,7 @@ description: 'FancyMenu, Spiffy, Drippy용으로 바로 사용할 수 있는 전
 ---
 # 레이아웃 템플릿
 
-FancyMenu나 그 애드온인 SpiffyHud, Drippy Loading Screen용 디자인 템플릿을 다운로드하고 싶다면, 가장 먼저 확인할 곳은 Kekscord Discord 서버(Keksuccino의 모드 지원용 공식 Discord 서버)의 [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) 채널입니다. 이 채널에는 커뮤니티가 만든 완성형 FancyMenu 설정이 있으며, 각각의 다운로드 링크도 함께 제공됩니다.
+FancyMenu나 그 애드온인 SpiffyHUD, Drippy Loading Screen용 디자인 템플릿을 다운로드하고 싶다면, 가장 먼저 확인할 곳은 Kekscord Discord 서버(Keksuccino의 모드 지원용 공식 Discord 서버)의 [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) 채널입니다. 이 채널에는 커뮤니티가 만든 완성형 FancyMenu 설정이 있으며, 각각의 다운로드 링크도 함께 제공됩니다.
 
 그곳의 모든 템플릿 게시물은 같은 형식을 따릅니다. 모두 [Modpacks](/modpacks) 페이지에 설명된 것처럼, `<game-directory>/config/` 안에 `fancymenu` 폴더가 포함된 전체 FancyMenu 설정으로 연결되는 다운로드 링크를 가져야 합니다.
 

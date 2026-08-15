@@ -6,7 +6,7 @@ description: >-
 ---
 # Plantillas de diseño
 
-Si quieres descargar plantillas de diseño para FancyMenu, o uno de sus complementos, como SpiffyHud o Drippy Loading Screen, el mejor lugar para revisar es el canal [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) en el servidor de Discord Kekscord (el servidor oficial de Keksuccino para soporte de mods). Este canal contiene configuraciones completas de FancyMenu creadas por la comunidad, con enlaces de descarga para todas ellas.
+Si quieres descargar plantillas de diseño para FancyMenu, o uno de sus complementos, como SpiffyHUD o Drippy Loading Screen, el mejor lugar para revisar es el canal [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) en el servidor de Discord Kekscord (el servidor oficial de Keksuccino para soporte de mods). Este canal contiene configuraciones completas de FancyMenu creadas por la comunidad, con enlaces de descarga para todas ellas.
 
 Todas las publicaciones de plantillas allí siguen el mismo patrón. Todas deberían tener un enlace de descarga a una configuración completa de FancyMenu que incluya una carpeta `fancymenu` para `<game-directory>/config/`, como se describe en la página de [Modpacks](/modpacks).
 

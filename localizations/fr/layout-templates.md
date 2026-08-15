@@ -6,7 +6,7 @@ description: >-
 ---
 # Modèles de disposition
 
-Si vous souhaitez télécharger des modèles de conception pour FancyMenu, ou l’un de ses addons, comme SpiffyHud ou Drippy Loading Screen, le meilleur endroit à consulter est le salon [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) sur le serveur Discord Kekscord (le serveur Discord officiel de Keksuccino pour l’assistance aux mods). Ce salon contient des configurations complètes de FancyMenu créées par la communauté, avec des liens de téléchargement pour chacune d’elles.
+Si vous souhaitez télécharger des modèles de conception pour FancyMenu, ou l’un de ses addons, comme SpiffyHUD ou Drippy Loading Screen, le meilleur endroit à consulter est le salon [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) sur le serveur Discord Kekscord (le serveur Discord officiel de Keksuccino pour l’assistance aux mods). Ce salon contient des configurations complètes de FancyMenu créées par la communauté, avec des liens de téléchargement pour chacune d’elles.
 
 Tous les messages de modèles qui s’y trouvent suivent le même schéma. Ils devraient tous proposer un lien de téléchargement vers une configuration complète de FancyMenu contenant un dossier `fancymenu` pour `<game-directory>/config/`, comme décrit sur la page [Modpacks](/modpacks).
 

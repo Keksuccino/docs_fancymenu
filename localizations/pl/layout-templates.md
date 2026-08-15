@@ -4,7 +4,7 @@ description: 'Jak pobrać gotowe do użycia szablony projektów dla FancyMenu, S
 ---
 # Szablony układu
 
-Jeśli chcesz pobrać szablony projektów dla FancyMenu albo jednego z jego dodatków, takich jak SpiffyHud lub Drippy Loading Screen, najlepszym miejscem do sprawdzenia jest kanał [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) na serwerze Discord Kekscord (oficjalnym serwerze Discord Keksuccino do wsparcia modów). Kanał ten zawiera pełne konfiguracje FancyMenu stworzone przez społeczność, wraz z linkami do pobrania wszystkich z nich.
+Jeśli chcesz pobrać szablony projektów dla FancyMenu albo jednego z jego dodatków, takich jak SpiffyHUD lub Drippy Loading Screen, najlepszym miejscem do sprawdzenia jest kanał [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) na serwerze Discord Kekscord (oficjalnym serwerze Discord Keksuccino do wsparcia modów). Kanał ten zawiera pełne konfiguracje FancyMenu stworzone przez społeczność, wraz z linkami do pobrania wszystkich z nich.
 
 Wszystkie posty z szablonami mają tam taki sam układ. Powinny zawierać link do pobrania pełnej konfiguracji FancyMenu z folderem `fancymenu` do `<game-directory>/config/`, zgodnie z opisem na stronie [Modpacks](/modpacks).
 

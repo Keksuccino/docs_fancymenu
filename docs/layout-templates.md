@@ -6,7 +6,7 @@ description: >-
 ---
 # Layout Templates
 
-If you want to download design templates for FancyMenu, or one of its addons, like SpiffyHud or Drippy Loading Screen, the best place to check is the [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) channel in the Kekscord Discord server (Keksuccino's official Discord server for mod support). This channel contains full FancyMenu setups made by the community, with download links for all of them.
+If you want to download design templates for FancyMenu, or one of its addons, like SpiffyHUD or Drippy Loading Screen, the best place to check is the [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) channel in the Kekscord Discord server (Keksuccino's official Discord server for mod support). This channel contains full FancyMenu setups made by the community, with download links for all of them.
 
 All template posts in there follow the same pattern. They should all have a download link to a full FancyMenu setup containing a `fancymenu` folder for `<game-directory>/config/`, as described on the [Modpacks](/modpacks) page.
 

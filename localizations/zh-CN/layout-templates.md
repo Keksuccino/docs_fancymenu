@@ -4,7 +4,7 @@ description: 如何为 FancyMenu、Spiffy 和 Drippy 获取完整、可直接使
 ---
 # 布局模板
 
-如果你想下载 FancyMenu 或其某个附加组件的设计模板，比如 SpiffyHud 或 Drippy Loading Screen，最好的查找地点是 Kekscord Discord 服务器（Keksuccino 用于模组支持的官方 Discord 服务器）中的 [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) 频道。这个频道包含社区制作的完整 FancyMenu 配置，所有模板都有下载链接。
+如果你想下载 FancyMenu 或其某个附加组件的设计模板，比如 SpiffyHUD 或 Drippy Loading Screen，最好的查找地点是 Kekscord Discord 服务器（Keksuccino 用于模组支持的官方 Discord 服务器）中的 [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) 频道。这个频道包含社区制作的完整 FancyMenu 配置，所有模板都有下载链接。
 
 这里的所有模板帖子都遵循相同的格式。它们都应该有一个完整 FancyMenu 配置的下载链接，其中包含 `<game-directory>/config/` 下的 `fancymenu` 文件夹，如 [Modpacks](/modpacks) 页面所述。
 
