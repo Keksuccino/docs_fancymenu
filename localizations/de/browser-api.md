@@ -1,30 +1,29 @@
 ---
-title: Browser JavaScript-API
+title: Browser-JavaScript-API
 description: >-
-  So verwenden Sie die JavaScript-API von FancyMenu in MCEF-basierten
+  So verwendest du die JavaScript-API von FancyMenu in Rinku-basierten
   Mod-Funktionen wie dem Browser-Element.
 ---
+# FancyMenu-JavaScript-API
 
-# FancyMenu JavaScript-API
+FancyMenu injiziert eine JavaScript-Bridge in jede auf [Rinku](https://modrinth.com/mod/rinku) basierende Funktion (zum Beispiel das **Browser**-Element). Die Bridge ermöglicht Webinhalten:
 
-FancyMenu injiziert eine JavaScript-Bridge in jede auf MCEF basierende Funktion (zum Beispiel das **Browser**-Element). Über diese Bridge kann Webinhalt:
-
-- beliebige FancyMenu-[Aktionen](./action-scripts) direkt aus JavaScript ausführen,
-- beliebige FancyMenu-[Platzhalter](/placeholders) asynchron auslesen.
+- jede FancyMenu-[Aktion](./action-scripts) direkt aus JavaScript auszuführen,
+- jeden FancyMenu-[Platzhalter](/placeholders) asynchron auszulesen.
 
 Zwei globale Objekte stellen die API bereit:
 - `window.fancymenu` – primärer Namespace
-- `window.FancyMenu` – Alias (spiegelt exakt die Struktur von `fancymenu`)
+- `window.FancyMenu` – Alias (spiegelt exakt die Struktur von `fancymenu` wider)
 
-Verwenden Sie das Ereignis `fancymenu-ready` oder eine Feature-Erkennung, um sicherzustellen, dass die Bridge verfügbar ist, bevor Sie sie aufrufen.
+Verwende das Ereignis `fancymenu-ready` oder eine Funktionserkennung, um sicherzustellen, dass die Bridge vor ihrer Verwendung verfügbar ist.
 
-## 1. Namespaces & Struktur
+## 1. Namespaces und Struktur
 
-- `fancymenu.actions` – führt FancyMenu-Aktionen im Browser aus.
-- `fancymenu.placeholders` – liest FancyMenu-Platzhalterwerte asynchron aus.
-- `FancyMenu` spiegelt `fancymenu`, daher stellen beide dieselben Unter-Namespaces bereit.
+- `fancymenu.actions` – FancyMenu-Aktionen im Browser ausführen.
+- `fancymenu.placeholders` – FancyMenu-Platzhalterwerte asynchron auslesen.
+- `FancyMenu` spiegelt `fancymenu` wider, daher stellen beide dieselben Unternamespaces bereit.
 
-Aktionen bieten zwei Hilfsfunktionen:
+Aktionen stellen zwei Hilfsfunktionen bereit:
 - `fancymenu.actions.execute(actionType, actionValue?)`
 - `fancymenu.actions.executeWithCallback(actionType, actionValue?, onSuccess?, onFailure?)`
 
@@ -32,7 +31,7 @@ Aktionen bieten zwei Hilfsfunktionen:
 
 ```javascript
 if (typeof fancymenu !== 'undefined') {
-    // sicher verwendbar
+    // kann sicher verwendet werden
 }
 
 window.addEventListener('fancymenu-ready', () => {
@@ -40,31 +39,31 @@ window.addEventListener('fancymenu-ready', () => {
 });
 ```
 
-Inhalt kann auch lokal gehostet werden: Legen Sie HTML-Dateien in `<game-directory>/config/fancymenu/assets/` ab und laden Sie sie über URLs der Form `file:///config/fancymenu/assets/<name>.html`.
+Inhalte können auch lokal gehostet werden: Lege HTML-Dateien in `<game-directory>/config/fancymenu/assets/` ab und lade sie über URLs der Form `file:///config/fancymenu/assets/<name>.html`.
 
 ## 3. Aktionen ausführen
 
-Verwenden Sie den Namespace `fancymenu.actions`. Jeder Aufruf entspricht den Aktions-Strings, die in FancyMenu-Skripten verwendet werden.
+Verwende den Namespace `fancymenu.actions`. Jeder Aufruf entspricht den in FancyMenu-Skripten verwendeten Aktionszeichenfolgen.
 
 ### Schnelle Aufrufe
 
 ```javascript
 fancymenu.actions.execute('quitgame');                // Aktion ohne Wert
 fancymenu.actions.execute('opengui', 'title_screen'); // Aktion mit Wert
-fancymenu.actions.execute('set_variable', 'hp:20');   // Wert verwendet das Format name:value
+fancymenu.actions.execute('set_variable', 'hp:20');   // Wert im Format name:value
 ```
 
-### Mit Callbacks
+### Mit Rückruffunktionen
 
 ```javascript
 fancymenu.actions.executeWithCallback(
     'opengui',
     'title_screen',
-    result => console.log('Titelbildschirm geöffnet'),
+    result => console.log('Titelseite geöffnet'),
     error  => console.error('Öffnen fehlgeschlagen:', error)
 );
 
-// Der Parameter value ist optional. Wenn er weggelassen wird, übergeben Sie die Callbacks direkt nach actionType.
+// Der value-Parameter ist optional. Wenn er weggelassen wird, übergib die Rückruffunktionen direkt nach actionType.
 fancymenu.actions.executeWithCallback(
     'quitgame',
     result => console.log('Beenden ausgelöst'),
@@ -72,22 +71,22 @@ fancymenu.actions.executeWithCallback(
 );
 ```
 
-Die Legacy-Helfer `fancymenu.execute(...)` und `fancymenu.executeWithCallback(...)` leiten weiterhin an den Namespace `actions` weiter.
+Die älteren Hilfsfunktionen `fancymenu.execute(...)` und `fancymenu.executeWithCallback(...)` delegieren weiterhin an den Namespace `actions`.
 
 ### Häufige Aktionstypen
 
 - `quitgame` – beendet das Spiel sofort (kein Wert)
 - `back_to_last_screen` – kehrt zur vorherigen GUI zurück (kein Wert)
-- `opengui` – öffnet ein FancyMenu- oder Vanilla-Menü (Wert: Bildschirmkennung)
-- `openlink` – öffnet einen Browser (Wert: URL)
-- `sendmessage` – sendet eine Chat-Nachricht (Wert: Nachrichtentext)
+- `opengui` – öffnet einen FancyMenu- oder Vanilla-Bildschirm (Wert: Bildschirmkennung)
+- `openlink` – startet einen Browser (Wert: URL)
+- `sendmessage` – sendet eine Chatzeile (Wert: Nachrichtentext)
 - `set_variable` – weist eine FancyMenu-Variable zu (Wert: `name:value`)
-- `joinserver` – verbindet mit einem Server (Wert: Adresse)
+- `joinserver` – verbindet sich mit einem Server (Wert: Adresse)
 - `disconnect_server_or_world` – trennt die Verbindung und wechselt zu einem Zielbildschirm (Wert: Bildschirmkennung)
 
-Jede in FancyMenu vorhandene Aktion ist über die Bridge verfügbar; siehe [action scripts](./action-scripts) für den vollständigen Katalog.
+Jede in FancyMenu vorhandene Aktion ist über die Bridge verfügbar. Eine vollständige Übersicht findest du unter [Aktionsskripte](./action-scripts).
 
-## 4. Platzhalter lesen
+## 4. Platzhalter auslesen
 
 Das [Platzhalter](/placeholders)-System von FancyMenu wird über `fancymenu.placeholders` (und `FancyMenu.placeholders`) bereitgestellt. Beide Hilfsmethoden geben `Promise<string>` zurück:
 
@@ -98,9 +97,9 @@ fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promi
 
 ### Variablen übergeben
 
-- Variablen sind Zeichenketten im Format `name:value`. Die Bridge trennt nur am **ersten** Doppelpunkt, sodass der Wert weitere Doppelpunkte enthalten kann.
-- Namen und Werte werden getrimmt; leere Namen werden abgelehnt.
-- Übergeben Sie so viele Variablen, wie der Platzhalter benötigt. Optionale Variablen können weggelassen werden.
+- Variablen sind Zeichenfolgen im Format `name:value`. Die Bridge teilt nur am **ersten** Doppelpunkt, daher darf der Wert weitere Doppelpunkte enthalten.
+- Namen und Werte werden von Leerzeichen am Anfang und Ende bereinigt; leere Namen werden abgelehnt.
+- Gib so viele Variablen an, wie der Platzhalter benötigt. Optionale Variablen können weggelassen werden.
 
 ### Beispiele
 
@@ -135,7 +134,7 @@ interface PlaceholderError {
 }
 ```
 
-Beispiel für die Behandlung:
+Beispiel für die Fehlerbehandlung:
 
 ```javascript
 fancymenu.placeholders.get('unknown')
@@ -154,7 +153,7 @@ fancymenu.placeholders.get('unknown')
     <h1>Spielsteuerung</h1>
     
     <button onclick="quitGame()">Spiel beenden</button>
-    <button onclick="openTitleScreen()">Titelbildschirm</button>
+    <button onclick="openTitleScreen()">Titelseite</button>
     <button onclick="disconnectFromServer()">Verbindung trennen</button>
     <button onclick="setVariable()">Variable setzen</button>
     <button onclick="loadPlaceholders()">Platzhalter laden</button>
@@ -182,7 +181,7 @@ fancymenu.placeholders.get('unknown')
             actions.executeWithCallback(
                 'opengui',
                 'title_screen',
-                () => console.log('Titelbildschirm geöffnet!'),
+                () => console.log('Titelseite geöffnet!'),
                 err => console.error('Fehler:', err)
             );
         }
@@ -233,17 +232,17 @@ fancymenu.placeholders.get('unknown')
 </html>
 ```
 
-## 6. Best Practices & Hinweise
+## 6. Bewährte Methoden und Hinweise
 
-- **Erkennen Sie die Bridge**, bevor Sie sie verwenden, oder hören Sie auf `fancymenu-ready`.
-- **Behandeln Sie Fehler** (Callbacks für [actions](/action-scripts), `.catch` für [placeholders](/placeholders)), um hilfreiches Feedback anzuzeigen.
-- **Validieren Sie Eingaben**, bevor Sie sie an Aktionen oder [Platzhalter](/placeholders)-Variablen übergeben.
-- **Drosseln Sie Anfragen**; vermeiden Sie es, die Bridge mit sehr häufigen Aufrufen zu überlasten (insbesondere bei Platzhalter-Aktualisierungsschleifen).
-- **Sicherheit:** Browser-Inhalt kann jede registrierte FancyMenu-Aktion aufrufen, einschließlich Datei-, Netzwerk-, Befehls-, Zwischenablage-, Resource-Pack-, Link- und Beenden-Aktionen. Laden Sie nur vertrauenswürdige Seiten und validieren Sie alle Daten, die aus Webinhalt empfangen werden.
+- **Erkenne die Bridge**, bevor du sie verwendest, oder höre auf `fancymenu-ready`.
+- **Behandle Fehler** (Rückruffunktionen für [Aktionen](/action-scripts), `.catch` für [Platzhalter](/placeholders)), um hilfreiche Rückmeldungen anzuzeigen.
+- **Validiere Eingaben**, bevor du sie an Aktionen oder [Platzhalter](/placeholders)-Variablen übergibst.
+- **Begrenze die Anfragen**; vermeide es, die Bridge mit schnellen, aufeinanderfolgenden Aufrufen zu überlasten (insbesondere bei Schleifen zur regelmäßigen Aktualisierung von Platzhaltern).
+- **Sicherheit:** Browserinhalte können jede registrierte FancyMenu-Aktion aufrufen, einschließlich Datei-, Netzwerk-, Befehls-, Zwischenablage-, Ressourcenpaket-, Link- und Beenden-Aktionen. Lade nur vertrauenswürdige Seiten und validiere alle aus Webinhalten empfangenen Daten.
 
 ## 7. Fehlerbehebung
 
-1. Stellen Sie sicher, dass die Seite in einem von FancyMenu gesteuerten MCEF-Browser geladen wird.
-2. Prüfen Sie die Browser-Konsole auf JavaScript-Fehler.
-3. Vergewissern Sie sich, dass die [Platzhalter](/placeholders)-Kennung oder der [Aktion](/action-scripts)-Typ korrekt ist und die erforderlichen Werte übergeben werden.
-4. Prüfen Sie das Minecraft-Protokoll (`latest.log`) auf FancyMenu-Fehlermeldungen, falls die Ausführung unerwartet fehlschlägt.
+1. Stelle sicher, dass die Seite in einem von FancyMenu kontrollierten Rinku-Browser geladen ist.
+2. Überprüfe die Browserkonsole auf JavaScript-Fehler.
+3. Vergewissere dich, dass die [Platzhalter](/placeholders)-Kennung bzw. der [Aktionstyp](/action-scripts) korrekt ist und alle erforderlichen Werte angegeben wurden.
+4. Wenn die Ausführung unerwartet fehlschlägt, überprüfe das Minecraft-Log (`latest.log`) auf FancyMenu-Fehlermeldungen.

@@ -1,8 +1,10 @@
 ---
-title: 読み込み画面
-description: Minecraft のゲーム読み込み画面（いわゆるスプラッシュ画面）を編集する方法です。
+title: ローディング画面
+description: Minecraftのゲームローディング画面（スプラッシュ画面とも呼ばれます）を編集する方法。
 ---
+# ローディング画面のカスタマイズ
 
-# 読み込み画面
+**FancyMenu単体では、Minecraftのローディング画面／スプラッシュ画面をカスタマイズできません**。そのために、[Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen)アドオンがあります（Modrinthでは[こちら](https://modrinth.com/mod/drippy-loading-screen)からも入手できます）。
 
-FancyMenu は Minecraft のスプラッシュ／読み込み画面をカスタマイズしません。代わりに [Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen) アドオンを使用してください。
+> [!IMPORTANT]
+> Drippy Loading Screenの使い方については、[Wiki](https://github.com/Keksuccino/Drippy-Loading-Screen/wiki)をご覧ください。

@@ -1,30 +1,29 @@
 ---
-title: API JavaScript do Navegador
+title: API JavaScript do navegador
 description: >-
-  Como usar a API JavaScript do FancyMenu em recursos de mods baseados em MCEF,
-  como o elemento Browser.
+  Como usar a API JavaScript do FancyMenu em recursos baseados no Rinku, como o
+  elemento Browser.
 ---
-
 # API JavaScript do FancyMenu
 
-O FancyMenu injeta uma ponte JavaScript em todo recurso baseado em MCEF (por exemplo, o elemento **Browser**). Essa ponte permite que conteúdo web:
+O FancyMenu injeta uma ponte JavaScript em todos os recursos baseados no [Rinku](https://modrinth.com/mod/rinku) (por exemplo, o elemento **Browser**). A ponte permite que o conteúdo web:
 
-- execute qualquer [ação](./action-scripts) do FancyMenu diretamente pelo JavaScript,
+- execute qualquer [ação](./action-scripts) do FancyMenu diretamente pelo JavaScript;
 - leia qualquer [placeholder](/placeholders) do FancyMenu de forma assíncrona.
 
 Dois globais expõem a API:
 - `window.fancymenu` – namespace principal
 - `window.FancyMenu` – alias (espelha exatamente a estrutura de `fancymenu`)
 
-Use o evento `fancymenu-ready`, ou detecção de recurso, para garantir que a ponte esteja disponível antes de chamá-la.
+Use o evento `fancymenu-ready` ou a detecção de recursos para garantir que a ponte esteja disponível antes de chamá-la.
 
-## 1. Namespaces e Estrutura
+## 1. Namespaces e estrutura
 
-- `fancymenu.actions` – executa ações do FancyMenu a partir do navegador.
+- `fancymenu.actions` – executa ações do FancyMenu no navegador.
 - `fancymenu.placeholders` – lê valores de placeholders do FancyMenu de forma assíncrona.
-- `FancyMenu` espelha `fancymenu`, então ambos expõem os mesmos sub-namespaces.
+- `FancyMenu` espelha `fancymenu`, portanto ambos expõem os mesmos subnamespaces.
 
-As ações expõem dois helpers:
+As ações oferecem dois auxiliares:
 - `fancymenu.actions.execute(actionType, actionValue?)`
 - `fancymenu.actions.executeWithCallback(actionType, actionValue?, onSuccess?, onFailure?)`
 
@@ -40,13 +39,13 @@ window.addEventListener('fancymenu-ready', () => {
 });
 ```
 
-O conteúdo também pode ser hospedado localmente: coloque arquivos HTML em `<game-directory>/config/fancymenu/assets/` e carregue-os por URLs no formato `file:///config/fancymenu/assets/<name>.html`.
+O conteúdo também pode ser hospedado localmente: coloque os arquivos HTML em `<game-directory>/config/fancymenu/assets/` e carregue-os por meio de URLs no formato `file:///config/fancymenu/assets/<name>.html`.
 
-## 3. Executando Ações
+## 3. Executando ações
 
-Use o namespace `fancymenu.actions`. Cada chamada espelha as strings de ação usadas nos scripts do FancyMenu.
+Use o namespace `fancymenu.actions`. Cada chamada corresponde às strings de ação usadas nos scripts do FancyMenu.
 
-### Chamadas Rápidas
+### Chamadas rápidas
 
 ```javascript
 fancymenu.actions.execute('quitgame');                // ação sem valor
@@ -54,53 +53,53 @@ fancymenu.actions.execute('opengui', 'title_screen'); // ação com valor
 fancymenu.actions.execute('set_variable', 'hp:20');   // o valor usa o formato nome:valor
 ```
 
-### Com Callbacks
+### Com callbacks
 
 ```javascript
 fancymenu.actions.executeWithCallback(
     'opengui',
     'title_screen',
-    result => console.log('Tela de título aberta'),
+    result => console.log('Tela inicial aberta'),
     error  => console.error('Falha ao abrir:', error)
 );
 
-// O parâmetro value é opcional. Quando omitido, passe os callbacks diretamente após actionType.
+// O parâmetro de valor é opcional. Quando omitido, passe os callbacks diretamente após actionType.
 fancymenu.actions.executeWithCallback(
     'quitgame',
-    result => console.log('Saída acionada'),
+    result => console.log('Saída iniciada'),
     error  => console.error('Falha ao sair:', error)
 );
 ```
 
-Os helpers legados `fancymenu.execute(...)` e `fancymenu.executeWithCallback(...)` ainda delegam para o namespace `actions`.
+Os auxiliares legados `fancymenu.execute(...)` e `fancymenu.executeWithCallback(...)` continuam encaminhando as chamadas para o namespace `actions`.
 
-### Tipos de Ação Comuns
+### Tipos de ação comuns
 
-- `quitgame` – sai imediatamente do jogo (sem valor)
-- `back_to_last_screen` – retorna para a GUI anterior (sem valor)
-- `opengui` – abre uma tela do FancyMenu ou vanilla (valor: identificador da tela)
+- `quitgame` – sai do jogo imediatamente (sem valor)
+- `back_to_last_screen` – retorna à GUI anterior (sem valor)
+- `opengui` – abre uma tela do FancyMenu ou do vanilla (valor: identificador da tela)
 - `openlink` – abre um navegador (valor: URL)
-- `sendmessage` – envia uma linha no chat (valor: texto da mensagem)
+- `sendmessage` – envia uma mensagem no chat (valor: texto da mensagem)
 - `set_variable` – atribui uma variável do FancyMenu (valor: `nome:valor`)
-- `joinserver` – conecta a um servidor (valor: endereço)
+- `joinserver` – conecta-se a um servidor (valor: endereço)
 - `disconnect_server_or_world` – desconecta e vai para uma tela de destino (valor: identificador da tela)
 
-Toda ação que existe no FancyMenu está disponível por meio da ponte; veja os [scripts de ação](./action-scripts) para o catálogo completo.
+Todas as ações existentes no FancyMenu estão disponíveis pela ponte; consulte os [scripts de ação](./action-scripts) para ver o catálogo completo.
 
-## 4. Leitura de Placeholders
+## 4. Lendo placeholders
 
-O sistema de [placeholder](/placeholders) do FancyMenu é exposto por meio de `fancymenu.placeholders` (e `FancyMenu.placeholders`). Ambos os métodos auxiliares retornam `Promise<string>`:
+O sistema de [placeholders](/placeholders) do FancyMenu é exposto por `fancymenu.placeholders` (e `FancyMenu.placeholders`). Ambos os métodos auxiliares retornam `Promise<string>`:
 
 ```ts
 fancymenu.placeholders.get(identifier: string): Promise<string>
 fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promise<string>
 ```
 
-### Fornecendo Variáveis
+### Fornecendo variáveis
 
-- As variáveis são strings no formato `nome:valor`. A ponte divide apenas no **primeiro** caractere `:`, então o valor pode conter outros dois-pontos.
-- Nomes e valores têm espaços em branco removidos; nomes vazios são rejeitados.
-- Forneça quantas variáveis o placeholder exigir. Omitir as opcionais.
+- As variáveis são strings no formato `nome:valor`. A ponte divide a string somente no **primeiro** dois-pontos, portanto o valor pode conter dois-pontos adicionais.
+- Nomes e valores têm os espaços removidos; nomes vazios são rejeitados.
+- Forneça todas as variáveis exigidas pelo placeholder. Omita as opcionais.
 
 ### Exemplos
 
@@ -123,9 +122,9 @@ fancymenu.placeholders.getWithVars(
 ).then(part => console.log('Parte selecionada:', part));
 ```
 
-### Modelo de Erro
+### Modelo de erros
 
-As promessas rejeitadas contêm um erro estruturado:
+Promises rejeitadas contêm um erro estruturado:
 
 ```ts
 interface PlaceholderError {
@@ -142,22 +141,22 @@ fancymenu.placeholders.get('unknown')
     .catch(error => console.warn(error.code, error.message));
 ```
 
-## 5. Exemplo Completo
+## 5. Exemplo completo
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Integração com FancyMenu</title>
+    <title>Integração com o FancyMenu</title>
 </head>
 <body>
-    <h1>Controles do Jogo</h1>
+    <h1>Controles do jogo</h1>
     
-    <button onclick="quitGame()">Sair do Jogo</button>
-    <button onclick="openTitleScreen()">Tela de Título</button>
+    <button onclick="quitGame()">Sair do jogo</button>
+    <button onclick="openTitleScreen()">Tela inicial</button>
     <button onclick="disconnectFromServer()">Desconectar</button>
-    <button onclick="setVariable()">Definir Variável</button>
-    <button onclick="loadPlaceholders()">Carregar Placeholders</button>
+    <button onclick="setVariable()">Definir variável</button>
+    <button onclick="loadPlaceholders()">Carregar placeholders</button>
 
     <div id="placeholderOutput" style="margin-top:16px;font-family:monospace"></div>
     
@@ -182,7 +181,7 @@ fancymenu.placeholders.get('unknown')
             actions.executeWithCallback(
                 'opengui',
                 'title_screen',
-                () => console.log('Tela de título aberta!'),
+                () => console.log('Tela inicial aberta!'),
                 err => console.error('Erro:', err)
             );
         }
@@ -225,7 +224,7 @@ fancymenu.placeholders.get('unknown')
                     'Tempo de atividade (segundos): ' + uptimeSeconds + '\n' +
                     'Segunda fruta: ' + secondFruit;
             }).catch(error => {
-                console.error('Falha na solicitação de placeholder:', error);
+                console.error('Falha na solicitação do placeholder:', error);
             });
         }
     </script>
@@ -233,17 +232,17 @@ fancymenu.placeholders.get('unknown')
 </html>
 ```
 
-## 6. Boas Práticas e Observações
+## 6. Práticas recomendadas e observações
 
-- **Detecte a ponte** antes de usá-la, ou aguarde o evento `fancymenu-ready`.
-- **Trate erros** (callbacks para [ações](/action-scripts), `.catch` para [placeholders](/placeholders)) para mostrar feedback útil.
-- **Valide a entrada** antes de passá-la para ações ou variáveis de [placeholder](/placeholders).
-- **Limite a frequência das requisições**; evite sobrecarregar a ponte com chamadas em rápida sucessão (especialmente em loops de atualização de placeholders).
-- **Segurança:** o conteúdo do navegador pode invocar qualquer ação registrada do FancyMenu, incluindo ações de arquivo, rede, comando, área de transferência, resource pack, link e saída. Carregue apenas páginas confiáveis e valide todos os dados recebidos do conteúdo web.
+- **Detecte a ponte** antes de usá-la ou escute o evento `fancymenu-ready`.
+- **Trate os erros** (callbacks para [ações](/action-scripts), `.catch` para [placeholders](/placeholders)) para apresentar informações úteis.
+- **Valide as entradas** antes de passá-las para ações ou variáveis de [placeholders](/placeholders).
+- **Limite as solicitações**; evite sobrecarregar a ponte com chamadas rápidas e repetidas (especialmente em loops de atualização de placeholders).
+- **Segurança:** o conteúdo do navegador pode invocar qualquer ação registrada do FancyMenu, incluindo ações de arquivo, rede, comando, área de transferência, pacote de recursos, link e saída. Carregue somente páginas confiáveis e valide todos os dados recebidos do conteúdo web.
 
-## 7. Solução de Problemas
+## 7. Solução de problemas
 
-1. Confirme que a página está carregada em um navegador MCEF controlado pelo FancyMenu.
+1. Confirme se a página foi carregada em um navegador Rinku controlado pelo FancyMenu.
 2. Verifique o console do navegador em busca de erros de JavaScript.
-3. Confirme se o identificador do [placeholder](/placeholders) ou o tipo de [ação](/action-scripts) está correto e se os valores obrigatórios foram fornecidos.
-4. Consulte o log do Minecraft (`latest.log`) para mensagens de erro do FancyMenu se a execução falhar inesperadamente.
+3. Confira se o identificador do [placeholder](/placeholders) ou o tipo de [ação](/action-scripts) está correto e se os valores exigidos foram fornecidos.
+4. Consulte o log do Minecraft (`latest.log`) em busca de mensagens de erro do FancyMenu caso a execução falhe inesperadamente.

@@ -1,8 +1,10 @@
 ---
 title: Экран загрузки
-description: Как изменить экран загрузки игры Minecraft (он же splash screen).
+description: Как изменить экран загрузки игры Minecraft (также известный как заставка).
 ---
+# Настройка экрана загрузки
 
-# Экран загрузки
+**FancyMenu не может самостоятельно настраивать экран загрузки/заставку Minecraft**. Именно поэтому существует дополнение [Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen) (также найти его можно [здесь](https://modrinth.com/mod/drippy-loading-screen) на Modrinth).
 
-FancyMenu не настраивает экран заставки/загрузки Minecraft. Для этого используйте дополнение [Drippy Loading Screen](https://www.curseforge.com/minecraft/mc-mods/drippy-loading-screen).
+> [!IMPORTANT]
+>Инструкции по использованию Drippy Loading Screen см. в его [вики](https://github.com/Keksuccino/Drippy-Loading-Screen/wiki).

@@ -1,56 +1,55 @@
 ---
 title: Tła menu
-description: 'Jak ustawić niestandardowe tła menu (obrazy, animacje) dla ekranów.'
+description: 'Jak ustawiać niestandardowe tła menu (obrazy, animacje) dla ekranów.'
 ---
-
 # Tła menu
 
-FancyMenu pozwala ustawić niestandardowe tła dla menu. Możesz używać obrazów, animowanych tekstur, pokazów slajdów, panoram sześciennych, kolorów, przeglądarek, filmów, shaderów GLSL i nie tylko.
+FancyMenu umożliwia ustawianie niestandardowych teł menu. Możesz używać obrazów, animowanych tekstur, pokazów slajdów, panoram sześciennych, kolorów, przeglądarek, filmów, shaderów GLSL i nie tylko.
 
 # Ustawianie tła
 
-Dostosowywanie tła menu jest dostępne z menu kontekstowego edytora układu:
+Dostosowywanie tła menu jest dostępne w menu kontekstowym edytora układu:
 
 1. Otwórz edytor układu.
 2. Kliknij prawym przyciskiem myszy tło edytora.
 3. Otwórz **Tła menu**.
-4. Włącz i skonfiguruj typy tła, których chcesz używać.
+4. Włącz i skonfiguruj wybrany typ tła lub typy teł.
 
-Do najczęściej używanych typów tła należą:
+Najczęściej używane typy teł to:
 
-- Vanilla
+- Waniliowe
 - Obraz
 - Pokaz slajdów
 - Panorama sześcienna
 - Kolor (HEX)
 - Przeglądarka
-- Wideo
+- Film
 - Shader GLSL
-- Wideo [MCEF] (przestarzałe)
-- Dodatkowe typy tła z dodatków
+- Film [Rinku] (przestarzały)
+- Dodatkowe typy teł z dodatków
 
-Stary typ tła **Wideo [MCEF]** jest przestarzały. Do nowych układów używaj [natywnego tła **Wideo**](./video) opartego na Watermedia V3.
+Stary typ tła **Film [Rinku]** jest przestarzały. W nowych układach używaj [natywnego tła **Film**](./video), obsługiwanego przez Watermedia V3.
 
 # Usuwanie niestandardowego tła
 
-Otwórz ponownie **Tła menu** i wyłącz lub usuń typ niestandardowego tła, którego już nie chcesz używać. Jeśli żaden typ niestandardowego tła nie jest aktywny, ekran powróci do swojego zwykłego, domyślnego zachowania tła.
+Ponownie otwórz **Tła menu** i wyłącz lub usuń niepotrzebny już niestandardowy typ tła. Jeśli żaden niestandardowy typ tła nie jest aktywny, ekran powróci do standardowego działania tła waniliowego.
 
 # Nakładanie teł
 
-W jednym układzie można włączyć kilka typów tła menu. Aktywne tła są renderowane jako stos, więc bazowy obraz lub panorama może być połączona z przezroczystą przeglądarką, shaderem, paralaksą lub innymi warstwami.
+W jednym układzie można włączyć wiele typów teł menu. Aktywne tła są renderowane jako stos, dzięki czemu bazowy obraz lub panorama mogą być łączone z półprzezroczystą przeglądarką, shaderem, warstwą paralaksy lub innymi warstwami.
 
-Jeśli masz również aktywnych kilka układów, ich stosy teł mogą się także łączyć. Aby posortować układy i wyświetlać je w określonej kolejności, kliknij prawym przyciskiem myszy tło edytora i wybierz **Indeks układu**.
+Jeśli aktywnych jest również wiele układów, ich stosy teł także mogą się łączyć. Aby uporządkować układy i wyświetlać je w określonej kolejności, kliknij prawym przyciskiem myszy tło edytora, a następnie kliknij **Indeks układu**.
 
 # Przezroczyste tła
 
-FancyMenu renderuje czarną warstwę pod aktywnymi niestandardowymi tłami. Przezroczyste piksele w najniższym tle ujawnią więc czerń. Użyj nieprzezroczystego tła bazowego, a następnie dodawaj na nim przezroczyste warstwy.
+FancyMenu renderuje czarną warstwę podkładową za aktywnymi niestandardowymi tłami. Przezroczyste piksele w tle znajdującym się na samym spodzie stosu ujawnią więc czarny kolor. Użyj nieprzezroczystego tła bazowego, a następnie umieść nad nim półprzezroczyste tła.
 
-Aby uczynić obraz tła półprzezroczystym, użyj dowolnego edytora grafiki.
+Aby ustawić przezroczystość obrazu tła, użyj wybranego edytora obrazów.
 
 # Tła przeglądarki
 
-Typ tła **Przeglądarka** działa podobnie jak [element Przeglądarka](./elements#browser), ale wypełnia cały ekran i automatycznie zostaje ustawiony jako aktywny. Jest to przydatne do pełnoekranowej treści internetowej, lokalnych stron HTML lub warstw wideo z internetu.
+Typ tła **Przeglądarka** działa podobnie jak [element Przeglądarka](./elements#browser), ale wypełnia cały ekran i automatycznie otrzymuje fokus. Jest to przydatne w przypadku pełnoekranowych treści internetowych, lokalnych stron HTML lub warstw z filmami internetowymi.
 
 # Tła shaderów GLSL
 
-Typ tła **Shader GLSL** renderuje niestandardowe shadery GLSL i obsługuje tworzenie shaderów w stylu Shadertoy. Zobacz stronę [API shaderów GLSL](/glsl-shader-api), aby poznać obsługiwane zmienne uniform i strukturę shaderów.
+Typ tła **Shader GLSL** renderuje niestandardowe shadery GLSL i obsługuje tworzenie shaderów w stylu Shadertoy. Więcej informacji o obsługiwanych uniformach i strukturze shaderów znajdziesz na stronie [API shaderów GLSL](/glsl-shader-api).
