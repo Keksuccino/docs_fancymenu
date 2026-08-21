@@ -2,8 +2,6 @@
 title: Incompatibility List
 description: Screens blocked by FancyMenu and community-reported incompatibilities.
 ---
-# Incompatibilities
-
 # Screens Where Customization Is Intentionally Disabled
 
 FancyMenu blocks screens matching certain mod package paths to prevent crashes or broken behavior. The customization toggle, overlay, and layouts are unavailable on matching screens.
