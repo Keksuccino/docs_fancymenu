@@ -22,7 +22,6 @@ Blocked screen groups include:
 - SlimeKnights and Tinkers' Construct
 - MidnightDust mods
 - SkinSwapper
-- FancyMenu's own configuration screens; [Custom GUIs](./custom-guis) are excluded
 - Immersive Engineering
 - Dungeonz
 - RPG-Hud
@@ -87,4 +86,5 @@ The entries below are community reports, not screens blocked by FancyMenu itself
 * [Respackopts](https://www.curseforge.com/minecraft/mc-mods/respackopts) (Works, but only if you disable customizations for the Resource Pack screen)
 * [Bind Pizzeria](https://modrinth.com/mod/jjpizza) (Breaks text rendering in FancyMenu's context menus)
 * [EnhancedTooltips](https://www.curseforge.com/minecraft/mc-mods/enhancedtooltips) (Breaks FancyMenu's tooltips)
-* [Skin Shuffle](https://modrinth.com/mod/skinshuffle) (The player entity added to menus by that mod is not customizable via FancyMenu)
+* [Skin Shuffle](https://modrinth.com/mod/skinshuffle) (The player entity added to menus by that mod is not customizable via FancyMenu
+* [Wakes](https://modrinth.com/mod/wakes) (Crashes the game on launch because of an `IncompatibleClassChangeError` -- it fails to override a final method `AbstractSliderButton.getSprite()`, which is only final because of Wakes' modifying its visibility; See GitHub issues for more information: [Goby56/wakes #215](https://github.com/Goby56/wakes/issues/215), [Keksuccino/FancyMenu #1733](https://github.com/Keksuccino/FancyMenu/issues/1733))
