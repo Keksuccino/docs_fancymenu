@@ -4,9 +4,11 @@ description: How to customize Essential's UI.
 ---
 # Essential
 
-The Essential mod used to be compatible with FancyMenu because of them adding support for FancyMenu from their side, but this compatibility seems to not be present anymore. 
+The [Essential](https://www.curseforge.com/minecraft/mc-mods/essential-mod) mod used to be compatible with FancyMenu because of them adding support for FancyMenu from their side, but this compatibility seems to **not be present anymore**. 
 
 Since some update to their mod or launcher, users report massive problems again with Essential + FancyMenu, like Essential elements not being visible in the layout editor, or customized Essential elements reverting back to default when leaving the editor.
 
+[This GitHub issue](https://github.com/Keksuccino/FancyMenu/issues/1762) talks about one of the problems.
+
 > [!IMPORTANT]
-> This conflict/incompatibility needs to get fixed on ESSENTIAL'S SIDE. FancyMenu is not at fault for this and the recommented way for getting back Essential support is to report the incompatibility to the Essential team.
+> This conflict/incompatibility needs to get fixed on **ESSENTIAL'S SIDE**. FancyMenu is **not** at fault for this and the recommented way for getting back Essential support is to report the incompatibility to the Essential team.
