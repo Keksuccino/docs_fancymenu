@@ -1,19 +1,12 @@
 ---
 title: Essential Mod
 description: How to customize Essential's UI.
-published: true
-date: 2025-08-04T01:11:43.629Z
-tags: 
-editor: markdown
-dateCreated: 2025-07-31T18:11:30.915Z
 ---
-
 # Essential
 
-Essential provides FancyMenu integration for elements it adds to the Title and Pause screens.
+The Essential mod used to be compatible with FancyMenu because of them adding support for FancyMenu from their side, but this compatibility seems to not be present anymore. 
 
-See [Essential's FancyMenu guide](https://essential.gg/wiki/fancymenu) for its supported customization workflow.
+Since some update to their mod or launcher, users report massive problems again with Essential + FancyMenu, like Essential elements not being visible in the layout editor, or customized Essential elements reverting back to default when leaving the editor.
 
-# Customization Issues
-
-Essential provides its FancyMenu integration. If an Essential-owned widget is missing or behaves differently from a normal Minecraft widget, reproduce the issue with current versions and report it to the project that owns the affected widget.
+> [!IMPORTANT]
+> This conflict/incompatibility needs to get fixed on ESSENTIAL'S SIDE. FancyMenu is not at fault for this and the recommented way for getting back Essential support is to report the incompatibility to the Essential team.
