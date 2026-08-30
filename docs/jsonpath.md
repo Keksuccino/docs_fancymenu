@@ -1,13 +1,8 @@
 ---
 title: JSON Paths
 description: How to use Jayway JsonPath in the JSON Parser placeholder.
-published: true
-date: 2025-04-14T20:15:11.610Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:15:08.305Z
+excludeFromAiPlaintext: true
 ---
-
 # JSON Paths in FancyMenu
 
 FancyMenu's **JSON Parser** placeholder uses [Jayway JsonPath](https://github.com/json-path/JsonPath) to get content from JSON files.
