@@ -151,3 +151,11 @@ FancyMenu's context menus (the menus that open when you right-click somewhere or
 ### I can't customize the Title screen, it keeps showing the original when I leave the editor.
 
 Another mod is replacing the original `title_screen`. Disable that mod's custom Title screen in its settings. If it has no such option, FancyMenu cannot apply the layout to the replacement screen.
+
+### When I try to customize the inventory screen, I can't customize the inventory container.
+
+That is expected. FancyMenu does not support editing the actual container of any kind of inventory screen (player inventory, chest, workbench, etc.), because adding support for these would be very difficult.
+
+It is still possible to add new elements to these screens, you just can't edit the container(s).
+
+SpiffyHUD will also not help here by the way, because it is for editing the HUD (so for example the item hotbar), but it can't edit screens (like inventory screens).
