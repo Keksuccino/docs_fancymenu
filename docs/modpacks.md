@@ -18,17 +18,28 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 > [!WARNING]
 > This page is **ONLY** for FancyMenu setups made completely in **FancyMenu v3+**, so if you use a legacy setup (made in v2 and converted to v3), some steps could be different.
 
-# Including the FancyMenu Setup in Your Modpack
+# Bringing Your Setup Into the Modpack
 
-The main thing you need to do is copy one special folder that FancyMenu uses to save all your designs.
+The easiest way to move your setup from the instance you designed it in to your modpack instance is a [profile](./profiles):
 
-## What you'll need to find
+1. In the instance with your setup, open **menu bar -> Customization -> Profiles**, select your setup, and [export](./profiles#exporting) it as `.fmp` file.
+2. In your modpack instance, open the Profiles window and [import](./profiles#importing) the `.fmp` file, for example by dragging it onto the window.
+3. Select the imported profile and click **Load Profile**.
 
-1. **Your "Minecraft Instance" Folder:** This is the main folder on your computer where all the files for a specific Minecraft setup (like the one where you designed your menus) are stored. Launchers like CurseForge and Modrinth call these "instances" or "profiles."
-2. **The `config` Folder:** Inside your Minecraft instance folder, there's usually a folder named `config`. This is where many mods store their settings.
-3. **The `fancymenu` Folder:** Inside that `config` folder, FancyMenu creates its own folder called `fancymenu`. This is the golden folder we need!
+The FancyMenu setup the modpack instance had before doesn't get lost. It stays available as its own profile, so you can always switch back.
 
-## How to Find the Instance Save Location
+# Shipping the Setup With Your Modpack
+
+The loaded profile is the content of `<game-directory>/config/fancymenu/`, so it ships with your modpack's `config` folder, like the configs of other mods.
+
+All other profiles of the instance are stored in `<game-directory>/config/fancymenu/profiles/`. Delete the profiles players shouldn't get before exporting your modpack, or leave the `profiles` folder out of the modpack export.
+
+> [!CAUTION]
+> Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `<game-directory>/config/fancymenu/assets/` folder. Profiles only contain FancyMenu's config folder, so in that case you need to make sure you also include all of your assets in the modpack.
+
+## How to Find the Instance Folder
+
+The instance folder is the main folder on your computer where all the files of a specific Minecraft setup are stored. Launchers like CurseForge and Modrinth call these "instances" or "profiles" (not to be confused with FancyMenu's profiles).
 
 ### If you use the CurseForge App
 
@@ -51,17 +62,6 @@ The main thing you need to do is copy one special folder that FancyMenu uses to 
 ### For other launchers
 
 Look for a similar "Open Folder," "Open Instance Folder," or "View Files" option for your specific Minecraft setup.
-
-## Copying the FancyMenu Setup
-
-1. Navigate to the `config` folder of your MODPACK instance (the one you want to copy your setup to).
-2. If there is a `fancymenu` folder inside, DELETE it.
-3. Open the `config` folder of the SOURCE instance (the one you want to use the setup from).
-4. Copy the `fancymenu` folder inside the `config` folder of your SOURCE instance to the `config` folder of your MODPACK instance.
-5. Done. That's it. Restart your modpack instance now and you should see the setup load.
-
-> [!CAUTION]
-> Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `<game-directory>/config/fancymenu/assets/` folder, so in that case you need to make sure you also include all of your assets in the modpack.
 
 # Disabling the Menu Bar and Hotkeys
 
