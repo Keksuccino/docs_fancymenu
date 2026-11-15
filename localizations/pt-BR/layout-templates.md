@@ -1,20 +1,30 @@
 ---
-title: Modelos de Layout
-description: 'Como obter modelos de design prontos para uso para FancyMenu, Spiffy e Drippy.'
+title: Modelos de layout
+description: >-
+  Como obter modelos de design completos e prontos para uso no FancyMenu, Spiffy
+  e Drippy.
+sourceBlobSha: 41b72e16c4bdc6dc0af77376bbadfabc78ed0291
 ---
-# Modelos de Layout
+# Modelos de layout
 
-Se você quiser baixar modelos de design para o FancyMenu, ou um de seus addons, como SpiffyHUD ou Drippy Loading Screen, o melhor lugar para procurar é o canal [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) no servidor do Discord Kekscord (servidor oficial do Keksuccino para suporte a mods). Esse canal contém setups completos do FancyMenu feitos pela comunidade, com links de download para todos eles.
+Se você quiser baixar modelos de design para o FancyMenu ou para um de seus complementos, como o SpiffyHUD ou a Drippy Loading Screen, o melhor lugar para procurar é o canal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) no [servidor do Discord Kekscord](https://discord.gg/rhayah27GC) (o servidor oficial do Discord do Keksuccino para suporte a mods). Esse canal contém configurações completas do FancyMenu feitas pela comunidade, com links para baixá-las.
 
-Todas as publicações de modelos lá seguem o mesmo padrão. Todas devem ter um link de download para um setup completo do FancyMenu contendo uma pasta `fancymenu` para `<game-directory>/config/`, como descrito na página [Modpacks](/modpacks).
+Todas as publicações de modelos nesse canal seguem o mesmo padrão. Todas devem ter um link para baixar uma configuração completa do FancyMenu, seja como um arquivo de perfil (`.fmp`) ou como uma pasta `fancymenu`.
 
 > [!CAUTION]
-> Modelos da comunidade podem executar ações. Importe-os apenas de fontes em que você confia.
+> Os modelos da comunidade podem executar ações. Importe-os somente de fontes nas quais você confia.
 
-Como esses modelos costumam ser muito complexos na maioria das vezes, não é recomendado tentar mesclar o modelo com sua configuração existente; por isso, você deve substituir a pasta `fancymenu` existente pela do modelo.
+# Instalando modelos
 
-# Editando Modelos ou Usando-os em Projetos
+Os modelos são configurações completas do FancyMenu e, na maioria das vezes, são muito complexos. Por isso, não é recomendado tentar mesclar um modelo à sua configuração existente. Em vez disso, adicione-o como um [perfil](./profiles) separado:
 
-A maioria dos modelos no canal permite que você os edite e até mesmo os use em seus próprios projetos, como modpacks, mas é muito importante que você **verifique a publicação do modelo para saber o que você está autorizado a fazer com ele**!
+- **Arquivo `.fmp`:** Abra **barra de menu -> Customização -> Perfis** e [importe](./profiles#importing) o arquivo, por exemplo, arrastando-o para a janela.
+- **Pasta `fancymenu`:** [Adicione a pasta como um perfil](./profiles#adding-setup-folders).
 
-Nem todos concedem permissão para fazer tudo.
+Em seguida, selecione o modelo na janela de Perfis e clique em **Carregar perfil**. Sua configuração atual continuará disponível como um perfil próprio, então você poderá voltar a ela quando quiser.
+
+# Editando modelos ou usando-os em projetos
+
+A maioria dos modelos no canal permite que você os edite e até mesmo os use em seus próprios projetos, como modpacks. No entanto, é muito importante que você **verifique na publicação do modelo o que é permitido fazer com ele**!
+
+Nem todos concedem permissão para fazer qualquer coisa.

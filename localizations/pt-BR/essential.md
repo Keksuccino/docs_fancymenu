@@ -1,13 +1,15 @@
 ---
-title: Essential Mod
+title: Mod Essential
 description: Como personalizar a interface do Essential.
+sourceBlobSha: 9094d953a6742c81b284278d512d655a7a068038
 ---
 # Essential
 
-O Essential oferece integração com o FancyMenu para os elementos que ele adiciona às telas de Título e de Pausa.
+O mod [Essential](https://www.curseforge.com/minecraft/mc-mods/essential-mod) costumava ser compatível com o FancyMenu, pois eles adicionaram suporte ao FancyMenu por parte deles, mas parece que essa compatibilidade **não está mais presente**.
 
-Veja o [guia do FancyMenu do Essential](https://essential.gg/wiki/fancymenu) para o fluxo de personalização compatível.
+Desde alguma atualização do mod ou do launcher, usuários relatam novamente vários problemas com o Essential + FancyMenu, como elementos do Essential que não ficam visíveis no editor de layout ou elementos personalizados do Essential que voltam ao padrão ao sair do editor.
 
-# Problemas de Personalização
+[Este problema no GitHub](https://github.com/Keksuccino/FancyMenu/issues/1762) fala sobre um dos problemas.
 
-O Essential fornece sua integração com o FancyMenu. Se um widget pertencente ao Essential estiver ausente ou se comportar de forma diferente de um widget normal do Minecraft, reproduza o problema nas versões atuais e reporte-o ao projeto proprietário do widget afetado.
+> [!IMPORTANT]
+> Esse conflito/incompatibilidade precisa ser corrigido **PELO ESSENTIAL**. O FancyMenu **não é responsável** por isso, e a maneira recomendada de recuperar o suporte ao Essential é relatar a incompatibilidade à equipe do Essential.

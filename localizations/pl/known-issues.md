@@ -2,23 +2,23 @@
 title: Znane problemy
 description: >-
   Lista znanych problemów w bieżącej wersji FancyMenu. Zawsze aktualna dla
-  najnowszej wersji.
+  najnowszej kompilacji.
+sourceBlobSha: 2f54bb259e8e571febe7b2c7532cfb6984e90c17
 ---
-
 # Znane problemy w FancyMenu
 
-Ta lista zawsze zawiera znane problemy z najnowszej wersji FancyMenu, które nie zostały jeszcze naprawione lub nie mogą zostać naprawione w ogóle z powodu ograniczeń Minecrafta, konfliktów z modami itp.
+Ta lista zawsze zawiera znane problemy najnowszej wersji FancyMenu, które nie zostały jeszcze naprawione lub nie mogą zostać naprawione z powodu ograniczeń Minecrafta, konfliktów z modami itp.
 
-# Do naprawienia
+# Możliwe do naprawienia
 
-Te problemy mogą i zostaną naprawione w przyszłości.
+Te problemy zostaną naprawione w przyszłości.
 
-## Obecnie brak znanych problemów.
+_Obecnie brak znanych problemów._
 
-# Nie do naprawienia
+# Niemożliwe do naprawienia
 
-Tych problemów nie da się naprawić i prawdopodobnie pozostaną na stałe, chyba że zostaną rozwiązane po drugiej stronie (Minecraft, inny mod itp.).
+Tych problemów nie można naprawić i prawdopodobnie pozostaną one na zawsze, chyba że zostaną naprawione po drugiej stronie (w Minecrafcie, innym modzie itp.).
 
-## Elementy Player Entity i Item zawsze są przed wszystkim innym.
+### 1. Elementy encji gracza i przedmiotu zawsze znajdują się na wierzchu.
 
-System warstw FancyMenu nie działa dla elementów Player Entity i Item, ze względu na sposób renderowania ich przez Minecrafta. Są one zawsze renderowane przed wszystkimi innymi elementami GUI, przynajmniej w starszych wersjach Minecrafta. Możliwe, że Minecraft 1.21.8+ nie jest już tym dotknięty.
+System warstw FancyMenu nie działa w przypadku elementów encji gracza i przedmiotu ze względu na sposób, w jaki Minecraft je renderuje. Zawsze są renderowane przed wszystkimi innymi elementami interfejsu, przynajmniej w starszych wersjach Minecrafta. Możliwe, że Minecraft 1.21.8+ nie jest już dotknięty tym problemem.

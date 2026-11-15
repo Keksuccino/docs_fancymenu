@@ -1,79 +1,80 @@
 ---
 title: Modpacks
 description: Como incluir layouts em um modpack.
+sourceBlobSha: deb3c58e9536e0fe085820a2b9e463f5faaa7819
 ---
 
 # FancyMenu em Modpacks
 
-Incluir sua configuração do FancyMenu em um modpack é muito fácil e leva apenas alguns passos simples.
+Incluir sua configuração do FancyMenu em um modpack é muito fácil e requer apenas alguns passos simples.
 
 > [!CAUTION]
-> Configurações do FancyMenu podem executar ações. Importe-as apenas de fontes em que você confia.
+> As configurações do FancyMenu podem executar ações. Importe-as apenas de fontes confiáveis.
 
 > [!WARNING]
-> Esta página é **APENAS** para configurações do FancyMenu feitas completamente no **FancyMenu v3+**. Então, se você usa uma configuração legada (feita no v2 e convertida para v3), alguns passos podem ser diferentes.
+> Esta página é **SOMENTE** para configurações do FancyMenu criadas completamente no **FancyMenu v3+**. Portanto, se você usa uma configuração legada (criada na v2 e convertida para a v3), alguns passos podem ser diferentes.
 
-# Incluindo a Configuração do FancyMenu no Seu Modpack
+# Adicionando Sua Configuração ao Modpack
 
-A principal coisa que você precisa fazer é copiar uma pasta especial que o FancyMenu usa para salvar todos os seus designs.
+A maneira mais fácil de mover sua configuração da instância em que você a criou para a instância do seu modpack é usando um [perfil](./profiles):
 
-## O que você vai precisar encontrar
+1. Na instância que contém sua configuração, abra **barra de menus -> Personalização -> Perfis**, selecione sua configuração e [exporte](./profiles#exporting) como um arquivo `.fmp`.
+2. Na instância do seu modpack, abra a janela de Perfis e [importe](./profiles#importing) o arquivo `.fmp`, por exemplo, arrastando-o para a janela.
+3. Selecione o perfil importado e clique em **Carregar perfil**.
 
-1. **A pasta da sua "instância do Minecraft":** Esta é a pasta principal no seu computador onde ficam armazenados todos os arquivos de uma configuração específica do Minecraft (como aquela em que você criou seus menus). Launchers como CurseForge e Modrinth chamam isso de "instâncias" ou "perfis".
-2. **A pasta `config`:** Dentro da pasta da sua instância do Minecraft, geralmente existe uma pasta chamada `config`. É aqui que muitos mods armazenam suas configurações.
-3. **A pasta `fancymenu`:** Dentro dessa pasta `config`, o FancyMenu cria sua própria pasta chamada `fancymenu`. Essa é a pasta de ouro que precisamos!
+A configuração do FancyMenu que já existia na instância do modpack não é perdida. Ela continua disponível como um perfil próprio, permitindo que você volte a ela a qualquer momento.
 
-## Como encontrar o local de salvamento da instância
+# Distribuindo a Configuração com Seu Modpack
 
-### Se você usa o CurseForge App
+O perfil carregado corresponde ao conteúdo de `<game-directory>/config/fancymenu/`, portanto ele será incluído na pasta `config` do seu modpack, assim como as configurações de outros mods.
+
+Todos os outros perfis da instância são armazenados em `<game-directory>/config/fancymenu/profiles/`. Exclua os perfis que os jogadores não devem receber antes de exportar seu modpack ou deixe a pasta `profiles` fora da exportação do modpack.
+
+> [!CAUTION]
+> Lembre-se de que configurações legadas antigas criadas no FancyMenu v2 (mesmo que convertidas para a v3) permitiam armazenar recursos de layout fora da pasta `<game-directory>/config/fancymenu/assets/` do FancyMenu. Os perfis contêm apenas a pasta de configuração do FancyMenu, portanto, nesse caso, você também precisa garantir que todos os seus recursos sejam incluídos no modpack.
+
+## Como Encontrar a Pasta da Instância
+
+A pasta da instância é a pasta principal do seu computador onde todos os arquivos de uma configuração específica do Minecraft são armazenados. Launchers como CurseForge e Modrinth chamam essas configurações de "instâncias" ou "perfis" (não confunda com os perfis do FancyMenu).
+
+### Se você usa o aplicativo CurseForge
 
 1. Abra o CurseForge.
 2. Encontre seu perfil/instância do Minecraft na lista e abra-o.
 3. Clique nos três pontos.
-4. Escolha "Open Folder". Isso abrirá a pasta principal dessa instância do Minecraft.
+4. Escolha "Abrir pasta". Isso abrirá a pasta principal dessa instância do Minecraft.
 
 <img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/curseforge_launcher_instance.png">
 
-### Se você usa o Modrinth App
+### Se você usa o aplicativo Modrinth
 
-1. Abra o Modrinth App.
+1. Abra o aplicativo Modrinth.
 2. Encontre seu perfil/instância do Minecraft na lista e abra-o.
 3. Clique nos três pontos.
-4. Escolha "Open Folder". Isso abrirá a pasta principal dessa instância do Minecraft.
+4. Escolha "Abrir pasta". Isso abrirá a pasta principal dessa instância do Minecraft.
 
 <img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
 
 ### Para outros launchers
 
-Procure uma opção semelhante como "Open Folder", "Open Instance Folder" ou "View Files" para a sua configuração específica do Minecraft.
+Procure uma opção semelhante a "Abrir pasta", "Abrir pasta da instância" ou "Visualizar arquivos" para sua configuração específica do Minecraft.
 
-## Copiando a Configuração do FancyMenu
+# Desativando a Barra de Menus e as Teclas de Atalho
 
-1. Navegue até a pasta `config` da sua instância do MODPACK (aquela para a qual você quer copiar sua configuração).
-2. Se houver uma pasta `fancymenu` dentro dela, EXCLUA-A.
-3. Abra a pasta `config` da instância de ORIGEM (aquela de onde você quer usar a configuração).
-4. Copie a pasta `fancymenu` dentro da pasta `config` da sua instância de ORIGEM para a pasta `config` da sua instância do MODPACK.
-5. Pronto. É isso. Reinicie a instância do seu modpack agora e você deverá ver a configuração sendo carregada.
+Você certamente não vai querer manter a barra de menus do FancyMenu visível no seu modpack, então deve desativá-la. Porém, como as pessoas ainda podem pressionar a tecla de atalho para torná-la visível novamente, vamos fazer algo um pouco mais *agressivo*.
 
-> [!CAUTION]
-> Lembre-se de que configurações legadas antigas feitas no FancyMenu v2 (mesmo que convertidas para v3) permitiam armazenar assets de layout fora da pasta `<game-directory>/config/fancymenu/assets/` do FancyMenu. Nesse caso, você também precisa garantir que inclua todos os seus assets no modpack.
-
-# Desativando a Barra de Menu e as Teclas de Atalho
-
-Você certamente não quer manter a barra de menu do FancyMenu visível no seu modpack, então deve desativá-la. Mas, como as pessoas ainda podem pressionar a tecla de atalho para torná-la visível novamente, vamos fazer algo um pouco mais *agressivo*.
-
-Navegue até `<game-directory>/config/fancymenu/options.txt` e abra o arquivo em um editor de texto.
+Acesse `<game-directory>/config/fancymenu/options.txt` e abra o arquivo em um editor de texto.
 
 Agora defina `modpack_mode` como `true` e salve o arquivo.
-Isso desativará completamente todos os overlays e atalhos.
+Isso desativará completamente todas as sobreposições e teclas de atalho.
 
-Para poder editar seus layouts novamente, altere a opção de configuração de volta para `false`.
+Para poder editar seus layouts novamente, defina essa opção de configuração de volta para `false`.
 
-# Desativando a Tela de Boas-Vindas
+# Desativando a Tela de Boas-vindas
 
-Isso não deve ser necessário na maioria dos casos, mas se você ainda não fechou a tela de Boas-Vindas (a tela que pede para você ler a documentação), certifique-se de definir `show_welcome_screen` como `false` em `<game-directory>/config/fancymenu/options.txt`.
+Isso não deve ser necessário na maioria dos casos, mas, se você ainda não fechou a tela de Boas-vindas (a tela que informa que você deve ler a documentação), defina `show_welcome_screen` como `false` em `<game-directory>/config/fancymenu/options.txt`.
 
-A tela só aparece uma vez e se desativa quando você clica no botão **Open Documentation**, então, novamente, fazer isso manualmente geralmente não será necessário.
+A tela é exibida apenas uma vez e se desativa quando você clica no botão **Abrir documentação**. Portanto, fazer isso manualmente também não deve ser necessário na maioria dos casos.
 
 <br>
 <img width="630" alt="Screenshot_1" src="https://github.com/user-attachments/assets/4383b39f-f55a-4eb8-8142-34a425474bb3">

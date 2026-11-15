@@ -1,60 +1,61 @@
 ---
 title: 動画（MP4）
-description: FancyMenu で動画を使う際に知っておくべきこと。
+description: FancyMenuで動画を使用する際に知っておくべきこと。
+sourceBlobSha: 2ec0bfe39528bb93095798f6a2a1cc7cbe17e5eb
 ---
 # 動画
 
-FancyMenu は、MP4 動画を [要素](./elements#video)、[メニュー背景](./menu-backgrounds)、および [ゲームイントロ](./game-intro) のコンテンツとして再生できます。
+FancyMenuは、MP4動画を[要素](./elements#video)、[メニュー背景](./menu-backgrounds)、および[ゲームイントロ](./game-intro)のコンテンツとして再生できます。
 
-ネイティブの [**Video** 要素](./elements#video) と **Video** メニュー背景は Watermedia V3 を使用します。旧 **Video [MCEF]** タイプは非推奨であり、まだ必要なレイアウトにのみ残してください。
+ネイティブの[**Video**要素](./elements#video)と**Video**メニュー背景は、Watermedia V3を使用します。従来の**Video [Rinku]**タイプは非推奨であり、引き続き必要とするレイアウトにのみ残してください。
 
-動画背景や要素を制御するための次の **アクション** もあります。
+動画の背景や要素を制御するために、次の**アクション**も利用できます。
 
-- [**Set Video Element Volume**](./action-scripts#set-video-element-volume-set_video_element_volume) は Video 要素の音量を設定します。
-- [**Set Video Element Play Time**](./action-scripts#set-video-element-play-time-set_video_element_play_time) は Video 要素をミリ秒単位のタイムスタンプへシークします。
-- [**Toggle Video Element Paused State**](./action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) は Video 要素の一時停止状態を切り替えます。
-- [**Set Video Background Volume**](./action-scripts#set-video-background-volume-set_video_menu_background_volume) は Video メニュー背景の音量を設定します。
-- [**Set Video Background Play Time**](./action-scripts#set-video-background-play-time-set_video_menu_background_play_time) は Video メニュー背景をミリ秒単位のタイムスタンプへシークします。
-- [**Toggle Video Background Paused State**](./action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state) は Video メニュー背景の一時停止状態を切り替えます。
+- [**Video要素の音量を設定**](./action-scripts#set-video-element-volume-set_video_element_volume)：Video要素の音量を設定します。
+- [**Video要素の再生時間を設定**](./action-scripts#set-video-element-play-time-set_video_element_play_time)：Video要素を指定したミリ秒のタイムスタンプへシークします。
+- [**Video要素の一時停止状態を切り替え**](./action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state)：Video要素の一時停止状態を切り替えます。
+- [**Video背景の音量を設定**](./action-scripts#set-video-background-volume-set_video_menu_background_volume)：Videoメニュー背景の音量を設定します。
+- [**Video背景の再生時間を設定**](./action-scripts#set-video-background-play-time-set_video_menu_background_play_time)：Videoメニュー背景を指定したミリ秒のタイムスタンプへシークします。
+- [**Video背景の一時停止状態を切り替え**](./action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state)：Videoメニュー背景の一時停止状態を切り替えます。
 
-また、動画背景や要素に関する情報を取得するための次の **プレースホルダー** もあります。
+また、動画の背景や要素に関する情報を取得するために、次の**プレースホルダー**を使用できます。
 
-- [**Video Element Volume**](./placeholders#video-element-volume-video_element_vol) は Video 要素の音量を返します。
-- [**Video Element Duration**](./placeholders#video-element-duration-video_element_duration) は Video 要素の再生時間を返します。
-- [**Video Element Play Time**](./placeholders#video-element-play-time-video_element_playtime) は Video 要素の現在の進行状況を返します。
-- [**Video Element Paused State**](./placeholders#video-element-paused-state-video_element_paused_state) は Video 要素が一時停止中かどうかを返します。
-- [**Video Background Volume**](./placeholders#video-background-volume-video_background_vol) は Video メニュー背景の音量を返します。
-- [**Video Background Duration**](./placeholders#video-background-duration-video_background_duration) は Video メニュー背景の再生時間を返します。
-- [**Video Background Play Time**](./placeholders#video-background-play-time-video_background_playtime) は Video メニュー背景の現在の進行状況を返します。
-- [**Video Background Paused State**](./placeholders#video-background-paused-state-video_background_paused_state) は Video メニュー背景が一時停止中かどうかを返します。
+- [**Video要素の音量**](./placeholders#video-element-volume-video_element_vol)：Video要素の音量を返します。
+- [**Video要素の長さ**](./placeholders#video-element-duration-video_element_duration)：Video要素の長さを返します。
+- [**Video要素の再生時間**](./placeholders#video-element-play-time-video_element_playtime)：Video要素の現在の再生進行状況を返します。
+- [**Video要素の一時停止状態**](./placeholders#video-element-paused-state-video_element_paused_state)：Video要素が一時停止中かどうかを返します。
+- [**Video背景の音量**](./placeholders#video-background-volume-video_background_vol)：Videoメニュー背景の音量を返します。
+- [**Video背景の長さ**](./placeholders#video-background-duration-video_background_duration)：Videoメニュー背景の長さを返します。
+- [**Video背景の再生時間**](./placeholders#video-background-play-time-video_background_playtime)：Videoメニュー背景の現在の再生進行状況を返します。
+- [**Video背景の一時停止状態**](./placeholders#video-background-paused-state-video_background_paused_state)：Videoメニュー背景が一時停止中かどうかを返します。
 
-再生時間と進行時間のプレースホルダーは、デフォルトで `MM:SS` を返します。ミリ秒単位のタイムスタンプが必要な場合は、`output_as_timestamp` を `true` に設定してください。再生時間のプレースホルダーでは、0～100 の進行値を取得するために `show_percentage` も引き続き使用できます。
+長さと再生時間のプレースホルダーは、デフォルトで `MM:SS` を返します。ミリ秒のタイムスタンプが必要な場合は、`output_as_timestamp`を`true`に設定してください。再生時間のプレースホルダーでは、0～100の進行状況を示す`show_percentage`も引き続き使用できます。
 
-音量と一時停止状態の値は、識別子に関連付けられたコントローラーメタデータです。再生時間と進行時間の値は、現在の画面で対応する Video 要素または背景がアクティブで、準備完了である必要があります。
+音量と一時停止状態の値は、識別子に関連付けられたコントローラーメタデータです。長さと再生時間の値を取得するには、現在の画面で対応するVideo要素または背景がアクティブで、再生可能な状態になっている必要があります。
 
-[**On Video Playback Status Changed** リスナー](./listeners#on-video-playback-status-changed-video_playback_status_changed) は、`PLAYING`、`PAUSED`、`STOPPED`、`FINISHED` に反応できます。
+[**動画再生ステータス変更時**リスナー](./listeners#on-video-playback-status-changed-video_playback_status_changed)は、`PLAYING`、`PAUSED`、`STOPPED`、`FINISHED`に反応できます。
 
-## 要件
+## 必要条件
 
-新しいネイティブの Video 要素とメニュー背景タイプを使用するには、次をインストールする必要があります。
+新しいネイティブのVideo要素とメニュー背景タイプを使用するには、次のものをインストールする必要があります。
 
 - **Watermedia V3**
 - **Watermedia Binaries V3**
 
-これらはオプションの依存関係のため、動画サポートを使いたい場合はインスタンスに手動で追加する必要があります。
+これらはオプションの依存関係であるため、動画をサポートする場合はインスタンスに手動で追加する必要があります。
 
-ネイティブ動画再生には OpenGL レンダラーも必要です。Minecraft が Vulkan を使用している間は Watermedia 再生は利用できません。Video 要素、Video メニュー背景、[動画ゲームイントロ](./game-intro) を使うには OpenGL に切り替えてください。
+ネイティブ動画の再生には、OpenGLレンダラーも必要です。MinecraftがVulkanを使用している間はWatermediaによる再生を利用できません。Video要素、Videoメニュー背景、および[動画ゲームイントロ](./game-intro)を使用するには、OpenGLに切り替えてください。
 
-非推奨の **Video [MCEF]** タイプは、引き続き MCEF を使用します。新しいレイアウトでは、代わりに Watermedia ベースのネイティブ Video タイプを使用してください。
+非推奨の**Video [Rinku]**タイプは、引き続き[Rinku](https://modrinth.com/mod/rinku)を使用します。新しいレイアウトでは、代わりにWatermediaを使用するネイティブのVideoタイプを利用してください。
 
-## 読み込み画面での動画
+## ロード画面での動画
 
-動画サポートは、読み込み画面（ゲーム/リソース読み込み画面およびワールド読み込み画面）では動作しません。
+動画サポートはロード画面（ゲーム／リソースのロード画面およびワールドのロード画面）では機能しません。
 
-つまり、**Drippy Loading Screen** を使ってゲーム読み込み画面に動画を追加するべきではありません。ほとんどの場合、正常に動作しないためです。
+これは、**Drippy Loading Screen**を使用してゲームのロード画面に動画を追加しても、ほとんどの場合機能しないことを意味します。
 
-代わりに、読み込み画面では短くてシンプルな [AFMA/FMA アニメーション](./fma) を使用してください。
+代わりに、ロード画面では短くシンプルな[AFMA/FMAアニメーション](./fma)を使用してください。
 
 ## トラブルシューティング
 
-ネイティブ動画が再生されない場合は、Watermedia V3 と Watermedia Binaries V3 が Minecraft / mod ローダーのバージョンと一致していること、また Minecraft が Vulkan ではなく OpenGL を使用していることを確認してください。
+ネイティブ動画が再生されない場合は、Watermedia V3とWatermedia Binaries V3がMinecraft／Mod Loaderのバージョンに対応していること、およびMinecraftがVulkanではなくOpenGLを使用していることを確認してください。

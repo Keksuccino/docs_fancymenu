@@ -1,57 +1,61 @@
 ---
 title: วิดีโอ (MP4)
-description: สิ่งที่ควรรู้เกี่ยวกับการใช้วิดีโอใน FancyMenu.
+description: สิ่งที่ควรรู้เกี่ยวกับการใช้วิดีโอใน FancyMenu
+sourceBlobSha: 2ec0bfe39528bb93095798f6a2a1cc7cbe17e5eb
 ---
-
 # วิดีโอ
 
-FancyMenu รองรับการเล่นวิดีโอ MP4 ในรูปแบบขององค์ประกอบ พื้นหลังเมนู และเนื้อหา Game Intro
+FancyMenu รองรับการเล่นวิดีโอ MP4 ในรูปแบบ[องค์ประกอบ](./elements#video) [พื้นหลังเมนู](./menu-backgrounds) และเนื้อหา [Game Intro](./game-intro)
 
-FancyMenu 3.9.0 เพิ่มองค์ประกอบ **Video** แบบเนทีฟใหม่ และพื้นหลังเมนู **Video** ใหม่ที่ขับเคลื่อนโดย Watermedia V3 ประเภทองค์ประกอบ/พื้นหลังแบบเก่า **Video [MCEF]** ถือว่าเลิกใช้งานแล้ว และควรเก็บไว้เฉพาะเลย์เอาต์เก่าที่ยังต้องใช้มันเท่านั้น
+[องค์ประกอบ **Video**](./elements#video) แบบเนทีฟและพื้นหลังเมนู **Video** ใช้ Watermedia V3 ส่วนประเภท **Video [Rinku]** แบบเก่าถูกยกเลิกการรองรับแล้ว และควรคงไว้เฉพาะในเลย์เอาต์ที่ยังจำเป็นต้องใช้เท่านั้น
 
-นอกจากนี้ยังมี **actions** ต่อไปนี้สำหรับควบคุมพื้นหลังและองค์ประกอบวิดีโอ:
+นอกจากนี้ยังมี**การทำงาน**ต่อไปนี้สำหรับควบคุมพื้นหลังและองค์ประกอบวิดีโอ:
 
-- **Set Video Element Volume** ใช้ตั้งระดับเสียงขององค์ประกอบ Video
-- **Set Video Element Play Time** ใช้เลื่อนไปยังเวลาที่ระบุเป็นมิลลิวินาทีขององค์ประกอบ Video
-- **Toggle Video Element Paused State** ใช้สลับสถานะหยุดชั่วคราวขององค์ประกอบ Video
-- **Set Video Background Volume** ใช้ตั้งระดับเสียงของพื้นหลังเมนู Video
-- **Set Video Background Play Time** ใช้เลื่อนไปยังเวลาที่ระบุเป็นมิลลิวินาทีของพื้นหลังเมนู Video
-- **Toggle Video Background Paused State** ใช้สลับสถานะหยุดชั่วคราวของพื้นหลังเมนู Video
+- [**Set Video Element Volume**](./action-scripts#set-video-element-volume-set_video_element_volume) ใช้ตั้งค่าระดับเสียงขององค์ประกอบ Video
+- [**Set Video Element Play Time**](./action-scripts#set-video-element-play-time-set_video_element_play_time) ใช้เลื่อนไปยังเวลาที่ระบุในหน่วยมิลลิวินาทีขององค์ประกอบ Video
+- [**Toggle Video Element Paused State**](./action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) ใช้สลับสถานะหยุดชั่วคราวขององค์ประกอบ Video
+- [**Set Video Background Volume**](./action-scripts#set-video-background-volume-set_video_menu_background_volume) ใช้ตั้งค่าระดับเสียงของพื้นหลังเมนู Video
+- [**Set Video Background Play Time**](./action-scripts#set-video-background-play-time-set_video_menu_background_play_time) ใช้เลื่อนไปยังเวลาที่ระบุในหน่วยมิลลิวินาทีของพื้นหลังเมนู Video
+- [**Toggle Video Background Paused State**](./action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state) ใช้สลับสถานะหยุดชั่วคราวของพื้นหลังเมนู Video
 
-และยังมี **placeholders** ต่อไปนี้สำหรับดึงข้อมูลเกี่ยวกับพื้นหลังและองค์ประกอบวิดีโอ:
+และมี**ตัวแทนค่า**ต่อไปนี้สำหรับรับข้อมูลเกี่ยวกับพื้นหลังและองค์ประกอบวิดีโอ:
 
-- **Video Element Volume** ใช้รับค่าระดับเสียงขององค์ประกอบ Video
-- **Video Element Duration** ใช้รับค่าระยะเวลาขององค์ประกอบ Video
-- **Video Element Play Time** ใช้รับค่าเวลาที่เล่นอยู่ในปัจจุบัน (ความคืบหน้า) ขององค์ประกอบ Video
-- **Video Element Paused State** ใช้รับค่าสถานะหยุดชั่วคราว (true/false) ขององค์ประกอบ Video
-- **Video Background Volume** ใช้รับค่าระดับเสียงของพื้นหลังเมนู Video
-- **Video Background Duration** ใช้รับค่าระยะเวลาของพื้นหลังเมนู Video
-- **Video Background Play Time** ใช้รับค่าเวลาที่เล่นอยู่ในปัจจุบัน (ความคืบหน้า) ของพื้นหลังเมนู Video
-- **Video Background Paused State** ใช้รับค่าสถานะหยุดชั่วคราว (true/false) ของพื้นหลังเมนู Video
+- [**Video Element Volume**](./placeholders#video-element-volume-video_element_vol) คืนค่าระดับเสียงขององค์ประกอบ Video
+- [**Video Element Duration**](./placeholders#video-element-duration-video_element_duration) คืนค่าความยาวขององค์ประกอบ Video
+- [**Video Element Play Time**](./placeholders#video-element-play-time-video_element_playtime) คืนค่าความคืบหน้าปัจจุบันขององค์ประกอบ Video
+- [**Video Element Paused State**](./placeholders#video-element-paused-state-video_element_paused_state) คืนค่าว่าองค์ประกอบ Video หยุดชั่วคราวอยู่หรือไม่
+- [**Video Background Volume**](./placeholders#video-background-volume-video_background_vol) คืนค่าระดับเสียงของพื้นหลังเมนู Video
+- [**Video Background Duration**](./placeholders#video-background-duration-video_background_duration) คืนค่าความยาวของพื้นหลังเมนู Video
+- [**Video Background Play Time**](./placeholders#video-background-play-time-video_background_playtime) คืนค่าความคืบหน้าปัจจุบันของพื้นหลังเมนู Video
+- [**Video Background Paused State**](./placeholders#video-background-paused-state-video_background_paused_state) คืนค่าว่าพื้นหลังเมนู Video หยุดชั่วคราวอยู่หรือไม่
 
-ค่าระยะเวลาและเวลาเล่นจะส่งกลับเป็น `MM:SS` ตามค่าเริ่มต้น ให้ตั้ง `output_as_timestamp` เป็น `true` เมื่อต้องการเวลาในรูปแบบมิลลิวินาที สำหรับ placeholders ของเวลาเล่นยังคงสามารถใช้ `show_percentage` เพื่อแสดงค่าเปอร์เซ็นต์ความคืบหน้า 0-100 ได้
+ตัวแทนค่าความยาวและเวลาเล่นจะแสดงผลเป็น `MM:SS` ตามค่าเริ่มต้น ตั้งค่า `output_as_timestamp` เป็น `true` เมื่อต้องการเวลาในหน่วยมิลลิวินาที ตัวแทนค่าเวลาเล่นยังสามารถใช้ `show_percentage` เพื่อแสดงค่าความคืบหน้า 0-100 ได้
 
-FancyMenu 3.9.0 ยังเพิ่ม listener **On Video Playback Status Changed** ซึ่งสามารถตอบสนองต่อสถานะ `PLAYING`, `PAUSED`, `STOPPED` และ `FINISHED` ได้
+ค่าระดับเสียงและสถานะหยุดชั่วคราวเป็นข้อมูลเมทาดาทาของตัวควบคุมที่เชื่อมโยงกับตัวระบุ ส่วนค่าความยาวและเวลาเล่นจำเป็นต้องมีองค์ประกอบ Video หรือพื้นหลังที่ตรงกันกำลังทำงานและพร้อมใช้งานบนหน้าจอปัจจุบัน
+
+[ตัวรับฟัง **On Video Playback Status Changed**](./listeners#on-video-playback-status-changed-video_playback_status_changed) สามารถตอบสนองต่อสถานะ `PLAYING`, `PAUSED`, `STOPPED` และ `FINISHED` ได้
 
 ## ข้อกำหนด
 
-หากต้องการใช้องค์ประกอบ Video แบบเนทีฟและประเภทพื้นหลังเมนูใหม่ คุณต้องติดตั้ง:
+หากต้องการใช้ประเภทองค์ประกอบ Video และพื้นหลังเมนูแบบเนทีฟใหม่ คุณต้องติดตั้ง:
 
 - **Watermedia V3**
 - **Watermedia Binaries V3**
 
-สิ่งเหล่านี้เป็น dependency แบบไม่บังคับ ดังนั้นหากต้องการรองรับวิดีโอ คุณต้องเพิ่มเข้าไปใน instance ด้วยตนเอง
+ส่วนเสริมเหล่านี้เป็นการพึ่งพาที่ไม่บังคับ ดังนั้นคุณต้องเพิ่มลงในอินสแตนซ์ด้วยตนเองหากต้องการรองรับวิดีโอ
 
-ประเภท **Video [MCEF]** ที่เลิกใช้งานแล้วยังคงใช้ MCEF อยู่ สำหรับเลย์เอาต์ใหม่ ให้ใช้ประเภท Video แบบเนทีฟที่ขับเคลื่อนโดย Watermedia แทน
+การเล่นวิดีโอแบบเนทีฟยังจำเป็นต้องใช้ตัวเรนเดอร์ OpenGL ด้วย ไม่สามารถใช้การเล่นผ่าน Watermedia ขณะที่ Minecraft ใช้ Vulkan ได้ ให้เปลี่ยนไปใช้ OpenGL เพื่อใช้งานองค์ประกอบ Video พื้นหลังเมนู Video และ [Game Intro ที่เป็นวิดีโอ](./game-intro)
+
+ประเภท **Video [Rinku]** ที่เลิกใช้งานแล้ว ยังคงใช้ [Rinku](https://modrinth.com/mod/rinku) สำหรับเลย์เอาต์ใหม่ ให้ใช้ประเภท Video แบบเนทีฟที่ขับเคลื่อนด้วย Watermedia แทน
 
 ## วิดีโอในหน้าจอโหลด
 
-การรองรับวิดีโอจะไม่ทำงานในหน้าจอโหลด (หน้าจอโหลดเกม/ทรัพยากร และหน้าจอโหลดโลก)
+การรองรับวิดีโอไม่ทำงานในหน้าจอโหลด (หน้าจอโหลดเกม/ทรัพยากรและหน้าจอโหลดโลก)
 
-นั่นหมายความว่าคุณไม่ควรเพิ่มวิดีโอลงในหน้าจอโหลดเกมผ่าน **Drippy Loading Screen** เพราะโดยส่วนใหญ่แล้วจะใช้งานไม่ได้
+ซึ่งหมายความว่าคุณไม่ควรเพิ่มวิดีโอลงในหน้าจอโหลดเกมผ่าน **Drippy Loading Screen** เนื่องจากในกรณีส่วนใหญ่จะไม่ทำงาน
 
-ควรใช้ไฟล์ AFMA/FMA แบบสั้นและเรียบง่ายในหน้าจอโหลดแทน เพราะโดยส่วนใหญ่ผู้ใช้จะไม่สังเกตเห็นว่ามันถูกโหลดใหม่ หากแอนิเมชันสั้นและเรียบง่ายพอ
+ให้ใช้[แอนิเมชัน AFMA/FMA](./fma) ที่สั้นและเรียบง่ายในหน้าจอโหลดแทน
 
 ## การแก้ไขปัญหา
 
-หากคุณพบปัญหาเกี่ยวกับการรองรับวิดีโอแบบเนทีฟ ให้ตรวจสอบก่อนว่าได้ติดตั้งทั้ง Watermedia V3 และ Watermedia Binaries V3 แล้ว และเวอร์ชันต้องตรงกับ Minecraft/modloader ของคุณ
+หากวิดีโอแบบเนทีฟไม่เล่น ให้ตรวจสอบว่า Watermedia V3 และ Watermedia Binaries V3 ตรงกับเวอร์ชัน Minecraft/ม็อดโหลดเดอร์ของคุณ และ Minecraft กำลังใช้ OpenGL แทน Vulkan

@@ -1,22 +1,30 @@
 ---
 title: Layout-Vorlagen
 description: >-
-  Wie du vollständige, sofort nutzbare Design-Vorlagen für FancyMenu, Spiffy und
-  Drippy erhältst.
+  So erhältst du vollständige, sofort einsatzbereite Designvorlagen für
+  FancyMenu, Spiffy und Drippy.
+sourceBlobSha: 41b72e16c4bdc6dc0af77376bbadfabc78ed0291
 ---
 # Layout-Vorlagen
 
-Wenn du Design-Vorlagen für FancyMenu oder eines seiner Addons wie SpiffyHUD oder Drippy Loading Screen herunterladen möchtest, ist der beste Ort dafür der Kanal [#layout-templates](https://discord.com/channels/704163135787106365/1234093433795383316) im Kekscord-Discord-Server (Keksuccino's offizieller Discord-Server für Mod-Support). Dieser Kanal enthält vollständige FancyMenu-Setups, die von der Community erstellt wurden, inklusive Download-Links für alle davon.
+Wenn du Designvorlagen für FancyMenu oder eines seiner Add-ons wie SpiffyHUD oder Drippy Loading Screen herunterladen möchtest, findest du diese am besten im Kanal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) auf dem [Kekscord-Discord-Server](https://discord.gg/rhayah27GC) (Keksuccinos offizieller Discord-Server für Mod-Support). Dieser Kanal enthält vollständige FancyMenu-Setups, die von der Community erstellt wurden, einschließlich Download-Links für alle Vorlagen.
 
-Alle Vorlagen-Beiträge dort folgen demselben Muster. Sie sollten alle einen Download-Link zu einem vollständigen FancyMenu-Setup enthalten, das einen `fancymenu`-Ordner für `<game-directory>/config/` beinhaltet, wie auf der Seite [Modpacks](/modpacks) beschrieben.
+Alle Vorlagenbeiträge dort folgen demselben Muster. Sie sollten jeweils einen Download-Link zu einem vollständigen FancyMenu-Setup enthalten, entweder als Profildatei (`.fmp`) oder als `fancymenu`-Ordner.
 
 > [!CAUTION]
 > Community-Vorlagen können Aktionen ausführen. Importiere sie nur aus Quellen, denen du vertraust.
 
-Da diese Vorlagen meist sehr komplex sind, wird nicht empfohlen, die Vorlage mit deinem bestehenden Setup zusammenzuführen. Deshalb solltest du den vorhandenen `fancymenu`-Ordner durch den aus der Vorlage ersetzen.
+# Vorlagen installieren
+
+Vorlagen sind vollständige FancyMenu-Setups und meistens sehr komplex. Daher wird nicht empfohlen, eine Vorlage mit deinem bestehenden Setup zusammenzuführen. Füge sie stattdessen als eigenes [Profil](./profiles) hinzu:
+
+- **`.fmp`-Datei:** Öffne **Menüleiste -> Anpassung -> Profile** und [importiere](./profiles#importing) die Datei, zum Beispiel indem du sie auf das Fenster ziehst.
+- **`fancymenu`-Ordner:** [Füge den Ordner als Profil hinzu](./profiles#adding-setup-folders).
+
+Wähle anschließend die Vorlage im Profilfenster aus und klicke auf **Profil laden**. Dein aktuelles Setup bleibt als eigenes Profil verfügbar, sodass du jederzeit zurückwechseln kannst.
 
 # Vorlagen bearbeiten oder für Projekte verwenden
 
-Die meisten Vorlagen in diesem Kanal dürfen von dir bearbeitet und sogar in eigenen Projekten wie Modpacks verwendet werden. Es ist jedoch sehr wichtig, dass du **im Vorlagen-Beitrag nachsiehst, was du damit tun darfst**!
+Die meisten Vorlagen im Kanal dürfen bearbeitet und sogar in eigenen Projekten wie Modpacks verwendet werden. Es ist jedoch sehr wichtig, dass du **im Vorlagenbeitrag überprüfst, was du damit tun darfst**!
 
-Nicht alle Vorlagen erlauben alles.
+Nicht für alle Vorlagen erhältst du die Erlaubnis, sie uneingeschränkt zu verwenden.
