@@ -100,7 +100,7 @@ FancyMenu has many [built-in game-event listeners](/listeners), but there is no 
 
 ### How do I make a button inactive or "grayed out"?
 
-You can control a button's active state using [Loading Requirements](/conditions).
+You can control a button's active state using [requirements](/conditions).
 Right-click the button in the editor and select **Control Active State**.
 Add a requirement that must be met for the button to be active. To permanently disable it, use [**Is Number**](/conditions#is-number-fancymenu_visibility_requirement_is_number) to check whether 0 equals 1.
 The button will now use its "Inactive Background" texture and will be unclickable.

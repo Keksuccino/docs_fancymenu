@@ -162,7 +162,7 @@ $$list_entry
 [Requirements](/conditions) show elements or run parts of action scripts only when a variable has a certain value.
 
 - [**Is Variable Value (FM Variable)**](/conditions#is-variable-value-fm-variable-fancymenu_visibility_requirement_is_variable_value) checks the whole value. For lists, it compares the JSON array of all entries.
-- **List Contains Entry (FM Variable)** checks if a list has an entry. It has to match the whole entry. **Ignore Case** makes `Apple` match `apple`.
+- [**List Contains Entry (FM Variable)**](/conditions#list-contains-entry-fm-variable-list_contains_entry) checks if a list has an entry. It has to match the whole entry. **Ignore Case** makes `Apple` match `apple`.
 - [**Is Number**](/conditions#is-number-fancymenu_visibility_requirement_is_number) compares numbers, like `$$clicks` bigger than `5`.
 
 For example, a button opens the latest news post and adds `news_42` to a list `read_news` with **Add to List (FM Variable)**. A "New!" badge next to the button has the requirement **List Contains Entry (FM Variable)** for `news_42`, with the **Requirement Mode** Opposite. So the badge hides once the player read the post.
