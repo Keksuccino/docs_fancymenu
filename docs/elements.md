@@ -29,9 +29,9 @@ Every element has these settings in its right-click menu, next to the settings o
 |---|---|
 | **Anchor Point** | What the element is attached to, like a corner of the screen or another element. See [Positioning Elements](/positioning-elements). |
 | **Advanced Positioning** and **Advanced Sizing** | Calculate the position and size, for example with [placeholders](/placeholders). See [Advanced Positioning & Sizing](/advanced-positioning-sizing). |
-| **Loading Requirements** | Show the element only when [requirements](/conditions) are met. |
-| **Delay Appearance** and **Delay Disappearance** | Wait some seconds before the element shows up or goes away. |
-| **Fading In/Out** and **Opacity** | Fade the element in and out, or make it see-through. See [Element Opacity](/element-opacity). |
+| **Loading Requirements** and **Load Once Per Session** | Show the element only when [requirements](/conditions) are met, or only once per game start. See [Element Visibility](/element-visibility). |
+| **Delay Appearance** and **Delay Disappearance** | Wait some seconds before the element shows up or goes away. See [Element Visibility](/element-visibility#delaying-elements). |
+| **Fading In/Out** and **Opacity** | Fade the element in and out, or make it see-through. See [Element Visibility](/element-visibility#fading-in-and-out). |
 | **Rotation**, **Vertical Tilt** and **Horizontal Tilt** | See [Rotating Elements](/rotating-elements) and [Tilting Elements](/tilting-elements). |
 | **Parallax Effect** | Move the element a bit with the mouse. See [Parallax Effect](/parallax). |
 | **Copy Element ID** | Copies the identifier that actions, placeholders and other elements use to find it. See [Element Identifiers](/element-identifiers). |
