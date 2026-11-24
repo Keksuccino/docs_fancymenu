@@ -161,9 +161,12 @@ Some features give their script extra values that start with `$$`:
 
 ## Separators
 
-Values with several parts separate them with `:`, `||` or `|||`. Use exactly the separator the action's entry below shows. There's no way to use a separator inside a part.
+Values with several parts separate them with `:`, `||` or `|||`. Use exactly the separator the action's entry below shows.
 
-Placeholders get replaced before the value gets split. In [**Set Variable Value (FM Variable)**](#set-variable-value-fm-variable-set_variable), only the first `:` separates the name from the value, so `motd:Welcome: have fun!` sets `motd` to `Welcome: have fun!`.
+- With `:` and `||`, only the first separator counts, so the last part can contain it. In [**Set Variable Value (FM Variable)**](#set-variable-value-fm-variable-set_variable), `motd:Welcome: have fun!` sets `motd` to `Welcome: have fun!`.
+- With `|||`, the parts can't contain `|||`. Only the last part of the list actions and of **Scroll an Element** can.
+
+Placeholders get replaced before the value gets split, so a placeholder whose text contains a separator splits the value there too.
 
 ## Formatting Codes
 
@@ -305,7 +308,7 @@ Connects to a Minecraft server.
 
 **Value:** `address` or `address:port`, like `play.example.net`
 
-Without a port, `25565` is used. Doesn't work while a world or server is loaded. Servers that aren't in the server list get added to it.
+Without a port, `25565` is used. While a world or server is loaded, it shows an error instead. Servers that aren't in the server list get added to it.
 
 ## Enter World (`loadworld`)
 
@@ -313,7 +316,7 @@ Loads a singleplayer world.
 
 **Value:** the world's folder name in `saves`, like `Survival Island`
 
-Does nothing if there's no such world, or while a world or server is loaded.
+Does nothing if there's no such world. While a world or server is loaded, it shows an error instead.
 
 ## Enter/Join Last World/Server (`join_last_world`)
 
@@ -321,7 +324,7 @@ Loads the world or joins the server the player played last.
 
 **Value:** none
 
-Doesn't work while a world or server is loaded. A server that isn't in the server list gets added to it.
+While a world or server is loaded, it shows an error instead. A server that isn't in the server list gets added to it.
 
 ## Leave World or Server (`disconnect_server_or_world`)
 
