@@ -158,7 +158,7 @@ Bubbles wobble up in streams and slide along the underside of your elements. Cli
 
 Little birds fly in, hop around on your elements and take off when the mouse gets too close.
 
-<img width="800" alt="Birds sitting on the buttons of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_birds.png?raw=true">
+<img width="800" alt="Birds at 2x size and 50% amount sitting on the buttons of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_birds.png?raw=true">
 
 ## Butterflies
 
@@ -178,7 +178,7 @@ Birds, Butterflies and Bats have **Amount (%)** and **Size**.
 
 Groups of fireflies glow and wander around, and some land on your elements.
 
-<img width="800" alt="Fireflies with the Detailed look glowing around the buttons of a title screen at night" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_fireflies.png?raw=true">
+<img width="800" alt="Fireflies at 2x scale glowing around a button of a title screen at night" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_fireflies.png?raw=true">
 
 - **Look** switches between **Detailed** and **Simple** fireflies. **Unlit Bodies** shows their dark little bodies between flashes.
 - **Follow Mouse** lets groups follow the mouse when it's close.
@@ -205,7 +205,7 @@ A twinkling night sky behind your elements, with a shooting star every few secon
 
 Glowing paper lanterns float up into the night sky, sometimes a whole group at once. Sky Lanterns have **Amount (%)** and **Size**.
 
-<img width="800" alt="Sky lanterns floating up over a title screen at night" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_sky_lanterns.png?raw=true">
+<img width="800" alt="Sky lanterns at 2x size and 25% amount floating up over a title screen at night" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_sky_lanterns.png?raw=true">
 
 # Party
 
