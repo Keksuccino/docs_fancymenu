@@ -203,6 +203,17 @@ Send welcome data only to one player:
 /fmdata welcome_data add welcome_vip Player761 hud.vip "VIP perks enabled"
 ```
 
+# Export for AI
+
+To get help from Alice or another AI, export the server's listeners and welcome data with [Export for AI](/export-for-ai#servers):
+
+```mcfunction
+/fmdata export_for_ai copy
+/fmdata export_for_ai file
+```
+
+`copy` sends a chat message that copies the export when clicked. `file` saves it on the server in `fancymenu_data/ai_exports/`.
+
 # Best Practices
 
 1. Use clear identifiers like `hud.food`, `menu.shop.open`, `quest.progress`.

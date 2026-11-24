@@ -14,6 +14,9 @@ To get the best help, please provide as much context as possible:
 5.  **Your FancyMenu Version:** (e.g., 3.5.2)
 6.  **Screenshots or videos** of the issue can also be very helpful.
 
+> [!TIP]
+> Asking Alice or another AI for help? Add an [Export for AI](/export-for-ai) of what doesn't work. It shows the AI exactly how it's set up, and it already has your Minecraft, mod loader and FancyMenu versions.
+
 ### How do I change the layering of elements (move something in front of or behind another)?
 
 *   **Custom vs. Custom:** Open **Window -> Editor Widgets -> Layers** and drag elements in the hierarchy. You can also right-click an element and use **Move One Layer Up/Down**. See [Layers and Groups](/layers-and-groups).

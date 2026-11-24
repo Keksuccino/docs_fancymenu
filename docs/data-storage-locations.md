@@ -45,6 +45,7 @@ FancyMenu keeps additional generated, per-instance state outside `config/fancyme
 | Last world state | `<game-directory>/fancymenu_data/last_world.fmdata` |
 | [Seamless World Loading](/seamless-world-loading) state | `<game-directory>/fancymenu_data/seamless_world_loading/` |
 | Buddy pet and leveling saves | `<game-directory>/fancymenu_data/buddy/` |
+| [Export for AI](/export-for-ai) files | `<game-directory>/fancymenu_data/ai_exports/` |
 | Layout editor widget positions and visibility | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
 | Default GUI scale initialization marker | `<game-directory>/fancymenu_data/default_scale_set.fm` |
 
