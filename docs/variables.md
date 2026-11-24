@@ -65,7 +65,7 @@ The list editor shows every entry with its index.
 
 # Showing Variables in Text
 
-Type `$$` and the name of a variable to show its value. This works in every text that supports [placeholders](/placeholders), like [Text elements](/text-in-menus), button labels, tooltips and action values. The text updates by itself when the variable changes.
+Type `$$` and the name of one of your variables to show its value: a variable named `menu_theme` is `$$menu_theme`. This works in every text that supports [placeholders](/placeholders), like [Text elements](/text-in-menus), button labels, tooltips, and the values of actions and requirements. The text updates by itself when the variable changes.
 
 ```
 Current theme: $$menu_theme

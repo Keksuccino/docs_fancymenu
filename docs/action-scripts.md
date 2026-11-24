@@ -150,14 +150,28 @@ Values can contain [placeholders](/placeholders), like the player's name. They g
 
 ## $$ Variables
 
-`$$` and a name gives the value of a variable, like `$$coins`. Besides your own [variables](/variables#showing-variables-in-text), some features give their script variables of their own:
+Type `$$` and the name of a variable to use its value in an action or a requirement. Upper and lower case of names matter. That works for two kinds of variables:
+
+### Your Own Variables
+
+Every variable you make in **menu bar -> Customization -> Manage Variables** works with `$$` and its name. A variable named `coins` is `$$coins`, in every script. For example, **Display In Chat [Client-Side]** with this value tells the player how many coins they have:
+
+```
+&6You have $$coins coins!
+```
+
+See [Variables](/variables) for making and changing them.
+
+### Variables of the Script
+
+Some features give their script variables of their own:
 
 - A [Slider](/elements#slider) gives `$$value`, its new value.
 - A [Checkbox](/elements#checkbox) gives `$$value`, its new state: `true` or `false`.
 - A [For Each Loop](#for-each-loop) gives `$$list_entry` and `$$list_index`.
 - Each [listener](/listeners#listener-variables) lists the variables it gives, like the key that got pressed.
 
-These only exist in the script that gets them. Upper and lower case of names matter.
+They only exist while the script runs. When one has the same name as one of your variables, `$$name` means the script's variable.
 
 # Actions in Detail
 

@@ -59,7 +59,7 @@ More about listener variables:
 - Listener variables are always text. When a listener can't find out a value, the variable gets a fallback, like `ERROR`, `UNKNOWN`, `NONE`, `EMPTY`, `0`, `-1` or nothing.
 - Listener variables get filled in before [placeholders](/placeholders), so they work inside placeholders too.
 - Listener variables only exist while their script runs. To keep a value, save it in one of your [variables](/variables) with [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable-set_variable).
-- When one of your variables has the same name as a listener variable, `$$name` in that script means the listener variable. Your variables with longer names, like `key_name_log`, still work.
+- Your own variables from **menu bar -> Customization -> Manage Variables** work in listener scripts too, with `$$` and their name, like `$$coins`. When one of them has the same name as a listener variable, `$$name` means the listener variable. Your variables with longer names, like `key_name_log`, still work.
 - Text from chat, servers, files and other players can be anything. Never put it straight into commands, file paths or links.
 
 # Good to Know
