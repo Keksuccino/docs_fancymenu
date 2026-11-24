@@ -131,7 +131,7 @@ Met while any menu is open, like the pause menu or the inventory. Not met while 
 
 Met while a button is clickable.
 
-- Value: the [element ID](/element-identifiers) of the button, like `join_button`.
+- Value: the [element ID](/element-identifiers) of the button. Right-click it in the editor and click **Copy Element ID**.
 
 ## Is Customization Menu Bar Visible (`is_customization_menu_bar_visible`)
 
@@ -139,15 +139,15 @@ Met while FancyMenu's menu bar shows. Not met in Modpack Mode or while the menu 
 
 ## Is Element Focused (`is_element_focused`)
 
-Met while an element has the focus. Buttons and sliders get it when you click them, or when you move to them with the arrow keys or `Tab`. Moving there with keys doesn't count as hovering, so use this together with **Is Element Hovered** for players who use the keyboard.
+Met while an element has the focus. Buttons and sliders get it when you click them, or when you move to them with the arrow keys or `Tab`. Moving there with keys doesn't count as hovering, so put this and **Is Element Hovered** in an [Or group](#combining-requirements) for players who use the keyboard.
 
-- Value: the [element ID](/element-identifiers), like `join_button`.
+- Value: the [element ID](/element-identifiers), like `mc_titlescreen_multiplayer_button`.
 
 ## Is Element Hovered (`fancymenu_visibility_requirement_is_element_hovered`)
 
 Met while the mouse is over an element. The element has to be visible.
 
-- Value: the [element ID](/element-identifiers), like `join_button`.
+- Value: the [element ID](/element-identifiers), like `mc_titlescreen_multiplayer_button` for the Multiplayer button of the title screen. Right-click an element in the editor and click **Copy Element ID** to get it.
 
 ## Is Element Scrolled to End (`is_scroll_area_scrolled_to_end`)
 
