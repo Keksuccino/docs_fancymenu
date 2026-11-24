@@ -27,6 +27,9 @@ FancyMenu checks requirements all the time while a menu is open, so things show,
 
 In the layout editor, elements always show, so you can still edit them. Requirements of elements work outside of the editor.
 
+> [!TIP]
+> [Element Visibility](/element-visibility) shows more ways to show and hide elements, like delays, fading and toggling them with a button.
+
 # Adding a Requirement
 
 <img width="800" alt="Copying the ID of the Multiplayer button, then giving the info box the requirement Is Element Hovered with that ID in Manage Requirements" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_add.gif?raw=true">
@@ -100,7 +103,7 @@ Right-click the editor background and click **Loading Requirements [Layout-Wide]
 
 - When the result changes while the menu is open, FancyMenu builds the screen again with the layouts that are met now.
 - They work for [universal layouts](/universal-layouts) too.
-- To turn a layout on and off with a button, put the button in another layout. See [Toggle Parts of Layouts](/toggle).
+- To turn a layout on and off with a button, put the button in another layout. See [Turning Layouts On and Off](/element-visibility#turning-layouts-on-and-off).
 
 # Good to Know
 
@@ -621,4 +624,4 @@ Met while a mouse button is held down. To run actions once per click, use the [*
 
 Met the first time it gets checked, then never again until the game restarts. Every copy of it counts on its own.
 
-For elements that should show only once per game session, the **Load Once Per Session** option of elements is easier: they stay until a new screen opens.
+For elements that should show only once per game session, the [**Load Once Per Session**](/element-visibility#load-once-per-session) option of elements is easier: they stay until a new screen opens.
