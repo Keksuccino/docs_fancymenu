@@ -70,8 +70,6 @@ Turn a GIF into an APNG:
 ffmpeg -i logo.gif -plays 0 logo.apng
 ```
 
-To get single frames out of a video, see [Get Frames from Videos](/ffmpeg-frames).
-
 # FMA and AFMA
 
 FMA and AFMA are FancyMenu's own animation formats. Both are deprecated: they still play, but APNG and GIF are the better choice for new animations.
