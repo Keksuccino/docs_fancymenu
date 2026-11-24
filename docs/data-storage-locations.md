@@ -40,7 +40,7 @@ FancyMenu keeps additional generated, per-instance state outside `config/fancyme
 
 | System / Feature | File or Directory |
 | --- | --- |
-| Non-variable [Checkbox](/elements#checkbox) states | `<game-directory>/checkbox_states.json` |
+| Non-variable [Checkbox](/elements#checkbox) states, separately for every [profile](/profiles) | `<game-directory>/config/fancymenu/checkbox_states.json` |
 | [Dragger](/dragger) element positions/metadata | `<game-directory>/fancymenu_data/dragger_metas.json` |
 | Last world state | `<game-directory>/fancymenu_data/last_world.fmdata` |
 | [Seamless World Loading](/seamless-world-loading) state | `<game-directory>/fancymenu_data/seamless_world_loading/` |

@@ -1,324 +1,358 @@
 ---
 title: Elements
-description: Everything to know about FancyMenu's element types.
+description: All element types of FancyMenu, what they're for, and how to add them to a layout.
 ---
+
 # Elements
 
-Elements are the building blocks of your custom layouts in FancyMenu. You can add them to any layout to display information, add interactivity, or create stunning visual effects.
+Elements are the parts of a layout: buttons, texts, images, sliders, music and more. This page lists all element types and their most important settings.
 
-# Adding Elements to a Layout
+> [!TIP]
+> Buttons and other parts a screen has by default are [Vanilla Elements](/vanilla-elements). You can move, change and hide them too.
 
-You can add a new element to your layout from within the **Layout Editor**.
+# Adding Elements
 
-1.  **Right-click** on the editor's background to open the context menu.
-2.  Hover over **New Element**.
-3.  A list of all available element types will appear. Click on the one you want to add.
+1. In the layout editor, right-click a free spot and click **New Element**. The menu bar has the same list in **Element -> New**.
+2. Click an element type. Hover a type to see what it's for.
 
-![add_element](https://github.com/Keksuccino/FancyMenu/assets/35544624/865a66c5-76a6-404d-b746-d57802b1c12f)
+The element shows up where you right-clicked. Drag it to move it, drag its edges to resize it, and right-click it for its settings.
 
-Once an element is added, you can move, resize, and customize it by **right-clicking** on it to open its specific context menu. To learn more about how to arrange elements, see [Positioning Elements](/positioning-elements) and [Element Identifiers](/element-identifiers).
+<img width="800" alt="Right-clicking the layout editor, adding a Button through New Element, moving and widening it, and giving it the label Join Server" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_add_element.gif?raw=true">
 
-# Elements in Detail
+To keep elements in place on every window size, read [Positioning Elements](/positioning-elements). To put elements in front of or behind others, read [Layers and Groups](/layers-and-groups).
 
-This section lists FancyMenu's built-in elements. Use [Layers and Groups](/layers-and-groups) to organize their render order.
+# Settings of All Elements
+
+Every element has these settings in its right-click menu, next to the settings of its type:
+
+| Setting | What it does |
+|---|---|
+| **Anchor Point** | What the element is attached to, like a corner of the screen or another element. See [Positioning Elements](/positioning-elements). |
+| **Advanced Positioning** and **Advanced Sizing** | Calculate the position and size, for example with [placeholders](/placeholders). See [Advanced Positioning & Sizing](/advanced-positioning-sizing). |
+| **Loading Requirements** | Show the element only when [requirements](/conditions) are met. |
+| **Delay Appearance** and **Delay Disappearance** | Wait some seconds before the element shows up or goes away. |
+| **Fading In/Out** and **Opacity** | Fade the element in and out, or make it see-through. See [Element Opacity](/element-opacity). |
+| **Rotation**, **Vertical Tilt** and **Horizontal Tilt** | See [Rotating Elements](/rotating-elements) and [Tilting Elements](/tilting-elements). |
+| **Parallax Effect** | Move the element a bit with the mouse. See [Parallax Effect](/parallax). |
+| **Copy Element ID** | Copies the identifier that actions, placeholders and other elements use to find it. See [Element Identifiers](/element-identifiers). |
+| **In-Editor Display Name** | The name of the element in the layer list. |
+| **Export for AI** | Turns the element into text for [AI assistants](/export-for-ai). |
+
+# Buttons and Inputs
 
 ## Button
-A clickable button that can perform a wide variety of actions. This is one of the most powerful and versatile elements for creating interactive menus.
 
-*   **Use Cases:**
-    *   Creating a "Join Discord" or "Visit Website" button.
-    *   Adding a quick-join button for a specific server.
-    *   Building custom navigation between different menus.
-    *   Creating buttons that toggle other layouts on or off.
-*   **Key Features:**
-    *   **Actions:** Can execute a sequence of [actions](/action-scripts), such as opening a URL, joining a server, sending a chat command, mimicking another button's function, or controlling variables.
-    *   **Custom Appearance:** Fully customizable textures for normal, hovered, and inactive states. Supports transparent backgrounds, nine-slicing, custom label colors, hover label colors, label scale, label shadow toggles and button icon textures.
-    *   **Sounds:** Custom click, hover and unhover sounds.
-    *   **Template Mode:** Can apply its appearance and properties to other Vanilla or modded buttons in the menu. See [Button & Slider Templates](/button-slider-templates).
-    *   **Automated Vanilla/Mod Widget Clicks:** Existing Vanilla and mod widgets have an **Automated Clicks** property that can invoke their original click behavior a chosen number of times when the screen loads. See [Vanilla Elements](/vanilla-elements#automated-clicks) for details.
+A button that runs an [action script](/action-scripts) when clicked, like joining a server, opening a website or another menu.
+
+<img width="396" alt="Two buttons labeled Join Server and Open Wiki" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_button.png?raw=true">
+
+- **Edit Action Script**: what the button does when clicked.
+- **Label** and **Hover Label**: its text, and the text while the mouse is over it. Both support [placeholders](/placeholders) and [text formatting](/text-formatting).
+- **Label Alignment**, **Label Scale**, **Label Base Color**, **Label Hover Color** and **Label Shadow**: the look of the label.
+- **Button Textures** and **Button Icon Textures**: your own images for the button and an icon on it, for normal, hovered and inactive buttons. See [Nine-Slicing & Tiling](/nine-slicing-and-tiling) for textures that scale nicely.
+- **Hover Sound**, **Unhover Sound** and **Click Sound**: sounds the button plays.
+- **Tooltip**: a text that shows while the mouse is over the button.
+- **Control Active State**: [requirements](/conditions) for the button to be clickable. When they aren't met, it's greyed out.
+- **Template Mode**: gives other buttons and sliders of the screen the look of this button. See [Button & Slider Templates](/button-slider-templates).
 
 ## Slider
-A slider that users can drag to select a value from a list or a range. It can execute actions whenever its value changes.
 
-*   **Use Cases:**
-    *   Creating a custom volume control.
-    *   A slider to switch between different themes or background images (using the "List" type).
-    *   Adjusting a specific Minecraft option, like brightness or render distance.
-*   **Key Features:**
-    *   **Types:** Can be a `Value List` (e.g., "Easy", "Normal", "Hard"), an `Integer Range` (e.g., 1-100), or a `Decimal Range` (e.g., 0.0-1.0).
-    *   **Dynamic Actions:** Executes actions when its value changes. The current value can be used with [Variables](/variables).
-    *   **Customization:** The slider's label can dynamically display its current value. The handle and background textures are fully customizable, including transparent backgrounds, label color/scale options, text shadow toggles and custom click/unhover sounds.
+A slider players drag to pick a value. It runs its action script every time the value changes.
+
+<img width="436" alt="A Music Volume slider at 70% and a Difficulty slider set to Normal" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_slider.png?raw=true">
+
+- **Slider Type**:
+  - **Value List**: goes through the texts of **List Values**, one per line. **Values From List Variable** takes them from a [list variable](/variables#text-and-list-variables) instead.
+  - **Integer Range**: whole numbers from **Minimum Range Value** to **Maximum Range Value**.
+  - **Decimal Range**: the same with decimals. **Rounding Decimal Place** sets how many digits come after the point, `-1` doesn't round.
+- **Slider Label**: its text. `$$value` shows the current value.
+- **Edit Action Script**: runs when the value changes. `$$value` is the new value.
+- **Pre-Selected Value**: the value the slider starts at. Point it at what the slider changes, so it shows the right value when the screen opens.
+
+For example, a volume slider of the type **Integer Range** from `0` to `100` has the label `Music Volume: $$value%` and a [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable-set_variable) action with this value:
+
+```
+music_volume:$$value
+```
+
+Its **Pre-Selected Value** is `$$music_volume`, so it starts at the last value the player picked.
+
+Sliders have the same label, texture, sound, tooltip and **Control Active State** settings as buttons.
 
 ## Checkbox
-A standard checkbox that can be toggled on or off. It can execute actions upon being toggled.
 
-*   **Use Cases:**
-    *   An "I agree to the rules" checkbox.
-    *   A setting to enable or disable a specific feature in your custom menu.
-    *   Toggling a layout or variable on/off.
-*   **Key Features:**
-    *   **Actions on Toggle:** Executes [Action Scripts](/action-scripts) when its state changes. The current state (`true` or `false`) is available to its actions.
-    *   **Variable Mode:** Can be linked directly to a FancyMenu variable, making the checkbox state read from and write to that variable.
-    *   **Persistent State:** When Variable Mode is disabled, the checkbox automatically saves its state by element identifier and restores it after restarting the game. These states are stored in `<game-directory>/checkbox_states.json`. In Variable Mode, the linked FancyMenu variable is the checkbox's state source instead.
-    *   **Custom Appearance:** Supports custom textures for the background (in normal, hover, and inactive states) and the checkmark itself.
+A box players tick and untick. It runs its action script every time it changes.
+
+<img width="588" alt="A ticked checkbox next to the text Show tips on the title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_checkbox.png?raw=true">
+
+- `$$value` is `true` or `false` in its action script and its **Control Active State** requirements.
+- **Variable Mode** and **Link To Variable**: the checkbox shows the value of a [variable](/variables) and writes `true` or `false` into it. Linked to a list variable, `true` or `false` becomes its only entry.
+- Without Variable Mode, the checkbox remembers its state by itself, separately for every [profile](/profiles).
+- **Textures**: your own images for the box and the checkmark.
+
+Checkboxes have the same tooltip, sound and **Navigable** settings as buttons.
 
 ## Text Input Field
-A field where users can type text. Its content can be linked to a FancyMenu variable, allowing you to capture and use user input.
 
-*   **Use Cases:**
-    *   A "Server IP" input field that works with a "Join Server" button.
-    *   A field to enter a player's name for a custom skin preview.
-    *   Creating a basic login-like interface.
-*   **Key Features:**
-    *   **Variable Linking:** Stores the entered text in a specified [variable](/variables).
-    *   **Input Validation:** Can be configured to only accept specific character types, such as numbers, URLs, or plain text.
-    *   **Max Length:** You can set a maximum character limit for the input.
-    *   **Appearance and Sounds:** Supports custom background color, border colors, border rounding, text color, hint/placeholder text, hint color, hover sounds, unhover sounds and click sounds.
+A field players type into, like a server address or a name.
 
-## Tooltip
-A text box that can appear at a fixed position or follow the mouse cursor. Its visibility is normally controlled with [Loading Requirements](/conditions).
+<img width="456" alt="A text field with play.example.net, and an empty one with the grey hint Your player name" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_input_field.png?raw=true">
 
-*   **Use Cases:**
-    *   Displaying detailed information when a user hovers over a button or image.
-    *   Creating context-sensitive help tips that appear under certain conditions.
-    *   Showing dynamic information (like server status) next to the cursor.
-*   **Key Features:**
-    *   **Mouse Following:** Can be set to follow the mouse pointer.
-    *   **Markdown Support:** The tooltip content supports full Markdown formatting.
-    *   **Custom Background:** The background can be a solid color or a custom nine-sliced texture for a fully themed look.
+- **Link To Variable**: what players type goes into the [variable](/variables), and the field shows its value. Linked to a list variable, the typed text replaces the whole list.
+- **Input Type**: **Text**, **Only Numbers**, **Only Decimal Numbers** or **URL**. Other characters can't get typed.
+- **Hint Text** and **Hint Text Color**: a text that shows while the field is empty.
+- **Max Text Length**: how many characters fit in.
+- **Background Color**, **Border Color**, **Border Rounding Radius** and **Text Color**: its look.
 
-## Item
-Displays a single Minecraft item, either from vanilla or a mod.
+For example, a field linked to `server_address` and a button with the [**Join Server**](/action-scripts#join-server-joinserver) action and the value `$$server_address` let players join any server.
 
-*   **Use Cases:**
-    *   Using items as icons for buttons or menu selections.
-    *   Creating a shop or kit selection GUI.
-    *   Displaying a player's held item or armor.
-*   **Key Features:**
-    *   **Custom Data:** Supports a custom name, lore, count, enchantment glint, and NBT data. See the [NBT Data Placeholder](/nbt-data-placeholder).
-    *   **Tooltip Display:** Can be configured to show the item's standard tooltip on hover.
+Without a variable, the [**Text Input Field Value**](/placeholders#text-input-field-value-text_input_field_value) placeholder reads the text, and the [**Set Text Input Field Value**](/action-scripts#set-text-input-field-value-set_text_input_field_value) action changes it.
 
-## Block/Item JSON Model
-Renders a block or item JSON model from Minecraft resources or external sources.
-
-*   **Use Cases:**
-    *   Displaying a 3D resource-pack model in a menu.
-    *   Showing item/block previews with custom textures.
-    *   Building model-based decorative UI elements.
-*   **Key Features:**
-    *   **Model Source:** Can load model JSON from Minecraft resources or external sources.
-    *   **Texture Overrides:** Supports setting a custom texture.
-    *   **Rendering Controls:** Model offset, scale, three-axis rotation, translucent rendering, and the model GUI transform.
-    *   **Lighting:** Two configurable lights with independent hue and rotation controls.
-
-## Image
-Displays a static image from a local file, a web URL, or a Minecraft resource location.
-
-*   **Use Cases:**
-    *   Adding a server logo or modpack brand.
-    *   Creating decorative borders or UI frames.
-    *   Using images as part of a more complex UI design.
-*   **Key Features:**
-    *   **Nine-Slicing:** Scales borders or panels without distorting their corners. See [Nine-Slicing & Tiling](/nine-slicing-and-tiling).
-    *   **Texture Repeating:** The image can be tiled to fill the element's area.
-    *   **Tinting:** You can apply a color tint to the image.
-    *   **Rounded Corners:** Non-nine-sliced and non-repeated images can have rounded corners.
-    *   **Parallax Effect:** Moves with the mouse to create visual depth. See [Parallax Effect](/parallax).
+# Texts and Tooltips
 
 ## Text
-A highly versatile element for displaying text. It can be used for anything from single-line labels to multi-page, scrollable documents.
 
-*   **Use Cases:**
-    *   Displaying server rules, patch notes, or welcome messages.
-    *   Creating dynamic info panels using [placeholders](/placeholders), for example `Welcome, {"placeholder":"playername"}!`.
-    *   Adding labels and descriptions to your UI.
-*   **Key Features:**
-    *   **Content Sources:** Text can be entered directly, loaded from a local file, or fetched from a web URL.
-    *   **Markdown Support:** Supports headers, lists, code blocks, tables, and other Markdown formatting. See [Text Formatting](/text-formatting).
-    *   **Scrolling:** Automatically becomes scrollable if the content is larger than the element's area. Scrollbars can be customized or disabled.
-    *   **Styling:** Full control over text color, scale, alignment, shadow, and line spacing.
+Text of any length, from a short label to scrollable rules or patch notes, with [Markdown](/text-formatting) and [placeholders](/placeholders).
 
-## Video
-Plays a video file. This is perfect for cinematic intros or decorative looping backgrounds.
+<img width="636" alt="A Text element with patch notes: a headline and a list with one bold part" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_text.png?raw=true">
 
-> [!WARNING]
-> The native Video element requires **Watermedia V3** and **Watermedia Binaries V3**. The old **Video [Rinku]** element is deprecated.
+- **Source Mode**: type the text, or load it from a file or a website.
+- A look to start from, a background, and scrolling when the text is bigger than the element.
 
-*   **Use Cases:**
-    *   An animated modpack or server trailer.
-    *   A looping, ambient video to add life to your menu.
-    *   An in-game tutorial video.
-*   **Key Features:**
-    *   **Sources:** Supports local video files and web URLs. See [Videos](/video).
-    *   **Playback Control:** Can be set to loop automatically. Its volume, sound channel and aspect-ratio preserving behavior are adjustable.
-    *   **Interactive Control:** The video's playback, seek time and volume can be controlled via button actions.
+All about it in [Text in Menus](/text-in-menus).
 
-## GLSL Shader
-Renders a custom GLSL shader inside an element.
+## Tooltip
 
-*   **Use Cases:**
-    *   Animated shader panels.
-    *   Procedural visual effects.
-    *   Shadertoy-style menu effects clipped to an element rectangle.
-*   **Key Features:**
-    *   **Shader Runtime:** Supports single-pass and multipass shaders.
-    *   **Shadertoy Support:** Can use Shadertoy-style `mainImage` shaders.
-    *   **Uniforms:** Exposes FancyMenu and input uniforms. See the [GLSL Shader API](/glsl-shader-api).
+A text box like the tooltips of the game, with [Markdown](/text-formatting) and [placeholders](/placeholders).
 
-## Slideshow
-Displays a sequence of images. Its images and `properties.txt` configuration file live in the slideshow's own subdirectory under `<game-directory>/config/fancymenu/slideshows/`.
+<img width="712" alt="A Need Help? button with a tooltip next to it" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_tooltip.png?raw=true">
 
-*   **Use Cases:**
-    *   A rotating gallery of in-game screenshots.
-    *   Showcasing key features of a modpack.
-    *   A dynamic background that cycles through different scenes.
-*   **Key Features:**
-    *   Loads preconfigured [slideshows](/slideshows).
-    *   Can be set to maintain the aspect ratio of the images.
+- It shows where you put it, or at the mouse with **Follow Mouse**.
+- Its **Loading Requirements** decide when it shows, like [**Is Element Hovered**](/conditions#is-element-hovered-fancymenu_visibility_requirement_is_element_hovered) for a button.
+- **Tooltip Background**: your own texture instead of the dark box.
 
-## Rectangle Shape
-A simple, solid-colored rectangle.
-
-*   **Use Cases:**
-    *   Creating a semi-transparent background behind text to improve readability.
-    *   Designing simple UI panels and dividers.
-    *   As a colored placeholder during layout design.
-*   **Key Features:**
-    *   Supports HEX RGBA colors, rounded corners and optional blur, allowing the shape to work as a simple panel, tint or blur background.
-
-## Circle Shape
-A simple, solid-colored circle/ellipse shape.
-
-*   **Use Cases:**
-    *   Creating circular accents, indicators or soft UI areas.
-    *   Building themed UI decorations without a texture file.
-*   **Key Features:**
-    *   Supports color, blur, and a configurable roundness/exponent value.
+More in [Text in Menus](/text-in-menus).
 
 ## Splash Text
-A recreation of Minecraft's iconic yellow, bouncing splash text from the title screen.
 
-*   **Use Cases:**
-    *   Replacing the vanilla splash text with your own custom messages.
-    *   Adding an eye-catching, animated message to any menu.
-*   **Key Features:**
-    *   **Content Sources:** Can use the default vanilla splashes, a list of custom text entered directly, or text from a local file.
-    *   **Customization:** You can toggle the bouncing effect and customize the text's color, scale, rotation, and shadow.
+The yellow text of the title screen, with your own texts.
 
-## Player Entity
-Renders a player model in the menu.
+<img width="392" alt="A yellow splash text saying Season 3 is live!" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_splash_text.png?raw=true">
 
-*   **Use Cases:**
-    *   Displaying the current player's character on the main menu.
-    *   Creating a team selection or class preview screen.
-    *   A "profile" section showing the player's skin and name.
-*   **Key Features:**
-    *   **Dynamic Appearance:** Can copy the current player's skin, cape, and name. See [Player Heads](/player-heads).
-    *   **Custom Poses:** Offers fine-grained control over the rotation of the head, body, arms, and legs. The head and body can also be set to follow the mouse cursor.
-    *   **Attributes:** Can be set to be a baby, crouching, or have a slim model.
+- **Source Mode**: the vanilla splashes, your own text, or a random line of a text file.
+- **Bouncing**, **Scale**, **Rotation**, **Text Color** and **Shadow**: its look.
+- **Refresh On Screen Load**: picks a new splash every time the screen opens.
+
+More in [Splash Text](/splash-text).
+
+# Images and Media
+
+## Image
+
+An image from your files, a website or the game's resources. Animated images play too.
+
+<img width="608" alt="An Image element showing the Minecraft logo" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_image.png?raw=true">
+
+- **Image Source**: the image. Supported files are listed in [Images](/images).
+- **Restore Aspect Ratio**: changes the width, so the image isn't stretched.
+- **Nine-Slice Texture** and **Repeat Texture**: scale frames without stretching their borders, or tile the image. See [Nine-Slicing & Tiling](/nine-slicing-and-tiling).
+- **Image Tint [HEX]**: colors the image.
+- **Corner Rounding Radius**: rounds its corners.
+
+## Slideshow
+
+Shows the images of a slideshow one after another. You make slideshows in `config/fancymenu/slideshows/`, see [Slideshows](/slideshows).
+
+- **Slideshow**: the slideshow to show.
+- **Restore Aspect Ratio**: changes the width, so the images aren't stretched.
+
+## Video
+
+Plays a video file, like a trailer or a moving background.
+
+> [!IMPORTANT]
+> Videos need the mods Watermedia V3 and Watermedia Binaries V3. See [Videos](/video).
+
+- **Video Source**: a video file, a web link or a resource of the game.
+- **Loop Video**, **Volume** and **Sound Channel**: how it plays.
+- **Play Video In Layout Editor**: whether it also plays while you edit.
+- Actions like [**Toggle Video Element Paused State**](/action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) pause it, jump to a time or change its volume.
+
+**Video [Rinku]** is an older video element that needs the Rinku mod. It still works in old layouts, but isn't in **New Element**.
+
+## GLSL Shader
+
+Runs your own GLSL shader inside the element, like animated colors or effects from Shadertoy.
+
+<img width="576" alt="A GLSL Shader element showing a colorful gradient" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_glsl_shader.png?raw=true">
+
+- **Shader Source**: the shader code. Shadertoy shaders with `mainImage` work as they are.
+- **Compile Mode**: **Auto**, **Shadertoy** or **Direct Fragment**.
+- **Buffer A Source** to **Buffer D Source**: extra passes for shaders with buffers.
+
+How to write them: [GLSL Shader API](/glsl-shader-api).
 
 ## Browser
-An element that renders a live web page inside the game.
 
-This element requires the **[Rinku](https://modrinth.com/mod/rinku)** mod to be installed and working!
+Shows a live website, like a server map or a wiki page.
 
-You can download Rinku from the official project pages on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku) and [Modrinth](https://modrinth.com/mod/rinku).
+> [!IMPORTANT]
+> The Browser needs the mod [Rinku](https://modrinth.com/mod/rinku) ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku)).
 
-*   **Use Cases:**
-    *   Displaying a server's live Dynmap.
-    *   Embedding a YouTube video player.
-    *   Showing a wiki or documentation page directly in-game.
-*   **Key Features:**
-    *   **Interactivity:** Can be made fully interactable, allowing users to click links, scroll, and type.
-    *   **Media Control:** Offers options to mute media, loop videos, and hide video controls on the loaded page.
+- **URL**: the website.
+- **Interactable**: lets players click, scroll and type in it. In the layout editor, it's never interactable.
+- **Mute Browser**, **Audio/Video Volume**, **Loop Videos** and **Hide Video Controls**: media on the page.
 
-### Loading Local HTML Files
-The Browser element can load local HTML documents from `<game-directory>/config/fancymenu/assets/`.
+To load an HTML file from `config/fancymenu/assets/`, start the URL with `file:///`:
 
-To load a local HTML file, start your URL with `file:///`, followed by the SHORT file path, for example `/config/fancymenu/assets/cool_changelog.html`, which makes it look like this: `file:///config/fancymenu/assets/cool_changelog.html`.
+```
+file:///config/fancymenu/assets/changelog.html
+```
 
-On **Linux**, use the [**Absolute File/Folder Path** placeholder](/placeholders#absolute-filefolder-path-absolute_path) instead of hardcoding an instance-specific absolute path: `file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/cool_changelog.html"}}`.
+On Linux, use the [**Absolute File/Folder Path**](/placeholders#absolute-filefolder-path-absolute_path) placeholder instead:
 
-The Linux short path must begin with `/`, as shown in the example.
+```
+file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/changelog.html"}}
+```
 
-## Element Animator
-A powerful tool for creating complex, keyframe-based animations. It can animate the position, size, and anchor point of one or multiple other elements.
+Websites can run actions and read placeholders: [Browser JavaScript API](/browser-api).
 
-*   **Use Cases:**
-    *   Sliding elements into or out of view.
-    *   Resizing panels or notifications.
-    *   Animating position offsets and anchor transitions.
-*   **Key Features:**
-    *   **Keyframe Editor:** A dedicated editor for adding, editing, and sequencing keyframes on a timeline.
-    *   **Multi-Target:** A single Animator can control multiple "target" elements at once.
-    *   **Control:** Animations can be set to loop. You can also choose to animate only position or size.
-    *   **Timing Offsets:** Target elements can use individual or randomized start timing offsets.
-    *   See [Element Animator](/element-animator) for setup and keyframe editing.
+# Shapes, Items and Models
 
-## Ticker
-An invisible element that executes a list of actions at a regular interval (every "tick").
+## Rectangle Shape
 
-> [!NOTE]
-> For background automation, consider using [Schedulers](/schedulers). Schedulers are global and can run independently of a specific screen.
+A rectangle in one color, like a panel behind text.
 
-*   **Use Cases:**
-    *   Periodically checking a server's online status and updating a text element.
-    *   Creating a countdown timer that updates a text label.
-    *   Running a script repeatedly to create custom behaviors.
-*   **Key Features:**
-    *   **Timing Control:** You can set the delay between ticks in milliseconds.
-    *   **Tick Modes:** Can be set to tick continuously, only once per game session, or once every time the menu is loaded.
-    *   **Asynchronous:** Can run its [actions](/action-scripts) separately, although some actions cannot run while this option is enabled.
+<img width="536" alt="A dark see-through panel with rounded corners and blur, with server rules on it" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_rectangle_shape.png?raw=true">
 
-## Audio
-An invisible element that plays audio files. It can manage a playlist of tracks and offers various playback controls.
+- **Color**: a HEX color. Two more digits make it see-through, like `#101828C8`.
+- **Corner Rounding Radius**: rounds all corners, or every corner on its own.
+- **Blur** and **Blur Intensity**: blur what's behind it.
 
-*   **Use Cases:**
-    *   Adding custom background music to a menu.
-    *   Creating a music player with buttons to control playback (next/previous track, volume).
-    *   Playing ambient soundscapes.
-*   **Key Features:**
-    *   **Playlist:** Can manage multiple audio tracks.
-    *   **Playback Modes:** Can play tracks in order or shuffle them (with support for track weighting to make some tracks more common than others).
-    *   **Control:** Supports looping, volume adjustment, and sound-channel selection. See [Menu Background Music](/background-music).
+## Circle Shape
 
-## Music Controller
-An invisible element used to control Minecraft's default music playback within a specific menu.
+A circle or oval in one color, like a status light.
 
-*   **Use Cases:**
-    *   Disabling the default menu music on a screen where you want to play your own custom music via an [**Audio** element](#audio).
-    *   Stopping in-world music from continuing to play when a menu is opened in-game.
-*   **Key Features:**
-    *   Separate toggles to control vanilla "Menu Music" and "World Music."
+<img width="428" alt="A green dot next to Survival: online and a red dot next to Creative: offline" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_circle_shape.png?raw=true">
+
+- **Color**, **Blur** and **Blur Intensity**: like the Rectangle Shape.
+- **Roundness**: `2` is a circle. Bigger numbers make it more square, smaller numbers pointier.
+
+## Item
+
+Shows a Minecraft or mod item, like in the inventory.
+
+<img width="460" alt="An enchanted diamond sword, 16 apples, a golden apple and a totem of undying" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_item.png?raw=true">
+
+- **Item Key**: the item, like `minecraft:diamond_sword`.
+- **Item Count**, **Item Name**, **Item Lore** and **Enchanted**: like on a real item.
+- **Show Item Tooltip**: shows the item's tooltip while the mouse is over it.
+- **Custom NBT Data**: more item data, written like the part of a `/give` command right after the item.
+
+## Block/Item JSON Model
+
+Shows a block or item model in 3D, from the game's resources or a JSON file of yours.
+
+<img width="296" alt="A crafting table in 3D" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_json_model.png?raw=true">
+
+- **Model**: the **Model Source**, like `minecraft:models/block/crafting_table.json`.
+- **Texture**: replaces the model's texture with yours.
+- **Transform**: scale, rotate and move the model.
+- **Lighting**: the color and direction of its two lights.
+
+## Player Entity
+
+Shows a player in 3D, like the player's own character on the title screen.
+
+> [!IMPORTANT]
+> Player Entities need the mod Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Without it, they show an error instead of the player.
+
+- **Copy Client Player**: shows the player who plays the game, with their skin and name.
+- **Player Name**, **Skin Texture** and **Cape Texture**: any other player or skin.
+- **Entity Pose**, **Head Follows Mouse** and **Body Follows Mouse**: how it stands and looks.
+- **Armor and Tools**, **Parrot**, **Is Baby** and **Show Player Name**: what it wears and shows.
+
+More in [Player Entities](/player-entities). For just a head, see [Player Heads](/player-heads).
 
 ## Progress Bar
-A customizable bar that visually represents a numerical value.
 
-*   **Use Cases:**
-    *   A loading bar that tracks world loading progress using `{"placeholder":"world_load_progress"}`.
-    *   Visual health, hunger, or experience bars for an in-game HUD.
-    *   A volume indicator that is controlled by a [**Slider** element](#slider).
-*   **Key Features:**
-    *   **Dynamic Value:** The progress value (0-100 or 0.0-1.0) is set via a text field that supports [placeholders](/placeholders).
-    *   **Appearance:** The bar's direction (up, down, left, right), colors, textures and nine-slicing for bar/background textures are all customizable.
-    *   **Animation:** Features a smooth filling animation to make progress changes look less jarring.
-    *   **Progress-Based Element Anchor:** When another element uses the progress bar as its **Element** anchor, enable **Use Progress for Element Anchor** to move that anchor to the current edge of the filled area. Anchored elements then travel with the bar's progress instead of staying attached to the progress bar's static bounds.
+A bar that fills up, like a loading bar.
+
+<img width="496" alt="A progress bar at 65% under the text Loading world... 65%" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_progress_bar.png?raw=true">
+
+- **Progress Value Source**: how full it is. Use [placeholders](/placeholders) here, like [**World Loading Progress**](/placeholders#world-loading-progress-world_load_progress) in a world loading screen.
+- **Progress Value Mode**: **PERCENTAGE (0-100)** or **FLOATING POINT (0.0-1.0)**.
+- **Direction**: the side it fills to.
+- **Bar Color** and **Background Color**, or **Bar Texture** and **Background Texture**.
+- **Smooth Filling Animation**: slides to new values instead of jumping.
+- **Use Progress for Element Anchor**: elements anchored to the bar move with the end of the filled part.
+
+# Layout Helpers
+
+## Scrollable Area
+
+Holds other elements and scrolls through them, like a list of servers or a long info page.
+
+<img width="800" alt="Three Scrollable Areas that arrange buttons and items as a stack, a grid and a flow" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/scroll_area_modes.png?raw=true">
+
+Drop elements into it in the layout editor. Only custom elements can go in, no vanilla elements. All about it in [Scrollable Areas](/scrollable-areas).
 
 ## Dragger
-An invisible element that the user can click and drag to move around. Other elements can be anchored to it to create movable widgets.
 
-*   **Use Cases:**
-    *   Creating a draggable clock or information panel.
-    *   Allowing users to customize the position of UI elements to their preference.
-*   **Key Features:**
-    *   **Optional Persistence:** Enable **Save User Drag Offset** to keep the user's dragged position across screen openings and game restarts. Disable it to reset the offset.
-    *   **Anchor Point:** Acts as a movable anchor for other elements, which is a key part of [Positioning Elements](/positioning-elements).
+An area players can grab and move outside the editor. Elements anchored to it move along, like a movable info panel. It's invisible outside the editor.
+
+**Save User Drag Offset** keeps the new position after the screen closes and the game restarts. More in [Dragger](/dragger).
+
+## Element Animator
+
+Moves and resizes other elements with keyframes, like a panel sliding into the screen. It's invisible outside the editor.
+
+- **Manage Target Elements**: the elements it animates.
+- **Edit Keyframes**: opens the keyframe editor.
+- **Loop Animation**: starts again at the end.
+
+All about it in [Element Animator](/element-animator).
+
+# Invisible Elements
+
+These elements only show in the layout editor.
+
+## Ticker
+
+Runs its action script over and over while the screen is open.
+
+- **Tick Delay [ms]**: the time between two runs, in milliseconds. `0` runs it every tick, 20 times per second.
+- **Tick Mode**: **Normal** runs it all the time. **Session** runs it only once until the game restarts. **On Load Screen** runs it once every time the screen opens, also when the window gets resized.
+- **Async**: runs it in the background. Most actions can't run like that and show an error.
+
+> [!TIP]
+> To run actions on every screen or without any screen, use [Schedulers](/schedulers).
+
+## Audio
+
+Plays music or sounds while the screen is open, one track after another.
+
+- **Manage Tracks**: the audio files, their order and their **Track Weight** for shuffling.
+- **Play Mode**: **Normal** plays them in order, **Shuffle** in random order.
+- **Loop Tracks**, **Volume** and **Sound Channel**: how they play.
+
+To keep the music playing across screens, put the Audio element in a [Universal Layout](/universal-layouts). More in [Menu Background Music](/background-music).
+
+## Music Controller
+
+Turns the game's own music off for this screen.
+
+- **Play Menu Music**: the music of menus while no world is loaded, like on the title screen.
+- **Play World Music**: the music of the world that keeps playing in menus, like the inventory.
+
+It only works while a screen is open.
 
 ## Cursor
-An invisible element that replaces the default system cursor with a custom image when a layout is active.
 
-*   **Use Cases:**
-    *   Creating a fully themed UI that matches your modpack's aesthetic.
-*   **Key Features:**
-    *   **Custom Texture:** Use any image for your cursor.
-    *   **Hotspot:** Sets the exact image pixel used as the click point. See [Custom Cursor](/custom-cursor).
+Replaces the mouse cursor with your own image while the screen is open.
+
+- **Cursor Texture**: a PNG image, like 32×32 pixels.
+- **Hotspot X-Coordinate** and **Hotspot Y-Coordinate**: the pixel of the image that clicks, like the tip of an arrow.
+- **Editor Preview Mode**: shows the cursor in the editor while the mouse is over the element.
+
+More in [Custom Cursor](/custom-cursor).
