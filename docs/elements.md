@@ -19,7 +19,7 @@ The element shows up where you right-clicked. Drag it to move it, drag its edges
 
 <img width="800" alt="Right-clicking the layout editor, adding a Button through New Element, moving and widening it, and giving it the label Join Server" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_add_element.gif?raw=true">
 
-To keep elements in place on every window size, read [Positioning Elements](/positioning-elements). To put elements in front of or behind others, read [Layers and Groups](/layers-and-groups).
+How to select, move, copy and delete elements, and all shortcuts of the editor: [Layout Editor](/layout-editor). To keep elements in place on every window size, read [Positioning Elements](/positioning-elements). To put elements in front of or behind others, read [Layers and Groups](/layers-and-groups).
 
 # Settings of All Elements
 

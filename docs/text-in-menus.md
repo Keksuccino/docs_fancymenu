@@ -62,7 +62,26 @@ The text editor of Text and Tooltip elements has shortcuts for common formatting
 - The alignment shortcuts work on the selected lines, or on the line of the cursor. `Ctrl + E` or `Ctrl + R` on lines that already have that alignment aligns them left again.
 - Right-click in the editor and open **Formatting** to see all of these in a menu.
 
-See [Shortcuts](/shortcuts#text-editor) for all other shortcuts of the text editor.
+### Other Shortcuts
+
+The same text editor opens for most texts in FancyMenu, like action values and many element settings. These shortcuts work in all of them. On macOS, use `Cmd` instead of `Ctrl`.
+
+| Shortcut | What it does |
+|---|---|
+| `Ctrl + C` | Copy the selected text |
+| `Ctrl + X` | Cut the selected text |
+| `Ctrl + V` | Paste |
+| `Ctrl + A` | Select all text |
+| `Ctrl + Z` | Undo |
+| `Ctrl + Y` | Redo |
+| `Ctrl + D` | Duplicate the line of the cursor |
+| `Alt + Arrow Up` / `Alt + Arrow Down` | Move the line of the cursor up or down |
+| `Shift + Arrow keys` | Select text |
+| `Ctrl + Home` / `Ctrl + End` | Jump to the start or end of the text |
+| `Ctrl + G` | Go to a line: type its number and press `Enter` |
+| `Ctrl + S` | Same as **Done** |
+
+For the shortcuts of the layout editor, see [Layout Editor](/layout-editor#shortcuts).
 
 # Looks and Styles
 

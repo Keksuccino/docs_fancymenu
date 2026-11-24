@@ -53,6 +53,8 @@ This will open the **layout editor** where you can add elements to the layout an
 Most customization options can be accessed by **right-clicking the editor background**.
 Doing that will open a context menu with lots of options, like customizing the **menu backround** or **adding elements** to the layout.
 
+Everything about the editor, like selecting, moving and copying elements and its shortcuts, is on the [Layout Editor](/layout-editor) page.
+
 <br>
 <img width="350" alt="context_menu" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/context_menu.png?raw=true">
 
