@@ -19,7 +19,7 @@ There are two kinds of variables:
 
 The position of an entry in a list is its index. The first entry has index `0`, the second one `1`, and so on. Negative indexes count from the end, so `-1` is the last entry.
 
-Things that only know text, like `$$name` or **Is Variable Value (FM Variable)**, get a list as a JSON array of its entries, like `["Craft a bed","Torches keep mobs away"]`.
+Things that only know text, like `$$name` or **Is Variable Value (FM Variable)**, get a list as a JSON array of its entries, like `["Craft a bed before your first night.","Torches keep most mobs away."]`.
 
 # Managing Variables
 
@@ -80,7 +80,7 @@ Current theme: $$menu_theme
 | **Get Variable Value (FM Variable)** | `{"placeholder":"getvariable","values":{"name":"clicks"}}` | The value, or `0` when the variable is empty or doesn't exist. Best for numbers. |
 | **Get List Entry (FM Variable)** | `{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}` | The entry at the index, or the `fallback` when there's none. |
 | **List Size (FM Variable)** | `{"placeholder":"list_size","values":{"name":"tips"}}` | How many entries the list has. |
-| **Index of List Entry (FM Variable)** | `{"placeholder":"list_index_of","values":{"name":"tips","value":"Torches keep mobs away","ignore_case":"false"}}` | The index of the first entry that matches the whole `value`, or `-1`. |
+| **Index of List Entry (FM Variable)** | `{"placeholder":"list_index_of","values":{"name":"tips","value":"Torches keep most mobs away.","ignore_case":"false"}}` | The index of the first entry that matches the whole `value`, or `-1`. |
 | **Join List Entries (FM Variable)** | `{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}` | All entries in one text, with the `separator` between them (`, ` when left out). `\n` is a line break. |
 
 # Changing Variables with Actions
