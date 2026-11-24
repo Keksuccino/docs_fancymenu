@@ -45,7 +45,7 @@ Right-click a variable for these options:
 | **Clear Variable on Game Launch** | Empties the variable every time the game starts. Good for values that should only last one session. |
 | **Delete Variable** | Deletes the variable. |
 | **Copy** and **Paste** | Make a copy of a variable. |
-| **Export Variable for AI** | Copies the variable for [AI chats](/export-for-ai). |
+| **Export Variable for AI** | Exports the variable for [AI chats](/export-for-ai). |
 
 Changes apply right away. Undo them with `Ctrl + Z` and redo them with `Ctrl + Y` (`Cmd` on macOS). Start typing to search, press `Enter` to edit the selected variable, or `Delete` to delete it.
 
