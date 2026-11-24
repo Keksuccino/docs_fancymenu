@@ -18,7 +18,7 @@ Nine-slicing preserves a texture's corners and borders while stretching its cent
 
 | Area | Supported targets |
 |---|---|
-| Widgets | [Button](/elements#button) and [Slider](/elements#slider) textures; [global button and slider styles](/global-customizations#button-visuals) |
+| Widgets | [Button](/elements#button) and [Slider](/elements#slider) textures; [global button and slider styles](/global-customizations#buttons-and-sliders) |
 | Images and panels | [Image elements](/elements#image) |
 | Progress Bars | [Fill and background textures](/elements#progress-bar) |
 | Tooltips | [Custom background textures](/elements#tooltip) |
