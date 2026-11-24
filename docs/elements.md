@@ -258,7 +258,7 @@ Shows a block or item model in 3D, from the game's resources or a JSON file of y
 - **Model**: the **Model Source**, like `minecraft:models/block/crafting_table.json`.
 - **Texture**: replaces the model's texture with yours.
 - **Transform**: scale, rotate and move the model.
-- **Lighting**: the color and direction of its two lights.
+- **Lighting**: **Light Hue [HEX]** colors the light on the model.
 
 ## Player Entity
 
@@ -321,12 +321,20 @@ These elements only show in the layout editor.
 
 Runs its action script over and over while the screen is open.
 
+> [!IMPORTANT]
+> [Schedulers](/schedulers) are the recommended way for everything that runs over and over or at a later time. Use them instead of Tickers whenever possible. They work on every screen and without any screen, every action works in them, and actions start and stop them.
+
+What Tickers do, done with Schedulers:
+
+- Running all the time while a screen is open: a Scheduler with a **Tick Delay (ms)**. Start it with [**Start Scheduler**](/action-scripts#start-scheduler-start_scheduler) in **Edit 'Open Screen' Action Script** of the layout, and stop it with [**Stop Scheduler**](/action-scripts#stop-scheduler-stop_scheduler) in **Edit 'Close Screen' Action Script**. Both are in the right-click menu of the editor background.
+- Running once per game start: a Scheduler with **Start on Launch** and **Ticks to Run** `1`.
+- Running once every time a screen opens: no Ticker or Scheduler needed. Put the actions in **Edit 'Open Screen' Action Script**.
+
+Settings of the Ticker:
+
 - **Tick Delay [ms]**: the time between two runs, in milliseconds. `0` runs it every tick, 20 times per second.
 - **Tick Mode**: **Normal** runs it all the time. **Session** runs it only once until the game restarts. **On Load Screen** runs it once every time the screen opens, also when the window gets resized.
 - **Async**: runs it in the background. Most actions can't run like that and show an error.
-
-> [!TIP]
-> To run actions on every screen or without any screen, use [Schedulers](/schedulers).
 
 ## Audio
 
