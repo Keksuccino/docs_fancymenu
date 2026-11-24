@@ -35,11 +35,12 @@ Use an [**Action Script**](/action-scripts).
 
 ### Can I create a completely new menu screen from scratch?
 
-Use a [**Custom GUI**](/custom-guis).
-1.  In the menu bar, go to **Customization -> Custom GUIs -> Manage Custom GUIs**.
-2.  Click **"New GUI"** and give it a unique identifier.
-3.  You can then open this new empty screen and create a layout for it, adding any elements you want.
-4. Open the Custom GUI with the [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui).
+Yes, with a [Custom GUI](/custom-guis):
+
+1. Open **menu bar -> Customization -> Custom GUIs -> Manage Custom GUIs** and click **New GUI**.
+2. Give it an identifier, like `modpack_info`, and click **Done**.
+3. Open it with **Open GUI** and make a layout for it, like for any other menu.
+4. Open it from a button with the action [**Open Screen or Custom GUI**](/action-scripts#open-screen-or-custom-gui) and its identifier.
 
 ### My game is taking a long time to load after enabling pre-loading.
 
