@@ -44,7 +44,7 @@ Popup Mode does not merge the two screens. The Custom GUI remains the active scr
 
 Use the exact Custom GUI identifier with either:
 
-- The [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui-opengui).
+- The [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui).
 - The [`/openguiscreen` command](/commands#openguiscreen).
 
 # Overriding an Existing Screen

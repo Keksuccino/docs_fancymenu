@@ -31,7 +31,7 @@ To get the best help, please provide as much context as possible:
 Use an [**Action Script**](/action-scripts).
 1.  Right-click the button in the editor.
 2.  Select **Edit Action Script**.
-3. Click **Add Action** and choose an action, such as [**Open Screen or Custom GUI**](/action-scripts#open-screen-or-custom-gui-opengui), [**Join Server**](/action-scripts#join-server-joinserver), or [**Set Variable Value**](/action-scripts#set-variable-value-fm-variable-set_variable).
+3. Click **Add Action** and choose an action, such as [**Open Screen or Custom GUI**](/action-scripts#open-screen-or-custom-gui), [**Join Server**](/action-scripts#join-server), or [**Set Variable Value**](/action-scripts#set-variable-value-fm-variable).
 
 ### Can I create a completely new menu screen from scratch?
 
@@ -39,7 +39,7 @@ Use a [**Custom GUI**](/custom-guis).
 1.  In the menu bar, go to **Customization -> Custom GUIs -> Manage Custom GUIs**.
 2.  Click **"New GUI"** and give it a unique identifier.
 3.  You can then open this new empty screen and create a layout for it, adding any elements you want.
-4. Open the Custom GUI with the [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui-opengui).
+4. Open the Custom GUI with the [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui).
 
 ### My game is taking a long time to load after enabling pre-loading.
 
@@ -104,7 +104,7 @@ FancyMenu has many [built-in game-event listeners](/listeners), but there is no 
 
 You can control a button's active state using [requirements](/conditions).
 Right-click the button in the editor and select **Control Active State**.
-Add a requirement that must be met for the button to be active. To permanently disable it, use [**Is Number**](/conditions#is-number-fancymenu_visibility_requirement_is_number) to check whether 0 equals 1.
+Add a requirement that must be met for the button to be active. To permanently disable it, use [**Is Number**](/conditions#is-number) to check whether 0 equals 1.
 The button will now use its "Inactive Background" texture and will be unclickable.
 
 ### How can I remove the header and footer (the dirt texture bars) on scrollable screens?

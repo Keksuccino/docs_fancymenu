@@ -28,7 +28,7 @@ How to add requirements and combine them: [Requirements](/conditions#adding-a-re
 
 Right-click an element and turn on **Load Once Per Session**. The element shows the first time its screen opens. Once the player goes to another screen, it stays hidden until the game restarts.
 
-Good for hints that should only show once per game start, like "Press F1 to see the controls". To use the same idea in action scripts, there's the [**Only Once Per Session**](/conditions#only-once-per-session-once_per_session) requirement.
+Good for hints that should only show once per game start, like "Press F1 to see the controls". To use the same idea in action scripts, there's the [**Only Once Per Session**](/conditions#only-once-per-session) requirement.
 
 # Delaying Elements
 
@@ -48,7 +48,7 @@ Resizing the window doesn't start the delay again.
 
 Right-click an element and click **Delay Disappearance**. When its requirements stop being met, the element stays for **Delay In Seconds** before it goes. **Delay** has the same choices as above.
 
-For example, an info box with the requirement [**Is Element Hovered**](/conditions#is-element-hovered-fancymenu_visibility_requirement_is_element_hovered) for a button stays 1 second after the mouse left the button.
+For example, an info box with the requirement [**Is Element Hovered**](/conditions#is-element-hovered) for a button stays 1 second after the mouse left the button.
 
 # Fading In and Out
 
@@ -74,10 +74,10 @@ Opacity supports [placeholders](/placeholders) and [variables](/variables), like
 
 A button can show and hide elements, like the rules panel in the GIF above. A [variable](/variables) remembers if the panel is shown.
 
-1. Right-click the panel and click **Loading Requirements**. Add [**Is Variable Value (FM Variable)**](/conditions#is-variable-value-fm-variable-fancymenu_visibility_requirement_is_variable_value) with the variable `show_rules` and the value `true`.
+1. Right-click the panel and click **Loading Requirements**. Add [**Is Variable Value (FM Variable)**](/conditions#is-variable-value-fm-variable) with the variable `show_rules` and the value `true`.
 2. Right-click the button and click **Edit Action Script**.
 3. Right-click the script area and click **Add IF Statement**. Give it the same requirement as the panel.
-4. Add [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable-set_variable) inside the IF, with this value:
+4. Add [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable) inside the IF, with this value:
 
    ```
    show_rules:false
@@ -108,13 +108,13 @@ A button can also switch between more than two versions, like three backgrounds:
    background:{"placeholder":"calc","values":{"decimal":"false","expression":"({"placeholder":"getvariable","values":{"name":"background"}} + 1) % 3"}}
    ```
 
-For more versions, change the `3` at the end. See [**Calculator**](/placeholders#calculator-calc) for the math.
+For more versions, change the `3` at the end. See [**Calculator**](/placeholders#calculator) for the math.
 
 # Turning Layouts On and Off
 
 To show or hide a whole layout:
 
 - **Loading Requirements [Layout-Wide]** in the right-click menu of the editor background works like the requirements of elements. See [Layout-Wide Requirements](/conditions#layout-wide-requirements).
-- The actions [**Toggle Layout**](/action-scripts#toggle-layout-toggle_layout), [**Enable Layout**](/action-scripts#enable-layout-enable_layout) and [**Disable Layout**](/action-scripts#disable-layout-disable_layout) turn a layout on and off by its name.
+- The actions [**Toggle Layout**](/action-scripts#toggle-layout), [**Enable Layout**](/action-scripts#enable-layout) and [**Disable Layout**](/action-scripts#disable-layout) turn a layout on and off by its name.
 
 Put the button in another layout than the one it turns off. Otherwise the button goes away with it, and nothing can turn the layout back on.

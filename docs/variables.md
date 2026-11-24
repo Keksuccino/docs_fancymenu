@@ -8,7 +8,7 @@ description: How to store texts and lists in variables, and use them in texts, a
 Variables are values FancyMenu remembers, even after the game closes. Use them to count clicks, remember choices, track progress, or keep lists like loading tips. Texts, actions, requirements, listeners and some elements can read and change them.
 
 > [!TIP]
-> The actions for variables are listed in [Action Scripts](/action-scripts), the requirements in [Requirements](/conditions), and the listener in [Listeners](/listeners#on-variable-updated-fm-variable-fm_variable_updated).
+> The actions for variables are listed in [Action Scripts](/action-scripts), the requirements in [Requirements](/conditions), and the listener in [Listeners](/listeners#on-variable-updated-fm-variable).
 
 # Text and List Variables
 
@@ -89,7 +89,7 @@ Current theme: $$menu_theme
 
 ## Text Variables
 
-[**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable-set_variable) takes the name and the new value, separated by `:`. A variable that doesn't exist yet gets created.
+[**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable) takes the name and the new value, separated by `:`. A variable that doesn't exist yet gets created.
 
 ```
 menu_theme:dark
@@ -107,7 +107,7 @@ clicks:{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeho
 
 Set Variable Value never turns a list into text. A JSON array becomes the entries of the list, empty text empties it, and any other text becomes its only entry.
 
-[**Delete Variable (FM Variable)**](/action-scripts#delete-variable-fm-variable-delete_variable) deletes one variable, and [**Clear All Variables (FM Variable)**](/action-scripts#clear-all-variables-fm-variable-clear_variables) deletes all of them.
+[**Delete Variable (FM Variable)**](/action-scripts#delete-variable-fm-variable) deletes one variable, and [**Clear All Variables (FM Variable)**](/action-scripts#clear-all-variables-fm-variable) deletes all of them.
 
 ## List Actions
 
@@ -115,12 +115,12 @@ Every list action has its own window. All its fields support placeholders.
 
 | Action | What it does |
 |---|---|
-| [**Add to List (FM Variable)**](/action-scripts#add-to-list-fm-variable-add_to_list) | Adds an entry at the end, or at an index. **Skip If Already in List** adds nothing when the list already has it. |
-| [**Set List Entry (FM Variable)**](/action-scripts#set-list-entry-fm-variable-set_list_entry) | Replaces the entry at an index. |
-| [**Remove from List (FM Variable)**](/action-scripts#remove-from-list-fm-variable-remove_from_list) | Removes the **Entry at Index**, the **First Match** of a value, or **All Matches**. |
-| [**Clear List (FM Variable)**](/action-scripts#clear-list-fm-variable-clear_list) | Removes all entries. The list stays, but empty. |
-| [**Set List (FM Variable)**](/action-scripts#set-list-fm-variable-set_list) | Replaces all entries with the parts of a **Split Text**, or the entries of a **JSON Array**. `$$other_list` as JSON Array copies another list. |
-| [**Arrange List (FM Variable)**](/action-scripts#arrange-list-fm-variable-arrange_list) | **Sort A–Z**, **Sort Z–A**, **Numbers, Smallest First**, **Numbers, Biggest First**, **Reverse Order**, **Shuffle** or **Remove Duplicates**. |
+| [**Add to List (FM Variable)**](/action-scripts#add-to-list-fm-variable) | Adds an entry at the end, or at an index. **Skip If Already in List** adds nothing when the list already has it. |
+| [**Set List Entry (FM Variable)**](/action-scripts#set-list-entry-fm-variable) | Replaces the entry at an index. |
+| [**Remove from List (FM Variable)**](/action-scripts#remove-from-list-fm-variable) | Removes the **Entry at Index**, the **First Match** of a value, or **All Matches**. |
+| [**Clear List (FM Variable)**](/action-scripts#clear-list-fm-variable) | Removes all entries. The list stays, but empty. |
+| [**Set List (FM Variable)**](/action-scripts#set-list-fm-variable) | Replaces all entries with the parts of a **Split Text**, or the entries of a **JSON Array**. `$$other_list` as JSON Array copies another list. |
+| [**Arrange List (FM Variable)**](/action-scripts#arrange-list-fm-variable) | **Sort A–Z**, **Sort Z–A**, **Numbers, Smallest First**, **Numbers, Biggest First**, **Reverse Order**, **Shuffle** or **Remove Duplicates**. |
 
 - List actions create a list that doesn't exist yet, and turn empty text variables into lists. They never change a text variable that has a value: [convert it](#changing-variables) first.
 - Type the name of the list without `$$`. With `$$`, the action uses the value of that variable as name.
@@ -147,7 +147,7 @@ The [FOR EACH loop](/action-scripts#for-each-loop) runs the actions inside it on
 2. Type the name of the list variable, without `$$`, and click **Done**.
 3. Add actions inside the loop. In their values, `$$list_entry` is the current entry and `$$list_index` its index.
 
-For example, a list `starter_commands` with the entries `/time set day` and `/weather clear`, and a [**Send Chat Message/Command**](/action-scripts#send-chat-messagecommand-sendmessage) action inside the loop with this value, runs both commands:
+For example, a list `starter_commands` with the entries `/time set day` and `/weather clear`, and a [**Send Chat Message/Command**](/action-scripts#send-chat-messagecommand) action inside the loop with this value, runs both commands:
 
 ```
 $$list_entry
@@ -161,9 +161,9 @@ $$list_entry
 
 [Requirements](/conditions) show elements or run parts of action scripts only when a variable has a certain value.
 
-- [**Is Variable Value (FM Variable)**](/conditions#is-variable-value-fm-variable-fancymenu_visibility_requirement_is_variable_value) checks the whole value. For lists, it compares the JSON array of all entries.
-- [**List Contains Entry (FM Variable)**](/conditions#list-contains-entry-fm-variable-list_contains_entry) checks if a list has an entry. It has to match the whole entry. **Ignore Case** makes `Apple` match `apple`.
-- [**Is Number**](/conditions#is-number-fancymenu_visibility_requirement_is_number) compares numbers, like `$$clicks` bigger than `5`.
+- [**Is Variable Value (FM Variable)**](/conditions#is-variable-value-fm-variable) checks the whole value. For lists, it compares the JSON array of all entries.
+- [**List Contains Entry (FM Variable)**](/conditions#list-contains-entry-fm-variable) checks if a list has an entry. It has to match the whole entry. **Ignore Case** makes `Apple` match `apple`.
+- [**Is Number**](/conditions#is-number) compares numbers, like `$$clicks` bigger than `5`.
 
 For example, a button opens the latest news post and adds `news_42` to a list `read_news` with **Add to List (FM Variable)**. A "New!" badge next to the button has the requirement **List Contains Entry (FM Variable)** for `news_42`, with the **Requirement Mode** Opposite. So the badge hides once the player read the post.
 
@@ -175,7 +175,7 @@ For example, a button opens the latest news post and adds `news_42` to a list `r
 
 # Reacting to Changes
 
-- The [**On Variable Updated [FM Variable]**](/listeners#on-variable-updated-fm-variable-fm_variable_updated) listener runs an action script every time a variable gets set.
+- The [**On Variable Updated [FM Variable]**](/listeners#on-variable-updated-fm-variable) listener runs an action script every time a variable gets set.
 - The [`/fmvariable` command](/commands#fmvariable) sets and reads variables from chat, command blocks and other mods.
 
 # Where Variables Are Saved

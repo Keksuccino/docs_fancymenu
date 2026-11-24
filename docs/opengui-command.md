@@ -22,7 +22,7 @@ To find an identifier, open the target screen and enable the debug overlay with 
 
 Omit `[<target_players>]` to open the GUI for yourself, or use a player name or selector such as `@a` to open it for one or more players. Supplying the target argument requires permission level 2 (Game Master / OP level 2), even if it names yourself, and every target player needs FancyMenu installed on their client.
 
-Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button-mimicbutton) on the widget that normally opens it.
+Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button) on the widget that normally opens it.
 
 # Closing GUIs by Command
 

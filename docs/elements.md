@@ -38,9 +38,13 @@ Every element has these settings in its right-click menu, next to the settings o
 | **In-Editor Display Name** | The name of the element in the layer list. |
 | **Export for AI** | Turns the element into text for [AI assistants](/export-for-ai). |
 
-# Buttons and Inputs
+# All Elements
 
-## Button
+Every element FancyMenu has, sorted by what it's for.
+
+## Buttons and Inputs
+
+### Button
 
 A button that runs an [action script](/action-scripts) when clicked, like joining a server, opening a website or another menu.
 
@@ -55,7 +59,7 @@ A button that runs an [action script](/action-scripts) when clicked, like joinin
 - **Control Active State**: [requirements](/conditions) for the button to be clickable. When they aren't met, it's greyed out.
 - **Template Mode**: gives other buttons and sliders of the screen the look of this button. See [Button & Slider Templates](/button-slider-templates).
 
-## Slider
+### Slider
 
 A slider players drag to pick a value. It runs its action script every time the value changes.
 
@@ -69,7 +73,7 @@ A slider players drag to pick a value. It runs its action script every time the 
 - **Edit Action Script**: runs when the value changes. `$$value` is the new value.
 - **Pre-Selected Value**: the value the slider starts at. Point it at what the slider changes, so it shows the right value when the screen opens.
 
-For example, a volume slider of the type **Integer Range** from `0` to `100` has the label `Music Volume: $$value%` and a [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable-set_variable) action with this value:
+For example, a volume slider of the type **Integer Range** from `0` to `100` has the label `Music Volume: $$value%` and a [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable) action with this value:
 
 ```
 music_volume:$$value
@@ -79,7 +83,7 @@ Its **Pre-Selected Value** is `$$music_volume`, so it starts at the last value t
 
 Sliders have the same label, texture, sound, tooltip and **Control Active State** settings as buttons.
 
-## Checkbox
+### Checkbox
 
 A box players tick and untick. It runs its action script every time it changes.
 
@@ -92,7 +96,7 @@ A box players tick and untick. It runs its action script every time it changes.
 
 Checkboxes have the same tooltip, sound and **Navigable** settings as buttons.
 
-## Text Input Field
+### Text Input Field
 
 A field players type into, like a server address or a name.
 
@@ -104,13 +108,13 @@ A field players type into, like a server address or a name.
 - **Max Text Length**: how many characters fit in.
 - **Background Color**, **Border Color**, **Border Rounding Radius** and **Text Color**: its look.
 
-For example, a field linked to `server_address` and a button with the [**Join Server**](/action-scripts#join-server-joinserver) action and the value `$$server_address` let players join any server.
+For example, a field linked to `server_address` and a button with the [**Join Server**](/action-scripts#join-server) action and the value `$$server_address` let players join any server.
 
-Without a variable, the [**Text Input Field Value**](/placeholders#text-input-field-value-text_input_field_value) placeholder reads the text, and the [**Set Text Input Field Value**](/action-scripts#set-text-input-field-value-set_text_input_field_value) action changes it.
+Without a variable, the [**Text Input Field Value**](/placeholders#text-input-field-value) placeholder reads the text, and the [**Set Text Input Field Value**](/action-scripts#set-text-input-field-value) action changes it.
 
-# Texts and Tooltips
+## Texts and Tooltips
 
-## Text
+### Text
 
 Text of any length, from a short label to scrollable rules or patch notes, with [Markdown](/text-formatting) and [placeholders](/placeholders).
 
@@ -121,19 +125,19 @@ Text of any length, from a short label to scrollable rules or patch notes, with 
 
 All about it in [Text in Menus](/text-in-menus).
 
-## Tooltip
+### Tooltip
 
 A text box like the tooltips of the game, with [Markdown](/text-formatting) and [placeholders](/placeholders).
 
 <img width="712" alt="A Need Help? button with a tooltip next to it" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_tooltip.png?raw=true">
 
 - It shows where you put it, or at the mouse with **Follow Mouse**.
-- Its **Loading Requirements** decide when it shows, like [**Is Element Hovered**](/conditions#is-element-hovered-fancymenu_visibility_requirement_is_element_hovered) for a button.
+- Its **Loading Requirements** decide when it shows, like [**Is Element Hovered**](/conditions#is-element-hovered) for a button.
 - **Tooltip Background**: your own texture instead of the dark box.
 
 More in [Text in Menus](/text-in-menus).
 
-## Splash Text
+### Splash Text
 
 The yellow text of the title screen, with your own texts.
 
@@ -145,9 +149,9 @@ The yellow text of the title screen, with your own texts.
 
 More in [Splash Text](/splash-text).
 
-# Images and Media
+## Images and Media
 
-## Image
+### Image
 
 An image from your files, a website or the game's resources. Animated images play too.
 
@@ -159,14 +163,14 @@ An image from your files, a website or the game's resources. Animated images pla
 - **Image Tint [HEX]**: colors the image.
 - **Corner Rounding Radius**: rounds its corners.
 
-## Slideshow
+### Slideshow
 
 Shows the images of a slideshow one after another. You make slideshows in `config/fancymenu/slideshows/`, see [Slideshows](/slideshows).
 
 - **Slideshow**: the slideshow to show.
 - **Restore Aspect Ratio**: changes the width, so the images aren't stretched.
 
-## Video
+### Video
 
 Plays a video file, like a trailer or a moving background.
 
@@ -176,11 +180,11 @@ Plays a video file, like a trailer or a moving background.
 - **Video Source**: a video file, a web link or a resource of the game.
 - **Loop Video**, **Volume** and **Sound Channel**: how it plays.
 - **Play Video In Layout Editor**: whether it also plays while you edit.
-- Actions like [**Toggle Video Element Paused State**](/action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) pause it, jump to a time or change its volume.
+- Actions like [**Toggle Video Element Paused State**](/action-scripts#toggle-video-element-paused-state) pause it, jump to a time or change its volume.
 
 **Video [Rinku]** is an older video element that needs the Rinku mod. It still works in old layouts, but isn't in **New Element**.
 
-## GLSL Shader
+### GLSL Shader
 
 Runs your own GLSL shader inside the element, like animated colors or effects from Shadertoy.
 
@@ -192,7 +196,7 @@ Runs your own GLSL shader inside the element, like animated colors or effects fr
 
 How to write them: [GLSL Shader API](/glsl-shader-api).
 
-## Browser
+### Browser
 
 Shows a live website, like a server map or a wiki page.
 
@@ -209,7 +213,7 @@ To load an HTML file from `config/fancymenu/assets/`, start the URL with `file:/
 file:///config/fancymenu/assets/changelog.html
 ```
 
-On Linux, use the [**Absolute File/Folder Path**](/placeholders#absolute-filefolder-path-absolute_path) placeholder instead:
+On Linux, use the [**Absolute File/Folder Path**](/placeholders#absolute-filefolder-path) placeholder instead:
 
 ```
 file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/changelog.html"}}
@@ -217,9 +221,9 @@ file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu
 
 Websites can run actions and read placeholders: [Browser JavaScript API](/browser-api).
 
-# Shapes, Items and Models
+## Shapes, Items and Models
 
-## Rectangle Shape
+### Rectangle Shape
 
 A rectangle in one color, like a panel behind text.
 
@@ -229,7 +233,7 @@ A rectangle in one color, like a panel behind text.
 - **Corner Rounding Radius**: rounds all corners, or every corner on its own.
 - **Blur** and **Blur Intensity**: blur what's behind it.
 
-## Circle Shape
+### Circle Shape
 
 A circle or oval in one color, like a status light.
 
@@ -238,7 +242,7 @@ A circle or oval in one color, like a status light.
 - **Color**, **Blur** and **Blur Intensity**: like the Rectangle Shape.
 - **Roundness**: `2` is a circle. Bigger numbers make it more square, smaller numbers pointier.
 
-## Item
+### Item
 
 Shows a Minecraft or mod item, like in the inventory.
 
@@ -249,7 +253,7 @@ Shows a Minecraft or mod item, like in the inventory.
 - **Show Item Tooltip**: shows the item's tooltip while the mouse is over it.
 - **Custom NBT Data**: more item data, written like the part of a `/give` command right after the item.
 
-## Block/Item JSON Model
+### Block/Item JSON Model
 
 Shows a block or item model in 3D, from the game's resources or a JSON file of yours.
 
@@ -260,7 +264,7 @@ Shows a block or item model in 3D, from the game's resources or a JSON file of y
 - **Transform**: scale, rotate and move the model.
 - **Lighting**: **Light Hue [HEX]** colors the light on the model.
 
-## Player Entity
+### Player Entity
 
 Shows a player in 3D, like the player's own character on the title screen.
 
@@ -274,22 +278,22 @@ Shows a player in 3D, like the player's own character on the title screen.
 
 More in [Player Entities](/player-entities). For just a head, see [Player Heads](/player-heads).
 
-## Progress Bar
+### Progress Bar
 
 A bar that fills up, like a loading bar.
 
 <img width="496" alt="A progress bar at 65% under the text Loading world... 65%" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_progress_bar.png?raw=true">
 
-- **Progress Value Source**: how full it is. Use [placeholders](/placeholders) here, like [**World Loading Progress**](/placeholders#world-loading-progress-world_load_progress) in a world loading screen.
+- **Progress Value Source**: how full it is. Use [placeholders](/placeholders) here, like [**World Loading Progress**](/placeholders#world-loading-progress) in a world loading screen.
 - **Progress Value Mode**: **PERCENTAGE (0-100)** or **FLOATING POINT (0.0-1.0)**.
 - **Direction**: the side it fills to.
 - **Bar Color** and **Background Color**, or **Bar Texture** and **Background Texture**.
 - **Smooth Filling Animation**: slides to new values instead of jumping.
 - **Use Progress for Element Anchor**: elements anchored to the bar move with the end of the filled part.
 
-# Layout Helpers
+## Layout Helpers
 
-## Scrollable Area
+### Scrollable Area
 
 Holds other elements and scrolls through them, like a list of servers or a long info page.
 
@@ -297,13 +301,13 @@ Holds other elements and scrolls through them, like a list of servers or a long 
 
 Drop elements into it in the layout editor. Only custom elements can go in, no vanilla elements. All about it in [Scrollable Areas](/scrollable-areas).
 
-## Dragger
+### Dragger
 
 An area players can grab and move outside the editor. Elements anchored to it move along, like a movable info panel. It's invisible outside the editor.
 
 **Save User Drag Offset** keeps the new position after the screen closes and the game restarts. More in [Dragger](/dragger).
 
-## Element Animator
+### Element Animator
 
 Moves and resizes other elements with keyframes, like a panel sliding into the screen. It's invisible outside the editor.
 
@@ -313,11 +317,11 @@ Moves and resizes other elements with keyframes, like a panel sliding into the s
 
 All about it in [Element Animator](/element-animator).
 
-# Invisible Elements
+## Invisible Elements
 
 These elements only show in the layout editor.
 
-## Ticker
+### Ticker
 
 Runs its action script over and over while the screen is open.
 
@@ -326,7 +330,7 @@ Runs its action script over and over while the screen is open.
 
 What Tickers do, done with Schedulers:
 
-- Running all the time while a screen is open: a Scheduler with a **Tick Delay (ms)**. Start it with [**Start Scheduler**](/action-scripts#start-scheduler-start_scheduler) in **Edit 'Open Screen' Action Script** of the layout, and stop it with [**Stop Scheduler**](/action-scripts#stop-scheduler-stop_scheduler) in **Edit 'Close Screen' Action Script**. Both are in the right-click menu of the editor background.
+- Running all the time while a screen is open: a Scheduler with a **Tick Delay (ms)**. Start it with [**Start Scheduler**](/action-scripts#start-scheduler) in **Edit 'Open Screen' Action Script** of the layout, and stop it with [**Stop Scheduler**](/action-scripts#stop-scheduler) in **Edit 'Close Screen' Action Script**. Both are in the right-click menu of the editor background.
 - Running once per game start: a Scheduler with **Start on Launch** and **Ticks to Run** `1`.
 - Running once every time a screen opens: no Ticker or Scheduler needed. Put the actions in **Edit 'Open Screen' Action Script**.
 
@@ -336,7 +340,7 @@ Settings of the Ticker:
 - **Tick Mode**: **Normal** runs it all the time. **Session** runs it only once until the game restarts. **On Load Screen** runs it once every time the screen opens, also when the window gets resized.
 - **Async**: runs it in the background. Most actions can't run like that and show an error.
 
-## Audio
+### Audio
 
 Plays music or sounds while the screen is open, one track after another.
 
@@ -346,7 +350,7 @@ Plays music or sounds while the screen is open, one track after another.
 
 To keep the music playing across screens, put the Audio element in a [Universal Layout](/universal-layouts). More in [Menu Background Music](/background-music).
 
-## Music Controller
+### Music Controller
 
 Turns the game's own music off for this screen.
 
@@ -355,7 +359,7 @@ Turns the game's own music off for this screen.
 
 It only works while a screen is open.
 
-## Cursor
+### Cursor
 
 Replaces the mouse cursor with your own image while the screen is open.
 

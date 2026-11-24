@@ -30,7 +30,7 @@ Schedulers are the recommended way for everything that should happen later or ov
 
 Everything you change in **Manage Schedulers** gets saved right away.
 
-The scheduler in the GIFs runs [**Arrange List (FM Variable)**](/action-scripts#arrange-list-fm-variable-arrange_list) with **Shuffle** for the list `tips` every 4 seconds. A Text element shows the first entry of the list, so it shows a random tip. How the list and the text work: [List Actions](/variables#list-actions).
+The scheduler in the GIFs runs [**Arrange List (FM Variable)**](/action-scripts#arrange-list-fm-variable) with **Shuffle** for the list `tips` every 4 seconds. A Text element shows the first entry of the list, so it shows a random tip. How the list and the text work: [List Actions](/variables#list-actions).
 
 # Settings
 
@@ -50,17 +50,17 @@ A scheduler only runs after it got started:
 
 - With **Start on Launch**, when the game starts and after switching [profiles](/profiles).
 - With **Start Now** in **Manage Schedulers**. While the scheduler runs, the button is **Stop Now**.
-- With the action [**Start Scheduler**](/action-scripts#start-scheduler-start_scheduler) and the scheduler's ID, like in the script of a button or a [listener](/listeners).
+- With the action [**Start Scheduler**](/action-scripts#start-scheduler) and the scheduler's ID, like in the script of a button or a [listener](/listeners).
 
 It stops:
 
 - On its own, after it ran **Ticks to Run** times.
-- With **Stop Now**, or the action [**Stop Scheduler**](/action-scripts#stop-scheduler-stop_scheduler) and its ID.
+- With **Stop Now**, or the action [**Stop Scheduler**](/action-scripts#stop-scheduler) and its ID.
 - When it gets renamed or removed, when you switch [profiles](/profiles), and when the game closes. After a restart, only schedulers with **Start on Launch** run again.
 
 A scheduler that runs can't get started a second time: **Start Scheduler** does nothing until it stopped. To start it over, use **Stop Scheduler** and then **Start Scheduler**.
 
-The requirement [**Scheduler Is Running**](/conditions#scheduler-is-running-fancymenu_visibility_requirement_is_scheduler_running) checks if a scheduler runs, like to show a stop button only while it does.
+The requirement [**Scheduler Is Running**](/conditions#scheduler-is-running) checks if a scheduler runs, like to show a stop button only while it does.
 
 ## Only While a Screen Is Open
 
@@ -87,7 +87,7 @@ Schedulers get saved in `config/fancymenu/scheduler_instances.txt` (see [Data St
 
 A toast every 30 minutes after the game started:
 
-1. Add a scheduler with [**Show Toast**](/action-scripts#show-toast-show_toast). Set its **Title** to `Time for a Break` and its **Message** to `Stand up, stretch and drink some water.`
+1. Add a scheduler with [**Show Toast**](/action-scripts#show-toast). Set its **Title** to `Time for a Break` and its **Message** to `Stand up, stretch and drink some water.`
 2. In **Edit Settings**, set **Scheduler ID** to `break_reminder`, **Start Delay (ms)** and **Tick Delay (ms)** to `1800000`, and **Start on Launch** to **Enabled**.
 
 Without the **Start Delay (ms)**, the first toast would show right when the game starts.

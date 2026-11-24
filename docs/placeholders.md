@@ -62,7 +62,7 @@ This shows the variable `rank` in capital letters:
 {"placeholder":"uppercase_text","values":{"text":"$$rank"}}
 ```
 
-When a placeholder gives back text with placeholders in it, like a file read with [**File Text**](#file-text-file_text), FancyMenu replaces those too.
+When a placeholder gives back text with placeholders in it, like a file read with [**File Text**](#file-text), FancyMenu replaces those too.
 
 # Good to Know
 
@@ -70,7 +70,7 @@ When a placeholder gives back text with placeholders in it, like a file read wit
 - Placeholders that read websites, files or servers, like **Web Text** or **Server Status**, load in the background. Until then, they give nothing or a fallback.
 - In [actions](/action-scripts), placeholders get their current value right when the action runs.
 - Placeholders about the world, the screen and elements only work on the game's main thread. In a [Ticker](/elements#ticker) that runs in the background (asynchronous), FancyMenu shows an error instead.
-- **Random Number** gives a new number every time the text updates. To keep one, save it in a [variable](/variables) with [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable-set_variable).
+- **Random Number** gives a new number every time the text updates. To keep one, save it in a [variable](/variables) with [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable).
 
 > [!CAUTION]
 > Placeholders like **JSON Parser**, **File Text** and **Clipboard Content** can read files of the game folder and your clipboard. Together with actions that contact websites, a layout could send that data away. Only use layouts you trust.
@@ -87,7 +87,7 @@ Minecraft {"placeholder":"mcversion"} with {"placeholder":"loadedmods"} mods
 It's {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
 
-## Server Status
+## Server Status and Players
 
 ```
 Survival: {"placeholder":"serverstatus","values":{"ip":"play.example.net"}}&r, {"placeholder":"serverplayercount","values":{"ip":"play.example.net"}} players
@@ -105,11 +105,17 @@ Survival: {"placeholder":"serverstatus","values":{"ip":"play.example.net"}}&r, {
 RAM: {"placeholder":"usedram"} / {"placeholder":"maxram"} MB ({"placeholder":"percentram"}%)
 ```
 
-# Variables and Lists
+# All Placeholders
+
+Every placeholder FancyMenu has. The big **Advanced** and **World** categories of the placeholder menu are split into smaller groups here.
+
+## Variables and Lists
 
 These are in the **Advanced** category. See [Variables](/variables) for making variables and lists.
 
-## Get Variable Value (FM Variable) (`getvariable`)
+### Get Variable Value (FM Variable)
+
+**Identifier:** `getvariable`
 
 The value of one of your variables. Gives `0` when the variable is empty or doesn't exist, which makes it good for numbers. A list gives all its entries as JSON array, like `["Steve","Alex"]`.
 
@@ -119,7 +125,9 @@ The value of one of your variables. Gives `0` when the variable is empty or does
 {"placeholder":"getvariable","values":{"name":"clicks"}}
 ```
 
-## Get List Entry (FM Variable) (`list_get`)
+### Get List Entry (FM Variable)
+
+**Identifier:** `list_get`
 
 One entry of a list variable.
 
@@ -131,7 +139,9 @@ One entry of a list variable.
 {"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}
 ```
 
-## List Size (FM Variable) (`list_size`)
+### List Size (FM Variable)
+
+**Identifier:** `list_size`
 
 How many entries a list has. `0` when there's no list with that name.
 
@@ -141,7 +151,9 @@ How many entries a list has. `0` when there's no list with that name.
 {"placeholder":"list_size","values":{"name":"tips"}}
 ```
 
-## Index of List Entry (FM Variable) (`list_index_of`)
+### Index of List Entry (FM Variable)
+
+**Identifier:** `list_index_of`
 
 The index of the first entry that matches the whole `value`, or `-1` when the list doesn't have it.
 
@@ -153,7 +165,9 @@ The index of the first entry that matches the whole `value`, or `-1` when the li
 {"placeholder":"list_index_of","values":{"name":"read_news","value":"news_42","ignore_case":"false"}}
 ```
 
-## Join List Entries (FM Variable) (`list_join`)
+### Join List Entries (FM Variable)
+
+**Identifier:** `list_join`
 
 All entries of a list in one text. Empty when there's no list with that name.
 
@@ -164,11 +178,13 @@ All entries of a list in one text. Empty when there's no list with that name.
 {"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}
 ```
 
-# Math
+## Math
 
 These are in the **Advanced** category. Numbers use a dot for decimals, like `2.5`.
 
-## Calculator (`calc`)
+### Calculator
+
+**Identifier:** `calc`
 
 Solves a math expression, like `2 + 3 * 4`.
 
@@ -195,9 +211,11 @@ Solves a math expression, like `2 + 3 * 4`.
 | `sinh(x)`, `cosh(x)`, `tanh(x)` | Hyperbolic functions |
 | `log(x)`, `log2(x)`, `log10(x)` | Logarithms to the base e, 2 and 10 |
 | `exp(x)` | e to the power of x |
-| `signum(x)` | `1`, `-1` or `0`, like [**Sign (Math)**](#sign-math-math_sign) |
+| `signum(x)` | `1`, `-1` or `0`, like [**Sign (Math)**](#sign-math) |
 
-## Random Number (`random_number`)
+### Random Number
+
+**Identifier:** `random_number`
 
 A random whole number between `min` and `max`. It changes every time the text updates.
 
@@ -207,7 +225,9 @@ A random whole number between `min` and `max`. It changes every time the text up
 {"placeholder":"random_number","values":{"min":"1","max":"6"}}
 ```
 
-## Max Number (`maxnum`)
+### Max Number
+
+**Identifier:** `maxnum`
 
 The bigger one of two numbers.
 
@@ -217,7 +237,9 @@ The bigger one of two numbers.
 {"placeholder":"maxnum","values":{"first":"$$score","second":"$$best_score"}}
 ```
 
-## Min Number (`minnum`)
+### Min Number
+
+**Identifier:** `minnum`
 
 The smaller one of two numbers.
 
@@ -227,7 +249,9 @@ The smaller one of two numbers.
 {"placeholder":"minnum","values":{"first":"10","second":"15"}}
 ```
 
-## Absolute Number (`absnum`)
+### Absolute Number
+
+**Identifier:** `absnum`
 
 The number without its minus, so `-10.5` gives `10.5`.
 
@@ -237,7 +261,9 @@ The number without its minus, so `-10.5` gives `10.5`.
 {"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
 
-## Negate Number (`negnum`)
+### Negate Number
+
+**Identifier:** `negnum`
 
 Makes a positive number negative, so `10.5` gives `-10.5`. Zero and negative numbers stay as they are.
 
@@ -247,7 +273,9 @@ Makes a positive number negative, so `10.5` gives `-10.5`. Zero and negative num
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
 
-## Round (Math) (`math_round`)
+### Round (Math)
+
+**Identifier:** `math_round`
 
 Rounds a number. `2.5` rounds up to `3`.
 
@@ -258,7 +286,9 @@ Rounds a number. `2.5` rounds up to `3`.
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
 
-## Floor (Math) (`math_floor`)
+### Floor (Math)
+
+**Identifier:** `math_floor`
 
 Rounds a number down to a whole number, so `3.7` gives `3` and `-3.2` gives `-4`.
 
@@ -268,7 +298,9 @@ Rounds a number down to a whole number, so `3.7` gives `3` and `-3.2` gives `-4`
 {"placeholder":"math_floor","values":{"num":"3.7"}}
 ```
 
-## Ceiling (Math) (`math_ceil`)
+### Ceiling (Math)
+
+**Identifier:** `math_ceil`
 
 Rounds a number up to a whole number, so `3.2` gives `4` and `-3.7` gives `-3`.
 
@@ -278,7 +310,9 @@ Rounds a number up to a whole number, so `3.2` gives `4` and `-3.7` gives `-3`.
 {"placeholder":"math_ceil","values":{"num":"3.2"}}
 ```
 
-## Sign (Math) (`math_sign`)
+### Sign (Math)
+
+**Identifier:** `math_sign`
 
 `1` for positive numbers, `-1` for negative ones and `0` for zero.
 
@@ -288,7 +322,9 @@ Rounds a number up to a whole number, so `3.2` gives `4` and `-3.7` gives `-3`.
 {"placeholder":"math_sign","values":{"num":"-3.14"}}
 ```
 
-## *pi* (Math) (`math_pi`)
+### *pi* (Math)
+
+**Identifier:** `math_pi`
 
 The number π: `3.141592653589793`.
 
@@ -296,7 +332,9 @@ The number π: `3.141592653589793`.
 {"placeholder":"math_pi"}
 ```
 
-## Trigonometric Sine (Math) (`math_sin`)
+### Trigonometric Sine (Math)
+
+**Identifier:** `math_sin`
 
 The sine of an angle in radians. For degrees, multiply them by π / 180 first, with the Calculator.
 
@@ -306,7 +344,9 @@ The sine of an angle in radians. For degrees, multiply them by π / 180 first, w
 {"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
 ```
 
-## Trigonometric Cosine (Math) (`math_cos`)
+### Trigonometric Cosine (Math)
+
+**Identifier:** `math_cos`
 
 The cosine of an angle in radians.
 
@@ -316,7 +356,9 @@ The cosine of an angle in radians.
 {"placeholder":"math_cos","values":{"angle":"0"}}
 ```
 
-## Trigonometric Tangent (Math) (`math_tan`)
+### Trigonometric Tangent (Math)
+
+**Identifier:** `math_tan`
 
 The tangent of an angle in radians.
 
@@ -326,7 +368,9 @@ The tangent of an angle in radians.
 {"placeholder":"math_tan","values":{"angle":"0.7853981633974483"}}
 ```
 
-## Hyperbolic Sine (Math) (`math_sinh`)
+### Hyperbolic Sine (Math)
+
+**Identifier:** `math_sinh`
 
 The hyperbolic sine of a number.
 
@@ -336,7 +380,9 @@ The hyperbolic sine of a number.
 {"placeholder":"math_sinh","values":{"num":"1"}}
 ```
 
-## Hyperbolic Cosine (Math) (`math_cosh`)
+### Hyperbolic Cosine (Math)
+
+**Identifier:** `math_cosh`
 
 The hyperbolic cosine of a number.
 
@@ -346,7 +392,9 @@ The hyperbolic cosine of a number.
 {"placeholder":"math_cosh","values":{"num":"1"}}
 ```
 
-## Hyperbolic Tangent (Math) (`math_tanh`)
+### Hyperbolic Tangent (Math)
+
+**Identifier:** `math_tanh`
 
 The hyperbolic tangent of a number.
 
@@ -356,7 +404,9 @@ The hyperbolic tangent of a number.
 {"placeholder":"math_tanh","values":{"num":"1"}}
 ```
 
-## Number Base Converter (`number_base_convert`)
+### Number Base Converter
+
+**Identifier:** `number_base_convert`
 
 Converts a number to another base, like from decimal to binary or hex. Decimals work too, with up to 16 digits after the dot. Letters of the result are capital, like `FF`.
 
@@ -368,11 +418,13 @@ Converts a number to another base, like from decimal to binary or hex. Decimals 
 {"placeholder":"number_base_convert","values":{"input":"255","from_base":"10","to_base":"16"}}
 ```
 
-# Text
+## Text
 
 These are in the **Advanced** category.
 
-## Uppercase Text (`uppercase_text`)
+### Uppercase Text
+
+**Identifier:** `uppercase_text`
 
 The text in capital letters: `Hello World` gives `HELLO WORLD`. [Formatting codes](/text-formatting) like `&a` stay as they are.
 
@@ -382,7 +434,9 @@ The text in capital letters: `Hello World` gives `HELLO WORLD`. [Formatting code
 {"placeholder":"uppercase_text","values":{"text":"Hello World"}}
 ```
 
-## Lowercase Text (`lowercase_text`)
+### Lowercase Text
+
+**Identifier:** `lowercase_text`
 
 The text in small letters: `HELLO WORLD` gives `hello world`. Formatting codes stay as they are.
 
@@ -392,7 +446,9 @@ The text in small letters: `HELLO WORLD` gives `hello world`. Formatting codes s
 {"placeholder":"lowercase_text","values":{"text":"HELLO WORLD"}}
 ```
 
-## Title Case Text (`title_case_text`)
+### Title Case Text
+
+**Identifier:** `title_case_text`
 
 Every word starts with a capital letter: `hello world` gives `Hello World`. Formatting codes stay as they are.
 
@@ -402,7 +458,9 @@ Every word starts with a capital letter: `hello world` gives `Hello World`. Form
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
 
-## Sentence Case Text (`sentence_case_text`)
+### Sentence Case Text
+
+**Identifier:** `sentence_case_text`
 
 Every sentence starts with a capital letter: `hello world. this is fancymenu!` gives `Hello world. This is fancymenu!`. Formatting codes stay as they are.
 
@@ -412,7 +470,9 @@ Every sentence starts with a capital letter: `hello world. this is fancymenu!` g
 {"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
 ```
 
-## Snake Case Text (`snake_case_text`)
+### Snake Case Text
+
+**Identifier:** `snake_case_text`
 
 Small letters with `_` between the words: `Hello World` gives `hello_world`. Formatting codes get removed.
 
@@ -422,7 +482,9 @@ Small letters with `_` between the words: `Hello World` gives `hello_world`. For
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
 
-## Kebab Case Text (`kebab_case_text`)
+### Kebab Case Text
+
+**Identifier:** `kebab_case_text`
 
 Small letters with `-` between the words: `Hello World` gives `hello-world`. Formatting codes get removed.
 
@@ -432,7 +494,9 @@ Small letters with `-` between the words: `Hello World` gives `hello-world`. For
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
 
-## Alternating Case Text (`alternating_case_text`)
+### Alternating Case Text
+
+**Identifier:** `alternating_case_text`
 
 Small and capital letters take turns: `alternating case` gives `aLtErNaTiNg CaSe`.
 
@@ -442,7 +506,9 @@ Small and capital letters take turns: `alternating case` gives `aLtErNaTiNg CaSe
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
 
-## Toggle Case Text (`toggle_case_text`)
+### Toggle Case Text
+
+**Identifier:** `toggle_case_text`
 
 Small letters become capital and capital ones small: `Toggle Case` gives `tOGGLE cASE`.
 
@@ -452,7 +518,9 @@ Small letters become capital and capital ones small: `Toggle Case` gives `tOGGLE
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
 
-## Trim Text (`trim_text`)
+### Trim Text
+
+**Identifier:** `trim_text`
 
 Removes the spaces at the start and the end of a text. Spaces inside it stay.
 
@@ -462,7 +530,9 @@ Removes the spaces at the start and the end of a text. Spaces inside it stay.
 {"placeholder":"trim_text","values":{"text":"  Welcome!  "}}
 ```
 
-## Crop Text (`crop_text`)
+### Crop Text
+
+**Identifier:** `crop_text`
 
 Removes a number of characters from the start and the end of a text. `hello world` without 1 character on each side gives `ello worl`.
 
@@ -474,7 +544,9 @@ Removes a number of characters from the start and the end of a text. `hello worl
 {"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
 ```
 
-## Split Text (`split_text`)
+### Split Text
+
+**Identifier:** `split_text`
 
 Splits a text and gives one of its parts. `Steve,Alex,Notch` split at `,` gives `Alex` as part `1`.
 
@@ -487,7 +559,9 @@ Splits a text and gives one of its parts. `Steve,Alex,Notch` split at `,` gives 
 {"placeholder":"split_text","values":{"input":"Steve,Alex,Notch","regex":",","max_parts":"-1","split_index":"1"}}
 ```
 
-## Replace Text (`replace_text`)
+### Replace Text
+
+**Identifier:** `replace_text`
 
 Replaces parts of a text: `Hello World!` with `World` replaced by `FancyMenu` gives `Hello FancyMenu!`.
 
@@ -501,7 +575,9 @@ Replaces parts of a text: `Hello World!` with `World` replaced by `FancyMenu` gi
 {"placeholder":"replace_text","values":{"text":"Hello World!","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
 ```
 
-## Switch Case (`switch_case`)
+### Switch Case
+
+**Identifier:** `switch_case`
 
 Gives the result of the case that matches a value. When the variable `difficulty_level` is `2`, the example gives `Hard Mode`.
 
@@ -513,7 +589,9 @@ Gives the result of the case that matches a value. When the variable `difficulty
 {"placeholder":"switch_case","values":{"value":"$$difficulty_level","cases":"1:Easy Mode,2:Hard Mode","default":"Normal Mode"}}
 ```
 
-## Localize Text (`local`)
+### Localize Text
+
+**Identifier:** `local`
 
 The text of a localization key in the current language of the game, like `Singleplayer` for `menu.singleplayer`. Works with Minecraft's keys, keys of mods and your own keys (see [Localization](/localization)).
 
@@ -523,7 +601,9 @@ The text of a localization key in the current language of the game, like `Single
 {"placeholder":"local","values":{"key":"menu.singleplayer"}}
 ```
 
-## Stringify (`stringify`)
+### Stringify
+
+**Identifier:** `stringify`
 
 Replaces the placeholders in the text, then puts a `\` in front of every `"`, `{` and `}`. This way, text from outside, like a website, can't turn into placeholders.
 
@@ -533,11 +613,13 @@ Replaces the placeholders in the text, then puts a `\` in front of every `"`, `{
 {"placeholder":"stringify","values":{"text":"{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}"}}
 ```
 
-# Data and Files
+## Data and Files
 
 These are in the **Advanced** category. Local paths start in the game folder, like `/config/fancymenu/assets/news.txt`, and can't leave it (see [Resources](/resources#local-resources)).
 
-## JSON Parser (`json`)
+### JSON Parser
+
+**Identifier:** `json`
 
 Reads a value from JSON. Several results show one per line.
 
@@ -557,7 +639,9 @@ JSON from the web gets loaded once, and again when FancyMenu reloads. Changes to
 | `$.items[0].id` | The `id` of the first entry of `items` |
 | `$.scores.*` | All values inside `scores` |
 
-## File Text (`file_text`)
+### File Text
+
+**Identifier:** `file_text`
 
 The text of a file or a URL. Files get read again every second, URLs every 10 seconds. Gives nothing while the text loads or when it can't be read.
 
@@ -570,7 +654,9 @@ The text of a file or a URL. Files get read again every second, URLs every 10 se
 {"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/changelog.txt","mode":"all","separator":"\n","last_lines":"1"}}
 ```
 
-## File Size (`file_size`)
+### File Size
+
+**Identifier:** `file_size`
 
 The size of a file in bytes. `0` when the file doesn't exist. Paths that start with `.minecraft/` point to the default Minecraft folder.
 
@@ -580,7 +666,9 @@ The size of a file in bytes. `0` when the file doesn't exist. Paths that start w
 {"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/news.txt"}}
 ```
 
-## File MD5 (`file_md5`)
+### File MD5
+
+**Identifier:** `file_md5`
 
 The MD5 hash of a file, like `d41d8cd98f00b204e9800998ecf8427e`. Empty when the file doesn't exist. Paths that start with `.minecraft/` point to the default Minecraft folder.
 
@@ -590,7 +678,9 @@ The MD5 hash of a file, like `d41d8cd98f00b204e9800998ecf8427e`. Empty when the 
 {"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/menu_music.ogg"}}
 ```
 
-## Encode To Base64 (`base64_encode`)
+### Encode To Base64
+
+**Identifier:** `base64_encode`
 
 The text as Base64: `Hello World` gives `SGVsbG8gV29ybGQ=`.
 
@@ -600,7 +690,9 @@ The text as Base64: `Hello World` gives `SGVsbG8gV29ybGQ=`.
 {"placeholder":"base64_encode","values":{"text":"Hello World"}}
 ```
 
-## Decode From Base64 (`base64_decode`)
+### Decode From Base64
+
+**Identifier:** `base64_decode`
 
 Base64 back as text: `SGVsbG8gV29ybGQ=` gives `Hello World`.
 
@@ -610,7 +702,9 @@ Base64 back as text: `SGVsbG8gV29ybGQ=` gives `Hello World`.
 {"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
 ```
 
-## Get NBT Data (Client-Side) (`nbt_data_get`)
+### Get NBT Data (Client-Side)
+
+**Identifier:** `nbt_data_get`
 
 Reads NBT data, like `/data get`, from what your game knows about the world. That's quick, but servers don't send everything to players.
 
@@ -625,7 +719,9 @@ Reads NBT data, like `/data get`, from what your game knows about the world. Tha
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
 
-## Get NBT Data (Server-Side) (`nbt_data_get_server`)
+### Get NBT Data (Server-Side)
+
+**Identifier:** `nbt_data_get_server`
 
 Reads NBT data from the server, exactly like `/data get`. Needs FancyMenu on the server. In singleplayer, it always works. Gives nothing until the server answers, then updates about every 100 milliseconds.
 
@@ -641,11 +737,13 @@ Reads NBT data from the server, exactly like `/data get`. Needs FancyMenu on the
 {"placeholder":"nbt_data_get_server","values":{"source_type":"storage","storage_id":"mypack:quests","nbt_path":"completed","return_type":"value"}}
 ```
 
-# Audio
+## Audio
 
 These read [Audio elements](/elements#audio) of the open menu. Right-click an Audio element in the layout editor and click **Copy Element ID** for its ID.
 
-## Audio Element Volume (`audio_element_vol`)
+### Audio Element Volume
+
+**Identifier:** `audio_element_vol`
 
 The volume of the Audio element, from `0.0` (0%) to `1.0` (100%).
 
@@ -655,7 +753,9 @@ The volume of the Audio element, from `0.0` (0%) to `1.0` (100%).
 {"placeholder":"audio_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Current Audio Track (`audio_element_current_track`)
+### Current Audio Track
+
+**Identifier:** `audio_element_current_track`
 
 The file name of the track that plays right now, like `menu_theme.ogg`. `---` when no track plays.
 
@@ -666,7 +766,9 @@ The file name of the track that plays right now, like `menu_theme.ogg`. `---` wh
 {"placeholder":"audio_element_current_track","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","display_name_mappings":"menu_theme.ogg=>Menu Theme%:%credits.ogg=>Credits Theme"}}
 ```
 
-## Audio Duration (`audio_duration`)
+### Audio Duration
+
+**Identifier:** `audio_duration`
 
 How long the current track is, like `03:45`. `00:00` while it loads.
 
@@ -676,7 +778,9 @@ How long the current track is, like `03:45`. `00:00` while it loads.
 {"placeholder":"audio_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Audio Play Time (`audio_playtime`)
+### Audio Play Time
+
+**Identifier:** `audio_playtime`
 
 How far the current track is, like `01:30`. `00:00` (or `0`) while it's stopped.
 
@@ -687,7 +791,9 @@ How far the current track is, like `01:30`. `00:00` (or `0`) while it's stopped.
 {"placeholder":"audio_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false"}}
 ```
 
-## Audio Playing State (`audio_playing_state`)
+### Audio Playing State
+
+**Identifier:** `audio_playing_state`
 
 `true` while the Audio element plays, `false` while it's paused or stopped.
 
@@ -697,11 +803,13 @@ How far the current track is, like `01:30`. `00:00` (or `0`) while it's stopped.
 {"placeholder":"audio_playing_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-# Client
+## Client
 
 These are about the game and its mods.
 
-## Minecraft Version (`mcversion`)
+### Minecraft Version
+
+**Identifier:** `mcversion`
 
 The version of Minecraft, like `1.21.1`.
 
@@ -709,7 +817,9 @@ The version of Minecraft, like `1.21.1`.
 {"placeholder":"mcversion"}
 ```
 
-## Mod Loader Name (`loadername`)
+### Mod Loader Name
+
+**Identifier:** `loadername`
 
 The name of the mod loader, like `Fabric` or `NeoForge`.
 
@@ -717,7 +827,9 @@ The name of the mod loader, like `Fabric` or `NeoForge`.
 {"placeholder":"loadername"}
 ```
 
-## Mod Loader Version (`loaderver`)
+### Mod Loader Version
+
+**Identifier:** `loaderver`
 
 The version of the mod loader, like `0.16.14`.
 
@@ -725,7 +837,9 @@ The version of the mod loader, like `0.16.14`.
 {"placeholder":"loaderver"}
 ```
 
-## Mod Version (`modversion`)
+### Mod Version
+
+**Identifier:** `modversion`
 
 The version of an installed mod, like `3.11.0`. `0.0.0` when the mod isn't installed.
 
@@ -735,7 +849,9 @@ The version of an installed mod, like `3.11.0`. `0.0.0` when the mod isn't insta
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
 
-## Active Mods Count (`loadedmods`)
+### Active Mods Count
+
+**Identifier:** `loadedmods`
 
 How many mods are loaded. Libraries and mods inside other mods count too, so it's often more than the number of mod files.
 
@@ -743,7 +859,9 @@ How many mods are loaded. Libraries and mods inside other mods count too, so it'
 {"placeholder":"loadedmods"}
 ```
 
-## Total Mods Count (`totalmods`)
+### Total Mods Count
+
+**Identifier:** `totalmods`
 
 Roughly how many mods are installed, counted from the `.jar` files in the `mods` folder once per game start. It's never less than **Active Mods Count**.
 
@@ -751,7 +869,9 @@ Roughly how many mods are installed, counted from the `.jar` files in the `mods`
 {"placeholder":"totalmods"}
 ```
 
-## World Loading Progress (`world_load_progress`)
+### World Loading Progress
+
+**Identifier:** `world_load_progress`
 
 How far a world loads, from `0` to `100`, while its loading screen shows. Good for loading bars. `0` on all other screens.
 
@@ -759,7 +879,9 @@ How far a world loads, from `0` to `100`, while its loading screen shows. Good f
 {"placeholder":"world_load_progress"}
 ```
 
-## Minecraft Option Value (`minecraft_option_value`)
+### Minecraft Option Value
+
+**Identifier:** `minecraft_option_value`
 
 The value of a Minecraft option, as it's saved in the `options.txt` file of the game folder, like `12` for `renderDistance`. Empty when there's no option with that name.
 
@@ -769,7 +891,9 @@ The value of a Minecraft option, as it's saved in the `options.txt` file of the 
 {"placeholder":"minecraft_option_value","values":{"name":"renderDistance"}}
 ```
 
-## Keybind Key (`keybind_key`)
+### Keybind Key
+
+**Identifier:** `keybind_key`
 
 The key a keybind uses right now, like in the Controls screen: `Space` for jumping. Empty when there's no keybind with that name.
 
@@ -779,7 +903,9 @@ The key a keybind uses right now, like in the Controls screen: `Space` for jumpi
 Press {"placeholder":"keybind_key","values":{"keybind":"key.inventory"}} to open your inventory!
 ```
 
-## Last World or Server (`last_world_server`)
+### Last World or Server
+
+**Identifier:** `last_world_server`
 
 The world or server the player joined last. Servers show as `play.example.net:25565`.
 
@@ -790,11 +916,13 @@ The world or server the player joined last. Servers show as `play.example.net:25
 {"placeholder":"last_world_server","values":{"type":"world","full_world_path":"false"}}
 ```
 
-# GUI
+## GUI
 
 These are about the open screen and its elements. Element placeholders take the ID of an element: right-click it in the layout editor and click **Copy Element ID**.
 
-## Screen Width (`guiwidth`)
+### Screen Width
+
+**Identifier:** `guiwidth`
 
 The width of the screen in GUI pixels. That's the size elements use, not the pixels of your monitor.
 
@@ -802,7 +930,9 @@ The width of the screen in GUI pixels. That's the size elements use, not the pix
 {"placeholder":"guiwidth"}
 ```
 
-## Screen Height (`guiheight`)
+### Screen Height
+
+**Identifier:** `guiheight`
 
 The height of the screen in GUI pixels.
 
@@ -810,7 +940,9 @@ The height of the screen in GUI pixels.
 {"placeholder":"guiheight"}
 ```
 
-## GUI Scale (`guiscale`)
+### GUI Scale
+
+**Identifier:** `guiscale`
 
 The GUI scale of the game, like `2`.
 
@@ -818,7 +950,9 @@ The GUI scale of the game, like `2`.
 {"placeholder":"guiscale"}
 ```
 
-## Current Screen Identifier (`screenid`)
+### Current Screen Identifier
+
+**Identifier:** `screenid`
 
 The [identifier](/screen-identifiers) of the open screen, like `title_screen`. Empty when no screen is open.
 
@@ -826,7 +960,9 @@ The [identifier](/screen-identifiers) of the open screen, like `title_screen`. E
 {"placeholder":"screenid"}
 ```
 
-## Element Width (`elementwidth`)
+### Element Width
+
+**Identifier:** `elementwidth`
 
 The width of an element in GUI pixels. `1` when there's no element with that ID.
 
@@ -836,7 +972,9 @@ The width of an element in GUI pixels. `1` when there's no element with that ID.
 {"placeholder":"elementwidth","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Element Height (`elementheight`)
+### Element Height
+
+**Identifier:** `elementheight`
 
 The height of an element in GUI pixels. `1` when there's no element with that ID.
 
@@ -846,7 +984,9 @@ The height of an element in GUI pixels. `1` when there's no element with that ID
 {"placeholder":"elementheight","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Element X Position (`elementposx`)
+### Element X Position
+
+**Identifier:** `elementposx`
 
 Where the left edge of an element is, in GUI pixels from the left of the screen. `1` when there's no element with that ID.
 
@@ -856,7 +996,9 @@ Where the left edge of an element is, in GUI pixels from the left of the screen.
 {"placeholder":"elementposx","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Element Y Position (`elementposy`)
+### Element Y Position
+
+**Identifier:** `elementposy`
 
 Where the top edge of an element is, in GUI pixels from the top of the screen. `1` when there's no element with that ID.
 
@@ -866,7 +1008,9 @@ Where the top edge of an element is, in GUI pixels from the top of the screen. `
 {"placeholder":"elementposy","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Text Element Content Height (`text_element_content_height`)
+### Text Element Content Height
+
+**Identifier:** `text_element_content_height`
 
 How high a [Text element](/text-in-menus) needs to be to show all of its text without scrolling, in GUI pixels. It counts wrapped lines, text scale and line spacing, so it's good for backgrounds that fit the text. `0` when the element isn't a Text element.
 
@@ -876,7 +1020,9 @@ How high a [Text element](/text-in-menus) needs to be to show all of its text wi
 {"placeholder":"text_element_content_height","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Element Scroll Position (`scroll_area_scroll_position`)
+### Element Scroll Position
+
+**Identifier:** `scroll_area_scroll_position`
 
 How far the content of a [Scrollable Area](/scrollable-areas) or a Text element is scrolled, in GUI pixels from its start. `0` for other elements.
 
@@ -887,7 +1033,9 @@ How far the content of a [Scrollable Area](/scrollable-areas) or a Text element 
 {"placeholder":"scroll_area_scroll_position","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
 ```
 
-## Element Scroll Percent (`scroll_area_scroll_percent`)
+### Element Scroll Percent
+
+**Identifier:** `scroll_area_scroll_percent`
 
 How far the content of a Scrollable Area or a Text element is scrolled, from `0` (start) to `100` (end). `0` for other elements, and when there's nothing to scroll.
 
@@ -898,7 +1046,9 @@ How far the content of a Scrollable Area or a Text element is scrolled, from `0`
 {"placeholder":"scroll_area_scroll_percent","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
 ```
 
-## Element Scroll Content Size (`scroll_area_content_size`)
+### Element Scroll Content Size
+
+**Identifier:** `scroll_area_content_size`
 
 How big the content of a Scrollable Area or a Text element is: its height for `vertical`, its width for `horizontal`. `0` for other elements.
 
@@ -909,7 +1059,9 @@ How big the content of a Scrollable Area or a Text element is: its height for `v
 {"placeholder":"scroll_area_content_size","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
 ```
 
-## Text Input Field Value (`text_input_field_value`)
+### Text Input Field Value
+
+**Identifier:** `text_input_field_value`
 
 What's typed into a [Text Input Field](/elements#text-input-field) or a text field of the original screen. Empty when the element is no text field.
 
@@ -919,7 +1071,9 @@ What's typed into a [Text Input Field](/elements#text-input-field) or a text fie
 {"placeholder":"text_input_field_value","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Vanilla Widget Label/Text (`vanillabuttonlabel`)
+### Vanilla Widget Label/Text
+
+**Identifier:** `vanillabuttonlabel`
 
 The label of a button or another widget of the original screen, like `Options...`. Right-click the widget in the layout editor and click **Copy Widget Locator** for its locator.
 
@@ -929,7 +1083,9 @@ The label of a button or another widget of the original screen, like `Options...
 {"placeholder":"vanillabuttonlabel","values":{"locator":"title_screen:mc_titlescreen_options_button"}}
 ```
 
-## Mouse X Position (`mouseposx`)
+### Mouse X Position
+
+**Identifier:** `mouseposx`
 
 Where the mouse is, in GUI pixels from the left of the screen. Always `10` in the layout editor, so elements that follow the mouse stay where you can edit them.
 
@@ -937,7 +1093,9 @@ Where the mouse is, in GUI pixels from the left of the screen. Always `10` in th
 {"placeholder":"mouseposx"}
 ```
 
-## Mouse Y Position (`mouseposy`)
+### Mouse Y Position
+
+**Identifier:** `mouseposy`
 
 Where the mouse is, in GUI pixels from the top of the screen. Always `10` in the layout editor.
 
@@ -945,7 +1103,9 @@ Where the mouse is, in GUI pixels from the top of the screen. Always `10` in the
 {"placeholder":"mouseposy"}
 ```
 
-## Clicks Per Second (`clicks_per_second`)
+### Clicks Per Second
+
+**Identifier:** `clicks_per_second`
 
 How often a mouse button got clicked in the last second.
 
@@ -955,9 +1115,11 @@ How often a mouse button got clicked in the last second.
 {"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
 ```
 
-# Player
+## Player
 
-## Player Name (`playername`)
+### Player Name
+
+**Identifier:** `playername`
 
 The name of the player, like `Steve`.
 
@@ -965,7 +1127,9 @@ The name of the player, like `Steve`.
 {"placeholder":"playername"}
 ```
 
-## Player UUID (`playeruuid`)
+### Player UUID
+
+**Identifier:** `playeruuid`
 
 The UUID of the player, like `c8cde7fe-7ced-11eb-9439-0242ac130002`.
 
@@ -973,7 +1137,9 @@ The UUID of the player, like `c8cde7fe-7ced-11eb-9439-0242ac130002`.
 {"placeholder":"playeruuid"}
 ```
 
-## Last Death Message (`lastdeathmessage`)
+### Last Death Message
+
+**Identifier:** `lastdeathmessage`
 
 The last death message of the player since the game started, like `Steve was slain by Zombie`. Empty before the first death.
 
@@ -983,11 +1149,13 @@ The last death message of the player since the game started, like `Steve was sla
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
 
-# Realtime
+## Realtime
 
 These are about the time on your computer. The ones for date and time have an optional `timezone`: `system` for the time zone of the computer (the default), or an ID like `UTC`, `Europe/Berlin` or `America/New_York`. See [nodatime.org/TimeZones](https://nodatime.org/TimeZones) for all IDs.
 
-## Realtime Year (`realtimeyear`)
+### Realtime Year
+
+**Identifier:** `realtimeyear`
 
 The year, like `2026`.
 
@@ -995,7 +1163,9 @@ The year, like `2026`.
 {"placeholder":"realtimeyear","values":{"timezone":"system"}}
 ```
 
-## Realtime Month (`realtimemonth`)
+### Realtime Month
+
+**Identifier:** `realtimemonth`
 
 The month, from `01` to `12`.
 
@@ -1003,7 +1173,9 @@ The month, from `01` to `12`.
 {"placeholder":"realtimemonth","values":{"timezone":"system"}}
 ```
 
-## Realtime Day (`realtimeday`)
+### Realtime Day
+
+**Identifier:** `realtimeday`
 
 The day of the month, from `01` to `31`.
 
@@ -1011,7 +1183,9 @@ The day of the month, from `01` to `31`.
 {"placeholder":"realtimeday","values":{"timezone":"system"}}
 ```
 
-## Realtime Hour (`realtimehour`)
+### Realtime Hour
+
+**Identifier:** `realtimehour`
 
 The hour, from `00` to `23`.
 
@@ -1021,7 +1195,9 @@ The hour, from `00` to `23`.
 {"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"Europe/Berlin"}}
 ```
 
-## Realtime Minute (`realtimeminute`)
+### Realtime Minute
+
+**Identifier:** `realtimeminute`
 
 The minute, from `00` to `59`.
 
@@ -1029,7 +1205,9 @@ The minute, from `00` to `59`.
 {"placeholder":"realtimeminute","values":{"timezone":"system"}}
 ```
 
-## Realtime Second (`realtimesecond`)
+### Realtime Second
+
+**Identifier:** `realtimesecond`
 
 The second, from `00` to `59`.
 
@@ -1037,7 +1215,9 @@ The second, from `00` to `59`.
 {"placeholder":"realtimesecond","values":{"timezone":"system"}}
 ```
 
-## Current Time in Millis (Unix Timestamp) (`unix_time`)
+### Current Time in Millis (Unix Timestamp)
+
+**Identifier:** `unix_time`
 
 The milliseconds since January 1, 1970 (UTC), like `1732456789012`. Good for timers: save it in a variable, and subtract it from a later one with the Calculator.
 
@@ -1045,13 +1225,15 @@ The milliseconds since January 1, 1970 (UTC), like `1732456789012`. Good for tim
 {"placeholder":"unix_time"}
 ```
 
-# Server
+## Server
 
 These ask a server for its status, like the server list does. FancyMenu asks every 30 seconds while a customized screen is open. Until the first answer, the server counts as offline.
 
 - `ip`: the address of the server, with the port when it isn't the default one, like `play.example.net` or `play.example.net:25566`
 
-## Server Status (`serverstatus`)
+### Server Status
+
+**Identifier:** `serverstatus`
 
 `Online` in green or `Offline` in red.
 
@@ -1059,7 +1241,9 @@ These ask a server for its status, like the server list does. FancyMenu asks eve
 {"placeholder":"serverstatus","values":{"ip":"play.example.net"}}
 ```
 
-## Server Player Count (`serverplayercount`)
+### Server Player Count
+
+**Identifier:** `serverplayercount`
 
 The players online and the max players, like `12/100`. `0/0` until the server answers.
 
@@ -1067,7 +1251,9 @@ The players online and the max players, like `12/100`. `0/0` until the server an
 {"placeholder":"serverplayercount","values":{"ip":"play.example.net"}}
 ```
 
-## Server MOTD (`servermotd`)
+### Server MOTD
+
+**Identifier:** `servermotd`
 
 One line of the server's message of the day.
 
@@ -1077,7 +1263,9 @@ One line of the server's message of the day.
 {"placeholder":"servermotd","values":{"ip":"play.example.net","line":"1"}}
 ```
 
-## Server PING (`serverping`)
+### Server PING
+
+**Identifier:** `serverping`
 
 The ping to the server in milliseconds, like `54`. `-1` while it's offline.
 
@@ -1085,7 +1273,9 @@ The ping to the server in milliseconds, like `54`. `-1` while it's offline.
 {"placeholder":"serverping","values":{"ip":"play.example.net"}}
 ```
 
-## Server Version (`serverversion`)
+### Server Version
+
+**Identifier:** `serverversion`
 
 The Minecraft version of the server, like `1.21.1`. Some servers show their own text here. `---` until the server answers.
 
@@ -1093,11 +1283,13 @@ The Minecraft version of the server, like `1.21.1`. Some servers show their own 
 {"placeholder":"serverversion","values":{"ip":"play.example.net"}}
 ```
 
-# Video
+## Video
 
 These read [Video elements and video menu backgrounds](/video) of the open menu. For Video elements, right-click one in the layout editor and click **Copy Element ID**. For backgrounds, right-click the editor background and click **Copy Background Identifier**.
 
-## Video Element Volume (`video_element_vol`)
+### Video Element Volume
+
+**Identifier:** `video_element_vol`
 
 The volume of a Video element, from `0.0` (0%) to `1.0` (100%).
 
@@ -1107,7 +1299,9 @@ The volume of a Video element, from `0.0` (0%) to `1.0` (100%).
 {"placeholder":"video_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Video Element Duration (`video_element_duration`)
+### Video Element Duration
+
+**Identifier:** `video_element_duration`
 
 How long the video of a Video element is, like `02:00`. `00:00` (or `0`) while it loads.
 
@@ -1118,7 +1312,9 @@ How long the video of a Video element is, like `02:00`. `00:00` (or `0`) while i
 {"placeholder":"video_element_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","output_as_timestamp":"false"}}
 ```
 
-## Video Element Play Time (`video_element_playtime`)
+### Video Element Play Time
+
+**Identifier:** `video_element_playtime`
 
 How far the video of a Video element is, like `00:45`. `00:00` (or `0`) while it loads.
 
@@ -1130,7 +1326,9 @@ How far the video of a Video element is, like `00:45`. `00:00` (or `0`) while it
 {"placeholder":"video_element_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false","output_as_timestamp":"false"}}
 ```
 
-## Video Element Paused State (`video_element_paused_state`)
+### Video Element Paused State
+
+**Identifier:** `video_element_paused_state`
 
 `true` while a Video element is paused, otherwise `false`.
 
@@ -1140,7 +1338,9 @@ How far the video of a Video element is, like `00:45`. `00:00` (or `0`) while it
 {"placeholder":"video_element_paused_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
 ```
 
-## Video Background Volume (`video_background_vol`)
+### Video Background Volume
+
+**Identifier:** `video_background_vol`
 
 The volume of a video menu background, from `0.0` (0%) to `1.0` (100%).
 
@@ -1150,7 +1350,9 @@ The volume of a video menu background, from `0.0` (0%) to `1.0` (100%).
 {"placeholder":"video_background_vol","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
 ```
 
-## Video Background Duration (`video_background_duration`)
+### Video Background Duration
+
+**Identifier:** `video_background_duration`
 
 How long the video of a menu background is, like `03:00`. `00:00` (or `0`) while it loads.
 
@@ -1161,7 +1363,9 @@ How long the video of a menu background is, like `03:00`. `00:00` (or `0`) while
 {"placeholder":"video_background_duration","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","output_as_timestamp":"false"}}
 ```
 
-## Video Background Play Time (`video_background_playtime`)
+### Video Background Play Time
+
+**Identifier:** `video_background_playtime`
 
 How far the video of a menu background is, like `01:00`. `00:00` (or `0`) while it loads.
 
@@ -1173,7 +1377,9 @@ How far the video of a menu background is, like `01:00`. `00:00` (or `0`) while 
 {"placeholder":"video_background_playtime","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","show_percentage":"true","output_as_timestamp":"false"}}
 ```
 
-## Video Background Paused State (`video_background_paused_state`)
+### Video Background Paused State
+
+**Identifier:** `video_background_paused_state`
 
 `true` while a video menu background is paused, otherwise `false`.
 
@@ -1183,11 +1389,13 @@ How far the video of a menu background is, like `01:00`. `00:00` (or `0`) while 
 {"placeholder":"video_background_paused_state","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
 ```
 
-# World: Player Stats
+## World: Player Stats
 
 The **World** category is about the world you play in. Most of its placeholders need a loaded world. Outside of one, they give `0`, `0.0` or nothing.
 
-## Current Player Health (`current_player_health`)
+### Current Player Health
+
+**Identifier:** `current_player_health`
 
 The health of the player, like `20.0`. Every heart is `2.0`.
 
@@ -1195,7 +1403,9 @@ The health of the player, like `20.0`. Every heart is `2.0`.
 {"placeholder":"current_player_health"}
 ```
 
-## Max Player Health (`max_player_health`)
+### Max Player Health
+
+**Identifier:** `max_player_health`
 
 The max health of the player, like `20.0`.
 
@@ -1203,7 +1413,9 @@ The max health of the player, like `20.0`.
 {"placeholder":"max_player_health"}
 ```
 
-## Current Player Health (Percent) (`current_player_health_percent`)
+### Current Player Health (Percent)
+
+**Identifier:** `current_player_health_percent`
 
 The health of the player in percent, from `0` to `100`.
 
@@ -1211,7 +1423,9 @@ The health of the player in percent, from `0` to `100`.
 {"placeholder":"current_player_health_percent"}
 ```
 
-## Current Player Absorption Health (`current_player_absorption_health`)
+### Current Player Absorption Health
+
+**Identifier:** `current_player_absorption_health`
 
 The absorption health of the player (the golden hearts), like `4.0`.
 
@@ -1219,7 +1433,9 @@ The absorption health of the player (the golden hearts), like `4.0`.
 {"placeholder":"current_player_absorption_health"}
 ```
 
-## Max Player Absorption Health (`max_player_absorption_health`)
+### Max Player Absorption Health
+
+**Identifier:** `max_player_absorption_health`
 
 The max absorption health of the player, like `4.0`.
 
@@ -1227,7 +1443,9 @@ The max absorption health of the player, like `4.0`.
 {"placeholder":"max_player_absorption_health"}
 ```
 
-## Current Player Absorption Health (Percent) (`current_player_absorption_health_percent`)
+### Current Player Absorption Health (Percent)
+
+**Identifier:** `current_player_absorption_health_percent`
 
 The absorption health of the player in percent, from `0` to `100`.
 
@@ -1235,7 +1453,9 @@ The absorption health of the player in percent, from `0` to `100`.
 {"placeholder":"current_player_absorption_health_percent"}
 ```
 
-## Current Player Food Level (`current_player_hunger`)
+### Current Player Food Level
+
+**Identifier:** `current_player_hunger`
 
 The food level of the player, from `0.0` to `20.0`.
 
@@ -1243,7 +1463,9 @@ The food level of the player, from `0.0` to `20.0`.
 {"placeholder":"current_player_hunger"}
 ```
 
-## Max Player Food Level (`max_player_hunger`)
+### Max Player Food Level
+
+**Identifier:** `max_player_hunger`
 
 The max food level of players: always `20.0`.
 
@@ -1251,7 +1473,9 @@ The max food level of players: always `20.0`.
 {"placeholder":"max_player_hunger"}
 ```
 
-## Current Player Food Level (Percent) (`current_player_hunger_percent`)
+### Current Player Food Level (Percent)
+
+**Identifier:** `current_player_hunger_percent`
 
 The food level of the player in percent, from `0` to `100`.
 
@@ -1259,7 +1483,9 @@ The food level of the player in percent, from `0` to `100`.
 {"placeholder":"current_player_hunger_percent"}
 ```
 
-## Current Player Hunger Saturation (`current_player_hunger_saturation`)
+### Current Player Hunger Saturation
+
+**Identifier:** `current_player_hunger_saturation`
 
 The saturation of the player, like `5.0`. Food only goes down after it's used up.
 
@@ -1267,7 +1493,9 @@ The saturation of the player, like `5.0`. Food only goes down after it's used up
 {"placeholder":"current_player_hunger_saturation"}
 ```
 
-## Current Player Armor (`current_player_armor`)
+### Current Player Armor
+
+**Identifier:** `current_player_armor`
 
 The armor points of the player, from `0.0` to `20.0`.
 
@@ -1275,7 +1503,9 @@ The armor points of the player, from `0.0` to `20.0`.
 {"placeholder":"current_player_armor"}
 ```
 
-## Max Player Armor (`max_player_armor`)
+### Max Player Armor
+
+**Identifier:** `max_player_armor`
 
 The max armor points of the armor bar: always `20.0`.
 
@@ -1283,7 +1513,9 @@ The max armor points of the armor bar: always `20.0`.
 {"placeholder":"max_player_armor"}
 ```
 
-## Current Player Armor (Percent) (`current_player_armor_percent`)
+### Current Player Armor (Percent)
+
+**Identifier:** `current_player_armor_percent`
 
 The armor points of the player in percent, from `0` to `100`.
 
@@ -1291,7 +1523,9 @@ The armor points of the player in percent, from `0` to `100`.
 {"placeholder":"current_player_armor_percent"}
 ```
 
-## Player Armor Toughness (`player_armor_toughness`)
+### Player Armor Toughness
+
+**Identifier:** `player_armor_toughness`
 
 The armor toughness of the player, like `8.0` with full diamond armor.
 
@@ -1299,7 +1533,9 @@ The armor toughness of the player, like `8.0` with full diamond armor.
 {"placeholder":"player_armor_toughness"}
 ```
 
-## Current Player Oxygen Level (`current_player_oxygen`)
+### Current Player Oxygen Level
+
+**Identifier:** `current_player_oxygen`
 
 The air of the player under water, from `0.0` to `300.0`.
 
@@ -1307,7 +1543,9 @@ The air of the player under water, from `0.0` to `300.0`.
 {"placeholder":"current_player_oxygen"}
 ```
 
-## Max Player Oxygen Level (`max_player_oxygen`)
+### Max Player Oxygen Level
+
+**Identifier:** `max_player_oxygen`
 
 The max air of the player, like `300.0`.
 
@@ -1315,7 +1553,9 @@ The max air of the player, like `300.0`.
 {"placeholder":"max_player_oxygen"}
 ```
 
-## Current Player Oxygen Level (Percent) (`current_player_oxygen_percent`)
+### Current Player Oxygen Level (Percent)
+
+**Identifier:** `current_player_oxygen_percent`
 
 The air of the player in percent, from `0` to `100`.
 
@@ -1323,7 +1563,9 @@ The air of the player in percent, from `0` to `100`.
 {"placeholder":"current_player_oxygen_percent"}
 ```
 
-## Current Player Level (`current_player_level`)
+### Current Player Level
+
+**Identifier:** `current_player_level`
 
 The experience level of the player, like `30`.
 
@@ -1331,7 +1573,9 @@ The experience level of the player, like `30`.
 {"placeholder":"current_player_level"}
 ```
 
-## Current Player Experience (`current_player_exp`)
+### Current Player Experience
+
+**Identifier:** `current_player_exp`
 
 The total experience points of the player, like `1395.0`. It's not the level.
 
@@ -1339,7 +1583,9 @@ The total experience points of the player, like `1395.0`. It's not the level.
 {"placeholder":"current_player_exp"}
 ```
 
-## Player Experience Progress (Percent) (`current_player_exp_progress`)
+### Player Experience Progress (Percent)
+
+**Identifier:** `current_player_exp_progress`
 
 How full the experience bar is, from `0` to `100`.
 
@@ -1347,7 +1593,9 @@ How full the experience bar is, from `0` to `100`.
 {"placeholder":"current_player_exp_progress"}
 ```
 
-## Player Attack Strength (Percent) (`player_attack_strength`)
+### Player Attack Strength (Percent)
+
+**Identifier:** `player_attack_strength`
 
 How charged the next attack is, from `0` to `100`, like the attack indicator.
 
@@ -1355,7 +1603,9 @@ How charged the next attack is, from `0` to `100`, like the attack indicator.
 {"placeholder":"player_attack_strength"}
 ```
 
-## Player Game Mode (`player_gamemode`)
+### Player Game Mode
+
+**Identifier:** `player_gamemode`
 
 `survival`, `creative`, `adventure` or `spectator`.
 
@@ -1363,7 +1613,9 @@ How charged the next attack is, from `0` to `100`, like the attack indicator.
 {"placeholder":"player_gamemode"}
 ```
 
-## Player Item Use Progress (FM) (`player_item_use_progress_fm`)
+### Player Item Use Progress (FM)
+
+**Identifier:** `player_item_use_progress_fm`
 
 How far the player is with using an item, like eating, drinking or drawing a bow, from `0.0` to `1.0`.
 
@@ -1371,7 +1623,9 @@ How far the player is with using an item, like eating, drinking or drawing a bow
 {"placeholder":"player_item_use_progress_fm"}
 ```
 
-## Current Mount Health (`current_mount_health`)
+### Current Mount Health
+
+**Identifier:** `current_mount_health`
 
 The health of the mob the player rides, like a horse, like `30.0`.
 
@@ -1379,7 +1633,9 @@ The health of the mob the player rides, like a horse, like `30.0`.
 {"placeholder":"current_mount_health"}
 ```
 
-## Max Mount Health (`max_mount_health`)
+### Max Mount Health
+
+**Identifier:** `max_mount_health`
 
 The max health of the mob the player rides.
 
@@ -1387,7 +1643,9 @@ The max health of the mob the player rides.
 {"placeholder":"max_mount_health"}
 ```
 
-## Current Mount Health (Percent) (`current_mount_health_percent`)
+### Current Mount Health (Percent)
+
+**Identifier:** `current_mount_health_percent`
 
 The health of the mob the player rides in percent, from `0` to `100`.
 
@@ -1395,7 +1653,9 @@ The health of the mob the player rides in percent, from `0` to `100`.
 {"placeholder":"current_mount_health_percent"}
 ```
 
-## Current Mount Jump Meter (Percent) (`current_mount_jump_meter`)
+### Current Mount Jump Meter (Percent)
+
+**Identifier:** `current_mount_jump_meter`
 
 How charged the jump of a horse is, from `0` to `100`.
 
@@ -1403,7 +1663,9 @@ How charged the jump of a horse is, from `0` to `100`.
 {"placeholder":"current_mount_jump_meter"}
 ```
 
-## Active Effects Count (`effects_count`)
+### Active Effects Count
+
+**Identifier:** `effects_count`
 
 How many effects the player has right now.
 
@@ -1411,7 +1673,9 @@ How many effects the player has right now.
 {"placeholder":"effects_count"}
 ```
 
-## Active Effect (`active_effect`)
+### Active Effect
+
+**Identifier:** `active_effect`
 
 The ID of an effect of the player, like `minecraft:speed`, in the order of the effect icons at the top right. Empty when there's no effect at that index.
 
@@ -1421,11 +1685,13 @@ The ID of an effect of the player, like `minecraft:speed`, in the order of the e
 {"placeholder":"active_effect","values":{"effect_index":"0"}}
 ```
 
-# World: Inventory and Items
+## World: Inventory and Items
 
 These are in the **World** category. Slot numbers: `0` to `8` are the hotbar, `9` to `35` the rest of the inventory, `36` to `39` the armor from boots to helmet, and `40` the offhand.
 
-## Selected Hotbar Slot (`active_hotbar_slot`)
+### Selected Hotbar Slot
+
+**Identifier:** `active_hotbar_slot`
 
 The selected hotbar slot, from `0` to `8`.
 
@@ -1433,7 +1699,9 @@ The selected hotbar slot, from `0` to `8`.
 {"placeholder":"active_hotbar_slot"}
 ```
 
-## Slot Item (`slot_item`)
+### Slot Item
+
+**Identifier:** `slot_item`
 
 The ID of the item in a slot, like `minecraft:diamond_sword`. Empty slots give `minecraft:air`.
 
@@ -1443,7 +1711,9 @@ The ID of the item in a slot, like `minecraft:diamond_sword`. Empty slots give `
 {"placeholder":"slot_item","values":{"slot":"0"}}
 ```
 
-## Slot Item Count (`slot_item_count`)
+### Slot Item Count
+
+**Identifier:** `slot_item_count`
 
 How many items are in a slot, like `64`.
 
@@ -1453,7 +1723,9 @@ How many items are in a slot, like `64`.
 {"placeholder":"slot_item_count","values":{"slot":"0"}}
 ```
 
-## Slot Item Durability (`slot_item_durability`)
+### Slot Item Durability
+
+**Identifier:** `slot_item_durability`
 
 The durability of the item in a slot. `0` for items without durability.
 
@@ -1464,7 +1736,9 @@ The durability of the item in a slot. `0` for items without durability.
 {"placeholder":"slot_item_durability","values":{"slot":"39","format":"percentage"}}
 ```
 
-## Slot Item Display Name (FM) (`slot_item_display_name_fm`)
+### Slot Item Display Name (FM)
+
+**Identifier:** `slot_item_display_name_fm`
 
 The name of the item in a slot as JSON text component, with its rarity color, like `{"text":"Diamond Sword","color":"aqua"}`. In spectator mode, hotbar slots give the names of the spectator menu.
 
@@ -1475,7 +1749,9 @@ The name of the item in a slot as JSON text component, with its rarity color, li
 {"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
 ```
 
-## Inventory Item Count (`inventory_item_count`)
+### Inventory Item Count
+
+**Identifier:** `inventory_item_count`
 
 How many of an item the player has in the whole inventory.
 
@@ -1485,7 +1761,9 @@ How many of an item the player has in the whole inventory.
 {"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
 ```
 
-## Inventory Slot Food Point Restore Amount (`inventory_slot_food_point_restore_amount`)
+### Inventory Slot Food Point Restore Amount
+
+**Identifier:** `inventory_slot_food_point_restore_amount`
 
 How many food points the item in a slot gives when eaten, like `4.0` for an apple. `0.0` for items that aren't food.
 
@@ -1495,7 +1773,9 @@ How many food points the item in a slot gives when eaten, like `4.0` for an appl
 {"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
 ```
 
-## Item Category (`item_category`)
+### Item Category
+
+**Identifier:** `item_category`
 
 The creative inventory tab of an item, like `Combat`. `UNKNOWN` for items without a tab.
 
@@ -1506,7 +1786,9 @@ The creative inventory tab of an item, like `Combat`. `UNKNOWN` for items withou
 {"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
 ```
 
-## Hovered Inventory Item (`hovered_inventory_item`)
+### Hovered Inventory Item
+
+**Identifier:** `hovered_inventory_item`
 
 The ID of the item the mouse is on in an inventory screen, like `minecraft:apple`. Empty when there's none.
 
@@ -1514,11 +1796,13 @@ The ID of the item the mouse is on in an inventory screen, like `minecraft:apple
 {"placeholder":"hovered_inventory_item"}
 ```
 
-# World: HUD and Bosses
+## World: HUD and Bosses
 
 These are in the **World** category. The raid placeholders read the raid whose bar shows at the top of the screen, and need FancyMenu on the server. In singleplayer, they always work. Without a raid, they give `0` or nothing.
 
-## Action Bar Message (FM) (`action_bar_message_fm`)
+### Action Bar Message (FM)
+
+**Identifier:** `action_bar_message_fm`
 
 The message above the hotbar as JSON text component, like `{"text":"You may not rest now","color":"red"}`. Empty when there's none.
 
@@ -1526,7 +1810,9 @@ The message above the hotbar as JSON text component, like `{"text":"You may not 
 {"placeholder":"action_bar_message_fm"}
 ```
 
-## Action Bar Message Time (FM) (`action_bar_message_time_fm`)
+### Action Bar Message Time (FM)
+
+**Identifier:** `action_bar_message_time_fm`
 
 How many ticks the message above the hotbar still shows. 20 ticks are one second.
 
@@ -1534,7 +1820,9 @@ How many ticks the message above the hotbar still shows. 20 ticks are one second
 {"placeholder":"action_bar_message_time_fm"}
 ```
 
-## Highlighted Item Time (FM) (`highlighted_item_time_fm`)
+### Highlighted Item Time (FM)
+
+**Identifier:** `highlighted_item_time_fm`
 
 How many ticks the name of the selected item still shows above the hotbar.
 
@@ -1542,7 +1830,9 @@ How many ticks the name of the selected item still shows above the hotbar.
 {"placeholder":"highlighted_item_time_fm"}
 ```
 
-## Current HUD Title/Subtitle (`current_title`)
+### Current HUD Title/Subtitle
+
+**Identifier:** `current_title`
 
 The title or subtitle that shows right now, like from `/title`. Empty when there's none.
 
@@ -1553,7 +1843,9 @@ The title or subtitle that shows right now, like from `/title`. Empty when there
 {"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
 ```
 
-## Bosses Count (`boss_count`)
+### Bosses Count
+
+**Identifier:** `boss_count`
 
 How many boss bars show right now.
 
@@ -1561,7 +1853,9 @@ How many boss bars show right now.
 {"placeholder":"boss_count"}
 ```
 
-## Boss Name (`boss_name`)
+### Boss Name
+
+**Identifier:** `boss_name`
 
 The name of a boss bar, like `Ender Dragon`. Empty when there's no boss bar at that index.
 
@@ -1572,7 +1866,9 @@ The name of a boss bar, like `Ender Dragon`. Empty when there's no boss bar at t
 {"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
 ```
 
-## Current Boss Health (Percent) (`current_boss_health`)
+### Current Boss Health (Percent)
+
+**Identifier:** `current_boss_health`
 
 How full a boss bar is, from `0` to `100`.
 
@@ -1582,7 +1878,9 @@ How full a boss bar is, from `0` to `100`.
 {"placeholder":"current_boss_health","values":{"boss_index":"0"}}
 ```
 
-## Total Active Raid Waves (`active_raid_total_waves`)
+### Total Active Raid Waves
+
+**Identifier:** `active_raid_total_waves`
 
 How many waves the raid has, with its bonus wave.
 
@@ -1590,7 +1888,9 @@ How many waves the raid has, with its bonus wave.
 {"placeholder":"active_raid_total_waves"}
 ```
 
-## Remaining Active Raid Waves (`active_raid_remaining_waves`)
+### Remaining Active Raid Waves
+
+**Identifier:** `active_raid_remaining_waves`
 
 How many waves of the raid still have to come.
 
@@ -1598,7 +1898,9 @@ How many waves of the raid still have to come.
 {"placeholder":"active_raid_remaining_waves"}
 ```
 
-## Current Active Raid Wave (`active_raid_current_wave`)
+### Current Active Raid Wave
+
+**Identifier:** `active_raid_current_wave`
 
 The number of the latest wave, so `1` while the first wave attacks. `0` before the first wave.
 
@@ -1606,7 +1908,9 @@ The number of the latest wave, so `1` while the first wave attacks. `0` before t
 Wave {"placeholder":"active_raid_current_wave"} of {"placeholder":"active_raid_total_waves"}
 ```
 
-## Active Raid Alive Raiders Count (`active_raid_alive_raiders_count`)
+### Active Raid Alive Raiders Count
+
+**Identifier:** `active_raid_alive_raiders_count`
 
 How many raiders of the raid are still alive.
 
@@ -1614,7 +1918,9 @@ How many raiders of the raid are still alive.
 {"placeholder":"active_raid_alive_raiders_count"}
 ```
 
-## Active Raid Alive Raiders List (`active_raid_alive_raiders_list`)
+### Active Raid Alive Raiders List
+
+**Identifier:** `active_raid_alive_raiders_list`
 
 All raiders that are still alive, separated by commas. Every entry is the mob ID and the UUID of the raider, like `minecraft:pillager#0d9a4b2e-5f1c-4a8e-9b3d-6c2f1e7a8b90`.
 
@@ -1622,11 +1928,13 @@ All raiders that are still alive, separated by commas. Every entry is the mob ID
 {"placeholder":"active_raid_alive_raiders_list"}
 ```
 
-# World: Position and Camera
+## World: Position and Camera
 
 These are in the **World** category.
 
-## Player X Coordinate (`player_x_coordinate`)
+### Player X Coordinate
+
+**Identifier:** `player_x_coordinate`
 
 The X coordinate of the block the player stands in, like `125`.
 
@@ -1634,7 +1942,9 @@ The X coordinate of the block the player stands in, like `125`.
 {"placeholder":"player_x_coordinate"}
 ```
 
-## Player Y Coordinate (`player_y_coordinate`)
+### Player Y Coordinate
+
+**Identifier:** `player_y_coordinate`
 
 The Y coordinate of the block the player stands in, like `64`.
 
@@ -1642,7 +1952,9 @@ The Y coordinate of the block the player stands in, like `64`.
 {"placeholder":"player_y_coordinate"}
 ```
 
-## Player Z Coordinate (`player_z_coordinate`)
+### Player Z Coordinate
+
+**Identifier:** `player_z_coordinate`
 
 The Z coordinate of the block the player stands in, like `-250`.
 
@@ -1650,7 +1962,9 @@ The Z coordinate of the block the player stands in, like `-250`.
 {"placeholder":"player_z_coordinate"}
 ```
 
-## Player View Direction (`player_view_direction`)
+### Player View Direction
+
+**Identifier:** `player_view_direction`
 
 The direction the player looks in: `north`, `east`, `south` or `west`.
 
@@ -1658,7 +1972,9 @@ The direction the player looks in: `north`, `east`, `south` or `west`.
 {"placeholder":"player_view_direction"}
 ```
 
-## Player Position Delta X (FM) (`player_position_delta_x_fm`)
+### Player Position Delta X (FM)
+
+**Identifier:** `player_position_delta_x_fm`
 
 How far the player moved along X since the last tick, in blocks, like `0.12`. Negative when moving the other way.
 
@@ -1666,7 +1982,9 @@ How far the player moved along X since the last tick, in blocks, like `0.12`. Ne
 {"placeholder":"player_position_delta_x_fm"}
 ```
 
-## Player Position Delta Y (FM) (`player_position_delta_y_fm`)
+### Player Position Delta Y (FM)
+
+**Identifier:** `player_position_delta_y_fm`
 
 How far the player moved along Y since the last tick, like `-0.08` while falling.
 
@@ -1674,7 +1992,9 @@ How far the player moved along Y since the last tick, like `-0.08` while falling
 {"placeholder":"player_position_delta_y_fm"}
 ```
 
-## Player Position Delta Z (FM) (`player_position_delta_z_fm`)
+### Player Position Delta Z (FM)
+
+**Identifier:** `player_position_delta_z_fm`
 
 How far the player moved along Z since the last tick.
 
@@ -1682,7 +2002,9 @@ How far the player moved along Z since the last tick.
 {"placeholder":"player_position_delta_z_fm"}
 ```
 
-## Camera Rotation X (FM) (`camera_rotation_x_fm`)
+### Camera Rotation X (FM)
+
+**Identifier:** `camera_rotation_x_fm`
 
 How far the camera looks up or down, in degrees, from `-90.0` (straight up) to `90.0` (straight down).
 
@@ -1690,7 +2012,9 @@ How far the camera looks up or down, in degrees, from `-90.0` (straight up) to `
 {"placeholder":"camera_rotation_x_fm"}
 ```
 
-## Camera Rotation Y (FM) (`camera_rotation_y_fm`)
+### Camera Rotation Y (FM)
+
+**Identifier:** `camera_rotation_y_fm`
 
 Which way the camera faces, in degrees from `-180.0` to `180.0`. `0.0` is south.
 
@@ -1698,7 +2022,9 @@ Which way the camera faces, in degrees from `-180.0` to `180.0`. `0.0` is south.
 {"placeholder":"camera_rotation_y_fm"}
 ```
 
-## Camera Rotation Delta X (FM) (`camera_rotation_delta_x_fm`)
+### Camera Rotation Delta X (FM)
+
+**Identifier:** `camera_rotation_delta_x_fm`
 
 How far the camera turned up or down since the last tick, in degrees.
 
@@ -1706,7 +2032,9 @@ How far the camera turned up or down since the last tick, in degrees.
 {"placeholder":"camera_rotation_delta_x_fm"}
 ```
 
-## Camera Rotation Delta Y (FM) (`camera_rotation_delta_y_fm`)
+### Camera Rotation Delta Y (FM)
+
+**Identifier:** `camera_rotation_delta_y_fm`
 
 How far the camera turned left or right since the last tick, in degrees.
 
@@ -1714,11 +2042,13 @@ How far the camera turned left or right since the last tick, in degrees.
 {"placeholder":"camera_rotation_delta_y_fm"}
 ```
 
-# World: World Info
+## World: World Info
 
 These are in the **World** category.
 
-## World Day Time (`world_daytime`)
+### World Day Time
+
+**Identifier:** `world_daytime`
 
 The time of day of the world in ticks. A day has 24000 ticks and starts at 6:00 in the morning. It keeps counting from day to day, so `{"placeholder":"world_daytime"} % 24000` in a Calculator gives the time of the current day.
 
@@ -1726,7 +2056,9 @@ The time of day of the world in ticks. A day has 24000 ticks and starts at 6:00 
 {"placeholder":"world_daytime"}
 ```
 
-## World Day Time Hour (`world_daytime_hour`)
+### World Day Time Hour
+
+**Identifier:** `world_daytime_hour`
 
 The hour of the world's time of day, from `00` to `23`.
 
@@ -1736,7 +2068,9 @@ The hour of the world's time of day, from `00` to `23`.
 {"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
 ```
 
-## World Day Time Minute (`world_daytime_minute`)
+### World Day Time Minute
+
+**Identifier:** `world_daytime_minute`
 
 The minute of the world's time of day, from `00` to `59`.
 
@@ -1744,7 +2078,9 @@ The minute of the world's time of day, from `00` to `59`.
 {"placeholder":"world_daytime_hour"}:{"placeholder":"world_daytime_minute"}
 ```
 
-## World Game Time (`game_time`)
+### World Game Time
+
+**Identifier:** `game_time`
 
 How many ticks the world ran in total. Unlike the day time, commands like `/time set` don't change it.
 
@@ -1752,7 +2088,9 @@ How many ticks the world ran in total. Unlike the day time, commands like `/time
 {"placeholder":"game_time"}
 ```
 
-## World Difficulty (`world_difficulty`)
+### World Difficulty
+
+**Identifier:** `world_difficulty`
 
 `peaceful`, `easy`, `normal` or `hard`.
 
@@ -1760,7 +2098,9 @@ How many ticks the world ran in total. Unlike the day time, commands like `/time
 {"placeholder":"world_difficulty"}
 ```
 
-## Current Dimension (`current_dimension`)
+### Current Dimension
+
+**Identifier:** `current_dimension`
 
 The dimension the player is in, like `minecraft:overworld`.
 
@@ -1770,7 +2110,9 @@ The dimension the player is in, like `minecraft:overworld`.
 {"placeholder":"current_dimension","values":{"as_key":"false"}}
 ```
 
-## Current Biome (`current_biome`)
+### Current Biome
+
+**Identifier:** `current_biome`
 
 The biome the player is in, like `minecraft:plains`.
 
@@ -1780,7 +2122,9 @@ The biome the player is in, like `minecraft:plains`.
 {"placeholder":"current_biome","values":{"as_key":"false"}}
 ```
 
-## Current World Seed (`current_world_seed`)
+### Current World Seed
+
+**Identifier:** `current_world_seed`
 
 The seed of the singleplayer world, like `-4172144997902289642`. Empty on servers.
 
@@ -1788,7 +2132,9 @@ The seed of the singleplayer world, like `-4172144997902289642`. Empty on server
 {"placeholder":"current_world_seed"}
 ```
 
-## Gamerule Value (`gamerule_value`)
+### Gamerule Value
+
+**Identifier:** `gamerule_value`
 
 The value of a game rule, like `true` or `3`. In singleplayer, it always works. On servers, it needs FancyMenu on the server. Empty when there's no game rule with that name.
 
@@ -1798,7 +2144,9 @@ The value of a game rule, like `true` or `3`. In singleplayer, it always works. 
 {"placeholder":"gamerule_value","values":{"name":"keep_inventory"}}
 ```
 
-## Current Server IP (`current_server_ip`)
+### Current Server IP
+
+**Identifier:** `current_server_ip`
 
 The address of the server the player is on, like `play.example.net`. Empty in singleplayer.
 
@@ -1806,7 +2154,9 @@ The address of the server the player is on, like `play.example.net`. Empty in si
 {"placeholder":"current_server_ip"}
 ```
 
-## World Players List (`world_players_list`)
+### World Players List
+
+**Identifier:** `world_players_list`
 
 The names of the players in the world your game knows about, sorted alphabetically, like `Alex, Notch, Steve`.
 
@@ -1816,11 +2166,13 @@ The names of the players in the world your game knows about, sorted alphabetical
 {"placeholder":"world_players_list","values":{"separator":", "}}
 ```
 
-# World: World Saves
+## World: World Saves
 
 These are in the **World** category and work in every menu, without a loaded world.
 
-## World Save Count (`level_save_count`)
+### World Save Count
+
+**Identifier:** `level_save_count`
 
 How many singleplayer worlds there are.
 
@@ -1828,7 +2180,9 @@ How many singleplayer worlds there are.
 {"placeholder":"level_save_count"}
 ```
 
-## World Save Names (`level_save_names`)
+### World Save Names
+
+**Identifier:** `level_save_names`
 
 The names of all singleplayer worlds, in the order of the world list, like `Survival World, Creative Test`.
 
@@ -1838,9 +2192,11 @@ The names of all singleplayer worlds, in the order of the world list, like `Surv
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
 
-## World Save Data (`level_save_data`)
+### World Save Data
 
-All data of a singleplayer world as JSON, like `{"file_name":"Survival World","game_type":"survival","difficulty":"normal",...}`. It has `file_name`, `display_name`, `game_type`, `difficulty`, `allow_commands`, `last_played` (as Unix timestamp), `minecraft_version_name` and more. Read single values with [**JSON Parser**](#json-parser-json).
+**Identifier:** `level_save_data`
+
+All data of a singleplayer world as JSON, like `{"file_name":"Survival World","game_type":"survival","difficulty":"normal",...}`. It has `file_name`, `display_name`, `game_type`, `difficulty`, `allow_commands`, `last_played` (as Unix timestamp), `minecraft_version_name` and more. Read single values with [**JSON Parser**](#json-parser).
 
 - `level_name`: the name of the world, exactly like in the world list
 
@@ -1848,11 +2204,13 @@ All data of a singleplayer world as JSON, like `{"file_name":"Survival World","g
 {"placeholder":"json","values":{"source":"{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}","json_path":"$.game_type"}}
 ```
 
-# Other
+## Other
 
 These have no category, so the placeholder menu lists them below the categories.
 
-## FPS (Frames Per Second) (`fps`)
+### FPS (Frames Per Second)
+
+**Identifier:** `fps`
 
 The frames per second, like `120`.
 
@@ -1860,7 +2218,9 @@ The frames per second, like `120`.
 {"placeholder":"fps"}
 ```
 
-## Used RAM in MB (`usedram`)
+### Used RAM in MB
+
+**Identifier:** `usedram`
 
 The RAM the game uses right now, in MB, like `4096`.
 
@@ -1868,7 +2228,9 @@ The RAM the game uses right now, in MB, like `4096`.
 {"placeholder":"usedram"}
 ```
 
-## Max RAM in MB (`maxram`)
+### Max RAM in MB
+
+**Identifier:** `maxram`
 
 The most RAM the game can use, in MB, like `8192`.
 
@@ -1876,7 +2238,9 @@ The most RAM the game can use, in MB, like `8192`.
 {"placeholder":"maxram"}
 ```
 
-## Used RAM in % (`percentram`)
+### Used RAM in %
+
+**Identifier:** `percentram`
 
 The RAM the game uses, in percent of the max RAM, like `50`.
 
@@ -1884,7 +2248,9 @@ The RAM the game uses, in percent of the max RAM, like `50`.
 {"placeholder":"percentram"}
 ```
 
-## CPU Usage (JVM) (`jvmcpu`)
+### CPU Usage (JVM)
+
+**Identifier:** `jvmcpu`
 
 How much of the CPU the game uses, in percent, like `25.5`.
 
@@ -1892,7 +2258,9 @@ How much of the CPU the game uses, in percent, like `25.5`.
 {"placeholder":"jvmcpu"}
 ```
 
-## CPU Usage (OS) (`oscpu`)
+### CPU Usage (OS)
+
+**Identifier:** `oscpu`
 
 How much of the CPU the whole computer uses, in percent, like `42.8`.
 
@@ -1900,7 +2268,9 @@ How much of the CPU the whole computer uses, in percent, like `42.8`.
 {"placeholder":"oscpu"}
 ```
 
-## CPU Info (`cpuinfo`)
+### CPU Info
+
+**Identifier:** `cpuinfo`
 
 The name of the CPU, like `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`.
 
@@ -1908,7 +2278,9 @@ The name of the CPU, like `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`.
 {"placeholder":"cpuinfo"}
 ```
 
-## GPU Info (`gpuinfo`)
+### GPU Info
+
+**Identifier:** `gpuinfo`
 
 The name of the graphics device the game uses, like `NVIDIA GeForce RTX 3080`.
 
@@ -1916,7 +2288,9 @@ The name of the graphics device the game uses, like `NVIDIA GeForce RTX 3080`.
 {"placeholder":"gpuinfo"}
 ```
 
-## OpenGL Version (`glver`)
+### OpenGL Version
+
+**Identifier:** `glver`
 
 The driver info of the graphics device the game uses, like `4.6.0 NVIDIA 566.36`.
 
@@ -1924,7 +2298,9 @@ The driver info of the graphics device the game uses, like `4.6.0 NVIDIA 566.36`
 {"placeholder":"glver"}
 ```
 
-## Java Version (`javaver`)
+### Java Version
+
+**Identifier:** `javaver`
 
 The Java version the game runs on, like `21.0.5`.
 
@@ -1932,7 +2308,9 @@ The Java version the game runs on, like `21.0.5`.
 {"placeholder":"javaver"}
 ```
 
-## Java Virtual Machine (`jvmname`)
+### Java Virtual Machine
+
+**Identifier:** `jvmname`
 
 The name of the Java virtual machine, like `OpenJDK 64-Bit Server VM`.
 
@@ -1940,7 +2318,9 @@ The name of the Java virtual machine, like `OpenJDK 64-Bit Server VM`.
 {"placeholder":"jvmname"}
 ```
 
-## Operating System Name (`osname`)
+### Operating System Name
+
+**Identifier:** `osname`
 
 The name of the operating system, like `Windows 11`.
 
@@ -1948,7 +2328,9 @@ The name of the operating system, like `Windows 11`.
 {"placeholder":"osname"}
 ```
 
-## Uptime Duration (`uptime_duration`)
+### Uptime Duration
+
+**Identifier:** `uptime_duration`
 
 How long the game runs, in seconds, like `742`.
 
@@ -1958,7 +2340,9 @@ How long the game runs, in seconds, like `742`.
 {"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
 ```
 
-## Random Text (`randomtext`)
+### Random Text
+
+**Identifier:** `randomtext`
 
 A random line of a text file, a URL or a text you type, like a random tip. Files and URLs get read again every 30 seconds.
 
@@ -1969,7 +2353,9 @@ A random line of a text file, a URL or a text you type, like a random tip. Files
 {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/tips.txt","interval":"10"}}
 ```
 
-## Web Text (`webtext`)
+### Web Text
+
+**Identifier:** `webtext`
 
 The first line of the text of a web page, like a text file on your website. It gets loaded once, and again when FancyMenu reloads. Empty while it loads.
 
@@ -1979,7 +2365,9 @@ The first line of the text of a web page, like a text file on your website. It g
 {"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}
 ```
 
-## Absolute File/Folder Path (`absolute_path`)
+### Absolute File/Folder Path
+
+**Identifier:** `absolute_path`
 
 The full path of a file or folder in the game folder, like `C:/Users/Steve/AppData/Roaming/.minecraft/config/fancymenu`.
 
@@ -1989,7 +2377,9 @@ The full path of a file or folder in the game folder, like `C:/Users/Steve/AppDa
 {"placeholder":"absolute_path","values":{"short_path":"config/fancymenu"}}
 ```
 
-## Text Character Count (`text_character_count`)
+### Text Character Count
+
+**Identifier:** `text_character_count`
 
 How many characters a text has: `Hello World!` has `12`.
 
@@ -1999,7 +2389,9 @@ How many characters a text has: `Hello World!` has `12`.
 {"placeholder":"text_character_count","values":{"text":"$$player_nickname"}}
 ```
 
-## Text Width (`text_width`)
+### Text Width
+
+**Identifier:** `text_width`
 
 How wide a text is in GUI pixels: `Hello World!` is `57`. Formatting codes like `&l` count like in the game, so bold text is wider.
 
@@ -2009,9 +2401,11 @@ How wide a text is in GUI pixels: `Hello World!` is `57`. Formatting codes like 
 {"placeholder":"text_width","values":{"text":"Hello World!"}}
 ```
 
-## Text Height (`text_height`)
+### Text Height
 
-How high a text is in GUI pixels, with all of its lines. Line breaks are `\n`. To fit something to a Text element, use [**Text Element Content Height**](#text-element-content-height-text_element_content_height), which also counts its text scale, line spacing and wrapped lines.
+**Identifier:** `text_height`
+
+How high a text is in GUI pixels, with all of its lines. Line breaks are `\n`. To fit something to a Text element, use [**Text Element Content Height**](#text-element-content-height), which also counts its text scale, line spacing and wrapped lines.
 
 - `text`: the text
 
@@ -2019,7 +2413,9 @@ How high a text is in GUI pixels, with all of its lines. Line breaks are `\n`. T
 {"placeholder":"text_height","values":{"text":"First line\nSecond line"}}
 ```
 
-## Clipboard Content (`clipboard_content`)
+### Clipboard Content
+
+**Identifier:** `clipboard_content`
 
 The text in the clipboard of your computer. Empty when there's none.
 

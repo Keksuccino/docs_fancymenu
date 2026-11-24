@@ -4,7 +4,7 @@ description: About screen identifiers and how to find the identifier of a screen
 ---
 # Screen Identifiers
 
-FancyMenu uses screen identifiers for layouts, Vanilla widgets, [screen actions](/action-scripts#open-screen-or-custom-gui-opengui), and [Custom GUI overrides](/custom-guis#overriding-an-existing-screen). Identifiers are case-sensitive, so copy them exactly from the debug overlay.
+FancyMenu uses screen identifiers for layouts, Vanilla widgets, [screen actions](/action-scripts#open-screen-or-custom-gui), and [Custom GUI overrides](/custom-guis#overriding-an-existing-screen). Identifiers are case-sensitive, so copy them exactly from the debug overlay.
 
 Built-in screens normally use a short universal identifier such as `title_screen`. Other mod screens may use their Java class name. Custom GUIs use the identifier entered in their manager. These are FancyMenu screen identifiers, not Minecraft resource locations.
 
@@ -26,6 +26,6 @@ It contains the current screen's identifier and allows you to copy it to the cli
 
 # Opening Screens
 
-The [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui-opengui) can open only screens FancyMenu can construct in the current game state. Some screens require a loaded world, connection, player, or original parent screen.
+The [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui) can open only screens FancyMenu can construct in the current game state. Some screens require a loaded world, connection, player, or original parent screen.
 
-If FancyMenu cannot construct the identifier, it shows an error. Use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button-mimicbutton) on the widget that normally opens the screen.
+If FancyMenu cannot construct the identifier, it shows an error. Use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button) on the widget that normally opens the screen.

@@ -31,7 +31,7 @@ The `/openguiscreen` command opens a Vanilla, mod, or [Custom GUI](/custom-guis)
 
 See [Opening GUIs by Command](/opengui-command) and [Screen Identifiers](/screen-identifiers).
 
-Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button-mimicbutton) on the widget that normally opens it.
+Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button) on the widget that normally opens it.
 
 **Usage:** `/openguiscreen <screen_identifier> [<target_players>]`
 

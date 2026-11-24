@@ -10,29 +10,29 @@ The native [**Video** element](/elements#video) and **Video** menu background us
 
 There are also the following [actions](/action-scripts) to control video backgrounds and elements:
 
-- [**Set Video Element Volume**](/action-scripts#set-video-element-volume-set_video_element_volume) sets the volume of a Video element.
-- [**Set Video Element Play Time**](/action-scripts#set-video-element-play-time-set_video_element_play_time) seeks a Video element to a millisecond timestamp.
-- [**Toggle Video Element Paused State**](/action-scripts#toggle-video-element-paused-state-toggle_video_element_pause_state) toggles a Video element's paused state.
-- [**Set Video Background Volume**](/action-scripts#set-video-background-volume-set_video_menu_background_volume) sets a Video menu background's volume.
-- [**Set Video Background Play Time**](/action-scripts#set-video-background-play-time-set_video_menu_background_play_time) seeks a Video menu background to a millisecond timestamp.
-- [**Toggle Video Background Paused State**](/action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state) toggles a Video menu background's paused state.
+- [**Set Video Element Volume**](/action-scripts#set-video-element-volume) sets the volume of a Video element.
+- [**Set Video Element Play Time**](/action-scripts#set-video-element-play-time) seeks a Video element to a millisecond timestamp.
+- [**Toggle Video Element Paused State**](/action-scripts#toggle-video-element-paused-state) toggles a Video element's paused state.
+- [**Set Video Background Volume**](/action-scripts#set-video-background-volume) sets a Video menu background's volume.
+- [**Set Video Background Play Time**](/action-scripts#set-video-background-play-time) seeks a Video menu background to a millisecond timestamp.
+- [**Toggle Video Background Paused State**](/action-scripts#toggle-video-background-paused-state) toggles a Video menu background's paused state.
 
 And the following [placeholders](/placeholders) to get information about video backgrounds and elements:
 
-- [**Video Element Volume**](/placeholders#video-element-volume-video_element_vol) returns a Video element's volume.
-- [**Video Element Duration**](/placeholders#video-element-duration-video_element_duration) returns a Video element's duration.
-- [**Video Element Play Time**](/placeholders#video-element-play-time-video_element_playtime) returns a Video element's current progress.
-- [**Video Element Paused State**](/placeholders#video-element-paused-state-video_element_paused_state) returns whether a Video element is paused.
-- [**Video Background Volume**](/placeholders#video-background-volume-video_background_vol) returns a Video menu background's volume.
-- [**Video Background Duration**](/placeholders#video-background-duration-video_background_duration) returns a Video menu background's duration.
-- [**Video Background Play Time**](/placeholders#video-background-play-time-video_background_playtime) returns a Video menu background's current progress.
-- [**Video Background Paused State**](/placeholders#video-background-paused-state-video_background_paused_state) returns whether a Video menu background is paused.
+- [**Video Element Volume**](/placeholders#video-element-volume) returns a Video element's volume.
+- [**Video Element Duration**](/placeholders#video-element-duration) returns a Video element's duration.
+- [**Video Element Play Time**](/placeholders#video-element-play-time) returns a Video element's current progress.
+- [**Video Element Paused State**](/placeholders#video-element-paused-state) returns whether a Video element is paused.
+- [**Video Background Volume**](/placeholders#video-background-volume) returns a Video menu background's volume.
+- [**Video Background Duration**](/placeholders#video-background-duration) returns a Video menu background's duration.
+- [**Video Background Play Time**](/placeholders#video-background-play-time) returns a Video menu background's current progress.
+- [**Video Background Paused State**](/placeholders#video-background-paused-state) returns whether a Video menu background is paused.
 
 The duration and play-time placeholders return `MM:SS` by default. Set `output_as_timestamp` to `true` when you need millisecond timestamps. Play-time placeholders can still use `show_percentage` for 0-100 progress values.
 
 Volume and paused-state values are controller metadata associated with the identifier. Duration and play-time values require the matching Video element or background to be active and ready on the current screen.
 
-The [**Video Playback Status Changed** listener](/listeners#video-playback-status-changed-video_playback_status_changed) can react to `PLAYING`, `PAUSED`, `STOPPED`, and `FINISHED`.
+The [**Video Playback Status Changed** listener](/listeners#video-playback-status-changed) can react to `PLAYING`, `PAUSED`, `STOPPED`, and `FINISHED`.
 
 ## Requirements
 

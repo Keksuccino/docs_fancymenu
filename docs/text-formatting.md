@@ -211,7 +211,7 @@ Text can also trigger [listeners](/listeners) instead of opening a website. Use 
 [some hoverable text](hover:unique_text_hover_event_id)
 ```
 
-React to them with the [**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked-text_clicked) and [**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered-text_hovered) listeners. Both give you the ID as `$$text_event_id`.
+React to them with the [**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked) and [**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered) listeners. Both give you the ID as `$$text_event_id`.
 
 ## Images
 

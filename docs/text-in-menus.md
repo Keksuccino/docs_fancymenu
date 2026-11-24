@@ -177,4 +177,4 @@ Tooltip elements work like Text elements without scrolling:
 
 - Their text, look and style settings are the same as for Text elements.
 - **Follow Mouse** makes the tooltip follow the mouse.
-- Use [requirements](/conditions) to decide when the tooltip shows up, like the [**Is Element Hovered**](/conditions#is-element-hovered-fancymenu_visibility_requirement_is_element_hovered) requirement to show it while a button is hovered.
+- Use [requirements](/conditions) to decide when the tooltip shows up, like the [**Is Element Hovered**](/conditions#is-element-hovered) requirement to show it while a button is hovered.

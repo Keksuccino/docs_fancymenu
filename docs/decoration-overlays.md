@@ -56,9 +56,13 @@ To choose which elements take part, right-click an element and set **Should Be A
 
 Some overlays react to clicks, like Bubbles, Frost and Confetti. Your buttons still get every click.
 
-# Weather
+# All Decoration Overlays
 
-## Snowfall
+Every decoration overlay FancyMenu has, sorted by theme.
+
+## Weather
+
+### Snowfall
 
 Snow falls and slowly piles up on your buttons and along the bottom of the screen.
 
@@ -67,7 +71,7 @@ Snow falls and slowly piles up on your buttons and along the bottom of the scree
 - **Accumulate Snow** lets the snow pile up.
 - **Snow Color [HEX]**, **Snowfall Speed**, **Amount (%)** and **Size** change the snow.
 
-## Rainfall
+### Rainfall
 
 Rain falls, ripples in thin puddles and drips from your buttons.
 
@@ -81,7 +85,7 @@ Rain falls, ripples in thin puddles and drips from your buttons.
 > [!WARNING]
 > **Thunder Flashes** makes the screen flash. Leave it off if players might be sensitive to flashing lights.
 
-## Fog
+### Fog
 
 Soft layers of mist drift across the screen and over your elements, thickest near the ground.
 
@@ -89,7 +93,7 @@ Soft layers of mist drift across the screen and over your elements, thickest nea
 
 - **Clear Around Pointer** makes the fog part around the mouse.
 
-## Frost
+### Frost
 
 Your menu freezes over. Ice creeps along the edges, into the corners and onto your elements. Click the ice to knock a chunk out.
 
@@ -97,9 +101,9 @@ Your menu freezes over. Ice creeps along the edges, into the corners and onto yo
 
 - **Screen Edges**, **Corners** and **On Elements** turn each part of the ice on or off. Labels on your elements stay clear.
 
-# Nature
+## Nature
 
-## Leaves
+### Leaves
 
 Leaves fall and get pushed around by gusts of wind.
 
@@ -110,7 +114,7 @@ Leaves fall and get pushed around by gusts of wind.
 - **Wind Blows** turns the strong gusts on or off. **Wind Intensity** sets how strong the wind is.
 - **Leaf Density**, **Leaf Fall Speed** and **Leaf Overlay Scale** change the leaves.
 
-## Cherry Blossoms
+### Cherry Blossoms
 
 Blossoming branches reach in from the top corners and petals drift down.
 
@@ -119,7 +123,7 @@ Blossoming branches reach in from the top corners and petals drift down.
 - **Left Branch** and **Right Branch** show or hide each branch.
 - **Look** and **Amount (%)** change the petals.
 
-## Overgrowth
+### Overgrowth
 
 Nature takes over your menu: moss, vines, grass and flowers slowly grow all over it.
 
@@ -128,13 +132,13 @@ Nature takes over your menu: moss, vines, grass and flowers slowly grow all over
 - **Grass**, **Left Vines**, **Right Vines** and **On Elements** turn each kind of growth on or off. Labels on your elements stay clear.
 - **Flowers on Vines**, **Flowers on Elements** and **Flowers in Grass** let flowers bloom there. **Flowers (%)** sets how many.
 
-## Clouds
+### Clouds
 
 Fluffy pixel clouds drift across the sky behind your elements, in three layers of depth. Clouds have no settings of their own.
 
 <img width="800" alt="Clouds drifting behind the logo and buttons of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_clouds.png?raw=true">
 
-## Sunbeams
+### Sunbeams
 
 Rays of sunlight fan out from a sun just off the screen, with dust dancing in the light.
 
@@ -146,27 +150,27 @@ Rays of sunlight fan out from a sun just off the screen, with dust dancing in th
 - **Dust** lets dust drift through the rays. Your mouse stirs it up.
 - **Hit Elements** makes the rays stop at your elements, light up their edges and cast shadows. When it's off, the rays shine in front of your elements.
 
-## Bubbles
+### Bubbles
 
 Bubbles wobble up in streams and slide along the underside of your elements. Click them to pop them! Bubbles have no settings of their own.
 
 <img width="800" alt="Bubbles rising over a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_bubbles.png?raw=true">
 
-# Animals
+## Animals
 
-## Birds
+### Birds
 
 Little birds fly in, hop around on your elements and take off when the mouse gets too close.
 
 <img width="800" alt="Birds at 2x size and 50% amount sitting on the buttons of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_birds.png?raw=true">
 
-## Butterflies
+### Butterflies
 
 Colorful butterflies flutter around, rest on your elements and shy away from the mouse.
 
 <img width="800" alt="Butterflies fluttering around the buttons of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_butterflies.png?raw=true">
 
-## Bats
+### Bats
 
 Bats flap across the screen in little groups and hang asleep under your elements. Get too close and they wake up!
 
@@ -174,7 +178,7 @@ Bats flap across the screen in little groups and hang asleep under your elements
 
 Birds, Butterflies and Bats have **Amount (%)** and **Size**.
 
-## Fireflies
+### Fireflies
 
 Groups of fireflies glow and wander around, and some land on your elements.
 
@@ -185,9 +189,53 @@ Groups of fireflies glow and wander around, and some land on your elements.
 - **Landing** lets fireflies land on your elements now and then.
 - **Firefly Color [HEX]**, **Group Amount**, **Group Density**, **Group Size** and **Firefly Scale** change the fireflies.
 
-# Night Sky
+### Buddy
 
-## Aurora
+Buddy is a little virtual pet that lives at the bottom of your menu. It walks around, shows what it needs in thought bubbles, reacts when you play with it and remembers everything between game sessions.
+
+<img width="480" alt="Buddy, a small pink pet, walking along the bottom of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_buddy.png?raw=true">
+
+#### Taking Care of Buddy
+
+Buddy has four needs, from `0` to `100`:
+
+- **Hunger** goes down over time. Food fills it up.
+- **Happiness** goes down over time. Petting, food and playing raise it.
+- **Energy** goes down while Buddy is awake and comes back while it sleeps.
+- **Fun** goes down over time. Playing raises it.
+
+To care for Buddy:
+
+- Left-click Buddy to pet it. Waking it up this way makes it a bit less happy.
+- Right-click Buddy to open its status screen. The **Stats** tab shows its needs, level and XP. The **Achievements** tab shows its achievements.
+- Click **Feed** in the status screen, then drag the food to Buddy.
+- Click **Play** in the status screen, then drag the ball and let go to throw it. Buddy chases and catches it.
+- Click **Sleep** to let Buddy rest. It also falls asleep on its own when its energy gets very low.
+- Buddy poops now and then. Left-click the poop to clean it up. With three or more poops lying around, Buddy keeps getting less happy.
+
+#### Levels and Achievements
+
+Caring for Buddy gives it XP. Buddy levels up from 1 to 30. The higher its level, the slower its hunger, happiness and energy go down, up to half as fast at level 30.
+
+#### When Buddy Dies
+
+If hunger or happiness stays at `0` for 10 real hours, Buddy dies and leaves a gravestone. Left-click the gravestone to start over with a new Buddy. Turn off **Buddy Can Die** to keep it from dying.
+
+**Reset Buddy Save** starts over at any time.
+
+> [!WARNING]
+> Resetting Buddy deletes its needs, level, XP, achievements and poops for good.
+
+#### Saving and Customizing
+
+Buddy saves itself about every two minutes and when its screen closes, in `<game-directory>/fancymenu_data/buddy/`. Each Buddy overlay has its own save. See [Data Storage Locations](/data-storage-locations).
+
+- **Custom Textures** replaces Buddy's sprites, items, icons, status screen and gravestone with your own textures.
+- **Stat Tuning** changes how fast its needs go down, what activities cost and give, and the most poops that can lie around (**Max Poops**).
+
+## Night Sky
+
+### Aurora
 
 Glowing northern lights hang in the upper sky and slowly wave behind your elements.
 
@@ -195,21 +243,21 @@ Glowing northern lights hang in the upper sky and slowly wave behind your elemen
 
 - **Edge Color [HEX]** sets the color of the bright lower edge. **Tip Color [HEX]** sets the color the rays fade into.
 
-## Shooting Stars
+### Shooting Stars
 
 A twinkling night sky behind your elements, with a shooting star every few seconds and a whole meteor shower now and then. Shooting Stars have no settings of their own.
 
 <img width="800" alt="A starry night sky with a shooting star behind a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_shooting_stars.png?raw=true">
 
-## Sky Lanterns
+### Sky Lanterns
 
 Glowing paper lanterns float up into the night sky, sometimes a whole group at once. Sky Lanterns have **Amount (%)** and **Size**.
 
 <img width="800" alt="Sky lanterns at 2x size and 25% amount floating up over a title screen at night" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_sky_lanterns.png?raw=true">
 
-# Party
+## Party
 
-## Confetti
+### Confetti
 
 Party poppers in the bottom corners fire confetti every few seconds, and the confetti piles up on your elements.
 
@@ -221,7 +269,7 @@ Party poppers in the bottom corners fire confetti every few seconds, and the con
 - **Landed Particle Cap** sets how many landed pieces can lie around at once.
 - **Amount (%)**, **Size** and **Confetti Fall Speed** change the confetti.
 
-## Fireworks
+### Fireworks
 
 Rockets fly up and burst into fireworks.
 
@@ -230,7 +278,7 @@ Rockets fly up and burst into fireworks.
 - **Show Rocket Flight** shows the rockets on their way up.
 - **Amount (%)**, **Size** and **Explosion Size** change the fireworks.
 
-## String Lights
+### String Lights
 
 Strings of lights hang across your menu and sway in the wind.
 
@@ -264,9 +312,9 @@ Each string has these settings:
 | **Alternate** | Every second light shines, then the other half takes over. |
 | **Breathe** | All lights glow up and fade together, nice and slow. |
 
-# Spooky
+## Spooky
 
-## Cobwebs
+### Cobwebs
 
 Dusty cobwebs hang in the top corners, with little spiders dropping down on their threads.
 
@@ -276,7 +324,7 @@ Dusty cobwebs hang in the top corners, with little spiders dropping down on thei
 - **Spiders** lets spiders drop down, hang around and climb back up. They scurry away from the mouse.
 - **Closed Front** joins the thread ends with a rim, so no loose threads end on the screen.
 
-## Embers
+### Embers
 
 Glowing embers rise up from below while ash drifts down and piles up.
 
@@ -285,51 +333,9 @@ Glowing embers rise up from below while ash drifts down and piles up.
 - **Ash on Floor** adds a deep bed of ash along the bottom of the screen, with smoldering spots and glowing coals.
 - **Ash on Elements** lets ash pile up on your elements.
 
-# Buddy
+## Custom
 
-Buddy is a little virtual pet that lives at the bottom of your menu. It walks around, shows what it needs in thought bubbles, reacts when you play with it and remembers everything between game sessions.
-
-<img width="480" alt="Buddy, a small pink pet, walking along the bottom of a title screen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_buddy.png?raw=true">
-
-## Taking Care of Buddy
-
-Buddy has four needs, from `0` to `100`:
-
-- **Hunger** goes down over time. Food fills it up.
-- **Happiness** goes down over time. Petting, food and playing raise it.
-- **Energy** goes down while Buddy is awake and comes back while it sleeps.
-- **Fun** goes down over time. Playing raises it.
-
-To care for Buddy:
-
-- Left-click Buddy to pet it. Waking it up this way makes it a bit less happy.
-- Right-click Buddy to open its status screen. The **Stats** tab shows its needs, level and XP. The **Achievements** tab shows its achievements.
-- Click **Feed** in the status screen, then drag the food to Buddy.
-- Click **Play** in the status screen, then drag the ball and let go to throw it. Buddy chases and catches it.
-- Click **Sleep** to let Buddy rest. It also falls asleep on its own when its energy gets very low.
-- Buddy poops now and then. Left-click the poop to clean it up. With three or more poops lying around, Buddy keeps getting less happy.
-
-## Levels and Achievements
-
-Caring for Buddy gives it XP. Buddy levels up from 1 to 30. The higher its level, the slower its hunger, happiness and energy go down, up to half as fast at level 30.
-
-## When Buddy Dies
-
-If hunger or happiness stays at `0` for 10 real hours, Buddy dies and leaves a gravestone. Left-click the gravestone to start over with a new Buddy. Turn off **Buddy Can Die** to keep it from dying.
-
-**Reset Buddy Save** starts over at any time.
-
-> [!WARNING]
-> Resetting Buddy deletes its needs, level, XP, achievements and poops for good.
-
-## Saving and Customizing
-
-Buddy saves itself about every two minutes and when its screen closes, in `<game-directory>/fancymenu_data/buddy/`. Each Buddy overlay has its own save. See [Data Storage Locations](/data-storage-locations).
-
-- **Custom Textures** replaces Buddy's sprites, items, icons, status screen and gravestone with your own textures.
-- **Stat Tuning** changes how fast its needs go down, what activities cost and give, and the most poops that can lie around (**Max Poops**).
-
-# Browser
+### Browser
 
 The Browser overlay shows a website across the whole screen.
 
@@ -345,7 +351,7 @@ The Consume and Process settings are on by default, so the browser works like a 
 
 Websites can also run FancyMenu actions and read placeholders. See [Browser JavaScript API](/browser-api).
 
-# GLSL Shader
+### GLSL Shader
 
 The GLSL Shader overlay draws your own shader across the whole screen, for animated or still effects. Paste your shader code into **Shader Source**.
 
