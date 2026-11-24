@@ -12,7 +12,7 @@ Requirements are conditions, like "the mouse is over this button", "it's Decembe
 - make buttons, sliders and checkboxes clickable only sometimes,
 - run parts of an [action script](/action-scripts) only sometimes.
 
-FancyMenu checks requirements all the time while a menu is open, so things show, hide or change right away. This info box only shows while the mouse is over **Multiplayer**:
+FancyMenu checks requirements all the time while a menu is open, so things show, hide or change right away. This info box only shows while the mouse is over "Multiplayer":
 
 <img width="800" alt="Moving the mouse over the Multiplayer button of the title screen shows an info box with a server address next to it" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_hover.gif?raw=true">
 
