@@ -10,7 +10,7 @@ dateCreated: 2025-04-14T20:15:16.589Z
 
 # Localizing Layouts
 
-Use the [**Localize Text** placeholder](./placeholders#localize-text-local) for translatable text:
+Use the [**Localize Text** placeholder](/placeholders#localize-text-local) for translatable text:
 
 ```text
 {"placeholder":"local","values":{"key":"modpack.menu.play"}}
@@ -64,15 +64,15 @@ Restart the client after editing custom localization files.
 
 # Language-Specific Text
 
-For automatic switching with Minecraft's selected language, provide normal Minecraft language files through a [resource pack](./resources#minecraft-resources-resource-packs):
+For automatic switching with Minecraft's selected language, provide normal Minecraft language files through a [resource pack](/resources#minecraft-resources-resource-packs):
 
 ```text
 assets/<namespace>/lang/en_us.json
 assets/<namespace>/lang/de_de.json
 ```
 
-Use the same keys in each language file, enable the resource pack, then read them with the [**Localize Text** placeholder](./placeholders#localize-text-local).
+Use the same keys in each language file, enable the resource pack, then read them with the [**Localize Text** placeholder](/placeholders#localize-text-local).
 
 # Localizing Images and Elements
 
-Use the [**Is Game Language** requirement](./conditions#is-game-language-fancymenu_loading_requirement_is_language) to show different elements or layouts for different language codes, such as `en_us` and `de_de`.
+Use the [**Is Game Language** requirement](/conditions#is-game-language-fancymenu_loading_requirement_is_language) to show different elements or layouts for different language codes, such as `en_us` and `de_de`.

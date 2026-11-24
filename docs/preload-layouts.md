@@ -20,7 +20,7 @@ Open **Customization -> Pre-Load Resources**.
 
 <img width="350" alt="Screenshot_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
 
-The list accepts supported image, animation, audio, video, and text resources from local files, web URLs, or resource packs. It does not preload a live [Browser](./elements#browser) page.
+The list accepts supported image, animation, audio, video, and text resources from local files, web URLs, or resource packs. It does not preload a live [Browser](/elements#browser) page.
 
 The pre-loader starts during game startup and Minecraft resource reloads. It waits for each entry to finish or fail before continuing, with a limit of two minutes per entry.
 
@@ -34,6 +34,6 @@ Pre-loading increases loading time and RAM/VRAM use. Add only resources that mus
 
 # Pre-Loading Slideshows & Panoramas
 
-Adding a [slideshow](./slideshows) loads all of its images and optional overlay. Adding a [panorama](./panoramas) loads all six faces and its optional overlay.
+Adding a [slideshow](/slideshows) loads all of its images and optional overlay. Adding a [panorama](/panoramas) loads all six faces and its optional overlay.
 
 **Customization -> Reload FancyMenu** does not run the pre-loader. Use a Minecraft resource reload or restart the game after changing the preload list.

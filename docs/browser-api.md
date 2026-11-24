@@ -8,7 +8,7 @@ description: >-
 
 FancyMenu injects a JavaScript bridge into every [Rinku](https://modrinth.com/mod/rinku)-backed feature (for example the **Browser** element). The bridge lets web content:
 
-- run any FancyMenu [action](./action-scripts) directly from JavaScript,
+- run any FancyMenu [action](/action-scripts) directly from JavaScript,
 - read any FancyMenu [placeholder](/placeholders) asynchronously.
 
 Two globals expose the API:
@@ -84,7 +84,7 @@ Legacy helpers `fancymenu.execute(...)` and `fancymenu.executeWithCallback(...)`
 - `joinserver` – connects to a server (value: address)
 - `disconnect_server_or_world` – disconnects and moves to a target screen (value: screen identifier)
 
-Every action that exists in FancyMenu is available through the bridge; see [action scripts](./action-scripts) for the complete catalog.
+Every action that exists in FancyMenu is available through the bridge; see [action scripts](/action-scripts) for the complete catalog.
 
 ## 4. Reading Placeholders
 

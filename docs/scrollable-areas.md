@@ -11,7 +11,7 @@ Everything in the area scrolls with it and gets cut off at its edges.
 <img width="800" alt="Putting buttons into a Scrollable Area and stacking them" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/scroll_area_showcase.gif?raw=true">
 
 > [!NOTE]
-> Only elements you added to the layout can go into an area. [Vanilla elements](./vanilla-elements) can't, because they belong to the menu itself.
+> Only elements you added to the layout can go into an area. [Vanilla elements](/vanilla-elements) can't, because they belong to the menu itself.
 
 # Adding a Scrollable Area
 
@@ -29,7 +29,7 @@ Everything in the area scrolls with it and gets cut off at its edges.
 
 ## Layers
 
-In the [Layers widget](./layers-and-groups), the elements of an area show up below it. Drag layers there to put them into or out of an area, or to change their order. The collapse button of an area's layer hides its elements in the list.
+In the [Layers widget](/layers-and-groups), the elements of an area show up below it. Drag layers there to put them into or out of an area, or to change their order. The collapse button of an area's layer hides its elements in the list.
 
 ## Copying and Deleting
 
@@ -49,7 +49,7 @@ Right-click the area and open **Arrangement**. **Mode** sets how the area places
 
 ## Anchors Mode
 
-Elements in an area have anchors of their own, which refer to the content of the area instead of the screen. For example, the **Top-Left Corner** anchor is the top-left corner of the content, and the bottom anchors stick to the end of the content. See [Positioning Elements](./positioning-elements) for how anchors work.
+Elements in an area have anchors of their own, which refer to the content of the area instead of the screen. For example, the **Top-Left Corner** anchor is the top-left corner of the content, and the bottom anchors stick to the end of the content. See [Positioning Elements](/positioning-elements) for how anchors work.
 
 - **Stretch Horizontally** and **Stretch Vertically** make an element as wide or as high as the content.
 - Elements can only be anchored to other elements in the same area. When you move an element into or out of an area, elements that were anchored across the area's edge get the **Top-Left Corner** anchor and stay where they are.
@@ -64,7 +64,7 @@ Select the area and drag the handle at the end of its content. Drag it past the 
 
 You can also right-click the area and open **Content Size**:
 
-- **Content Width** and **Content Height** set the size by number. They support [placeholders](./placeholders). With a placeholder, the handle can't be dragged.
+- **Content Width** and **Content Height** set the size by number. They support [placeholders](/placeholders). With a placeholder, the handle can't be dragged.
 - **Fit to Content** makes the content end right where the last element in it ends. Elements anchored to the middle or the end of the content move with it, so they don't count.
 
 The content is never smaller than the area, and it only gets bigger in the directions the area scrolls in.
@@ -74,7 +74,7 @@ The content is never smaller than the area, and it only gets bigger in the direc
 - The area places the elements for you, and the content grows with them on its own.
 - Drag an element to put it in another order. A line shows where it goes.
 - Switching from Anchors to one of these modes keeps the elements in the order they had on the screen. Switching back to Anchors keeps every element where it was.
-- Elements that are hidden by their [requirements](./conditions) leave no gap.
+- Elements that are hidden by their [requirements](/conditions) leave no gap.
 - Stretching doesn't work in these modes.
 - These modes only scroll in one direction. An area set to **Both** scrolls vertically.
 
@@ -96,7 +96,7 @@ Players scroll the area with the mouse wheel. Hold `Shift` to scroll sideways.
 - Text elements in an area scroll first. Once they reach their end, the area scrolls on.
 - When players jump between buttons with `Tab`, the area scrolls to the selected one.
 
-The **Scrolling**, **Auto-Scroll** and **Scroll Bars** menus have the same settings as for Text elements. See [Text in Menus](./text-in-menus#scrolling-settings) for all of them. The differences:
+The **Scrolling**, **Auto-Scroll** and **Scroll Bars** menus have the same settings as for Text elements. See [Text in Menus](/text-in-menus#scrolling-settings) for all of them. The differences:
 
 - **Snap** can rest the content **To Elements**, so an element always sits at the start of the area, or **To Pages**.
 - Buttons and everything else in the area keep working with **Drag to Scroll** on.
@@ -104,18 +104,18 @@ The **Scrolling**, **Auto-Scroll** and **Scroll Bars** menus have the same setti
 
 # Background
 
-Areas draw a panel behind their content. Open **Background** to change it. It works like the [background of Text elements](./text-in-menus#background): turn it off with **Show Background**, use your own texture with [nine-slicing](./nine-slicing-and-tiling) or tiling, and change how far it reaches with **Padding**.
+Areas draw a panel behind their content. Open **Background** to change it. It works like the [background of Text elements](/text-in-menus#background): turn it off with **Show Background**, use your own texture with [nine-slicing](/nine-slicing-and-tiling) or tiling, and change how far it reaches with **Padding**.
 
 # Scrolling With Actions
 
 You can also control and watch areas from other parts of FancyMenu:
 
-- The **Scroll an Element** [action](./action-scripts) scrolls an area to its start, its end, a position or one of the elements in it.
-- The **Element Scroll Position**, **Element Scroll Percent** and **Element Scroll Content Size** [placeholders](./placeholders) tell you how far the area is scrolled and how big its content is.
-- The **Is Element Scrolled to End** [requirement](./conditions) checks if the area got scrolled to its end.
-- The **On Element Scrolled**, **On Element Scrolled to Start** and **On Element Scrolled to End** [listeners](./listeners) run actions while the area scrolls.
+- The **Scroll an Element** [action](/action-scripts) scrolls an area to its start, its end, a position or one of the elements in it.
+- The **Element Scroll Position**, **Element Scroll Percent** and **Element Scroll Content Size** [placeholders](/placeholders) tell you how far the area is scrolled and how big its content is.
+- The **Is Element Scrolled to End** [requirement](/conditions) checks if the area got scrolled to its end.
+- The **On Element Scrolled**, **On Element Scrolled to Start** and **On Element Scrolled to End** [listeners](/listeners) run actions while the area scrolls.
 
-All of these need the [element identifier](./element-identifiers) of the area. For example, this shows how far an area is scrolled, from 0 to 100:
+All of these need the [element identifier](/element-identifiers) of the area. For example, this shows how far an area is scrolled, from 0 to 100:
 
 ```
 {"placeholder":"scroll_area_scroll_percent","values":{"element_identifier":"3f2a9c1e-7b4d-4e8a-9c2f-1d5e6a7b8c9d-1763950000000","axis":"vertical"}}

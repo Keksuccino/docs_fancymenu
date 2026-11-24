@@ -10,7 +10,7 @@ dateCreated: 2025-11-23T08:24:21.102Z
 
 # Listeners
 
-Listeners run [action scripts](./action-scripts) when specific events happen. They are not tied to an open screen, so they can also run while playing or loading.
+Listeners run [action scripts](/action-scripts) when specific events happen. They are not tied to an open screen, so they can also run while playing or loading.
 
 Listeners can provide `$$` values, such as a pressed key or clicked mouse button, to their actions and requirements.
 
@@ -27,10 +27,10 @@ Outside the Layout Editor, open **menu bar -> Customization -> Manage Listeners*
 
 Listeners can provide read-only values to their actions and requirements. Use their `$$` names in supported text fields.
 
-For example, use [**On Keyboard Key Pressed**](#on-keyboard-key-pressed-keyboard_key_pressed) with the [**Print to Game Log** action](./action-scripts#print-to-game-log-print_to_log). The value `Key pressed! The key is: $$key_name` inserts the pressed key's name.
+For example, use [**On Keyboard Key Pressed**](#on-keyboard-key-pressed-keyboard_key_pressed) with the [**Print to Game Log** action](/action-scripts#print-to-game-log-print_to_log). The value `Key pressed! The key is: $$key_name` inserts the pressed key's name.
 
 > [!WARNING]
-> Listener variables are separate from FancyMenu's [stored variables](./variables). Stored-variable actions, requirements, and placeholders do not work with `$$` values.
+> Listener variables are separate from FancyMenu's [stored variables](/variables). Stored-variable actions, requirements, and placeholders do not work with `$$` values.
 
 Listener variable names are case-sensitive and only work inside that listener's script.
 
@@ -43,17 +43,17 @@ Listener variables are strings. When information is unavailable, a listener may 
 This section lists FancyMenu's built-in listeners.
 
 ## On Markdown Text Clicked (`text_clicked`)
-- Fires when [Markdown text with a `click:` event](./text-formatting#click-and-hover-events) is clicked, for example `[Open](click:open_menu)`.
+- Fires when [Markdown text with a `click:` event](/text-formatting#click-and-hover-events) is clicked, for example `[Open](click:open_menu)`.
 - Variables:
   - `$$text_event_id` – event ID from the Markdown link
 
 ## On Markdown Text Hovered (`text_hovered`)
-- Fires when [Markdown text with a `hover:` event](./text-formatting#click-and-hover-events) is hovered, for example `[Hint](hover:show_hint)`.
+- Fires when [Markdown text with a `hover:` event](/text-formatting#click-and-hover-events) is hovered, for example `[Hint](hover:show_hint)`.
 - Variables:
   - `$$text_event_id` – event ID from the Markdown link
 
 ## On ZIP Extracted via Action (`zip_extracted_via_action`)
-- Fires when the [**Extract ZIP File In Game Directory** action](./action-scripts#extract-zip-file-in-game-directory-extract_zip_file_in_game_dir) finishes.
+- Fires when the [**Extract ZIP File In Game Directory** action](/action-scripts#extract-zip-file-in-game-directory-extract_zip_file_in_game_dir) finishes.
 - Variables:
   - `$$source_zip_path` – normalized user-facing source path; game-directory paths may be returned as `/...`, while conventional Minecraft-directory paths may use `.minecraft/...`
   - `$$target_folder_path` – normalized user-facing target path using the same path forms
@@ -68,7 +68,7 @@ This section lists FancyMenu's built-in listeners.
   - `$$target_screen` – target screen identifier
 
 ## On Animated Texture Started Playing (`animated_texture_started_playing`)
-- Fires when an [animated texture](./fma) starts playing.
+- Fires when an [animated texture](/animations) starts playing.
 - Variables:
   - `$$texture_source` – texture source
   - `$$texture_source_type` – source type
@@ -82,7 +82,7 @@ This section lists FancyMenu's built-in listeners.
   - `$$texture_will_restart`
 
 ## On Video Playback Status Changed (`video_playback_status_changed`)
-- Fires when a [Video element or menu background](./video) changes playback status.
+- Fires when a [Video element or menu background](/video) changes playback status.
 - Variables:
   - `$$video_source` – video source
   - `$$video_source_type` – source type
@@ -96,14 +96,14 @@ This section lists FancyMenu's built-in listeners.
   - `$$system_message_component` – JSON component
 
 ## On FM Data Received (`fm_data_received`)
-- Fires when a server sends [FM Data](./fm-data) to this client via `/fmdata send`.
+- Fires when a server sends [FM Data](/fm-data) to this client via `/fmdata send`.
 - Variables:
   - `$$data_identifier` – data identifier string
   - `$$data` – data payload
   - `$$sent_by` – server IP or `integrated_server`
 
 ## On Remote Server Connected (`remote_server_connected`)
-- Fires after a [remote server connection](./remote-server-communication) successfully opens.
+- Fires after a [remote server connection](/remote-server-communication) successfully opens.
 - Variables:
   - `$$request_id` – cached request ID
   - `$$remote_server_url` – remote server URL
@@ -199,21 +199,21 @@ This section lists FancyMenu's built-in listeners.
   - `$$death_pos_z` – death Z coordinate
 
 ## On Variable Updated [FM Variable] (`fm_variable_updated`)
-- Fires whenever a [FancyMenu variable](./variables) is set or updated.
+- Fires whenever a [FancyMenu variable](/variables) is set or updated.
 - Variables:
   - `$$var_name` – variable name
   - `$$old_value` – previous value
   - `$$new_value` – new value
 
 ## On File Downloaded via Action (`file_downloaded_via_action`)
-- Fires after the [**Download File to Game Directory** action](./action-scripts#download-file-to-game-directory-download_file_to_game_dir) finishes.
+- Fires after the [**Download File to Game Directory** action](/action-scripts#download-file-to-game-directory-download_file_to_game_dir) finishes.
 - Variables:
   - `$$download_url` – download source
   - `$$target_file_path` – saved file path on success; on failure, this may contain only the target directory because no final filename was resolved
   - `$$download_succeeded` – true/false
 
 ## On File Selected (`file_selected_via_action`)
-- Fires after the [**Select File from System** action](./action-scripts#select-file-from-system-select_file_to_game_dir) completes.
+- Fires after the [**Select File from System** action](/action-scripts#select-file-from-system-select_file_to_game_dir) completes.
 - Variables:
   - `$$selected_file_path` – absolute chosen file path or empty if cancelled
   - `$$target_file_path` – resolved path inside instance

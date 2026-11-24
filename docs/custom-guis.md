@@ -10,7 +10,7 @@ dateCreated: 2025-04-14T20:14:26.193Z
 
 # Custom GUIs
 
-Custom GUIs are new screens that you can fill with FancyMenu [elements](./elements).
+Custom GUIs are new screens that you can fill with FancyMenu [elements](/elements).
 
 > [!CAUTION]
 > Custom GUIs can run actions. Import them only from sources you trust.
@@ -44,8 +44,8 @@ Popup Mode does not merge the two screens. The Custom GUI remains the active scr
 
 Use the exact Custom GUI identifier with either:
 
-- The [**Open Screen or Custom GUI** action](./action-scripts#open-screen-or-custom-gui-opengui).
-- The [`/openguiscreen` command](./commands#openguiscreen).
+- The [**Open Screen or Custom GUI** action](/action-scripts#open-screen-or-custom-gui-opengui).
+- The [`/openguiscreen` command](/commands#openguiscreen).
 
 # Overriding an Existing Screen
 

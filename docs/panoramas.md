@@ -66,4 +66,4 @@ Duplicate names are not rejected, and directory scan order decides which panoram
 
 # Using a Panorama
 
-Reload FancyMenu through **Customization -> Reload FancyMenu**, or restart the client. Then right-click the layout editor background and select [**Menu Backgrounds**](./menu-backgrounds) -> **Cubic Panorama**.
+Reload FancyMenu through **Customization -> Reload FancyMenu**, or restart the client. Then right-click the layout editor background and select [**Menu Backgrounds**](/menu-backgrounds) -> **Cubic Panorama**.

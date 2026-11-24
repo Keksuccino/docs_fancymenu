@@ -10,9 +10,9 @@ dateCreated: 2025-05-08T23:42:27.319Z
 
 # Universal Layouts
 
-A Universal Layout is considered for every supported screen that has screen customization enabled. It does not apply to [blocked](./incompatibility-list#screens-where-customization-is-intentionally-disabled) or otherwise excluded screens.
+A Universal Layout is considered for every supported screen that has screen customization enabled. It does not apply to [blocked](/incompatibility-list#screens-where-customization-is-intentionally-disabled) or otherwise excluded screens.
 
-Use Universal Layouts for shared elements such as logos, navigation, overlays, or [Audio elements](./elements#audio) that should continue across several screens.
+Use Universal Layouts for shared elements such as logos, navigation, overlays, or [Audio elements](/elements#audio) that should continue across several screens.
 
 # Creating One
 
@@ -30,9 +30,9 @@ Open the Universal Layout settings from the editor background context menu.
 - **Whitelist:** the layout applies only to listed screen identifiers.
 - **Blacklist:** the layout applies to every eligible screen except listed identifiers.
 
-Use **Customization -> Copy Identifier of Current Screen** to copy a [screen identifier](./screen-identifiers).
+Use **Customization -> Copy Identifier of Current Screen** to copy a [screen identifier](/screen-identifiers).
 
-You can also add [layout-wide requirements](./conditions#layout-wide-requirements) to control when the layout applies.
+You can also add [layout-wide requirements](/conditions#layout-wide-requirements) to control when the layout applies.
 
 # Layout Order
 

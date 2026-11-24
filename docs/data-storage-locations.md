@@ -16,21 +16,21 @@ Some entries are authored configuration or assets; others are state that FancyMe
 | System / Feature | File or Directory |
 | --- | --- |
 | Customizable screens | `<game-directory>/config/fancymenu/customizablemenus.txt` |
-| [Custom GUIs](./custom-guis) and screen-override rules | `<game-directory>/config/fancymenu/custom_gui_screens.txt` |
+| [Custom GUIs](/custom-guis) and screen-override rules | `<game-directory>/config/fancymenu/custom_gui_screens.txt` |
 | Layouts | `<game-directory>/config/fancymenu/customization/` |
-| [Local assets](./resources#local-resources) | `<game-directory>/config/fancymenu/assets/` |
-| [Custom localization files](./localization#fancymenu-custom-localization-files) | `<game-directory>/config/fancymenu/custom_locals/` |
-| [Panoramas](./panoramas) | `<game-directory>/config/fancymenu/panoramas/` |
-| [Slideshows](./slideshows) | `<game-directory>/config/fancymenu/slideshows/` |
-| [FancyMenu variables](./variables) | `<game-directory>/config/fancymenu/user_variables.db` |
-| [Video element](./elements#video) controller metadata | `<game-directory>/config/fancymenu/video_element_controller_metas.json` |
-| [Audio element](./elements#audio) controller metadata | `<game-directory>/config/fancymenu/audio_element_controller_metas.json` |
-| [FM Data](./fm-data) server listeners | `<game-directory>/config/fancymenu/fmdata_server_listeners.json` |
-| [FM Data](./fm-data) welcome data | `<game-directory>/config/fancymenu/fmdata_welcome_data.json` |
-| [Listener](./listeners) instances and action scripts | `<game-directory>/config/fancymenu/listener_instances.txt` |
-| [Schedulers](./schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
+| [Local assets](/resources#local-resources) | `<game-directory>/config/fancymenu/assets/` |
+| [Custom localization files](/localization#fancymenu-custom-localization-files) | `<game-directory>/config/fancymenu/custom_locals/` |
+| [Panoramas](/panoramas) | `<game-directory>/config/fancymenu/panoramas/` |
+| [Slideshows](/slideshows) | `<game-directory>/config/fancymenu/slideshows/` |
+| [FancyMenu variables](/variables) | `<game-directory>/config/fancymenu/user_variables.db` |
+| [Video element](/elements#video) controller metadata | `<game-directory>/config/fancymenu/video_element_controller_metas.json` |
+| [Audio element](/elements#audio) controller metadata | `<game-directory>/config/fancymenu/audio_element_controller_metas.json` |
+| [FM Data](/fm-data) server listeners | `<game-directory>/config/fancymenu/fmdata_server_listeners.json` |
+| [FM Data](/fm-data) welcome data | `<game-directory>/config/fancymenu/fmdata_welcome_data.json` |
+| [Listener](/listeners) instances and action scripts | `<game-directory>/config/fancymenu/listener_instances.txt` |
+| [Schedulers](/schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
 
-`customizablemenus.txt` is managed by the **Current Screen Customization** toggle and stores concrete screen class identifiers. Do not add [Universal Layout](./universal-layouts) identifiers; FancyMenu ignores them when loading the file.
+`customizablemenus.txt` is managed by the **Current Screen Customization** toggle and stores concrete screen class identifiers. Do not add [Universal Layout](/universal-layouts) identifiers; FancyMenu ignores them when loading the file.
 
 On a dedicated server, the two FM Data files are relative to that server's game root. Other client-owned configuration and resources belong in each player's instance.
 
@@ -40,10 +40,10 @@ FancyMenu keeps additional generated, per-instance state outside `config/fancyme
 
 | System / Feature | File or Directory |
 | --- | --- |
-| Non-variable [Checkbox](./elements#checkbox) states | `<game-directory>/checkbox_states.json` |
-| [Dragger](./dragger) element positions/metadata | `<game-directory>/fancymenu_data/dragger_metas.json` |
+| Non-variable [Checkbox](/elements#checkbox) states | `<game-directory>/checkbox_states.json` |
+| [Dragger](/dragger) element positions/metadata | `<game-directory>/fancymenu_data/dragger_metas.json` |
 | Last world state | `<game-directory>/fancymenu_data/last_world.fmdata` |
-| [Seamless World Loading](./seamless-world-loading) state | `<game-directory>/fancymenu_data/seamless_world_loading/` |
+| [Seamless World Loading](/seamless-world-loading) state | `<game-directory>/fancymenu_data/seamless_world_loading/` |
 | Buddy pet and leveling saves | `<game-directory>/fancymenu_data/buddy/` |
 | Layout editor widget positions and visibility | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
 | Default GUI scale initialization marker | `<game-directory>/fancymenu_data/default_scale_set.fm` |

@@ -4,7 +4,7 @@ description: How to use animated images in FancyMenu, and how to make them.
 ---
 # Animations
 
-FancyMenu plays animated images almost everywhere you can use an image: in [Image elements](./elements#image), [image menu backgrounds](./menu-backgrounds), button and slider textures, the [Game Intro](./game-intro) and more.
+FancyMenu plays animated images almost everywhere you can use an image: in [Image elements](/elements#image), [image menu backgrounds](/menu-backgrounds), button and slider textures, the [Game Intro](/game-intro) and more.
 
 Use **APNG** or **GIF** files for your animations:
 
@@ -16,7 +16,7 @@ Use **APNG** or **GIF** files for your animations:
 
 # Using Animations
 
-1. Put the file into `<game-directory>/config/fancymenu/assets/`, so it shows up in FancyMenu's file chooser. Web URLs and resource pack files work too, see [Resources](./resources).
+1. Put the file into `<game-directory>/config/fancymenu/assets/`, so it shows up in FancyMenu's file chooser. Web URLs and resource pack files work too, see [Resources](/resources).
 2. Pick it like any other image, for example with **Image Source** of an Image element.
 
 > [!WARNING]
@@ -28,13 +28,13 @@ Use **APNG** or **GIF** files for your animations:
 - Animations only play while they're on screen. When they show up again, they continue where they stopped.
 - **Restart Animated Textures When Opening Screen** makes Image elements and image menu backgrounds start their animation over every time the screen opens.
 - **Restart Animated Textures On Hover** makes the textures of buttons and sliders start over every time the mouse moves onto them.
-- The [**Animated Texture Started Playing**](./listeners#on-animated-texture-started-playing-animated_texture_started_playing) and [**Animated Texture Finished Playing**](./listeners#on-animated-texture-finished-playing-animated_texture_finished_playing) listeners run actions when an animation starts or ends.
+- The [**Animated Texture Started Playing**](/listeners#on-animated-texture-started-playing-animated_texture_started_playing) and [**Animated Texture Finished Playing**](/listeners#on-animated-texture-finished-playing-animated_texture_finished_playing) listeners run actions when an animation starts or ends.
 
 ## Performance
 
 FancyMenu decodes APNGs and GIFs while they play, only a few frames ahead, so even long animations need little memory.
 
-Big frames and high frame rates still cost performance. Make your frames about as big as they show up on screen, see [Optimizing Textures](./optimizing-textures). For long clips with sound, use a [Video](./video) instead.
+Big frames and high frame rates still cost performance. Make your frames about as big as they show up on screen, see [Optimizing Textures](/optimizing-textures). For long clips with sound, use a [Video](/video) instead.
 
 # Making Animations
 
@@ -70,7 +70,7 @@ Turn a GIF into an APNG:
 ffmpeg -i logo.gif -plays 0 logo.apng
 ```
 
-To get single frames out of a video, see [Get Frames from Videos](./ffmpeg-frames).
+To get single frames out of a video, see [Get Frames from Videos](/ffmpeg-frames).
 
 # FMA and AFMA
 

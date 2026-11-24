@@ -18,10 +18,10 @@ Nine-slicing preserves a texture's corners and borders while stretching its cent
 
 | Area | Supported targets |
 |---|---|
-| Widgets | [Button](./elements#button) and [Slider](./elements#slider) textures; [global button and slider styles](./global-customizations#button-visuals) |
-| Images and panels | [Image elements](./elements#image) |
-| Progress Bars | [Fill and background textures](./elements#progress-bar) |
-| Tooltips | [Custom background textures](./elements#tooltip) |
+| Widgets | [Button](/elements#button) and [Slider](/elements#slider) textures; [global button and slider styles](/global-customizations#button-visuals) |
+| Images and panels | [Image elements](/elements#image) |
+| Progress Bars | [Fill and background textures](/elements#progress-bar) |
+| Tooltips | [Custom background textures](/elements#tooltip) |
 
 # Configuring Nine-Slicing
 
@@ -36,9 +36,9 @@ Button and Image settings use X/Y border sizes. Progress Bars and Tooltips expos
 
 Repeating textures are available for:
 
-- [Image elements](./elements#image).
-- [Image menu backgrounds](./menu-backgrounds).
-- [Scroll-list header and footer textures](./customizing-scrollable-screens).
+- [Image elements](/elements#image).
+- [Image menu backgrounds](/menu-backgrounds).
+- [Scroll-list header and footer textures](/customizing-scrollable-screens).
 
 Enable **Repeat Texture** on an Image element or Image background. For scrollable screens, use the repeat options in the header/footer customization menu.
 

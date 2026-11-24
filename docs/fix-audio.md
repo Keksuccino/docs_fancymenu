@@ -18,6 +18,6 @@ You can use FFmpeg or another trusted audio converter. Re-encoding is useful eve
 
 - Confirm that the re-encoded file plays in another audio player.
 - Keep very large audio files out of memory-sensitive screens.
-- Verify the sound channel selected by the [Audio element](./elements#audio) or action.
+- Verify the sound channel selected by the [Audio element](/elements#audio) or action.
 - Check Minecraft's Master volume and the selected channel's volume.
 - If audio still fails, test without other mods that replace or process Minecraft audio.

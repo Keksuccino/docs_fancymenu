@@ -12,7 +12,7 @@ dateCreated: 2026-05-03T11:01:52.000Z
 
 Seamless World Loading uses a recent view of a world or server as its next loading-screen background.
 
-Enable it through [**Customization -> Global Customizations**](./global-customizations) -> **Seamless World Loading**.
+Enable it through [**Customization -> Global Customizations**](/global-customizations) -> **Seamless World Loading**.
 
 # How It Works
 

@@ -11,7 +11,7 @@ Game Intros play an animated image or video before the Title screen first appear
 
 # Setup
 
-Open [**Global Customizations**](./global-customizations) through **Customization -> Global Customizations**, then configure these settings:
+Open [**Global Customizations**](/global-customizations) through **Customization -> Global Customizations**, then configure these settings:
 
 | Setting | Behavior |
 |---|---|
@@ -23,7 +23,7 @@ Open [**Global Customizations**](./global-customizations) through **Customizatio
 | Game Intro Sound Channel | Selects the Minecraft sound category |
 | Re-Trigger Game Intro | Plays the configured intro again for testing |
 
-Video intros require **Watermedia V3**, **Watermedia Binaries V3**, and an OpenGL renderer. Watermedia video playback is unavailable with Vulkan. When playback is unavailable, FancyMenu displays an explanation over the intro screen. See [Videos](./video#requirements).
+Video intros require **Watermedia V3**, **Watermedia Binaries V3**, and an OpenGL renderer. Watermedia video playback is unavailable with Vulkan. When playback is unavailable, FancyMenu displays an explanation over the intro screen. See [Videos](/video#requirements).
 
 <br>
 <img width="700" alt="Screenshot_1" src="https://gist.github.com/assets/35544624/71cec75b-33f1-4a21-9f18-d0adc7ceebb6">

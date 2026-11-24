@@ -9,12 +9,12 @@ FancyMenu has two elements for text:
 - **Text** shows text right in your menu, from a single line to long, scrollable pages like changelogs, rules or news.
 - **Tooltip** shows a text box at a fixed spot or next to the mouse, for example while a button is hovered.
 
-Both support [Markdown](./text-formatting) and [placeholders](./placeholders), and they share the same look and style settings.
+Both support [Markdown](/text-formatting) and [placeholders](/placeholders), and they share the same look and style settings.
 
 <img width="800" alt="Editing a Text element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/text_editor_showcase.gif?raw=true">
 
 > [!TIP]
-> This page is about the elements and their settings. For everything you can write in your text, like headlines, lists, links and colors, see [Text Formatting](./text-formatting).
+> This page is about the elements and their settings. For everything you can write in your text, like headlines, lists, links and colors, see [Text Formatting](/text-formatting).
 
 # Adding Text
 
@@ -30,7 +30,7 @@ Both support [Markdown](./text-formatting) and [placeholders](./placeholders), a
 Right-click the element and set **Source Mode**:
 
 - **Direct**: You type the text yourself in the text editor.
-- **Resource**: The text comes from a text file. Click **Text Source** to choose a local file from `<game-directory>/config/fancymenu/assets/`, a web URL or a resource pack file. See [Resources](./resources).
+- **Resource**: The text comes from a text file. Click **Text Source** to choose a local file from `<game-directory>/config/fancymenu/assets/`, a web URL or a resource pack file. See [Resources](/resources).
 
 Web sources are great for things like a changelog or news that are always up to date, without updating your modpack.
 
@@ -38,7 +38,7 @@ FancyMenu remembers the text of files and web sources until the game closes. To 
 
 ## Dynamic Text
 
-Text can show live values with [placeholders](./placeholders), for example `Welcome, {"placeholder":"playername"}!`. It can also show the values of [variables](./variables). The text updates by itself when these values change.
+Text can show live values with [placeholders](/placeholders), for example `Welcome, {"placeholder":"playername"}!`. It can also show the values of [variables](/variables). The text updates by itself when these values change.
 
 ## The Text Editor
 
@@ -62,7 +62,7 @@ The text editor of Text and Tooltip elements has shortcuts for common formatting
 - The alignment shortcuts work on the selected lines, or on the line of the cursor. `Ctrl + E` or `Ctrl + R` on lines that already have that alignment aligns them left again.
 - Right-click in the editor and open **Formatting** to see all of these in a menu.
 
-See [Shortcuts](./shortcuts#text-editor) for all other shortcuts of the text editor.
+See [Shortcuts](/shortcuts#text-editor) for all other shortcuts of the text editor.
 
 # Looks and Styles
 
@@ -107,7 +107,7 @@ Right-click the element to find these too:
 Text elements can draw a panel behind their text. Open **Background** in the element's right-click menu:
 
 - **Show Background** turns the panel on or off. New Text elements have it on.
-- By default, it's a built-in dark panel. You can use your own texture instead, with [nine-slicing](./nine-slicing-and-tiling) and tiling to keep its edges in shape.
+- By default, it's a built-in dark panel. You can use your own texture instead, with [nine-slicing](/nine-slicing-and-tiling) and tiling to keep its edges in shape.
 - **Padding** sets how far the background reaches beyond the text.
 - **Reach Behind Scroll Bars** lets the background cover the scroll bars too. When it's off, the scroll bars sit right next to it.
 
@@ -158,12 +158,12 @@ Open **Scroll Bars** to change the bars:
 
 You can also control and watch scrolling from other parts of FancyMenu:
 
-- The **Scroll an Element** [action](./action-scripts) scrolls a Text element to its start, its end, a position, a line number or the first line that contains a text.
-- The **Element Scroll Position**, **Element Scroll Percent** and **Element Scroll Content Size** [placeholders](./placeholders) tell you how far the text is scrolled and how big it is.
-- The **Is Element Scrolled to End** [requirement](./conditions) checks if the text got scrolled to its end, for example to only enable an "Accept" button after the rules got read.
-- The **On Element Scrolled**, **On Element Scrolled to Start** and **On Element Scrolled to End** [listeners](./listeners) run actions while the text scrolls.
+- The **Scroll an Element** [action](/action-scripts) scrolls a Text element to its start, its end, a position, a line number or the first line that contains a text.
+- The **Element Scroll Position**, **Element Scroll Percent** and **Element Scroll Content Size** [placeholders](/placeholders) tell you how far the text is scrolled and how big it is.
+- The **Is Element Scrolled to End** [requirement](/conditions) checks if the text got scrolled to its end, for example to only enable an "Accept" button after the rules got read.
+- The **On Element Scrolled**, **On Element Scrolled to Start** and **On Element Scrolled to End** [listeners](/listeners) run actions while the text scrolls.
 
-All of these need the [element identifier](./element-identifiers) of the Text element.
+All of these need the [element identifier](/element-identifiers) of the Text element.
 
 # Clicking Through Text Elements
 
@@ -177,4 +177,4 @@ Tooltip elements work like Text elements without scrolling:
 
 - Their text, look and style settings are the same as for Text elements.
 - **Follow Mouse** makes the tooltip follow the mouse.
-- Use [requirements](./conditions) to decide when the tooltip shows up, like the [**Is Element Hovered**](./conditions#is-element-hovered-fancymenu_visibility_requirement_is_element_hovered) requirement to show it while a button is hovered.
+- Use [requirements](/conditions) to decide when the tooltip shows up, like the [**Is Element Hovered**](/conditions#is-element-hovered-fancymenu_visibility_requirement_is_element_hovered) requirement to show it while a button is hovered.

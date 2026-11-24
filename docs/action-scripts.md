@@ -4,7 +4,7 @@ description: 'How to use action scripts with buttons, sliders, tickers and more.
 ---
 # Action Scripts
 
-Action scripts run configured tasks when a [Button](./elements#button) is clicked, a [Ticker](./elements#ticker) updates, a [Slider](./elements#slider) changes, a screen opens or closes, or another supported event occurs. Statements such as **if**, **else-if**, **else**, and **while** add conditional control.
+Action scripts run configured tasks when a [Button](/elements#button) is clicked, a [Ticker](/elements#ticker) updates, a [Slider](/elements#slider) changes, a screen opens or closes, or another supported event occurs. Statements such as **if**, **else-if**, **else**, and **while** add conditional control.
 
 > [!CAUTION]
 > Imported action scripts can modify files, contact servers, open links, or run commands. Use only sources you trust.
@@ -13,7 +13,7 @@ Action scripts run configured tasks when a [Button](./elements#button) is clicke
 
 # What Are Actions?
 
-An **action** is a task or job that FancyMenu runs when triggered. For example, an action might open a new screen, send a chat message, or adjust the volume of an [Audio element](./elements#audio). In FancyMenu's editor, actions are configured with a value (if needed) that provides extra details—such as a URL or server address.
+An **action** is a task or job that FancyMenu runs when triggered. For example, an action might open a new screen, send a chat message, or adjust the volume of an [Audio element](/elements#audio). In FancyMenu's editor, actions are configured with a value (if needed) that provides extra details—such as a URL or server address.
 
 # Statements
 
@@ -21,10 +21,10 @@ To create more complex behavior, FancyMenu supports control statements in action
 
 | Statement | Behavior |
 |---|---|
-| **If** | Runs its actions only when its [requirements](./conditions) are met. |
-| **Else-If** | Checks another set of [requirements](./conditions) when the preceding **If** or **Else-If** did not run. |
+| **If** | Runs its actions only when its [requirements](/conditions) are met. |
+| **Else-If** | Checks another set of [requirements](/conditions) when the preceding **If** or **Else-If** did not run. |
 | **Else** | Runs when none of the preceding **If** or **Else-If** requirements are met. |
-| **While** | Repeats its actions while its [requirements](./conditions) remain true. It stops after three seconds to prevent infinite loops; do not use it as a timer. |
+| **While** | Repeats its actions while its [requirements](/conditions) remain true. It stops after three seconds to prevent infinite loops; do not use it as a timer. |
 
 # Blocks
 
@@ -40,18 +40,18 @@ Blocks can be added to scripts, and provide useful features for having more cont
 
 Actions run from top to bottom. A failed action is logged, then the script continues.
 
-Downloads, ZIP extraction, and HTTP requests finish later; the next action does not wait. Use [**On File Downloaded via Action**](./listeners#on-file-downloaded-via-action-file_downloaded_via_action), [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action), or an HTTP response variable when later work depends on the result.
+Downloads, ZIP extraction, and HTTP requests finish later; the next action does not wait. Use [**On File Downloaded via Action**](/listeners#on-file-downloaded-via-action-file_downloaded_via_action), [**On ZIP Extracted via Action**](/listeners#on-zip-extracted-via-action-zip_extracted_via_action), or an HTTP response variable when later work depends on the result.
 
 # Where Can You Use Action Scripts?
 
 Action scripts are versatile and can be used throughout your layout. You can assign them, for example, to:
 
-- [**Buttons**](./elements#button): Execute an action when the button is clicked.
-- [**Tickers**](./elements#ticker): Continuously run an action script to update on-screen information within a layout.
-- [**Sliders**](./elements#slider): Trigger an action script whenever the slider's value changes.
+- [**Buttons**](/elements#button): Execute an action when the button is clicked.
+- [**Tickers**](/elements#ticker): Continuously run an action script to update on-screen information within a layout.
+- [**Sliders**](/elements#slider): Trigger an action script whenever the slider's value changes.
 - **Screen Events:** Run scripts when a screen opens or closes (for example, playing a sound when a menu appears).
-- [**Listeners**](./listeners): When a listener receives its configured event, it runs its action script.
-- [**Schedulers**](./schedulers): Execute actions on a timed basis, even when no screen is open.
+- [**Listeners**](/listeners): When a listener receives its configured event, it runs its action script.
+- [**Schedulers**](/schedulers): Execute actions on a timed basis, even when no screen is open.
 
 # Using Placeholders in Actions
 
@@ -59,7 +59,7 @@ Action values support dynamic content through **placeholders**. Most of the time
 
 ## JSON-Like Placeholders
 
-These are the normal [placeholders](./placeholders) that can be used in many places throughout layouts.
+These are the normal [placeholders](/placeholders) that can be used in many places throughout layouts.
 
 They follow this syntax:
 
@@ -67,17 +67,17 @@ They follow this syntax:
 {"placeholder": "placeholder_id", "values": {"key1": "value1", "key2": "value2"}}
 ```
 
-They can fetch game data like the player's name, screen dimensions, or calculated values using the [**Calculator** placeholder](./placeholders#calculator-calc). You can also nest placeholders for more advanced uses.
+They can fetch game data like the player's name, screen dimensions, or calculated values using the [**Calculator** placeholder](/placeholders#calculator-calc). You can also nest placeholders for more advanced uses.
 
 ## `$$` Placeholders (Variables)
 
 `$$` values are read-only values supplied to a specific action script by the feature running it.
 
-For example, a [Slider](./elements#slider) supplies its current value as `$$value`.
+For example, a [Slider](/elements#slider) supplies its current value as `$$value`.
 
-Each [listener](./listeners) documents the `$$` values it supplies, such as a pressed mouse button or entered structure.
+Each [listener](/listeners) documents the `$$` values it supplies, such as a pressed mouse button or entered structure.
 
-`$$` names are case-sensitive and only work in the script that provides them. See [Listeners](./listeners#listener-variables).
+`$$` names are case-sensitive and only work in the script that provides them. See [Listeners](/listeners#listener-variables).
 
 ## Action Value Delimiters
 
@@ -87,7 +87,7 @@ Placeholders are replaced before the value is split. For `set_variable`, only th
 
 ## Text Values
 
-[FancyMenu formatting codes](./text-formatting#minecraft-text-formatting) use `&` in place of Minecraft's `§` character wherever an action accepts formatted text.
+[FancyMenu formatting codes](/text-formatting#minecraft-text-formatting) use `&` in place of Minecraft's `§` character wherever an action accepts formatted text.
 
 - [**Send Chat Message/Command**](#send-chat-messagecommand-sendmessage) and [**Paste to Chat**](#paste-to-chat-paste_to_chat) support these formatting codes.
 - [**Display In Chat [Client-Side]**](#display-in-chat-client-side-display_in_chat_client_side) accepts plain text or serialized Minecraft text-component JSON.
@@ -101,7 +101,7 @@ To edit an element's actions and statement blocks, **right-click the element** a
 - **Edit existing actions or statements:** Modify the action value or change the control logic.
 - **Remove actions or statements:** Delete unwanted actions from the script.
 
-Create and edit listener scripts through [**Customization -> Manage Listeners**](./listeners#using-listeners).
+Create and edit listener scripts through [**Customization -> Manage Listeners**](/listeners#using-listeners).
 
 # Action Script Editor Shortcuts
 
@@ -133,25 +133,25 @@ This section lists FancyMenu's built-in actions.
 
 ## Next Track (`audio_next_track`)
 
-**Purpose:** Goes to the next track in an [Audio element](./elements#audio)
+**Purpose:** Goes to the next track in an [Audio element](/elements#audio)
 
 **Value:** Required — `audio_element_identifier` (the ID of the audio element to control)
 
 ## Previous Track (`audio_previous_track`)
 
-**Purpose:** Goes to the previous track in an [Audio element](./elements#audio)
+**Purpose:** Goes to the previous track in an [Audio element](/elements#audio)
 
 **Value:** Required — `audio_element_identifier` (the ID of the audio element to control)
 
 ## Set Track Volume (`set_audio_element_volume`)
 
-**Purpose:** Sets the volume of an [Audio element](./elements#audio) (`0.0` to `1.0`)
+**Purpose:** Sets the volume of an [Audio element](/elements#audio) (`0.0` to `1.0`)
 
 **Value:** Required — `element_identifier:volume`
 
 ## Toggle Play/Pause Track (`audio_toggle_play`)
 
-**Purpose:** Toggles the current track of an [Audio element](./elements#audio) between playing and paused
+**Purpose:** Toggles the current track of an [Audio element](/elements#audio) between playing and paused
 
 **Value:** Required — `audio_element_identifier`
 
@@ -167,37 +167,37 @@ This section lists FancyMenu's built-in actions.
 
 - `baseVolume` is clamped to `0.0`–`1.0`.
 - An unknown sound channel uses the Master channel.
-- The action cannot run from an asynchronous [Ticker](./elements#ticker); FancyMenu shows an error instead.
+- The action cannot run from an asynchronous [Ticker](/elements#ticker); FancyMenu shows an error instead.
 - FancyMenu waits up to ten seconds for the audio resource to become ready.
 - Successfully started tracks can be stopped with [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios).
 
 ## Stop All Action Audios (`stop_all_action_audios`)
 
-**Purpose:** Stops all audio tracks that were started by the [**Play Audio** action](#play-audio-play_audio). This does not stop [Audio elements](./elements#audio), menu open/close sounds, button sounds, or other audio systems.
+**Purpose:** Stops all audio tracks that were started by the [**Play Audio** action](#play-audio-play_audio). This does not stop [Audio elements](/elements#audio), menu open/close sounds, button sounds, or other audio systems.
 
 **Value:** Not required
 
 ## Set Video Element Volume (`set_video_element_volume`)
 
-**Purpose:** Sets the volume of a [Video element](./video) (`0.0` to `1.0`)
+**Purpose:** Sets the volume of a [Video element](/video) (`0.0` to `1.0`)
 
 **Value:** Required — `video_element_identifier:volume`
 
 ## Set Video Element Play Time (`set_video_element_play_time`)
 
-**Purpose:** Seeks a [Video element](./video) to a millisecond timestamp
+**Purpose:** Seeks a [Video element](/video) to a millisecond timestamp
 
 **Value:** Required — `video_element_identifier:timestamp_ms`
 
 ## Toggle Video Element Paused State (`toggle_video_element_pause_state`)
 
-**Purpose:** Toggles the paused state of a [Video element](./video)
+**Purpose:** Toggles the paused state of a [Video element](/video)
 
 **Value:** Required — `video_element_identifier`
 
 ## Set Video Background Volume (`set_video_menu_background_volume`)
 
-**Purpose:** Sets the volume of a [Video menu background](./video) (`0.0` to `1.0`)
+**Purpose:** Sets the volume of a [Video menu background](/video) (`0.0` to `1.0`)
 
 **Value:** Required — `background_identifier:volume`
 
@@ -206,7 +206,7 @@ This section lists FancyMenu's built-in actions.
 
 ## Set Video Background Play Time (`set_video_menu_background_play_time`)
 
-**Purpose:** Seeks a [Video menu background](./video) to a millisecond timestamp
+**Purpose:** Seeks a [Video menu background](/video) to a millisecond timestamp
 
 **Value:** Required — `background_identifier:timestamp_ms`
 
@@ -215,7 +215,7 @@ This section lists FancyMenu's built-in actions.
 
 ## Toggle Video Background Paused State (`toggle_video_menu_background_pause_state`)
 
-**Purpose:** Toggles the paused state of a [Video menu background](./video)
+**Purpose:** Toggles the paused state of a [Video menu background](/video)
 
 **Value:** Required — `background_identifier`
 
@@ -248,7 +248,7 @@ All three layout actions save the state in the layout file and update the curren
 
 **Value:** Required — `screen_identifier`
 
-Copy the exact, case-sensitive identifier from the [Screen Identifiers](./screen-identifiers) debug overlay.
+Copy the exact, case-sensitive identifier from the [Screen Identifiers](/screen-identifiers) debug overlay.
 
 Some mod screens cannot be created directly. If opening fails, use [**Mimic Vanilla/Mod Button**](#mimic-vanillamod-button-mimicbutton) on a widget that normally opens that screen.
 
@@ -266,7 +266,7 @@ Some mod screens cannot be created directly. If opening fails, use [**Mimic Vani
 
 ## Back to Last Screen (`back_to_last_screen`)
 
-**Purpose:** Returns to a [Custom GUI](./custom-guis)'s parent or to the one most recently closed screen instance
+**Purpose:** Returns to a [Custom GUI](/custom-guis)'s parent or to the one most recently closed screen instance
 
 **Value:** Not required
 
@@ -300,7 +300,7 @@ This action cannot run while another world/server is loaded. A remembered server
 
 **Value:** Required — `screen_identifier`
 
-This action only runs while a world and player are loaded. The target may be a [Custom GUI](./custom-guis) identifier or a [screen identifier](./screen-identifiers) FancyMenu can construct. If the target cannot be opened, FancyMenu returns to the Title screen.
+This action only runs while a world and player are loaded. The target may be a [Custom GUI](/custom-guis) identifier or a [screen identifier](/screen-identifiers) FancyMenu can construct. If the target cannot be opened, FancyMenu returns to the Title screen.
 
 ## Quit Minecraft (`quitgame`)
 
@@ -310,7 +310,7 @@ This action only runs while a world and player are loaded. The target may be a [
 
 ## Send Chat Message/Command (`sendmessage`)
 
-**Purpose:** Sends a chat message or executes a chat command. Message text supports [FancyMenu formatting codes](./text-formatting#minecraft-text-formatting).
+**Purpose:** Sends a chat message or executes a chat command. Message text supports [FancyMenu formatting codes](/text-formatting#minecraft-text-formatting).
 
 **Value:** Required — `message_text` or `/command_text`
 
@@ -341,7 +341,7 @@ The value may be plain text or a serialized Minecraft text component. The action
 
 ## Send FM Data To Server (`send_fm_data_to_server`)
 
-**Purpose:** Sends [FM Data](./fm-data) to the current FancyMenu server.
+**Purpose:** Sends [FM Data](/fm-data) to the current FancyMenu server.
 
 **Value:** Required — `data_identifier||data`
 
@@ -351,7 +351,7 @@ The value may be plain text or a serialized Minecraft text component. The action
 
 **Value:** Required — Remote server URL, for example `wss://example.com/ws`
 
-See [Remote Server Communication](./remote-server-communication#url-modes) for accepted URL forms.
+See [Remote Server Communication](/remote-server-communication#url-modes) for accepted URL forms.
 
 ## Send Data To Remote Server (`send_data_to_remote_server`)
 
@@ -363,7 +363,7 @@ See [Remote Server Communication](./remote-server-communication#url-modes) for a
 
 **Purpose:** Closes a specific remote server connection by request ID.
 
-**Value:** Required — Request ID, usually `$$request_id` from [**On Remote Server Connected**](./listeners#on-remote-server-connected-remote_server_connected)
+**Value:** Required — Request ID, usually `$$request_id` from [**On Remote Server Connected**](/listeners#on-remote-server-connected-remote_server_connected)
 
 ## Close All Remote Server Connections (`close_all_remote_server_connections`)
 
@@ -393,7 +393,7 @@ Use trusted `https://` links. FancyMenu does not show a confirmation prompt befo
 
 ## Set Variable Value (FM Variable) (`set_variable`)
 
-**Purpose:** Stores text content in a [FancyMenu variable](./variables)
+**Purpose:** Stores text content in a [FancyMenu variable](/variables)
 
 **Value:** Required — `variable_name:variable_value`
 
@@ -401,7 +401,7 @@ The first colon separates the name from the value. Later colons remain part of t
 
 ## Clear All Variables (FM Variable) (`clear_variables`)
 
-**Purpose:** Clears all stored [FancyMenu variable](./variables) values
+**Purpose:** Clears all stored [FancyMenu variable](/variables) values
 
 **Value:** Not required
 
@@ -442,14 +442,14 @@ Display names and internal pack IDs are matched case-insensitively. Packs marked
 
 ## Reload FancyMenu (`reloadmenu`)
 
-**Purpose:** Reloads layouts, [Custom GUIs](./custom-guis), [panoramas](./panoramas), [slideshows](./slideshows), settings, and FancyMenu-managed resources
+**Purpose:** Reloads layouts, [Custom GUIs](/custom-guis), [panoramas](/panoramas), [slideshows](/slideshows), settings, and FancyMenu-managed resources
 
 **Value:** Not required
 
 This does not reload Minecraft resource packs. Use [**Reload Resource Packs**](#reload-resource-packs-reload_resource_packs) for that.
 
 > [!WARNING]
-> Reloading is expensive. Trigger it from a deliberate button action, not a [Ticker](./elements#ticker) or frequently fired [listener](./listeners).
+> Reloading is expensive. Trigger it from a deliberate button action, not a [Ticker](/elements#ticker) or frequently fired [listener](/listeners).
 
 ## Toggle Element Animator (`toggle_element_animator`)
 
@@ -457,7 +457,7 @@ This does not reload Minecraft resource packs. Use [**Reload Resource Packs**](#
 
 **Value:** Required — `animator_identifier`
 
-See [Element Animator](./element-animator) for setup and identifier details.
+See [Element Animator](/element-animator) for setup and identifier details.
 
 ## Enable Element Animator (`enable_element_animator`)
 
@@ -481,7 +481,7 @@ See [Element Animator](./element-animator) for setup and identifier details.
 
 **Purpose:** Mimics the click action of a vanilla or mod button
 
-**Value:** Required — the complete [widget locator](./widget-locators), for example `example.menu.identifier:505280`
+**Value:** Required — the complete [widget locator](/widget-locators), for example `example.menu.identifier:505280`
 
 ## Mimic Keybind (`mimic_keybind`)
 
@@ -497,7 +497,7 @@ See [Element Animator](./element-animator) for setup and identifier details.
 
 ## Set Text Input Field Value (`set_text_input_field_value`)
 
-**Purpose:** Sets the value of a custom or Vanilla [Text Input Field](./elements#text-input-field) by element identifier.
+**Purpose:** Sets the value of a custom or Vanilla [Text Input Field](/elements#text-input-field) by element identifier.
 
 **Value:** Required — `element_identifier|||new_value|||force_set_when_inactive`
 
@@ -549,13 +549,13 @@ For example, `config/source/*||config/destination/` moves only the files directl
 
 The second field is a **target directory**, not a complete destination file path. FancyMenu creates the directory when needed and determines the filename from the response's `Content-Disposition` header, then falls back to the URL path. The resolved name is URL-decoded and sanitized before use; if neither source provides a usable name, FancyMenu generates one. An existing file with the same name is overwritten.
 
-The [**On File Downloaded via Action** listener](./listeners#on-file-downloaded-via-action-file_downloaded_via_action) fires after both successful and failed download attempts and exposes the URL, resolved target path, and success state.
+The [**On File Downloaded via Action** listener](/listeners#on-file-downloaded-via-action-file_downloaded_via_action) fires after both successful and failed download attempts and exposes the URL, resolved target path, and success state.
 
 On success, `$$target_file_path` is the saved file path. On failure, it may contain only the target directory because no final filename was resolved.
 
 ## Extract ZIP File In Game Directory (`extract_zip_file_in_game_dir`)
 
-**Purpose:** Extracts a ZIP into a target folder inside the active game directory or conventional `.minecraft` directory. Triggers [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) when finished.
+**Purpose:** Extracts a ZIP into a target folder inside the active game directory or conventional `.minecraft` directory. Triggers [**On ZIP Extracted via Action**](/listeners#on-zip-extracted-via-action-zip_extracted_via_action) when finished.
 
 **Value:** Required — `source_zip_path||target_folder_path`
 
@@ -581,7 +581,7 @@ Existing files with matching names are replaced. Extract only trusted ZIP files.
 
 `target_path` is the complete destination file path. Separate multiple extensions with `;` or `,`, for example `png;jpg`; a blank extension list allows all files. If `overwrite_bool` is `false`, the action fails instead of replacing an existing destination file.
 
-The [**On File Selected** listener](./listeners#on-file-selected-file_selected_via_action) fires when the file is copied, the picker is cancelled, or selection fails. It exposes the selected path, resolved target path, success/cancelled states, and a failure reason.
+The [**On File Selected** listener](/listeners#on-file-selected-file_selected_via_action) fires when the file is copied, the picker is cancelled, or selection fails. It exposes the selected path, resolved target path, success/cancelled states, and a failure reason.
 
 ## Show Toast (`show_toast`)
 
@@ -597,8 +597,8 @@ The editor stores this action as JSON. Prefer its configuration window instead o
 | `durationMs` | Clamped to `1000`–`600000` milliseconds |
 | `title` | Plain text, a serialized Minecraft text component, or empty |
 | `message` | Plain text, a serialized text component, or empty |
-| `iconSource` | Optional [image source](./resources) |
-| `backgroundSource` | Optional [image source](./resources) |
+| `iconSource` | Optional [image source](/resources) |
+| `backgroundSource` | Optional [image source](/resources) |
 
 ## Start Scheduler (`start_scheduler`)
 
@@ -606,7 +606,7 @@ The editor stores this action as JSON. Prefer its configuration window instead o
 
 **Value:** Required — `scheduler_id`
 
-See [Schedulers](./schedulers) for creating and managing scheduler IDs.
+See [Schedulers](/schedulers) for creating and managing scheduler IDs.
 
 ## Stop Scheduler (`stop_scheduler`)
 

@@ -15,10 +15,10 @@ All template posts in there follow the same pattern. They should all have a down
 
 # Installing Templates
 
-Templates are complete FancyMenu setups and very complex most of the time, so it is not recommended to try to merge a template with your existing setup. Add it as its own [profile](./profiles) instead:
+Templates are complete FancyMenu setups and very complex most of the time, so it is not recommended to try to merge a template with your existing setup. Add it as its own [profile](/profiles) instead:
 
-- **`.fmp` file:** Open **menu bar -> Customization -> Profiles** and [import](./profiles#importing) the file, for example by dragging it onto the window.
-- **`fancymenu` folder:** [Add the folder as a profile](./profiles#adding-setup-folders).
+- **`.fmp` file:** Open **menu bar -> Customization -> Profiles** and [import](/profiles#importing) the file, for example by dragging it onto the window.
+- **`fancymenu` folder:** [Add the folder as a profile](/profiles#adding-setup-folders).
 
 Then select the template in the Profiles window and click **Load Profile**. Your current setup stays available as its own profile, so you can always switch back.
 

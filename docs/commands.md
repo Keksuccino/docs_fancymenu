@@ -27,11 +27,11 @@ For the three commands with optional targets, omitting the target only works whe
 
 ## /openguiscreen
 
-The `/openguiscreen` command opens a Vanilla, mod, or [Custom GUI](./custom-guis). It can target other players when FancyMenu is installed on the server and their clients.
+The `/openguiscreen` command opens a Vanilla, mod, or [Custom GUI](/custom-guis). It can target other players when FancyMenu is installed on the server and their clients.
 
-See [Opening GUIs by Command](./opengui-command) and [Screen Identifiers](./screen-identifiers).
+See [Opening GUIs by Command](/opengui-command) and [Screen Identifiers](/screen-identifiers).
 
-Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) on the widget that normally opens it.
+Not every mod screen can be created directly. FancyMenu shows an error when a target screen is unsupported. In a local layout, use [**Mimic Vanilla/Mod Button**](/action-scripts#mimic-vanillamod-button-mimicbutton) on the widget that normally opens it.
 
 **Usage:** `/openguiscreen <screen_identifier> [<target_players>]`
 
@@ -54,7 +54,7 @@ Examples:
 
 ## /fmvariable
 
-The `/fmvariable` command sets and reads [FancyMenu variables](./variables).
+The `/fmvariable` command sets and reads [FancyMenu variables](/variables).
 
 To execute this command as another player, use Vanilla's `/execute as` command:
 `/execute as ExamplePlayer run fmvariable ...`
@@ -82,4 +82,4 @@ The `send_chat_feedback` argument controls whether FancyMenu confirms the change
 
 The `/fmdata` command sends custom data between the server and FancyMenu clients, manages server-side listeners, and configures data that is sent when players join. Every `/fmdata` sub-command requires permission level 2.
 
-See [FM Data](./fm-data) for all sub-commands, syntax, and examples.
+See [FM Data](/fm-data) for all sub-commands, syntax, and examples.

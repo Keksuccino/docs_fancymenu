@@ -28,33 +28,33 @@ Open FancyMenu's **menu bar** while **not** in the layout editor, then **Customi
 
 ## Global behavior and startup
 
-- [**Game Intro**](./game-intro) (an intro video or animation that plays before the Title screen)
+- [**Game Intro**](/game-intro) (an intro video or animation that plays before the Title screen)
 - **Singleplayer Screen World Icons**
 - **Multiplayer Screen Server Icons**
-- [**Seamless World Loading**](./seamless-world-loading) (uses a recent world screenshot as the loading-screen background)
-- [**Custom Window Icon**](./window-customization#custom-icon)
-- [**Custom Window Title**](./window-customization#custom-title)
+- [**Seamless World Loading**](/seamless-world-loading) (uses a recent world screenshot as the loading-screen background)
+- [**Custom Window Icon**](/window-customization#custom-icon)
+- [**Custom Window Title**](/window-customization#custom-title)
 - **Default GUI Scale**
 - **Force Fullscreen on Launch**
 
 ## Button visuals
 
-- **Custom Button Textures** (Normal/Hover/Inactive states, transparent mode, [nine-slice](./nine-slicing-and-tiling) + border sizes)
+- **Custom Button Textures** (Normal/Hover/Inactive states, transparent mode, [nine-slice](/nine-slicing-and-tiling) + border sizes)
 - **Button Labels** (underline-on-hover, base/hover color, scale, shadow)
 
 ## Slider visuals
 
 - **Custom Slider Textures**
-- **Slider Background Texture** (texture, transparent mode, [nine-slice](./nine-slicing-and-tiling) + border sizes)
-- **Slider Handle Textures** (Normal/Hover/Inactive states, [nine-slice](./nine-slicing-and-tiling) + border sizes)
+- **Slider Background Texture** (texture, transparent mode, [nine-slice](/nine-slicing-and-tiling) + border sizes)
+- **Slider Handle Textures** (Normal/Hover/Inactive states, [nine-slice](/nine-slicing-and-tiling) + border sizes)
 - **Slider Labels** (underline-on-hover, base/hover color, scale, shadow)
 
 ## Menu visuals and audio
 
-- [**Custom Menu Background Texture**](./menu-backgrounds)
-- [**Custom Menu Background Panorama**](./panoramas)
+- [**Custom Menu Background Texture**](/menu-backgrounds)
+- [**Custom Menu Background Panorama**](/panoramas)
 - **Play Vanilla Menu Music** (enable/disable playing Vanilla menu music)
-- [**Custom Menu Music Tracks**](./background-music)
+- [**Custom Menu Music Tracks**](/background-music)
 - **Custom Button/Slider Click Sound**
 
 # Custom Menu Music Tracks
@@ -62,7 +62,7 @@ Open FancyMenu's **menu bar** while **not** in the layout editor, then **Customi
 Use **Custom Menu Music Tracks** to build a randomized track list for menus.
 
 > [!IMPORTANT]
-> Global custom menu tracks play only when no world is loaded, such as on the Title screen. Use an [**Audio** element](./elements#audio) for in-world menu audio.
+> Global custom menu tracks play only when no world is loaded, such as on the Title screen. Use an [**Audio** element](/elements#audio) for in-world menu audio.
 
 Configured tracks use the Music sound channel and replace Vanilla menu music in supported non-world menus.
 

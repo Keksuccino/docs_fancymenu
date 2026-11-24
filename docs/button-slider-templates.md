@@ -10,7 +10,7 @@ description: >-
 It is possible to use a Button element as a template for other buttons and even sliders. By doing that, you can apply a specific button/slider design to ALL buttons/sliders in a menu or even the all menus at once when using a universal layout.
 
 > [!IMPORTANT]
-> Prefer [Global Customizations](./global-customizations) for broad Vanilla button and slider styling. Use Button/Slider Templates when the behavior must be layout-specific.
+> Prefer [Global Customizations](/global-customizations) for broad Vanilla button and slider styling. Use Button/Slider Templates when the behavior must be layout-specific.
 
 # Important Before You Start
 

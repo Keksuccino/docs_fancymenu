@@ -14,7 +14,7 @@ Open the Layers widget through **Window -> Editor Widgets -> Layers**.
 
 Drag layers in the list to change their render order. You can also right-click an element and use **Move One Layer Up** or **Move One Layer Down**.
 
-[Player Entity](./elements#player-entity) and [Item](./elements#item) elements can have rendering limits that prevent normal layer ordering.
+[Player Entity](/elements#player-entity) and [Item](/elements#item) elements can have rendering limits that prevent normal layer ordering.
 
 # Groups
 

@@ -10,7 +10,7 @@ Parallax offsets a background or element based on mouse movement to create visua
 # Image Menu Background
 
 1. Right-click the layout editor background.
-2. Open [**Menu Backgrounds**](./menu-backgrounds) -> **Image**.
+2. Open [**Menu Backgrounds**](/menu-backgrounds) -> **Image**.
 3. Set the image source.
 4. Enable **Parallax Effect**.
 5. Set the X and Y intensity values.
@@ -20,7 +20,7 @@ The X and Y values control horizontal and vertical movement independently. Use v
 
 # Elements
 
-1. Right-click an [element](./elements).
+1. Right-click an [element](/elements).
 2. Enable **Parallax Effect**.
 3. Set **Parallax Intensity X** and **Parallax Intensity Y**.
 4. Optionally invert the movement.

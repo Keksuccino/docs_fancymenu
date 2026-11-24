@@ -6,7 +6,7 @@ description: How to use loading requirements.
 
 Requirements (called **Loading Requirements** in some menus) show or hide content based on conditions such as hover state, window size, or whether a world is loaded.
 
-You can use them on [elements](./elements), whole layouts, and [action scripts](./action-scripts).
+You can use them on [elements](/elements), whole layouts, and [action scripts](/action-scripts).
 
 # Adding Requirements to Elements
 
@@ -49,7 +49,7 @@ This section lists FancyMenu's built-in requirements.
 
 **Purpose:** Checks if a specific element is hovered by the mouse cursor.
 
-**Value:** Required — [Element identifier](./element-identifiers) of the target element (e.g., `some_element_ID`).
+**Value:** Required — [Element identifier](/element-identifiers) of the target element (e.g., `some_element_ID`).
 
 ## Is Element Focused (`is_element_focused`)
 
@@ -80,7 +80,7 @@ This section lists FancyMenu's built-in requirements.
 
 ## Is Scheduler Running (`fancymenu_visibility_requirement_is_scheduler_running`)
 
-**Purpose:** Checks if a [scheduler](./schedulers) is currently running.
+**Purpose:** Checks if a [scheduler](/schedulers) is currently running.
 
 **Value:** Required — Scheduler ID (e.g., `my_scheduler`)
 
@@ -142,7 +142,7 @@ Multiple comma-separated conditions are combined with AND. For example, `>1,<4` 
 
 ## Mouse Button Is Pressed (`mouse_click`)
 
-**Purpose:** Returns true while a specific mouse button is held. This is not a one-shot click event; use the [**On Mouse Button Clicked** listener](./listeners#on-mouse-button-clicked-mouse_button_clicked) when an action should run once per click.
+**Purpose:** Returns true while a specific mouse button is held. This is not a one-shot click event; use the [**On Mouse Button Clicked** listener](/listeners#on-mouse-button-clicked-mouse_button_clicked) when an action should run once per click.
 
 **Value:** Required — `left` or `right` to indicate which mouse button to check
 
@@ -556,7 +556,7 @@ Multiple comma-separated conditions are combined with AND. For example, `>1,<4` 
 
 ## Is Rinku Loaded (`is_rinku_loaded`)
 
-**Purpose:** Checks if [Rinku](https://modrinth.com/mod/rinku) is installed and initialized. [Rinku](https://modrinth.com/mod/rinku) is required for the [Browser element](./elements#browser) and [deprecated Rinku-based video types](./video#requirements); [native Video features](./video) use Watermedia.
+**Purpose:** Checks if [Rinku](https://modrinth.com/mod/rinku) is installed and initialized. [Rinku](https://modrinth.com/mod/rinku) is required for the [Browser element](/elements#browser) and [deprecated Rinku-based video types](/video#requirements); [native Video features](/video) use Watermedia.
 
 **Value:** Not required
 

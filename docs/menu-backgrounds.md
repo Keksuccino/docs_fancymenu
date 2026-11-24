@@ -28,7 +28,7 @@ Common background types include:
 - Video [Rinku] (deprecated)
 - Additional add-on background types
 
-The old **Video [Rinku]** background type is deprecated. Use the [native **Video** background](./video) powered by Watermedia V3 for new layouts.
+The old **Video [Rinku]** background type is deprecated. Use the [native **Video** background](/video) powered by Watermedia V3 for new layouts.
 
 # Removing the Custom Background
 
@@ -48,7 +48,7 @@ To make a background image translucent, use an image editor of your choice.
 
 # Browser Backgrounds
 
-The **Browser** background type works like the [Browser element](./elements#browser), but fills the whole screen and is auto-focused. This is useful for fullscreen web content, local HTML pages, or web-video layers.
+The **Browser** background type works like the [Browser element](/elements#browser), but fills the whole screen and is auto-focused. This is useful for fullscreen web content, local HTML pages, or web-video layers.
 
 # GLSL Shader Backgrounds
 

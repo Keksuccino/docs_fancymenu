@@ -20,10 +20,10 @@ Including your FancyMenu setup in a modpack is very easy and only takes some sim
 
 # Bringing Your Setup Into the Modpack
 
-The easiest way to move your setup from the instance you designed it in to your modpack instance is a [profile](./profiles):
+The easiest way to move your setup from the instance you designed it in to your modpack instance is a [profile](/profiles):
 
-1. In the instance with your setup, open **menu bar -> Customization -> Profiles**, select your setup, and [export](./profiles#exporting) it as `.fmp` file.
-2. In your modpack instance, open the Profiles window and [import](./profiles#importing) the `.fmp` file, for example by dragging it onto the window.
+1. In the instance with your setup, open **menu bar -> Customization -> Profiles**, select your setup, and [export](/profiles#exporting) it as `.fmp` file.
+2. In your modpack instance, open the Profiles window and [import](/profiles#importing) the `.fmp` file, for example by dragging it onto the window.
 3. Select the imported profile and click **Load Profile**.
 
 The FancyMenu setup the modpack instance had before doesn't get lost. It stays available as its own profile, so you can always switch back.

@@ -22,14 +22,14 @@ To **disable** it and switch back to normal positioning/sizing, **clear all posi
 
 # Calculating Positions/Sizes
 
-Advanced position and size values support [placeholders](./placeholders).
+Advanced position and size values support [placeholders](/placeholders).
 
-This allows you to combine the [**Calculator**](./placeholders#calculator-calc) placeholder with GUI placeholders such as [**Screen Width**](./placeholders#screen-width-guiwidth), [**GUI Scale**](./placeholders#gui-scale-guiscale), and [**Element Width**](./placeholders#element-width-elementwidth).
+This allows you to combine the [**Calculator**](/placeholders#calculator-calc) placeholder with GUI placeholders such as [**Screen Width**](/placeholders#screen-width-guiwidth), [**GUI Scale**](/placeholders#gui-scale-guiscale), and [**Element Width**](/placeholders#element-width-elementwidth).
 
 > [!NOTE]
 > You can add placeholders by clicking on the **Placeholders** button at the top-right side of the text editor. If you don't see this button, the content you want to edit does **not support** placeholders.
 
-To calculate something with the [**Calculator** placeholder](./placeholders#calculator-calc), replace the example expression with your own. Nested placeholders can supply screen or element dimensions.
+To calculate something with the [**Calculator** placeholder](/placeholders#calculator-calc), replace the example expression with your own. Nested placeholders can supply screen or element dimensions.
 
 This example returns `2`:
 
@@ -37,7 +37,7 @@ This example returns `2`:
 
 Keep `decimal` set to `false` for whole-pixel position and size calculations.
 
-The following calculator uses the [**Screen Width** placeholder](./placeholders#screen-width-guiwidth) and divides it by `2`:
+The following calculator uses the [**Screen Width** placeholder](/placeholders#screen-width-guiwidth) and divides it by `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
 

@@ -34,9 +34,9 @@ Store local resources in `<game-directory>/config/fancymenu/assets/`. `<game-dir
 
 Resource fields may show the same path as `/config/fancymenu/assets/example.png`. In those fields, the leading `/` still means `<game-directory>`; it is not a filesystem-root path.
 
-These files can be [shipped with a modpack](./modpacks) through its config folder.
+These files can be [shipped with a modpack](/modpacks) through its config folder.
 
-For a complete map of FancyMenu's layout, resource, configuration, and generated-state paths, see [Data Storage Locations](./data-storage-locations).
+For a complete map of FancyMenu's layout, resource, configuration, and generated-state paths, see [Data Storage Locations](/data-storage-locations).
 
 # Web Resources
 
@@ -44,7 +44,7 @@ Use a direct URL to the file, for example `https://example-domain.net/image.png`
 
 # Placeholders in Resource Sources
 
-Chooser-backed resource fields can use [placeholders](./placeholders) in local paths, URLs, and Minecraft resource locations. Select **Open in Editor** beside the source field to edit it directly.
+Chooser-backed resource fields can use [placeholders](/placeholders) in local paths, URLs, and Minecraft resource locations. Select **Open in Editor** beside the source field to edit it directly.
 
 > [!WARNING]
 > Resource inputs that do not use the normal chooser may not support placeholders or live source updates.

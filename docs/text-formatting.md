@@ -6,12 +6,12 @@ description: How to format text with Markdown, Minecraft formatting codes and te
 
 FancyMenu gives you three ways to format text:
 
-- **Markdown** for [Text and Tooltip elements](./text-in-menus): headlines, lists, colors, images, tables and more.
+- **Markdown** for [Text and Tooltip elements](/text-in-menus): headlines, lists, colors, images, tables and more.
 - **Minecraft formatting codes** like `&c` for quick colors. They work in almost every text field, Markdown text included.
 - **Minecraft text components** for button and slider labels.
 
 > [!TIP]
-> This page is all about *how to write* formatted text. To learn how to add text to your menus, change its look or make it scroll, see [Text in Menus](./text-in-menus).
+> This page is all about *how to write* formatted text. To learn how to add text to your menus, change its look or make it scroll, see [Text in Menus](/text-in-menus).
 
 <img width="800" alt="Markdown in a Text element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_showcase.png?raw=true">
 
@@ -19,7 +19,7 @@ FancyMenu gives you three ways to format text:
 
 Markdown formats text with a few special characters around it. For example, `**bold**` turns into **bold** text.
 
-Markdown works in [Text elements](./elements#text) and [Tooltip elements](./elements#tooltip). The characters you write decide *what* something is (a headline, a list, a quote). The element's [look](./text-in-menus#looks-and-styles) decides how it looks, like its colors and sizes.
+Markdown works in [Text elements](/elements#text) and [Tooltip elements](/elements#tooltip). The characters you write decide *what* something is (a headline, a list, a quote). The element's [look](/text-in-menus#looks-and-styles) decides how it looks, like its colors and sizes.
 
 ## Quick Overview
 
@@ -53,7 +53,7 @@ Styles can be combined, like `***bold and italic***`.
 Single underscores inside words stay normal underscores, so `my_cool_layout` doesn't turn italic. Names like `C++` also stay as they are.
 
 > [!TIP]
-> In the text editor, select some text and press `Ctrl + B`, `Ctrl + I` or `Ctrl + U` (`Cmd` on macOS) to make it bold, italic or underlined. See [Formatting Shortcuts](./text-in-menus#formatting-shortcuts).
+> In the text editor, select some text and press `Ctrl + B`, `Ctrl + I` or `Ctrl + U` (`Cmd` on macOS) to make it bold, italic or underlined. See [Formatting Shortcuts](/text-in-menus#formatting-shortcuts).
 
 ## Text Color (HEX)
 
@@ -204,14 +204,14 @@ Links can contain round brackets, like `https://en.wikipedia.org/wiki/Minecraft_
 
 ## Click and Hover Events
 
-Text can also trigger [listeners](./listeners) instead of opening a website. Use the `click:` or `hover:` prefix with an ID of your choice:
+Text can also trigger [listeners](/listeners) instead of opening a website. Use the `click:` or `hover:` prefix with an ID of your choice:
 
 ```
 [some clickable text](click:unique_text_click_event_id)
 [some hoverable text](hover:unique_text_hover_event_id)
 ```
 
-React to them with the [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked-text_clicked) and [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered-text_hovered) listeners. Both give you the ID as `$$text_event_id`.
+React to them with the [**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked-text_clicked) and [**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered-text_hovered) listeners. Both give you the ID as `$$text_event_id`.
 
 ## Images
 
@@ -221,7 +221,7 @@ Put an image on its own line with `![](` + the image source + `)`:
 ![](https://example.com/image.png)
 ```
 
-The source can be a web URL, a local file like `/config/fancymenu/assets/image.png` or a resource pack image. See [Resources](./resources) for all source types.
+The source can be a web URL, a local file like `/config/fancymenu/assets/image.png` or a resource pack image. See [Resources](/resources) for all source types.
 
 Text between the square brackets becomes the caption of the image:
 
@@ -271,7 +271,7 @@ Code shows text as it is, without formatting it.
 
 You can write a language name behind the first `` ``` ``, like `` ```json ``. FancyMenu accepts it, but it doesn't change how the code looks.
 
-[Placeholders](./placeholders) still get replaced inside code.
+[Placeholders](/placeholders) still get replaced inside code.
 
 ## Plain Text
 
@@ -313,6 +313,6 @@ To use one, set nothing but the component as the label:
 {"text":"Button Label Text","font":"uniform"}
 ```
 
-This shows `Button Label Text` in the `uniform` font. You can use [placeholders](./placeholders) in the `text` value.
+This shows `Button Label Text` in the `uniform` font. You can use [placeholders](/placeholders) in the `text` value.
 
 To learn more, see the Minecraft Wiki pages about the [text component format](https://minecraft.wiki/w/Raw_JSON_text_format) and [fonts](https://minecraft.wiki/w/Resource_pack#Fonts).

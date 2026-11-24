@@ -68,4 +68,4 @@ Random mode picks independently at each transition and avoids an immediate repea
 
 # Using a Slideshow
 
-Reload FancyMenu through **Customization -> Reload FancyMenu**, or restart the client. Use the [**Slideshow** element](./elements#slideshow), or right-click the layout editor background and select [**Menu Backgrounds**](./menu-backgrounds) -> **Slideshow**.
+Reload FancyMenu through **Customization -> Reload FancyMenu**, or restart the client. Use the [**Slideshow** element](/elements#slideshow), or right-click the layout editor background and select [**Menu Backgrounds**](/menu-backgrounds) -> **Slideshow**.

@@ -47,7 +47,7 @@ This section lists FancyMenu's built-in placeholders.
 
 ## Unavailable Results
 
-Placeholder output is always text. When data is unavailable, the result depends on the placeholder: common fallbacks are an empty string, `0`, `0.0`, `00:00`, `false`, `UNKNOWN`, or `ERROR`. Entries with a specific fallback state it directly; test the fallback before using environment-dependent output in a [requirement](./conditions), path, command, or URL.
+Placeholder output is always text. When data is unavailable, the result depends on the placeholder: common fallbacks are an empty string, `0`, `0.0`, `00:00`, `false`, `UNKNOWN`, or `ERROR`. Entries with a specific fallback state it directly; test the fallback before using environment-dependent output in a [requirement](/conditions), path, command, or URL.
 
 ## Player Name (`playername`)
 
@@ -1710,7 +1710,7 @@ In `display_name_mappings`, `=>` separates a filename from its display name and 
 
 ## Audio Duration (`audio_duration`)
 
-**Purpose:** Returns the duration of the [Audio element](./elements#audio)'s current loaded track in `MM:SS` format. The track may be playing, paused, or stopped.
+**Purpose:** Returns the duration of the [Audio element](/elements#audio)'s current loaded track in `MM:SS` format. The track may be playing, paused, or stopped.
 
 **Values:** `element_identifier`
 
@@ -2209,7 +2209,7 @@ Use [**Round**](#round-math-math_round) or [**Calculator**](#calculator-calc) wi
 
 **Values:** `source`, `interval`
 
-In placeholder values, `/config/...` means `<game-directory>/config/...`; it is not a filesystem-root path. See [Resources](./resources#local-resources).
+In placeholder values, `/config/...` means `<game-directory>/config/...`; it is not a filesystem-root path. See [Resources](/resources#local-resources).
 
 **Example:**
 

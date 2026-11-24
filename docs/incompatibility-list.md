@@ -16,7 +16,7 @@ Blocked screen groups include:
 - Screenshot Viewer
 - Twilight Forest
 - Supplementaries
-- OptiFine; use [OptiFine Alternatives](./optifine-alternatives)
+- OptiFine; use [OptiFine Alternatives](/optifine-alternatives)
 - SlimeKnights and Tinkers' Construct
 - MidnightDust mods
 - SkinSwapper
