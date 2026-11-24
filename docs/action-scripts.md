@@ -148,7 +148,7 @@ Values can contain [placeholders](/placeholders), like the player's name. They g
 /say Welcome back, {"placeholder":"playername"}!
 ```
 
-## Variables
+## $$ Variables
 
 `$$` and a name gives the value of a variable, like `$$coins`. Besides your own [variables](/variables#showing-variables-in-text), some features give their script variables of their own:
 
