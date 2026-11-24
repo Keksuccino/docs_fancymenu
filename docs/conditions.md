@@ -51,7 +51,7 @@ The **Requirement Mode** button in the requirement chooser switches between:
 
 ## Managing Requirements
 
-Right-click a requirement or group in **Manage Requirements** for these options:
+Right-click the list, a requirement or a group in **Manage Requirements** for these options:
 
 | Option | Shortcut | What it does |
 |---|---|---|
@@ -94,7 +94,7 @@ Right-click the editor background and click **Loading Requirements [Layout-Wide]
 
 - When the result changes while the menu is open, FancyMenu builds the screen again with the layouts that are met now.
 - They work for [universal layouts](/universal-layouts) too.
-- To turn a layout on and off with a button, put the button in another layout. See [Toggle Elements and Layouts](/toggle).
+- To turn a layout on and off with a button, put the button in another layout. See [Toggle Parts of Layouts](/toggle).
 
 # Good to Know
 
