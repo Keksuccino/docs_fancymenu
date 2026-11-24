@@ -139,7 +139,7 @@ Open **Scrolling** in the element's right-click menu:
 Open **Auto-Scroll** to let the text scroll on its own, slowly, like credits or a news ticker:
 
 - **Scroll on Its Own** turns it on.
-- **Speed** sets how fast it scrolls, in pixels per second.
+- **Speed [Pixels per Second]** sets how fast it scrolls.
 - **Start Over at the End** starts again from the top once the end is reached.
 - **Pause While Hovered** stops scrolling while the mouse is over the text, so players can read in peace.
 
@@ -151,7 +151,7 @@ Open **Scroll Bars** to change the bars:
 - **Thickness** sets how thick the bars are.
 - **Vertical Bar on the Left** and **Horizontal Bar on Top** move the bars to the other side.
 - **Scroll Grabber Style** picks the look of the grabbers: **Theme Bar** (in the colors of your FancyMenu UI theme) or **Pixel Handle** (pixel art that goes great with the Pixel look).
-- **Scroll Grabber Textures** and **Scroll Grabber Color** replace the grabbers with your own textures or colors.
+- **Scroll Grabber Textures** and **Scroll Grabber Color [HEX]** replace the grabbers with your own textures or colors.
 - **Scroll Bar Backgrounds** add textures behind the grabbers, along the way they move.
 
 ## Scrolling With Actions
