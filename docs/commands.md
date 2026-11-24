@@ -80,6 +80,6 @@ The `send_chat_feedback` argument controls whether FancyMenu confirms the change
 
 ## /fmdata
 
-The `/fmdata` command sends custom data between the server and FancyMenu clients, manages server-side listeners, and configures data that is sent when players join. Every `/fmdata` sub-command requires permission level 2.
+The `/fmdata` command sends custom data between the server and FancyMenu clients, manages server-side listeners, configures data that is sent when players join, and exports this setup for [AI chats](/export-for-ai#servers). Every `/fmdata` sub-command requires permission level 2.
 
 See [FM Data](/fm-data) for all sub-commands, syntax, and examples.
