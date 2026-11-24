@@ -166,14 +166,6 @@ Runs when the content of a Scrollable Area or a Text element gets scrolled to it
 
 It gives the same variables as **On Element Scrolled**: `$$element_identifier`, `$$scroll_x`, `$$scroll_y` and `$$scroll_percent`.
 
-## On Element Spawned via Action (`element_spawned_via_action`)
-
-Runs when an add-on spawns an element. FancyMenu itself has no action that spawns elements, so it only runs with add-ons that do.
-
-- `$$element_type`: the type of the element
-- `$$element_identifier`: the identifier of the element
-- `$$target_screen`: the identifier of the screen it got spawned in
-
 ## Animated Texture Started Playing (`animated_texture_started_playing`)
 
 Runs when an [animated texture](/animations) (GIF, APNG or FMA) starts playing, and every time it starts over.
