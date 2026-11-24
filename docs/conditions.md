@@ -12,7 +12,9 @@ Requirements are conditions, like "the mouse is over this button", "it's Decembe
 - make buttons, sliders and checkboxes clickable only sometimes,
 - run parts of an [action script](/action-scripts) only sometimes.
 
-FancyMenu checks requirements all the time while a menu is open, so things show, hide or change right away.
+FancyMenu checks requirements all the time while a menu is open, so things show, hide or change right away. This info box only shows while the mouse is over **Multiplayer**:
+
+<img width="800" alt="Moving the mouse over the Multiplayer button of the title screen shows an info box with a server address next to it" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_hover.gif?raw=true">
 
 # Where to Find Them
 
@@ -26,6 +28,8 @@ FancyMenu checks requirements all the time while a menu is open, so things show,
 In the layout editor, elements always show, so you can still edit them. Requirements of elements work outside of the editor.
 
 # Adding a Requirement
+
+<img width="800" alt="Copying the ID of the Multiplayer button, then giving the info box the requirement Is Element Hovered with that ID in Manage Requirements" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_add.gif?raw=true">
 
 1. Right-click the element and click **Loading Requirements**. **Manage Requirements** opens.
 2. Right-click the empty list and click **Add Requirement**, or press `A`.
@@ -80,7 +84,9 @@ A group acts like one requirement:
 3. Click **Edit Group Requirements**, or double-click the group. A window like **Manage Requirements** opens for the group.
 4. Add the requirements of the group and click **Done**.
 
-For example, Christmas lights that show in December, or whenever the player turned them on: an Or group with **Is Real Time Month** `12` and **Is Variable Value (FM Variable)** for a variable `xmas_lights` with the value `on`.
+For example, a Christmas greeting that shows in December, or whenever the player turned on `xmas_lights`: an Or group with **Is Real Time Month** `12` and **Is Variable Value (FM Variable)** for the variable `xmas_lights` with the value `on`.
+
+<img width="800" alt="Adding a group in Manage Requirements, switching it to Or, and adding Is Real Time Month and Is Variable Value (FM Variable) to it" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_group.gif?raw=true">
 
 - Groups can hold other groups, for things like "(A and B) or (C and D)". The window title shows where you are, like `Edit Group: group_1 › group_2`.
 - **Edit Group Identifier** renames a group. Every name can only be used once, also inside groups.
