@@ -28,7 +28,7 @@ Use **APNG** or **GIF** files for your animations:
 - Animations only play while they're on screen. When they show up again, they continue where they stopped.
 - **Restart Animated Textures When Opening Screen** makes Image elements and image menu backgrounds start their animation over every time the screen opens.
 - **Restart Animated Textures On Hover** makes the textures of buttons and sliders start over every time the mouse moves onto them.
-- The [**Animated Texture Started Playing**](/listeners#on-animated-texture-started-playing-animated_texture_started_playing) and [**Animated Texture Finished Playing**](/listeners#on-animated-texture-finished-playing-animated_texture_finished_playing) listeners run actions when an animation starts or ends.
+- The [**Animated Texture Started Playing**](/listeners#animated-texture-started-playing-animated_texture_started_playing) and [**Animated Texture Finished Playing**](/listeners#animated-texture-finished-playing-animated_texture_finished_playing) listeners run actions when an animation starts or ends.
 
 ## Performance
 

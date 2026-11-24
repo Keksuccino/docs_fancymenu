@@ -32,7 +32,7 @@ The duration and play-time placeholders return `MM:SS` by default. Set `output_a
 
 Volume and paused-state values are controller metadata associated with the identifier. Duration and play-time values require the matching Video element or background to be active and ready on the current screen.
 
-The [**On Video Playback Status Changed** listener](/listeners#on-video-playback-status-changed-video_playback_status_changed) can react to `PLAYING`, `PAUSED`, `STOPPED`, and `FINISHED`.
+The [**Video Playback Status Changed** listener](/listeners#video-playback-status-changed-video_playback_status_changed) can react to `PLAYING`, `PAUSED`, `STOPPED`, and `FINISHED`.
 
 ## Requirements
 
