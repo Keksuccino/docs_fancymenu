@@ -1,54 +1,80 @@
 ---
 title: Data Storage Locations
-description: Where FancyMenu stores layouts, resources, configuration, and persistent runtime state.
+description: Where FancyMenu saves layouts, assets, settings and everything else, and which files belong to profiles.
 ---
 
 # Data Storage Locations
 
-`<game-directory>` means the active Minecraft instance folder, which may differ from `.minecraft`.
+FancyMenu saves everything in two folders of your game directory. That's the instance folder of your launcher, which can be a different one than `.minecraft`.
 
-Directories and files are usually created only after the related feature is initialized or used. Close Minecraft before manually editing generated state files, and keep a backup when migrating or resetting data.
+- `config/fancymenu/` holds your setup: layouts, assets, variables, settings and more. It's the loaded [profile](/profiles), so modpacks ship this folder.
+- `fancymenu_data/` holds data of this game instance, like Dragger positions and downloads. It stays the same for all profiles.
 
-# Layouts, Resources, and Configuration
+**menu bar -> Tools -> Open FancyMenu Directory** opens `config/fancymenu/`.
 
-Some entries are authored configuration or assets; others are state that FancyMenu updates at runtime.
+Most files and folders only show up once you use their feature. Close the game before you change or delete files in them.
 
-| System / Feature | File or Directory |
+> [!TIP]
+> To share these folders between instances, you can move them somewhere else and leave a symbolic link (a junction on Windows) in their place.
+
+# Your Setup
+
+Everything in `<game-directory>/config/fancymenu/`. It all belongs to the loaded [profile](/profiles).
+
+| What | Where |
 | --- | --- |
-| Customizable screens | `<game-directory>/config/fancymenu/customizablemenus.txt` |
-| [Custom GUIs](/custom-guis) and screen-override rules | `<game-directory>/config/fancymenu/custom_gui_screens.txt` |
-| Layouts | `<game-directory>/config/fancymenu/customization/` |
-| [Local assets](/resources#local-resources) | `<game-directory>/config/fancymenu/assets/` |
-| [Custom localization files](/localization#fancymenu-custom-localization-files) | `<game-directory>/config/fancymenu/custom_locals/` |
-| [Panoramas](/panoramas) | `<game-directory>/config/fancymenu/panoramas/` |
-| [Slideshows](/slideshows) | `<game-directory>/config/fancymenu/slideshows/` |
-| [FancyMenu variables](/variables) | `<game-directory>/config/fancymenu/user_variables.db` |
-| [Video element](/elements#video) controller metadata | `<game-directory>/config/fancymenu/video_element_controller_metas.json` |
-| [Audio element](/elements#audio) controller metadata | `<game-directory>/config/fancymenu/audio_element_controller_metas.json` |
-| [FM Data](/fm-data) server listeners | `<game-directory>/config/fancymenu/fmdata_server_listeners.json` |
-| [FM Data](/fm-data) welcome data | `<game-directory>/config/fancymenu/fmdata_welcome_data.json` |
-| [Listener](/listeners) instances and action scripts | `<game-directory>/config/fancymenu/listener_instances.txt` |
-| [Schedulers](/schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
+| Layouts, as `.txt` files, also in subfolders | `customization/` |
+| [Local assets](/resources#local-resources), like images and sounds | `assets/` |
+| FancyMenu's settings | `options.txt` |
+| Screens with **Current Screen Customization** turned on | `customizablemenus.txt` |
+| [Custom GUIs](/custom-guis), and the screens they replace | `custom_gui_screens.txt` |
+| [Variables](/variables) | `user_variables.db` |
+| [Listeners](/listeners) | `listener_instances.txt` |
+| [Schedulers](/schedulers) | `scheduler_instances.txt` |
+| [Panoramas](/panoramas) | `panoramas/` |
+| [Slideshows](/slideshows) | `slideshows/` |
+| [Custom localizations](/localization#fancymenu-custom-localization-files) | `custom_locals/` |
+| Themes of FancyMenu's own UI (**menu bar -> Customization -> Settings -> FancyMenu's UI -> UI Theme**) | `ui_themes/` |
+| States of [Checkbox elements](/elements#checkbox) that don't use a variable | `checkbox_states.json` |
+| Volume and pause state that actions gave [Video elements](/video) | `video_element_controller_metas.json` |
+| Volume that actions gave [Audio elements](/elements#audio) | `audio_element_controller_metas.json` |
+| On and off state that actions gave [Element Animators](/element-animator) | `animation_controller_states.json` |
+| Screens with **Expose Scroll Area Content Of Current Screen** turned on | `normalized_scroll_screens.json` |
+| [FM Data](/fm-data) server listeners | `fmdata_server_listeners.json` |
+| [FM Data](/fm-data) welcome data | `fmdata_welcome_data.json` |
+| Position, size and visibility of the layout editor's widgets | `layout_editor/widgets/` |
+| Name, icon and details of the loaded profile | `profile.json` and `profile_icon.png` |
+| All other [profiles](/profiles#where-profiles-are-stored) | `profiles/` |
+| Which updates of old files FancyMenu did already | `legacy_checklist.txt` |
 
-`customizablemenus.txt` is managed by the **Current Screen Customization** toggle and stores concrete screen class identifiers. Do not add [Universal Layout](/universal-layouts) identifiers; FancyMenu ignores them when loading the file.
+`customizablemenus.txt` lists screens by their Java class name. Short [screen identifiers](/screen-identifiers) like `title_screen` get skipped in it.
 
-On a dedicated server, the two FM Data files are relative to that server's game root. Other client-owned configuration and resources belong in each player's instance.
+On a dedicated server, FancyMenu only uses the two [FM Data](/fm-data) files, in the `config/fancymenu/` folder of the server.
 
-# Persistent Runtime State
+# Instance Data
 
-FancyMenu keeps additional generated, per-instance state outside `config/fancymenu/`. Include these paths in a backup only when you want to preserve the related user/runtime state; they are not layout definitions or source assets.
+Everything in `<game-directory>/fancymenu_data/`. It's not part of profiles, so it stays when you switch them.
 
-| System / Feature | File or Directory |
+| What | Where |
 | --- | --- |
-| Non-variable [Checkbox](/elements#checkbox) states, separately for every [profile](/profiles) | `<game-directory>/config/fancymenu/checkbox_states.json` |
-| [Dragger](/dragger) element positions/metadata | `<game-directory>/fancymenu_data/dragger_metas.json` |
-| Last world state | `<game-directory>/fancymenu_data/last_world.fmdata` |
-| [Seamless World Loading](/seamless-world-loading) state | `<game-directory>/fancymenu_data/seamless_world_loading/` |
-| Buddy pet and leveling saves | `<game-directory>/fancymenu_data/buddy/` |
-| [Export for AI](/export-for-ai) files | `<game-directory>/fancymenu_data/ai_exports/` |
-| Layout editor widget positions and visibility | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
-| Default GUI scale initialization marker | `<game-directory>/fancymenu_data/default_scale_set.fm` |
+| Positions of [Dragger elements](/dragger) | `dragger_metas.json` |
+| The last world or server, for the action **Enter/Join Last World/Server** and the placeholder **Last World or Server** | `last_world.fmdata` |
+| Screenshots of [Seamless World Loading](/seamless-world-loading) | `seamless_world_loading/` |
+| Saves of [Buddy](/decoration-overlays#buddy), two files per Buddy overlay | `buddy/` |
+| Files of [Export for AI](/export-for-ai) | `ai_exports/` |
+| Your favorite actions in the action chooser | `action_favorites.json` |
+| The volume of audio and video previews in file choosers | `browser_audio_settings.json` and `browser_video_settings.json` |
+| The frame a [video background](/video) shows while it's paused | `video_thumbnails/` |
+| FFmpeg, which FancyMenu downloads for the [AFMA Creator](/animations#fma-and-afma) | `ffmpeg_cache/` |
+| A note that FancyMenu set the **Default GUI Scale** already | `default_scale_set.fm` |
+| Temporary files, deleted at every game start | `fancymenu_temp/` |
 
-Buddy keeps the pet state and leveling/achievement state in separate JSON files within its directory. Each Buddy overlay instance uses its own pair of files.
+- FancyMenu sets the **Default GUI Scale** only once. Delete `default_scale_set.fm` to make it set the scale again at the next start.
+- Seamless World Loading screenshots show anything that was on screen in the world. Delete them while the game is closed if you don't want to keep them.
 
-Layout editor widget files store each widget's position, size, visibility, expanded state, and snapping side. Deleting `default_scale_set.fm` causes FancyMenu to treat the configured default GUI scale as not yet applied on the next launch.
+# Files of Older Versions
+
+Older FancyMenu versions saved some files in other places. FancyMenu takes them over at the next game start:
+
+- `checkbox_states.json` and `normalized_scroll_screens.json` from the game directory itself into `config/fancymenu/`.
+- `dragger_metas.json` from `config/fancymenu/` into `fancymenu_data/`.

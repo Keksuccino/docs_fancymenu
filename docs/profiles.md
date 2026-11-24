@@ -69,4 +69,4 @@ The loaded profile can't be deleted. Load another profile first.
 - The loaded profile is the content of `<game-directory>/config/fancymenu/`, like any FancyMenu setup.
 - All other profiles are stored in `<game-directory>/config/fancymenu/profiles/`. Click **Open Folder** to open the folder of a profile.
 
-`<game-directory>` is the active instance folder, which may differ from `.minecraft`. Runtime state that FancyMenu keeps outside of `config/fancymenu/` is not part of profiles, see [Data Storage Locations](/data-storage-locations#persistent-runtime-state).
+`<game-directory>` is the active instance folder, which may differ from `.minecraft`. The data in `<game-directory>/fancymenu_data/` is not part of profiles, see [Data Storage Locations](/data-storage-locations#instance-data).
