@@ -91,6 +91,8 @@ Selected elements that support it show controls for [rotating](/rotating-element
 
 **Layers** lists all elements of the layout, the topmost first: an element shows in front of everything below it in the list. **Window -> Editor Widgets -> Layers** shows and hides it.
 
+<img width="800" alt="Dragging the News Background layer below News Text, so the patch notes show after unselecting it, then adding a group, putting both layers into it, hiding and showing the group with its eye and folding it up" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/layout_editor_layers.gif?raw=true">
+
 ## Changing the Order
 
 - Click a layer to select its element, then drag it up or down. A line shows where it lands. All selected layers move together.
