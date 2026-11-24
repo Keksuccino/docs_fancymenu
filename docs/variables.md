@@ -25,6 +25,8 @@ Things that only know text, like `$$name` or **Is Variable Value (FM Variable)**
 
 Open **menu bar -> Customization -> Manage Variables**. The menu bar only has it outside of the layout editor.
 
+<img width="800" alt="Adding the text variable menu_theme with the value dark, and the list variable tips with three tips, in Manage Variables" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_manage.gif?raw=true">
+
 ## Adding Variables
 
 1. Right-click the list and click **Add Text Variable** or **Add List Variable**.
@@ -122,6 +124,20 @@ Every list action has its own window. All its fields support placeholders.
 
 - List actions create a list that doesn't exist yet, and turn empty text variables into lists. They never change a text variable that has a value: [convert it](#changing-variables) first.
 - Type the name of the list without `$$`. With `$$`, the action uses the value of that variable as name.
+
+For example, a Text element shows the first entry of the list `tips`:
+
+```
+{"placeholder":"list_get","values":{"name":"tips","index":"0"}}
+```
+
+A Next Tip button below it gets **Arrange List (FM Variable)** with **Shuffle** in its action script:
+
+<img width="800" alt="Adding Arrange List with the list tips and Shuffle to the action script of a Next Tip button in the layout editor" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_next_tip_script.gif?raw=true">
+
+Every click shuffles the list, so the text shows a random tip:
+
+<img width="800" alt="Clicking the Next Tip button shows a different tip of the day" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_next_tip_result.gif?raw=true">
 
 ## Going Through a List
 
