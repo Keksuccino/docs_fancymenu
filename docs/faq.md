@@ -84,7 +84,9 @@ This is a visual glitch, likely caused by a mod conflict with another mod that a
 
 ### How do I create a delay between actions in a script?
 
-Use [**Delay** or **Execute Later** blocks](/action-scripts#blocks) for delayed action logic. For repeating background logic, use [Schedulers](/schedulers).
+Right-click the script area of the action script editor, click **Add EXECUTE LATER Block** and put the actions that should wait inside it. They run once after its time in milliseconds, and the rest of the script runs on right away. See [Execute Later](/action-scripts#execute-later).
+
+For things that should happen over and over, use [Schedulers](/schedulers).
 
 ### Can I customize menus from the Create mod?
 
