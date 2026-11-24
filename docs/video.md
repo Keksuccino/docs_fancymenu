@@ -53,7 +53,7 @@ Video support does NOT work in loading screens (game/resource loading screen & w
 
 This also means that you should NOT add videos to the game loading screen via **Drippy Loading Screen**, since it will not work in most cases.
 
-Use short, simple [AFMA/FMA animations](./fma) in loading screens instead.
+Use short, simple [animations](./fma) (APNG or GIF) in loading screens instead.
 
 ## Troubleshooting
 

@@ -42,4 +42,4 @@ This example scales every frame to `1280×720`.
 ffmpeg -i input.mp4 -vf "scale=1280:720" output_frames/frame_%04d.png
 ```
 
-The numbered PNG files in `output_frames` can be used to create an [AFMA or classic FMA animation](./fma). Fewer frames and smaller dimensions reduce file size and memory use.
+To turn the numbered PNG files in `output_frames` into an APNG or GIF animation, see [Making Animations](./fma#making-animations). Fewer frames and smaller dimensions make the animation smaller and faster.

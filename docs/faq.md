@@ -42,9 +42,9 @@ Use a [**Custom GUI**](./custom-guis).
 
 This is expected behavior. Pre-loading large resources like high-resolution animations or sounds during the initial startup will naturally increase the game's loading time.
 
-### My FMA animation is using too much RAM!
+### My animation uses a lot of RAM or makes the game lag!
 
-Classic [FMA animations](./fma) can consume a lot of memory when they contain many high-resolution frames. AFMA is better suited to large or complex animated textures. Keep classic FMA animations short; use [Video](./video) for full video playback.
+Big frames and high frame rates cost memory and performance. Make the frames about as big as they show up on screen, and use fewer frames per second. See [Animations](./fma#performance). For long clips with sound, use a [Video](./video) instead.
 
 ### Does FancyMenu work with OptiFine?
 

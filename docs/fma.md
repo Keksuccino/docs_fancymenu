@@ -1,160 +1,85 @@
 ---
-title: Animations (FMA/AFMA)
-description: How to make and use FancyMenu animation files.
+title: Animations
+description: How to use animated images in FancyMenu, and how to make them.
 ---
-
 # Animations
 
-AFMA and FMA files are animated texture formats created for FancyMenu.
+FancyMenu plays animated images almost everywhere you can use an image: in [Image elements](./elements#image), [image menu backgrounds](./menu-backgrounds), button and slider textures, the [Game Intro](./game-intro) and more.
 
-# AFMA Files
+Use **APNG** or **GIF** files for your animations:
 
-**AFMA** (Advanced FancyMenu Animation) is the successor to classic FMA files.
+- **APNG** (animated PNG) gives the better quality: all colors of a normal PNG, and proper transparency with soft edges. It's the best pick for logos, backgrounds and everything with transparency.
+- **GIF** is more common, so there are more tools for making and editing GIFs. But a GIF only has 256 colors per frame, and its pixels are either fully see-through or not at all.
 
-AFMA uses a non-ZIP format with smaller files, lower memory use, and better performance than classic FMA.
+> [!NOTE]
+> FancyMenu's own animation formats, FMA and AFMA, are deprecated. Your existing files still work, but use APNG or GIF for new animations. See [FMA and AFMA](#fma-and-afma).
 
-For large or complex animated textures, use **AFMA** instead of classic FMA.
+# Using Animations
 
-Create AFMA files with the built-in creator:
+1. Put the file into `<game-directory>/config/fancymenu/assets/`, so it shows up in FancyMenu's file chooser. Web URLs and resource pack files work too, see [Resources](./resources).
+2. Pick it like any other image, for example with **Image Source** of an Image element.
 
-1. Open FancyMenu's menu bar.
-2. Go to **Tools -> AFMA Creator**.
-3. Import/convert your frames with the creator.
+> [!WARNING]
+> APNG files have to end with `.apng`. Many tools save APNGs as `.png`, so rename the file, or FancyMenu shows it as a still image. The same goes for web URLs: they need to end with `.apng`.
 
-> [!IMPORTANT]
-> AFMA files cannot be packed manually. Use **Tools -> AFMA Creator**.
+## How Animations Play
 
-Classic FMA files remain supported, so existing layouts do not need to be converted immediately.
+- An animation plays as often as its file says, then stays on its last frame. You set how often it loops when you make the file.
+- Animations only play while they're on screen. When they show up again, they continue where they stopped.
+- **Restart Animated Textures When Opening Screen** makes Image elements and image menu backgrounds start their animation over every time the screen opens.
+- **Restart Animated Textures On Hover** makes the textures of buttons and sliders start over every time the mouse moves onto them.
+- The [**Animated Texture Started Playing**](./listeners#on-animated-texture-started-playing-animated_texture_started_playing) and [**Animated Texture Finished Playing**](./listeners#on-animated-texture-finished-playing-animated_texture_finished_playing) listeners run actions when an animation starts or ends.
 
-# Classic FMA Files
+## Performance
 
-## Making an FMA
+FancyMenu decodes APNGs and GIFs while they play, only a few frames ahead, so even long animations need little memory.
 
-A classic FMA file is a ZIP archive with a `.fma` extension.
+Big frames and high frame rates still cost performance. Make your frames about as big as they show up on screen, see [Optimizing Textures](./optimizing-textures). For long clips with sound, use a [Video](./video) instead.
 
-### File Extensions
+# Making Animations
 
-Enable file extensions in your file manager before creating or renaming the files below.
+These free tools make APNGs and GIFs from single frames or videos:
 
-On Windows, open File Explorer and enable **View -> File name extensions**.
+- [ScreenToGif](https://www.screentogif.com/) (Windows): Click **Editor**, drop your PNG frames into it, set the frame delay and save the animation as APNG or GIF. You can set the looping in the save menu.
+- [ezgif](https://ezgif.com/) (online, no download): Make a [GIF](https://ezgif.com/maker) or an [APNG](https://ezgif.com/apng-maker) from images, turn a video into a [GIF](https://ezgif.com/video-to-gif) or an [APNG](https://ezgif.com/video-to-apng), or convert [GIF to APNG](https://ezgif.com/gif-to-apng) and [APNG to GIF](https://ezgif.com/apng-to-gif).
+- [FFmpeg](https://ffmpeg.org/download.html) (command line): see below.
 
-<br>
-<img width="764" alt="Screenshot_9" src="https://gist.github.com/assets/35544624/1f0a0864-1ad8-4f63-be3a-ab18385539e6"> 
+## With FFmpeg
 
-### Preparation
+Turn numbered PNG frames, like `frame_0001.png`, `frame_0002.png` and so on, into an APNG that loops forever. `-framerate 20` plays 20 frames per second:
 
-Create a folder named `fancymenu_animation` for the archive contents.
-
-Create a required `frames` directory and an optional `intro_frames` directory inside it.
-
-In the same folder, create `metadata.json`. Make sure its file extension is `.json`, not `.txt`.
-
-The folder must now contain `frames/`, `intro_frames/`, and `metadata.json`.
-
-<br>
-<img width="700" alt="Screenshot_3" src="https://gist.github.com/assets/35544624/e29f6666-ee4a-4d79-b7e2-1b640f40ce78">
-
-### The Metadata JSON
-
-Open `metadata.json` in a text editor and use this template:
-
-```json
-{
-  "loop_count": 0,
-  "frame_time": 41,
-  "frame_time_intro": 41,
-  "custom_frame_times": {
-  },
-  "custom_frame_times_intro": {
-  }
-}
+```bash
+ffmpeg -framerate 20 -i frame_%04d.png -plays 0 animation.apng
 ```
 
-Edit the values as needed.
+Turn a video into an APNG. `fps=20` keeps 20 frames per second, and `scale=960:-1` makes it 960 pixels wide:
 
-#### `loop_count`
-
-Controls how many times the animation plays. Use `0` to loop indefinitely. A positive value plays that many times, then holds the last frame.
-
-#### `frame_time`
-
-Sets how long each normal frame remains visible, in milliseconds.
-
-#### `frame_time_intro`
-
-Sets the frame time for optional **intro** frames.
-
-#### `custom_frame_times`
-
-Optionally overrides the duration of individual normal frames. This example keeps frames `0` and `1` visible for `5000` milliseconds while other frames use `frame_time`:
-
-```json
-{
-  "loop_count": 0,
-  "frame_time": 41,
-  "frame_time_intro": 41,
-  "custom_frame_times": {
-    "0": 5000,
-    "1": 5000
-  },
-  "custom_frame_times_intro": {
-  }
-}
+```bash
+ffmpeg -i trailer.mp4 -vf "fps=20,scale=960:-1" -plays 0 trailer.apng
 ```
 
-Frame indexes are zero-based: the first frame is `0`, the second is `1`, and so on.
+Turn a video into a GIF that loops forever. The `palettegen` part picks the best 256 colors for it:
 
-Add a comma after every custom frame-time entry except the last one.
+```bash
+ffmpeg -i trailer.mp4 -vf "fps=15,scale=640:-1:flags=lanczos,split[a][b];[a]palettegen[p];[b][p]paletteuse" -loop 0 trailer.gif
+```
 
-#### `custom_frame_times_intro`
+Turn a GIF into an APNG:
 
-Uses the same format as `custom_frame_times`, but applies to optional intro frames.
+```bash
+ffmpeg -i logo.gif -plays 0 logo.apng
+```
 
-Save `metadata.json`.
+To get single frames out of a video, see [Get Frames from Videos](./ffmpeg-frames).
 
-### The Frames
+# FMA and AFMA
 
-> [!CAUTION]
-> Keep classic FMA animations at or below 200 frames and 1080p. Use [Video](./video) for long or high-frame-rate content.
+FMA and AFMA are FancyMenu's own animation formats. Both are deprecated: they still play, but APNG and GIF are the better choice for new animations.
 
-Place normal frames in `frames/`. They must be PNG files named sequentially from `0.png`, such as `0.png`, `1.png`, and `2.png`. Other formats and names are not supported.
+To make an AFMA anyway:
 
-To extract frames from a video, see [Extracting Frames with FFmpeg](./ffmpeg-frames).
-
-<br>
-<img width="574" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/eac54695-b57a-4919-8740-4e5c8aad649c">
-
-### The Intro
-
-Place optional intro frames in `intro_frames/`. They follow the same PNG naming rules as normal frames, play once before the normal sequence, and do not loop.
-
-### Packing the FMA File
-
-Create a ZIP containing the folder's contents. `metadata.json`, `frames/`, and the optional `intro_frames/` directory must be at the ZIP root, not inside another directory.
-
-On Windows, select the contents of `fancymenu_animation`, right-click the selection, and choose **Send to -> Compressed (zipped) folder**.
-
-<br>
-<img width="752" alt="Screenshot_6" src="https://gist.github.com/assets/35544624/5b7e7670-5403-410e-943c-283bfe6d585c">
-
-Locate the resulting ZIP file.
-
-<br>
-<img width="700" alt="Screenshot_7" src="https://gist.github.com/assets/35544624/987f7989-dff7-43b4-a54c-0898969827f5">
-
-Its root contents should look like this:
-
-<img width="700" alt="Screenshot_8" src="https://gist.github.com/assets/35544624/f1642a39-e14c-47a7-90f6-8a737e8ec75f">
-
-Rename the file to `fancymenu_animation.fma`, replacing the `.zip` extension. The base filename can be changed, but the `.fma` extension is required.
-
-The renamed archive is now ready to use as an FMA file.
-
-# Using AFMA & FMA Files in FancyMenu
-
-> [!IMPORTANT]
-> AFMA/FMA files are animated textures, so add them through [**Image** inputs](./elements#image). Almost everything that accepts images also accepts AFMA and FMA files.
-
-Use AFMA/FMA files anywhere that accepts an image, including [Image elements](./elements#image) and [Image menu backgrounds](./menu-backgrounds).
-
-Store the AFMA/FMA file in `<game-directory>/config/fancymenu/assets/` so it appears in FancyMenu's local resource chooser.
+1. Put your frames as PNG files into one folder. They play in the order of their names, like `frame_1.png`, `frame_2.png`, ..., `frame_10.png`.
+2. Open **menu bar -> Tools -> AFMA Creator**.
+3. Set **Main Frames Directory** to the folder. Frames in **Intro Frames Directory** play once before the main frames.
+4. Set **Main Frame Time (ms)** and **Loop Count**. A loop count of `0` loops forever.
+5. Set **Output AFMA File** and click **Export**.
