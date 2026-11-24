@@ -19,8 +19,8 @@ To get the best help, please provide as much context as possible:
 
 ### How do I change the layering of elements (move something in front of or behind another)?
 
-*   **Custom vs. Custom:** Open **Window -> Editor Widgets -> Layers** and drag elements in the hierarchy. You can also right-click an element and use **Move One Layer Up/Down**. See [Layers and Groups](/layers-and-groups).
-*   **Custom vs. Vanilla:** To render all your custom elements behind all vanilla elements (e.g., to put a background image behind the default buttons), **right-click the editor background** and toggle the option **"Render Custom Elements Behind Vanilla"**.
+- **Your own elements:** drag their layers in the Layers widget of the layout editor, or right-click an element and click **Move One Layer Up** or **Move One Layer Down**. See [Layers and Groups](/layout-editor#layers-and-groups).
+- **Your elements and vanilla elements:** the order of vanilla elements can't change. To put all your elements behind them, like a background image behind the default buttons, right-click the editor background and set **Custom Elements Behind Vanilla** to **Enabled**.
 
 ### Can I exclude certain buttons from a universal button template?
 
@@ -76,7 +76,7 @@ The FancyMenu community shares layouts in the [`#layout-templates`](https://disc
 
 ### How can I make the Player Entity render behind other elements?
 
-You generally cannot force a [Player Entity element](/elements#player-entity) behind normal 2D elements through the [Layers widget](/layers-and-groups). Its renderer can ignore normal GUI layer order. Design the layout around that limitation or use a pre-rendered image when strict layer ordering is required.
+You generally cannot force a [Player Entity element](/elements#player-entity) behind normal 2D elements through the [Layers widget](/layout-editor#layers-and-groups). Its renderer can ignore normal GUI layer order. Design the layout around that limitation or use a pre-rendered image when strict layer ordering is required.
 
 ### My Player Entity has only one leg! What happened?
 
@@ -113,7 +113,7 @@ In the layout editor, open **Layout Properties -> Header/Footer Customizations**
 
 ### I can't create a layout "for the current screen". The button is greyed out.
 
-You need to enable customizations for that screen first through **menu bar -> Customization -> Current Screen Customizations -> Enabled**.
+Turn on customizations for that screen first: click **menu bar -> Customization -> Current Screen Customization**, so it shows **Enabled**.
 
 ### I can't customize any elements of a screen when opening it in the editor. It's just an empty screen then.
 

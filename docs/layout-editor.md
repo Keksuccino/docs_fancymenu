@@ -1,6 +1,6 @@
 ---
 title: Layout Editor
-description: How to open the layout editor, select, move and resize elements, save your layout, and all shortcuts of the editor.
+description: How to open the layout editor, select, move and resize elements, order them with layers and groups, save your layout, and all shortcuts of the editor.
 ---
 
 # Layout Editor
@@ -25,7 +25,7 @@ The layout editor is where you build [layouts](/home#your-first-layout): you add
 
 - Right-click the background for the settings of the whole layout, and to add elements with **New Element**.
 - Right-click an element for its settings. See [Elements](/elements#settings-of-all-elements).
-- **Layers** lists all elements of the layout. Drag them to change which one is on top, hide them while you edit, or put them in groups. See [Layers and Groups](/layers-and-groups). **Window -> Editor Widgets** shows and hides it.
+- **Layers** on the right lists all elements of the layout. See [Layers and Groups](#layers-and-groups).
 - The menu bar at the top:
 
 | Menu | What's in it |
@@ -55,7 +55,7 @@ The right-click menu of the background has everything about the layout itself, l
 - `Ctrl` + click adds an element to the selection, or takes a selected one out of it.
 - `Ctrl + A` selects all elements.
 
-Elements you hid in **Layers** can't get selected.
+Clicks, rectangles and `Ctrl + A` skip elements you [hid in Layers](#hiding-and-renaming).
 
 ## Moving
 
@@ -86,6 +86,51 @@ Selected elements that support it show controls for [rotating](/rotating-element
 ## Undo and Redo
 
 `Ctrl + Z` takes back the last change, `Ctrl + Y` does it again. Both are in the **Edit** menu too.
+
+# Layers and Groups
+
+**Layers** lists all elements of the layout, the topmost first: an element shows in front of everything below it in the list. **Window -> Editor Widgets -> Layers** shows and hides it.
+
+## Changing the Order
+
+- Click a layer to select its element, then drag it up or down. A line shows where it lands. All selected layers move together.
+- Or right-click an element or its layer and click **Move One Layer Up** or **Move One Layer Down**.
+
+In the editor, selected elements always show in front of the others. Unselect them to see the real order.
+
+In some Minecraft versions, [Player Entity](/elements#player-entity) and [Item](/elements#item) elements show in front of everything, no matter their layer. See [Known Issues](/known-issues#1-player-entity--item-elements-are-always-in-front-of-everything).
+
+## Vanilla Elements
+
+The **Vanilla Elements** row stands for all elements of the menu itself, like its buttons. Their order can't change, but the button on the right of the row puts all your elements behind or in front of them. It does the same as **Custom Elements Behind Vanilla** in the right-click menu of the background.
+
+## Hiding and Renaming
+
+- The eye of a layer hides its element in the editor, so it's out of your way while you work on the others. Click it again to show the element.
+- Hidden elements can't get clicked, moved, copied or deleted. Players still see them, they only hide in the editor. The layout remembers which ones you hid.
+- Right-click a layer and click **Rename Layer** to give it a name that's easier to find, like `News Panel`. It's the same as the element's **In-Editor Display Name**, and players don't see it.
+
+## Groups
+
+Groups keep layers that belong together under one name, like all parts of a news panel. They only sort the list: the elements show and work like before.
+
+- Right-click inside Layers and click **Add Group**. The group shows up below the layers.
+- Drag layers onto the group to put them into it. Drag them out of it to take them out.
+- Click a group to select all its elements. Drag it to move all of them up or down at once.
+- The arrow of a group folds its layers up or out, and its eye hides or shows all of them.
+- Right-click a group to rename it, move it one layer up or down, or delete it. **Delete Group** keeps its elements.
+
+**Move One Layer Up** and **Move One Layer Down** keep an element inside its group. To take it out, drag its layer out of the group.
+
+The layout saves its groups and which ones are folded up.
+
+## Scrollable Areas
+
+The elements in a [Scrollable Area](/scrollable-areas) show up below the area's layer, indented.
+
+- Drag a layer onto the lower half of an area's layer to put the element into the area. Drag it out between other layers to take it out. It stays where it is on the screen.
+- The arrow of an area's layer folds its elements up or out.
+- Elements in an area belong to no group. They move with the area.
 
 # Grid and Anchor Overlay
 

@@ -29,7 +29,7 @@ Everything in the area scrolls with it and gets cut off at its edges.
 
 ## Layers
 
-In the [Layers widget](/layers-and-groups), the elements of an area show up below it. Drag layers there to put them into or out of an area, or to change their order. The collapse button of an area's layer hides its elements in the list.
+In the [Layers widget](/layout-editor#scrollable-areas), the elements of an area show up below it. Drag layers there to put them into or out of an area, or to change their order. The collapse button of an area's layer hides its elements in the list.
 
 ## Copying and Deleting
 
