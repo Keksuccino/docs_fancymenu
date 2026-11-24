@@ -59,9 +59,9 @@ Now we need to add a new Button element.
 <img width="270" alt="Screenshot_4" src="https://gist.github.com/assets/35544624/1bd1b781-0cdb-4b52-80a0-db8f44ead0db">
 
 After adding, right-click it and click on **Edit Action Script**.
-This will open the button's Manage Action Script screen.
+This opens the button's [action script](/action-scripts) editor.
 
-Click on **Add IF Statement**, add the **Is Variable Value** requirement to it and set the requirement's mode to **OPPOSITE**.
+Right-click the script area, click **Add IF Statement**, add the **Is Variable Value** requirement to it and set the requirement's mode to **OPPOSITE**.
 
 <br>
 <img width="520" alt="Screenshot_5" src="https://gist.github.com/assets/35544624/a024ea21-2244-4ca6-b44b-1a80f7936b8f">
