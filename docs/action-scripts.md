@@ -142,37 +142,22 @@ Most actions need a value, like the address of a server. Simple values are text 
 
 ## Placeholders
 
-Values can contain [placeholders](/placeholders), like the player's name or a [variable](/variables). They get replaced when the action runs:
+Values can contain [placeholders](/placeholders), like the player's name. They get replaced when the action runs:
 
 ```
 /say Welcome back, {"placeholder":"playername"}!
 ```
 
-## $$ Values
+## Variables
 
-Some features give their script extra values that start with `$$`:
+`$$` and a name gives the value of a variable, like `$$coins`. Besides your own [variables](/variables#showing-variables-in-text), some features give their script variables of their own:
 
 - A [Slider](/elements#slider) gives `$$value`, its new value.
 - A [Checkbox](/elements#checkbox) gives `$$value`, its new state: `true` or `false`.
 - A [For Each Loop](#for-each-loop) gives `$$list_entry` and `$$list_index`.
-- Each [listener](/listeners#listener-variables) lists the values it gives, like the key that got pressed.
+- Each [listener](/listeners#listener-variables) lists the variables it gives, like the key that got pressed.
 
-`$$` values only work in the script that gets them, and upper and lower case matter. In all other cases, `$$` followed by a [variable's](/variables#showing-variables-in-text) name gives the variable's value.
-
-## Separators
-
-Values with several parts separate them with `:`, `||` or `|||`. Use exactly the separator the action's entry below shows.
-
-- With `:` and `||`, only the first separator counts, so the last part can contain it. In [**Set Variable Value (FM Variable)**](#set-variable-value-fm-variable-set_variable), `motd:Welcome: have fun!` sets `motd` to `Welcome: have fun!`.
-- With `|||`, the parts can't contain `|||`. Only the last part of the list actions and of **Scroll an Element** can.
-
-Placeholders get replaced before the value gets split, so a placeholder whose text contains a separator splits the value there too.
-
-## Formatting Codes
-
-In most actions, `&` with a [formatting code](/text-formatting#minecraft-text-formatting) colors and styles text, like `&aGreen` or `&lBold`. That's how toasts and messages from **Display In Chat [Client-Side]** get colors.
-
-Actions for files, links, web requests, remote servers, audio, worlds and lists keep `&` as it is, so links like `https://example.com/?a=1&b=2` stay intact.
+These only exist in the script that gets them. Upper and lower case of names matter.
 
 # Actions in Detail
 
@@ -365,7 +350,7 @@ Puts text into the chat input field while a world is loaded. If chat isn't open,
 
 Shows a chat message only this player sees. Nothing gets sent to the server.
 
-**Value:** the text, with [formatting codes](#formatting-codes) or as Minecraft text component JSON, like `&aWelcome back!`
+**Value:** the text, with [formatting codes](/text-formatting#minecraft-text-formatting) or as Minecraft text component JSON, like `&aWelcome back!`
 
 Does nothing when no world is loaded.
 
@@ -690,7 +675,7 @@ Shows a toast notification in the top-right corner, set up in its window:
 
 - **Toast Width**: from 120 to 320 pixels.
 - **Duration (ms)**: how long it stays, from 1 second (`1000`) to 10 minutes.
-- **Title** and **Message**: text with [formatting codes](#formatting-codes), or Minecraft text component JSON.
+- **Title** and **Message**: text with [formatting codes](/text-formatting#minecraft-text-formatting), or Minecraft text component JSON.
 - **Icon Texture Source** and **Background Texture Source**: optional [images](/resources). Icons look best at 20x20 pixels, backgrounds should be 32 pixels tall and as wide as the toast.
 
 ## Start Scheduler (`start_scheduler`)
