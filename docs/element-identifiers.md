@@ -16,4 +16,4 @@ These identifiers are used to, well, identify the element, so other parts of Fan
 
 # Getting the Identifier of Elements
 
-To get the identifier of an element, because you need it somewhere else, just **right-click** the element in the editor and click on **Copy Element Identifier**. Doing that will copy the element's identifier to the clipboard, so you can easily paste it where you need it.
+To get the identifier of an element, right-click the element in the editor and click **Copy Element ID**. This copies the identifier to the clipboard, so you can paste it where you need it.

@@ -8,7 +8,7 @@ FancyMenu supports playing MP4 videos as [elements](/elements#video), [menu back
 
 The native [**Video** element](/elements#video) and **Video** menu background use Watermedia V3. The old **Video [Rinku]** types are deprecated and should only remain in layouts that still need them.
 
-There are also the following **actions** to control video backgrounds and elements:
+There are also the following [actions](/action-scripts) to control video backgrounds and elements:
 
 - [**Set Video Element Volume**](/action-scripts#set-video-element-volume-set_video_element_volume) sets the volume of a Video element.
 - [**Set Video Element Play Time**](/action-scripts#set-video-element-play-time-set_video_element_play_time) seeks a Video element to a millisecond timestamp.
@@ -17,7 +17,7 @@ There are also the following **actions** to control video backgrounds and elemen
 - [**Set Video Background Play Time**](/action-scripts#set-video-background-play-time-set_video_menu_background_play_time) seeks a Video menu background to a millisecond timestamp.
 - [**Toggle Video Background Paused State**](/action-scripts#toggle-video-background-paused-state-toggle_video_menu_background_pause_state) toggles a Video menu background's paused state.
 
-And the following **placeholders** to get information about video backgrounds and elements:
+And the following [placeholders](/placeholders) to get information about video backgrounds and elements:
 
 - [**Video Element Volume**](/placeholders#video-element-volume-video_element_vol) returns a Video element's volume.
 - [**Video Element Duration**](/placeholders#video-element-duration-video_element_duration) returns a Video element's duration.
