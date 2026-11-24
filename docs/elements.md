@@ -268,6 +268,8 @@ Shows a block or item model in 3D, from the game's resources or a JSON file of y
 
 Shows a player in 3D, like the player's own character on the title screen.
 
+<img width="360" alt="A new Player Entity with the default skin, looking to the right" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_player_entity.png?raw=true">
+
 > [!IMPORTANT]
 > Player Entities need the mod Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Without it, they show an error instead of the player.
 
