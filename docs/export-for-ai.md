@@ -6,7 +6,7 @@ description: Turn parts of your FancyMenu setup into text for AI assistants like
 
 **Export for AI** turns a part of your FancyMenu setup into text that's made for AI assistants, like Alice, the helper bot on the [FancyMenu Discord](https://discord.gg/rhayah27GC). Paste it into your chat, and the AI sees exactly how things are set up, instead of guessing.
 
-<img width="800" alt="A support chat where Alice asks for an export, finds the problem in it and helps the player fix their button" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/export_for_ai_chat.gif?raw=true">
+<img width="800" alt="A support post on Discord where Alice asks for an export, finds the problem in it and helps the player fix their button" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/export_for_ai_chat.gif?raw=true">
 
 # Why It Exists
 
