@@ -1,266 +1,318 @@
 ---
 title: Text Formatting
-description: How to format text with Markdown and Minecraft's formatting codes.
-published: true
-date: 2026-05-03T11:01:52.000Z
-tags: 
-editor: markdown
-dateCreated: 2025-04-14T20:16:15.668Z
+description: How to format text with Markdown, Minecraft formatting codes and text components.
 ---
-
 # Text Formatting
 
-[Text elements](./elements#text) support Markdown. Other text fields use Minecraft formatting, and button labels can use Minecraft text components.
+FancyMenu gives you three ways to format text:
+
+- **Markdown** for [Text and Tooltip elements](./text-in-menus): headlines, lists, colors, images, tables and more.
+- **Minecraft formatting codes** like `&c` for quick colors. They work in almost every text field, Markdown text included.
+- **Minecraft text components** for button and slider labels.
+
+> [!TIP]
+> This page is all about *how to write* formatted text. To learn how to add text to your menus, change its look or make it scroll, see [Text in Menus](./text-in-menus).
+
+<img width="800" alt="Markdown in a Text element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_showcase.png?raw=true">
 
 # Markdown
 
-FancyMenu's **Text elements** have full Markdown support, which means you can format text content by adding special characters to it.
+Markdown formats text with a few special characters around it. For example, `**bold**` turns into **bold** text.
 
-For example, to make text look bold, you add `**` before and after the bold text, so `**Some bold text that's very bold.**` will look like that:
-**Some bold text that's very bold.**
+Markdown works in [Text elements](./elements#text) and [Tooltip elements](./elements#tooltip). The characters you write decide *what* something is (a headline, a list, a quote). The element's [look](./text-in-menus#looks-and-styles) decides how it looks, like its colors and sizes.
 
-FancyMenu also supports the extensions documented below.
+## Quick Overview
 
-> [!CAUTION]
-> Markdown works only in **Text elements**. For button labels and other text fields, use [Minecraft's formatting codes](#minecraft-text-formatting).
+| You write | You get |
+|---|---|
+| `**bold**` or `__bold__` | Bold text |
+| `*italic*` or `_italic_` | Italic text |
+| `++underlined++` | Underlined text |
+| `~~crossed out~~` | Crossed out text |
+| `` `code` `` | Inline code |
+| `[Open Website](https://example.com)` | A clickable link |
+| `%#ff5555%red text%#%` | Colored text |
+| `# Headline` | A headline |
+| `- Item` | A bullet list |
+| `1. Item` | A numbered list |
+| `> Text` | A quote |
+| `> [!TIP]` | A callout box |
+| `---` | A separator line |
 
-## Fonts
+## Text Styles
 
-You can show text in a custom font loaded via resource pack by adding `%!!<font_name>%` before the text and `%!!%` after.
+| Style | How to write it |
+|---|---|
+| **Bold** | `**text**` or `__text__` |
+| **Italic** | `*text*` or `_text_` |
+| **Underline** | `++text++` |
+| **Strikethrough** | `~~text~~` (a single `~` on both sides works too) |
 
-A valid font included in the base game is `uniform`, so to display text in the `uniform` font, do this:
-`%!!uniform%this is a custom font%!!%`
+Styles can be combined, like `***bold and italic***`.
 
-This will display `this is a custom font` in the `uniform` font.
+Single underscores inside words stay normal underscores, so `my_cool_layout` doesn't turn italic. Names like `C++` also stay as they are.
+
+> [!TIP]
+> In the text editor, select some text and press `Ctrl + B`, `Ctrl + I` or `Ctrl + U` (`Cmd` on macOS) to make it bold, italic or underlined. See [Formatting Shortcuts](./text-in-menus#formatting-shortcuts).
 
 ## Text Color (HEX)
 
-Showing text in a specific HEX color is possible by adding `%<HEX_color>%` before the text and `%#%` after.
+Put `%<HEX color>%` in front of the text and `%#%` behind it:
 
-A valid HEX color for green is `#77fc03`, so to show text in this color, do this:
-`%#77fc03%this text is green!%#%`
+```
+%#77fc03%This text is green!%#%
+```
 
-This will show `this text is green!` as `#77fc03` (green).
-
-Make sure that the HEX color is starting with `#`!
-
-Common HTML-like color names are supported in the same color formatting code:
+The HEX color needs to start with `#`. You can also use color names:
 
 ```
 %#red%This text is red!%#%
 ```
 
-Supported names: `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan`, and `transparent`.
+Supported names: `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan` and `transparent`.
+
+## Fonts
+
+To show text in another font, put `%!!<font name>%` in front of it and `%!!%` behind it. The font can come from Minecraft or a resource pack.
+
+```
+%!!uniform%This text uses the uniform font%!!%
+```
 
 ## Text Alignment
 
-You can align text lines by starting a line with the specific alignment formatting code, then nothing else, then the text lines you want to show with that specific alignment and then the alignment code again on an extra line.
+Text is left-aligned by default. To center lines or align them right, put the alignment code on its own line before and after them:
 
-All text content is **left-aligned by default**, so there are only formatting codes for **centered** and **right-aligned**.
+- `^^^` centers the lines.
+- `|||` aligns them right.
 
-### Centered
-
-To center text lines, use the formatting code `^^^`.
-
-Example:
 ```
-This text is not centered.
+This line is left-aligned.
 
 ^^^
-This text is centered.
-This text is also centered.
+This line is centered.
+This one too.
 ^^^
 
-This text is not centered anymore.
-```
-
-### Right-Aligned
-
-To show text lines as right-aligned, use the formatting code `|||`.
-
-Example:
-```
-This text is not right-aligned.
-
 |||
-This text is right-aligned.
-This text is also right-aligned.
+This line is right-aligned.
 |||
-
-This text is not right-aligned anymore.
 ```
+
+> [!TIP]
+> In the text editor, `Ctrl + L`, `Ctrl + E` and `Ctrl + R` (`Cmd` on macOS) align the selected lines left, centered or right for you.
 
 ## Headlines
 
-To show **a line of text** as headline (bigger and underlined), add `# ` (very big), `## ` (big) or `### ` (small) before the text line.
+Start a line with `# ` (biggest), `## ` (big) or `### ` (small):
 
-Example:
-`## Big Headline`
+```
+# Welcome!
+## News
+### Small Headline
+```
 
-## Bold
+## Lists
 
-Add `**` before and after text to make it look **bold**.
+<img width="460" alt="Markdown lists" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_lists.png?raw=true">
 
-Example:
-`**bold text content**`
+### Bullet Lists
 
-## Italic
+Start a line with `- `. Add two spaces in front of it for every level of nesting:
 
-Add `_` OR `*` before and after text to make it look *italic*.
+```
+- First item
+- Second item
+  - Nested item
+    - Even deeper
+```
 
-Example:
-`*italic text content*`
+### Numbered Lists
 
-## Strikethrough
+Start a line with a number and a dot or a bracket:
 
-Add `~` before and after text to make it look ~~strikethrough~~.
+```
+1. Open the menu bar
+2. Click on Customization
+3) This works too
+```
 
-Example:
-`~strikethrough text content~`
+### Patch Note Markers
+
+Lines can also start with `+`, `-`, `~` or `*`. Each of them gets its own marker, which is perfect for patch notes and changelogs:
+
+```
++ Added a new main menu
+- Removed the old logo
+~ Changed the button colors
+* Fixed a crash on startup
+```
+
+| Marker | Meaning |
+|---|---|
+| `+` | Something got added |
+| `-` | Something got removed |
+| `~` | Something got changed |
+| `*` | Something worth highlighting |
+
+A `-` item only gets the "removed" marker when its list also has a `+` item. Otherwise, it's a normal bullet list item. You can change that with **Markdown -> Lists -> Extra Markers (+ - ~ \*) -> - Marker Used**.
+
+> [!NOTE]
+> New Text and Tooltip elements have numbered lists, patch note markers and [callouts](#callouts) turned on. Elements from older layouts have them off, so their text doesn't suddenly change. Turn them on in the element's **Markdown** menu: **Lists -> Numbered Lists**, **Lists -> Extra Markers (+ - ~ \*)** and **Callouts**.
+
+## Quotes
+
+Start a line with `> ` to make it a quote. The quote goes on until the next empty line:
+
+```
+> This is a quote.
+And this line belongs to it too.
+
+This line is normal text again.
+```
+
+Lines inside a quote can start with `>` too, and a line with nothing but `>` adds an empty line to the quote:
+
+```
+> First paragraph of the quote.
+>
+> Second paragraph of the quote.
+```
+
+## Callouts
+
+Callouts are colored boxes with an icon and a label, great for tips and warnings. Write a quote whose first line is the callout type:
+
+```
+> [!WARNING]
+> Don't forget to save your layout!
+```
+
+<img width="640" alt="Markdown callouts" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_callouts.png?raw=true">
+
+There are five types: `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` and `[!CAUTION]`.
 
 ## Hyperlinks
 
-You can add hyperlinks to text content that open a website when clicked.
+Wrap the text in `[ ]` and put the link behind it in `( )`:
 
-Text that should appear as [hyperlink](https://google.com) needs to get wrapped in `[ ]`, followed by the actual link wrapped in `( )`.
+```
+[Visit our website](https://example.com)
+```
 
-So if you want to make `example text content` clickable and open `https://example-website.net`, do this:
-`[example text content](https://example-website.net)`
+Links can contain round brackets, like `https://en.wikipedia.org/wiki/Minecraft_(video_game)`. To show square brackets in the link text, put a `\` in front of them: `[Click \[here\]](https://example.com)`.
 
 ## Click and Hover Events
 
-Markdown click and hover events are available for [Text elements](./elements#text) and other Markdown text. Use [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked-text_clicked) and [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered-text_hovered) to react to them.
-
-Click events use the `click:` prefix:
+Text can also trigger [listeners](./listeners) instead of opening a website. Use the `click:` or `hover:` prefix with an ID of your choice:
 
 ```
 [some clickable text](click:unique_text_click_event_id)
-```
-
-Hover events use the `hover:` prefix:
-
-```
 [some hoverable text](hover:unique_text_hover_event_id)
 ```
 
-Both listeners expose the event ID as `$$text_event_id`.
+React to them with the [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked-text_clicked) and [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered-text_hovered) listeners. Both give you the ID as `$$text_event_id`.
 
 ## Images
 
-Markdown supports displaying images in text content.
+Put an image on its own line with `![](` + the image source + `)`:
 
-FancyMenu supports Minecraft resources, local resources and web resources in Markdown.
-
-To add an image, start a text line with `![](`, then the [URL, Resource Location or Path to the resource](./resources) and then `)`.
-
-So to show the Web resource `https://example-website.net/image.png`, do this:
-`![](https://example-website.net/image.png)`
-
-Images can also be **hyperlinks** by wrapping the whole image text line in a **hyperlink** like that:
-`[![](https://example-website.net/image.png)](https://example-website.net)`
-
-> [!WARNING]
-> Local resources need to be in `<game-directory>/config/fancymenu/assets/`!
-
-## Quote
-
-To format text as a quote, start a text line with `> `.
-This will format all following lines as quote until it finds an **empty** line.
-
-Example:
 ```
-This will not look like a quote.
-
-> This will look like a quote.
-This will also look like a quote.
-
-This will not look like a quote anymore.
+![](https://example.com/image.png)
 ```
 
-## Bullet Lists
+The source can be a web URL, a local file like `/config/fancymenu/assets/image.png` or a resource pack image. See [Resources](./resources) for all source types.
 
-To show text as a bullet list like that:
-- Entry 1
-- Entry 2
-  - Sub-Entry
+Text between the square brackets becomes the caption of the image:
 
-You simply need to start a line with `- `.
-
-Example:
 ```
-- Entry 1
-- Entry 2
-  - Sub-Entry
+![My cool screenshot](/config/fancymenu/assets/screenshot.png)
 ```
 
-## Separation Line
+Captions show below the image if the element's **Markdown -> Images -> Caption** option is on.
 
-To add a separation line to your text that has the width of a whole text line, simply start a line with `---` and then add nothing else.
+To make an image clickable, wrap it in a link:
 
-It will then look something like that:
+```
+[![](https://example.com/image.png)](https://example.com)
+```
 
----
+## Tables
 
-## Code Blocks
+Separate cells with `|`. The first row is the header, and the second row has `---` for every column:
 
-Code blocks can help you display text as `plain text` without Markdown trying to format it, or simply to display text in a code-like style without auto-wrapping of text lines.
+```
+| Item | Price |
+|:---|---:|
+| Diamond Sword | 10 |
+| Golden Apple | 5 |
+```
 
-A single-line code block (between other text) starts and ends with \` , which is actually really difficult to show in a Markdown text..
+Colons in the second row align the column: `:---` left, `:---:` centered and `---:` right. To show a `|` inside a cell, write `\|`.
 
-A line of text containing a single-line code block looks like that:
+<img width="640" alt="Markdown table and code" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_table_code.png?raw=true">
 
-![single_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/e78fd38b-7b1a-4f00-9b11-797d964b3b43)
+## Separators
 
-Multi-line code blocks wrap multiple lines in one big code block and start with a line that only contains \`\`\` then the text content and then \`\`\` again:
+A line with nothing but `---` draws a separator across the text.
 
-![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+## Code
+
+Code shows text as it is, without formatting it.
+
+- **Inline code:** wrap a part of a line in `` ` ``, like `` `/spawn` ``.
+- **Code blocks:** put a line with `` ``` `` before and after the lines. Code blocks don't wrap their lines.
+
+````
+```
+/give @p minecraft:diamond 64
+```
+````
+
+You can write a language name behind the first `` ``` ``, like `` ```json ``. FancyMenu accepts it, but it doesn't change how the code looks.
+
+[Placeholders](./placeholders) still get replaced inside code.
 
 ## Plain Text
 
-The plain text formatting code will bypass all other formatting codes inside it.
-
-It works similar to code blocks, but it will not format it like a code block. Instead it will show like normal text, but without any formatting.
-
-To wrap a text part inside a line in a plain text formatting code, you need to add `;;` before and after the text part you want to show as plain text like this:
+Plain text shows formatting characters as they are, but without the look of code. Wrap a part of a line in `;;`:
 
 ```
-This is a line of text with ;;**this part**;; showing as unformatted text with visible ** (bold) formatting code and _this part_ as normal formatted italic text.
+This shows ;;**stars**;; instead of bold text.
 ```
 
-Plain text also works as a multi-line wrapper code. To wrap whole lines, add `;;;` before and after the line(s) you want to show as plain text like this:
+To do that for whole lines, put `;;;` on its own line before and after them:
 
 ```
 ;;;
-This line will show **unformatted** with visible ** (bold) formatting codes.
-This line will also show _unformatted_ with visible _ (italic) formatting codes.
+**Not bold**, _not italic_.
 ;;;
-
-This line will look **normal** again with the "normal" formatted as bold text.
 ```
+
+## Escaping Characters
+
+To show a formatting character as normal text, put a `\` in front of it. For example, `\*not italic\*` shows `*not italic*`.
+
+This works for `\` `` ` `` `*` `_` `{` `}` `[` `]` `(` `)` `#` `+` `-` `.` `!` `|` `>` `~` and `^`.
 
 # Minecraft Text Formatting
 
-Minecraft formatting codes work in supported formatted text fields throughout FancyMenu. Use `&` in place of Minecraft's `§` prefix; for example, `&cWarning` displays red text.
+Minecraft formatting codes work in most text fields of FancyMenu. Use `&` instead of Minecraft's `§`. For example, `&cWarning` shows red text and `&l` makes text bold. `&r` resets the formatting.
 
-See the [Minecraft Wiki formatting-code reference](https://minecraft.wiki/w/Formatting_codes) for the available colors and styles.
+See the [Minecraft Wiki](https://minecraft.wiki/w/Formatting_codes) for all codes.
 
-> [!CAUTION]
-> Minecraft formatting codes are unreliable in **Text elements** because those elements parse Markdown. Use the Markdown formatting described above instead.
+Formatting codes also work in Markdown text, except inside code and plain text. For styles like bold and italic, Markdown is usually easier to read, but codes are handy for quick colors.
 
 # Minecraft Text Components (Raw Component System)
 
-Minecraft's text component system is pretty powerful for **single-line** text content like **button labels**.
+Minecraft text components are formatted text written as JSON. They work for **single-line** text like **button and slider labels**, but not in Text elements.
 
-In Vanilla Minecraft you can use it in the `/tellraw` and `/title` commands (and probably other places).
-It is formatted text serialized to JSON, so you can add formatting attributes to text content.
+To use one, set nothing but the component as the label:
 
-To learn more about text components in detail, please take a look at [this Minecraft wiki page](https://minecraft.wiki/w/Raw_JSON_text_format).
-To learn more about fonts in Minecraft, take a look at [this Minecraft wiki page](https://minecraft.wiki/w/Resource_pack#Fonts).
+```
+{"text":"Button Label Text","font":"uniform"}
+```
 
-To make FancyMenu detect a button label as **text component**, set nothing but the serialized component text as label, just like that:
-`{"text":"Button Label Text","font":"uniform"}`
+This shows `Button Label Text` in the `uniform` font. You can use [placeholders](./placeholders) in the `text` value.
 
-The example above will show the button label `Button Label Text` in the `uniform` font.
-
-> [!NOTE]
-> You can use FancyMenu's placeholders in the `text` value of components.
+To learn more, see the Minecraft Wiki pages about the [text component format](https://minecraft.wiki/w/Raw_JSON_text_format) and [fonts](https://minecraft.wiki/w/Resource_pack#Fonts).
