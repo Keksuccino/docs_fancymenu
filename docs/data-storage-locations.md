@@ -39,7 +39,7 @@ Everything in `<game-directory>/config/fancymenu/`. It all belongs to the loaded
 | Volume and pause state that actions gave [Video elements](/video) | `video_element_controller_metas.json` |
 | Volume that actions gave [Audio elements](/elements#audio) | `audio_element_controller_metas.json` |
 | On and off state that actions gave [Element Animators](/element-animator) | `animation_controller_states.json` |
-| Screens with **Expose Scroll Area Content Of Current Screen** turned on | `normalized_scroll_screens.json` |
+| Screens with **Expose Scroll Area Content Of Current Screen** turned on (see [Customizing Scrollable Screens](/customizing-scrollable-screens)) | `normalized_scroll_screens.json` |
 | [FM Data](/fm-data) server listeners | `fmdata_server_listeners.json` |
 | [FM Data](/fm-data) welcome data | `fmdata_welcome_data.json` |
 | Position, size and visibility of the layout editor's widgets | `layout_editor/widgets/` |
@@ -66,7 +66,7 @@ Everything in `<game-directory>/fancymenu_data/`. It's not part of profiles, so 
 | The volume of audio and video previews in file choosers | `browser_audio_settings.json` and `browser_video_settings.json` |
 | The frame a [video background](/video) shows while it's paused | `video_thumbnails/` |
 | FFmpeg, which FancyMenu downloads for the [AFMA Creator](/animations#fma-and-afma) | `ffmpeg_cache/` |
-| A note that FancyMenu set the **Default GUI Scale** already | `default_scale_set.fm` |
+| A note that FancyMenu set the [**Default GUI Scale**](/global-customizations) already | `default_scale_set.fm` |
 | Temporary files, deleted at every game start | `fancymenu_temp/` |
 
 - FancyMenu sets the **Default GUI Scale** only once. Delete `default_scale_set.fm` to make it set the scale again at the next start.
