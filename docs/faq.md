@@ -72,7 +72,7 @@ FancyMenu v3 is a complete rewrite with many new features, a more stable archite
 
 ### Where can I find pre-made layouts and templates?
 
-The FancyMenu community shares layouts in the [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) channel of the official Keksuccino's Mods Discord server ("Kekscord").
+The FancyMenu community shares complete setups in the [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) channel of the official Discord server ("Kekscord"). Install them as their own profile, see [Layout Templates](/profiles#layout-templates).
 
 ### How can I make the Player Entity render behind other elements?
 
