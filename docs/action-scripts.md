@@ -33,7 +33,7 @@ Outside the editor, the button runs its script when it gets clicked:
 |---|---|---|
 | [Button](/elements#button) | The button gets clicked. | Right-click the button -> **Edit Action Script** |
 | [Slider](/elements#slider) | The slider's value changes. `$$value` is the new value. | Right-click the slider -> **Edit Action Script** |
-| [Checkbox](/elements#checkbox) | The checkbox gets ticked or unticked. | Right-click the checkbox -> **Edit Action Script** |
+| [Checkbox](/elements#checkbox) | The checkbox gets ticked or unticked. `$$value` is its new state, `true` or `false`. | Right-click the checkbox -> **Edit Action Script** |
 | [Ticker](/elements#ticker) | As its **Tick Mode** says: over and over, once per game session, or once when the menu loads. | Right-click the ticker -> **Edit Action Script** |
 | Opening a menu | The menu of the layout opens. | Right-click the editor background -> **Edit 'Open Screen' Action Script** |
 | Closing a menu | The menu of the layout closes. | Right-click the editor background -> **Edit 'Close Screen' Action Script** |
@@ -153,6 +153,7 @@ Values can contain [placeholders](/placeholders), like the player's name or a [v
 Some features give their script extra values that start with `$$`:
 
 - A [Slider](/elements#slider) gives `$$value`, its new value.
+- A [Checkbox](/elements#checkbox) gives `$$value`, its new state: `true` or `false`.
 - A [For Each Loop](#for-each-loop) gives `$$list_entry` and `$$list_index`.
 - Each [listener](/listeners#listener-variables) lists the values it gives, like the key that got pressed.
 
