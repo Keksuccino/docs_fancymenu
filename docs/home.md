@@ -23,10 +23,18 @@ One of the first things you will notice when starting the game is the **menu bar
 
 The **menu bar** is your entry point to basically all of FancyMenu's features like **creating layouts** to **customize menus**, changing the **window title and icon** and much more.
 
-> If you acidentally pressed some keys and the **menu bar disappeared**, you can bring it back by pressing **CTRL + ALT + C**.
-{.is-warning}
-
 <img width="650" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
+
+## Menu Bar Shortcuts
+
+These work in every menu, but not in the layout editor and not while Modpack Mode is on. On macOS, use `Cmd + Option` instead of `Ctrl + Alt`.
+
+| Shortcut | What it does |
+|---|---|
+| `Ctrl + Alt + C` | Show or hide the menu bar. If it's suddenly gone, this brings it back. |
+| `Ctrl + Alt + R` | Reload FancyMenu, like **menu bar -> Customization -> Reload FancyMenu** |
+| `Ctrl + Alt + D` | Show or hide the **Debug Overlay**, which shows the [identifier](/screen-identifiers) of the menu and more |
+| `Ctrl + Alt + L` | Open the [layout editor](/layout-editor) with the layout you edited last |
 
 # Your First Layout
 

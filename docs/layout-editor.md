@@ -17,7 +17,7 @@ The layout editor is where you build [layouts](/home#your-first-layout): you add
 
 - **For All Screens [Universal]** makes a [Universal Layout](/universal-layouts), which shows in every menu.
 - The layouts you already have are listed in **Layouts** too. Hover one and click **Edit Layout**.
-- `Ctrl + Alt + L` opens the layout you edited last.
+- In any menu, `Ctrl + Alt + L` opens the layout you edited last. See [the menu bar shortcuts](/home#menu-bar-shortcuts).
 
 # The Editor at a Glance
 
@@ -127,17 +127,6 @@ On macOS, use `Cmd` instead of `Ctrl`.
 | `Shift` + rotate or tilt | Snap to steps |
 | `Ctrl + G` | Turn the grid on and off |
 | Hold `O` | Show the anchor points, with **Show On Key Press (Key "O")** |
-
-## Shortcuts in All Menus
-
-These work in every menu, also outside of the editor, but not while Modpack Mode is on:
-
-| Shortcut | What it does |
-|---|---|
-| `Ctrl + Alt + C` | Show or hide FancyMenu's menu bar |
-| `Ctrl + Alt + L` | Open the layout you edited last |
-| `Ctrl + Alt + R` | Reload FancyMenu |
-| `Ctrl + Alt + D` | Show or hide the **Debug Overlay**, which shows the [identifier](/screen-identifiers) of the menu and more |
 
 > [!TIP]
 > The text editor has its own shortcuts, see [Text in Menus](/text-in-menus#the-text-editor). Windows like [Action Scripts](/action-scripts#shortcuts) list theirs on their pages.
