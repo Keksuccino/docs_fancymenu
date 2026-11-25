@@ -9,7 +9,7 @@ FancyMenu lets you change every menu of Minecraft, like the title screen, the pa
 
 <img width="800" alt="The title screen of a modpack called Wildwood, made with FancyMenu: a pixel art valley at dusk with a cabin, a lake and the setting sun, whose layers move with the mouse, a golden logo, wooden buttons that glow when hovered, and fireflies" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_hero.gif?raw=true">
 
-This page shows you the basics, step by step, and turns the normal title screen into this one.
+This page shows you the basics step by step. On the way, you build a simpler version of this title screen, and [How the Example Is Made](#how-the-example-is-made) shows what the full one adds.
 
 # The Menu Bar
 
@@ -98,7 +98,7 @@ The menu shows your layout right away. To change it later, hover it in **menu ba
 
 # How the Example Is Made
 
-The title screen at the top of this page goes a few steps further:
+The title screen at the top of this page adds a few things to the one you built:
 
 - The sky, the hills and the trees are three images that move with the mouse, the trees the most. See [Parallax Effect](/parallax).
 - The hills and the trees are Image elements as big as the screen. So they stay behind the buttons and texts, the right-click menu of the editor background has **Custom Elements Behind Vanilla** turned on.
