@@ -47,6 +47,16 @@ It needs **Anchor Area Hovering** and **Anchor Element Hovering** in the **Windo
 
 With several elements selected, step 2 and 3 anchor all of them at once. See [Element Identifiers](/element-identifiers) for more about IDs.
 
+## Anchors in Scrollable Areas
+
+Elements in a [Scrollable Area](/scrollable-areas) have anchors too, but they belong to the content of the area instead of the screen:
+
+- **Top-Left Corner** is the top-left corner of the content, **Center of Screen** its middle, and the bottom anchors stick to the end of the content. So an element can sit at the very end of a long list and stay there when the list gets longer.
+- Elements in an area can only use other elements of the same area as their anchor.
+- When you move an element into or out of an area, elements that were anchored across its edge get the **Top-Left Corner** anchor and stay where they are.
+
+This works in the **Anchors** mode of the area. In its other modes, the area places the elements itself. See [Scrollable Areas](/scrollable-areas#anchors-mode).
+
 ## Example for How to Anchor Elements
 
 The following screenshot shows how you should choose anchors for elements.

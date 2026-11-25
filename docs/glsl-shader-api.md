@@ -292,6 +292,12 @@ Given variable text value `v`:
   - if fewer components are present, the last parsed component is repeated for missing slots
   - if no numeric components are present, all vector components use scalar fallback
 
+[List variables](/variables#text-and-list-variables) give their entry count instead of their text:
+
+- `fmVarFloat_*` and `fmVarInt_*`: the number of entries, like `3` for a list with 3 entries
+- `fmVarBool_*`: `1` if the list has entries, `0` if it's empty
+- `fmVarVec2_*`, `fmVarVec3_*` and `fmVarVec4_*`: the number of entries in every component
+
 If a variable gets removed:
 
 - `fmVarExists_*` becomes `0`

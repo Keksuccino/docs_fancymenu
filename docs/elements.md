@@ -52,7 +52,8 @@ A button that runs an [action script](/action-scripts) when clicked, like joinin
 
 - **Edit Action Script**: what the button does when clicked.
 - **Label** and **Hover Label**: its text, and the text while the mouse is over it. Both support [placeholders](/placeholders) and [text formatting](/text-formatting).
-- **Label Alignment**, **Label Scale**, **Label Base Color**, **Label Hover Color** and **Label Shadow**: the look of the label.
+- **Label Alignment**: puts the label on the **Left**, **Centered** or on the **Right** side of the button. Labels that are too wide for the button scroll from side to side, wherever they're aligned.
+- **Label Scale**, **Label Base Color**, **Label Hover Color**, **Label Shadow** and **Underline Label On Hover**: the size, colors and shadow of the label.
 - **Button Textures** and **Button Icon Textures**: your own images for the button and an icon on it, for normal, hovered and inactive buttons. See [Nine-Slicing & Tiling](/nine-slicing-and-tiling) for textures that scale nicely.
 - **Hover Sound**, **Unhover Sound** and **Click Sound**: sounds the button plays.
 - **Tooltip**: a text that shows while the mouse is over the button.
@@ -81,7 +82,7 @@ music_volume:$$value
 
 Its **Pre-Selected Value** is `$$music_volume`, so it starts at the last value the player picked.
 
-Sliders have the same label, texture, sound, tooltip and **Control Active State** settings as buttons.
+Sliders have the same label, texture, sound, tooltip and **Control Active State** settings as buttons, so their label can sit on the left or right with **Label Alignment** too.
 
 ### Checkbox
 
@@ -121,7 +122,8 @@ Text of any length, from a short label to scrollable rules or patch notes, with 
 <img width="636" alt="A Text element with patch notes: a headline and a list with one bold part" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_text.png?raw=true">
 
 - **Source Mode**: type the text, or load it from a file or a website.
-- A look to start from, a background, and scrolling when the text is bigger than the element.
+- A look to start from, and scrolling when the text is bigger than the element.
+- **Background**: a dark panel behind the text. Turn it off with **Show Background**, or use your own texture instead.
 
 All about it in [Text in Menus](/text-in-menus).
 
@@ -301,7 +303,11 @@ Holds other elements and scrolls through them, like a list of servers or a long 
 
 <img width="800" alt="Three Scrollable Areas that arrange buttons and items as a stack, a grid and a flow" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/scroll_area_modes.png?raw=true">
 
-Drop elements into it in the layout editor. Only custom elements can go in, no vanilla elements. All about it in [Scrollable Areas](/scrollable-areas).
+- Drop elements into it in the layout editor. Only custom elements can go in, no vanilla elements.
+- **Arrangement**: place the elements yourself, or let the area line them up as a stack, grid or flow.
+- **Background**: a dark panel behind the area. Turn it off with **Show Background**, or use your own texture instead.
+
+All about it in [Scrollable Areas](/scrollable-areas).
 
 ### Dragger
 

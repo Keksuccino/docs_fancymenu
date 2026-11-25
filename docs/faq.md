@@ -126,9 +126,13 @@ The third possibility is that it's a screen from a mod that adds elements in a n
 
 ### There are weird grey boxes at my Text element.
 
-These translucent boxes are the scroll grabbers of the [Text element](/elements#text), not a rendering bug.
+These are the scroll bars of the [Text element](/elements#text). They show up when the text doesn't fit into the element, so players can scroll it.
 
-If you don't want these boxes to be visible, you can either right-click the element and disable scrolling completely OR you can also set the grabber textures to completely transparent ones in the same right-click menu, if you want the element to be still scrollable.
+- Make the element bigger or the text shorter, and they go away.
+- Right-click the element and open **Scroll Bars**. **Show** sets when they show up: **Always**, only **While Scrolling**, or **Never**. With **Never**, the mouse wheel still scrolls.
+- In the same menu, **Scroll Grabber Style**, **Scroll Grabber Textures** and **Scroll Grabber Color [HEX]** change how they look.
+
+See [Text in Menus](/text-in-menus#scroll-bars) for all scroll bar settings.
 
 ### How can I show the latest Minecraft changelog in my menus?
 

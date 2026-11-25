@@ -14,11 +14,19 @@ FancyMenu does not only allow you to add new stuff to screens, it also makes it 
 
 ## Vanilla Buttons and Sliders (Widgets)
 
-To customize existing Vanilla/mod widgets, just make a new layout **"for the current screen"** (NOT universal!) and **right-click** the elements in the editor just like you would do with custom ones.
+To customize the buttons and sliders of a screen, make a layout for the current screen (not a [universal layout](/universal-layouts)) and right-click them in the editor.
 
-You can customize their **labels and textures** just like you would do with custom buttons and sliders.
+They have the same settings as your own [buttons](/elements#button) and [sliders](/elements#slider), like textures, sounds and tooltips. Only their action script can't change: they keep doing what they did before.
 
-The only thing you **can't do** with Vanilla/mod widgets is customizing their **action script** (like changing what they do when interacting with them). This is only possible with custom buttons and sliders.
+Vanilla elements can't go into [Scrollable Areas](/scrollable-areas), because they belong to the menu itself.
+
+### Labels
+
+- **Label** and **Hover Label** replace the text of a button. For other widgets, like sliders, they're called **Widget Text** and **Hover Widget Text**. Without them, the widget keeps its own text.
+- **Label Alignment** puts the label on the **Left**, **Centered** or on the **Right** side of the widget. Labels that are too wide for the widget scroll from side to side, wherever they're aligned.
+- **Label Scale**, **Label Base Color**, **Label Hover Color**, **Label Shadow** and **Underline Label On Hover** change the size, colors and shadow of the label.
+
+To align the labels of several buttons at once, select them with `Ctrl` + click (see [Selecting](/layout-editor#selecting)), right-click one of them and set **Label Alignment** for all of them. For the labels of all menus, use **Label Alignment** in [Global Customizations](/global-customizations#labels). A [template](/button-slider-templates) can also give all buttons of a screen its label style.
 
 ## Automated Clicks
 

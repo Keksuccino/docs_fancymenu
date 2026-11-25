@@ -37,6 +37,14 @@ All other profiles of the instance are stored in `<game-directory>/config/fancym
 > [!CAUTION]
 > Please keep in mind that old legacy setups made in FancyMenu v2 (even if converted to v3) allowed you to store layout assets outside FancyMenu's `<game-directory>/config/fancymenu/assets/` folder. Profiles only contain FancyMenu's config folder, so in that case you need to make sure you also include all of your assets in the modpack.
 
+## Resetting Checkboxes Before Exporting
+
+[Checkbox elements](/elements#checkbox) remember if they're checked in `config/fancymenu/checkbox_states.json`. So the checkboxes you clicked while testing would be checked for your players too.
+
+To give players a fresh start, close the game and delete `checkbox_states.json` before you export your modpack or profile. Without the file, all checkboxes start unchecked. Checkboxes that use a [variable](/variables) keep their state in the variable instead.
+
+The same goes for things that actions changed while testing, like the volume of [Video elements](/video): see [Data Storage Locations](/data-storage-locations#your-setup) for these files.
+
 ## How to Find the Instance Folder
 
 The instance folder is the main folder on your computer where all the files of a specific Minecraft setup are stored. Launchers like CurseForge and Modrinth call these "instances" or "profiles" (not to be confused with FancyMenu's profiles).
