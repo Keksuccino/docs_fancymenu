@@ -40,6 +40,7 @@ The layout editor is where you build [layouts](/home#your-first-layout): you add
 The right-click menu of the background has everything about the layout itself, like:
 
 - [**Menu Backgrounds**](/menu-backgrounds) and [**Decoration Overlays**](/decoration-overlays)
+- **Custom Screen Title** for the text at the top of some menus, like "Options". [Placeholders](/placeholders) work in it.
 - **Header/Footer Customizations** for [scrollable screens](/customizing-scrollable-screens)
 - **Layout Index [Multi-Layout Ordering]** and **Random Mode** for [several layouts in one menu](/randomize-layouts)
 - **Loading Requirements [Layout-Wide]**, see [Requirements](/conditions#layout-wide-requirements)
