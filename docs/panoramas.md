@@ -9,7 +9,7 @@ A panorama is a background that slowly turns around you, like the one on Minecra
 
 You can show your own panoramas as the [menu background](/menu-backgrounds) of a layout, or instead of Minecraft's panorama in all menus.
 
-<img width="800" alt="The Title screen in front of a panorama of a log cabin in a forest clearing at sunset, with a garden, a woodshed and a chicken coop" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/panoramas_title.png?raw=true">
+<img width="800" alt="The Title screen in front of a slowly turning panorama of a log cabin in a forest clearing at sunset, with a garden, a woodshed and a chicken coop" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/panoramas_title.gif?raw=true">
 
 # Making a Panorama
 
