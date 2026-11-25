@@ -36,6 +36,8 @@ config/fancymenu/panoramas/
 
 Each image is one side of the cube:
 
+<img width="796" alt="The six images of the forest homestead panorama laid out as an unfolded cube: the top image above the front image, the left, front, right and back images in a row, and the bottom image below the front image" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/panoramas_cube.png?raw=true">
+
 | Image | Side |
 |---|---|
 | `panorama_0.png` | Front |
