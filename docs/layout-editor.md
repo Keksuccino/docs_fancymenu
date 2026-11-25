@@ -88,6 +88,15 @@ Selected elements that support it show controls for [rotating and tilting](/rota
 
 `Ctrl + Z` takes back the last change, `Ctrl + Y` does it again. Both are in the **Edit** menu too.
 
+## Invisible Elements
+
+Players can't see [Audio](/elements#audio), [Dragger](/dragger), [Element Animator](/element-animator), [Music Controller](/elements#music-controller) and [Ticker](/elements#ticker) elements. In the editor, they show as colored boxes with their name, so you can find, move and resize them.
+
+- **In-Editor Color** in their right-click menu changes the color of the box, like to tell several Tickers apart. Colors are `#RRGGBB`, or `#RRGGBBAA` with transparency: a see-through color like `#E30E2366` shows what's behind the box.
+- The name in the box is the element's layer name, see [Hiding and Renaming](#hiding-and-renaming).
+
+Players never see the box, its color or its name.
+
 # Layers and Groups
 
 **Layers** lists all elements of the layout, the topmost first: an element shows in front of everything below it in the list. **Window -> Editor Widgets -> Layers** shows and hides it.
