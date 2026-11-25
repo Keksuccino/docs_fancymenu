@@ -13,13 +13,12 @@ It works for [elements](/elements) and for **Image** and **Video** [menu backgro
 
 # Elements
 
-<img width="800" alt="Right-clicking the foreground layer in the layout editor, scrolling down to Parallax Effect and setting it to Enabled, then setting Parallax Intensity (X) to 1.0 in the number picker" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/parallax_element_settings.gif?raw=true">
+<img width="640" alt="In the layout editor, right-clicking the foreground layer of a title screen, setting Parallax Effect to Enabled and Parallax Intensity (X) to 1.0, then saving and closing the editor. On the title screen, only the foreground layer moves while the mouse goes left and right" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/parallax_element_settings.gif?raw=true">
 
 1. Right-click the element in the layout editor and scroll down to **Parallax Effect**.
 2. Click **Parallax Effect** to set it to **Enabled**.
 3. Click **Parallax Intensity (X)** and **Parallax Intensity (Y)** to set how far it moves.
-
-Elements don't move in the layout editor. Close the editor to see the effect.
+4. Save the layout and close the editor. Elements only move outside of the editor.
 
 | Setting | What it does |
 |---|---|
