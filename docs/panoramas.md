@@ -11,6 +11,9 @@ You can show your own panoramas as the [menu background](/menu-backgrounds) of a
 
 <img width="800" alt="The Title screen in front of a slowly turning panorama of a log cabin in a forest clearing at sunset, with a garden, a woodshed and a chicken coop" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/panoramas_title.gif?raw=true">
 
+> [!TIP]
+> The panorama on this page is free to use, for testing and in your own modpacks: [forest_homestead.zip](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/forest_homestead.zip) (4 MB). Unzip it into `config/fancymenu/panoramas/` and reload FancyMenu.
+
 # Making a Panorama
 
 1. Open the `panoramas` folder in `config/fancymenu/` of your game directory. **menu bar -> Tools -> Open FancyMenu Directory** opens `config/fancymenu/`.
