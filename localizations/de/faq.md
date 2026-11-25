@@ -1,162 +1,172 @@
 ---
 title: FAQ
 description: Häufig gestellte Fragen.
-sourceBlobSha: 405be9869106a7871195d6e03828f428cc20b4a1
+sourceBlobSha: 4ae872e8e4a54fc6a89de7c87c8a137a89292455
 ---
 # FAQ
 
 ### Ich brauche Hilfe bei einem Problem. Welche Informationen sollte ich bereitstellen?
 
-Um die bestmögliche Hilfe zu erhalten, stelle bitte so viele Informationen wie möglich bereit:
-1.  **Eine klare Beschreibung des Problems:** Was hast du erwartet, und was ist tatsächlich passiert?
-2.  **Deine `latest.log`-Datei:** Du findest sie unter `<game-directory>/logs/latest.log`. **Sende kein Crash-Log**, außer du wirst ausdrücklich darum gebeten; die `latest.log` enthält normalerweise den benötigten Kontext. Verwende beim Posten eine Seite wie https://gist.github.com.
+Damit wir dir bestmöglich helfen können, gib bitte so viel Kontext wie möglich an:
+1.  **Eine klare Beschreibung des Problems:** Was hast du erwartet und was ist tatsächlich passiert?
+2.  **Deine `latest.log`-Datei:** Du findest sie unter `<game-directory>/logs/latest.log`. **Sende kein Crash-Log**, es sei denn, wir bitten dich ausdrücklich darum. Die `latest.log` enthält normalerweise alle erforderlichen Informationen. Nutze zum Teilen eine Website wie https://gist.github.com.
 3.  **Deine Minecraft-Version:** (z. B. 1.20.1)
-4.  **Dein Mod-Loader und dessen Version:** (z. B. Forge 47.2.0, Fabric 0.15.7)
+4.  **Deinen Mod-Loader und dessen Version:** (z. B. Forge 47.2.0, Fabric 0.15.7)
 5.  **Deine FancyMenu-Version:** (z. B. 3.5.2)
 6.  **Screenshots oder Videos** des Problems können ebenfalls sehr hilfreich sein.
 
+> [!TIP]
+> Fragst du Alice oder eine andere KI um Hilfe? Füge einen [Export für KI](/export-for-ai) des Problems hinzu. Er zeigt der KI genau, wie alles eingerichtet ist, und enthält bereits deine Minecraft-, Mod-Loader- und FancyMenu-Versionen.
+
 ### Wie ändere ich die Ebenenreihenfolge von Elementen (etwas vor oder hinter ein anderes verschieben)?
 
-*   **Benutzerdefiniert vs. benutzerdefiniert:** Öffne **Fenster -> Editor-Widgets -> Ebenen** und ziehe die Elemente in der Hierarchie. Du kannst auch mit der rechten Maustaste auf ein Element klicken und **Eine Ebene nach oben/unten verschieben** verwenden. Siehe [Ebenen und Gruppen](./layers-and-groups).
-*   **Benutzerdefiniert vs. Vanilla:** Um alle deine benutzerdefinierten Elemente hinter allen Vanilla-Elementen zu rendern (z. B. um ein Hintergrundbild hinter die Standard-Schaltflächen zu setzen), **klicke mit der rechten Maustaste auf den Editor-Hintergrund** und aktiviere die Option **„Benutzerdefinierte Elemente hinter Vanilla rendern“**.
+- **Deine eigenen Elemente:** Ziehe ihre Ebenen im Ebenen-Widget des Layout-Editors an die gewünschte Stelle oder klicke mit der rechten Maustaste auf ein Element und wähle **Eine Ebene nach oben verschieben** oder **Eine Ebene nach unten verschieben**. Siehe [Ebenen und Gruppen](/layout-editor#layers-and-groups).
+- **Deine Elemente und Vanilla-Elemente:** Die Reihenfolge der Vanilla-Elemente lässt sich nicht ändern. Um alle deine Elemente dahinter zu platzieren, etwa ein Hintergrundbild hinter den Standard-Schaltflächen, klicke mit der rechten Maustaste auf den Editor-Hintergrund und setze **Benutzerdefinierte Elemente hinter Vanilla** auf **Aktiviert**.
 
-### Kann ich bestimmte Schaltflächen aus einer universellen Schaltflächenvorlage ausschließen?
+### Kann ich bestimmte Schaltflächen von einer universellen Schaltflächenvorlage ausschließen?
 
-**Nein. Wenn für eine Vorlagen-Schaltfläche benutzerdefinierte Texturen festgelegt sind, werden diese Texturen immer mit allen betroffenen Elementen geteilt. Einzelne Schaltflächen können nicht ausgeschlossen werden.**
+**Nein. Wenn für eine Vorlagen-Schaltfläche eigene Texturen festgelegt sind, werden diese immer mit allen betroffenen Elementen geteilt. Einzelne Schaltflächen können nicht ausgeschlossen werden.**
 
-### Wie kann ich eine Schaltfläche beim Anklicken eine Aktion ausführen lassen?
+### Wie lege ich fest, dass beim Klicken auf eine Schaltfläche etwas passiert?
 
-Verwende ein [**Aktionsskript**](./action-scripts).
+Verwende ein [**Aktionsskript**](/action-scripts).
 1.  Klicke im Editor mit der rechten Maustaste auf die Schaltfläche.
 2.  Wähle **Aktionsskript bearbeiten**.
-3. Klicke auf **Aktion hinzufügen** und wähle eine Aktion aus, zum Beispiel [**Bildschirm oder benutzerdefinierte GUI öffnen**](./action-scripts#open-screen-or-custom-gui-opengui), [**Server beitreten**](./action-scripts#join-server-joinserver) oder [**Variablenwert festlegen**](./action-scripts#set-variable-value-fm-variable-set_variable).
+3. Klicke auf **Aktion hinzufügen** und wähle eine Aktion aus, zum Beispiel [**Bildschirm oder benutzerdefinierte GUI öffnen**](/action-scripts#open-screen-or-custom-gui), [**Server beitreten**](/action-scripts#join-server) oder [**Variablenwert festlegen**](/action-scripts#set-variable-value-fm-variable).
 
 ### Kann ich einen komplett neuen Menübildschirm von Grund auf erstellen?
 
-Verwende eine [**benutzerdefinierte GUI**](./custom-guis).
-1.  Gehe in der Menüleiste zu **Anpassung -> Benutzerdefinierte GUIs -> Benutzerdefinierte GUIs verwalten**.
-2.  Klicke auf **„Neue GUI“** und gib ihr eine eindeutige Kennung.
-3.  Anschließend kannst du diesen neuen leeren Bildschirm öffnen und ein Layout dafür erstellen, indem du beliebige Elemente hinzufügst.
-4. Öffne die benutzerdefinierte GUI mit der Aktion [**Bildschirm oder benutzerdefinierte GUI öffnen**](./action-scripts#open-screen-or-custom-gui-opengui).
+Ja, mit einer [benutzerdefinierten GUI](/custom-guis):
 
-### Mein Spiel benötigt nach dem Aktivieren des Vorladens sehr lange zum Laden.
+1. Öffne **Menüleiste -> Anpassung -> Benutzerdefinierte GUIs -> Benutzerdefinierte GUIs verwalten** und klicke auf **Neue GUI**.
+2. Gib ihr eine Kennung, zum Beispiel `modpack_info`, und klicke auf **Fertig**.
+3. Öffne sie über **GUI öffnen** und erstelle ein Layout dafür, wie für jedes andere Menü.
+4. Öffne sie über eine Schaltfläche mit der Aktion [**Bildschirm oder benutzerdefinierte GUI öffnen**](/action-scripts#open-screen-or-custom-gui) und ihrer Kennung.
 
-Das ist ein erwartetes Verhalten. Das Vorladen großer Ressourcen wie Animationen mit hoher Auflösung oder Sounds während des anfänglichen Starts verlängert naturgemäß die Ladezeit des Spiels.
+### Mein Spiel braucht nach dem Aktivieren des Vorladens sehr lange zum Laden.
 
-### Meine FMA-Animation verwendet zu viel RAM!
+Das ist erwartetes Verhalten. Wenn große Ressourcen wie hochauflösende Animationen oder Sounds beim ersten Start vorgeladen werden, verlängert sich die Ladezeit des Spiels ganz natürlich.
 
-Klassische [FMA-Animationen](./fma) können viel Speicher verbrauchen, wenn sie viele hochauflösende Einzelbilder enthalten. AFMA eignet sich besser für große oder komplexe animierte Texturen. Halte klassische FMA-Animationen kurz; verwende [Video](./video) für die vollständige Videowiedergabe.
+### Meine Animation verbraucht viel RAM oder lässt das Spiel ruckeln!
+
+Große Einzelbilder und hohe Bildraten kosten Speicher und Leistung. Passe die Größe der Einzelbilder ungefähr an die Größe an, in der sie auf dem Bildschirm angezeigt werden, und verwende weniger Bilder pro Sekunde. Siehe [Animationen](/animations#performance). Für lange Clips mit Ton solltest du stattdessen ein [Video](/video) verwenden.
 
 ### Funktioniert FancyMenu mit OptiFine?
 
-Nein. OptiFine ist **nicht kompatibel** und dafür bekannt, viele Mods einschließlich FancyMenu zu beschädigen. Es wird dringend empfohlen, moderne Alternativen wie Sodium/Embeddium + Iris/Oculus zu verwenden.
-Siehe [Alternativen zu OptiFine](./optifine-alternatives).
+Nein. OptiFine ist **nicht kompatibel** und dafür bekannt, viele Mods zu beeinträchtigen, darunter auch FancyMenu. Es wird dringend empfohlen, moderne Alternativen wie Sodium/Embeddium + Iris/Oculus zu verwenden.
+Siehe [OptiFine-Alternativen](/optifine-alternatives).
 
-### Mein Spiel stürzt ab. Wie finde ich heraus, ob ein Mod-Konflikt die Ursache ist?
+### Mein Spiel stürzt ab. Wie finde ich heraus, ob ein Mod-Konflikt vorliegt?
 
-Am besten prüfst du auf einen Mod-Konflikt, indem du **das Spiel nur mit FancyMenu und seinen Abhängigkeiten** (Konkrete, Melody) startest. Wenn der Absturz nicht mehr auftritt, kannst du deine anderen Mods in kleinen Gruppen wieder hinzufügen, bis der Absturz erneut auftritt. So lässt sich der konfliktverursachende Mod ermitteln.
+Am besten prüfst du auf einen Mod-Konflikt, indem du **das Spiel nur mit FancyMenu und seinen Abhängigkeiten** (Konkrete, Melody) startest. Tritt der Absturz dann nicht mehr auf, kannst du deine anderen Mods nach und nach in kleinen Gruppen wieder hinzufügen, bis der Absturz erneut auftritt. So findest du den konfliktverursachenden Mod.
 
-### Eine Schaltfläche eines anderen Mods verschwindet oder funktioniert nicht, wenn ich versuche, sie zu bearbeiten.
+### Eine Schaltfläche eines anderen Mods verschwindet oder funktioniert nicht, wenn ich sie bearbeiten möchte.
 
-Einige Mods fügen Widgets auf eine Weise hinzu, die FancyMenu nicht erkennen oder anpassen kann. Siehe [Vanilla-/Mod-Elemente](./vanilla-elements) und bei bildschirmbasierten Listen [Scrollbare Bildschirme anpassen](./customizing-scrollable-screens). Wenn das Widget weiterhin nicht erscheint, muss der Mod, der es hinzufügt, es als unterstütztes Bildschirm-Widget bereitstellen.
+Manche Mods fügen Widgets auf eine Weise hinzu, die FancyMenu nicht erkennen oder anpassen kann. Sieh dir [Vanilla-/Mod-Elemente](/vanilla-elements) und bei listenbasierten Bildschirmen [Scrollbare Bildschirme anpassen](/customizing-scrollable-screens) an. Wird das Widget weiterhin nicht angezeigt, muss der Mod, der es hinzufügt, es als unterstütztes Bildschirm-Widget bereitstellen.
 
 ### Kann ich FancyMenu-Layouts auf einem Server verwenden?
 
-Layouts und visuelle Anpassungen werden auf dem Client des Spielers gespeichert; ein Server kann sie nicht auf einem nicht konfigurierten Client erzwingen. Verteile sie als Teil eines Modpacks. Installiere FancyMenu auf dem Server, wenn du [Serverbefehle](./commands), [FM-Daten](./fm-data), [serverseitigen NBT-Zugriff](./nbt-data-placeholder#server-side-placeholder), Gamerules, Strukturen oder Server-Listener benötigst.
+Layouts und visuelle Anpassungen werden auf dem Client des Spielers gespeichert. Ein Server kann sie einem nicht entsprechend eingerichteten Client nicht aufzwingen. Verteile sie als Teil eines Modpacks. Installiere FancyMenu auf dem Server, wenn du [Serverbefehle](/commands), [FM-Daten](/fm-data), [serverseitigen NBT-Zugriff](/nbt-data-placeholder#server-side-placeholder), Spielregeln, Strukturen oder Server-Listener benötigst.
 
 ### Was ist der Unterschied zwischen FancyMenu v2 (für ältere MC-Versionen) und v3?
 
-FancyMenu v3 ist eine vollständige Neuentwicklung mit vielen neuen Funktionen, einer stabileren Architektur und besserer Leistung. V2 ist veraltet, wird nicht mehr unterstützt und verfügt über viele Funktionen wie erweiterte Platzhalter und Skripting nicht. Es wird dringend empfohlen, v3 mit einer modernen Minecraft-Version (1.18.2+) zu verwenden. V2-Layouts können beim Laden automatisch in v3 konvertiert werden, allerdings sind möglicherweise einige manuelle Korrekturen erforderlich.
+FancyMenu v3 ist eine vollständige Neuentwicklung mit vielen neuen Funktionen, einer stabileren Architektur und besserer Leistung. V2 ist veraltet, wird nicht mehr unterstützt und bietet viele Funktionen wie erweiterte Platzhalter und Skripting nicht. Es wird dringend empfohlen, v3 mit einer modernen Minecraft-Version (1.18.2+) zu verwenden. V2-Layouts können beim Laden automatisch in v3 konvertiert werden, möglicherweise sind jedoch einige manuelle Anpassungen erforderlich.
 
 ### Wo finde ich vorgefertigte Layouts und Vorlagen?
 
-Die FancyMenu-Community teilt Layouts im Kanal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) des offiziellen Keksuccino's Mods Discord-Servers („Kekscord“).
+Die FancyMenu-Community teilt vollständige Konfigurationen im Kanal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) des offiziellen Discord-Servers („Kekscord“). Installiere sie als eigenes Profil; siehe [Layout-Vorlagen](/profiles#layout-templates).
 
-### Wie kann ich die Spieler-Entität hinter anderen Elementen rendern lassen?
+### Wie kann ich die Spielerkörper-Entität hinter anderen Elementen anzeigen lassen?
 
-Normalerweise kannst du eine [Spieler-Entität](./elements#player-entity) über das [Ebenen-Widget](./layers-and-groups) nicht hinter normale 2D-Elemente zwingen. Ihr Renderer kann die normale GUI-Ebenenreihenfolge ignorieren. Entwirf das Layout unter Berücksichtigung dieser Einschränkung oder verwende ein vorgerendertes Bild, wenn eine strikt eingehaltene Ebenenreihenfolge erforderlich ist.
+In der Regel kannst du ein [Spielerkörper-Entität-Element](/elements#player-entity) nicht über das [Ebenen-Widget](/layout-editor#layers-and-groups) hinter normale 2D-Elemente zwingen. Der Renderer kann die normale GUI-Ebenenreihenfolge ignorieren. Gestalte dein Layout so, dass es diese Einschränkung berücksichtigt, oder verwende ein vorgerendertes Bild, wenn eine feste Ebenenreihenfolge erforderlich ist.
 
-### Meine Spieler-Entität hat nur ein Bein! Was ist passiert?
+### Meine Spielerkörper-Entität hat nur ein Bein! Was ist passiert?
 
-Dies ist ein visueller Fehler, der wahrscheinlich durch einen Mod-Konflikt mit einem anderen Mod verursacht wird, der Spieleranimationen oder -modelle verändert. Überprüfe die Pose-Einstellungen der Spieler-Entität, um festzustellen, ob die Beine versehentlich gedreht oder verschoben wurden.
+Das ist ein Grafikfehler, der wahrscheinlich durch einen Mod-Konflikt mit einem anderen Mod verursacht wird, der Spielermodelle oder -animationen verändert. Prüfe die Pose-Einstellungen der Spielerkörper-Entität, um festzustellen, ob die Beine versehentlich gedreht oder verschoben wurden.
 
-### Wie erstelle ich eine Verzögerung zwischen Aktionen in einem Skript?
+### Wie füge ich in einem Skript eine Verzögerung zwischen Aktionen ein?
 
-Verwende [**Verzögerungs-** oder **Später ausführen**-Blöcke](./action-scripts#what-are-statements) für verzögerte Aktionslogik. Für sich wiederholende Hintergrundlogik kannst du [Scheduler](./schedulers) verwenden.
+Klicke mit der rechten Maustaste auf den Skriptbereich des Aktionsskript-Editors, klicke auf **EXECUTE LATER-Block hinzufügen** und füge die Aktionen ein, die warten sollen. Sie werden nach der angegebenen Zeit in Millisekunden einmal ausgeführt. Der Rest des Skripts wird sofort fortgesetzt. Siehe [Später ausführen](/action-scripts#execute-later).
+
+Für Aktionen, die sich wiederholen sollen, verwende [Scheduler](/schedulers).
 
 ### Kann ich Menüs des Create-Mods anpassen?
 
-Nein. Die Anpassung von Create-Bildschirmen ist absichtlich deaktiviert. Siehe [Bildschirme, bei denen die Anpassung absichtlich deaktiviert ist](./incompatibility-list#screens-where-customization-is-intentionally-disabled).
+Nein. Die Anpassung von Create-Bildschirmen ist absichtlich deaktiviert. Siehe [Bildschirme, für die die Anpassung absichtlich deaktiviert ist](/incompatibility-list#screens-where-customization-is-intentionally-disabled).
 
-### Welche Auflösung wird für Hintergrundbilder und Schaltflächen-Texturen empfohlen?
+### Welche Auflösung wird für Hintergrundbilder und Schaltflächentexturen empfohlen?
 
-Hintergründe: Ein Standardbild mit 1920x1080 (1080p) ist ein guter Ausgangspunkt und wird bei den meisten Benutzern gut skaliert.
-Schaltflächen: Die meisten Vanilla-Schaltflächen sind etwa 150–200 Pixel breit und 20 Pixel hoch. Benutzerdefinierte Texturen an diese Größe anzupassen, ist eine gute Praxis für ein einheitliches Erscheinungsbild.
+Hintergründe: Ein Standardbild mit 1920 × 1080 Pixeln (1080p) ist ein guter Ausgangspunkt und lässt sich für die meisten Nutzer gut skalieren.
+Schaltflächen: Die meisten Vanilla-Schaltflächen sind etwa 150–200 Pixel breit und 20 Pixel hoch. Benutzerdefinierte Texturen in ähnlicher Größe sorgen für ein einheitliches Erscheinungsbild.
 
-### Gibt es eine Möglichkeit, automatisch ein Menü zu öffnen oder einen Befehl auszuführen, wenn ein Spieler ein Spielziel (z. B. eine Quest) abschließt?
-FancyMenu verfügt über viele [integrierte Spielereignis-Listener](./listeners), aber keinen allgemeinen Listener für jedes Quest-System eines Drittanbieter-Mods. Wenn der Quest-Mod Befehlsbelohnungen unterstützt, kannst du damit [`/openguiscreen`](./commands#openguiscreen), [`/fmvariable`](./commands#fmvariable) oder einen anderen passenden [FancyMenu-Befehl](./commands) ausführen.
+### Kann ein Menü automatisch geöffnet oder ein Befehl ausgeführt werden, wenn ein Spieler ein Spielziel (wie eine Quest) abschließt?
+FancyMenu verfügt über viele [integrierte Spielereignis-Listener](/listeners), aber keinen allgemeinen Listener für jedes Quest-System eines Drittanbieters. Wenn der Quest-Mod Befehlsbelohnungen unterstützt, kannst du damit [`/openguiscreen`](/commands#openguiscreen), [`/fmvariable`](/commands#fmvariable) oder einen anderen passenden [FancyMenu-Befehl](/commands) ausführen.
 
-### Wie kann ich eine Schaltfläche inaktiv oder „ausgegraut“ machen?
+### Wie mache ich eine Schaltfläche inaktiv oder „ausgegraut“?
 
-Du kannst den Aktivierungsstatus einer Schaltfläche mithilfe von [Ladeanforderungen](./conditions) steuern.
-Klicke im Editor mit der rechten Maustaste auf die Schaltfläche und wähle **Aktivierungsstatus steuern**.
-Füge eine Anforderung hinzu, die erfüllt sein muss, damit die Schaltfläche aktiv ist. Um sie dauerhaft zu deaktivieren, verwende [**Ist Zahl**](./conditions#is-number-fancymenu_visibility_requirement_is_number), um zu prüfen, ob 0 gleich 1 ist.
-Die Schaltfläche verwendet nun ihre Textur für den „Inaktiven Hintergrund“ und kann nicht angeklickt werden.
+Du kannst den Aktivierungszustand einer Schaltfläche mithilfe von [Bedingungen](/conditions) steuern.
+Klicke im Editor mit der rechten Maustaste auf die Schaltfläche und wähle **Aktivierungszustand steuern**.
+Füge eine Bedingung hinzu, die erfüllt sein muss, damit die Schaltfläche aktiv ist. Um sie dauerhaft zu deaktivieren, verwende [**Ist Zahl**](/conditions#is-number), um zu prüfen, ob 0 gleich 1 ist.
+Die Schaltfläche verwendet dann ihre Textur für den „Inaktiven Hintergrund“ und kann nicht angeklickt werden.
 
-### Wie kann ich die Kopf- und Fußzeile (die Leisten mit der Erdtextur) auf scrollbaren Bildschirmen entfernen?
+### Wie entferne ich Kopf- und Fußzeile (die Balken mit der Erdtextur) auf scrollbaren Bildschirmen?
 
-Öffne im Layout-Editor **Layout-Eigenschaften -> Anpassungen der Kopf-/Fußzeile**. Setze die Texturen auf transparent. Diese Option ist auf einigen modifizierten Bildschirmen möglicherweise nicht verfügbar.
+Öffne im Layout-Editor **Layouteigenschaften -> Kopf-/Fußzeilen-Anpassungen**. Stelle die Texturen auf transparent. Bei manchen modifizierten Bildschirmen ist diese Option möglicherweise nicht verfügbar.
 
 ### Ich kann kein Layout „für den aktuellen Bildschirm“ erstellen. Die Schaltfläche ist ausgegraut.
 
-Du musst zuerst über **Menüleiste -> Anpassung -> Anpassungen des aktuellen Bildschirms -> Aktiviert** die Anpassungen für diesen Bildschirm aktivieren.
+Aktiviere zuerst die Anpassungen für diesen Bildschirm: Klicke auf **Menüleiste -> Anpassung -> Anpassung des aktuellen Bildschirms**, sodass **Aktiviert** angezeigt wird.
 
-### Ich kann beim Öffnen eines Bildschirms im Editor keine Elemente anpassen. Der Bildschirm ist einfach leer.
+### Ich kann im Editor keine Elemente eines Bildschirms anpassen. Beim Öffnen ist der Bildschirm einfach leer.
 
-Das kann bedeuten, dass du ein [universelles Layout](./universal-layouts) statt eines Layouts **für den aktuellen Bildschirm** erstellt hast.
+Möglicherweise hast du ein [universelles Layout](/universal-layouts) statt eines Layouts **für den aktuellen Bildschirm** erstellt.
 
-Es könnte sich auch um einen [scrollbaren Bildschirm](./customizing-scrollable-screens) handeln, den FancyMenu standardmäßig nicht anpassen kann.
+Es könnte sich auch um einen [scrollbaren Bildschirm](/customizing-scrollable-screens) handeln, den FancyMenu standardmäßig nicht anpassen kann.
 
-Eine dritte Möglichkeit ist, dass es sich um einen Bildschirm eines Mods handelt, der Elemente auf eine nicht-Vanilla-Art hinzufügt. Dadurch kann FancyMenu diese Elemente nicht anpassen.
+Eine dritte Möglichkeit ist, dass es sich um einen Bildschirm eines Mods handelt, der Elemente auf eine nicht mit Vanilla übereinstimmende Weise hinzufügt. Dadurch kann FancyMenu diese Elemente nicht anpassen.
 
-### Bei meinem Text-Element werden seltsame graue Kästen angezeigt.
+### Neben meinem Textelement werden seltsame graue Kästchen angezeigt.
 
-Diese durchscheinenden Kästen sind die Scroll-Griffleisten des [Text-Elements](./elements#text) und kein Darstellungsfehler.
+Das sind die Bildlaufleisten des [Textelements](/elements#text). Sie erscheinen, wenn der Text nicht in das Element passt, damit Spieler darin scrollen können.
 
-Wenn diese Kästen nicht sichtbar sein sollen, kannst du entweder mit der rechten Maustaste auf das Element klicken und das Scrollen vollständig deaktivieren ODER im selben Kontextmenü die Texturen der Griffleisten auf vollständig transparente Texturen setzen, wenn das Element weiterhin scrollbar bleiben soll.
+- Vergrößere das Element oder kürze den Text, dann verschwinden sie.
+- Klicke mit der rechten Maustaste auf das Element und öffne **Bildlaufleisten**. Unter **Anzeigen** legst du fest, wann sie erscheinen: **Immer**, nur **Beim Scrollen** oder **Nie**. Bei **Nie** funktioniert das Scrollen mit dem Mausrad weiterhin.
+- Im selben Menü kannst du unter **Stil des Bildlaufleisten-Griffs**, **Texturen des Bildlaufleisten-Griffs** und **Farbe des Bildlaufleisten-Griffs [HEX]** das Aussehen ändern.
 
-### Wie kann ich das aktuelle Minecraft-Changelog in meinen Menüs anzeigen?
+Alle Einstellungen für Bildlaufleisten findest du unter [Text in Menüs](/text-in-menus#scroll-bars).
 
-Es gibt ein großartiges [GitHub-Projekt](https://github.com/ClaytonTDM/minecraft-changelogs-markdown), das Minecraft-Changelogs in mit FancyMenu kompatibles Markdown umwandelt, sodass du das aktuelle MC-Changelog in deinen Menüs anzeigen kannst! Es wird täglich aktualisiert, um neue Changelogs abzurufen.
+### Wie kann ich das aktuelle Minecraft-Änderungsprotokoll in meinen Menüs anzeigen?
 
-Um es in einem [Text-Element](./elements#text) anzuzeigen, setze den **Quellmodus** auf **Ressource** und die Ressourcenquelle auf **Web**. Verwende `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
+Es gibt ein tolles [GitHub-Projekt](https://github.com/ClaytonTDM/minecraft-changelogs-markdown), das die Minecraft-Änderungsprotokolle in FancyMenu-kompatibles Markdown umwandelt. So kannst du das aktuelle MC-Änderungsprotokoll in deinen Menüs anzeigen! Das Projekt wird täglich aktualisiert, um neue Änderungsprotokolle abzurufen.
 
-### Wie kann ich ein beliebiges Element am einfachsten auf die Bildschirmgröße strecken?
+Um es in einem [Textelement](/elements#text) anzuzeigen, stelle **Quellmodus** auf **Ressource** und die Ressourcenquelle auf **Web**. Verwende `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
 
-Die meisten Elemente verfügen in ihren Kontextmenüs, die sich per Rechtsklick öffnen, über eine Option zum horizontalen und vertikalen Strecken. Wenn du diese aktivierst, wird das Element immer auf die gesamte Breite und/oder Höhe des Bildschirms gestreckt. Die horizontale und vertikale Streckung kann unabhängig voneinander aktiviert werden.
+### Wie kann ich ein beliebiges Element am einfachsten auf Bildschirmgröße strecken?
 
-### Ich kann keine Schaltflächen anklicken oder mit Schiebereglern interagieren, wenn sie sich hinter oder vor einem Text-Element befinden.
+Bei den meisten Elementen kannst du im Kontextmenü, das sich per Rechtsklick öffnet, festlegen, dass sie horizontal und vertikal gestreckt werden. Wenn du diese Option aktivierst, werden sie immer auf die volle Bildschirmbreite und/oder -höhe gestreckt. Die horizontale und vertikale Streckung lassen sich unabhängig voneinander aktivieren.
 
-Das liegt daran, dass Text-Elemente standardmäßig interaktiv sind (damit die Scroll-Griffleiste verwendet oder Markdown-Hyperlinks angeklickt werden können). Daher verbrauchen sie Mausklicks und Scroll-Ereignisse. Am besten platzierst du Schaltflächen nicht hinter oder vor Text-Elementen. Wenn es sich jedoch nicht vermeiden lässt, kannst du das Text-Element nicht interaktiv machen, indem du **mit der rechten Maustaste darauf klickst** und **Interaktiv** auf **Deaktiviert** setzt. Beachte, dass das Text-Element dadurch zu statischem, nicht interaktivem Text wird und du nicht mehr darin scrollen oder Hyperlinks anklicken kannst.
+### Ich kann keine Schaltflächen anklicken oder Regler bedienen, wenn sie hinter oder vor einem Textelement liegen.
 
-### Wie kann ich verhindern, dass Schaltflächen und Schieberegler bei der Navigation mit den Pfeil- und Tab-Tasten ausgewählt oder fokussiert werden?
+Das liegt daran, dass Textelemente standardmäßig interaktiv sind (damit man den Bildlaufleisten-Griff bewegen oder auf Markdown-Links klicken kann). Daher fangen sie Mausklicks und Scroll-Ereignisse ab. Am besten platzierst du Schaltflächen nicht hinter oder vor Textelementen. Wenn sich das nicht vermeiden lässt, kannst du das Textelement **mit der rechten Maustaste anklicken** und **Interaktiv** auf **Deaktiviert** setzen. Beachte, dass das Textelement dadurch statisch und nicht mehr interaktiv ist: Du kannst dann weder darin scrollen noch auf Links klicken.
 
-Damit Schaltflächen und Schieberegler nicht navigierbar sind, musst du **mit der rechten Maustaste** darauf klicken und **Navigierbar** auf **Deaktiviert** setzen. Die Schaltfläche bzw. der Schieberegler kann weiterhin angeklickt werden, aber mit der Pfeil-/Tab-Navigation nicht mehr fokussiert werden.
+### Wie verhindere ich, dass Schaltflächen und Regler bei der Navigation mit den Pfeiltasten und der Tabulatortaste ausgewählt oder fokussiert werden?
 
-Dies ist auch nützlich, wenn du Schaltflächen oder Schieberegler zum Chat-Bildschirm hinzufügen möchtest. So kannst du weiterhin mit der Pfeil-nach-oben-Taste durch ältere Nachrichten scrollen, ohne versehentlich Schaltflächen oder Schieberegler auf dem Bildschirm auszuwählen.
+Damit Schaltflächen und Regler nicht über die Tastatur angesteuert werden können, klicke mit der rechten Maustaste darauf und setze **Navigierbar** auf **Deaktiviert**. Die Schaltfläche bzw. der Regler kann weiterhin angeklickt werden, lässt sich aber nicht mehr mit den Pfeiltasten oder der Tabulatortaste fokussieren.
 
-### In einem der Kontextmenüs von FancyMenu fehlt eine Option, die dort vorhanden sein sollte.
+Das ist auch nützlich, wenn du Schaltflächen oder Regler zum Chat-Bildschirm hinzufügst. So kannst du weiterhin mit der Pfeiltaste nach oben durch ältere Nachrichten blättern, ohne versehentlich Schaltflächen oder Regler auf dem Bildschirm auszuwählen.
 
-Die Kontextmenüs von FancyMenu (die Menüs, die sich beim Rechtsklick oder bei der Interaktion mit Menüleisten öffnen) sind SCROLLBAR. Das bedeutet, dass du mit dem Mausrad scrollen kannst, während sich der Mauszeiger über dem Menü befindet. So kannst du nach oben oder unten scrollen und weitere Optionen anzeigen, die zuvor nicht sichtbar waren.
+### In einem Kontextmenü von FancyMenu fehlt eine Option, die dort eigentlich sein sollte.
 
-### Ich kann den Titelbildschirm nicht anpassen; beim Verlassen des Editors wird weiterhin der ursprüngliche angezeigt.
+Die Kontextmenüs von FancyMenu (Menüs, die sich öffnen, wenn du irgendwo mit der rechten Maustaste klickst oder mit Menüleisten interagierst) sind SCROLLBAR. Du kannst das Mausrad bewegen, während sich der Mauszeiger über dem Menü befindet, um nach oben oder unten zu scrollen und weitere Optionen anzuzeigen, die vorher nicht sichtbar waren.
 
-Ein anderer Mod ersetzt den ursprünglichen `title_screen`. Deaktiviere den benutzerdefinierten Titelbildschirm dieses Mods in dessen Einstellungen. Wenn es keine solche Option gibt, kann FancyMenu das Layout nicht auf den ersetzten Bildschirm anwenden.
+### Ich kann den Titelbildschirm nicht anpassen. Wenn ich den Editor verlasse, wird immer wieder der ursprüngliche Bildschirm angezeigt.
 
-### Wenn ich versuche, den Inventarbildschirm anzupassen, kann ich den Inventarcontainer nicht bearbeiten.
+Ein anderer Mod ersetzt den ursprünglichen `title_screen`. Deaktiviere den benutzerdefinierten Titelbildschirm dieses Mods in dessen Einstellungen. Gibt es keine solche Option, kann FancyMenu das Layout nicht auf den Ersatzbildschirm anwenden.
 
-Das ist erwartetes Verhalten. FancyMenu unterstützt nicht die Bearbeitung des eigentlichen Containers irgendeines Inventarbildschirms (Spielerinventar, Kiste, Werkbank usw.), da es sehr schwierig wäre, dafür Unterstützung hinzuzufügen.
+### Wenn ich den Inventarbildschirm anpassen möchte, kann ich den Inventarcontainer nicht bearbeiten.
 
-Es ist weiterhin möglich, diesen Bildschirmen neue Elemente hinzuzufügen; du kannst lediglich die Container nicht bearbeiten.
+Das ist so vorgesehen. FancyMenu unterstützt nicht die Bearbeitung des eigentlichen Containers eines Inventarbildschirms (Spielerinventar, Truhe, Werkbank usw.), da die Implementierung dieser Unterstützung sehr aufwendig wäre.
 
-SpiffyHUD hilft hierbei übrigens ebenfalls nicht, da es zum Bearbeiten des HUDs (beispielsweise der Gegenstandsleiste) dient, aber keine Bildschirme wie Inventarbildschirme bearbeiten kann.
+Du kannst diesen Bildschirmen weiterhin neue Elemente hinzufügen, aber die Container selbst nicht bearbeiten.
+
+Übrigens hilft SpiffyHUD dabei ebenfalls nicht, da es zum Bearbeiten des HUDs gedacht ist (zum Beispiel der Gegenstandsleiste), aber keine Bildschirme wie Inventarbildschirme bearbeiten kann.

@@ -1,108 +1,160 @@
 ---
-title: 始め方
-description: FancyMenu の世界へようこそ！ここから、美しい体験の始まりです！
+title: はじめに
+description: FancyMenuを始めるための第一歩。メニューバー、最初のレイアウトを完成させるまでの手順、そして次に進むための情報を紹介します。
+sourceBlobSha: 0a9f8343e6964d75860fb6143e9b6fdecb6cf0ea
 ---
 
-# 開発者向け
+# はじめに
 
-FancyMenu 用のアドオンを作りたい方や、自分の MOD に FancyMenu を組み込みたい方は、[開発者向けドキュメント](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki)をご覧ください。
+FancyMenuを使うと、タイトル画面やポーズメニュー、ほかのMODのメニューなど、Minecraftのあらゆるメニューを変更できます。背景、ロゴ、ボタン、テキスト、サウンド、アニメーションを追加したり、すでにある要素を移動または非表示にしたり、ボタンに新しい動作を設定したり、まったく新しいメニューを作ったりできます。すべてゲーム内で行え、コードは必要ありません。
 
-# 始め方
+<img width="800" alt="FancyMenuで作成したMODパック「Wildwood」のタイトル画面。夕暮れのピクセルアートの谷には小屋、湖、沈む太陽があり、レイヤーはマウスに合わせて動く。金色のロゴ、マウスを乗せると光る木製ボタン、ホタルも見える" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_hero.gif?raw=true">
 
-FancyMenu を初めて使うと少し圧倒されるかもしれませんが、心配はいりません。実際には、触っていくうちにそのほとんどがすぐに分かるようになります！
+このページでは、基本的な使い方を順を追って説明します。手順を進めながら、このタイトル画面をシンプルにしたものを作ってみましょう。[サンプルの作り方](#how-the-example-is-made)では、完成版に追加されている要素を紹介します。
 
-> このページは FancyMenu に慣れるためのもので、**最初の一歩**を手助けするためのものだという点を **覚えておいてください**。
-FancyMenu の機能についてさらに詳しく知りたい場合は、ドキュメントの残りのページもぜひ確認してください！
-{.is-info}
+> [!TIP]
+> このタイトル画面を自分のゲームでも使えます。[wildwood_title_screen.fmp](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/wildwood_title_screen.fmp?raw=true)をダウンロードし、**メニューバー -> カスタマイズ -> プロファイル**から[インポート](/profiles#importing)して[読み込み](/profiles#loading-a-profile)ます。FancyMenuのお試しや学習、MODパックなど、変更の有無を問わず自由に無料で使用できます。クレジット表記は不要です。
 
 # メニューバー
 
-ゲームを起動して最初に目に入るもののひとつが、各メニュー上部にある **メニューバー** です。
+各メニューの上部にあるメニューバーから、FancyMenuのすべての機能を利用できます。
 
-**メニューバー** は、**レイアウトの作成**によるメニューの**カスタマイズ**、**ウィンドウタイトルとアイコンの変更**など、FancyMenu のほぼすべての機能への入口です。
+<img width="800" alt="タイトル画面上部のメニューバー。「カスタマイズ」メニューを開いている" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_menu_bar.png?raw=true">
 
-> もし誤っていくつかキーを押して **メニューバーが消えてしまった** 場合は、**CTRL + ALT + C** を押すと元に戻せます。
-{.is-warning}
+- **カスタマイズ**：現在のメニューのレイアウトや、[グローバルカスタマイズ](/global-customizations)、[カスタムGUI](/custom-guis)、[変数](/variables)、[リスナー](/listeners)、[スケジューラー](/schedulers)、[プロファイル](/profiles)、FancyMenuの設定など、セットアップ全体に関する項目です。
+- **ツール**：[ダミー画面インスタンス](/dummy-screen-instances)、[AFMAクリエイター](/animations#fma-and-afma)、**ゲームリソースを参照**、**FancyMenuフォルダーを開く**などの便利な機能があります。最後の項目を選ぶと、セットアップのフォルダーが開きます（[データの保存場所](/data-storage-locations)を参照）。
+- **ヘルプ**：このドキュメント、Discordサーバー、**バグを報告**、[AI向けにエクスポート](/export-for-ai)があります。
+- 右端のドアアイコンをクリックすると、終了方法のないメニューを閉じられます。
+- いちばん右の二重矢印をクリックすると、メニューバーを小さなボタンに折りたたんだり、元に戻したりできます。
 
-<img width="650" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
+MODパックのプレイヤーにメニューバーは必要ありません。無効にする方法は[MODパック](/modpacks#disabling-the-menu-bar-and-hotkeys)を参照してください。
+
+## メニューバーのショートカット
+
+これらのショートカットはすべてのメニューで使えますが、レイアウトエディター内とMODパックモード中は使えません。macOSでは、`Ctrl + Alt`の代わりに`Cmd + Option`を使ってください。
+
+| ショートカット | 動作 |
+|---|---|
+| `Ctrl + Alt + C` | メニューバーの表示／非表示を切り替えます。突然消えてしまった場合は、この操作で再表示できます。 |
+| `Ctrl + Alt + R` | **メニューバー -> カスタマイズ -> FancyMenuを再読み込み**と同じように、FancyMenuを再読み込みします。 |
+| `Ctrl + Alt + D` | **デバッグオーバーレイ**の表示／非表示を切り替えます。メニューの[識別子](/screen-identifiers)などが表示されます。 |
+| `Ctrl + Alt + L` | 最後に編集したレイアウトを開いた状態で、[レイアウトエディター](/layout-editor)を開きます。 |
 
 # 最初のレイアウト
 
-Minecraft のメニューをカスタマイズしたいはずなので、ここで **レイアウト** について少し説明しましょう！
+レイアウトには、メニューに加えた変更が保存されます。背景、追加した要素、既存のボタンやテキストに加えた変更などです。1つのメニューに複数のレイアウトを作成し、それぞれを有効または無効にできます。
 
-レイアウトはメニューのためのカスタマイズ用レイヤーのようなもので、新しい要素を追加したり、既存の要素を編集したりできます。
+## レイアウトを作成する
 
-**特定のメニュー** 用に新しいレイアウトを作成するには:
-1. レイアウトを作成したいメニューを開きます（たとえばタイトル画面）
-2. **メニューバー** の **Customization** タブを開きます
+<img width="800" alt="タイトル画面のメニューバーで「カスタマイズ」を開き、「現在の画面のカスタマイズ」を有効にする。再び「カスタマイズ」を開き、「レイアウト」「新規」「現在の画面用」の順にクリックすると、レイアウトエディターが開く" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_new_layout.gif?raw=true">
 
-カスタマイズ機能はデフォルトではすべてのメニューで無効になっているため、カスタマイズしたい各メニューごとに有効化する必要があります。まずは **"Current Screen Customization: Disabled"** をクリックして、トグルを **Enabled** に切り替えましょう。
+1. タイトル画面など、変更したいメニューを開きます。
+2. **メニューバー -> カスタマイズ -> 現在の画面のカスタマイズ**をクリックし、**有効**と表示されるようにします。FancyMenuは、この設定が有効になっているメニューだけを変更します。
+3. **メニューバー -> カスタマイズ -> レイアウト -> 新規 -> 現在の画面用**をクリックします。
 
-<img width="475" alt="toggle_customizations" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true">
+レイアウトエディターが開きます。プレイヤーから見える状態のメニューが表示されるため、変更をすぐに確認できます。要素の移動、サイズ変更、コピーなど、詳しくは[レイアウトエディター](/layout-editor)を参照してください。
 
-そのあと、**Layouts -> New -> For Current Screen** をクリックします。
+**すべての画面用 [ユニバーサル]**を選ぶと、代わりに[ユニバーサルレイアウト](/universal-layouts)が作成され、すべてのメニューに表示されます。
 
-これで **レイアウトエディター** が開き、レイアウトに要素を追加したり、バニラや MOD の要素（ボタンなど）をカスタマイズしたりできます。
+## 背景を設定する
 
-<img width="550" alt="new_layout_current" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true">
+まず、画像をゲームの`config/fancymenu/assets`フォルダーに入れてください。**メニューバー -> ツール -> FancyMenuフォルダーを開く**を選ぶと、`config/fancymenu`が開きます。
 
-## レイアウトの編集
+<img width="800" alt="エディターの背景を右クリックし、「メニュー背景」「画像」を開く。「背景を表示」を有効にしてから「画像を選択」をクリックし、「ソースの種類」を「ローカル」に切り替えてwildwoodフォルダーのbackground.pngを選択すると、ボタンの後ろに谷が表示される" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_background.gif?raw=true">
 
-ほとんどのカスタマイズ項目には、**エディターの背景を右クリック**することでアクセスできます。
-そうすると、**メニュー背景** のカスタマイズや、レイアウトへの **要素の追加** など、さまざまなオプションが入ったコンテキストメニューが開きます。
+1. エディターの背景を右クリックし、**メニュー背景 -> 画像**を開きます。
+2. **背景を表示**をクリックし、**有効**と表示されるようにします。
+3. **画像を選択**をクリックし、**ソースの種類**を**ローカル**に設定してから、**ローカルのリソースファイルを選択**をクリックします。
+4. 画像をクリックして**OK**をクリックします。フォルダーを開くにはダブルクリックします。
 
-<br>
-<img width="350" alt="context_menu" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/context_menu.png?raw=true">
+背景にはパノラマ、スライドショー、動画、色なども使えます。詳しくは[メニュー背景](/menu-backgrounds)を参照してください。
 
-## レイアウトへの要素追加
+## ロゴを追加する
 
-新しい要素をレイアウトに追加するには、エディターの背景を **右クリック** します。
+<img width="800" alt="Minecraftのロゴとスプラッシュテキストを削除し、「要素」「新規」「画像」から画像要素を追加して、画像ソースにlogo.pngを選択すると、ロゴが正方形に押しつぶされた状態で表示される" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_logo_add.gif?raw=true">
 
-開いたコンテキストメニューで **New Element** をクリックし、さまざまな要素タイプの中から1つを選びます。
+1. Minecraftのロゴをクリックして`Delete`キーを押します。黄色いスプラッシュテキストも同様に削除します。
+2. エディターのメニューバーで、**要素 -> 新規 -> 画像**をクリックします。
+3. 新しい要素を右クリックして**画像ソース**をクリックし、背景画像と同じ手順でロゴを選択します。
 
-<img width="525" alt="add_element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true">
+削除したバニラ要素は非表示になるだけです。**要素 -> 削除済みのバニラ要素**から元に戻せます。
 
-## 要素のカスタマイズ
+<img width="800" alt="ロゴの右クリックメニューで「縦横比を復元」をクリックして本来の幅に戻し、Escキーでメニューを閉じ、Wildwoodのロゴをボタンの上にドラッグする" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_logo_place.gif?raw=true">
 
-要素をカスタマイズするには、それを **右クリック** します。すると、その要素タイプで設定できる内容がすべて入ったコンテキストメニューが開きます。
+4. もう一度右クリックし、**縦横比を復元**をクリックして、ロゴが押しつぶされた状態を直します。`Esc`キーでメニューを閉じます。
+5. ロゴを所定の位置にドラッグします。
 
-追加した要素だけでなく、バニラの要素もカスタマイズできます（ただし、場合によっては設定項目が少ないこともあります）。
+ボタン、テキスト、動画、プレイヤーなど、さまざまな要素を追加できます。詳しくは[要素](/elements)を参照してください。
 
-<img width="525" alt="element_customization" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true">
+## ボタンを変更する
 
-> [!IMPORTANT]
-> このようなコンテキストメニューの中には、**スクロール可能** なものがあります！
+<img width="800" alt="シングルプレイヤーボタンをクリックし、Ctrlキーを押しながらほかの4つのボタンをクリックして選択する。「ボタンのテクスチャ」「設定」「通常時の背景」から、5つすべてに木のテクスチャを一度に適用する" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_buttons_normal.gif?raw=true">
 
-## 要素の配置
+1. 最初のボタンをクリックし、`Ctrl`キー（macOSでは`Cmd`キー）を押しながらほかのボタンをクリックして、すべて選択します。選択中のボタンの1つを右クリックすると、すべてに一括で変更を適用できます。
+2. ボタンの1つを右クリックし、**ボタンのテクスチャ -> 設定 -> 通常時の背景**をクリックして、背景画像と同じ手順でテクスチャを選択します。
 
-FancyMenu のすべての要素は **アンカーポイント** に接続されています。
+<img width="800" alt="「ボタンのテクスチャ」「設定」「マウスオーバー時の背景」から光るテクスチャを設定し、「カスタム背景にナインスライスを適用」を有効にして木の端を鮮明に保つ。マルチプレイヤーボタンにマウスを乗せると光る" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_buttons_hover.gif?raw=true">
 
-アンカーポイントは要素の位置を計算するために必要で、正しく使えば要素同士の重なり、画面外へのはみ出し、ウィンドウサイズ変更時の位置ずれを防げます。
+3. マウスをボタンに乗せたときに使うテクスチャを、**マウスオーバー時の背景**にも同じ手順で設定します。
+4. **ボタンのテクスチャ -> カスタム背景にナインスライスを適用**をクリックし、**有効**と表示されるようにします。これにより、ボタンの幅にかかわらずテクスチャの端が鮮明に保たれます。詳しくは[ナインスライス](/nine-slicing-and-tiling)を参照してください。
 
-これは、要素の位置を計算するための基準点です。
+複数の要素を選択して右クリックすると、表示されるのは選択したすべての要素に共通する設定だけです。ボタン以外の要素は選択しないでください。ボタンを1つだけ右クリックすると、ラベル、サウンド、クリック時の動作（[アクションスクリプト](/action-scripts)）、表示条件（[要素の表示](/element-visibility)）など、すべての設定を変更できます。詳しくは[バニラ／MODの要素](/vanilla-elements)を参照してください。
 
-デフォルトでは、要素は **"Center of Screen"** アンカーポイントに接続されています。これはウィンドウサイズに関係なく、画面のちょうど中央を意味します。
-たとえば、ある要素が **"Center of Screen"** アンカーに接続されていて、画面の中心から 2 センチ離れているとします。その場合、ウィンドウサイズに関係なく、その要素は **常に** 画面中央から 2 センチの位置にあります。
+## 保存する
 
-要素をドラッグしていると、その要素がどのアンカーポイントに接続されているかが表示されます。このとき、デフォルトでは他のすべてのアンカーポイントも表示されます。要素をドラッグ中にアンカーポイントへカーソルを合わせると、その要素のアンカーをそのアンカーポイントに変更できます。
+<img width="800" alt="Ctrl + Sを押し、「ファイルを保存」ウィンドウで「保存」をクリックする。エディターを右上のXで閉じると、谷、Wildwoodのロゴ、木製ボタンが設定された完成後のタイトル画面が表示される" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_save.gif?raw=true">
 
-他の要素のアンカーポイントとして、要素そのものを使うこともできます！ 別の要素をドラッグ中にその要素の上へカーソルを合わせるだけで、ドラッグしている要素のアンカーポイントがその要素に変更されます。
+1. `Ctrl + S`（macOSでは`Cmd + S`）を押すか、**レイアウト -> 保存**をクリックします。
+2. 初回はファイル名を求められます。そのまま使うか、新しい名前を入力して**保存**をクリックします。
+3. メニューバー右側のXをクリックして、エディターを閉じます。
 
-**[要素の配置方法についてさらに詳しく学ぶ](/positioning-elements)**
+メニューにはレイアウトがすぐに反映されます。後から変更するには、**メニューバー -> カスタマイズ -> レイアウト**でレイアウトにマウスを乗せて**レイアウトを編集**をクリックするか、`Ctrl + Alt + L`を押します。
 
-<img width="650" alt="anchor_points" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true">
+# サンプルの作り方
 
-## 作業の保存
+このページの冒頭にあるタイトル画面には、作成したものに加えて次の要素があります。
 
-傑作を保存するのを忘れないでください！
+- 空、丘、木々の3枚の画像がマウスに合わせて動き、木々が最も大きく動きます。[視差効果](/parallax)を参照してください。
+- 丘と木々は、画面いっぱいの大きさの画像要素です。ボタンやテキストの背後に表示するため、エディターの背景を右クリックしたメニューで**バニラ要素の背後にカスタム要素を表示**を有効にしています。
+- ホタルは[装飾オーバーレイ](/decoration-overlays#fireflies)です。
+- 丘、木々、ロゴのサイズは、プレースホルダーを使った[高度な位置とサイズの設定](/advanced-positioning-sizing)で画面サイズに合わせています。そのため、どのウィンドウサイズでもメニューが適切に表示されます。縦の短い画面ではロゴが小さくなり、ボタンに重ならないようになっています。
 
-閉じる前に変更を保存する必要がある場合、エディター右上に "Unsaved Changes" の表示が出ます。
+レイアウトエディターですべての設定を見るには、[サンプルプロファイル](#getting-started)を読み込んで、そのレイアウトを編集してください。
 
-**Layout -> Save** をクリックして作業を保存しましょう！
+# 次に読むページ
 
-<img width="375" alt="save_your_work" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/save_your_work.png?raw=true">
+**見た目を整える**
 
-> [!TIP]
-> キーボードショートカット **CTRL + S** を使って保存することもできます。
+- [要素](/elements)：メニューに追加できるものすべて。
+- [要素の配置](/positioning-elements)：どのウィンドウサイズでも要素の位置を保つ方法。
+- [メニュー背景](/menu-backgrounds)、[アニメーション](/animations)、[動画](/video)、[装飾オーバーレイ](/decoration-overlays)、[BGM](/background-music)。
 
-*おめでとうございます！ これで Minecraft のメニューをずっと美しくできます！*
+**動作を設定する**
+
+- [アクションスクリプト](/action-scripts)：ボタンなどの要素に設定できる動作。
+- [要素の表示](/element-visibility)と[条件](/conditions)：特定の場合だけ要素を表示する方法。
+- [プレースホルダー](/placeholders)：プレイヤー名など、テキストにリアルタイムの情報を表示する方法。
+- [変数](/variables)、[リスナー](/listeners)、[スケジューラー](/schedulers)：情報を記憶し、ゲームに反応して、タイマーに沿って処理を実行する方法。
+
+**さらに作り込む**
+
+- [カスタムGUI](/custom-guis)：まったく新しいメニュー。
+- [ユニバーサルレイアウト](/universal-layouts)：すべてのメニューに適用する変更。
+- [グローバルカスタマイズ](/global-customizations)：ウィンドウタイトルなど、ゲーム全体に適用する調整。
+- [ロード画面](/loading-screen)と[ゲームイントロ](/game-intro)。
+
+**共有する**
+
+- [MODパック](/modpacks)：セットアップをMODパックに組み込む方法。
+- [プロファイル](/profiles)：セットアップの切り替えやエクスポート。
+
+# ヘルプを受ける
+
+- [よくある質問](/faq)では、特によく寄せられる質問に回答しています。
+- **メニューバー -> ヘルプ -> Discordに参加**からFancyMenuのDiscordサーバーに参加できます。
+- [AI向けにエクスポート](/export-for-ai)を使うと、Discordサーバーのサポートボットなど、AIチャットで使えるテキストにセットアップを変換できます。
+- 正しく動作しない場合は、**メニューバー -> ヘルプ -> バグを報告**を選んでください。
+
+# 開発者向け
+
+FancyMenuのアドオンを作成する場合や、MODでFancyMenuを使う場合は、[開発者向けドキュメント](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki)を参照してください。

@@ -1,21 +1,22 @@
 ---
 title: Layouts lokalisieren
-description: Text und andere Layout-Inhalte lokalisieren.
+description: Texte und andere Layoutinhalte lokalisieren.
+sourceBlobSha: f4883414b07e0c024de7bef4f131b878ca4f5f37
 ---
 
 # Layouts lokalisieren
 
-Verwende den [**Text lokalisieren**-Platzhalter](./placeholders#localize-text-local) für übersetzbaren Text:
+Verwende den Platzhalter [**Text lokalisieren**](/placeholders#localize-text) für übersetzbare Texte:
 
 ```text
 {"placeholder":"local","values":{"key":"modpack.menu.play"}}
 ```
 
-FancyMenu prüft zuerst die aktive Sprachdatei von Minecraft. Wenn der Schlüssel dort nicht vorhanden ist, werden die benutzerdefinierten Lokalisierungsdateien von FancyMenu geprüft. Wenn keine der beiden Quellen den Schlüssel enthält, wird der Schlüssel selbst angezeigt.
+FancyMenu prüft zuerst die aktiven Sprachdaten von Minecraft. Ist der Schlüssel dort nicht vorhanden, prüft FancyMenu die benutzerdefinierten Lokalisierungsdateien. Ist der Schlüssel in keiner der beiden Quellen enthalten, wird der Schlüssel selbst angezeigt.
 
 # Benutzerdefinierte Lokalisierungsdateien von FancyMenu
 
-Lege die Dateien unter folgendem Pfad ab:
+Lege Dateien unter folgendem Pfad ab:
 
 ```text
 <game-directory>/config/fancymenu/custom_locals/
@@ -29,14 +30,14 @@ custom_locals/
     └── text.json
 ```
 
-Lege Lokalisierungsdateien in mindestens einem Unterverzeichnis von `custom_locals` ab; Dateien, die direkt im Root von `custom_locals` liegen, werden nicht geladen. Verschachtelte Unterverzeichnisse werden unterstützt.
+Lege Lokalisierungsdateien in mindestens einem Unterverzeichnis von `custom_locals` ab. Dateien, die direkt im Stammverzeichnis von `custom_locals` liegen, werden nicht geladen. Verschachtelte Unterverzeichnisse werden unterstützt.
 
 Unterstützte UTF-8-Formate:
 
 | Erweiterung | Format |
 |---|---|
-| `.json` | JSON-Objekt; verschachtelte Objekte werden zu durch Punkte getrennten Schlüsseln |
-| `.lang` | `key=value`-Zeilen |
+| `.json` | JSON-Objekt; verschachtelte Objekte werden in durch Punkte getrennte Schlüssel umgewandelt |
+| `.lang` | Zeilen im Format `key=value` |
 | `.properties` | Java-Properties-Syntax |
 
 JSON-Beispiel:
@@ -51,23 +52,23 @@ JSON-Beispiel:
 }
 ```
 
-Dies definiert `modpack.menu.play`.
+Damit wird `modpack.menu.play` definiert.
 
-FancyMenu kombiniert die unterstützten Dateien aus diesen Unterverzeichnissen zu einem einzigen benutzerdefinierten Lokalisierungswörterbuch. Verwende jeden Schlüssel nur in einer Datei. Benutzerdefinierte Lokalisierungsdateien wechseln nicht mit der von Minecraft ausgewählten Sprache; verwende die unten beschriebene Resource-Pack-Methode, wenn du automatisches Sprachwechseln benötigst.
+FancyMenu führt die unterstützten Dateien aus diesen Unterverzeichnissen zu einem benutzerdefinierten Lokalisierungswörterbuch zusammen. Verwende jeden Schlüssel nur in einer Datei. Benutzerdefinierte Lokalisierungsdateien wechseln nicht mit der in Minecraft ausgewählten Sprache. Wenn die Sprache automatisch gewechselt werden soll, verwende die unten beschriebene Methode mit Ressourcenpaketen.
 
-Starte den Client nach dem Bearbeiten der benutzerdefinierten Lokalisierungsdateien neu.
+Starte den Client nach dem Bearbeiten benutzerdefinierter Lokalisierungsdateien neu.
 
-# Sprachspezifischer Text
+# Sprachspezifische Texte
 
-Für automatisches Wechseln mit der von Minecraft ausgewählten Sprache stelle normale Minecraft-Sprachdateien über ein [Resource Pack](./resources#minecraft-resources-resource-packs) bereit:
+Damit die Sprache automatisch entsprechend der in Minecraft ausgewählten Sprache wechselt, stelle reguläre Minecraft-Sprachdateien über ein [Ressourcenpaket](/resources#minecraft-resources-resource-packs) bereit:
 
 ```text
 assets/<namespace>/lang/en_us.json
 assets/<namespace>/lang/de_de.json
 ```
 
-Verwende in jeder Sprachdatei dieselben Schlüssel, aktiviere das Resource Pack und lies sie dann mit dem [**Text lokalisieren**-Platzhalter](./placeholders#localize-text-local) aus.
+Verwende in jeder Sprachdatei dieselben Schlüssel, aktiviere das Ressourcenpaket und rufe die Texte anschließend mit dem Platzhalter [**Text lokalisieren**](/placeholders#localize-text) ab.
 
 # Bilder und Elemente lokalisieren
 
-Verwende die [**Ist Spielsprache**-Bedingung](./conditions#is-game-language-fancymenu_loading_requirement_is_language), um je nach Sprachcode unterschiedliche Elemente oder Layouts anzuzeigen, z. B. `en_us` und `de_de`.
+Verwende die Bedingung [**Spiel-Sprache ist**](/conditions#is-game-language), um für verschiedene Sprachcodes wie `en_us` und `de_de` unterschiedliche Elemente oder Layouts anzuzeigen.

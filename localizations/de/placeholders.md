@@ -1,2755 +1,2427 @@
 ---
 title: Platzhalter
-description: Wie man Platzhalter verwendet.
+description: >-
+  Zeige in deinen Texten aktuelle Werte wie den Spielernamen, die Uhrzeit oder
+  die Spieleranzahl eines Servers sowie alle Platzhalter, die FancyMenu bietet.
+sourceBlobSha: 951d7772d640bc6b19d6f4dcc2fef4adcd1f13aa
 ---
+
 # Platzhalter
 
-Platzhalter fügen Live-Werte in Text, Schaltflächen, Anforderungen und andere unterstützte Felder ein.
+Platzhalter sind kurze Codes, die FancyMenu durch einen aktuellen Wert ersetzt, zum Beispiel den Namen des Spielers, die Uhrzeit oder die Spieleranzahl eines Servers. Sie funktionieren in Elementtexten, Schaltflächenbeschriftungen, Tooltips, Aktions- und Anforderungswerten sowie in den meisten anderen Texten, die du eingeben kannst.
 
-# Allgemeine Informationen
+<img width="800" alt="Hinzufügen des Platzhalters für den Spielernamen zu einem Textelement im Layout-Editor: Platzhalter im Texteditor, die Kategorie Spieler und ein Text, der den Spieler mit seinem Namen begrüßt" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_add.gif?raw=true">
 
-## Grundlegende Syntax
-Platzhalter in FancyMenu verwenden eine JSON-ähnliche Syntax:
+> [!TIP]
+> Deine eigenen [Variablen](/variables) funktionieren in denselben Texten. Verwende dazu `$$` und den Namen der Variable, zum Beispiel `$$coins`.
+
+# Platzhalter hinzufügen
+
+1. Öffne den Text im Texteditor, zum Beispiel **Textinhalt** eines [Textelements](/text-in-menus). Neben Textfeldern in Fenstern, etwa den Werten von Aktionen, findest du die Schaltfläche **Im Editor öffnen**.
+2. Klicke an die Stelle, an der der Platzhalter eingefügt werden soll.
+3. Klicke rechts oben im Texteditor auf **Platzhalter**.
+4. Klicke auf eine Kategorie oder suche nach Name, Kennung oder Beschreibung. Mit **ZURÜCK** gelangst du zu den Kategorien. Platzhalter ohne Kategorie werden unterhalb der Kategorien aufgeführt.
+5. Bewege die Maus über einen Platzhalter, um zu sehen, was er bewirkt, und klicke darauf, um ihn einzufügen.
+6. Ersetze Beispielwerte, etwa die Mod-ID bei **Mod-Version**.
+
+Texte, deren Texteditor keine Schaltfläche **Platzhalter** hat, unterstützen keine Platzhalter.
+
+# Funktionsweise von Platzhaltern
+
+Ein Platzhalter sieht so aus:
+
+```
+{"placeholder":"playername"}
+```
+
+Platzhalter mit Einstellungen haben diese unter `values`:
+
 ```
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
 
-Um zum Beispiel den Spielernamen anzuzeigen:
-```
-{"placeholder":"playername"}
-```
+- Die Kennung, zum Beispiel `playername`, unterscheidet Groß- und Kleinschreibung. Bei jedem Platzhalter unten sind seine Kennung und seine Werte aufgeführt.
+- Die Reihenfolge der Werte ist unerheblich. Als optional gekennzeichnete Werte können weggelassen werden.
+- Einen Platzhalter, den FancyMenu nicht ersetzen kann, etwa wegen eines Tippfehlers, lässt es so im Text stehen, wie du ihn eingegeben hast.
+- Platzhalter geben immer Text zurück. Wenn es nichts anzuzeigen gibt, liefern sie einen Ersatzwert wie `0`, `0.0`, `---` oder nichts.
+- [Formatierungscodes](/text-formatting) funktionieren auch mit Platzhaltern: `&6{"placeholder":"playername"}` zeigt den Namen in Gold an.
 
-## Platzhalter verschachteln
-Du kannst einen Platzhalter innerhalb des Werts eines anderen Platzhalters verwenden.
+> [!IMPORTANT]
+> Platzhalter sehen wie JSON aus, sind aber kein JSON. Verwende keinen JSON-Formatter und keinen JSON-Validator dafür, denn Platzhalter innerhalb anderer Platzhalter sind kein gültiges JSON.
 
-Beispiel für verschachtelte Platzhalter:
+## Platzhalter in Platzhaltern
+
+Werte können andere Platzhalter und [Variablen](/variables#showing-variables-in-text) enthalten. FancyMenu ersetzt zuerst die inneren Platzhalter. Anführungszeichen innerhalb von Werten müssen nicht maskiert werden.
+
+Damit wird der maximale RAM-Wert von MB in GB umgerechnet:
+
 ```
 {"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
 ```
-Dieses Beispiel nimmt den maximalen RAM-Wert und teilt ihn durch 1024, um ihn von MB in GB umzuwandeln.
 
-> [!IMPORTANT]
-> Dies ist FancyMenu-Syntax, nicht JSON. Verschachtelte Platzhalter verwenden die exakt unmaskierte Form wie oben gezeigt, daher werden JSON-Formatierer sie ablehnen oder umschreiben. Platzhalternamen sind groß-/kleinschreibungssensitiv; fehlerhafte oder unbekannte Platzhalter bleiben als Text sichtbar und werden protokolliert.
+Damit wird die Variable `rank` in Großbuchstaben angezeigt:
 
-# Platzhalter verwenden
-
-Die meisten Elemente mit Texteingaben unterstützen Platzhalter. Beim Bearbeiten siehst du, ob eine Texteingabe Platzhalter unterstützt. Wenn beim Bearbeiten des Textes der Vollbild-**Texteditor** geöffnet wird, unterstützt das Feld Platzhalter.
-
-Um eine **Liste aller Platzhalter** zu finden, klicke einfach im **Texteditor** auf die Schaltfläche **Platzhalter** in der **oberen rechten Ecke**.
-
-Oben in der Platzhalterliste gibt es eine **Suchleiste**, mit der du nach Platzhaltern suchen kannst.
-
-Wenn du in der Platzhalterliste auf einen Platzhalter klickst, wird er in den Textinhalt eingefügt.
-
-# Platzhalter im Detail
-
-In diesem Abschnitt sind die integrierten Platzhalter von FancyMenu aufgeführt.
-
-## Nicht verfügbare Ergebnisse
-Die Ausgabe von Platzhaltern ist immer Text. Wenn Daten nicht verfügbar sind, hängt das Ergebnis vom Platzhalter ab: Häufige Fallbacks sind eine leere Zeichenfolge, `0`, `0.0`, `00:00`, `false`, `UNKNOWN` oder `ERROR`. Einträge mit einem spezifischen Fallback nennen diesen direkt; teste den Fallback, bevor du umgebungsabhängige Ausgaben in einer [Anforderung](./conditions), einem Pfad, Befehl oder einer URL verwendest.
-
-## Spielername (`playername`)
-
-**Zweck:** Gibt den Benutzernamen des aktuellen Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"playername"}
-```
-
-**Ausgabe:** `Steve`
-
-## Spieler-UUID (`playeruuid`)
-
-**Zweck:** Gibt die eindeutige Kennung des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"playeruuid"}
-```
-
-**Ausgabe:** `c8cde7fe-7ced-11eb-9439-0242ac130002`
-
-## Minecraft-Version (`mcversion`)
-
-**Zweck:** Gibt die aktuelle Minecraft-Version zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"mcversion"}
-```
-
-**Ausgabe:** `1.21.1`
-
-## Mod-Loader-Version (`loaderver`)
-
-**Zweck:** Gibt die Version des Mod-Loaders (Fabric/NeoForge) zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"loaderver"}
-```
-
-**Ausgabe:** `0.16.14`
-
-## Mod-Loader-Name (`loadername`)
-
-**Zweck:** Gibt den Namen des Mod-Loaders zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"loadername"}
-```
-
-**Ausgabe:** `Fabric`
-
-## Mod-Version (`modversion`)
-
-**Zweck:** Gibt die Version eines bestimmten Mods zurück.
-
-**Werte:** `modid`
-
-**Beispiel:**
-
-```
-{"placeholder":"modversion","values":{"modid":"example_mod"}}
-```
-
-**Ausgabe:** `1.2.3`
-
-## Gesamtanzahl der Mods (`totalmods`)
-
-**Zweck:** Gibt eine ungefähre Anzahl von Mod-Dateien zurück, basierend auf dem `mods`-Verzeichnis und der Anzahl geladener Mods. Deaktivierte Mods werden dabei nicht zuverlässig mitgezählt.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"totalmods"}
-```
-
-**Ausgabe:** `45`
-
-## Anzahl aktiver Mods (`loadedmods`)
-
-**Zweck:** Gibt die Anzahl der aktuell geladenen Mods zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"loadedmods"}
-```
-
-**Ausgabe:** `43`
-
-## Ladefortschritt der Welt (`world_load_progress`)
-
-**Zweck:** Gibt den aktuellen Ladefortschritt der Welt als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"world_load_progress"}
-```
-
-**Ausgabe:** `75`
-
-## Minecraft-Optionswert (`minecraft_option_value`)
-
-**Zweck:** Gibt den Wert einer Minecraft-Option zurück.
-
-**Werte:** `name`
-
-**Beispiel:**
-
-```
-{"placeholder":"minecraft_option_value","values":{"name":"fov"}}
-```
-
-**Ausgabe:** `70`
-
-## Letzte Welt oder letzter Server (`last_world_server`)
-
-**Zweck:** Gibt Informationen über die zuletzt aufgerufene Welt oder den zuletzt aufgerufenen Server zurück.
-
-**Werte:** `type`, `full_world_path`
-
-**Beispiel:**
-
-```
-{"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
-```
-Parameter:
-- `type`: Legt fest, welche Art von Information zurückgegeben wird
-  - `"both"`: Gibt die zuletzt aufgerufene Welt oder den letzten Server zurück (Standard)
-  - `"server"`: Gibt nur etwas zurück, wenn zuletzt ein Server aufgerufen wurde
-  - `"world"`: Gibt nur etwas zurück, wenn zuletzt eine Welt aufgerufen wurde
-- `full_world_path`: Steuert, wie Weltpfade angezeigt werden
-  - `"true"`: Gibt den vollständigen Weltpfad zurück (Standard)
-  - `"false"`: Gibt nur den Weltnamen ohne Pfad zurück (betrifft Server nicht)
-
-Beispiele:
-- Server: `mc.hypixel.net`
-- Welt mit vollständigem Pfad: `saves/New World`
-- Welt ohne vollständigen Pfad: `New World`
-
-## Bildschirmbreite (`guiwidth`)
-
-**Zweck:** Gibt die aktuelle Bildschirmbreite in GUI-skalierten Pixeln zurück, nicht in physischen Monitorpixeln.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"guiwidth"}
-```
-
-**Ausgabe:** `960`
-
-## Bildschirmhöhe (`guiheight`)
-
-**Zweck:** Gibt die aktuelle Bildschirmhöhe in GUI-skalierten Pixeln zurück, nicht in physischen Monitorpixeln.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"guiheight"}
-```
-
-**Ausgabe:** `540`
-
-## Kennung des aktuellen Bildschirms (`screenid`)
-
-**Zweck:** Gibt die Kennung des aktuellen Bildschirms zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"screenid"}
-```
-
-**Ausgabe:** `title_screen`
-
-## Elementbreite (`elementwidth`)
-
-**Zweck:** Gibt die Breite eines bestimmten Elements zurück.
-
-**Werte:** `id`
-
-**Beispiel:**
-
-```
-{"placeholder":"elementwidth","values":{"id":"my_button"}}
-```
-
-**Ausgabe:** `200`
-
-## Elementhöhe (`elementheight`)
-
-**Zweck:** Gibt die Höhe eines bestimmten Elements zurück.
-
-**Werte:** `id`
-
-**Beispiel:**
-
-```
-{"placeholder":"elementheight","values":{"id":"my_button"}}
-```
-
-**Ausgabe:** `20`
-
-## X-Position des Elements (`elementposx`)
-
-**Zweck:** Gibt die X-Position eines bestimmten Elements zurück.
-
-**Werte:** `id`
-
-**Beispiel:**
-
-```
-{"placeholder":"elementposx","values":{"id":"my_button"}}
-```
-
-**Ausgabe:** `150`
-
-## Y-Position des Elements (`elementposy`)
-
-**Zweck:** Gibt die Y-Position eines bestimmten Elements zurück.
-
-**Werte:** `id`
-
-**Beispiel:**
-
-```
-{"placeholder":"elementposy","values":{"id":"my_button"}}
-```
-
-**Ausgabe:** `100`
-
-## X-Position der Maus (`mouseposx`)
-
-**Zweck:** Gibt die aktuelle X-Position der Maus zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"mouseposx"}
-```
-
-**Ausgabe:** `960`
-
-## Y-Position der Maus (`mouseposy`)
-
-**Zweck:** Gibt die aktuelle Y-Position der Maus zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"mouseposy"}
-```
-
-**Ausgabe:** `540`
-
-## Klicks pro Sekunde (`clicks_per_second`)
-
-**Zweck:** Gibt die aktuellen Klicks pro Sekunde für eine Maustaste zurück.
-
-**Werte:** `mouse_button`
-
-**Beispiel:**
-
-```
-{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
-```
-Parameter:
-- `mouse_button`: `left` oder `right`
-
-**Ausgabe:** `8`
-
-## GUI-Skalierung (`guiscale`)
-
-**Zweck:** Gibt die aktuelle GUI-Skalierung zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"guiscale"}
-```
-
-**Ausgabe:** `2`
-
-## Beschriftung/Text eines Vanilla-Widgets (`vanillabuttonlabel`)
-
-**Zweck:** Gibt die Beschriftung bzw. den Text eines Vanilla-Widgets/einer Schaltfläche zurück.
-
-**Werte:** `locator`
-
-**Beispiel:**
-
-```
-{"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
-```
-
-**Ausgabe:** `Options...`
-
-## Wert eines Texteingabefelds (`text_input_field_value`)
-
-**Zweck:** Gibt den aktuellen Wert eines benutzerdefinierten oder Vanilla-Texteingabefelds anhand der Elementkennung zurück.
-
-**Werte:** `element_identifier`
-
-**Beispiel:**
-
-```
-{"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
-```
-
-**Ausgabe:** `Hello World`
-
-## Aktuelle Gesundheit des Spielers (`current_player_health`)
-
-**Zweck:** Gibt die aktuellen Lebenspunkte des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_health"}
-```
-
-**Ausgabe:** `20.0`
-
-## Maximale Gesundheit des Spielers (`max_player_health`)
-
-**Zweck:** Gibt die maximale Gesundheit des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"max_player_health"}
-```
-
-**Ausgabe:** `20.0`
-
-## Aktuelle Gesundheit des Spielers (Prozent) (`current_player_health_percent`)
-
-**Zweck:** Gibt die Gesundheit des Spielers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_health_percent"}
-```
-
-**Ausgabe:** `100`
-
-## Aktuelle Absorptionsgesundheit des Spielers (`current_player_absorption_health`)
-
-**Zweck:** Gibt die Absorptionsgesundheit des Spielers zurück (goldene Herzen).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_absorption_health"}
-```
-
-**Ausgabe:** `4.0`
-
-## Maximale Absorptionsgesundheit des Spielers (`max_player_absorption_health`)
-
-**Zweck:** Gibt die maximale Absorptionsgesundheit zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"max_player_absorption_health"}
-```
-
-**Ausgabe:** `4.0`
-
-## Aktuelle Absorptionsgesundheit des Spielers (Prozent) (`current_player_absorption_health_percent`)
-
-**Zweck:** Gibt die Absorptionsgesundheit des Spielers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_absorption_health_percent"}
-```
-
-**Ausgabe:** `100`
-
-## Aktueller Hungerwert des Spielers (`current_player_hunger`)
-
-**Zweck:** Gibt den aktuellen Hungerwert des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_hunger"}
-```
-
-**Ausgabe:** `20`
-
-## Maximaler Hungerwert des Spielers (`max_player_hunger`)
-
-**Zweck:** Gibt den maximalen Hungerwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"max_player_hunger"}
-```
-
-**Ausgabe:** `20`
-
-## Aktueller Hungerwert des Spielers (Prozent) (`current_player_hunger_percent`)
-
-**Zweck:** Gibt den Hunger des Spielers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_hunger_percent"}
-```
-
-**Ausgabe:** `100`
-
-## Aktuelle Hunger-Sättigung des Spielers (`current_player_hunger_saturation`)
-
-**Zweck:** Gibt den aktuellen Sättigungswert des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_hunger_saturation"}
-```
-
-**Ausgabe:** `5.0`
-
-## Aktuelle Rüstung des Spielers (`current_player_armor`)
-
-**Zweck:** Gibt den aktuellen Rüstungswert des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_armor"}
-```
-
-**Ausgabe:** `20`
-
-## Rüstungshärte des Spielers (`player_armor_toughness`)
-
-**Zweck:** Gibt den gesamten Wert der Rüstungshärte des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_armor_toughness"}
-```
-
-**Ausgabe:** `8.0`
-
-## Maximale Rüstung des Spielers (`max_player_armor`)
-
-**Zweck:** Gibt den maximalen Rüstungswert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"max_player_armor"}
-```
-
-**Ausgabe:** `20`
-
-## Aktuelle Rüstung des Spielers (Prozent) (`current_player_armor_percent`)
-
-**Zweck:** Gibt die Rüstung des Spielers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_armor_percent"}
-```
-
-**Ausgabe:** `100`
-
-## Aktueller Sauerstoffwert des Spielers (`current_player_oxygen`)
-
-**Zweck:** Gibt den aktuellen Sauerstoffwert des Spielers zurück (Luftblasen).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_oxygen"}
-```
-
-**Ausgabe:** `300`
-
-## Maximaler Sauerstoffwert des Spielers (`max_player_oxygen`)
-
-**Zweck:** Gibt den maximalen Sauerstoffwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"max_player_oxygen"}
-```
-
-**Ausgabe:** `300`
-
-## Aktueller Sauerstoffwert des Spielers (Prozent) (`current_player_oxygen_percent`)
-
-**Zweck:** Gibt den Sauerstoffwert des Spielers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_oxygen_percent"}
-```
-
-**Ausgabe:** `100`
-
-## Aktuelle Spielerstufe (`current_player_level`)
-
-**Zweck:** Gibt die aktuelle Erfahrungsstufe des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_level"}
-```
-
-**Ausgabe:** `30`
-
-## Aktuelle Spielererfahrung (`current_player_exp`)
-
-**Zweck:** Gibt die gesamten Erfahrungspunkte des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_exp"}
-```
-
-**Ausgabe:** `1250`
-
-## Erfahrungsfortschritt des Spielers (Prozent) (`current_player_exp_progress`)
-
-**Zweck:** Gibt den Erfahrungsfortschritt des Spielers zur nächsten Stufe als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_player_exp_progress"}
-```
-
-**Ausgabe:** `75`
-
-## Angriffsstärke des Spielers (Prozent) (`player_attack_strength`)
-
-**Zweck:** Gibt den Angriffs-Cooldown des Spielers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_attack_strength"}
-```
-
-**Ausgabe:** `100`
-
-## Spielmodus des Spielers (`player_gamemode`)
-
-**Zweck:** Gibt den aktuellen Spielmodus des Spielers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_gamemode"}
-```
-
-**Ausgabe:** `survival`
-
-## Blickrichtung des Spielers (`player_view_direction`)
-
-**Zweck:** Gibt die Richtung zurück, in die der Spieler schaut.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_view_direction"}
-```
-
-**Ausgabe:** `north`
-
-## X-Koordinate des Spielers (`player_x_coordinate`)
-
-**Zweck:** Gibt die X-Position des Spielers in der Welt zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_x_coordinate"}
-```
-
-**Ausgabe:** `125`
-
-## Y-Koordinate des Spielers (`player_y_coordinate`)
-
-**Zweck:** Gibt die Y-Position des Spielers in der Welt zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_y_coordinate"}
-```
-
-**Ausgabe:** `64`
-
-## Z-Koordinate des Spielers (`player_z_coordinate`)
-
-**Zweck:** Gibt die Z-Position des Spielers in der Welt zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_z_coordinate"}
-```
-
-**Ausgabe:** `-250`
-
-## Aktuelle Gesundheit des Reittiers (`current_mount_health`)
-
-**Zweck:** Gibt die aktuelle Gesundheit der Entität zurück, auf der der Spieler reitet.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_mount_health"}
-```
-
-**Ausgabe:** `30.0`
-
-## Maximale Gesundheit des Reittiers (`max_mount_health`)
-
-**Zweck:** Gibt die maximale Gesundheit der Entität zurück, auf der der Spieler reitet.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"max_mount_health"}
-```
-
-**Ausgabe:** `30.0`
-
-## Aktuelle Gesundheit des Reittiers (Prozent) (`current_mount_health_percent`)
-
-**Zweck:** Gibt die Gesundheit des Reittiers als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_mount_health_percent"}
-```
-
-**Ausgabe:** `100`
-
-## Aktuelle Sprunganzeige des Reittiers (Prozent) (`current_mount_jump_meter`)
-
-**Zweck:** Gibt den aktuellen Sprungkraftmesser des Reittiers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_mount_jump_meter"}
-```
-
-**Ausgabe:** `75`
-
-## Aktuelle Boss-Gesundheit (Prozent) (`current_boss_health`)
-
-**Zweck:** Gibt die Gesundheit eines ausgewählten aktiven Bosses als Ganzzahl zwischen `0` und `100` zurück. `boss_index` beginnt bei 0; `0` wählt die erste Bossleiste aus.
-
-**Werte:** `boss_index`
-
-**Beispiel:**
-
-```
-{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
-```
-
-**Ausgabe:** `75`
-
-## Boss-Name (`boss_name`)
-
-**Zweck:** Gibt den Namen des aktiven Bosses zurück.
-
-**Werte:** `boss_index`, `as_json`
-
-**Beispiel:**
-
-```
-{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
-```
-
-**Ausgabe:** `Ender Dragon`
-
-## Anzahl der Bosse (`boss_count`)
-
-**Zweck:** Gibt die Anzahl aktiver Bosse zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"boss_count"}
-```
-
-**Ausgabe:** `1`
-
-## Anzahl aktiver Effekte (`effects_count`)
-
-**Zweck:** Gibt die Anzahl aktiver Trankeffekte zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"effects_count"}
-```
-
-**Ausgabe:** `3`
-
-## Aktiver Effekt (`active_effect`)
-
-**Zweck:** Gibt Informationen über einen bestimmten aktiven Effekt zurück.
-
-**Werte:** `effect_index`
-
-**Beispiel:**
-
-```
-{"placeholder":"active_effect","values":{"effect_index":"0"}}
-```
-
-**Ausgabe:** `minecraft:speed`
-
-## Ausgewählter Hotbar-Slot (`active_hotbar_slot`)
-
-**Zweck:** Gibt den aktuell ausgewählten Hotbar-Slot (0-8) zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"active_hotbar_slot"}
-```
-
-**Ausgabe:** `4`
-
-## Slot-Item (`slot_item`)
-
-**Zweck:** Gibt Informationen über ein Item in einem bestimmten Inventarslot zurück.
-
-**Werte:** `slot`
-
-**Beispiel:**
-
-```
-{"placeholder":"slot_item","values":{"slot":"0"}}
-```
-
-**Ausgabe:** `minecraft:diamond_sword`
-
-## Anzahl des Slot-Items (`slot_item_count`)
-
-**Zweck:** Gibt die Stapelgröße des Items in einem bestimmten Spielerinventarslot zurück.
-
-**Werte:** `slot`
-
-**Beispiel:**
-
-```
-{"placeholder":"slot_item_count","values":{"slot":"0"}}
-```
-
-**Ausgabe:** `64`
-
-## Haltbarkeit des Slot-Items (`slot_item_durability`)
-
-**Zweck:** Gibt Informationen zur Haltbarkeit des Items in einem bestimmten Spielerinventarslot zurück.
-
-**Werte:** `slot`, `format`
-
-**Beispiel:**
-
-```
-{"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
-```
-Parameter:
-- `slot`: Inventarslot-Nummer des Spielers.
-- `format`: `current`, `remaining`, `max`, `damage`, `percentage` oder `percent`.
-
-**Ausgabe:** `87`
-
-## Anzeigename des Slot-Items (`slot_item_display_name_fm`)
-
-**Zweck:** Gibt den Anzeigenamen des Items in einem bestimmten Slot als JSON-Textkomponente zurück. Im Zuschauermodus können Hotbar-Slots Namen von Zuschauermenü-Items auflösen, sofern `ignore_spectator` nicht `true` ist.
-
-**Werte:** `slot`, `ignore_spectator`
-
-**Beispiel:**
-
-```
-{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
-```
-
-**Ausgabe:** `{"text":"Diamond Sword","color":"aqua"}`
-
-## Anzahl von Inventarobjekten (`inventory_item_count`)
-
-**Zweck:** Gibt die Gesamtanzahl passender Items im Inventar des Spielers zurück. Wenn `item` leer ist, werden die Stapelgrößen aller belegten Inventarslots addiert.
-
-**Werte:** `item`
-
-**Beispiel:**
-
-```
-{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
-```
-
-**Ausgabe:** `12`
-
-## Wiederherstellungswert eines Essens im Inventarslot (`inventory_slot_food_point_restore_amount`)
-
-**Zweck:** Gibt die Hungerpunkte zurück, die das Essensitem im angegebenen Spielerinventarslot wiederherstellt.
-
-**Werte:** `slot`
-
-**Beispiel:**
-
-```
-{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
-```
-
-**Ausgabe:** `4.0`
-
-## Überfahrenes Inventar-Item (`hovered_inventory_item`)
-
-**Zweck:** Gibt den Item-Schlüssel des aktuell im Inventarbildschirm überfahrenen Items zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"hovered_inventory_item"}
-```
-
-**Ausgabe:** `minecraft:apple`
-
-## Spielzeit der Welt (`game_time`)
-
-**Zweck:** Gibt den aktuellen In-Game-Zeit-Tickzähler zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"game_time"}
-```
-
-**Ausgabe:** `18000`
-
-## Tageszeit der Welt (`world_daytime`)
-
-**Zweck:** Gibt die aktuelle Tageszeit der Welt zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"world_daytime"}
-```
-
-**Ausgabe:** `13000`
-
-## Stunde der Tageszeit (`world_daytime_hour`)
-
-**Zweck:** Gibt die Stundenkomponente der Weltzeit zurück. Standardmäßig wird das 24-Stunden-Format verwendet; setze `twelve_hour_format` auf `"true"`, um das 12-Stunden-Format zu verwenden.
-
-**Werte:** `twelve_hour_format`
-
-**Beispiel:**
-
-```
-{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
-```
-
-**Ausgabe:** `12`
-
-## Minute der Tageszeit (`world_daytime_minute`)
-
-**Zweck:** Gibt die Minutenkomponente der Weltzeit zurück (00-59).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"world_daytime_minute"}
-```
-
-**Ausgabe:** `30`
-
-## Weltschwierigkeit (`world_difficulty`)
-
-**Zweck:** Gibt die aktuelle Schwierigkeit der Welt zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"world_difficulty"}
-```
-
-**Ausgabe:** `normal`
-
-## Aktueller Welt-Seed (`current_world_seed`)
-
-**Zweck:** Gibt den Seed der aktuellen Einzelspielerwelt zurück. Gibt einen leeren Wert zurück, wenn der Seed nicht verfügbar ist.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_world_seed"}
-```
-
-**Ausgabe:** `123456789`
-
-## Aktuelles Biom (`current_biome`)
-
-**Zweck:** Gibt das Biom zurück, in dem sich der Spieler aktuell befindet. Setze `as_key` auf `"false"`, um sofern verfügbar einen übersetzten/angezeigten Namen zurückzugeben.
-
-**Werte:** `as_key`
-
-**Beispiel:**
-
-```
-{"placeholder":"current_biome","values":{"as_key":"true"}}
-```
-
-**Ausgabe:** `minecraft:plains`
-
-## Aktive Dimension (`current_dimension`)
-
-**Zweck:** Gibt die Dimension zurück, in der sich der Spieler aktuell befindet. Setze `as_key` auf `"false"`, um sofern verfügbar einen übersetzten/angezeigten Namen zurückzugeben.
-
-**Werte:** `as_key`
-
-**Beispiel:**
-
-```
-{"placeholder":"current_dimension","values":{"as_key":"true"}}
-```
-
-**Ausgabe:** `minecraft:overworld`
-
-## Gamerule-Wert (`gamerule_value`)
-
-**Zweck:** Gibt den aktuellen Wert einer Gamerule in der geladenen Welt bzw. auf dem Server zurück. Serverwelten erfordern FancyMenu auf dem Server.
-
-**Werte:** `name`
-
-**Beispiel:**
-
-```
-{"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
-```
-
-**Ausgabe:** `true`
-
-## Item-Kategorie (`item_category`)
-
-**Zweck:** Gibt die Kreativtab-Kategorie eines Items zurück. Setze `as_key` auf `"true"`, um statt des Anzeigenamens den Kategorienamen zurückzugeben.
-
-**Werte:** `item`, `as_key`
-
-**Beispiel:**
-
-```
-{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
-```
-
-**Ausgabe:** `Combat`
-
-## Aktueller HUD-Titel/Untertitel (`current_title`)
-
-**Zweck:** Gibt den aktuell angezeigten Titeltext zurück.
-
-**Werte:** `is_subtitle`, `as_json`
-
-**Beispiel:**
-
-```
-{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
-```
-
-**Ausgabe:** `Game Over!`
-
-## Actionbar-Nachricht (`action_bar_message_fm`)
-
-**Zweck:** Gibt die aktuelle Vanilla-Actionbar-Nachricht als serialisierte Minecraft-Textkomponente zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"action_bar_message_fm"}
-```
-
-**Ausgabe:** `{"text":"You may not rest now","color":"red"}`
-
-## Anzeigezeit der Actionbar-Nachricht (`action_bar_message_time_fm`)
-
-**Zweck:** Gibt an, wie viele Ticks die aktuelle Vanilla-Actionbar-Nachricht noch angezeigt wird.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"action_bar_message_time_fm"}
-```
-
-**Ausgabe:** `42`
-
-## Kamerarotation X (`camera_rotation_x_fm`)
-
-**Zweck:** Gibt die aktuelle Kameraneigung in Grad zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"camera_rotation_x_fm"}
-```
-
-**Ausgabe:** `12.5`
-
-## Kamerarotation Y (`camera_rotation_y_fm`)
-
-**Zweck:** Gibt den aktuellen Kamera-Yaw in Grad zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"camera_rotation_y_fm"}
-```
-
-**Ausgabe:** `-90.0`
-
-## Kamerarotations-Delta X (`camera_rotation_delta_x_fm`)
-
-**Zweck:** Gibt die Änderung der Kameraneigung pro Tick zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"camera_rotation_delta_x_fm"}
-```
-
-**Ausgabe:** `0.4`
-
-## Kamerarotations-Delta Y (`camera_rotation_delta_y_fm`)
-
-**Zweck:** Gibt die Änderung des Kamera-Yaw pro Tick zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"camera_rotation_delta_y_fm"}
-```
-
-**Ausgabe:** `-1.2`
-
-## Zeit für hervorgehobenes Item (`highlighted_item_time_fm`)
-
-**Zweck:** Gibt an, wie viele Ticks der Name des hervorgehobenen Items noch über der Hotbar angezeigt wird.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"highlighted_item_time_fm"}
-```
-
-**Ausgabe:** `30`
-
-## Nutzungsfortschritt des Spieler-Items (`player_item_use_progress_fm`)
-
-**Zweck:** Gibt den aktuellen Nutzungsfortschritt eines Items von `0.0` bis `1.0` zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_item_use_progress_fm"}
-```
-
-**Ausgabe:** `0.65`
-
-## Positions-Delta X des Spielers (`player_position_delta_x_fm`)
-
-**Zweck:** Gibt die Positionsänderung des Spielers pro Tick auf der X-Achse zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_position_delta_x_fm"}
-```
-
-**Ausgabe:** `0.0`
-
-## Positions-Delta Y des Spielers (`player_position_delta_y_fm`)
-
-**Zweck:** Gibt die Positionsänderung des Spielers pro Tick auf der Y-Achse zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_position_delta_y_fm"}
-```
-
-**Ausgabe:** `-0.08`
-
-## Positions-Delta Z des Spielers (`player_position_delta_z_fm`)
-
-**Zweck:** Gibt die Positionsänderung des Spielers pro Tick auf der Z-Achse zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"player_position_delta_z_fm"}
 ```
-
-**Ausgabe:** `0.12`
-
-## Aktuelle Server-IP (`current_server_ip`)
-
-**Zweck:** Gibt die IP des verbundenen Servers zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"current_server_ip"}
-```
-
-**Ausgabe:** `mc.hypixel.net`
-
-## Liste der Spieler in der Welt (`world_players_list`)
-
-**Zweck:** Gibt eine Liste aller Spieler zurück, die sich aktuell in der Welt befinden.
-
-**Werte:** `separator`
-
-**Beispiel:**
-
-```
-{"placeholder":"world_players_list","values":{"separator":", "}}
-```
-
-**Ausgabe:** `Steve, Alex, Notch`
-
-## Server-MOTD (`servermotd`)
-
-**Zweck:** Gibt die Message of the Day eines Servers zurück.
-
-**Werte:** `ip`, `line`
-
-**Beispiel:**
-
-```
-{"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
-```
-
-**Ausgabe:** `Welcome to Hypixel!`
-
-## Server-Ping (`serverping`)
-
-**Zweck:** Gibt den Ping zu einem Server in Millisekunden zurück.
-
-**Werte:** `ip`
-
-**Beispiel:**
-
-```
-{"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
-```
-
-**Ausgabe:** `54`
-
-## Spieleranzahl des Servers (`serverplayercount`)
-
-**Zweck:** Gibt die Spieleranzahl eines Servers zurück.
-
-**Werte:** `ip`
-
-**Beispiel:**
-
-```
-{"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
-```
-
-**Ausgabe:** `25000/30000`
-
-## Serverstatus (`serverstatus`)
-
-**Zweck:** Gibt den Online-/Offline-Status eines Servers zurück.
-
-**Werte:** `ip`
-
-**Beispiel:**
-
-```
-{"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
-```
-
-**Ausgabe:** `§aOnline` oder `§cOffline`
-
-## Server-Version (`serverversion`)
-
-**Zweck:** Gibt die Minecraft-Version eines Servers zurück.
-
-**Werte:** `ip`
-
-**Beispiel:**
-
-```
-{"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
-```
-
-**Ausgabe:** `1.21.1`
-
-> [!NOTE]
-> Die unten aufgeführten Echtzeit-Platzhalter akzeptieren einen `timezone`-Wert. Verwende eine Java-Zeitzonen-ID wie `UTC`, `Europe/Berlin` oder `America/New_York`; lasse den Wert weg oder verwende `system` für die Systemzeitzone. `unix_time` gibt immer den Unix-Zeitstempel zurück und hat keinen `timezone`-Wert.
-
-## Jahr (`realtimeyear`)
-
-**Zweck:** Gibt das aktuelle Jahr zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"realtimeyear"}
-```
-
-**Ausgabe:** `2024`
-
-## Monat (`realtimemonth`)
-
-**Zweck:** Gibt den aktuellen Monat zurück (01-12).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"realtimemonth"}
-```
-
-**Ausgabe:** `01`
-
-## Tag (`realtimeday`)
-
-**Zweck:** Gibt den aktuellen Tag des Monats zurück (01-31).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"realtimeday"}
-```
-
-**Ausgabe:** `27`
-
-## Stunde (`realtimehour`)
-
-**Zweck:** Gibt die aktuelle Stunde zurück. Standardmäßig wird das 24-Stunden-Format verwendet; setze `twelve_hour_format` auf `"true"`, um das 12-Stunden-Format zu verwenden.
-
-**Werte:** `twelve_hour_format`, `timezone`
-
-**Beispiel:**
-
-```
-{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
-```
-
-**Ausgabe:** `14`
-
-## Minute (`realtimeminute`)
-
-**Zweck:** Gibt die aktuelle Minute zurück (00-59).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"realtimeminute"}
-```
-
-**Ausgabe:** `30`
-
-## Sekunde (`realtimesecond`)
-
-**Zweck:** Gibt die aktuelle Sekunde zurück (00-59).
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"realtimesecond"}
-```
-
-**Ausgabe:** `45`
-
-## Aktuelle Zeit in Millisekunden (Unix-Zeitstempel) (`unix_time`)
-
-**Zweck:** Gibt den aktuellen Unix-Zeitstempel in Millisekunden zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"unix_time"}
-```
-
-**Ausgabe:** `1716552478123`
-
-## CPU-Info (`cpuinfo`)
-
-**Zweck:** Gibt Informationen über die CPU zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"cpuinfo"}
-```
-
-**Ausgabe:** `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
-
-## CPU-Auslastung (JVM) (`jvmcpu`)
-
-**Zweck:** Gibt die CPU-Auslastung der JVM als Prozentwert zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"jvmcpu"}
+{"placeholder":"uppercase_text","values":{"text":"$$rank"}}
 ```
 
-**Ausgabe:** `25.5`
+Wenn ein Platzhalter Text mit weiteren Platzhaltern zurückgibt, etwa einen mit [**Dateitext**](#file-text) ausgelesenen Dateiinhalt, ersetzt FancyMenu auch diese.
 
-## CPU-Auslastung (OS) (`oscpu`)
+# Wissenswertes
 
-**Zweck:** Gibt die CPU-Auslastung des Betriebssystems als Prozentwert zurück.
+- Platzhalter werden automatisch aktualisiert. FancyMenu hält einen ersetzten Text 30 Millisekunden lang vor, bevor es seine Platzhalter erneut ersetzt. Ändere diesen Wert unter **Menüleiste -> Anpassung -> Einstellungen** bei **Platzhalter-Cachingdauer [MS]**. Mit `0` werden die Platzhalter in jedem Frame ersetzt, was mehr Leistung kostet.
+- Platzhalter, die Websites, Dateien oder Server auslesen, wie **Webtext** oder **Serverstatus**, werden im Hintergrund geladen. Bis dahin geben sie nichts oder einen Ersatzwert zurück.
+- In [Aktionen](/action-scripts) erhalten Platzhalter ihren aktuellen Wert genau dann, wenn die Aktion ausgeführt wird.
+- Platzhalter zu Welt, Bildschirm und Elementen funktionieren nur im Hauptthread des Spiels. In einem [Ticker](/elements#ticker), der im Hintergrund (asynchron) ausgeführt wird, zeigt FancyMenu stattdessen einen Fehler an.
+- **Zufallszahl** liefert bei jeder Textaktualisierung eine neue Zahl. Um eine Zahl beizubehalten, speichere sie mit [**Variablenwert festlegen (FM-Variable)**](/action-scripts#set-variable-value-fm-variable) in einer [Variablen](/variables).
 
-**Werte:** Keine
+> [!CAUTION]
+> Platzhalter wie **JSON-Parser**, **Dateitext** und **Inhalt der Zwischenablage** können Dateien im Spielordner und deine Zwischenablage auslesen. Zusammen mit Aktionen, die Websites kontaktieren, könnte ein Layout diese Daten nach außen senden. Verwende nur Layouts, denen du vertraust.
 
-**Beispiel:**
+# Beispiele
 
-```
-{"placeholder":"oscpu"}
-```
-
-**Ausgabe:** `42.8`
-
-## GPU-Info (`gpuinfo`)
-
-**Zweck:** Gibt den Namen des von Minecraft verwendeten aktiven Rendering-Geräts zurück. Dies identifiziert nicht zwangsläufig eine bestimmte physische GPU.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"gpuinfo"}
-```
-
-**Ausgabe:** `NVIDIA GeForce RTX 3080`
-
-## Java-Version (`javaver`)
-
-**Zweck:** Gibt die Java-Version zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"javaver"}
-```
-
-**Ausgabe:** `17.0.2`
-
-## Java Virtual Machine (`jvmname`)
-
-**Zweck:** Gibt den Namen der Java Virtual Machine zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"jvmname"}
-```
-
-**Ausgabe:** `OpenJDK 64-Bit Server VM`
-
-## OpenGL-Version (`glver`)
-
-**Zweck:** Gibt Treiberinformationen für das aktive Rendering-Gerät von Minecraft zurück. Trotz des alten Namens `glver` ist nicht garantiert, dass der Wert nur eine OpenGL-Versionszeichenfolge enthält.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"glver"}
-```
-
-**Ausgabe:** `4.6.0 NVIDIA 516.94`
-
-## Name des Betriebssystems (`osname`)
-
-**Zweck:** Gibt den Namen des Betriebssystems zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"osname"}
-```
-
-**Ausgabe:** `Windows 10`
-
-## FPS (Bilder pro Sekunde) (`fps`)
-
-**Zweck:** Gibt die aktuellen Bilder pro Sekunde zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"fps"}
-```
-
-**Ausgabe:** `120`
-
-## Verwendeter RAM in MB (`usedram`)
-
-**Zweck:** Gibt die aktuell verwendete RAM-Menge in MB zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"usedram"}
-```
-
-**Ausgabe:** `4096`
-
-## Maximaler RAM in MB (`maxram`)
-
-**Zweck:** Gibt den maximal zugewiesenen RAM in MB zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"maxram"}
-```
-
-**Ausgabe:** `8192`
-
-## Verwendeter RAM in %% (`percentram`)
-
-**Zweck:** Gibt den aktuell verwendeten RAM-Anteil in Prozent zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"percentram"}
-```
-
-**Ausgabe:** `50`
-
-## Lautstärke eines Audio-Elements (`audio_element_vol`)
-
-**Zweck:** Gibt die Lautstärke eines Audio-Elements zurück.
-
-**Werte:** `element_identifier`
-
-**Beispiel:**
-
-```
-{"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
-```
-
-**Ausgabe:** `0.5`
-
-## Aktueller Audiotrack (`audio_element_current_track`)
-
-**Zweck:** Gibt den Tracknamen eines Audio-Elements zurück.
-
-**Werte:** `element_identifier`, `display_name_mappings`
-
-**Beispiel:**
-
-```
-{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Menu Theme%:%track2.ogg=>Credits Theme"}}
-```
-
-In `display_name_mappings` trennt `=>` den Dateinamen vom Anzeigenamen und `%:%` trennt Zuordnungen.
-
-**Ausgabe:** `Menu Theme`
-
-## Audiodauer (`audio_duration`)
-
-**Zweck:** Gibt die Dauer des aktuell geladenen Tracks des [Audio-Elements](./elements#audio) im Format `MM:SS` zurück. Der Track kann abgespielt, pausiert oder gestoppt sein.
-
-**Werte:** `element_identifier`
-
-**Beispiel:**
+## Willkommensfeld
 
-```
-{"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
-```
-
-**Ausgabe:** `03:45`
-
-## Audio-Abspielzeit (`audio_playtime`)
+<img width="800" alt="Ein Textelement begrüßt den Spieler mit Namen und zeigt die Minecraft-Version, die Anzahl der Mods und die Uhrzeit an" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_welcome.png?raw=true">
 
-**Zweck:** Gibt die aktuelle Abspielzeit eines Audiotracks zurück. Setze `show_percentage` auf `"true"`, um einen Fortschrittswert von 0-100 statt `MM:SS` zu erhalten.
-
-**Werte:** `element_identifier`, `show_percentage`
-
-**Beispiel:**
-
 ```
-{"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
+### Welcome back, {"placeholder":"playername"}!
+Minecraft {"placeholder":"mcversion"} with {"placeholder":"loadedmods"} mods
+It's {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
-
-**Ausgabe:** `01:30` (oder `45` wenn `show_percentage` `"true"` ist)
 
-**Nicht verfügbare Ausgabe:** `00:00` oder `0` im Prozentmodus. Der aktuelle Wert ist verfügbar, solange der Track abgespielt oder pausiert wird; gestoppte, fehlende und noch nicht bereitstehende Tracks verwenden die nicht verfügbare Ausgabe.
+## Serverstatus und Spieler
 
-## Audio-Wiedergabestatus (`audio_playing_state`)
-
-**Zweck:** Gibt zurück, ob ein Audio-Element abgespielt wird (true/false).
-
-**Werte:** `element_identifier`
-
-**Beispiel:**
-
 ```
-{"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
+Survival: {"placeholder":"serverstatus","values":{"ip":"play.example.net"}}&r, {"placeholder":"serverplayercount","values":{"ip":"play.example.net"}} players
 ```
-
-**Ausgabe:** `true`
-
-## Lautstärke eines Video-Elements (`video_element_vol`)
-
-**Zweck:** Gibt die Lautstärke eines Video-Elements zurück (0.0 bis 1.0).
-
-**Werte:** `element_identifier`
 
-**Beispiel:**
+## Datum und Uhrzeit
 
 ```
-{"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"realtimeday"}.{"placeholder":"realtimemonth"}.{"placeholder":"realtimeyear"}, {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
 
-**Ausgabe:** `0.5`
+## RAM-Auslastung
 
-## Dauer eines Video-Elements (`video_element_duration`)
-
-**Zweck:** Gibt die Gesamtdauer eines Video-Elements im Format `MM:SS` zurück. Setze `output_as_timestamp` auf `"true"`, um einen Millisekunden-Zeitstempel zurückzugeben.
-
-**Werte:** `element_identifier`, `output_as_timestamp`
-
-**Beispiel:**
-
 ```
-{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
+RAM: {"placeholder":"usedram"} / {"placeholder":"maxram"} MB ({"placeholder":"percentram"}%)
 ```
 
-**Ausgabe:** `02:00` (oder `120000` wenn `output_as_timestamp` `"true"` ist)
+# Alle Platzhalter
 
-## Video-Element Abspielzeit (`video_element_playtime`)
+Hier findest du alle Platzhalter, die FancyMenu bietet. Die großen Kategorien **Erweitert** und **Welt** im Platzhaltermenü sind hier in kleinere Gruppen unterteilt.
 
-**Zweck:** Gibt die aktuelle Abspielzeit (Fortschritt) eines Video-Elements im Format `MM:SS` zurück. Setze `show_percentage` auf `"true"` für einen Fortschrittswert von 0-100 oder `output_as_timestamp` auf `"true"` für Millisekunden.
-
-**Werte:** `element_identifier`, `show_percentage`, `output_as_timestamp`
-
-**Beispiel:**
-
-```
-{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
-```
+## Variablen und Listen
 
-**Ausgabe:** `00:45` (oder `38` als Prozentwert oder `45200` als Zeitstempel)
+Diese Platzhalter gehören zur Kategorie **Erweitert**. Unter [Variablen](/variables) erfährst du, wie du Variablen und Listen erstellst.
 
-## Pausenstatus eines Video-Elements (`video_element_paused_state`)
+### Variablenwert abrufen (FM-Variable)
 
-**Zweck:** Gibt zurück, ob ein Video-Element pausiert ist (true/false).
+**Kennung:** `getvariable`
 
-**Werte:** `element_identifier`
+Der Wert einer deiner Variablen. Wenn die Variable leer ist oder nicht existiert, wird `0` zurückgegeben. Das ist praktisch für Zahlen. Eine Liste gibt alle Einträge als JSON-Array zurück, zum Beispiel `["Steve","Alex"]`.
 
-**Beispiel:**
+- `name`: der Name der Variable, ohne `$$`
 
 ```
-{"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"getvariable","values":{"name":"clicks"}}
 ```
-
-**Ausgabe:** `false`
 
-## Lautstärke eines Video-Hintergrunds (`video_background_vol`)
+### Listeneintrag abrufen (FM-Variable)
 
-**Zweck:** Gibt die Lautstärke eines Video-Menühintergrunds zurück (0.0 bis 1.0).
+**Kennung:** `list_get`
 
-**Werte:** `background_identifier`
+Ein Eintrag einer Listenvariable.
 
-**Beispiel:**
+- `name`: der Name der Liste
+- `index`: die Position des Eintrags. Der erste Eintrag hat den Index `0`. Negative Zahlen zählen vom Ende aus, daher ist `-1` der letzte Eintrag.
+- `fallback` (optional): der Rückgabewert, wenn an diesem Index kein Eintrag vorhanden ist oder keine Liste mit diesem Namen existiert. Standardmäßig leer.
 
 ```
-{"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}
 ```
 
-**Ausgabe:** `0.7`
+### Listengröße (FM-Variable)
 
-## Dauer eines Video-Hintergrunds (`video_background_duration`)
+**Kennung:** `list_size`
 
-**Zweck:** Gibt die Gesamtdauer eines Video-Menühintergrunds im Format `MM:SS` zurück. Setze `output_as_timestamp` auf `"true"`, um einen Millisekunden-Zeitstempel zurückzugeben.
+Die Anzahl der Listeneinträge. Wenn keine Liste mit diesem Namen existiert, wird `0` zurückgegeben.
 
-**Werte:** `background_identifier`, `output_as_timestamp`
+- `name`: der Name der Liste
 
-**Beispiel:**
-
 ```
-{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
+{"placeholder":"list_size","values":{"name":"tips"}}
 ```
-
-**Ausgabe:** `03:00` (oder `180000` wenn `output_as_timestamp` `"true"` ist)
 
-## Abspielzeit eines Video-Hintergrunds (`video_background_playtime`)
+### Index eines Listeneintrags (FM-Variable)
 
-**Zweck:** Gibt die aktuelle Abspielzeit (Fortschritt) eines Video-Menühintergrunds im Format `MM:SS` zurück. Setze `show_percentage` auf `"true"` für einen Fortschrittswert von 0-100 oder `output_as_timestamp` auf `"true"` für Millisekunden.
+**Kennung:** `list_index_of`
 
-**Werte:** `background_identifier`, `show_percentage`, `output_as_timestamp`
+Der Index des ersten Eintrags, der genau mit `value` übereinstimmt. Wenn der Eintrag nicht in der Liste vorkommt, wird `-1` zurückgegeben.
 
-**Beispiel:**
+- `name`: der Name der Liste
+- `value`: der Eintrag, nach dem gesucht wird
+- `ignore_case` (optional): Mit `true` wird `Apple` auch als Treffer für `apple` gewertet. Standardmäßig `false`.
 
 ```
-{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
+{"placeholder":"list_index_of","values":{"name":"read_news","value":"news_42","ignore_case":"false"}}
 ```
 
-**Ausgabe:** `01:00` (oder `33` als Prozentwert oder `60500` als Zeitstempel)
+### Listeneinträge verbinden (FM-Variable)
 
-## Pausenstatus eines Video-Hintergrunds (`video_background_paused_state`)
+**Kennung:** `list_join`
 
-**Zweck:** Gibt zurück, ob ein Video-Menühintergrund pausiert ist (true/false).
+Alle Einträge einer Liste in einem Text. Wenn keine Liste mit diesem Namen existiert, wird nichts zurückgegeben.
 
-**Werte:** `background_identifier`
+- `name`: der Name der Liste
+- `separator` (optional): der Text zwischen den Einträgen. `\n` steht für einen Zeilenumbruch. Standardmäßig `, `.
 
-**Beispiel:**
-
 ```
-{"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}
 ```
 
-**Ausgabe:** `true`
+## Mathematik
 
-## Rechner (`calc`)
+Diese Platzhalter gehören zur Kategorie **Erweitert**. Bei Zahlen wird ein Punkt als Dezimaltrennzeichen verwendet, zum Beispiel `2.5`.
 
-**Zweck:** Der Platzhalter für den Rechner ist ein leistungsstarkes Werkzeug, mit dem du mathematische Berechnungen innerhalb deiner Layouts durchführen kannst. Er unterstützt eine breite Palette mathematischer Operationen und kann sowohl mit Dezimal- als auch mit Ganzzahlen arbeiten.
+### Taschenrechner
 
-**Werte:** `decimal`, `expression`
+**Kennung:** `calc`
 
-### Grundlegende Syntax
+Berechnet einen mathematischen Ausdruck, zum Beispiel `2 + 3 * 4`.
 
-**Beispiel:**
+- `expression`: der zu berechnende Ausdruck
+- `decimal` (optional): Mit `false` wird das Ergebnis auf eine ganze Zahl gerundet. Standardmäßig `true`; dann sind Ergebnisse wie `14.0` möglich.
 
 ```
-{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeholder":"usedram"} * 100 / {"placeholder":"maxram"}"}}
 ```
-
-Der Rechner hat zwei Hauptparameter:
-- `decimal`: Bestimmt, ob das Ergebnis Dezimalstellen enthalten soll (`true`) oder auf ganze Zahlen gerundet wird (`false`)
-- `expression`: Der auszuwertende mathematische Ausdruck
 
-### Unterstützte Operationen
-Der Rechner unterstützt folgende mathematische Operationen:
-- Grundrechenarten: `+` (Addition), `-` (Subtraktion), `*` (Multiplikation), `/` (Division)
-- Klammern: `( )` zum Gruppieren von Operationen
-- Potenz: `^` für Exponenten
-- Quadratwurzel: `sqrt()`
-- Trigonometrische Funktionen: `sin()`, `cos()`, `tan()`
-- Mathematische Konstanten: `pi`, `e`
-- Absolutwert: `abs()`
-- Logarithmen: `log()`, `ln()`
+| In Ausdrücken | Funktion |
+|---|---|
+| `+` `-` `*` `/` | Addieren, subtrahieren, multiplizieren, dividieren |
+| `^` | Potenz, zum Beispiel `2 ^ 3` ergibt 8 |
+| `%` | Rest, zum Beispiel `7 % 3` ergibt 1 |
+| `( )` | Fasst Teile zusammen, zum Beispiel `(2 + 3) * 4` |
+| `pi`, `e` | Die Zahlen π und e |
+| `abs(x)` | Zahl ohne Vorzeichen |
+| `sqrt(x)`, `cbrt(x)` | Quadratwurzel, Kubikwurzel |
+| `pow(x, y)` | x hoch y |
+| `floor(x)`, `ceil(x)` | Rundet ab, rundet auf |
+| `sin(x)`, `cos(x)`, `tan(x)`, `cot(x)` | Trigonometrie mit Winkeln im Bogenmaß |
+| `asin(x)`, `acos(x)`, `atan(x)` | Umkehrfunktionen der Trigonometrie |
+| `sinh(x)`, `cosh(x)`, `tanh(x)` | Hyperbolische Funktionen |
+| `log(x)`, `log2(x)`, `log10(x)` | Logarithmen zur Basis e, 2 und 10 |
+| `exp(x)` | e hoch x |
+| `signum(x)` | `1`, `-1` oder `0`, wie bei [**Vorzeichen (Mathematik)**](#sign-math) |
 
-## Zufallszahl (`random_number`)
+### Zufallszahl
 
-**Zweck:** Erzeugt eine Zufallszahl innerhalb eines angegebenen Bereichs.
+**Kennung:** `random_number`
 
-**Werte:** `min`, `max`
+Eine zufällige ganze Zahl zwischen `min` und `max`. Sie ändert sich bei jeder Textaktualisierung.
 
-**Beispiel:**
+- `min`, `max`: die kleinste und die größte Zahl
 
 ```
-{"placeholder":"random_number","values":{"min":"1","max":"100"}}
+{"placeholder":"random_number","values":{"min":"1","max":"6"}}
 ```
 
-**Ausgabe:** `42`
+### Größte Zahl
 
-## Maximalzahl (`maxnum`)
+**Kennung:** `maxnum`
 
-**Zweck:** Gibt die größere von zwei Zahlen zurück.
+Die größere von zwei Zahlen.
 
-**Werte:** `first`, `second`
+- `first`, `second`: die Zahlen
 
-**Beispiel:**
-
 ```
-{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+{"placeholder":"maxnum","values":{"first":"$$score","second":"$$best_score"}}
 ```
 
-**Ausgabe:** `20`
+### Kleinste Zahl
 
-## Minimalzahl (`minnum`)
+**Kennung:** `minnum`
 
-**Zweck:** Gibt die kleinere von zwei Zahlen zurück.
+Die kleinere von zwei Zahlen.
 
-**Werte:** `first`, `second`
+- `first`, `second`: die Zahlen
 
-**Beispiel:**
-
 ```
-{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+{"placeholder":"minnum","values":{"first":"10","second":"15"}}
 ```
-
-**Ausgabe:** `10`
 
-## Absolutwert (`absnum`)
+### Absolutwert einer Zahl
 
-**Zweck:** Gibt den Absolutwert einer Zahl zurück.
+**Kennung:** `absnum`
 
-**Werte:** `num`
+Die Zahl ohne ihr Minuszeichen. Aus `-10.5` wird also `10.5`.
 
-**Beispiel:**
+- `num`: die Zahl
 
 ```
 {"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
 
-**Ausgabe:** `10.5`
+### Zahl negieren
 
-## Zahl negativ machen (`negnum`)
+**Kennung:** `negnum`
 
-**Zweck:** Macht eine positive Zahl negativ. Null und bereits negative Werte werden unverändert zurückgegeben.
+Macht eine positive Zahl negativ. Aus `10.5` wird also `-10.5`. Null und negative Zahlen bleiben unverändert.
 
-**Werte:** `num`
-
-**Beispiel:**
+- `num`: die Zahl
 
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
 
-**Ausgabe:** `-10.5`
+### Runden (Mathematik)
 
-## *pi* (Mathe) (`math_pi`)
+**Kennung:** `math_round`
 
-**Zweck:** Gibt den Wert von π zurück.
+Rundet eine Zahl. `2.5` wird auf `3` aufgerundet.
 
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"math_pi"}
-```
-
-**Ausgabe:** `3.141592653589793`
-
-## Trigonometrischer Sinus (Mathe) (`math_sin`)
-
-**Zweck:** Gibt den Sinus eines Winkels in Radiant zurück. Gradwerte müssen zuerst in Radiant umgerechnet werden.
-
-**Werte:** `angle`
-
-**Beispiel:**
-
-```
-{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
-```
-
-**Ausgabe:** `1.0`
-
-## Trigonometrischer Kosinus (Mathe) (`math_cos`)
-
-**Zweck:** Gibt den Kosinus eines Winkels in Radiant zurück. Gradwerte müssen zuerst in Radiant umgerechnet werden.
-
-**Werte:** `angle`
-
-**Beispiel:**
-
-```
-{"placeholder":"math_cos","values":{"angle":"0"}}
-```
-
-**Ausgabe:** `1.0`
-
-## Trigonometrischer Tangens (Mathe) (`math_tan`)
-
-**Zweck:** Gibt den Tangens eines Winkels in Radiant zurück. Gradwerte müssen zuerst in Radiant umgerechnet werden.
-
-**Werte:** `angle`
-
-**Beispiel:**
-
-```
-{"placeholder":"math_tan","values":{"angle":"0"}}
-```
-
-**Ausgabe:** `0.0`
-
-## Abrunden (Mathe) (`math_floor`)
-
-**Zweck:** Gibt die mathematische Abrundung einer Zahl zurück, formatiert mit einem `.0`-Dezimalsuffix.
-
-**Werte:** `num`
-
-**Beispiel:**
-
-```
-{"placeholder":"math_floor","values":{"num":"3.14"}}
-```
-
-**Ausgabe:** `3.0`
-
-## Aufrunden (Mathe) (`math_ceil`)
-
-**Zweck:** Gibt die mathematische Aufrundung einer Zahl zurück, formatiert mit einem `.0`-Dezimalsuffix.
-
-**Werte:** `num`
-
-**Beispiel:**
-
-```
-{"placeholder":"math_ceil","values":{"num":"3.14"}}
-```
-
-**Ausgabe:** `4.0`
-
-Verwende [**Runden**](#round-math-math_round) oder den [**Rechner**](#rechner-calc) mit deaktivierter Dezimalausgabe, wenn du ganze Zahlen ohne `.0` benötigst.
-
-## Runden (Mathe) (`math_round`)
-
-**Zweck:** Rundet eine Zahl. Standardmäßig wird auf die nächste ganze Zahl gerundet; setze `decimals` auf eine nichtnegative Zahl, um auf diese Anzahl Dezimalstellen zu runden.
-
-**Werte:** `num`, `decimals`
-
-**Beispiel:**
+- `num`: die Zahl
+- `decimals` (optional): Anzahl der beizubehaltenden Dezimalstellen. Mit `2` wird aus `3.14159` zum Beispiel `3.14`. Bei `0`, `-1` oder ohne Angabe wird auf eine ganze Zahl gerundet.
 
 ```
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
 
-**Ausgabe:** `3.14` (bei `decimals:-1` oder wenn der Wert fehlt → `3`)
+### Abrunden (Mathematik)
 
-## Vorzeichen (Mathe) (`math_sign`)
+**Kennung:** `math_floor`
 
-**Zweck:** Gibt das Vorzeichen einer Zahl zurück (1 für positiv, -1 für negativ, 0 für null).
+Rundet eine Zahl auf eine ganze Zahl ab. Aus `3.7` wird `3`, aus `-3.2` wird `-4`.
 
-**Werte:** `num`
+- `num`: die Zahl
 
-**Beispiel:**
+```
+{"placeholder":"math_floor","values":{"num":"3.7"}}
+```
+
+### Aufrunden (Mathematik)
+
+**Kennung:** `math_ceil`
+
+Rundet eine Zahl auf eine ganze Zahl auf. Aus `3.2` wird `4`, aus `-3.7` wird `-3`.
+
+- `num`: die Zahl
+
+```
+{"placeholder":"math_ceil","values":{"num":"3.2"}}
+```
+
+### Vorzeichen (Mathematik)
+
+**Kennung:** `math_sign`
+
+`1` für positive Zahlen, `-1` für negative Zahlen und `0` für null.
+
+- `num`: die Zahl
 
 ```
 {"placeholder":"math_sign","values":{"num":"-3.14"}}
 ```
 
-**Ausgabe:** `-1`
+### *pi* (Mathematik)
 
-## Hyperbolischer Sinus (Mathe) (`math_sinh`)
+**Kennung:** `math_pi`
 
-**Zweck:** Gibt den hyperbolischen Sinus einer Zahl zurück.
+Die Zahl π: `3.141592653589793`.
 
-**Werte:** `num`
+```
+{"placeholder":"math_pi"}
+```
 
-**Beispiel:**
+### Trigonometrischer Sinus (Mathematik)
+
+**Kennung:** `math_sin`
+
+Der Sinus eines Winkels im Bogenmaß. Für Grad multiplizierst du diese zuerst mit π / 180, und zwar mit dem Taschenrechner.
+
+- `angle`: der Winkel im Bogenmaß
+
+```
+{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
+```
+
+### Trigonometrischer Kosinus (Mathematik)
+
+**Kennung:** `math_cos`
+
+Der Kosinus eines Winkels im Bogenmaß.
+
+- `angle`: der Winkel im Bogenmaß
+
+```
+{"placeholder":"math_cos","values":{"angle":"0"}}
+```
+
+### Trigonometrischer Tangens (Mathematik)
+
+**Kennung:** `math_tan`
+
+Der Tangens eines Winkels im Bogenmaß.
+
+- `angle`: der Winkel im Bogenmaß
+
+```
+{"placeholder":"math_tan","values":{"angle":"0.7853981633974483"}}
+```
+
+### Hyperbolischer Sinus (Mathematik)
+
+**Kennung:** `math_sinh`
+
+Der hyperbolische Sinus einer Zahl.
+
+- `num`: die Zahl
 
 ```
 {"placeholder":"math_sinh","values":{"num":"1"}}
 ```
 
-**Ausgabe:** `1.1752011936438014`
+### Hyperbolischer Kosinus (Mathematik)
 
-## Hyperbolischer Kosinus (Mathe) (`math_cosh`)
+**Kennung:** `math_cosh`
 
-**Zweck:** Gibt den hyperbolischen Kosinus einer Zahl zurück.
+Der hyperbolische Kosinus einer Zahl.
 
-**Werte:** `num`
-
-**Beispiel:**
+- `num`: die Zahl
 
 ```
 {"placeholder":"math_cosh","values":{"num":"1"}}
 ```
 
-**Ausgabe:** `1.5430806348152437`
+### Hyperbolischer Tangens (Mathematik)
 
-## Hyperbolischer Tangens (Mathe) (`math_tanh`)
+**Kennung:** `math_tanh`
 
-**Zweck:** Gibt den hyperbolischen Tangens einer Zahl zurück.
+Der hyperbolische Tangens einer Zahl.
 
-**Werte:** `num`
-
-**Beispiel:**
+- `num`: die Zahl
 
 ```
 {"placeholder":"math_tanh","values":{"num":"1"}}
 ```
 
-**Ausgabe:** `0.7615941559557649`
+### Zahlensystem-Konverter
 
-## Text teilen (`split_text`)
+**Kennung:** `number_base_convert`
 
-**Zweck:** Teilt Text anhand eines angegebenen Trennzeichens.
+Wandelt eine Zahl in ein anderes Zahlensystem um, zum Beispiel von Dezimal in Binär- oder Hexadezimaldarstellung. Auch Dezimalzahlen funktionieren, mit bis zu 16 Stellen nach dem Punkt. Buchstaben im Ergebnis sind großgeschrieben, zum Beispiel `FF`.
 
-**Werte:** `input`, `regex`, `max_parts`, `split_index`
-
-**Beispiel:**
-
-```
-{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
-```
-
-**Ausgabe:** `world`
-
-## Text trimmen (`trim_text`)
-
-**Zweck:** Entfernt führende und nachfolgende Leerzeichen.
-
-**Werte:** `text`
-
-**Beispiel:**
+- `input`: die Zahl
+- `from_base` (optional): die Basis von `input`, von `2` bis `36`. Standardmäßig `10`.
+- `to_base` (optional): die Basis des Ergebnisses, von `2` bis `36`. Standardmäßig `10`.
 
 ```
-{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+{"placeholder":"number_base_convert","values":{"input":"255","from_base":"10","to_base":"16"}}
 ```
 
-**Ausgabe:** `hello world`
+## Text
 
-## Text zuschneiden (`crop_text`)
+Diese Platzhalter gehören zur Kategorie **Erweitert**.
 
-**Zweck:** Entfernt Zeichen vom Anfang und Ende eines Textes.
+### Text in Großbuchstaben
 
-**Werte:** `text`, `remove_from_start`, `remove_from_end`
+**Kennung:** `uppercase_text`
 
-**Beispiel:**
+Der Text in Großbuchstaben: Aus `Hello World` wird `HELLO WORLD`. [Formatierungscodes](/text-formatting) wie `&a` bleiben unverändert.
 
-```
-{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
-```
-
-**Ausgabe:** `ello worl`
-
-## Stringify (`stringify`)
-
-**Zweck:** Wandelt Text in eine Zeichenkette um, indem alle Syntaxzeichen maskiert werden.
-
-**Werte:** `text`
-
-**Beispiel:**
-
-```
-{"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
-```
-
-**Ausgabe:** `text with \{special\} \"characters\"`
-
-## Text lokalisieren (`local`)
-
-**Zweck:** Ruft lokalisierten Text für einen Schlüssel ab.
-
-**Werte:** `key`
-
-**Beispiel:**
-
-```
-{"placeholder":"local","values":{"key":"menu.singleplayer"}}
-```
-
-**Ausgabe:** `Singleplayer`
-
-## Web-Text (`webtext`)
-
-**Zweck:** Ruft Textinhalt von einer Web-URL ab.
-
-**Werte:** `link`
-
-**Beispiel:**
-
-```
-{"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
-```
-
-**Ausgabe:** `Welcome to the server!`
-
-## Zufallstext (`randomtext`)
-
-**Zweck:** Gibt eine zufällige Zeile aus einer Textdatei, einer URL oder direktem Klartext zurück. Der Text wechselt in festgelegten Intervallen. Datei- und URL-Inhalte werden ungefähr alle 30 Sekunden neu geladen; direkter Klartext bleibt zwischengespeichert, da kein Neuladen erforderlich ist.
-
-**Werte:** `source`, `interval`
-
-In Platzhalterwerten bedeutet `/config/...` `<game-directory>/config/...`; es ist kein Pfad zum Dateisystem-Stamm. Siehe [Ressourcen](./resources#local-resources).
-
-**Beispiel:**
-
-```
-{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
-```
-Parameter:
-- `source`: Die Quelle der Textzeilen (ersetzt den alten `path`-Parameter)
-  - Dateipfad: `/config/fancymenu/assets/quotes.txt`
-  - URL: `https://example.com/quotes.txt`
-  - Klartext: `Line 1\nLine 2\nLine 3`
-- `interval`: Zeit in Sekunden zwischen Textwechseln
-
-Der Platzhalter unterstützt nun drei Quelltypen:
-1. **Lokale Dateien**: Textdateien aus deinem Spielverzeichnis
-   ```
-   {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
-   ```
-2. **URLs**: Entfernte Textdateien aus dem Internet
-   ```
-   {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
-   ```
-3. **Klartext**: Direkte Texteingabe mit durch `\n` getrennten Zeilen
-   ```
-   {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
-   ```
-
-Hinweis: Alte Platzhalter, die `path` statt `source` verwenden, funktionieren weiterhin.
-
-## JSON-Parser (`json`)
-
-**Zweck:** Parst JSON-Daten aus einer Datei, einer URL oder direktem JSON-Inhalt und extrahiert Werte mithilfe von JSON-Pfad-Ausdrücken.
-
-**Werte:** `source`, `json_path`
-
-**Beispiel:**
-
-```
-{"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
-```
-Parameter:
-- `source`: Die Quelle der JSON-Daten
-  - Dateipfad: `/config/fancymenu/assets/data.json`
-  - URL: `https://api.example.com/data.json`
-  - Direktes JSON: `{"name":"Steve","level":42}`
-- `json_path`: Der JSON-Pfad-Ausdruck zum Extrahieren der Daten
-
-Der Platzhalter unterstützt nun drei Quelltypen:
-1. **Lokale Dateien**: JSON-Dateien aus deinem Spielverzeichnis
-   ```
-   {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
-   ```
-2. **URLs**: Entfernte JSON-Daten von APIs oder Webdiensten
-   ```
-   {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
-   ```
-3. **Direktes JSON**: Inline-JSON-Inhalt
-   ```
-   {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
-   ```
-
-Beispielhafte JSON-Pfade:
-- `$.name` - Holt das Feld "name" aus der Wurzel
-- `$.player.level` - Holt das verschachtelte Feld "level" innerhalb von "player"
-- `$.items[0].id` - Holt die "id" des ersten Elements in einem Array
-- `$.scores.*` - Holt alle Werte aus dem Objekt "scores"
-
-## Absoluter Datei-/Ordnerpfad (`absolute_path`)
-
-**Zweck:** Gibt den absoluten Pfad einer Datei zurück.
-
-**Werte:** `short_path`
-
-**Beispiel:**
-
-```
-{"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
-```
-
-**Ausgabe:** `C:/Games/PrismLauncher/instances/My Pack/relative/path/to/file.txt`
-
-## Anzahl der Textzeichen (`text_character_count`)
-
-**Zweck:** Gibt die Anzahl der Zeichen im angegebenen Text zurück.
-
-**Werte:** `text`
-
-**Beispiel:**
-
-```
-{"placeholder":"text_character_count","values":{"text":"Hello World!"}}
-```
-
-**Ausgabe:** `12`
-
-## Textbreite (`text_width`)
-
-**Zweck:** Gibt die Breite des angegebenen Textes in Pixeln zurück, wenn er gerendert wird.
-
-**Werte:** `text`
-
-**Beispiel:**
-
-```
-{"placeholder":"text_width","values":{"text":"Hello World!"}}
-```
-
-**Ausgabe:** `66`
-
-## Text in Großbuchstaben (`uppercase_text`)
-
-**Zweck:** Wandelt den Eingabetext vollständig in Großbuchstaben um.
-
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"uppercase_text","values":{"text":"Hello World"}}
 ```
 
-**Ausgabe:** `HELLO WORLD`
+### Text in Kleinbuchstaben
 
-## Text in Kleinbuchstaben (`lowercase_text`)
+**Kennung:** `lowercase_text`
 
-**Zweck:** Wandelt den Eingabetext vollständig in Kleinbuchstaben um.
+Der Text in Kleinbuchstaben: Aus `HELLO WORLD` wird `hello world`. Formatierungscodes bleiben unverändert.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
-{"placeholder":"lowercase_text","values":{"text":"Hello World"}}
+{"placeholder":"lowercase_text","values":{"text":"HELLO WORLD"}}
 ```
 
-**Ausgabe:** `hello world`
+### Text in Titelschreibung
 
-## Text in Titel-Schreibweise (`title_case_text`)
+**Kennung:** `title_case_text`
 
-**Zweck:** Wandelt den Eingabetext in Title Case um.
+Jedes Wort beginnt mit einem Großbuchstaben: Aus `hello world` wird `Hello World`. Formatierungscodes bleiben unverändert.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
 
-**Ausgabe:** `Hello World`
+### Text in Satzschreibung
 
-## Text in Satz-Schreibweise (`sentence_case_text`)
+**Kennung:** `sentence_case_text`
 
-**Zweck:** Wandelt den Eingabetext in Satzschreibung um.
+Jeder Satz beginnt mit einem Großbuchstaben: Aus `hello world. this is fancymenu!` wird `Hello world. This is fancymenu!`. Formatierungscodes bleiben unverändert.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
 ```
 
-**Ausgabe:** `Hello world. This is fancymenu!`
+### Text in Snake Case
 
-## Text in Snake Case (`snake_case_text`)
+**Kennung:** `snake_case_text`
 
-**Zweck:** Wandelt den Eingabetext in `snake_case` um.
+Kleinbuchstaben mit `_` zwischen den Wörtern: Aus `Hello World` wird `hello_world`. Formatierungscodes werden entfernt.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
 
-**Ausgabe:** `hello_world`
+### Text in Kebab Case
 
-## Text in Kebab Case (`kebab_case_text`)
+**Kennung:** `kebab_case_text`
 
-**Zweck:** Wandelt den Eingabetext in `kebab-case` um.
+Kleinbuchstaben mit `-` zwischen den Wörtern: Aus `Hello World` wird `hello-world`. Formatierungscodes werden entfernt.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
 
-**Ausgabe:** `hello-world`
+### Text mit wechselnder Groß- und Kleinschreibung
 
-## Text in abwechselnder Groß-/Kleinschreibung (`alternating_case_text`)
+**Kennung:** `alternating_case_text`
 
-**Zweck:** Wandelt den Eingabetext in abwechselnde Groß-/Kleinschreibung um.
+Klein- und Großbuchstaben wechseln sich ab: Aus `alternating case` wird `aLtErNaTiNg CaSe`.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
 
-**Ausgabe:** `aLtErNaTiNg CaSe`
+### Groß- und Kleinschreibung umkehren
 
-## Groß-/Kleinschreibung umkehren (`toggle_case_text`)
+**Kennung:** `toggle_case_text`
 
-**Zweck:** Kehrt die Groß-/Kleinschreibung jedes Buchstabens im Eingabetext um.
+Kleinbuchstaben werden zu Großbuchstaben und Großbuchstaben zu Kleinbuchstaben: Aus `Toggle Case` wird `tOGGLE cASE`.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Text
 
 ```
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
 
-**Ausgabe:** `tOGGLE cASE`
+### Text bereinigen
 
-## In Base64 kodieren (`base64_encode`)
+**Kennung:** `trim_text`
 
-**Zweck:** Kodiert den angegebenen Text als Base64.
+Entfernt Leerzeichen am Anfang und Ende eines Textes. Leerzeichen im Text bleiben erhalten.
 
-**Werte:** `text`
+- `text`: der Text
 
-**Beispiel:**
+```
+{"placeholder":"trim_text","values":{"text":"  Welcome!  "}}
+```
+
+### Text kürzen
+
+**Kennung:** `crop_text`
+
+Entfernt eine bestimmte Anzahl von Zeichen am Anfang und Ende eines Textes. Bei `hello world` ergibt das Entfernen eines Zeichens auf jeder Seite `ello worl`.
+
+- `text`: der Text
+- `remove_from_start`: Anzahl der Zeichen, die am Anfang entfernt werden
+- `remove_from_end`: Anzahl der Zeichen, die am Ende entfernt werden
+
+```
+{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+```
+
+### Text aufteilen
+
+**Kennung:** `split_text`
+
+Teilt einen Text auf und gibt einen seiner Teile zurück. Wird `Steve,Alex,Notch` bei `,` aufgeteilt, ist `Alex` der Teil mit Index `1`.
+
+- `input`: der Text
+- `regex`: die Stelle, an der geteilt wird, als regulärer Ausdruck. Zeichen wie `.`, `|` und `?` benötigen davor ein `\`, zum Beispiel `\.`.
+- `max_parts` (optional): maximale Anzahl der Teile. Mit `-1` (Standard) wird bei jedem Treffer geteilt.
+- `split_index`: der zurückzugebende Teil. Der erste Teil hat den Index `0`.
+
+```
+{"placeholder":"split_text","values":{"input":"Steve,Alex,Notch","regex":",","max_parts":"-1","split_index":"1"}}
+```
+
+### Text ersetzen
+
+**Kennung:** `replace_text`
+
+Ersetzt Teile eines Textes: Wenn in `Hello World!` `World` durch `FancyMenu` ersetzt wird, ergibt sich `Hello FancyMenu!`.
+
+- `text`: der Text
+- `search`: wonach gesucht wird
+- `replacement` (optional): womit der Treffer ersetzt wird. Standardmäßig leer; dadurch wird der Treffer entfernt.
+- `use_regex` (optional): Mit `true` ist `search` ein regulärer Ausdruck. Dann stehen `$1`, `$2` und so weiter in `replacement` für die gefundenen Gruppen. Standardmäßig `false`.
+- `replace_all` (optional): Mit `false` wird nur der erste Treffer ersetzt. Standardmäßig `true`.
+
+```
+{"placeholder":"replace_text","values":{"text":"Hello World!","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
+```
+
+### Fallauswahl
+
+**Kennung:** `switch_case`
+
+Gibt das Ergebnis des Falls zurück, der zu einem Wert passt. Wenn die Variable `difficulty_level` den Wert `2` hat, gibt das Beispiel `Hard Mode` zurück.
+
+- `value`: der zu prüfende Wert
+- `cases`: Wert-Ergebnis-Paare, zum Beispiel `1:Easy Mode,2:Hard Mode`. Werte und Ergebnisse dürfen weder `,` noch `:` enthalten.
+- `default` (optional): das Ergebnis, wenn kein Fall passt. Ohne diesen Wert bleibt der Platzhalter unverändert.
+
+```
+{"placeholder":"switch_case","values":{"value":"$$difficulty_level","cases":"1:Easy Mode,2:Hard Mode","default":"Normal Mode"}}
+```
+
+### Text lokalisieren
+
+**Kennung:** `local`
+
+Der Text eines Lokalisierungsschlüssels in der aktuellen Spielsprache, zum Beispiel `Singleplayer` für `menu.singleplayer`. Funktioniert mit Minecraft-Schlüsseln, Schlüsseln von Mods und eigenen Schlüsseln (siehe [Lokalisierung](/localization)).
+
+- `key`: der Lokalisierungsschlüssel
+
+```
+{"placeholder":"local","values":{"key":"menu.singleplayer"}}
+```
+
+### Als Text maskieren
+
+**Kennung:** `stringify`
+
+Ersetzt die Platzhalter im Text und setzt dann vor jedes `\`, `{` und `}` ein Maskierungszeichen. So kann externer Text, etwa von einer Website, nicht als Platzhalter interpretiert werden.
+
+- `text`: der Text
+
+```
+{"placeholder":"stringify","values":{"text":"{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}"}}
+```
+
+## Daten und Dateien
+
+Diese Platzhalter gehören zur Kategorie **Erweitert**. Lokale Pfade beginnen im Spielordner, zum Beispiel `/config/fancymenu/assets/news.txt`, und können nicht aus diesem Ordner herausführen (siehe [Ressourcen](/resources#local-resources)).
+
+### JSON-Parser
+
+**Kennung:** `json`
+
+Liest einen Wert aus JSON aus. Bei mehreren Ergebnissen wird jeweils eines pro Zeile angezeigt.
+
+- `source`: JSON-Text, eine JSON-Datei im Spielordner oder die URL einer JSON-Datei
+- `json_path`: der Pfad zum Wert, zum Beispiel `$.name` oder `$.players[0].name`. Weitere Informationen zu JSON-Pfaden findest du auf [json.fancymenu.net](https://json.fancymenu.net).
+
+```
+{"placeholder":"json","values":{"source":"https://example.com/server_info.json","json_path":"$.news.title"}}
+```
+
+JSON aus dem Web wird einmal geladen und erneut, wenn FancyMenu neu geladen wird. Änderungen an Dateien werden sofort angezeigt.
+
+| Pfad | Rückgabewert |
+|---|---|
+| `$.name` | `name` auf der obersten Ebene |
+| `$.player.level` | `level` innerhalb von `player` |
+| `$.items[0].id` | `id` des ersten Eintrags in `items` |
+| `$.scores.*` | Alle Werte in `scores` |
+
+### Dateitext
+
+**Kennung:** `file_text`
+
+Der Text einer Datei oder URL. Dateien werden jede Sekunde erneut gelesen, URLs alle 10 Sekunden. Während des Ladens oder wenn der Inhalt nicht gelesen werden kann, wird nichts zurückgegeben.
+
+- `path_or_url`: eine Datei im Spielordner oder eine URL. Pfade, die mit `.minecraft/` beginnen, verweisen auf den standardmäßigen Minecraft-Ordner.
+- `mode` (optional): `all` für den gesamten Text oder `last` für die letzten Zeilen. Standardmäßig `all`.
+- `separator` (optional): der Text zwischen den Zeilen. Standardmäßig `\n` (Zeilenumbruch).
+- `last_lines` (optional): Anzahl der Zeilen, die `last` zurückgibt. Standardmäßig `1`.
+
+```
+{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/changelog.txt","mode":"all","separator":"\n","last_lines":"1"}}
+```
+
+### Dateigröße
+
+**Kennung:** `file_size`
+
+Die Größe einer Datei in Byte. Wenn die Datei nicht existiert, wird `0` zurückgegeben. Pfade, die mit `.minecraft/` beginnen, verweisen auf den standardmäßigen Minecraft-Ordner.
+
+- `path`: die Datei
+
+```
+{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/news.txt"}}
+```
+
+### Datei-MD5
+
+**Kennung:** `file_md5`
+
+Der MD5-Hash einer Datei, zum Beispiel `d41d8cd98f00b204e9800998ecf8427e`. Wenn die Datei nicht existiert, ist der Wert leer. Pfade, die mit `.minecraft/` beginnen, verweisen auf den standardmäßigen Minecraft-Ordner.
+
+- `path`: die Datei
+
+```
+{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/menu_music.ogg"}}
+```
+
+### In Base64 kodieren
+
+**Kennung:** `base64_encode`
+
+Der Text als Base64: Aus `Hello World` wird `SGVsbG8gV29ybGQ=`.
+
+- `text`: der Text
 
 ```
 {"placeholder":"base64_encode","values":{"text":"Hello World"}}
 ```
 
-**Ausgabe:** `SGVsbG8gV29ybGQ=`
+### Aus Base64 dekodieren
 
-## Aus Base64 dekodieren (`base64_decode`)
+**Kennung:** `base64_decode`
 
-**Zweck:** Dekodiert eine Base64-Zeichenfolge wieder in Klartext.
+Dekodiert Base64 zurück in Text: Aus `SGVsbG8gV29ybGQ=` wird `Hello World`.
 
-**Werte:** `text`
-
-**Beispiel:**
+- `text`: der Base64-Text
 
 ```
 {"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
 ```
 
-**Ausgabe:** `Hello World`
+### NBT-Daten abrufen (clientseitig)
 
-## Datei-Text (`file_text`)
+**Kennung:** `nbt_data_get`
 
-**Zweck:** Gibt Textzeilen aus einer Datei oder URL zurück. Kann alle Zeilen oder nur die letzten X Zeilen zurückgeben.
+Liest NBT-Daten aus dem, was dein Spiel über die Welt weiß, ähnlich wie `/data get`. Das geht schnell, aber Server senden Spielern nicht alle Daten.
 
-**Werte:** `path_or_url`, `mode`, `separator`, `last_lines`
-
-**Beispiel:**
-
-```
-{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
-```
-Parameter:
-- `path_or_url`: Datei- oder URL-Pfad, aus dem gelesen werden soll
-- `mode`: Entweder `"all"` (gibt alle Zeilen zurück) oder `"last"` (gibt nur die letzten X Zeilen zurück)
-- `separator`: Text zwischen den Zeilen (Standard: `"\n"`)
-- `last_lines`: Anzahl der zurückzugebenden Zeilen, wenn `mode` `"last"` ist (Standard: `"1"`)
-
-**Ausgabe:**
-
-```text
-First line
-Second line
-```
-
-## Zwischenablageninhalt (`clipboard_content`)
-
-**Zweck:** Gibt den aktuellen in der Systemzwischenablage gespeicherten Textinhalt zurück.
-
-**Werte:** Keine
-
-**Beispiel:**
-
-```
-{"placeholder":"clipboard_content"}
-```
-
-**Ausgabe:** `Hello from the clipboard`
-
-## Text ersetzen (`replace_text`)
-
-**Zweck:** Ersetzt Text in einer Zeichenfolge mithilfe von wörtlichem Text oder regulären Ausdrücken.
-
-**Werte:** `text`, `search`, `replacement`, `use_regex`, `replace_all`
-
-**Beispiel:**
-
-```
-{"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
-```
-Parameter:
-- `text`: Der zu verarbeitende Eingabetext
-- `search`: Der zu suchende Text oder Regex-Ausdruck
-- `replacement`: Der Ersetzungstext
-- `use_regex`: Ob Regex (`"true"`) oder exakte Textsuche (`"false"`) verwendet wird
-- `replace_all`: Alle Vorkommen ersetzen (`"true"`) oder nur das erste (`"false"`)
-
-**Ausgabe:** `Hello FancyMenu! This is a test.`
-
-## Switch-Case (`switch_case`)
-
-**Zweck:** Führt eine Switch-Case-Operation auf Basis eines Werts aus.
-
-**Werte:** `value`, `cases`, `default`
-
-**Beispiel:**
-
-```
-{"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
-```
-
-**Ausgabe:** `first case` (wenn der Wert 1 ist)
-
-## Variablenwert abrufen (FM-Variable) (`getvariable`)
-
-**Zweck:** Ruft den Wert einer zuvor gespeicherten Variablen ab.
-
-**Werte:** `name`
-
-**Beispiel:**
-
-```
-{"placeholder":"getvariable","values":{"name":"some_variable"}}
-```
-
-**Ausgabe:** `42`
-
-## NBT-Daten abrufen (`nbt_data_get`)
-
-**Zweck:** Ruft NBT-Daten auf dem Client ab (ähnlich dem Befehl `/data get`). Verwende die Server-Variante `nbt_data_get_server`, wenn du mit einem Server verbunden bist und maßgebliche serverseitige Werte benötigst.
-
-**Werte:** `source_type`, `entity_selector`, `nbt_path`, `scale`, `return_type`
-
-**Beispiel:**
+- `source_type`: `entity` oder `block`
+- `entity_selector`: bei `entity` ein Selektor wie `@s` (du selbst), `@p`, `@e[type=minecraft:horse,limit=1,sort=nearest]` oder der Name beziehungsweise die UUID einer Entität. Selektoren können `type`, `name`, `tag`, `limit`, `sort`, `distance`, `x`, `y`, `z`, `dx`, `dy` und `dz` enthalten. Es wird der erste Treffer verwendet.
+- `block_pos`: bei `block` die Position einer Block-Entität, etwa einer Truhe: `120 64 -35`
+- `nbt_path`: der NBT-Pfad, zum Beispiel `foodLevel` oder `Inventory[0].id`
+- `scale` (optional): multipliziert Zahlen. Standardmäßig `1.0`.
+- `return_type` (optional): `value` (Zahlen und Texte unverändert), `string`, `snbt` oder `json`. Standardmäßig `value`.
 
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
-Parameter:
-- `source_type`: Entweder `"entity"` oder `"block"`
-- `entity_selector`: Entitätsselektor wie `@s`, `@p`, `@e` oder UUID/Name (für Entitäten)
-- `block_pos`: Blockposition im Format `"x y z"` (für Blöcke)
-- `nbt_path`: Der abzurufende NBT-Pfad
-- `scale`: Optionaler Skalierungsfaktor für numerische Werte (Standard: `"1.0"`)
-- `return_type`: Wie die Daten zurückgegeben werden:
-  - `"value"`: Standard, gibt den Wert zurück (bei Zahlen mit optionaler Skalierung)
-  - `"string"`: Gibt die eigentlichen NBT-Daten als Zeichenkette zurück
-  - `"snbt"`: Gibt SNBT zurück (formatiertes NBT)
-  - `"json"`: Gibt als JSON-formatierte Komponente zurück (für Compound-Tags)
 
-**Ausgabe:** `20` (für Hungerwert)
+### NBT-Daten abrufen (serverseitig)
 
-## NBT-Daten abrufen (serverseitig) (`nbt_data_get_server`)
+**Kennung:** `nbt_data_get_server`
 
-**Zweck:** Fragt NBT-Daten serverseitig ab (über ein Paket) und speichert Ergebnisse kurzzeitig im Cache. Die Werte entsprechen dem clientseitigen Platzhalter.
+Liest NBT-Daten direkt vom Server aus, genau wie `/data get`. Dafür muss FancyMenu auf dem Server installiert sein. Im Einzelspielermodus funktioniert es immer. Bis der Server antwortet, wird nichts zurückgegeben; danach wird der Wert etwa alle 100 Millisekunden aktualisiert.
 
-**Werte:** `source_type`, `entity_selector`, `block_pos`, `storage_id`, `nbt_path`, `scale`, `return_type`
-
-**Beispiel:**
+- `source_type`: `entity`, `block` oder `storage`
+- `entity_selector`: bei `entity` ein beliebiger Selektor von `/data get`, der eine Entität findet, zum Beispiel `@s` oder `@e[type=minecraft:villager,limit=1,sort=nearest]`
+- `block_pos`: bei `block` eine Position wie `120 64 -35`, `~ ~-1 ~` oder `^ ^ ^1`
+- `storage_id`: bei `storage` die ID eines Befehls-Speichers, zum Beispiel `mypack:quests`
+- `nbt_path` (optional): der NBT-Pfad. Ohne Angabe erhältst du alle Daten.
+- `scale` (optional): multipliziert Zahlen. Standardmäßig `1.0`.
+- `return_type` (optional): `value`, `string`, `snbt` oder `json`. Standardmäßig `value`.
 
 ```
-{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
+{"placeholder":"nbt_data_get_server","values":{"source_type":"storage","storage_id":"mypack:quests","nbt_path":"completed","return_type":"value"}}
 ```
 
-**Ausgabe:** `minecraft:diamond_sword`
+## Audio
 
-## Letzte Todesnachricht (`lastdeathmessage`)
+Diese Platzhalter lesen [Audioelemente](/elements#audio) des geöffneten Menüs aus. Klicke im Layout-Editor mit der rechten Maustaste auf ein Audioelement und dann auf **Element-ID kopieren**, um seine ID zu erhalten.
 
-**Zweck:** Gibt die zuletzt aufgezeichnete Todesnachricht des Client-Spielers zurück. Setze `as_json_component` auf `"true"`, um die rohe JSON-Textkomponente zu erhalten.
+### Lautstärke des Audioelements
 
-**Werte:** `as_json_component`
+**Kennung:** `audio_element_vol`
 
-**Beispiel:**
+Die Lautstärke des Audioelements von `0.0` (0 %) bis `1.0` (100 %).
+
+- `element_identifier`: die ID des Audioelements
+
+```
+{"placeholder":"audio_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Aktueller Audiotitel
+
+**Kennung:** `audio_element_current_track`
+
+Der Dateiname des Titels, der gerade abgespielt wird, zum Beispiel `menu_theme.ogg`. Wenn kein Titel abgespielt wird, lautet der Wert `---`.
+
+- `element_identifier`: die ID des Audioelements
+- `display_name_mappings` (optional): Namen, die statt der Dateinamen angezeigt werden. Zwischen Dateiname und Anzeigename steht `=>`, zwischen den Paaren `%:%`.
+
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","display_name_mappings":"menu_theme.ogg=>Menu Theme%:%credits.ogg=>Credits Theme"}}
+```
+
+### Audiodauer
+
+**Kennung:** `audio_duration`
+
+Die Dauer des aktuellen Titels, zum Beispiel `03:45`. Während des Ladens wird `00:00` angezeigt.
+
+- `element_identifier`: die ID des Audioelements
+
+```
+{"placeholder":"audio_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Audio-Wiedergabezeit
+
+**Kennung:** `audio_playtime`
+
+Die aktuelle Position im Titel, zum Beispiel `01:30`. Wenn die Wiedergabe angehalten oder gestoppt ist, wird `00:00` (oder `0`) angezeigt.
+
+- `element_identifier`: die ID des Audioelements
+- `show_percentage` (optional): Mit `true` wird stattdessen der Fortschritt von `0` bis `100` zurückgegeben. Standardmäßig `false`.
+
+```
+{"placeholder":"audio_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false"}}
+```
+
+### Audio-Wiedergabestatus
+
+**Kennung:** `audio_playing_state`
+
+`true`, solange das Audioelement wiedergegeben wird, und `false`, wenn es pausiert oder gestoppt ist.
+
+- `element_identifier`: die ID des Audioelements
+
+```
+{"placeholder":"audio_playing_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+## Client
+
+Diese Platzhalter beziehen sich auf das Spiel und seine Mods.
+
+### Minecraft-Version
+
+**Kennung:** `mcversion`
+
+Die Minecraft-Version, zum Beispiel `1.21.1`.
+
+```
+{"placeholder":"mcversion"}
+```
+
+### Name des Mod-Loaders
+
+**Kennung:** `loadername`
+
+Der Name des Mod-Loaders, zum Beispiel `Fabric` oder `NeoForge`.
+
+```
+{"placeholder":"loadername"}
+```
+
+### Version des Mod-Loaders
+
+**Kennung:** `loaderver`
+
+Die Version des Mod-Loaders, zum Beispiel `0.16.14`.
+
+```
+{"placeholder":"loaderver"}
+```
+
+### Mod-Version
+
+**Kennung:** `modversion`
+
+Die Version eines installierten Mods, zum Beispiel `3.11.0`. Wenn der Mod nicht installiert ist, wird `0.0.0` zurückgegeben.
+
+- `modid`: die ID des Mods, zum Beispiel `fancymenu`
+
+```
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+```
+
+### Anzahl aktiver Mods
+
+**Kennung:** `loadedmods`
+
+Die Anzahl der geladenen Mods. Bibliotheken und Mods innerhalb anderer Mods werden mitgezählt; daher ist der Wert oft höher als die Anzahl der Mod-Dateien.
+
+```
+{"placeholder":"loadedmods"}
+```
+
+### Gesamtzahl der Mods
+
+**Kennung:** `totalmods`
+
+Ungefähre Anzahl der installierten Mods, ermittelt anhand der `.jar`-Dateien im Ordner `mods` einmal pro Spielstart. Der Wert ist nie kleiner als **Anzahl aktiver Mods**.
+
+```
+{"placeholder":"totalmods"}
+```
+
+### Fortschritt beim Laden der Welt
+
+**Kennung:** `world_load_progress`
+
+Der Ladefortschritt einer Welt von `0` bis `100`, solange der Ladebildschirm angezeigt wird. Praktisch für Ladebalken. Auf allen anderen Bildschirmen ist der Wert `0`.
+
+```
+{"placeholder":"world_load_progress"}
+```
+
+### Wert einer Minecraft-Option
+
+**Kennung:** `minecraft_option_value`
+
+Der Wert einer Minecraft-Option, wie er in der Datei `options.txt` im Spielordner gespeichert ist, zum Beispiel `12` für `renderDistance`. Wenn keine Option mit diesem Namen existiert, ist der Wert leer.
+
+- `name`: der Name der Option in `options.txt`
+
+```
+{"placeholder":"minecraft_option_value","values":{"name":"renderDistance"}}
+```
+
+### Taste einer Tastenbelegung
+
+**Kennung:** `keybind_key`
+
+Die Taste, die momentan einer Tastenbelegung zugewiesen ist, wie im Steuerungsbildschirm angezeigt: zum Springen etwa `Space`. Wenn keine Tastenbelegung mit diesem Namen existiert, ist der Wert leer.
+
+- `keybind`: der Name der Tastenbelegung, zum Beispiel `key.jump` oder `key.inventory`. Die Namen stehen in `options.txt`, jedoch ohne das vorangestellte `key_`: Aus `key_key.jump` wird also `key.jump`.
+
+```
+Press {"placeholder":"keybind_key","values":{"keybind":"key.inventory"}} to open your inventory!
+```
+
+### Zuletzt besuchte Welt oder Server
+
+**Kennung:** `last_world_server`
+
+Die Welt oder der Server, dem der Spieler zuletzt beigetreten ist. Server werden als `play.example.net:25565` angezeigt.
+
+- `type`: `both` für Welten und Server, `world` nur für Welten oder `server` nur für Server. Bei `world` oder `server` bleibt der Wert leer, wenn der zuletzt besuchte Eintrag vom jeweils anderen Typ war.
+- `full_world_path` (optional): Mit `false` wird nur der Name einer Welt zurückgegeben, zum Beispiel `New World`. Mit `true` wird der Pfad ihres Ordners zurückgegeben. Standardmäßig `true`.
+
+```
+{"placeholder":"last_world_server","values":{"type":"world","full_world_path":"false"}}
+```
+
+## GUI
+
+Diese Platzhalter beziehen sich auf den geöffneten Bildschirm und seine Elemente. Bei Elementplatzhaltern musst du die ID eines Elements angeben: Klicke im Layout-Editor mit der rechten Maustaste darauf und wähle **Element-ID kopieren**.
+
+### Bildschirmbreite
+
+**Kennung:** `guiwidth`
+
+Die Breite des Bildschirms in GUI-Pixeln. Das ist die Größe, die Elemente verwenden, nicht die Pixelanzahl deines Monitors.
+
+```
+{"placeholder":"guiwidth"}
+```
+
+### Bildschirmhöhe
+
+**Kennung:** `guiheight`
+
+Die Höhe des Bildschirms in GUI-Pixeln.
+
+```
+{"placeholder":"guiheight"}
+```
+
+### GUI-Skalierung
+
+**Kennung:** `guiscale`
+
+Die GUI-Skalierung des Spiels, zum Beispiel `2`.
+
+```
+{"placeholder":"guiscale"}
+```
+
+### Kennung des aktuellen Bildschirms
+
+**Kennung:** `screenid`
+
+Die [Kennung](/screen-identifiers) des geöffneten Bildschirms, zum Beispiel `title_screen`. Wenn kein Bildschirm geöffnet ist, ist der Wert leer.
+
+```
+{"placeholder":"screenid"}
+```
+
+### Elementbreite
+
+**Kennung:** `elementwidth`
+
+Die Breite eines Elements in GUI-Pixeln. Wenn kein Element mit dieser ID existiert, wird `1` zurückgegeben.
+
+- `id`: die ID des Elements
+
+```
+{"placeholder":"elementwidth","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Elementhöhe
+
+**Kennung:** `elementheight`
+
+Die Höhe eines Elements in GUI-Pixeln. Wenn kein Element mit dieser ID existiert, wird `1` zurückgegeben.
+
+- `id`: die ID des Elements
+
+```
+{"placeholder":"elementheight","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### X-Position des Elements
+
+**Kennung:** `elementposx`
+
+Die Position der linken Kante eines Elements in GUI-Pixeln, gemessen vom linken Bildschirmrand. Wenn kein Element mit dieser ID existiert, wird `1` zurückgegeben.
+
+- `id`: die ID des Elements
+
+```
+{"placeholder":"elementposx","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Y-Position des Elements
+
+**Kennung:** `elementposy`
+
+Die Position der oberen Kante eines Elements in GUI-Pixeln, gemessen vom oberen Bildschirmrand. Wenn kein Element mit dieser ID existiert, wird `1` zurückgegeben.
+
+- `id`: die ID des Elements
+
+```
+{"placeholder":"elementposy","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Inhaltshöhe eines Textelements
+
+**Kennung:** `text_element_content_height`
+
+Wie hoch ein [Textelement](/text-in-menus) sein muss, um seinen gesamten Text ohne Scrollen anzuzeigen, in GUI-Pixeln. Berücksichtigt umbrochene Zeilen, Textskalierung und Zeilenabstand. Daher eignet sich der Wert für Hintergründe, die sich an den Text anpassen. Wenn es sich nicht um ein Textelement handelt, wird `0` zurückgegeben.
+
+- `element_identifier`: die ID des Textelements
+
+```
+{"placeholder":"text_element_content_height","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Scrollposition des Elements
+
+**Kennung:** `scroll_area_scroll_position`
+
+Wie weit der Inhalt eines [scrollbaren Bereichs](/scrollable-areas) oder eines Textelements vom Anfang aus gescrollt wurde, in GUI-Pixeln. Bei anderen Elementen ist der Wert `0`.
+
+- `element_identifier`: die ID des Elements
+- `axis`: `vertical` oder `horizontal`. Jeder andere Wert bedeutet die Scrollrichtung des Elements.
+
+```
+{"placeholder":"scroll_area_scroll_position","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### Scrollfortschritt des Elements
+
+**Kennung:** `scroll_area_scroll_percent`
+
+Wie weit der Inhalt eines scrollbaren Bereichs oder eines Textelements gescrollt wurde, von `0` (Anfang) bis `100` (Ende). Bei anderen Elementen und wenn nichts gescrollt werden kann, ist der Wert `0`.
+
+- `element_identifier`: die ID des Elements
+- `axis`: `vertical` oder `horizontal`. Jeder andere Wert bedeutet die Scrollrichtung des Elements.
+
+```
+{"placeholder":"scroll_area_scroll_percent","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### Größe des Scrollinhalts eines Elements
+
+**Kennung:** `scroll_area_content_size`
+
+Die Größe des Inhalts eines scrollbaren Bereichs oder Textelements: bei `vertical` dessen Höhe, bei `horizontal` dessen Breite. Bei anderen Elementen ist der Wert `0`.
+
+- `element_identifier`: die ID des Elements
+- `axis`: `vertical` oder `horizontal`. Jeder andere Wert bedeutet die Scrollrichtung des Elements.
+
+```
+{"placeholder":"scroll_area_content_size","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### Wert eines Texteingabefelds
+
+**Kennung:** `text_input_field_value`
+
+Der Inhalt eines [Texteingabefelds](/elements#text-input-field) oder eines Textfelds des ursprünglichen Bildschirms. Wenn das Element kein Textfeld ist, ist der Wert leer.
+
+- `element_identifier`: die ID des Elements
+
+```
+{"placeholder":"text_input_field_value","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Beschriftung/Text eines Vanilla-Widgets
+
+**Kennung:** `vanillabuttonlabel`
+
+Die Beschriftung einer Schaltfläche oder eines anderen Widgets des ursprünglichen Bildschirms, zum Beispiel `Options...`. Klicke im Layout-Editor mit der rechten Maustaste auf das Widget und dann auf **Widget-Locator kopieren**, um seinen Locator zu erhalten.
+
+- `locator`: der Locator des Widgets
+
+```
+{"placeholder":"vanillabuttonlabel","values":{"locator":"title_screen:mc_titlescreen_options_button"}}
+```
+
+### X-Position der Maus
+
+**Kennung:** `mouseposx`
+
+Die Position der Maus in GUI-Pixeln vom linken Bildschirmrand aus. Im Layout-Editor immer `10`, damit Elemente, die der Maus folgen, an einer bearbeitbaren Stelle bleiben.
+
+```
+{"placeholder":"mouseposx"}
+```
+
+### Y-Position der Maus
+
+**Kennung:** `mouseposy`
+
+Die Position der Maus in GUI-Pixeln vom oberen Bildschirmrand aus. Im Layout-Editor immer `10`.
+
+```
+{"placeholder":"mouseposy"}
+```
+
+### Klicks pro Sekunde
+
+**Kennung:** `clicks_per_second`
+
+Wie oft in der letzten Sekunde eine Maustaste geklickt wurde.
+
+- `mouse_button` (optional): `left` oder `right`. Standardmäßig `left`.
+
+```
+{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
+```
+
+## Spieler
+
+### Spielername
+
+**Kennung:** `playername`
+
+Der Name des Spielers, zum Beispiel `Steve`.
+
+```
+{"placeholder":"playername"}
+```
+
+### Spieler-UUID
+
+**Kennung:** `playeruuid`
+
+Die UUID des Spielers, zum Beispiel `c8cde7fe-7ced-11eb-9439-0242ac130002`.
+
+```
+{"placeholder":"playeruuid"}
+```
+
+### Letzte Todesnachricht
+
+**Kennung:** `lastdeathmessage`
+
+Die letzte Todesnachricht des Spielers seit dem Spielstart, zum Beispiel `Steve was slain by Zombie`. Vor dem ersten Tod ist der Wert leer.
+
+- `as_json_component` (optional): Mit `true` wird die Nachricht als JSON-Textkomponente mit ihren Farben zurückgegeben. Standardmäßig `false`.
 
 ```
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
 
-**Ausgabe:** `Steve was slain by Zombie`
+## Echtzeit
 
-## Laufzeitdauer (`uptime_duration`)
+Diese Platzhalter beziehen sich auf die Uhrzeit auf deinem Computer. Bei Datums- und Uhrzeitplatzhaltern ist `timezone` optional: `system` verwendet die Zeitzone des Computers (Standard) oder du gibst eine Kennung wie `UTC`, `Europe/Berlin` oder `America/New_York` an. Alle Kennungen findest du unter [nodatime.org/TimeZones](https://nodatime.org/TimeZones).
 
-**Zweck:** Gibt an, wie lange FancyMenu geladen ist. Standardmäßig wird der Wert in Sekunden angegeben; setze `output_as_millis` auf `"true"`, um Millisekunden zu erhalten.
+### Echtzeit-Jahr
 
-**Werte:** `output_as_millis`
+**Kennung:** `realtimeyear`
 
-**Beispiel:**
+Das Jahr, zum Beispiel `2026`.
 
 ```
-{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+{"placeholder":"realtimeyear","values":{"timezone":"system"}}
 ```
 
-**Ausgabe:** `742` (Sekunden seit dem Laden)
+### Echtzeit-Monat
 
-## Speicherstand-Namen der Welt (`level_save_names`)
+**Kennung:** `realtimemonth`
 
-**Zweck:** Listet alle lokalen Weltspeicherstände mit dem gewählten Trennzeichen auf. Läuft im Client-Thread.
+Der Monat von `01` bis `12`.
 
-**Werte:** `separator`
+```
+{"placeholder":"realtimemonth","values":{"timezone":"system"}}
+```
 
-**Beispiel:**
+### Echtzeit-Tag
+
+**Kennung:** `realtimeday`
+
+Der Tag des Monats von `01` bis `31`.
+
+```
+{"placeholder":"realtimeday","values":{"timezone":"system"}}
+```
+
+### Echtzeit-Stunde
+
+**Kennung:** `realtimehour`
+
+Die Stunde von `00` bis `23`.
+
+- `twelve_hour_format` (optional): Mit `true` wird stattdessen der Bereich `01` bis `12` verwendet. Standardmäßig `false`.
+
+```
+{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"Europe/Berlin"}}
+```
+
+### Echtzeit-Minute
+
+**Kennung:** `realtimeminute`
+
+Die Minute von `00` bis `59`.
+
+```
+{"placeholder":"realtimeminute","values":{"timezone":"system"}}
+```
+
+### Echtzeit-Sekunde
+
+**Kennung:** `realtimesecond`
+
+Die Sekunde von `00` bis `59`.
+
+```
+{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+```
+
+### Aktuelle Zeit in Millisekunden (Unix-Zeitstempel)
+
+**Kennung:** `unix_time`
+
+Die Millisekunden seit dem 1. Januar 1970 (UTC), zum Beispiel `1732456789012`. Praktisch für Timer: Speichere den Wert in einer Variablen und ziehe ihn mit dem Taschenrechner von einem späteren Wert ab.
+
+```
+{"placeholder":"unix_time"}
+```
+
+## Server
+
+Diese Platzhalter fragen den Status eines Servers ab, ähnlich wie die Serverliste. FancyMenu fragt alle 30 Sekunden nach, solange ein angepasstes Bildschirmmenü geöffnet ist. Bis die erste Antwort eintrifft, gilt der Server als offline.
+
+- `ip`: die Serveradresse, einschließlich Port, wenn nicht der Standardport verwendet wird, zum Beispiel `play.example.net` oder `play.example.net:25566`
+
+### Serverstatus
+
+**Kennung:** `serverstatus`
+
+`Online` in Grün oder `Offline` in Rot.
+
+```
+{"placeholder":"serverstatus","values":{"ip":"play.example.net"}}
+```
+
+### Spieleranzahl des Servers
+
+**Kennung:** `serverplayercount`
+
+Die Anzahl der Spieler online und die maximale Spielerzahl, zum Beispiel `12/100`. Bis der Server antwortet, wird `0/0` angezeigt.
+
+```
+{"placeholder":"serverplayercount","values":{"ip":"play.example.net"}}
+```
+
+### Server-MOTD
+
+**Kennung:** `servermotd`
+
+Eine Zeile der Servernachricht des Tages.
+
+- `line`: `1` oder `2`
+
+```
+{"placeholder":"servermotd","values":{"ip":"play.example.net","line":"1"}}
+```
+
+### Server-PING
+
+**Kennung:** `serverping`
+
+Die Ping-Zeit zum Server in Millisekunden, zum Beispiel `54`. Wenn der Server offline ist, wird `-1` angezeigt.
+
+```
+{"placeholder":"serverping","values":{"ip":"play.example.net"}}
+```
+
+### Serverversion
+
+**Kennung:** `serverversion`
+
+Die Minecraft-Version des Servers, zum Beispiel `1.21.1`. Manche Server zeigen hier einen eigenen Text an. Bis der Server antwortet, wird `---` angezeigt.
+
+```
+{"placeholder":"serverversion","values":{"ip":"play.example.net"}}
+```
+
+## Video
+
+Diese Platzhalter lesen [Videoelemente und Videomenühintergründe](/video) des geöffneten Menüs aus. Klicke bei Videoelementen im Layout-Editor mit der rechten Maustaste auf ein Element und dann auf **Element-ID kopieren**. Für Hintergründe klickst du mit der rechten Maustaste auf den Editorhintergrund und wählst **Hintergrundkennung kopieren**.
+
+### Lautstärke des Videoelements
+
+**Kennung:** `video_element_vol`
+
+Die Lautstärke eines Videoelements von `0.0` (0 %) bis `1.0` (100 %).
+
+- `element_identifier`: die ID des Videoelements
+
+```
+{"placeholder":"video_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Dauer des Videoelements
+
+**Kennung:** `video_element_duration`
+
+Die Dauer des Videos eines Videoelements, zum Beispiel `02:00`. Während des Ladens wird `00:00` (oder `0`) angezeigt.
+
+- `element_identifier`: die ID des Videoelements
+- `output_as_timestamp` (optional): Mit `true` werden stattdessen Millisekunden zurückgegeben, zum Beispiel `120000`. Standardmäßig `false`.
+
+```
+{"placeholder":"video_element_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","output_as_timestamp":"false"}}
+```
+
+### Wiedergabezeit des Videoelements
+
+**Kennung:** `video_element_playtime`
+
+Die aktuelle Position im Video eines Videoelements, zum Beispiel `00:45`. Während des Ladens wird `00:00` (oder `0`) angezeigt.
+
+- `element_identifier`: die ID des Videoelements
+- `show_percentage` (optional): Mit `true` wird der Fortschritt von `0` bis `100` zurückgegeben. Standardmäßig `false`.
+- `output_as_timestamp` (optional): Mit `true` werden Millisekunden zurückgegeben. Wenn beide Werte `true` sind, hat `show_percentage` Vorrang. Standardmäßig `false`.
+
+```
+{"placeholder":"video_element_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false","output_as_timestamp":"false"}}
+```
+
+### Pausenzustand des Videoelements
+
+**Kennung:** `video_element_paused_state`
+
+`true`, solange ein Videoelement pausiert ist, andernfalls `false`.
+
+- `element_identifier`: die ID des Videoelements
+
+```
+{"placeholder":"video_element_paused_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Lautstärke des Videohintergrunds
+
+**Kennung:** `video_background_vol`
+
+Die Lautstärke eines Videomenühintergrunds von `0.0` (0 %) bis `1.0` (100 %).
+
+- `background_identifier`: die Kennung des Menühintergrunds
+
+```
+{"placeholder":"video_background_vol","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+### Dauer des Videohintergrunds
+
+**Kennung:** `video_background_duration`
+
+Die Dauer des Videos eines Menühintergrunds, zum Beispiel `03:00`. Während des Ladens wird `00:00` (oder `0`) angezeigt.
+
+- `background_identifier`: die Kennung des Menühintergrunds
+- `output_as_timestamp` (optional): Mit `true` werden stattdessen Millisekunden zurückgegeben. Standardmäßig `false`.
+
+```
+{"placeholder":"video_background_duration","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","output_as_timestamp":"false"}}
+```
+
+### Wiedergabezeit des Videohintergrunds
+
+**Kennung:** `video_background_playtime`
+
+Die aktuelle Position im Video eines Menühintergrunds, zum Beispiel `01:00`. Während des Ladens wird `00:00` (oder `0`) angezeigt.
+
+- `background_identifier`: die Kennung des Menühintergrunds
+- `show_percentage` (optional): Mit `true` wird der Fortschritt von `0` bis `100` zurückgegeben. Standardmäßig `false`.
+- `output_as_timestamp` (optional): Mit `true` werden Millisekunden zurückgegeben. Wenn beide Werte `true` sind, hat `show_percentage` Vorrang. Standardmäßig `false`.
+
+```
+{"placeholder":"video_background_playtime","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","show_percentage":"true","output_as_timestamp":"false"}}
+```
+
+### Pausenzustand des Videohintergrunds
+
+**Kennung:** `video_background_paused_state`
+
+`true`, solange ein Videomenühintergrund pausiert ist, andernfalls `false`.
+
+- `background_identifier`: die Kennung des Menühintergrunds
+
+```
+{"placeholder":"video_background_paused_state","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+## Welt: Spielerwerte
+
+Die Kategorie **Welt** bezieht sich auf die Welt, in der du spielst. Die meisten ihrer Platzhalter benötigen eine geladene Welt. Außerhalb einer Welt geben sie `0`, `0.0` oder nichts zurück.
+
+### Aktuelle Spielergesundheit
+
+**Kennung:** `current_player_health`
+
+Die Gesundheit des Spielers, zum Beispiel `20.0`. Jedes Herz entspricht `2.0`.
+
+```
+{"placeholder":"current_player_health"}
+```
+
+### Maximale Spielergesundheit
+
+**Kennung:** `max_player_health`
+
+Die maximale Gesundheit des Spielers, zum Beispiel `20.0`.
+
+```
+{"placeholder":"max_player_health"}
+```
+
+### Aktuelle Spielergesundheit (Prozent)
+
+**Kennung:** `current_player_health_percent`
+
+Die Gesundheit des Spielers in Prozent von `0` bis `100`.
+
+```
+{"placeholder":"current_player_health_percent"}
+```
+
+### Aktuelle Absorptionsgesundheit des Spielers
+
+**Kennung:** `current_player_absorption_health`
+
+Die Absorptionsgesundheit des Spielers (die goldenen Herzen), zum Beispiel `4.0`.
+
+```
+{"placeholder":"current_player_absorption_health"}
+```
+
+### Maximale Absorptionsgesundheit des Spielers
+
+**Kennung:** `max_player_absorption_health`
+
+Die maximale Absorptionsgesundheit des Spielers, zum Beispiel `4.0`.
+
+```
+{"placeholder":"max_player_absorption_health"}
+```
+
+### Aktuelle Absorptionsgesundheit des Spielers (Prozent)
+
+**Kennung:** `current_player_absorption_health_percent`
+
+Die Absorptionsgesundheit des Spielers in Prozent von `0` bis `100`.
+
+```
+{"placeholder":"current_player_absorption_health_percent"}
+```
+
+### Aktueller Hungerwert des Spielers
+
+**Kennung:** `current_player_hunger`
+
+Der Hungerwert des Spielers von `0.0` bis `20.0`.
+
+```
+{"placeholder":"current_player_hunger"}
+```
+
+### Maximaler Hungerwert des Spielers
+
+**Kennung:** `max_player_hunger`
+
+Der maximale Hungerwert von Spielern: immer `20.0`.
+
+```
+{"placeholder":"max_player_hunger"}
+```
+
+### Aktueller Hungerwert des Spielers (Prozent)
+
+**Kennung:** `current_player_hunger_percent`
+
+Der Hungerwert des Spielers in Prozent von `0` bis `100`.
+
+```
+{"placeholder":"current_player_hunger_percent"}
+```
+
+### Aktuelle Hungersättigung des Spielers
+
+**Kennung:** `current_player_hunger_saturation`
+
+Die Sättigung des Spielers, zum Beispiel `5.0`. Der Hunger nimmt erst ab, wenn die Sättigung aufgebraucht ist.
+
+```
+{"placeholder":"current_player_hunger_saturation"}
+```
+
+### Aktuelle Rüstung des Spielers
+
+**Kennung:** `current_player_armor`
+
+Die Rüstungspunkte des Spielers von `0.0` bis `20.0`.
+
+```
+{"placeholder":"current_player_armor"}
+```
+
+### Maximale Rüstung des Spielers
+
+**Kennung:** `max_player_armor`
+
+Die maximalen Rüstungspunkte der Rüstungsleiste: immer `20.0`.
+
+```
+{"placeholder":"max_player_armor"}
+```
+
+### Aktuelle Rüstung des Spielers (Prozent)
+
+**Kennung:** `current_player_armor_percent`
+
+Die Rüstungspunkte des Spielers in Prozent von `0` bis `100`.
+
+```
+{"placeholder":"current_player_armor_percent"}
+```
+
+### Rüstungshärte des Spielers
+
+**Kennung:** `player_armor_toughness`
+
+Die Rüstungshärte des Spielers, zum Beispiel `8.0` bei vollständiger Diamantrüstung.
+
+```
+{"placeholder":"player_armor_toughness"}
+```
+
+### Aktueller Sauerstoffwert des Spielers
+
+**Kennung:** `current_player_oxygen`
+
+Die Luft des Spielers unter Wasser von `0.0` bis `300.0`.
+
+```
+{"placeholder":"current_player_oxygen"}
+```
+
+### Maximaler Sauerstoffwert des Spielers
+
+**Kennung:** `max_player_oxygen`
+
+Die maximale Luft des Spielers, zum Beispiel `300.0`.
+
+```
+{"placeholder":"max_player_oxygen"}
+```
+
+### Aktueller Sauerstoffwert des Spielers (Prozent)
+
+**Kennung:** `current_player_oxygen_percent`
+
+Die Luft des Spielers in Prozent von `0` bis `100`.
+
+```
+{"placeholder":"current_player_oxygen_percent"}
+```
+
+### Aktuelle Spielerstufe
+
+**Kennung:** `current_player_level`
+
+Die Erfahrungsstufe des Spielers, zum Beispiel `30`.
+
+```
+{"placeholder":"current_player_level"}
+```
+
+### Aktuelle Spielererfahrung
+
+**Kennung:** `current_player_exp`
+
+Die gesamten Erfahrungspunkte des Spielers, zum Beispiel `1395.0`. Dies ist nicht die Stufe.
+
+```
+{"placeholder":"current_player_exp"}
+```
+
+### Erfahrungsfortschritt des Spielers (Prozent)
+
+**Kennung:** `current_player_exp_progress`
+
+Wie voll die Erfahrungsleiste ist, von `0` bis `100`.
+
+```
+{"placeholder":"current_player_exp_progress"}
+```
+
+### Angriffsstärke des Spielers (Prozent)
+
+**Kennung:** `player_attack_strength`
+
+Wie weit der nächste Angriff aufgeladen ist, von `0` bis `100`, wie beim Angriffsindikator.
+
+```
+{"placeholder":"player_attack_strength"}
+```
+
+### Spielmodus des Spielers
+
+**Kennung:** `player_gamemode`
+
+`survival`, `creative`, `adventure` oder `spectator`.
+
+```
+{"placeholder":"player_gamemode"}
+```
+
+### Fortschritt bei der Verwendung eines Gegenstands (FM)
+
+**Kennung:** `player_item_use_progress_fm`
+
+Wie weit der Spieler mit der Verwendung eines Gegenstands ist, etwa beim Essen, Trinken oder Spannen eines Bogens, von `0.0` bis `1.0`.
+
+```
+{"placeholder":"player_item_use_progress_fm"}
+```
+
+### Aktuelle Gesundheit des Reittiers
+
+**Kennung:** `current_mount_health`
+
+Die Gesundheit des Mobs, auf dem der Spieler reitet, zum Beispiel eines Pferdes: etwa `30.0`.
+
+```
+{"placeholder":"current_mount_health"}
+```
+
+### Maximale Gesundheit des Reittiers
+
+**Kennung:** `max_mount_health`
+
+Die maximale Gesundheit des Mobs, auf dem der Spieler reitet.
+
+```
+{"placeholder":"max_mount_health"}
+```
+
+### Aktuelle Gesundheit des Reittiers (Prozent)
+
+**Kennung:** `current_mount_health_percent`
+
+Die Gesundheit des Mobs, auf dem der Spieler reitet, in Prozent von `0` bis `100`.
+
+```
+{"placeholder":"current_mount_health_percent"}
+```
+
+### Aktuelle Sprunganzeige des Reittiers (Prozent)
+
+**Kennung:** `current_mount_jump_meter`
+
+Wie weit der Sprung eines Pferdes aufgeladen ist, von `0` bis `100`.
+
+```
+{"placeholder":"current_mount_jump_meter"}
+```
+
+### Anzahl aktiver Effekte
+
+**Kennung:** `effects_count`
+
+Wie viele Effekte der Spieler gerade hat.
+
+```
+{"placeholder":"effects_count"}
+```
+
+### Aktiver Effekt
+
+**Kennung:** `active_effect`
+
+Die ID eines Effekts des Spielers, zum Beispiel `minecraft:speed`, in der Reihenfolge der Effekticons oben rechts. Wenn an diesem Index kein Effekt vorhanden ist, bleibt der Wert leer.
+
+- `effect_index`: die Position des Effekts. Der erste hat den Index `0`.
+
+```
+{"placeholder":"active_effect","values":{"effect_index":"0"}}
+```
+
+## Welt: Inventar und Gegenstände
+
+Diese Platzhalter gehören zur Kategorie **Welt**. Slotnummern: `0` bis `8` sind die Schnellleiste, `9` bis `35` der restliche Inventarbereich, `36` bis `39` die Rüstung von Stiefeln bis Helm und `40` die Zweithand.
+
+### Ausgewählter Schnellleisten-Slot
+
+**Kennung:** `active_hotbar_slot`
+
+Der ausgewählte Slot der Schnellleiste von `0` bis `8`.
+
+```
+{"placeholder":"active_hotbar_slot"}
+```
+
+### Gegenstand im Slot
+
+**Kennung:** `slot_item`
+
+Die ID des Gegenstands in einem Slot, zum Beispiel `minecraft:diamond_sword`. Leere Slots geben `minecraft:air` zurück.
+
+- `slot`: die Slotnummer
+
+```
+{"placeholder":"slot_item","values":{"slot":"0"}}
+```
+
+### Anzahl der Gegenstände im Slot
+
+**Kennung:** `slot_item_count`
+
+Wie viele Gegenstände sich in einem Slot befinden, zum Beispiel `64`.
+
+- `slot`: die Slotnummer
+
+```
+{"placeholder":"slot_item_count","values":{"slot":"0"}}
+```
+
+### Haltbarkeit des Gegenstands im Slot
+
+**Kennung:** `slot_item_durability`
+
+Die Haltbarkeit des Gegenstands in einem Slot. Bei Gegenständen ohne Haltbarkeit wird `0` zurückgegeben.
+
+- `slot`: die Slotnummer
+- `format` (optional): `current` (verbleibende Haltbarkeit), `max`, `damage` (verbrauchte Haltbarkeit) oder `percentage` (verbleibend, von `0` bis `100`). Standardmäßig `current`.
+
+```
+{"placeholder":"slot_item_durability","values":{"slot":"39","format":"percentage"}}
+```
+
+### Anzeigename des Gegenstands im Slot (FM)
+
+**Kennung:** `slot_item_display_name_fm`
+
+Der Name des Gegenstands in einem Slot als JSON-Textkomponente mit seiner Seltenheitsfarbe, zum Beispiel `{"text":"Diamond Sword","color":"aqua"}`. Im Zuschauermodus geben Schnellleisten-Slots die Namen des Zuschauermenüs zurück.
+
+- `slot`: die Slotnummer
+- `ignore_spectator` (optional): Mit `true` werden die Gegenstandsnamen auch im Zuschauermodus ausgegeben. Standardmäßig `false`.
+
+```
+{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
+```
+
+### Anzahl eines Gegenstands im Inventar
+
+**Kennung:** `inventory_item_count`
+
+Wie viele Exemplare eines Gegenstands der Spieler im gesamten Inventar hat.
+
+- `item`: die ID des Gegenstands, zum Beispiel `minecraft:diamond`. Bei leerem Wert werden alle Gegenstände gezählt.
+
+```
+{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
+```
+
+### Nahrungswert eines Gegenstands im Inventarslot
+
+**Kennung:** `inventory_slot_food_point_restore_amount`
+
+Wie viele Hungerpunkte der Gegenstand in einem Slot beim Essen wiederherstellt, zum Beispiel `4.0` bei einem Apfel. Bei Gegenständen, die keine Nahrung sind, wird `0.0` zurückgegeben.
+
+- `slot`: die Slotnummer
+
+```
+{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
+```
+
+### Gegenstandskategorie
+
+**Kennung:** `item_category`
+
+Der Kreativinventar-Reiter eines Gegenstands, zum Beispiel `Combat`. Bei Gegenständen ohne Reiter wird `UNKNOWN` zurückgegeben.
+
+- `item`: die ID des Gegenstands
+- `as_key` (optional): Mit `true` wird die ID des Reiters zurückgegeben, zum Beispiel `minecraft:combat`. Standardmäßig `false`.
+
+```
+{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
+```
+
+### Gegenstand unter dem Mauszeiger im Inventar
+
+**Kennung:** `hovered_inventory_item`
+
+Die ID des Gegenstands, über dem sich die Maus in einem Inventarbildschirm befindet, zum Beispiel `minecraft:apple`. Wenn kein Gegenstand darunterliegt, ist der Wert leer.
+
+```
+{"placeholder":"hovered_inventory_item"}
+```
+
+## Welt: HUD und Bosse
+
+Diese Platzhalter gehören zur Kategorie **Welt**. Die Raid-Platzhalter lesen den Raid aus, dessen Leiste oben auf dem Bildschirm angezeigt wird, und benötigen FancyMenu auf dem Server. Im Einzelspielermodus funktionieren sie immer. Wenn kein Raid aktiv ist, geben sie `0` oder nichts zurück.
+
+### Aktionsleisten-Nachricht (FM)
+
+**Kennung:** `action_bar_message_fm`
+
+Die Nachricht über der Schnellleiste als JSON-Textkomponente, zum Beispiel `{"text":"You may not rest now","color":"red"}`. Wenn keine Nachricht angezeigt wird, ist der Wert leer.
+
+```
+{"placeholder":"action_bar_message_fm"}
+```
+
+### Anzeigedauer der Aktionsleisten-Nachricht (FM)
+
+**Kennung:** `action_bar_message_time_fm`
+
+Wie viele Ticks die Nachricht über der Schnellleiste noch angezeigt wird. 20 Ticks entsprechen einer Sekunde.
+
+```
+{"placeholder":"action_bar_message_time_fm"}
+```
+
+### Anzeigedauer des hervorgehobenen Gegenstands (FM)
+
+**Kennung:** `highlighted_item_time_fm`
+
+Wie viele Ticks der Name des ausgewählten Gegenstands noch über der Schnellleiste angezeigt wird.
+
+```
+{"placeholder":"highlighted_item_time_fm"}
+```
+
+### Aktueller HUD-Titel/Untertitel
+
+**Kennung:** `current_title`
+
+Der Titel oder Untertitel, der gerade angezeigt wird, zum Beispiel von `/title`. Wenn keiner angezeigt wird, ist der Wert leer.
+
+- `is_subtitle` (optional): Mit `true` wird der Untertitel zurückgegeben. Standardmäßig `false`.
+- `as_json` (optional): Mit `true` wird der Text als JSON-Textkomponente zurückgegeben. Standardmäßig `false`.
+
+```
+{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
+```
+
+### Anzahl der Bossleisten
+
+**Kennung:** `boss_count`
+
+Wie viele Bossleisten gerade angezeigt werden.
+
+```
+{"placeholder":"boss_count"}
+```
+
+### Bossname
+
+**Kennung:** `boss_name`
+
+Der Name einer Bossleiste, zum Beispiel `Ender Dragon`. Wenn an diesem Index keine Bossleiste existiert, ist der Wert leer.
+
+- `boss_index`: die Position der Bossleiste. Die oberste hat den Index `0`.
+- `as_json` (optional): Mit `true` wird der Name als JSON-Textkomponente zurückgegeben. Standardmäßig `false`.
+
+```
+{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
+```
+
+### Aktuelle Bossgesundheit (Prozent)
+
+**Kennung:** `current_boss_health`
+
+Wie voll eine Bossleiste ist, von `0` bis `100`.
+
+- `boss_index`: die Position der Bossleiste. Die oberste hat den Index `0`.
+
+```
+{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
+```
+
+### Gesamtzahl der aktiven Raidwellen
+
+**Kennung:** `active_raid_total_waves`
+
+Wie viele Wellen der Raid einschließlich der Bonuswelle hat.
+
+```
+{"placeholder":"active_raid_total_waves"}
+```
+
+### Verbleibende aktive Raidwellen
+
+**Kennung:** `active_raid_remaining_waves`
+
+Wie viele Wellen des Raids noch ausstehen.
+
+```
+{"placeholder":"active_raid_remaining_waves"}
+```
+
+### Aktuelle aktive Raidwelle
+
+**Kennung:** `active_raid_current_wave`
+
+Die Nummer der zuletzt gestarteten Welle. Während des Angriffs der ersten Welle ist der Wert also `1`. Vor der ersten Welle ist er `0`.
+
+```
+Wave {"placeholder":"active_raid_current_wave"} of {"placeholder":"active_raid_total_waves"}
+```
+
+### Anzahl lebender Plünderer im aktiven Raid
+
+**Kennung:** `active_raid_alive_raiders_count`
+
+Wie viele Plünderer des Raids noch am Leben sind.
+
+```
+{"placeholder":"active_raid_alive_raiders_count"}
+```
+
+### Liste lebender Plünderer im aktiven Raid
+
+**Kennung:** `active_raid_alive_raiders_list`
+
+Alle noch lebenden Plünderer, durch Kommas getrennt. Jeder Eintrag enthält die Mob-ID und die UUID des Plünderers, zum Beispiel `minecraft:pillager#0d9a4b2e-5f1c-4a8e-9b3d-6c2f1e7a8b90`.
+
+```
+{"placeholder":"active_raid_alive_raiders_list"}
+```
+
+## Welt: Position und Kamera
+
+Diese Platzhalter gehören zur Kategorie **Welt**.
+
+### X-Koordinate des Spielers
+
+**Kennung:** `player_x_coordinate`
+
+Die X-Koordinate des Blocks, in dem der Spieler steht, zum Beispiel `125`.
+
+```
+{"placeholder":"player_x_coordinate"}
+```
+
+### Y-Koordinate des Spielers
+
+**Kennung:** `player_y_coordinate`
+
+Die Y-Koordinate des Blocks, in dem der Spieler steht, zum Beispiel `64`.
+
+```
+{"placeholder":"player_y_coordinate"}
+```
+
+### Z-Koordinate des Spielers
+
+**Kennung:** `player_z_coordinate`
+
+Die Z-Koordinate des Blocks, in dem der Spieler steht, zum Beispiel `-250`.
+
+```
+{"placeholder":"player_z_coordinate"}
+```
+
+### Blickrichtung des Spielers
+
+**Kennung:** `player_view_direction`
+
+Die Blickrichtung des Spielers: `north`, `east`, `south` oder `west`.
+
+```
+{"placeholder":"player_view_direction"}
+```
+
+### Positionsänderung des Spielers auf der X-Achse (FM)
+
+**Kennung:** `player_position_delta_x_fm`
+
+Wie weit sich der Spieler seit dem letzten Tick entlang der X-Achse bewegt hat, in Blöcken, zum Beispiel `0.12`. Bei Bewegung in die entgegengesetzte Richtung ist der Wert negativ.
+
+```
+{"placeholder":"player_position_delta_x_fm"}
+```
+
+### Positionsänderung des Spielers auf der Y-Achse (FM)
+
+**Kennung:** `player_position_delta_y_fm`
+
+Wie weit sich der Spieler seit dem letzten Tick entlang der Y-Achse bewegt hat, zum Beispiel `-0.08` beim Fallen.
+
+```
+{"placeholder":"player_position_delta_y_fm"}
+```
+
+### Positionsänderung des Spielers auf der Z-Achse (FM)
+
+**Kennung:** `player_position_delta_z_fm`
+
+Wie weit sich der Spieler seit dem letzten Tick entlang der Z-Achse bewegt hat.
+
+```
+{"placeholder":"player_position_delta_z_fm"}
+```
+
+### X-Drehung der Kamera (FM)
+
+**Kennung:** `camera_rotation_x_fm`
+
+Wie weit die Kamera nach oben oder unten blickt, in Grad von `-90.0` (gerade nach oben) bis `90.0` (gerade nach unten).
+
+```
+{"placeholder":"camera_rotation_x_fm"}
+```
+
+### Y-Drehung der Kamera (FM)
+
+**Kennung:** `camera_rotation_y_fm`
+
+In welche Richtung die Kamera blickt, in Grad von `-180.0` bis `180.0`. `0.0` entspricht Süden.
+
+```
+{"placeholder":"camera_rotation_y_fm"}
+```
+
+### Änderung der X-Kameradrehung (FM)
+
+**Kennung:** `camera_rotation_delta_x_fm`
+
+Wie weit die Kamera seit dem letzten Tick nach oben oder unten gedreht wurde, in Grad.
+
+```
+{"placeholder":"camera_rotation_delta_x_fm"}
+```
+
+### Änderung der Y-Kameradrehung (FM)
+
+**Kennung:** `camera_rotation_delta_y_fm`
+
+Wie weit die Kamera seit dem letzten Tick nach links oder rechts gedreht wurde, in Grad.
+
+```
+{"placeholder":"camera_rotation_delta_y_fm"}
+```
+
+## Welt: Weltinformationen
+
+Diese Platzhalter gehören zur Kategorie **Welt**.
+
+### Tageszeit der Welt
+
+**Kennung:** `world_daytime`
+
+Die Tageszeit der Welt in Ticks. Ein Tag hat 24000 Ticks und beginnt um 6:00 Uhr morgens. Der Wert zählt von Tag zu Tag weiter. Mit `{"placeholder":"world_daytime"} % 24000` im Taschenrechner erhältst du die Uhrzeit des aktuellen Tages.
+
+```
+{"placeholder":"world_daytime"}
+```
+
+### Stunde der Tageszeit in der Welt
+
+**Kennung:** `world_daytime_hour`
+
+Die Stunde der Tageszeit der Welt von `00` bis `23`.
+
+- `twelve_hour_format` (optional): Mit `true` wird stattdessen der Bereich `01` bis `12` verwendet. Standardmäßig `false`.
+
+```
+{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
+```
+
+### Minute der Tageszeit in der Welt
+
+**Kennung:** `world_daytime_minute`
+
+Die Minute der Tageszeit der Welt von `00` bis `59`.
+
+```
+{"placeholder":"world_daytime_hour"}:{"placeholder":"world_daytime_minute"}
+```
+
+### Spielzeit der Welt
+
+**Kennung:** `game_time`
+
+Wie viele Ticks die Welt insgesamt gelaufen ist. Anders als die Tageszeit wird dieser Wert durch Befehle wie `/time set` nicht verändert.
+
+```
+{"placeholder":"game_time"}
+```
+
+### Schwierigkeitsgrad der Welt
+
+**Kennung:** `world_difficulty`
+
+`peaceful`, `easy`, `normal` oder `hard`.
+
+```
+{"placeholder":"world_difficulty"}
+```
+
+### Aktuelle Dimension
+
+**Kennung:** `current_dimension`
+
+Die Dimension, in der sich der Spieler befindet, zum Beispiel `minecraft:overworld`.
+
+- `as_key` (optional): Mit `false` wird ihr Name zurückgegeben, zum Beispiel `Overworld`. Dimensionen ohne Namen geben ihre ID zurück. Standardmäßig `true`.
+
+```
+{"placeholder":"current_dimension","values":{"as_key":"false"}}
+```
+
+### Aktuelles Biom
+
+**Kennung:** `current_biome`
+
+Das Biom, in dem sich der Spieler befindet, zum Beispiel `minecraft:plains`.
+
+- `as_key` (optional): Mit `false` wird der Name zurückgegeben, zum Beispiel `Plains`. Standardmäßig `true`.
+
+```
+{"placeholder":"current_biome","values":{"as_key":"false"}}
+```
+
+### Aktueller Welt-Seed
+
+**Kennung:** `current_world_seed`
+
+Der Seed der Einzelspielerwelt, zum Beispiel `-4172144997902289642`. Auf Servern ist der Wert leer.
+
+```
+{"placeholder":"current_world_seed"}
+```
+
+### Gamerule-Wert
+
+**Kennung:** `gamerule_value`
+
+Der Wert einer Spielregel, zum Beispiel `true` oder `3`. Im Einzelspielermodus funktioniert der Platzhalter immer. Auf Servern muss FancyMenu auf dem Server installiert sein. Wenn keine Spielregel mit diesem Namen existiert, ist der Wert leer.
+
+- `name`: der Name der Spielregel, zum Beispiel `keep_inventory`. In Minecraft 1.21.10 und älteren Versionen heißen Spielregeln etwa `keepInventory`; diese alten Namen funktionieren auch in neueren Versionen.
+
+```
+{"placeholder":"gamerule_value","values":{"name":"keep_inventory"}}
+```
+
+### IP des aktuellen Servers
+
+**Kennung:** `current_server_ip`
+
+Die Adresse des Servers, auf dem sich der Spieler befindet, zum Beispiel `play.example.net`. Im Einzelspielermodus ist der Wert leer.
+
+```
+{"placeholder":"current_server_ip"}
+```
+
+### Spielerliste der Welt
+
+**Kennung:** `world_players_list`
+
+Die Namen der Spieler in der Welt, die deinem Spiel bekannt sind, alphabetisch sortiert, zum Beispiel `Alex, Notch, Steve`.
+
+- `separator` (optional): der Text zwischen den Namen. Standardmäßig `, `.
+
+```
+{"placeholder":"world_players_list","values":{"separator":", "}}
+```
+
+## Welt: Weltstände
+
+Diese Platzhalter gehören zur Kategorie **Welt** und funktionieren in jedem Menü, auch wenn keine Welt geladen ist.
+
+### Anzahl der Weltstände
+
+**Kennung:** `level_save_count`
+
+Wie viele Einzelspielerwelten es gibt.
+
+```
+{"placeholder":"level_save_count"}
+```
+
+### Namen der Weltstände
+
+**Kennung:** `level_save_names`
+
+Die Namen aller Einzelspielerwelten in der Reihenfolge der Weltliste, zum Beispiel `Survival World, Creative Test`.
+
+- `separator` (optional): der Text zwischen den Namen. Standardmäßig `, `.
 
 ```
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
 
-**Ausgabe:** `Creative Test, Survival World, Hardcore`
+### Daten eines Weltstands
 
-## Speicherstandsdaten der Welt (`level_save_data`)
+**Kennung:** `level_save_data`
 
-**Zweck:** Gibt serialisierte Level-Daten für den angegebenen Weltnamen zurück (muss mit dem Anzeigenamen in der Speicherstandsliste übereinstimmen).
+Alle Daten einer Einzelspielerwelt als JSON, zum Beispiel `{"file_name":"Survival World","game_type":"survival","difficulty":"normal",...}`. Dazu gehören unter anderem `file_name`, `display_name`, `game_type`, `difficulty`, `allow_commands`, `last_played` (als Unix-Zeitstempel), `minecraft_version_name` und weitere Werte. Einzelne Werte lassen sich mit [**JSON-Parser**](#json-parser) auslesen.
 
-**Werte:** `level_name`
-
-**Beispiel:**
+- `level_name`: der Name der Welt, genau wie in der Weltliste
 
 ```
-{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
+{"placeholder":"json","values":{"source":"{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}","json_path":"$.game_type"}}
 ```
 
-**Ausgabe:** `{"name":"Survival World","gameMode":"survival",...}`
+## Sonstiges
 
-## Zahlensystem-Konverter (`number_base_convert`)
+Diese Platzhalter haben keine Kategorie und werden daher im Platzhaltermenü unterhalb der Kategorien aufgelistet.
 
-**Zweck:** Wandelt eine Zahl (ganz oder mit Nachkommastellen) von einer Basis in eine andere um (2–36). Standardmäßig Dezimal, wenn keine Basen angegeben sind.
+### FPS (Bilder pro Sekunde)
 
-**Werte:** `input`, `from_base`, `to_base`
+**Kennung:** `fps`
 
-**Beispiel:**
-
-```
-{"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
-```
-
-**Ausgabe:** `43.8`
-
-## Dateigröße (`file_size`)
-
-**Zweck:** Gibt die Größe einer lokalen Datei in Bytes zurück. Es sind nur lokale Pfade erlaubt.
-
-**Werte:** `path`
-
-**Beispiel:**
+Die Bilder pro Sekunde, zum Beispiel `120`.
 
 ```
-{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"fps"}
 ```
 
-**Ausgabe:** `1284`
+### Verwendeter RAM in MB
 
-## Datei-MD5 (`file_md5`)
+**Kennung:** `usedram`
 
-**Zweck:** Gibt den MD5-Hash einer lokalen Datei als Kleinbuchstaben-Hexzeichenfolge zurück.
-
-**Werte:** `path`
-
-**Beispiel:**
+Der RAM, den das Spiel gerade verwendet, in MB, zum Beispiel `4096`.
 
 ```
-{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"usedram"}
 ```
 
-**Ausgabe:** `d41d8cd98f00b204e9800998ecf8427e`
+### Maximaler RAM in MB
 
-# Praxisbeispiele
+**Kennung:** `maxram`
 
-## Dynamische Speicheranzeige erstellen
-```
-Verwendeter RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholder":"percentram"}%)
-```
+Der maximale RAM, den das Spiel verwenden kann, in MB, zum Beispiel `8192`.
 
-## Eine Echtzeituhr erstellen
 ```
-{"placeholder":"realtimehour","values":{"timezone":"system"}}:{"placeholder":"realtimeminute","values":{"timezone":"system"}}:{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+{"placeholder":"maxram"}
 ```
 
-## Eine Systeminformationsanzeige erstellen
-```
-OS: {"placeholder":"osname"}
-CPU: {"placeholder":"cpuinfo"}
-GPU: {"placeholder":"gpuinfo"}
-Java: {"placeholder":"javaver"}
-```
+### Verwendeter RAM in %
 
-## Spielerstatus-HUD
+**Kennung:** `percentram`
+
+Der vom Spiel verwendete RAM als Prozentsatz des maximalen RAM, zum Beispiel `50`.
+
 ```
-Gesundheit: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
-Rüstung: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
-XP-Stufe: {"placeholder":"current_player_level"}
+{"placeholder":"percentram"}
 ```
 
-## Komplexe Berechnung mit verschachtelten Platzhaltern
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
-```
+### CPU-Auslastung (JVM)
 
-## Koordinatenanzeige mit Rundung
+**Kennung:** `jvmcpu`
+
+Wie viel CPU-Leistung das Spiel verwendet, in Prozent, zum Beispiel `25.5`.
+
 ```
-X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
-Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
-Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordinate"}"}}
+{"placeholder":"jvmcpu"}
 ```
 
-# Best Practices
+### CPU-Auslastung (Betriebssystem)
 
-1. **Teure Operationen zwischenspeichern**: Einige Platzhalter (z. B. solche, die Systeminformationen lesen) können ressourcenintensiv sein. Erwäge, ihre Werte in Variablen zu speichern, wenn du sie mehrfach verwenden musst.
+**Kennung:** `oscpu`
 
-2. **Geeignete Dezimaleinstellungen verwenden**: Wenn du mit Berechnungen arbeitest, verwende den Parameter `decimal` passend. Setze ihn auf `false`, wenn du Ganzzahlen benötigst, und auf `true`, wenn du genaue Dezimalwerte brauchst.
+Wie stark der gesamte Computer ausgelastet ist, in Prozent, zum Beispiel `42.8`.
 
-3. **Fehlende Werte behandeln**: Berücksichtige immer, was passieren soll, wenn ein Platzhalter keinen Wert zurückgibt. Möglicherweise möchtest du in solchen Fällen Standardwerte bereitstellen.
+```
+{"placeholder":"oscpu"}
+```
 
-4. **Leistung testen**: Wenn du viele Platzhalter oder komplexe verschachtelte Strukturen verwendest, teste die Auswirkungen auf die Leistung, insbesondere auf Systemen mit geringerer Leistung.
+### CPU-Informationen
 
-5. **Erweiterte Größen-/Positionssteuerung verwenden**: Kombiniere für dynamische UI-Elemente Platzhalter mit erweiterter Größen- und Positionssteuerung, um reaktionsfähige Layouts zu erstellen.
+**Kennung:** `cpuinfo`
 
-6. **Mit Variablen kombinieren**: Verwende Platzhalter zusammen mit Variablen für noch dynamischere Inhalte, die über Aktionen aktualisiert werden können.
+Der Name der CPU, zum Beispiel `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`.
 
-# Häufige Probleme und Lösungen
+```
+{"placeholder":"cpuinfo"}
+```
 
-## Platzhalter wird nicht aktualisiert
-Wenn sich der Wert eines Platzhalters nicht wie erwartet aktualisiert, prüfe:
-- ob der Platzhalter korrekt formatiert ist
-- ob du die richtige Groß-/Kleinschreibung für die Platzhalter-IDs verwendest
-- ob der Platzhalter bestimmte Bedingungen benötigt, um sich zu aktualisieren
+### GPU-Informationen
 
-## Verschachtelte Platzhalter funktionieren nicht
-Beim Verschachteln von Platzhaltern:
-- sicherstellen, dass Anführungszeichen korrekt maskiert sind
-- prüfen, ob jeder verschachtelte Platzhalter für sich allein gültig ist
+**Kennung:** `gpuinfo`
 
-## Leistungsprobleme
-Wenn du Leistungsprobleme bemerkst:
-- die Anzahl verwendeter Platzhalter reduzieren
-- unnötige Verschachtelung vermeiden
-- für häufig abgefragte Werte Variablen verwenden
-- den passenden Platzhalter für deinen Anwendungsfall nutzen (z. B. keine Echtzeit-Platzhalter verwenden, wenn statische Werte ausreichen)
+Der Name der Grafikeinheit, die das Spiel verwendet, zum Beispiel `NVIDIA GeForce RTX 3080`.
+
+```
+{"placeholder":"gpuinfo"}
+```
+
+### OpenGL-Version
+
+**Kennung:** `glver`
+
+Die Treiberinformationen der Grafikeinheit, die das Spiel verwendet, zum Beispiel `4.6.0 NVIDIA 566.36`.
+
+```
+{"placeholder":"glver"}
+```
+
+### Java-Version
+
+**Kennung:** `javaver`
+
+Die Java-Version, mit der das Spiel ausgeführt wird, zum Beispiel `21.0.5`.
+
+```
+{"placeholder":"javaver"}
+```
+
+### Java Virtual Machine
+
+**Kennung:** `jvmname`
+
+Der Name der Java Virtual Machine, zum Beispiel `OpenJDK 64-Bit Server VM`.
+
+```
+{"placeholder":"jvmname"}
+```
+
+### Betriebssystemname
+
+**Kennung:** `osname`
+
+Der Name des Betriebssystems, zum Beispiel `Windows 11`.
+
+```
+{"placeholder":"osname"}
+```
+
+### Laufzeit
+
+**Kennung:** `uptime_duration`
+
+Wie lange das Spiel läuft, in Sekunden, zum Beispiel `742`.
+
+- `output_as_millis` (optional): Mit `true` werden stattdessen Millisekunden zurückgegeben. Standardmäßig `false`.
+
+```
+{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+```
+
+### Zufallstext
+
+**Kennung:** `randomtext`
+
+Eine zufällige Zeile aus einer Textdatei, einer URL oder einem von dir eingegebenen Text, etwa ein zufälliger Tipp. Dateien und URLs werden alle 30 Sekunden erneut gelesen.
+
+- `source`: eine `.txt`-Datei im Spielordner, eine URL oder durch `\n` getrennte Zeilen, zum Beispiel `Tip 1\nTip 2\nTip 3`
+- `interval` (optional): nach wie vielen Sekunden eine neue Zeile ausgewählt wird. Mit `0` wird eine Zeile pro Spielsitzung ausgewählt. Standardmäßig `10`.
+
+```
+{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/tips.txt","interval":"10"}}
+```
+
+### Webtext
+
+**Kennung:** `webtext`
+
+Die erste Textzeile einer Webseite, zum Beispiel einer Textdatei auf deiner Website. Der Inhalt wird einmal geladen und erneut, wenn FancyMenu neu geladen wird. Während des Ladens ist der Wert leer.
+
+- `link`: die URL der Seite
+
+```
+{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}
+```
+
+### Absoluter Datei-/Ordnerpfad
+
+**Kennung:** `absolute_path`
+
+Der vollständige Pfad einer Datei oder eines Ordners im Spielordner, zum Beispiel `C:/Users/Steve/AppData/Roaming/.minecraft/config/fancymenu`.
+
+- `short_path`: der Pfad innerhalb des Spielordners
+
+```
+{"placeholder":"absolute_path","values":{"short_path":"config/fancymenu"}}
+```
+
+### Anzahl der Textzeichen
+
+**Kennung:** `text_character_count`
+
+Wie viele Zeichen ein Text hat: `Hello World!` hat `12` Zeichen.
+
+- `text`: der Text
+
+```
+{"placeholder":"text_character_count","values":{"text":"$$player_nickname"}}
+```
+
+### Textbreite
+
+**Kennung:** `text_width`
+
+Wie breit ein Text in GUI-Pixeln ist: `Hello World!` ist `57` Pixel breit. Formatierungscodes wie `&l` werden wie im Spiel berücksichtigt, daher ist fetter Text breiter.
+
+- `text`: der Text
+
+```
+{"placeholder":"text_width","values":{"text":"Hello World!"}}
+```
+
+### Texthöhe
+
+**Kennung:** `text_height`
+
+Wie hoch ein Text mit all seinen Zeilen in GUI-Pixeln ist. Zeilenumbrüche werden mit `\n` angegeben. Um die Höhe an ein Textelement anzupassen, verwende [**Inhaltshöhe eines Textelements**](#text-element-content-height); dieser Platzhalter berücksichtigt auch Textskalierung, Zeilenabstand und umbrochene Zeilen.
+
+- `text`: der Text
+
+```
+{"placeholder":"text_height","values":{"text":"First line\nSecond line"}}
+```
+
+### Inhalt der Zwischenablage
+
+**Kennung:** `clipboard_content`
+
+Der Text in der Zwischenablage deines Computers. Wenn sie leer ist, wird nichts zurückgegeben.
+
+```
+{"placeholder":"clipboard_content"}
+```

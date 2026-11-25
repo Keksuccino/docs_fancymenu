@@ -1,55 +1,83 @@
 ---
 title: Lokalizacje przechowywania danych
 description: >-
-  Gdzie FancyMenu przechowuje układy, zasoby, konfigurację oraz trwały stan
-  wykonania.
+  Gdzie FancyMenu zapisuje układy, zasoby, ustawienia i pozostałe dane oraz
+  które pliki należą do profili.
+sourceBlobSha: 30dd81ed90e08184e3063892870e3325d7d7c5cb
 ---
 
 # Lokalizacje przechowywania danych
 
-`<game-directory>` oznacza aktywny folder instancji Minecrafta, który może różnić się od `.minecraft`.
+FancyMenu zapisuje wszystkie dane w dwóch folderach katalogu gry. Chodzi o folder instancji launchera, który może być inny niż `.minecraft`.
 
-Katalogi i pliki są zwykle tworzone dopiero po zainicjowaniu lub użyciu powiązanej funkcji. Zamknij Minecrafta przed ręczną edycją wygenerowanych plików stanu i zachowaj kopię zapasową podczas migracji lub resetowania danych.
+- `config/fancymenu/` zawiera konfigurację: układy, zasoby, zmienne, ustawienia i inne dane. To folder wczytanego [profilu](/profiles), dlatego paczki modów dołączają ten folder.
+- `fancymenu_data/` zawiera dane tej instancji gry, takie jak pozycje elementów Dragger i pobrane pliki. Dane te pozostają takie same we wszystkich profilach.
 
-# Układy, zasoby i konfiguracja
+**Pasek menu -> Narzędzia -> Otwórz katalog FancyMenu** otwiera folder `config/fancymenu/`.
 
-Niektóre wpisy są skonfigurowanymi ręcznie ustawieniami lub zasobami; inne to stan, który FancyMenu aktualizuje w czasie działania.
+Większość plików i folderów pojawia się dopiero po użyciu danej funkcji. Przed zmianą lub usunięciem plików zamknij grę.
 
-| System / funkcja | Plik lub katalog |
+> [!TIP]
+> Aby współdzielić te foldery między instancjami, możesz przenieść je w inne miejsce, a w ich dotychczasowej lokalizacji utworzyć dowiązanie symboliczne (w systemie Windows — junction).
+
+# Twoja konfiguracja
+
+Wszystko znajduje się w `<game-directory>/config/fancymenu/`. Cała zawartość należy do wczytanego [profilu](/profiles).
+
+| Co | Gdzie |
 | --- | --- |
-| Ekrany konfigurowalne | `<game-directory>/config/fancymenu/customizablemenus.txt` |
-| [Niestandardowe GUI](./custom-guis) i reguły nadpisywania ekranów | `<game-directory>/config/fancymenu/custom_gui_screens.txt` |
-| Układy | `<game-directory>/config/fancymenu/customization/` |
-| [Zasoby lokalne](./resources#local-resources) | `<game-directory>/config/fancymenu/assets/` |
-| [Niestandardowe pliki lokalizacji](./localization#fancymenu-custom-localization-files) | `<game-directory>/config/fancymenu/custom_locals/` |
-| [Panoramy](./panoramas) | `<game-directory>/config/fancymenu/panoramas/` |
-| [Pokazy slajdów](./slideshows) | `<game-directory>/config/fancymenu/slideshows/` |
-| [Zmienne FancyMenu](./variables) | `<game-directory>/config/fancymenu/user_variables.db` |
-| Metadane kontrolera [elementu wideo](./elements#video) | `<game-directory>/config/fancymenu/video_element_controller_metas.json` |
-| Metadane kontrolera [elementu audio](./elements#audio) | `<game-directory>/config/fancymenu/audio_element_controller_metas.json` |
-| Serwerowe listenery [FM Data](./fm-data) | `<game-directory>/config/fancymenu/fmdata_server_listeners.json` |
-| Dane powitalne [FM Data](./fm-data) | `<game-directory>/config/fancymenu/fmdata_welcome_data.json` |
-| Instancje [listenerów](./listeners) i skrypty akcji | `<game-directory>/config/fancymenu/listener_instances.txt` |
-| [Schedulery](./schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
+| Układy w plikach `.txt`, również w podfolderach | `customization/` |
+| [Zasoby lokalne](/resources#local-resources), takie jak obrazy i dźwięki | `assets/` |
+| Ustawienia FancyMenu | `options.txt` |
+| Ekrany z włączoną opcją **Dostosowywanie bieżącego ekranu** | `customizablemenus.txt` |
+| [Niestandardowe GUI](/custom-guis) i zastępowane przez nie ekrany | `custom_gui_screens.txt` |
+| [Zmienne](/variables) | `user_variables.db` |
+| [Nasłuchiwacze](/listeners) | `listener_instances.txt` |
+| [Harmonogramy](/schedulers) | `scheduler_instances.txt` |
+| [Panoramy](/panoramas) | `panoramas/` |
+| [Pokazy slajdów](/slideshows) | `slideshows/` |
+| [Niestandardowe tłumaczenia](/localization#fancymenu-custom-localization-files) | `custom_locals/` |
+| Motywy interfejsu FancyMenu (**pasek menu -> Dostosowywanie -> Ustawienia -> Interfejs FancyMenu -> Motyw interfejsu**) | `ui_themes/` |
+| Stany [elementów pola wyboru](/elements#checkbox), które nie używają zmiennej | `checkbox_states.json` |
+| Głośność i stan wstrzymania nadane [elementom wideo](/video) przez akcje | `video_element_controller_metas.json` |
+| Głośność nadana [elementom audio](/elements#audio) przez akcje | `audio_element_controller_metas.json` |
+| Stany włączenia i wyłączenia nadane [animatorom elementów](/element-animator) przez akcje | `animation_controller_states.json` |
+| Ekrany z włączoną opcją **Udostępnij zawartość obszaru przewijania bieżącego ekranu** (zob. [Dostosowywanie przewijanych ekranów](/customizing-scrollable-screens)) | `normalized_scroll_screens.json` |
+| Nasłuchiwacze serwera [FM Data](/fm-data) | `fmdata_server_listeners.json` |
+| Dane powitalne [FM Data](/fm-data) | `fmdata_welcome_data.json` |
+| Pozycja, rozmiar i widoczność widżetów edytora układów | `layout_editor/widgets/` |
+| Nazwa, ikona i szczegóły wczytanego profilu | `profile.json` i `profile_icon.png` |
+| Wszystkie pozostałe [profile](/profiles#where-profiles-are-stored) | `profiles/` |
+| Lista aktualizacji starszych plików wykonanych już przez FancyMenu | `legacy_checklist.txt` |
 
-`customizablemenus.txt` jest zarządzany przez przełącznik **Current Screen Customization** i przechowuje konkretne identyfikatory klas ekranów. Nie dodawaj identyfikatorów [Universal Layout](./universal-layouts); FancyMenu ignoruje je podczas wczytywania pliku.
+Plik `customizablemenus.txt` zawiera nazwy ekranów w postaci nazw ich klas Java. Krótkie [identyfikatory ekranów](/screen-identifiers), takie jak `title_screen`, są w nim pomijane.
 
-Na serwerze dedykowanym dwa pliki FM Data są względne względem głównego katalogu gry tego serwera. Pozostała konfiguracja i zasoby należące do klienta znajdują się w instancji każdego gracza.
+Na serwerze dedykowanym FancyMenu używa tylko dwóch plików [FM Data](/fm-data), znajdujących się w folderze serwera `config/fancymenu/`.
 
-# Trwały stan wykonania
+# Dane instancji
 
-FancyMenu przechowuje dodatkowy wygenerowany stan per instancja poza `config/fancymenu/`. Uwzględniaj te ścieżki w kopii zapasowej tylko wtedy, gdy chcesz zachować powiązany stan użytkownika/wykonania; nie są to definicje układów ani źródłowe zasoby.
+Wszystko znajduje się w `<game-directory>/fancymenu_data/`. Dane te nie należą do profili, więc pozostają przy zmianie profilu.
 
-| System / funkcja | Plik lub katalog |
+| Co | Gdzie |
 | --- | --- |
-| Stany [Checkbox](./elements#checkbox) inne niż zmienne | `<game-directory>/checkbox_states.json` |
-| Pozycje/metadane elementu [Dragger](./dragger) | `<game-directory>/fancymenu_data/dragger_metas.json` |
-| Stan ostatniego świata | `<game-directory>/fancymenu_data/last_world.fmdata` |
-| Stan [Seamless World Loading](./seamless-world-loading) | `<game-directory>/fancymenu_data/seamless_world_loading/` |
-| Zapis stanu zwierzaka Buddy i poziomowania | `<game-directory>/fancymenu_data/buddy/` |
-| Pozycje i widoczność widżetów edytora układu | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
-| Znacznik inicjalizacji domyślnej skali GUI | `<game-directory>/fancymenu_data/default_scale_set.fm` |
+| Pozycje [elementów Dragger](/dragger) | `dragger_metas.json` |
+| Ostatni świat lub serwer — na potrzeby akcji **Wejdź do ostatniego świata / Dołącz do ostatniego serwera** oraz symbolu zastępczego **Ostatni świat lub serwer** | `last_world.fmdata` |
+| Zrzuty ekranu z funkcji [Płynne wczytywanie świata](/seamless-world-loading) | `seamless_world_loading/` |
+| Zapisane dane [Buddy](/decoration-overlays#buddy) — dwa pliki na każdą nakładkę Buddy | `buddy/` |
+| Pliki funkcji [Eksport na potrzeby AI](/export-for-ai) | `ai_exports/` |
+| Ulubione akcje w selektorze akcji | `action_favorites.json` |
+| Głośność podglądu audio i wideo w selektorach plików | `browser_audio_settings.json` i `browser_video_settings.json` |
+| Klatka wyświetlana przez [tło wideo](/video), gdy odtwarzanie jest wstrzymane | `video_thumbnails/` |
+| FFmpeg pobierany przez FancyMenu na potrzeby [kreatora AFMA](/animations#fma-and-afma) | `ffmpeg_cache/` |
+| Informacja, że FancyMenu ustawiło już [**domyślną skalę interfejsu**](/global-customizations) | `default_scale_set.fm` |
+| Pliki tymczasowe, usuwane przy każdym uruchomieniu gry | `fancymenu_temp/` |
 
-Buddy przechowuje stan zwierzaka oraz stan poziomowania/osiągnięć w oddzielnych plikach JSON w swoim katalogu. Każda instancja nakładki Buddy używa własnej pary plików.
+- FancyMenu ustawia **domyślną skalę interfejsu** tylko raz. Usuń `default_scale_set.fm`, aby przy następnym uruchomieniu skala została ustawiona ponownie.
+- Zrzuty ekranu funkcji Płynne wczytywanie świata pokazują wszystko, co było widoczne na ekranie w świecie gry. Jeśli nie chcesz ich zachowywać, usuń je przy zamkniętej grze.
 
-Pliki widżetów edytora układu przechowują pozycję, rozmiar, widoczność, stan rozwinięcia oraz stronę przyciągania każdego widżetu. Usunięcie `default_scale_set.fm` powoduje, że przy następnym uruchomieniu FancyMenu potraktuje skonfigurowaną domyślną skalę GUI tak, jakby nie została jeszcze zastosowana.
+# Pliki ze starszych wersji
+
+Starsze wersje FancyMenu zapisywały niektóre pliki w innych lokalizacjach. FancyMenu przenosi je przy następnym uruchomieniu gry:
+
+- `checkbox_states.json` i `normalized_scroll_screens.json` z katalogu gry do `config/fancymenu/`.
+- `dragger_metas.json` z `config/fancymenu/` do `fancymenu_data/`.

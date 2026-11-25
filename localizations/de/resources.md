@@ -1,8 +1,9 @@
 ---
 title: Ressourcen
 description: >-
-  Wie Ressourcen in FancyMenu funktionieren. Behandelt Ressourcenspeicherorte,
-  lokale Ressourcen und Web-Ressourcen.
+  So funktionieren Ressourcen in FancyMenu. Behandelt Ressourcenpfade, lokale
+  Ressourcen und Webressourcen.
+sourceBlobSha: eb783aaa0098ba295b3ebaf941bb4723e4d08970
 ---
 
 # Ressourcen
@@ -13,35 +14,35 @@ Ressourcenfelder können Inhalte aus folgenden Quellen laden:
 - **Lokal:** eine Datei in der aktiven Spielinstanz.
 - **Web:** eine direkte Datei-URL.
 
-Die meisten Bild-, Audio-, Video- und Textfelder verwenden denselben Ressourcenauswahldialog. Der Auswahldialog enthält einen Browser für Minecraft- und Ressourcenpaket-Inhalte.
+Die meisten Bild-, Audio-, Video- und Textfelder verwenden dieselbe Ressourcenauswahl. Sie enthält einen Browser für Inhalte von Minecraft und Ressourcenpaketen.
 
 # Minecraft-Ressourcen (Ressourcenpakete)
 
-Ressourcenpfade verwenden `namespace:path`. Der Namespace ist das Verzeichnis direkt unter `assets`, und der Pfad umfasst alles unterhalb dieses Namespace.
+Ressourcenpfade verwenden das Format `namespace:path`. Der Namespace ist das Verzeichnis direkt unterhalb von `assets`, und der Pfad umfasst alles unterhalb dieses Namespace.
 
-Betrachten Sie zum Beispiel ein Bild in einem Ressourcenpaket, das unter `/assets/custom_resources/images/image.png` gespeichert ist.
-Sein Ressourcenpfad ist `custom_resources:images/image.png`.
+Nehmen wir zum Beispiel an, ein Bild eines Ressourcenpakets liegt unter `/assets/custom_resources/images/image.png`.
+Sein Ressourcenpfad lautet `custom_resources:images/image.png`.
 
 > [!NOTE]
 > Die integrierten Ressourcen von Minecraft verwenden normalerweise den Namespace `minecraft`.
 
 # Lokale Ressourcen
 
-Speichern Sie lokale Ressourcen in `<game-directory>/config/fancymenu/assets/`. `<game-directory>` ist der Ordner der aktiven Instanz, der sich von `.minecraft` unterscheiden kann.
+Speichere lokale Ressourcen unter `<game-directory>/config/fancymenu/assets/`. `<game-directory>` ist der Ordner der aktiven Spielinstanz und kann sich von `.minecraft` unterscheiden.
 
-Ressourcenfelder können denselben Pfad als `/config/fancymenu/assets/example.png` anzeigen. In diesen Feldern bedeutet der führende `/` weiterhin `<game-directory>`; es ist kein Pfad zum Stammverzeichnis des Dateisystems.
+Ressourcenfelder zeigen möglicherweise denselben Pfad in der Form `/config/fancymenu/assets/example.png` an. In diesen Feldern steht der führende `/` weiterhin für `<game-directory>` und nicht für den Stammordner des Dateisystems.
 
-Diese Dateien können über ihren Config-Ordner mit einem [Modpack mitgeliefert](./modpacks) werden.
+Diese Dateien können über den Konfigurationsordner eines Modpacks [mitgeliefert werden](/modpacks).
 
-Eine vollständige Übersicht über die Pfade von FancyMenu für Layout, Ressourcen, Konfiguration und generierten Status finden Sie unter [Datenspeicherorte](./data-storage-locations).
+Eine vollständige Übersicht über die Speicherorte von Layouts, Ressourcen, Konfigurationen und generierten Daten von FancyMenu findest du unter [Speicherorte von Daten](/data-storage-locations).
 
-# Web-Ressourcen
+# Webressourcen
 
-Verwenden Sie eine direkte URL zur Datei, z. B. `https://example-domain.net/image.png`. Seiten und Weiterleitungslinks sind langsamer und fehleranfälliger als direkte URLs, die auf den Dateinamen und die Dateiendung der Ressource enden.
+Verwende eine direkte URL zur Datei, zum Beispiel `https://example-domain.net/image.png`. Seiten und Weiterleitungslinks sind langsamer und können häufiger fehlschlagen als direkte URLs, die mit dem Dateinamen und der Dateiendung der Ressource enden.
 
 # Platzhalter in Ressourcenquellen
 
-Ressourcenfelder mit Auswahldialog können [Platzhalter](./placeholders) in lokalen Pfaden, URLs und Minecraft-Ressourcenpfaden verwenden. Wählen Sie neben dem Quellenfeld **Im Editor öffnen**, um es direkt zu bearbeiten.
+Ressourcenfelder mit Ressourcenauswahl können [Platzhalter](/placeholders) in lokalen Pfaden, URLs und Minecraft-Ressourcenpfaden verwenden. Wähle neben dem Quellfeld **Im Editor öffnen**, um es direkt zu bearbeiten.
 
 > [!WARNING]
-> Ressourceneingaben, die nicht den normalen Auswahldialog verwenden, unterstützen möglicherweise keine Platzhalter oder Live-Quellenaktualisierungen.
+> Ressourcenfelder, die nicht die normale Ressourcenauswahl verwenden, unterstützen möglicherweise weder Platzhalter noch Live-Aktualisierungen der Quelle.

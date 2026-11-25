@@ -1,13 +1,14 @@
 ---
 title: Ressourcen vorladen
 description: >-
-  Wie man Ressourcen vorlädt, damit sie sofort einsatzbereit sind, sobald das
-  Spiel fertig geladen ist.
+  So lädst du Ressourcen vor, damit sie bereitstehen, sobald das Spiel
+  vollständig geladen ist.
+sourceBlobSha: 8eca400e05987468c1fd0dc29faa5267083e38d0
 ---
 
 # Ressourcen vorladen
 
-Das Vorladen bereitet ausgewählte Ressourcen vor, bevor ein Menü sie benötigt. Verwende es für Ressourcen, die sonst flackern, zuerst einen schwarzen Frame anzeigen oder zu spät starten.
+Beim Vorladen werden ausgewählte Ressourcen vorbereitet, bevor ein Menü sie benötigt. Verwende diese Funktion für Ressourcen, die andernfalls flackern, im ersten Bild schwarz sind oder verzögert starten.
 
 # Ressourcen zum Vorlader hinzufügen
 
@@ -17,20 +18,20 @@ Das Vorladen bereitet ausgewählte Ressourcen vor, bevor ein Menü sie benötigt
 
 <img width="350" alt="Screenshot_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
 
-Die Liste akzeptiert unterstützte Bild-, Animations-, Audio-, Video- und Textressourcen aus lokalen Dateien, Web-URLs oder Ressource-Paketen. Eine live geladene [Browser](./elements#browser)-Seite wird nicht vorab geladen.
+Die Liste unterstützt Bild-, Animations-, Audio-, Video- und Textressourcen aus lokalen Dateien, Web-URLs oder Ressourcenpaketen. Eine aktive [Browser](/elements#browser)-Seite wird nicht vorgeladen.
 
-Der Vorlader startet während des Spielstarts und bei Minecraft-Ressourcenaktualisierungen. Er wartet, bis jeder Eintrag fertig ist oder fehlschlägt, bevor er fortfährt, mit einem Limit von zwei Minuten pro Eintrag.
+Der Vorlader wird beim Spielstart und beim Neuladen der Minecraft-Ressourcen gestartet. Er wartet bei jedem Eintrag, bis dieser fertig geladen wurde oder ein Fehler aufgetreten ist, bevor er fortfährt. Das Zeitlimit pro Eintrag beträgt zwei Minuten.
 
-Geladene Ressourcen bleiben im Cache, bis FancyMenu Ressourcen während eines Reloads oder beim Beenden des Clients freigibt. **Anpassung -> FancyMenu neu laden** gibt den Cache frei, startet den Vorlader jedoch nicht erneut.
+Geladene Ressourcen bleiben im Cache, bis FancyMenu sie beim Neuladen oder beim Herunterfahren des Clients freigibt. **Anpassung -> FancyMenu neu laden** gibt den Cache frei, startet den Vorlader aber nicht erneut.
 
-Das Vorladen erhöht die Ladezeit sowie die RAM-/VRAM-Nutzung. Füge nur Ressourcen hinzu, die sofort bereit sein müssen; entferne große Einträge, wenn dem Client der Speicher ausgeht.
+Das Vorladen verlängert die Ladezeit und erhöht den RAM-/VRAM-Verbrauch. Füge nur Ressourcen hinzu, die sofort bereitstehen müssen. Entferne große Einträge, wenn dem Client der Speicher ausgeht.
 
 <br>
 
 <img width="731" alt="Screenshot_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
 
-# Slideshows und Panoramen vorladen
+# Diashows und Panoramen vorladen
 
-Das Hinzufügen einer [Slideshow](./slideshows) lädt alle ihre Bilder und das optionale Overlay. Das Hinzufügen eines [Panoramas](./panoramas) lädt alle sechs Seiten und das optionale Overlay.
+Beim Hinzufügen einer [Diashow](/slideshows) werden alle Bilder und das optionale Overlay geladen. Beim Hinzufügen eines [Panoramas](/panoramas) werden alle sechs Seiten und das optionale Overlay geladen.
 
-**Anpassung -> FancyMenu neu laden** führt den Vorlader nicht aus. Verwende ein Minecraft-Ressourcen-Reload oder starte das Spiel neu, nachdem du die Vorlade-Liste geändert hast.
+**Anpassung -> FancyMenu neu laden** startet den Vorlader nicht. Lade nach Änderungen an der Vorladeliste die Minecraft-Ressourcen neu oder starte das Spiel neu.

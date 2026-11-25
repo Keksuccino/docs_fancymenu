@@ -1,53 +1,81 @@
 ---
-title: データ保存場所
-description: FancyMenu がレイアウト、リソース、設定、および永続的なランタイム状態を保存する場所。
+title: データの保存場所
+description: FancyMenuがレイアウト、アセット、設定などを保存する場所と、各プロファイルに属するファイルについて説明します。
+sourceBlobSha: 30dd81ed90e08184e3063892870e3325d7d7c5cb
 ---
 
-# データ保存場所
+# データの保存場所
 
-`<game-directory>` は有効な Minecraft インスタンスのフォルダを意味し、`.minecraft` とは異なる場合があります。
+FancyMenuは、ゲームディレクトリ内の2つのフォルダーにすべてのデータを保存します。ここでいうゲームディレクトリはランチャーのインスタンスフォルダーで、`.minecraft`とは異なる場合があります。
 
-ディレクトリやファイルは、通常、関連機能が初期化または使用された後にのみ作成されます。生成された状態ファイルを手動で編集する前には Minecraft を終了し、データを移行またはリセットする際はバックアップを保管してください。
+- `config/fancymenu/` には、レイアウト、アセット、変数、設定などのセットアップ情報が保存されます。読み込まれている[プロファイル](/profiles)のデータで、MODパックにはこのフォルダーが含まれます。
+- `fancymenu_data/` には、Draggerの位置やダウンロードデータなど、このゲームインスタンスのデータが保存されます。どのプロファイルでも共通です。
 
-# レイアウト、リソース、設定
+**メニューバー -> ツール -> FancyMenuのディレクトリを開く**を選ぶと、`config/fancymenu/`が開きます。
 
-一部の項目は設定やアセットとして作成され、ほかは FancyMenu が実行時に更新する状態データです。
+ほとんどのファイルやフォルダーは、該当する機能を使うと作成されます。ファイルを変更または削除する前に、ゲームを終了してください。
 
-| システム / 機能 | ファイルまたはディレクトリ |
+> [!TIP]
+> これらのフォルダーを複数のインスタンス間で共有するには、別の場所に移動し、元の場所にシンボリックリンク（Windowsではジャンクション）を作成します。
+
+# セットアップデータ
+
+`<game-directory>/config/fancymenu/`内のすべてのデータです。すべて、読み込まれている[プロファイル](/profiles)に属します。
+
+| 内容 | 場所 |
 | --- | --- |
-| カスタマイズ可能な画面 | `<game-directory>/config/fancymenu/customizablemenus.txt` |
-| [カスタム GUI](./custom-guis) と画面上書きルール | `<game-directory>/config/fancymenu/custom_gui_screens.txt` |
-| レイアウト | `<game-directory>/config/fancymenu/customization/` |
-| [ローカルアセット](./resources#local-resources) | `<game-directory>/config/fancymenu/assets/` |
-| [カスタムローカライズファイル](./localization#fancymenu-custom-localization-files) | `<game-directory>/config/fancymenu/custom_locals/` |
-| [パノラマ](./panoramas) | `<game-directory>/config/fancymenu/panoramas/` |
-| [スライドショー](./slideshows) | `<game-directory>/config/fancymenu/slideshows/` |
-| [FancyMenu 変数](./variables) | `<game-directory>/config/fancymenu/user_variables.db` |
-| [ビデオ要素](./elements#video) のコントローラメタデータ | `<game-directory>/config/fancymenu/video_element_controller_metas.json` |
-| [オーディオ要素](./elements#audio) のコントローラメタデータ | `<game-directory>/config/fancymenu/audio_element_controller_metas.json` |
-| [FM Data](./fm-data) のサーバーリスナー | `<game-directory>/config/fancymenu/fmdata_server_listeners.json` |
-| [FM Data](./fm-data) のウェルカムデータ | `<game-directory>/config/fancymenu/fmdata_welcome_data.json` |
-| [リスナー](./listeners) のインスタンスとアクションスクリプト | `<game-directory>/config/fancymenu/listener_instances.txt` |
-| [スケジューラ](./schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
+| `.txt`ファイル形式のレイアウト（サブフォルダー内のものも含む） | `customization/` |
+| 画像やサウンドなどの[ローカルアセット](/resources#local-resources) | `assets/` |
+| FancyMenuの設定 | `options.txt` |
+| **現在の画面のカスタマイズ**が有効になっている画面 | `customizablemenus.txt` |
+| [カスタムGUI](/custom-guis)と、そのカスタムGUIで置き換える画面 | `custom_gui_screens.txt` |
+| [変数](/variables) | `user_variables.db` |
+| [リスナー](/listeners) | `listener_instances.txt` |
+| [スケジューラー](/schedulers) | `scheduler_instances.txt` |
+| [パノラマ](/panoramas) | `panoramas/` |
+| [スライドショー](/slideshows) | `slideshows/` |
+| [カスタムローカライズ](/localization#fancymenu-custom-localization-files) | `custom_locals/` |
+| FancyMenu独自のUIテーマ（**メニューバー -> カスタマイズ -> 設定 -> FancyMenuのUI -> UIテーマ**） | `ui_themes/` |
+| 変数を使わない[チェックボックス要素](/elements#checkbox)の状態 | `checkbox_states.json` |
+| アクションによって[動画要素](/video)に設定された音量と一時停止状態 | `video_element_controller_metas.json` |
+| アクションによって[オーディオ要素](/elements#audio)に設定された音量 | `audio_element_controller_metas.json` |
+| アクションによって[要素アニメーター](/element-animator)に設定されたオン／オフ状態 | `animation_controller_states.json` |
+| **現在の画面のスクロール領域の内容を公開**が有効になっている画面（[スクロール可能な画面のカスタマイズ](/customizing-scrollable-screens)を参照） | `normalized_scroll_screens.json` |
+| [FM Data](/fm-data)のサーバーリスナー | `fmdata_server_listeners.json` |
+| [FM Data](/fm-data)のウェルカムデータ | `fmdata_welcome_data.json` |
+| レイアウトエディターのウィジェットの位置、サイズ、表示状態 | `layout_editor/widgets/` |
+| 読み込まれているプロファイルの名前、アイコン、詳細 | `profile.json`および`profile_icon.png` |
+| その他の[プロファイル](/profiles#where-profiles-are-stored) | `profiles/` |
+| 古いファイルに対するFancyMenuの更新処理の実行状況 | `legacy_checklist.txt` |
 
-`customizablemenus.txt` は **現在の画面のカスタマイズ** トグルによって管理され、具体的な画面クラスの識別子を保存します。[ユニバーサル レイアウト](./universal-layouts) の識別子は追加しないでください。FancyMenu はファイルの読み込み時にそれらを無視します。
+`customizablemenus.txt`には、画面がJavaクラス名で記録されます。`title_screen`のような短い[画面識別子](/screen-identifiers)は記録されません。
 
-専用サーバーでは、2 つの FM Data ファイルはそのサーバーのゲームルートを基準とした相対パスになります。その他のクライアント所有の設定とリソースは、各プレイヤーのインスタンスに属します。
+専用サーバーでは、FancyMenuはサーバーの`config/fancymenu/`フォルダーにある2つの[FM Data](/fm-data)ファイルのみを使用します。
 
-# 永続的なランタイム状態
+# インスタンスデータ
 
-FancyMenu は、`config/fancymenu/` の外にも、追加の生成済みインスタンス別状態を保存します。これらのパスは、関連するユーザー／ランタイム状態を保持したい場合にのみバックアップに含めてください。これらはレイアウト定義や元のアセットではありません。
+`<game-directory>/fancymenu_data/`内のすべてのデータです。プロファイルには含まれないため、プロファイルを切り替えても保持されます。
 
-| システム / 機能 | ファイルまたはディレクトリ |
+| 内容 | 場所 |
 | --- | --- |
-| 変数ではない [チェックボックス](./elements#checkbox) の状態 | `<game-directory>/checkbox_states.json` |
-| [ドラッガー](./dragger) 要素の位置 / メタデータ | `<game-directory>/fancymenu_data/dragger_metas.json` |
-| 最後のワールド状態 | `<game-directory>/fancymenu_data/last_world.fmdata` |
-| [シームレス ワールド ローディング](./seamless-world-loading) の状態 | `<game-directory>/fancymenu_data/seamless_world_loading/` |
-| Buddy のペットおよびレベルアップの保存データ | `<game-directory>/fancymenu_data/buddy/` |
-| レイアウトエディタのウィジェット位置と表示状態 | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
-| デフォルト GUI スケール初期化マーカー | `<game-directory>/fancymenu_data/default_scale_set.fm` |
+| [Dragger要素](/dragger)の位置 | `dragger_metas.json` |
+| **最後にプレイしたワールド／サーバーに入る**アクションと**最後のワールドまたはサーバー**プレースホルダーで使う、最後にプレイしたワールドまたはサーバー | `last_world.fmdata` |
+| [シームレスなワールド読み込み](/seamless-world-loading)のスクリーンショット | `seamless_world_loading/` |
+| [Buddy](/decoration-overlays#buddy)のセーブデータ（Buddyオーバーレイごとに2つのファイル） | `buddy/` |
+| [AI向けエクスポート](/export-for-ai)のファイル | `ai_exports/` |
+| アクション選択画面でお気に入りに登録したアクション | `action_favorites.json` |
+| ファイル選択画面でのオーディオおよび動画プレビューの音量 | `browser_audio_settings.json`および`browser_video_settings.json` |
+| 一時停止中に[動画背景](/video)に表示されるフレーム | `video_thumbnails/` |
+| [AFMAクリエーター](/animations#fma-and-afma)用にFancyMenuがダウンロードするFFmpeg | `ffmpeg_cache/` |
+| FancyMenuが[**デフォルトのGUIスケール**](/global-customizations)をすでに設定したことを示す記録 | `default_scale_set.fm` |
+| 一時ファイル（ゲーム起動時に毎回削除されます） | `fancymenu_temp/` |
 
-Buddy は、ペットの状態とレベルアップ／実績の状態を、それぞれディレクトリ内の別々の JSON ファイルに保存します。Buddy の各オーバーレイインスタンスは、それぞれ独自の 2 つのファイルを使用します。
+- FancyMenuが**デフォルトのGUIスケール**を設定するのは一度だけです。`default_scale_set.fm`を削除すると、次回起動時に再びスケールが設定されます。
+- シームレスなワールド読み込みのスクリーンショットには、ワールド内で画面に表示されていたものがすべて写ります。残したくない場合は、ゲームを終了してから削除してください。
 
-レイアウトエディタのウィジェットファイルには、各ウィジェットの位置、サイズ、表示状態、展開状態、およびスナップ先の側が保存されます。`default_scale_set.fm` を削除すると、次回起動時に FancyMenu は設定済みのデフォルト GUI スケールがまだ適用されていないものとして扱います。
+# 古いバージョンのファイル
+
+古いバージョンのFancyMenuでは、一部のファイルが別の場所に保存されていました。これらのファイルは、次回ゲームを起動したときにFancyMenuによって引き継がれます。
+
+- ゲームディレクトリ直下にある`checkbox_states.json`と`normalized_scroll_screens.json`は、`config/fancymenu/`に移動されます。
+- `config/fancymenu/`にある`dragger_metas.json`は、`fancymenu_data/`に移動されます。

@@ -1,75 +1,111 @@
 ---
 title: Profile
 description: >-
-  Jak zapisywać, przełączać i udostępniać całe konfiguracje FancyMenu za pomocą
-  profili.
-sourceBlobSha: d0a07901ee271d802c7bc07ea6d787575f48d51c
+  Zapisuj, przełączaj i udostępniaj kompletne konfiguracje FancyMenu za pomocą
+  profili oraz instaluj szablony układów społeczności.
+sourceBlobSha: 52348efde29798073477e572b59a7630f96013ad
 ---
+
 # Profile
 
-Profil to kompletna konfiguracja FancyMenu: wszystkie układy, zasoby, zmienne i ustawienia FancyMenu danej instancji. Profile pozwalają przechowywać wiele konfiguracji w jednej instancji Minecrafta, przełączać się między nimi w kilka sekund oraz udostępniać je innym jako pojedynczy plik.
+Profil to kompletna konfiguracja FancyMenu: układy, zasoby, zmienne, ustawienia i wszystko inne z katalogu `config/fancymenu/` (zobacz [Lokalizacje przechowywania danych](/data-storage-locations#your-setup)). Dzięki profilom możesz przechowywać kilka konfiguracji w jednej instancji Minecrafta, przełączać się między nimi w kilka sekund i udostępniać je jako pojedynczy plik.
 
-<img width="800" alt="profile" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/profiles_showcase.gif?raw=true">
+<img width="800" alt="Tworzenie profilu My Menu Pack, importowanie profilu Wind Chimes przez upuszczenie jego pliku .fmp na okno Profile, usuwanie profilu My Menu Pack i wczytywanie Wind Chimes, co zmienia ekran tytułowy" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/profiles_showcase.gif?raw=true">
 
-# Otwieranie okna profili
+# Okno Profili
 
-Otwórz okno profili przez **pasek menu -> Dostosowywanie -> Profile**.
+Otwórz je, wybierając **pasek menu -> Dostosowywanie -> Profile**.
 
-Lista po lewej stronie pokazuje wszystkie profile, a po prawej wyświetlane są szczegóły wybranego profilu. Załadowany profil jest oznaczony jako **Aktywny**. Każda zmiana wprowadzona w FancyMenu jest zapisywana bezpośrednio w załadowanym profilu.
+- Lista po lewej stronie zawiera wszystkie profile. Wczytany profil znajduje się na początku i jest oznaczony jako **Aktywny**. Wszystkie zmiany wprowadzane w FancyMenu są od razu zapisywane w tym profilu.
+- Po prawej stronie wyświetlane są informacje o wybranym profilu: jego ikona, tytuł, wersja, autorzy, liczba układów, rozmiar, linki i opis.
+- Po najechaniu kursorem na przyciski pod listą i szczegółami wyświetlana jest ich nazwa. Kliknięcie profilu prawym przyciskiem myszy również wyświetla dostępne dla niego akcje.
 
-Istniejąca konfiguracja automatycznie staje się pierwszym profilem o nazwie **Mój profil**.
+Twoja konfiguracja automatycznie staje się pierwszym profilem o nazwie **Mój profil**.
 
-> [!TIP]
-> Kliknij profil na liście prawym przyciskiem myszy, aby zobaczyć wszystkie dostępne dla niego działania.
+# Wczytywanie profilu
 
-# Przełączanie profili
+Wybierz profil i kliknij **Wczytaj profil**, kliknij go dwukrotnie albo naciśnij `Enter`.
 
-Wybierz profil i kliknij **Załaduj profil** albo kliknij go dwukrotnie. FancyMenu uruchomi się ponownie z wybraną konfiguracją.
+FancyMenu uruchomi się ponownie z wybranym profilem, tak jak po uruchomieniu gry. Wszystkie pozostałe okna FancyMenu zostaną zamknięte, a jeśli nie jesteś w świecie, otworzy się ekran tytułowy.
 
 > [!NOTE]
-> Przełączanie nigdy niczego nie usuwa. Bieżąca konfiguracja zostaje zapisana jako osobny profil przed załadowaniem innego, więc zawsze możesz do niej wrócić.
+> Wczytywanie nigdy niczego nie usuwa. Bieżąca konfiguracja zostaje najpierw zapisana jako osobny profil, więc zawsze możesz do niej wrócić.
 
 # Tworzenie profili
 
-- **Nowy profil** (przycisk **+** poniżej listy) tworzy pusty profil i otwiera jego edytor. Puste profile zachowują osobiste ustawienia FancyMenu, takie jak skala interfejsu i motyw.
-- **Duplikuj** tworzy kopię wybranego profilu, co jest przydatne podczas testowania zmian bez modyfikowania oryginału.
+- **Nowy profil** (przycisk `+` pod listą) tworzy pusty profil i od razu otwiera jego szczegóły, aby można było nadać mu nazwę. Zachowuje preferencje FancyMenu, takie jak skala interfejsu i motyw, ale nie zawiera układów ani innych dostosowań. Nie zostaje wczytany automatycznie.
+- **Duplikuj** kopiuje wybrany profil. To przydatne, gdy chcesz coś przetestować bez modyfikowania oryginału.
 
-# Edytowanie profili
+# Edytowanie szczegółów profilu
 
-Kliknij **Edytuj**, aby zmienić tytuł, wersję, autorów, opis, ikonę, narzędzie do zgłaszania problemów oraz linki profilu. Opis obsługuje Markdown, a ikoną może być dowolny obraz PNG.
+Wybierz profil i kliknij **Edytuj**, aby zmienić jego szczegóły:
 
-Nic nie zostanie zapisane, dopóki nie klikniesz **Gotowe**.
+- **Tytuł** — jedyna wymagana informacja o profilu.
+- **Wersja** i **Autorzy**. Oddzielaj nazwiska kilku autorów przecinkami.
+- **Opis** z formatowaniem [Markdown](/text-formatting#markdown), takim jak pogrubienie, nagłówki i listy.
+- **Zgłaszanie problemów** — strona internetowa, na której można zgłaszać problemy z profilem. Wyświetla się jako **Zgłoś problem**.
+- **Linki** do serwera Discord, kanału YouTube, strony internetowej i innych miejsc. Kliknij **Dodaj link** i wklej link — FancyMenu samo rozpozna platformę.
+- Ikona: **Wybierz ikonę** pozwala wybrać obraz PNG, a **Usuń ikonę** usuwa ikonę. Obrazy, które nie są kwadratowe, zostaną przycięte do środka.
+
+Zmiany nie zostaną zapisane, dopóki nie klikniesz **Gotowe**.
 
 # Udostępnianie profili
 
 > [!CAUTION]
-> Profile mogą wykonywać działania. Importuj je wyłącznie z zaufanych źródeł.
+> Profile mogą wykonywać akcje, takie jak otwieranie linków lub uruchamianie poleceń. Importuj je tylko z zaufanych źródeł.
 
 ## Eksportowanie
 
-Wybierz profil, kliknij **Eksportuj** i wybierz miejsce zapisu. Zostanie utworzony plik `.fmp` zawierający cały profil.
+Wybierz profil, kliknij **Eksportuj** i wskaż miejsce zapisu. W ten sposób powstanie plik `.fmp` zawierający cały profil, gotowy do udostępnienia.
 
 ## Importowanie
 
-Kliknij **Importuj** poniżej listy i wybierz plik `.fmp` albo po prostu przeciągnij go i upuść w oknie profili.
+Kliknij **Importuj** pod listą i wybierz plik `.fmp` albo przeciągnij go i upuść na oknie Profili.
 
-- Zaimportowane profile nie są ładowane automatycznie. Załaduj je tak jak każdy inny profil.
-- Jeśli masz już ten sam profil (na przykład jego starszą wersję), możesz wybrać **Zastąp** albo **Zachowaj oba**. Zastąpienie załadowanego profilu powoduje natychmiastowe załadowanie zaimportowanej wersji.
-- Profile utworzone w nowszej wersji FancyMenu wyświetlają ostrzeżenie, ponieważ niektóre ich elementy mogą nie działać.
+- Zaimportowane profile nie są wczytywane automatycznie. Wczytaj je tak jak każdy inny profil.
+- Jeśli masz już dany profil, na przykład jego starszą wersję, wybierz **Zastąp** albo **Zachowaj oba**. Zastąpienie wczytanego profilu natychmiast wczyta zaimportowany profil, a zmiany wprowadzone w starym zostaną utracone.
+- Profile utworzone w nowszej wersji FancyMenu najpierw wyświetlą ostrzeżenie, ponieważ niektóre ich elementy mogą nie działać.
+- Działają tylko pliki `.fmp` wyeksportowane przez FancyMenu. Informacje o zwykłych folderach znajdziesz w następnej sekcji.
 
-## Dodawanie folderów z konfiguracjami
+## Dodawanie folderów z konfiguracją
 
-Niektóre konfiguracje są dostarczane jako zwykły folder `fancymenu`, a nie jako plik `.fmp`. Aby dodać taki folder jako profil, zmień jego nazwę na wybraną nazwę profilu, przenieś go do `<game-directory>/config/fancymenu/profiles/` (utwórz folder `profiles`, jeśli jeszcze nie istnieje) i otwórz okno profili. FancyMenu automatycznie doda go do listy profili.
+Niektóre konfiguracje są udostępniane jako zwykły folder `fancymenu` (kopia czyjegoś katalogu `config/fancymenu/`), a nie jako plik `.fmp`. Aby dodać taki folder jako profil:
+
+1. Rozpakuj go, jeśli jest w pliku `.zip`.
+2. Przenieś folder do `<game-directory>/config/fancymenu/profiles/`. Jeśli folderu `profiles` jeszcze tam nie ma, utwórz go.
+3. Otwórz okno Profili albo zamknij je i otwórz ponownie. FancyMenu doda folder do listy profili.
+
+Folder musi zawierać bezpośrednio pliki, takie jak `customization/` i `options.txt`, a nie kolejny folder `fancymenu`. Tytułem profilu będzie nazwa folderu, chyba że zawiera on własne szczegóły profilu. Zmienisz je, klikając **Edytuj**.
+
+## Szablony układów
+
+Na kanale [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) na [serwerze Discord Kekscord](https://discord.gg/rhayah27GC) (oficjalnym serwerze Discord Keksuccino poświęconym pomocy dotyczącej modów) społeczność udostępnia kompletne konfiguracje FancyMenu i jego dodatków, takich jak SpiffyHUD i Drippy Loading Screen. Każdy wpis zawiera link do pobrania pliku `.fmp` albo folderu `fancymenu`.
+
+Szablony są złożone, dlatego nie próbuj łączyć ich z własną konfiguracją. Zamiast tego dodaj je jako osobny profil:
+
+1. [Zaimportuj](#importing) plik `.fmp` albo [dodaj folder](#adding-setup-folders).
+2. Wybierz szablon w oknie Profili i kliknij **Wczytaj profil**.
+
+Twoja konfiguracja pozostanie dostępna jako osobny profil, więc zawsze możesz do niej wrócić.
+
+Większość szablonów można edytować i wykorzystywać we własnych projektach, takich jak paczki modów, ale nie wszystkie. Zawsze sprawdź we wpisie dotyczącym szablonu, co wolno z nim robić.
 
 # Usuwanie profili
 
-Wybierz profil i kliknij **Usuń**. Usunięcia nie można cofnąć, dlatego jeśli chcesz zachować kopię zapasową, najpierw wyeksportuj profil.
+Wybierz profil i kliknij **Usuń** albo naciśnij `Delete` (`Fn + Delete` na macOS). Usunięcia nie można cofnąć, więc jeśli chcesz mieć kopię zapasową, najpierw wyeksportuj profil.
 
-Załadowanego profilu nie można usunąć. Najpierw załaduj inny profil.
+Nie można usunąć wczytanego profilu. Najpierw wczytaj inny profil.
 
 # Gdzie przechowywane są profile
 
-- Załadowany profil zawiera się w `<game-directory>/config/fancymenu/`, tak jak każda konfiguracja FancyMenu.
-- Wszystkie pozostałe profile są przechowywane w `<game-directory>/config/fancymenu/profiles/`. Kliknij **Otwórz folder**, aby otworzyć folder profilu.
+- Wczytany profil znajduje się w katalogu `<game-directory>/config/fancymenu/`.
+- Wszystkie pozostałe profile znajdują się w katalogu `<game-directory>/config/fancymenu/profiles/`, każdy we własnym folderze. **Otwórz folder** otwiera folder wybranego profilu.
 
-`<game-directory>` to folder aktywnej instancji, który może różnić się od `.minecraft`. Stan działania przechowywany przez FancyMenu poza `config/fancymenu/` nie jest częścią profili — zobacz [Lokalizacje przechowywania danych](./data-storage-locations#persistent-runtime-state).
+`<game-directory>` to folder instancji, który może być inny niż `.minecraft`. Dane w `<game-directory>/fancymenu_data/` nie należą do profili — zobacz [Lokalizacje przechowywania danych](/data-storage-locations#instance-data).
+
+# Rozwiązywanie problemów
+
+- **Niektóre pliki są nadal używane:** często oznacza to, że gra nadal coś wczytuje, na przykład dźwięk. Odczekaj kilka sekund i spróbuj ponownie. Jeśli problem nie ustąpi, zamknij programy, które mogą korzystać z tych plików, takie jak program antywirusowy, usługa synchronizacji w chmurze albo okno menedżera plików.
+- **Poprzednie przełączanie profilu jeszcze się nie zakończyło:** nic nie zostało utracone. Wczytaj ponownie profil albo uruchom grę ponownie, aby dokończyć przełączanie.
+- **Brakuje wolnego miejsca na dysku:** komunikat informuje, ile miejsca potrzebuje profil. Zwolnij trochę miejsca i spróbuj ponownie.
+- Akcje dotyczące profili są wykonywane pojedynczo. Eksportowanie, importowanie i duplikowanie dużych profili może chwilę potrwać, dlatego na czas ich wykonywania wyświetlany jest przycisk **Anuluj**.

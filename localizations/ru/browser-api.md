@@ -1,29 +1,30 @@
 ---
-title: API JavaScript для браузера
+title: JavaScript API браузера
 description: >-
-  Как использовать JavaScript API FancyMenu в функциях модов на базе Rinku,
-  таких как элемент Browser.
+  Как использовать JavaScript API FancyMenu в функциях на базе Rinku, например в
+  элементе браузера.
+sourceBlobSha: 1dff260c0c5337037200dbf9033300a6bba56ca1
 ---
 # JavaScript API FancyMenu
 
-FancyMenu внедряет JavaScript-мост в каждую функцию на базе [Rinku](https://modrinth.com/mod/rinku) (например, элемент **Browser**). Этот мост позволяет веб-контенту:
+FancyMenu внедряет мост JavaScript во все функции на базе [Rinku](https://modrinth.com/mod/rinku) (например, в элемент **Браузер**). С его помощью веб-контент может:
 
-- запускать любые [действия] FancyMenu (./action-scripts) прямо из JavaScript,
-- асинхронно читать любые [плейсхолдеры] FancyMenu (/placeholders).
+- запускать любые [действия](/action-scripts) FancyMenu непосредственно из JavaScript;
+- асинхронно получать значения любых [плейсхолдеров](/placeholders) FancyMenu.
 
 API доступен через две глобальные переменные:
-- `window.fancymenu` — основной namespace
-- `window.FancyMenu` — псевдоним (полностью повторяет структуру `fancymenu`)
+- `window.fancymenu` — основное пространство имён;
+- `window.FancyMenu` — псевдоним (полностью повторяет структуру `fancymenu`).
 
-Используйте событие `fancymenu-ready` или проверку наличия функции, чтобы убедиться, что мост доступен, прежде чем вызывать его.
+Перед вызовом API убедитесь, что мост доступен: дождитесь события `fancymenu-ready` или проверьте наличие API.
 
 ## 1. Пространства имён и структура
 
-- `fancymenu.actions` — выполнение действий FancyMenu из браузера.
-- `fancymenu.placeholders` — асинхронное чтение значений плейсхолдеров FancyMenu.
-- `FancyMenu` повторяет `fancymenu`, поэтому оба объекта предоставляют одинаковые подпространства имён.
+- `fancymenu.actions` — запуск действий FancyMenu из браузера.
+- `fancymenu.placeholders` — асинхронное получение значений плейсхолдеров FancyMenu.
+- `FancyMenu` повторяет структуру `fancymenu`, поэтому в обоих пространствах имён доступны одинаковые подпространства.
 
-Для действий доступны две вспомогательные функции:
+Для действий предусмотрены два вспомогательных метода:
 - `fancymenu.actions.execute(actionType, actionValue?)`
 - `fancymenu.actions.executeWithCallback(actionType, actionValue?, onSuccess?, onFailure?)`
 
@@ -31,39 +32,39 @@ API доступен через две глобальные переменные
 
 ```javascript
 if (typeof fancymenu !== 'undefined') {
-    // можно безопасно использовать
+    // API можно использовать
 }
 
 window.addEventListener('fancymenu-ready', () => {
-    console.log('FancyMenu API is ready');
+    console.log('API FancyMenu готово к работе');
 });
 ```
 
-Контент также может храниться локально: поместите HTML-файлы в `<game-directory>/config/fancymenu/assets/` и загружайте их по URL вида `file:///config/fancymenu/assets/<name>.html`.
+Контент также можно разместить локально: сохраните HTML-файлы в `<game-directory>/config/fancymenu/assets/` и загружайте их по URL вида `file:///config/fancymenu/assets/<name>.html`.
 
-## 3. Выполнение действий
+## 3. Запуск действий
 
-Используйте пространство имён `fancymenu.actions`. Каждый вызов повторяет строки действий, используемые в скриптах FancyMenu.
+Используйте пространство имён `fancymenu.actions`. Каждый вызов соответствует строкам действий, используемым в скриптах FancyMenu.
 
-### Быстрые вызовы
+### Короткие вызовы
 
 ```javascript
 fancymenu.actions.execute('quitgame');                // действие без значения
 fancymenu.actions.execute('opengui', 'title_screen'); // действие со значением
-fancymenu.actions.execute('set_variable', 'hp:20');   // значение в формате name:value
+fancymenu.actions.execute('set_variable', 'hp:20');   // значение в формате имя:значение
 ```
 
-### С обратными вызовами
+### Вызовы с обработчиками
 
 ```javascript
 fancymenu.actions.executeWithCallback(
     'opengui',
     'title_screen',
-    result => console.log('Открыт экран заголовка'),
-    error  => console.error('Не удалось открыть:', error)
+    result => console.log('Главный экран открыт'),
+    error  => console.error('Не удалось открыть экран:', error)
 );
 
-// Параметр value необязателен. Если он опущен, передавайте callback-функции сразу после actionType.
+// Параметр value необязателен. Если он не нужен, передайте обработчики сразу после actionType.
 fancymenu.actions.executeWithCallback(
     'quitgame',
     result => console.log('Выход запущен'),
@@ -71,24 +72,24 @@ fancymenu.actions.executeWithCallback(
 );
 ```
 
-Устаревшие помощники `fancymenu.execute(...)` и `fancymenu.executeWithCallback(...)` по-прежнему перенаправляются к пространству имён `actions`.
+Устаревшие вспомогательные методы `fancymenu.execute(...)` и `fancymenu.executeWithCallback(...)` по-прежнему перенаправляют вызовы в пространство имён `actions`.
 
 ### Распространённые типы действий
 
-- `quitgame` — немедленно завершает игру (без значения)
-- `back_to_last_screen` — возвращает к предыдущему GUI (без значения)
-- `opengui` — открывает экран FancyMenu или ванильный экран (значение: идентификатор экрана)
-- `openlink` — открывает браузер (значение: URL)
-- `sendmessage` — отправляет строку в чат (значение: текст сообщения)
-- `set_variable` — задаёт переменную FancyMenu (значение: `name:value`)
-- `joinserver` — подключается к серверу (значение: адрес)
-- `disconnect_server_or_world` — отключается и переходит на целевой экран (значение: идентификатор экрана)
+- `quitgame` — немедленно завершает игру (значение не требуется);
+- `back_to_last_screen` — возвращает к предыдущему экрану GUI (значение не требуется);
+- `opengui` — открывает экран FancyMenu или стандартный экран игры (значение: идентификатор экрана);
+- `openlink` — открывает браузер (значение: URL);
+- `sendmessage` — отправляет сообщение в чат (значение: текст сообщения);
+- `set_variable` — задаёт переменную FancyMenu (значение: `name:value`);
+- `joinserver` — подключается к серверу (значение: адрес);
+- `disconnect_server_or_world` — отключается и переходит на указанный экран (значение: идентификатор экрана).
 
-Через мост доступно любое действие, существующее в FancyMenu; полный каталог см. в [скриптах действий](./action-scripts).
+Через мост доступны все действия FancyMenu. Полный список см. в разделе [скрипты действий](/action-scripts).
 
-## 4. Чтение плейсхолдеров
+## 4. Получение значений плейсхолдеров
 
-Система [плейсхолдеров] FancyMenu (/placeholders) доступна через `fancymenu.placeholders` (и `FancyMenu.placeholders`). Оба вспомогательных метода возвращают `Promise<string>`:
+Система [плейсхолдеров](/placeholders) FancyMenu доступна через `fancymenu.placeholders` (и `FancyMenu.placeholders`). Оба вспомогательных метода возвращают `Promise<string>`:
 
 ```ts
 fancymenu.placeholders.get(identifier: string): Promise<string>
@@ -97,9 +98,9 @@ fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promi
 
 ### Передача переменных
 
-- Переменные — это строки в формате `name:value`. Мост разделяет их только по **первому** двоеточию, поэтому значение может содержать дополнительные двоеточия.
-- Имена и значения обрезаются по краям; пустые имена отклоняются.
-- Передавайте столько переменных, сколько требует плейсхолдер. Необязательные можно пропускать.
+- Переменные — это строки в формате `name:value`. Мост разделяет строку только по **первому** двоеточию, поэтому значение может содержать дополнительные двоеточия.
+- Пробелы в начале и конце имён и значений удаляются; пустые имена недопустимы.
+- Передайте столько переменных, сколько требует плейсхолдер. Необязательные переменные можно опустить.
 
 ### Примеры
 
@@ -122,9 +123,9 @@ fancymenu.placeholders.getWithVars(
 ).then(part => console.log('Выбранная часть:', part));
 ```
 
-### Модель ошибок
+### Обработка ошибок
 
-Отклонённые Promise содержат структурированную ошибку:
+Отклонённый Promise содержит структурированную ошибку:
 
 ```ts
 interface PlaceholderError {
@@ -147,13 +148,13 @@ fancymenu.placeholders.get('unknown')
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Интеграция FancyMenu</title>
+    <title>Интеграция с FancyMenu</title>
 </head>
 <body>
     <h1>Управление игрой</h1>
     
     <button onclick="quitGame()">Выйти из игры</button>
-    <button onclick="openTitleScreen()">Экран заголовка</button>
+    <button onclick="openTitleScreen()">Главный экран</button>
     <button onclick="disconnectFromServer()">Отключиться</button>
     <button onclick="setVariable()">Задать переменную</button>
     <button onclick="loadPlaceholders()">Загрузить плейсхолдеры</button>
@@ -163,7 +164,7 @@ fancymenu.placeholders.get('unknown')
     <script>
         function getActions() {
             if (typeof fancymenu === 'undefined') {
-                console.warn('API FancyMenu пока недоступен.');
+                console.warn('API FancyMenu пока недоступно.');
                 return null;
             }
             return fancymenu.actions || fancymenu;
@@ -181,7 +182,7 @@ fancymenu.placeholders.get('unknown')
             actions.executeWithCallback(
                 'opengui',
                 'title_screen',
-                () => console.log('Экран заголовка открыт!'),
+                () => console.log('Главный экран открыт!'),
                 err => console.error('Ошибка:', err)
             );
         }
@@ -204,7 +205,7 @@ fancymenu.placeholders.get('unknown')
 
         function loadPlaceholders() {
             if (typeof fancymenu === 'undefined' || !fancymenu.placeholders) {
-                console.warn('API плейсхолдеров FancyMenu пока недоступен.');
+                console.warn('API плейсхолдеров FancyMenu пока недоступно.');
                 return;
             }
 
@@ -224,7 +225,7 @@ fancymenu.placeholders.get('unknown')
                     'Время работы (секунды): ' + uptimeSeconds + '\n' +
                     'Второй фрукт: ' + secondFruit;
             }).catch(error => {
-                console.error('Не удалось запросить плейсхолдер:', error);
+                console.error('Не удалось получить значения плейсхолдеров:', error);
             });
         }
     </script>
@@ -232,17 +233,17 @@ fancymenu.placeholders.get('unknown')
 </html>
 ```
 
-## 6. Лучшие практики и примечания
+## 6. Рекомендации и примечания
 
-- **Определяйте наличие моста** перед использованием или слушайте событие `fancymenu-ready`.
-- **Обрабатывайте ошибки** (callback-функции для [действий](/action-scripts), `.catch` для [плейсхолдеров](/placeholders)), чтобы показывать понятные сообщения.
-- **Проверяйте входные данные** перед передачей их в действия или переменные [плейсхолдеров](/placeholders).
-- **Ограничивайте частоту запросов**; не перегружайте мост частыми вызовами (особенно в циклах обновления плейсхолдеров).
-- **Безопасность:** браузерный контент может вызывать любое зарегистрированное действие FancyMenu, включая действия с файлами, сетью, командами, буфером обмена, ресурс-паками, ссылками и выходом из игры. Загружайте только доверенные страницы и проверяйте все данные, полученные из веб-контента.
+- **Проверяйте наличие моста** перед его использованием или ожидайте событие `fancymenu-ready`.
+- **Обрабатывайте ошибки** (обратные вызовы для [действий](/action-scripts), `.catch` для [плейсхолдеров](/placeholders)), чтобы показывать полезные сообщения.
+- **Проверяйте входные данные** перед передачей их действиям или переменным [плейсхолдеров](/placeholders).
+- **Ограничивайте частоту запросов**: не отправляйте вызовы мосту слишком часто, особенно в циклах обновления плейсхолдеров.
+- **Безопасность:** контент браузера может запускать любые зарегистрированные действия FancyMenu, в том числе действия с файлами, сетью, командами, буфером обмена, наборами ресурсов, ссылками и выходом из игры. Загружайте только доверенные страницы и проверяйте все данные, полученные из веб-контента.
 
 ## 7. Устранение неполадок
 
-1. Убедитесь, что страница загружена в браузере Rinku, управляемом FancyMenu.
+1. Убедитесь, что страница открыта в браузере Rinku, управляемом FancyMenu.
 2. Проверьте консоль браузера на наличие ошибок JavaScript.
-3. Убедитесь, что идентификатор [плейсхолдера](/placeholders) или тип [действия](/action-scripts) указан правильно и все требуемые значения переданы.
+3. Убедитесь, что идентификатор [плейсхолдера](/placeholders) или тип [действия](/action-scripts) указан правильно и переданы все необходимые значения.
 4. Если выполнение неожиданно завершается с ошибкой, проверьте журнал Minecraft (`latest.log`) на наличие сообщений об ошибках FancyMenu.

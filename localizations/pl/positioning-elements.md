@@ -1,76 +1,102 @@
 ---
 title: Pozycjonowanie elementów
-description: Jak poprawnie używać punktów zaczepienia.
+description: Jak prawidłowo używać punktów zakotwiczenia.
+sourceBlobSha: c6c6b53374ed720fcdc32a3a0fbc1784f202cc5a
 ---
 
 # Pozycjonowanie elementów w FancyMenu
 
-W FancyMenu pozycja każdego elementu jest określana przez **punkty zaczepienia**. Są one potrzebne do obliczania, gdzie element powinien pojawić się na ekranie, aby elementy się nie nakładały, nie wychodziły poza ekran i nie przesuwały się nieprawidłowo po zmianie rozmiaru okna.
+W FancyMenu położenie każdego elementu określają **punkty zakotwiczenia**. Są one potrzebne do obliczenia, gdzie element powinien pojawić się na ekranie. Dzięki nim elementy nie nachodzą na siebie, nie wychodzą poza ekran ani nie przesuwają się nieprawidłowo po zmianie rozmiaru okna.
 
-## Zrozumienie punktów zaczepienia
+## Zrozumienie punktów zakotwiczenia
 
-Punkty zaczepienia służą jako punkt odniesienia, od którego obliczana jest pozycja elementu. Domyślnie elementy dodawane do układów są przypisane do punktu zaczepienia **„Środek ekranu”**. Ten punkt znajduje się dokładnie na środku ekranu, niezależnie od rozmiaru okna.
+Punkty zakotwiczenia wyznaczają punkt odniesienia, od którego obliczane jest położenie elementu. Domyślnie elementy dodawane do układów są powiązane z punktem zakotwiczenia **„Środek ekranu”**. Jest to dokładny środek ekranu, niezależnie od rozmiaru okna.
 
-Na przykład, jeśli element znajduje się 2 centymetry od środka ekranu i jest przypisany do punktu **„Środek ekranu”**, zachowa tę odległość niezależnie od zmian rozmiaru okna.
+Na przykład, jeśli element jest oddalony o 2 centymetry od środka ekranu i jest powiązany z punktem zakotwiczenia **„Środek ekranu”**, zachowa tę odległość niezależnie od zmian rozmiaru okna.
 
-## Praca z punktami zaczepienia
+## Korzystanie z punktów zakotwiczenia
 
-Gdy przeciągasz element w edytorze, podświetlany jest punkt zaczepienia, do którego jest on podłączony. Domyślnie ta akcja pokazuje również wszystkie inne dostępne punkty zaczepienia. Możesz zmienić punkt zaczepienia elementu, przeciągając go nad inny punkt i czekając, aż pasek ładowania się wypełni.
+Gdy przeciągasz element w edytorze, podświetlany jest punkt zakotwiczenia, z którym jest on połączony. Domyślnie ta czynność wyświetla również wszystkie pozostałe dostępne punkty zakotwiczenia. Możesz zmienić punkt zakotwiczenia elementu, przeciągając go nad inny punkt i czekając, aż pasek postępu się zapełni.
 
-![Illustration of anchor points](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
+![Ilustracja punktów zakotwiczenia](https://github.com/Keksuccino/FancyMenu/assets/35544624/25bff930-0b52-4d76-b0e9-3e1cbcf3c20e)
 
-## Przypinanie elementów do innych elementów
+## Zakotwiczanie elementów względem innych elementów
 
-Elementy mogą również służyć jako punkty zaczepienia dla innych elementów. Ta funkcja jest szczególnie przydatna do płynnego integrowania własnych elementów z wyglądem menu Vanilla, bez konieczności dostosowywania każdego elementu Vanilla osobno.
+Jako punktu zakotwiczenia element może używać innego elementu. Będzie wtedy przesuwać się razem z nim, zachowując odległość od jego lewego górnego rogu. Przydaje się to w przypadku paneli złożonych z kilku elementów, etykiety obok przycisku z podstawowego interfejsu gry oraz [elementów przeciąganych](/dragger).
 
-Aby przypiąć element do innego, po prostu przeciągnij go w kierunku wybranego elementu. Gdy przeciągany element znajdzie się nad innym, jego punkt zaczepienia zostanie zmieniony na ten, nad którym się znajduje — tak samo jak podczas najechania na rzeczywisty punkt zaczepienia.
+Można to zrobić na dwa sposoby. W obu przypadkach element pozostaje na swoim miejscu.
 
-Dzięki temu element może poruszać się razem ze swoim nadrzędnym elementem.
+### Przeciąganie
 
-## Przykład przypinania elementów
+1. Przeciągnij element i przytrzymaj wskaźnik nad drugim elementem.
+2. Poczekaj, aż pasek się zapełni, a następnie puść.
 
-Poniższy zrzut ekranu pokazuje, jak należy wybierać punkty zaczepienia dla elementów.
+Jeśli wskaźnik znajduje się już nad drugim elementem w chwili rozpoczęcia przeciągania, przesuń go poza ten element, a następnie z powrotem. Elementy, które od początku znajdują się pod wskaźnikiem, nie są uwzględniane.
+
+Aby ta funkcja działała, opcje **Podświetlanie obszaru zakotwiczenia** i **Podświetlanie elementu zakotwiczenia** w menu **Okno** muszą być włączone. Obie są domyślnie włączone. Pierwsza włącza i wyłącza zakotwiczanie przez przytrzymanie, a druga dodaje inne elementy do punktów zakotwiczenia. Opcja **Czas przytrzymania obszaru/elementu zakotwiczenia (sekundy)** w tym samym menu określa, jak długo trzeba przytrzymać wskaźnik. Domyślnie są to 2 sekundy.
+
+### Według identyfikatora
+
+1. Kliknij prawym przyciskiem myszy drugi element, a następnie wybierz **Kopiuj identyfikator elementu**.
+2. Kliknij prawym przyciskiem myszy pierwszy element i wybierz **Punkt zakotwiczenia -> Inny element**.
+3. Wklej identyfikator w polu **Identyfikator elementu** i kliknij **Gotowe**.
+
+Jeśli zaznaczono kilka elementów, wykonanie kroków 2 i 3 zakotwiczy je wszystkie jednocześnie. Więcej informacji o identyfikatorach znajdziesz w artykule [Identyfikatory elementów](/element-identifiers).
+
+## Punkty zakotwiczenia w obszarach przewijania
+
+Elementy w [obszarze przewijania](/scrollable-areas) również mają punkty zakotwiczenia, ale są one powiązane z zawartością obszaru, a nie z ekranem:
+
+- **Lewy górny róg** oznacza lewy górny róg zawartości, **Środek ekranu** — jej środek, a dolne punkty zakotwiczenia są przytwierdzone do końca zawartości. Dzięki temu element może znajdować się na samym końcu długiej listy i pozostać tam, gdy lista się wydłuży.
+- Elementy w obszarze mogą być zakotwiczone wyłącznie względem innych elementów z tego samego obszaru.
+- Gdy przeniesiesz element do obszaru lub poza niego, elementy zakotwiczone po obu stronach jego krawędzi otrzymają punkt zakotwiczenia **Lewy górny róg** i pozostaną na swoich miejscach.
+
+Działa to w trybie **Punkty zakotwiczenia** danego obszaru. W pozostałych trybach to obszar sam rozmieszcza elementy. Więcej informacji znajdziesz w artykule [Obszary przewijania](/scrollable-areas#anchors-mode).
+
+## Przykład zakotwiczania elementów
+
+Poniższy zrzut ekranu pokazuje, jak dobierać punkty zakotwiczenia elementów.
 
 <br>
-<img width="571" alt="Screenshot_2" src="https://gist.github.com/user-attachments/assets/159073e1-ab78-4086-9add-e660a1e4c93f">
+<img width="571" alt="Zrzut ekranu 2" src="https://gist.github.com/user-attachments/assets/159073e1-ab78-4086-9add-e660a1e4c93f">
 
-Wszystkie elementy, które powinny pozostawać na środku ekranu (przyciski i postać gracza), są przypięte do punktu zaczepienia **Środek ekranu**.
+Wszystkie elementy, które powinny pozostać na środku ekranu (przyciski i postać gracza), są zakotwiczone do punktu **Środek ekranu**.
 
-Przyciski w lewym górnym rogu są przypięte do punktu **Górny lewy róg**, ponieważ powinny pozostać w lewym górnym rogu.
+Przyciski w lewym górnym rogu są zakotwiczone do punktu **Lewy górny róg**, ponieważ powinny pozostać w tym rogu.
 
-Element tekstowy w lewym dolnym rogu jest przypięty do punktu zaczepienia **Dolny lewy róg**, ponieważ powinien pozostać w lewym dolnym rogu.
+Element tekstowy w lewym dolnym rogu jest zakotwiczony do punktu **Lewy dolny róg**, ponieważ powinien pozostać w tym rogu.
 
-Element obrazu w prawym dolnym rogu jest przypięty do punktu zaczepienia **Dolny prawy róg**, ponieważ powinien pozostać w prawym dolnym rogu.
+Element obrazu w prawym dolnym rogu jest zakotwiczony do punktu **Prawy dolny róg**, ponieważ powinien pozostać w tym rogu.
 
 ## Przesuwanie elementów poza ekran
 
-Domyślnie nie można przesuwać elementów poza ekran, co działa jak zabezpieczenie na wypadek wczytania układu w bardzo małym lub nietypowym rozmiarze okna, dzięki czemu elementy nadal są widoczne i można z nimi wchodzić w interakcję.
+Domyślnie nie można przesuwać elementów poza ekran. To zabezpieczenie przydaje się, gdy układ zostanie wczytany w bardzo małym lub nietypowym oknie — elementy pozostają wtedy widoczne i można z nimi wchodzić w interakcję.
 
-Zawsze pozostaną na ekranie i zachowają niewielki odstęp między sobą a jego krawędziami.
+Elementy zawsze pozostaną na ekranie, zachowując niewielki odstęp od jego krawędzi.
 
-Możesz **wyłączyć** to dla pojedynczych elementów, klikając je **prawym przyciskiem myszy**, a następnie wyłączając opcję **Pozostaw na ekranie**.
+Możesz **wyłączyć** tę funkcję dla poszczególnych elementów, klikając je **prawym przyciskiem myszy**, a następnie wyłączając opcję **Pozostaw na ekranie**.
 
 > [!WARNING]
-> Wyłączenie tej opcji może czasami spowodować, że element zniknie, ponieważ jego rzeczywista pozycja znajdowała się poza ekranem, a funkcja sprawiała, że pozostawał widoczny. Jeśli tak się stanie, **cofnij** ostatnią akcję (wyłączenie **Pozostaw na ekranie**) za pomocą skrótu cofania lub w **pasku menu -> Edycja -> Cofnij**, a następnie ręcznie przesuń element na środek ekranu i ponownie wyłącz **Pozostaw na ekranie**. Teraz powinien pozostać widoczny nawet przy wyłączonej tej funkcji.
+> Wyłączenie tej funkcji może czasem spowodować zniknięcie elementu, ponieważ jego rzeczywiste położenie znajdowało się poza ekranem, a funkcja wymuszała jego widoczność. Jeśli tak się stanie, **cofnij** ostatnią czynność (wyłączenie opcji **Pozostaw na ekranie**) za pomocą skrótu cofania albo wybierając **pasek menu -> Edycja -> Cofnij**. Następnie ręcznie przesuń element na środek ekranu i ponownie wyłącz opcję **Pozostaw na ekranie**. Teraz element powinien pozostać widoczny mimo wyłączenia tej funkcji.
 
-## Centrowanie elementów
+## Wyśrodkowywanie elementów
 
-Jeśli elementy mają stały rozmiar, ich wyśrodkowanie jest tak proste, jak przypięcie ich do punktu zaczepienia opartego na środku.
+Jeśli elementy mają stały rozmiar, wyśrodkowanie ich jest proste — wystarczy zakotwiczyć je do punktu zakotwiczenia wyznaczającego środek.
 
-Jeśli element dynamicznie zmienia swój rozmiar w zależności od warunków lub czegoś innego, jest to nieco bardziej skomplikowane, ale FancyMenu ma do tego świetną funkcję! W takim przypadku najpierw przypnij element do punktu zaczepienia opartego na środku, a następnie kliknij go prawym przyciskiem myszy. W menu kontekstowym włącz **Sticky Anchors**. Ta funkcja zmienia sposób, w jaki FancyMenu oblicza pozycję elementu, dzięki czemu zawsze zachowuje on tę samą odległość od swojego punktu zaczepienia, niezależnie od tego, czy jego rozmiar się zmienia. W przypadku punktów zaczepienia opartych na środku zawsze będzie zachowywać tę samą odległość od punktu zaczepienia względem absolutnego środka elementu, dzięki czemu pozostanie on wyśrodkowany przy użyciu punktów zaczepienia opartych na środku. (Dla punktów opartych na lewej stronie zawsze będzie zachowywać tę samą odległość od punktu zaczepienia względem lewej strony elementu, a dla punktów opartych na prawej stronie — względem prawej strony elementu.)
+Jeśli rozmiar elementu zmienia się dynamicznie zależnie od warunków lub innych czynników, sprawa jest nieco bardziej skomplikowana. FancyMenu oferuje jednak przydatną funkcję, która to ułatwia! Najpierw zakotwicz element do punktu wyznaczającego środek, a następnie kliknij go prawym przyciskiem myszy. W menu kontekstowym włącz opcję **Przyklejony punkt zakotwiczenia**. Funkcja ta zmienia sposób obliczania położenia elementu przez FancyMenu, dzięki czemu zachowuje on tę samą odległość od punktu zakotwiczenia niezależnie od zmian rozmiaru. W przypadku punktów wyznaczających środek element zawsze zachowuje tę samą odległość od punktu zakotwiczenia, mierzoną od jego geometrycznego środka. Dzięki temu pozostaje wyśrodkowany. (W przypadku punktów zakotwiczenia po lewej stronie odległość jest zawsze zachowywana względem lewej krawędzi elementu, a w przypadku punktów po prawej stronie — względem jego prawej krawędzi).
 
-## Więcej sposobów na poprawę pozycjonowania elementów
+## Dodatkowe sposoby na poprawę położenia elementów
 
-Jeśli **wszystkie punkty zaczepienia są poprawne**, ale elementy nadal nachodzą na siebie, gdy okno jest zbyt małe, możliwe, że Twój układ jest po prostu zbyt przeładowany jak na standardową logikę skalowania interfejsu Minecrafta.
+Jeśli **wszystkie punkty zakotwiczenia są ustawione prawidłowo**, ale elementy nadal nachodzą na siebie, gdy okno jest zbyt małe, układ może być po prostu zbyt rozbudowany jak na standardowy mechanizm skalowania interfejsu Minecrafta.
 
-### Wymuszona skala GUI
+### Wymuszone skalowanie interfejsu
 
-Jednym ze sposobów na poprawę pozycjonowania elementów układu jest wymuszenie skali GUI dla menu poprzez **kliknięcie prawym przyciskiem myszy tła edytora** i wybranie **Force GUI Scale**. Sprawi to, że menu zawsze będzie miało tę samą skalę GUI, niezależnie od ustawienia w opcjach Minecrafta.
+Jednym ze sposobów na poprawę położenia elementów układu jest wymuszenie skali interfejsu dla menu. W tym celu **kliknij prawym przyciskiem myszy tło edytora** i wybierz **Wymuś skalę interfejsu**. Menu będzie wtedy zawsze używać tej samej skali interfejsu, niezależnie od ustawień skali w opcjach Minecrafta.
 
 ### Automatyczne skalowanie
 
-Ostatnią opcją naprawy nakładania się elementów jest użycie **automatycznego skalowania**.
-To ustawienie automatycznie dopasuje skalę menu do rozmiaru okna, aby jak najlepiej zachować pozycje elementów podczas zmiany rozmiaru okna. Aby włączyć automatyczne skalowanie, **kliknij prawym przyciskiem myszy tło edytora**, a następnie kliknij **Auto-Scaling**.
+Ostatnim sposobem na rozwiązanie problemu nachodzących na siebie elementów jest użycie **automatycznego skalowania**.
+To ustawienie automatycznie skaluje menu na podstawie rozmiaru okna, aby podczas jego zmiany jak najlepiej zachować położenie elementów. Aby włączyć automatyczne skalowanie, **kliknij prawym przyciskiem myszy tło edytora**, a następnie wybierz **Automatyczne skalowanie**.
 
 > [!WARNING]
-> **Automatyczne skalowanie** może sprawić, że **tekst** renderowany przez Minecrafta będzie **wyglądał źle**. To nie jest błąd, tylko sposób, w jaki działa renderowanie tekstu w Minecraftcie. W przypadku przycisków dobrym obejściem jest umieszczenie etykiet przycisków jako części tekstury tła przycisku i ustawienie pustej etykiety zwykłego przycisku.
+> **Automatyczne skalowanie** może sprawić, że tekst renderowany przez Minecrafta będzie **wyglądał nieprawidłowo**. To nie jest błąd — tak po prostu działa renderowanie tekstu w Minecrafcie. W przypadku przycisków można temu zaradzić, umieszczając etykietę przycisku w teksturze jego tła i ustawiając pustą etykietę zwykłego przycisku.

@@ -1,36 +1,35 @@
 ---
-title: API Shadera GLSL
-description: >-
-  Twórz efektowne shadery GLSL FancyMenu dla tła, elementów i nakładek
-  dekoracyjnych.
+title: API shaderów GLSL
+description: 'Twórz shadery GLSL FancyMenu do tła, elementów i nakładek dekoracyjnych.'
+sourceBlobSha: f3da9c3fe83444dab5c59f74f5011e2d6e8cf9e6
 ---
 
-# API Shadera GLSL FancyMenu
+# API shaderów GLSL FancyMenu
 
-Ten dokument opisuje środowisko wykonawcze GLSL używane przez:
+Ten dokument opisuje środowisko uruchomieniowe GLSL używane przez FancyMenu w:
 
-- `GLSL` tło menu
-- `GLSL` element
-- `GLSL` nakładkę dekoracyjną
+- tle menu `GLSL`
+- elemencie `GLSL`
+- nakładce dekoracyjnej `GLSL`
 
-Omawia tryby kompilacji, routing wieloprzebiegowy, obsługiwane uniformy oraz praktyczne wzorce tworzenia shaderów.
+Obejmuje tryby kompilacji, obsługę wielu przebiegów, obsługiwane uniformy oraz praktyczne wskazówki dotyczące tworzenia shaderów.
 
-## 1. Przegląd środowiska wykonawczego
+## 1. Omówienie środowiska uruchomieniowego
 
 FancyMenu renderuje shadery za pomocą wewnętrznego potoku OpenGL (`#version 150`) i obsługuje:
 
-- shadery jednoprzejściowe (`Image` only)
+- shadery jednoprzebiegowe (tylko przebieg `Image`)
 - shadery wieloprzebiegowe (`Buffer A` / `B` / `C` / `D` + `Image`)
-- punkty wejścia w stylu Shadertoya (`mainImage`)
+- punkty wejścia w stylu Shadertoy (`mainImage`)
 - bezpośrednie punkty wejścia fragmentów (`main`)
 
-Źródła shaderów są wprowadzane jako pola tekstowe inline:
+Źródła shaderów są wprowadzane jako tekst:
 
-- `Shader Source` (przejście Image, wymagane do renderowania)
-- `Buffer A Source` (opcjonalne)
-- `Buffer B Source` (opcjonalne)
-- `Buffer C Source` (opcjonalne)
-- `Buffer D Source` (opcjonalne)
+- `Shader Source` (przebieg Image; wymagany do renderowania)
+- `Buffer A Source` (opcjonalny)
+- `Buffer B Source` (opcjonalny)
+- `Buffer C Source` (opcjonalny)
+- `Buffer D Source` (opcjonalny)
 
 Jeśli źródło Image jest puste, renderowanie kończy się błędem „no source”.
 
@@ -50,13 +49,13 @@ Oczekiwany punkt wejścia:
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 ```
 
-FancyMenu opakowuje go w `main()` i przekazuje współrzędne lokalnego obszaru:
+FancyMenu opakowuje go w `main()` i przekazuje współrzędne lokalne względem obszaru:
 
 ```glsl
 mainImage(fmColor_FancyMenu, gl_FragCoord.xy - fmAreaOffset);
 ```
 
-Wrapper mnoży kanał alpha wyniku przez `fmOpacity`.
+Wrapper mnoży alfę wyjściową przez `fmOpacity`.
 
 ### 2.2 Tryb Direct
 
@@ -66,59 +65,59 @@ Oczekiwany punkt wejścia:
 void main()
 ```
 
-Zachowanie zgodności:
+Zgodność wsteczna:
 
-- Próbowana jest kompatybilna wersja z `gl_FragColor`.
-- Próbowana jest też wersja bez kompatybilności (dla nowoczesnych shaderów z jawnie zadeklarowanym `out vec4`).
+- Podejmowana jest próba użycia wariantu zgodnego z `gl_FragColor`.
+- Podejmowana jest również próba użycia wariantu bez tej zgodności (dla nowoczesnych shaderów z jawnym `out vec4`).
 
-W trybie direct `fmOpacity` nie jest automatycznie stosowane do wyniku. W razie potrzeby zastosuj je ręcznie.
+W trybie Direct `fmOpacity` nie jest automatycznie stosowane do wyniku. W razie potrzeby zastosuj je ręcznie.
 
 ### 2.3 Tryb Auto
 
-Auto próbuje kolejno zgodne warianty (Shadertoy/direct) i używa pierwszego, który się skompiluje.
+Tryb Auto kolejno wypróbowuje zgodne warianty (Shadertoy/Direct) i używa pierwszego, który się skompiluje.
 
-## 3. Preprocessing źródła i wbudowane makra
+## 3. Przetwarzanie źródła i wbudowane makra
 
 Przed kompilacją FancyMenu normalizuje źródło:
 
 - usuwa BOM UTF-8
-- konwertuje CRLF/CR do LF
-- usuwa linie `#version ...`
-- usuwa linie `precision ...;`
+- zamienia CRLF/CR na LF
+- usuwa wiersze `#version ...`
+- usuwa wiersze `precision ...;`
 
-Wstrzykiwany na starcie kod środowiska zawiera:
+Preambuła wstrzykiwana przez środowisko uruchomieniowe zawiera:
 
 - `#version 150`
-- `in vec2 fmUv_FancyMenu` (pełnoekranowe UV w `[0,1]`, początek w lewym dolnym rogu)
+- `in vec2 fmUv_FancyMenu` (UV dla pełnego ekranu w zakresie `[0,1]`, początek układu współrzędnych w lewym dolnym rogu)
 - `#define iGlobalTime iTime`
 - `#define texture2D texture`
 - `#define textureCube texture`
 
 Uwaga:
 
-- Jeśli źródło już deklaruje znaną nazwę uniformu (np. `iTime`), FancyMenu nie wstrzykuje jej duplikatu.
+- Jeśli źródło zawiera już deklarację znanej nazwy uniformu (np. `iTime`), FancyMenu nie wstrzykuje jej ponownie.
 - FancyMenu nadal próbuje przesyłać wartości do tej nazwy w czasie działania.
-- `textureCube` jest tutaj tylko makrem aliasu; `iChannel0..3` są uniformami `sampler2D`.
+- `textureCube` jest tu tylko makrem aliasującym; `iChannel0..3` to uniformy typu `sampler2D`.
 
-## 4. System przejść (Image + Buffer A-D)
+## 4. System przebiegów (Image + Buffer A-D)
 
-FancyMenu ma 5 slotów przejść:
+FancyMenu ma 5 slotów przebiegów:
 
 - `Buffer A`
 - `Buffer B`
 - `Buffer C`
 - `Buffer D`
-- `Image` (końcowy przejściowy etap na ekran)
+- `Image` (końcowy przebieg wyświetlany na ekranie)
 
-Zachowanie:
+Zasady działania:
 
-- Przejścia bufferów uruchamiają się tylko wtedy, gdy ich źródło nie jest puste.
-- Przejście Image musi być obecne, aby renderować wynik.
-- Bufory są renderowane do tekstur zmiennoprzecinkowych (`GL_RGBA16F`), a następnie ping-pongowane (zamiana odczyt/zapis co klatkę).
+- Przebiegi Buffer uruchamiają się tylko wtedy, gdy ich źródło nie jest puste.
+- Aby wyrenderować wynik, przebieg Image musi być obecny.
+- Buffery są renderowane do tekstur zmiennoprzecinkowych (`GL_RGBA16F`), a następnie używane w trybie ping-pong (zamiana tekstur odczytu i zapisu przy każdej klatce).
 
-### 4.1 Routing kanałów dla każdego przejścia
+### 4.1 Przypisywanie kanałów w poszczególnych przebiegach
 
-Każde przejście udostępnia routing dla `iChannel0..3`. Dla każdego kanału możesz wybrać:
+Każdy przebieg udostępnia przypisywanie wejść dla `iChannel0..3`. Dla każdego kanału można wybrać:
 
 - `None`
 - `Resource 0`
@@ -130,72 +129,72 @@ Każde przejście udostępnia routing dla `iChannel0..3`. Dla każdego kanału m
 - `Buffer C`
 - `Buffer D`
 
-Kanały zasobów pochodzą z ustawień `iChannel# Resource`.
+Kanały Resource korzystają z ustawień `iChannel# Resource`.
 
-Domyślne wartości:
+Wartości domyślne:
 
-- wszystkie routingi `iChannel` domyślnie mają wartość `None`
-- żadne przejście bufora nie jest aktywne, dopóki źródło tego bufora nie będzie niepuste
+- wszystkie przypisania `iChannel` domyślnie mają wartość `None`
+- żaden przebieg Buffer nie jest aktywny, dopóki jego źródło nie będzie niepuste
 
 Ważne:
 
-- Routing do tego samego przejścia bufora (feedback) odczytuje dane z poprzedniej klatki (ping-pong read texture).
-- Jeśli routowane źródło jest brakujące/nieaktywne, podłączana jest tekstura zapasowa, a `iChannelResolution[n].z` ma wartość `0.0`.
+- Przypisanie wejścia do tego samego przebiegu Buffer (sprzężenie zwrotne) odczytuje dane z poprzedniej klatki (teksturę odczytu w trybie ping-pong).
+- Jeśli przypisane źródło nie istnieje lub jest nieaktywne, używana jest tekstura zastępcza, a `iChannelResolution[n].z` przyjmuje wartość `0.0`.
 
 ## 5. Współrzędne i semantyka obszaru
 
 Shadery działają w prostokątnym obszarze:
 
-- Tło menu: pełny ekran
-- Element GLSL: prostokąt elementu
+- tło menu: obszar obejmujący cały ekran
+- element GLSL: prostokąt elementu
 
 Konwencje współrzędnych:
 
-- Uniformy pikselowe są w pikselach lokalnych obszaru.
-- Początek osi Y jest w lewym dolnym rogu dla pikselowych współrzędnych widocznych po stronie shaderów.
-- Współrzędne myszy nie są przycinane; wartości mogą być poza obszarem, jeśli kursor znajduje się poza nim.
+- Unity pikselowe podają wartości w pikselach lokalnych względem obszaru.
+- Początek układu współrzędnych pikseli przekazywanych shaderowi znajduje się w lewym dolnym rogu.
+- Współrzędne myszy nie są ograniczane; mogą wykraczać poza obszar, jeśli kursor znajduje się poza nim.
 
 Pola specjalne:
 
-- `fmAreaOffset`: pozycja lewego dolnego rogu obszaru w przestrzeni pikselowej ekranu
-- `fmAreaTopLeft`: pozycja lewego górnego rogu obszaru w przestrzeni pikselowej ekranu
+- `fmAreaOffset`: pozycja lewego dolnego rogu obszaru w ekranowym układzie współrzędnych pikseli
+- `fmAreaTopLeft`: pozycja lewego górnego rogu obszaru w ekranowym układzie współrzędnych pikseli
 - `fmAreaSize`: rozmiar obszaru w pikselach
 
-## 6. Dokumentacja API uniformów
+## 6. Opis API uniformów
 
-Wszystkie poniższe uniformy są dostępne zarówno dla shaderów tła, jak i shaderów elementów.
+Wszystkie poniższe uniformy są dostępne zarówno dla shaderów tła, jak i elementów.
 
 ## 6.1 Uniformy zgodne z Shadertoy
 
 | Uniform | Typ | Znaczenie |
 |---|---|---|
 | `iResolution` | `vec3` | `(areaWidthPx, areaHeightPx, 1.0)` |
-| `iTime` | `float` | Skumulowany czas działania shaderu w sekundach |
-| `iTimeDelta` | `float` | Delta czasu ostatniego renderu, zależna od freeze/skalowania czasu |
-| `iFrameRate` | `float` | Awaryjna liczba FPS z Minecrafta lub runtime FPS |
-| `iFrame` | `int` | Licznik klatek dla tego runtime'u |
-| `iMouse` | `vec4` | Zobacz szczegóły poniżej |
-| `iDate` | `vec4` | `(year, month, day, secondsOfDayWithFraction)` |
-| `iSampleRate` | `float` | Stała `44100.0` |
-| `iChannelTime[4]` | `float[4]` | Obecnie wszystkie ustawione na `iTime` |
-| `iChannelResolution[4]` | `vec3[4]` | `(width, height, validFlag)` dla każdego kanału |
-| `iChannel0..3` | `sampler2D` | Przekierowane wejścia teksturowe |
+| `iTime` | `float` | Skumulowany czas działania shadera w sekundach |
+| `iTimeDelta` | `float` | Czas od poprzedniego renderowania, zależny od zamrożenia/czynnika skali czasu |
+| `iFrameRate` | `float` | FPS w czasie działania; w razie potrzeby używa FPS Minecrafta jako wartości zastępczej |
+| `iFrame` | `int` | Licznik klatek dla danego środowiska uruchomieniowego |
+| `iMouse` | `vec4` | Szczegóły poniżej |
+| `iDate` | `vec4` | `(rok, miesiąc, dzień, sekundy dnia z ułamkiem)` |
+| `iSampleRate` | `float` | Stała wartość `44100.0` |
+| `iChannelTime[4]` | `float[4]` | Obecnie wszystkie mają wartość `iTime` |
+| `iChannelResolution[4]` | `vec3[4]` | `(szerokość, wysokość, flagaPoprawności)` dla każdego kanału |
+| `iChannel0..3` | `sampler2D` | Przypisane tekstury wejściowe |
 
 ### Szczegóły `iMouse`
 
 `iMouse = vec4(x, y, z, w)`
 
-- `x`, `y`: bieżąca pozycja myszy w pikselach lokalnych obszaru albo zachowanie hold/frozen, jeśli włączono przełącznik
-- `z`, `w`: początek lewego kliknięcia
-  - dodatnie podczas trzymania lewego przycisku myszy
-  - ujemne po zwolnieniu
+- `x`, `y`: bieżąca pozycja myszy w pikselach lokalnych względem obszaru albo pozycja zatrzymana/zamrożona, jeśli włączono tę opcję
+- `z`, `w`: pozycja kliknięcia lewym przyciskiem
+  - wartości dodatnie, gdy lewy przycisk myszy jest wciśnięty
+  - wartości ujemne po jego zwolnieniu
 
-Zachowanie sterowane przełącznikiem:
+Działanie kontrolowane przełącznikiem:
 
 - `Update iMouse Position Only While Holding LMB = Off`:
-  - `iMouse.xy` aktualizuje się ciągle
+  - `iMouse.xy` aktualizuje się na bieżąco
 - `... = On`:
-  - `iMouse.xy` aktualizuje się tylko podczas trzymania LMB, a potem pozostaje na ostatniej pozycji z momentu trzymania
+  - `iMouse.xy` aktualizuje się tylko wtedy, gdy lewy przycisk myszy jest wciśnięty; po jego zwolnieniu pozostaje na ostatniej pozycji z czasu przytrzymania
 
 Wartość domyślna:
 
@@ -205,38 +204,38 @@ Wartość domyślna:
 
 | Uniform | Typ | Znaczenie |
 |---|---|---|
-| `fmAreaOffset` | `vec2` | Przesunięcie lewego dolnego rogu obszaru w pikselach w przestrzeni ekranu |
+| `fmAreaOffset` | `vec2` | Przesunięcie lewego dolnego rogu obszaru w pikselach, w ekranowym układzie współrzędnych |
 | `fmAreaSize` | `vec2` | Rozmiar obszaru w pikselach |
 | `fmAreaPosition` | `vec2` | To samo co `fmAreaOffset` |
-| `fmAreaTopLeft` | `vec2` | Przesunięcie lewego górnego rogu obszaru w pikselach w przestrzeni ekranu |
-| `fmScreenSize` | `vec2` | Pełny rozmiar ekranu w pikselach |
-| `fmGuiScale` | `float` | Aktualna skala GUI |
+| `fmAreaTopLeft` | `vec2` | Przesunięcie lewego górnego rogu obszaru w pikselach, w ekranowym układzie współrzędnych |
+| `fmScreenSize` | `vec2` | Rozmiar całego ekranu w pikselach |
+| `fmGuiScale` | `float` | Bieżąca skala GUI |
 | `fmMouse` | `vec4` | `(localPxX, localPxYBottom, localNormX, localNormY)` |
-| `fmMouseDelta` | `vec2` | Różnica ruchu myszy w pikselach obszaru (Y jest odwrócone do shaderowego up) |
-| `fmMouseButtons` | `ivec4` | Stany wciśnięcia przycisków `0..3` |
-| `fmMouseClickCount` | `ivec4` | Skumulowane liczby naciśnięć dla przycisków `0..3` |
-| `fmMouseReleaseCount` | `ivec4` | Skumulowane liczby zwolnień dla przycisków `0..3` |
-| `fmMouseScroll` | `vec2` | Zmiana scrolla od poprzedniego renderu tego runtime'u |
-| `fmMouseScrollTotal` | `vec2` | Skumulowane sumy scrolla |
-| `fmKeyEvent` | `ivec4` | `(lastKeyCode, lastScanCode, lastModifiers, lastAction)` |
-| `fmKeyEventCount` | `int` | Skumulowany licznik zdarzeń klawiatury |
-| `fmCharEvent` | `ivec4` | `(lastCodePoint, lastModifiers, 0, 0)` |
-| `fmCharEventCount` | `int` | Skumulowany licznik zdarzeń wpisanych znaków |
-| `fmDateParts` | `ivec4` | `(year, month, day, dayOfWeekIso1To7)` |
-| `fmTimeParts` | `ivec4` | `(hour, minute, second, millisecondPart0To999)` |
+| `fmMouseDelta` | `vec2` | Zmiana położenia myszy w pikselach obszaru (oś Y jest odwrócona, aby wskazywała w górę w układzie shadera) |
+| `fmMouseButtons` | `ivec4` | Stan wciśnięcia przycisków `0..3` |
+| `fmMouseClickCount` | `ivec4` | Łączna liczba naciśnięć przycisków `0..3` |
+| `fmMouseReleaseCount` | `ivec4` | Łączna liczba zwolnień przycisków `0..3` |
+| `fmMouseScroll` | `vec2` | Zmiana przewijania od poprzedniego renderowania tego środowiska uruchomieniowego |
+| `fmMouseScrollTotal` | `vec2` | Łączna wartość przewijania |
+| `fmKeyEvent` | `ivec4` | `(ostatniKodKlawisza, ostatniKodSkanowania, ostatnieModyfikatory, ostatniaAkcja)` |
+| `fmKeyEventCount` | `int` | Łączny licznik zdarzeń klawiatury |
+| `fmCharEvent` | `ivec4` | `(ostatniPunktKodowy, ostatnieModyfikatory, 0, 0)` |
+| `fmCharEventCount` | `int` | Łączny licznik zdarzeń wpisania znaków |
+| `fmDateParts` | `ivec4` | `(rok, miesiąc, dzień, dzieńTygodniaISO1Do7)` |
+| `fmTimeParts` | `ivec4` | `(godzina, minuta, sekunda, częśćMilisekundowa0Do999)` |
 | `fmDayOfYear` | `int` | Dzień roku |
-| `fmWeekOfYear` | `int` | Tydzień roku ISO |
-| `fmUnixTimeSeconds` | `int` | Sekundy epoki Unix |
+| `fmWeekOfYear` | `int` | Numer tygodnia roku według ISO |
+| `fmUnixTimeSeconds` | `int` | Sekundy od epoki uniksowej |
 | `fmUnixTimeMilliseconds` | `int` | Część milisekundowa bieżącego czasu (`0..999`) |
-| `fmPartialTick` | `float` | Bieżący partial tick |
-| `fmGameDeltaTicks` | `float` | Game delta ticks Minecrafta |
-| `fmRealtimeDeltaTicks` | `float` | Realtime delta ticks Minecrafta |
-| `fmInWorld` | `int` | `1`, gdy jesteś w świecie, w przeciwnym razie `0` |
-| `fmIsPaused` | `int` | `1`, gdy gra jest wstrzymana, w przeciwnym razie `0` |
-| `fmOpacity` | `float` | Efektywny mnożnik przezroczystości (`0..1`) |
-| `fmVariableCount` | `int` | Aktualna liczba zmiennych FancyMenu |
+| `fmPartialTick` | `float` | Bieżący ułamek ticka |
+| `fmGameDeltaTicks` | `float` | Zmiana liczby ticków gry Minecraft |
+| `fmRealtimeDeltaTicks` | `float` | Zmiana liczby ticków czasu rzeczywistego Minecrafta |
+| `fmInWorld` | `int` | `1`, gdy gracz jest w świecie; w przeciwnym razie `0` |
+| `fmIsPaused` | `int` | `1`, gdy gra jest wstrzymana; w przeciwnym razie `0` |
+| `fmOpacity` | `float` | Efektywny mnożnik krycia (`0..1`) |
+| `fmVariableCount` | `int` | Bieżąca liczba zmiennych FancyMenu |
 
-Wartości akcji klawiszy (`fmKeyEvent.w`):
+Wartości akcji klawisza (`fmKeyEvent.w`):
 
 - `0` = zwolnienie
 - `1` = naciśnięcie
@@ -244,7 +243,7 @@ Wartości akcji klawiszy (`fmKeyEvent.w`):
 
 ## 6.3 API uniformów zmiennych FancyMenu
 
-Zmienne FancyMenu są udostępniane bezpośrednio jako uniformy runtime'u (dla shaderów tła, elementów i nakładek dekoracyjnych) bez rekompilacji shaderów przy zmianie wartości.
+Zmienne FancyMenu są udostępniane bezpośrednio jako uniformy środowiska uruchomieniowego (dla shaderów tła, elementów i nakładek dekoracyjnych), bez ponownej kompilacji shaderów po zmianie wartości.
 
 ### Nazewnictwo
 
@@ -256,13 +255,13 @@ Dla każdej zmiennej `<name>` FancyMenu udostępnia:
 - `fmVarVec2_<name>`
 - `fmVarVec3_<name>`
 - `fmVarVec4_<name>`
-- `fmVarExists_<name>` (`1` = zmienna aktualnie istnieje, `0` = nie istnieje/usunięta)
+- `fmVarExists_<name>` (`1` = zmienna istnieje, `0` = nie istnieje/została usunięta)
 
-Sanityzacja sufiksu uniformu dla `<name>`:
+Oczyszczanie sufiksu uniformu `<name>`:
 
 - dozwolone znaki to `[A-Za-z0-9_]`
 - wszystkie pozostałe znaki są zamieniane na `_`
-- jeśli pierwszy znak jest cyfrą, dodawany jest prefiks `_`
+- jeśli pierwszy znak jest cyfrą, na początku dodawany jest `_`
 
 Przykłady:
 
@@ -272,29 +271,35 @@ Przykłady:
 
 Ważne:
 
-- te dynamiczne uniformy zmiennych **nie są automatycznie deklarowane** w źródle shaderów (zadeklaruj ręcznie te, których używasz)
-- unikaj nazw zmiennych, które po sanityzacji dają ten sam sufiks, ponieważ mapują się na tę samą nazwę uniformu GLSL
+- te dynamiczne uniformy zmiennych **nie są deklarowane automatycznie** w źródle shadera (zadeklaruj ręcznie te, których używasz)
+- unikaj nazw zmiennych, które po oczyszczeniu dają ten sam sufiks, ponieważ będą wskazywać tę samą nazwę uniformu GLSL
 
 ### Konwersja wartości
 
 Dla tekstowej wartości zmiennej `v`:
 
-- `fmVarFloat_*`: sparsowany float (fallback `0.0`)
-- `fmVarInt_*`: sparsowany int (fallback `0`)
-- `fmVarBool_*`: interpretacja logiczna/liczbowa (`true/yes/on/enabled` => `1`, `false/no/off/disabled` => `0`, w przeciwnym razie liczba różna od zera => `1`)
-- parsowanie wektorów akceptuje separatory: białe znaki, `,`, `;`, `|`
+- `fmVarFloat_*`: sparsowana liczba zmiennoprzecinkowa (wartość zastępcza `0.0`)
+- `fmVarInt_*`: sparsowana liczba całkowita (wartość zastępcza `0`)
+- `fmVarBool_*`: interpretacja jako wartość logiczna/liczba całkowita (`true/yes/on/enabled` => `1`, `false/no/off/disabled` => `0`, w pozostałych przypadkach wartość liczbowa różna od zera => `1`)
+- podczas parsowania wektorów akceptowane są separatory: białe znaki, `,`, `;`, `|`
   - `fmVarVec2_*`: pierwsze 2 sparsowane składowe
   - `fmVarVec3_*`: pierwsze 3 sparsowane składowe
   - `fmVarVec4_*`: pierwsze 4 sparsowane składowe
-  - jeśli jest mniej składowych, ostatnia sparsowana składowa jest powtarzana dla brakujących pozycji
-  - jeśli nie ma żadnych numerycznych składowych, wszystkie składowe wektora korzystają z fallbacku skalarnego
+  - jeśli składowych jest mniej, ostatnia sparsowana składowa jest powielana w brakujących miejscach
+  - jeśli nie ma żadnych składowych liczbowych, dla wszystkich składowych wektora używana jest skalarna wartość zastępcza
 
-Jeśli zmienna zostanie usunięta:
+[Zmienne listowe](/variables#text-and-list-variables) zwracają liczbę wpisów zamiast tekstu:
+
+- `fmVarFloat_*` i `fmVarInt_*`: liczba wpisów, np. `3` dla listy zawierającej 3 wpisy
+- `fmVarBool_*`: `1`, jeśli lista zawiera wpisy; `0`, jeśli jest pusta
+- `fmVarVec2_*`, `fmVarVec3_*` i `fmVarVec4_*`: liczba wpisów w każdej składowej
+
+Po usunięciu zmiennej:
 
 - `fmVarExists_*` przyjmuje wartość `0`
-- wszystkie odpowiadające wartości `fmVar*_*` są resetowane do `0`
+- wszystkie odpowiadające jej wartości `fmVar*_*` są resetowane do `0`
 
-### Przykład deklaracji i użycia
+### Przykładowa deklaracja i użycie
 
 ```glsl
 uniform float fmVarFloat_player_hp;
@@ -322,46 +327,46 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 ## 7. Model śledzenia wejścia
 
-FancyMenu śledzi wejście globalnie i zapisuje jego stan dla każdego renderu:
+FancyMenu śledzi wejście globalnie i zapisuje jego stan dla każdego renderowania:
 
 - ruch/przeciąganie myszy
-- naciśnięcie/zwolnienie myszy
-- scroll
+- naciśnięcie/zwolnienie przycisku myszy
+- przewijanie
 - naciśnięcie/zwolnienie/powtórzenie klawisza
-- wpisany znak
+- wpisanie znaku
 
-Odporność myszy:
+Stabilność obsługi myszy:
 
-- Runtime porównuje stany przycisków z pollingiem GLFW każdej klatki, aby zapobiec stanom zablokowanego przycisku.
+- Środowisko uruchomieniowe co klatkę uzgadnia stany przycisków z odczytem GLFW, aby zapobiec zawieszeniu stanu wciśnięcia przycisku.
 
-Jeśli `Pass Input Events To Shader` jest wyłączone:
+Jeśli opcja `Pass Input Events To Shader` jest wyłączona:
 
-- uniformy wejścia są resetowane do wartości neutralnych w każdej klatce
-- liczniki i zdarzenia są zerowane w danych widocznych dla shaderów
+- uniformy wejściowe są co klatkę resetowane do neutralnych wartości
+- liczniki i zdarzenia widoczne dla shadera są zerowane
 
-## 8. Szczegóły wejścia tekstur
+## 8. Szczegóły wejść tekstur
 
-Kanały zasobów (`iChannel# Resource`) oczekują tekstur 2D.
+Kanały Resource (`iChannel# Resource`) oczekują tekstur 2D.
 
 Stan tekstury dla każdego kanału:
 
-- prawidłowy zasób: podłączona tekstura, rzeczywista szerokość/wysokość, `iChannelResolution[n].z = 1.0`
-- brakujący/nieaktywny/None: tekstura zapasowa, `iChannelResolution[n].xyz = (0,0,0)`
+- prawidłowy zasób: przypisana tekstura, rzeczywista szerokość/wysokość, `iChannelResolution[n].z = 1.0`
+- brakujący/nieaktywny/None: tekstura zastępcza, `iChannelResolution[n].xyz = (0,0,0)`
 
-Tekstury buforów:
+Tekstury Buffer:
 
 - format wewnętrzny: `RGBA16F` (zmiennoprzecinkowy)
 - filtrowanie: liniowe
-- wrap: clamp-to-edge
+- zawijanie: ograniczenie do krawędzi
 
-Nadaje się to do danych wieloprzebiegowych (w tym wartości poza `[0,1]`).
+Nadaje się to do danych wieloprzebiegowych (w tym wartości spoza zakresu `[0,1]`).
 
 ## 9. Uwagi dotyczące renderowania i mieszania
 
-- Przejścia buforów renderują poza ekranem bez mieszania.
-- Końcowy przejściowy etap Image używa ustawienia `Enable Blending` do kompozycji.
-- Wrapper Shadertoy automatycznie stosuje `fmOpacity` do alpha.
-- Shadery direct powinny w razie potrzeby zastosować `fmOpacity` ręcznie.
+- Przebiegi Buffer są renderowane poza ekranem, bez mieszania.
+- Końcowy przebieg Image używa ustawienia `Enable Blending` do kompozycji.
+- Wrapper Shadertoy automatycznie stosuje `fmOpacity` do alfy.
+- W razie potrzeby shadery Direct powinny ręcznie stosować `fmOpacity`.
 
 ## 10. Praktyczne szablony
 
@@ -389,11 +394,11 @@ void main() {
 }
 ```
 
-## 10.3 Minimalny multipass z feedbackiem
+## 10.3 Minimalne sprzężenie zwrotne w wielu przebiegach
 
 ### Źródło Buffer A
 
-Routing: `Buffer A iChannel0 Input -> Buffer A`
+Przypisanie: `Buffer A iChannel0 Input -> Buffer A`
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -406,7 +411,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 ### Źródło Image
 
-Routing: `Image iChannel0 Input -> Buffer A`
+Przypisanie: `Image iChannel0 Input -> Buffer A`
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -417,15 +422,15 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 ## 11. Lista kontrolna rozwiązywania problemów
 
-- Brak wyjścia:
-  - sprawdź, czy źródło Image nie jest puste
-  - sprawdź, czy tryb kompilacji odpowiada punktowi wejścia (`mainImage` vs `main`)
+- Brak obrazu:
+  - upewnij się, że źródło Image nie jest puste
+  - upewnij się, że tryb kompilacji odpowiada punktowi wejścia (`mainImage` lub `main`)
 - Fioletowe/nieprawidłowe tekstury:
-  - sprawdź powiązania zasobów i routing kanałów
-  - sprawdź `iChannelResolution[n].z` (`0.0` oznacza nieprawidłowe/niedostępne)
-- Nieprawidłowe współrzędne w shaderze direct:
-  - użyj `gl_FragCoord.xy - fmAreaOffset` dla lokalnych współrzędnych obszaru
-- Nieprawidłowe zachowanie przeciągania:
+  - sprawdź przypisania zasobów i kanałów
+  - sprawdź `iChannelResolution[n].z` (`0.0` oznacza, że tekstura jest nieprawidłowa lub niedostępna)
+- Nieprawidłowe współrzędne w shaderze Direct:
+  - użyj `gl_FragCoord.xy - fmAreaOffset`, aby uzyskać współrzędne lokalne względem obszaru
+- Nieprawidłowe działanie przeciągania:
   - użyj przełącznika `Update iMouse Position Only While Holding LMB`
-- Opacity nie jest stosowane w shaderze direct:
-  - pomnóż alpha przez `fmOpacity` samodzielnie
+- Krycie nie jest stosowane w shaderze Direct:
+  - samodzielnie pomnóż alfę przez `fmOpacity`

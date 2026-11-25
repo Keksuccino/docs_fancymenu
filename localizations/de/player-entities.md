@@ -1,43 +1,62 @@
 ---
-title: Spieler-Entitäten
+title: Spieler-Entities
 description: >-
-  Wie das FancyMenu-Element „Player Entity“ funktioniert und wie man es korrekt
-  verwendet.
+  Zeige Spieler in deinen Menüs mit dem Element „Spieler-Entity“ – mit Skin,
+  Name, Pose, Rüstung und mehr.
+sourceBlobSha: b8f8d4340ca3a87e1c55c86f95f36786ab840644
 ---
-# Spieler-Entitäten
 
-FancyMenu ermöglicht es dir, Spieler-Entitäten auf Bildschirmen hinzuzufügen, sodass du den Client-Spieler oder andere Spieler anzeigen kannst – einschließlich benutzerdefinierter Entitäten, die überhaupt keinen echten Spieler darstellen, mit einem eigenen Skin, Namen, Cape und so weiter.
+# Spieler-Entities
 
-# Client-Spieler
+Das Element „Spieler-Entity“ zeigt einen Spieler in 3D an – wie den eigenen Charakter des Spielers neben den Schaltflächen auf dem Titelbildschirm. Es kann die spielende Person darstellen, einen beliebigen anderen Spieler anzeigen oder als eigene Figur mit eigenem Skin, Umhang und Namen dienen.
 
-Um einen „Spiegel“ des Client-Spielers anzuzeigen, klicke einfach mit der rechten Maustaste auf das Player-Entity-Element und aktiviere **Copy Client Player**. Dadurch werden Skin, Cape und Name des Client-Spielers übernommen.
+<img width="800" alt="Fünf Spieler-Entities: ein echter Spieler mit Skin und Umhang, einer in verzauberter Diamantrüstung mit Schwert und Schild, einer in geduckter Haltung, einer winkend und ein Baby" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_showcase.png?raw=true">
 
-# Andere Spieler
+> [!IMPORTANT]
+> Für Minecraft 1.20.1 und neuer benötigen Spieler-Entities die Mod Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Ohne sie werden sie als roter Kasten angezeigt. Gibt es noch keinen Build für deine Minecraft-Version, können Spieler-Entities dort nicht angezeigt werden.
 
-Wenn du einen anderen vorhandenen Spieler anzeigen möchtest, klicke einfach mit der rechten Maustaste auf das Element und setze den **Player Name** auf den Namen eines vorhandenen Spielers. Dadurch werden automatisch Skin, Cape und Name dieses Spielers angezeigt, solange du keinen benutzerdefinierten Skin oder Cape gesetzt hast und **Copy Client Player** **deaktiviert** ist.
+# Eine Spieler-Entity hinzufügen
 
-# Benutzerdefinierte Spieler-Entitäten
+Klicke mit der rechten Maustaste auf den Hintergrund des Editors und wähle **Neues Element -> Spieler-Entity**. Ziehe an den Griffen, um die Größe zu ändern. Die Größe des Spielers richtet sich nach der Höhe des Elements.
 
-Wenn du überhaupt keinen echten Spieler anzeigen möchtest und stattdessen das Aussehen der Entität mit Skin, Cape und Name vollständig anpassen willst, kannst du das Element per Rechtsklick öffnen. Dort gibt es Optionen zum Setzen einer benutzerdefinierten Skin- und Cape-Textur. Wenn ein benutzerdefinierter Skin und ein benutzerdefiniertes Cape aktiv sind, kannst du auch einen beliebigen Spielernamen festlegen, ohne dass dessen Skin übernommen wird, falls der Spieler existiert.
+Alle folgenden Einstellungen findest du im Rechtsklickmenü des Elements.
 
-# Entitäten-Pose
+# Wen sie anzeigt
 
-Das Player-Entity-Element unterstützt die Anpassung seiner Pose vollständig, das heißt, du kannst alle Gliedmaßen, Körperteile usw. frei bewegen.
+- **Client-Spieler kopieren** zeigt die spielende Person mit ihrem Namen, Skin und Umhang an. Solange diese Option aktiviert ist, sind die Einstellungen für Name, Skin und Umhang gesperrt.
+- **Spielername** kann ein beliebiger Name sein und muss keinem echten Spieler gehören. Die Einstellung unterstützt [Platzhalter](/placeholders).
+- **Spielernamen anzeigen** zeigt das Namensschild über dem Kopf an. Ist **Namensschild-Rotation** deaktiviert, dreht sich das Namensschild nicht mit dem Spieler.
 
-Dazu klicke mit der rechten Maustaste auf das Element und dann auf **Player Pose**. Dadurch öffnet sich ein Bildschirm mit Schiebereglern, mit denen du die X/Y/Z-Rotation aller Körperteile konfigurieren kannst.
+## Skin und Umhang
 
-Die Pose-Einstellungen des Spielers haben einen normalen Modus, in dem du die Rotationen mit Schiebereglern anpassen kannst. Es gibt außerdem einen erweiterten Modus, der eine Texteingabe für alle Rotationen mit voller Platzhalterunterstützung ermöglicht, wodurch es sogar möglich ist, die Entität mit einem Ticker-Element zu animieren, das Rotationsvariablen setzt!
+- **Skin automatisch laden** und **Umhang automatisch laden** laden den Skin und Umhang des Spielers mit dem eingestellten **Spielernamen**. Dafür ist eine Internetverbindung erforderlich.
+- **Skin-Textur** und **Umhang-Textur** verwenden eigene Skin- und Umhangdateien, zum Beispiel einen Skin aus deinen [Ressourcen](/resources). Skins sind die üblichen Skin-Dateien von Minecraft.
+- **Schmaler Skin** ist für Skins mit dünnen Armen gedacht, wie etwa Alex. **Skin automatisch laden** und **Client-Spieler kopieren** erkennen dies selbstständig.
 
-# Größe der Entität ändern
+# Pose und Bewegung
 
-In Minecraft 1.20.1+ kannst du einfach die normalen Größenänderungs-Griffe des Elements verwenden, um die Entität zu skalieren.
+<img width="800" alt="Zwei Spieler-Entities blicken auf den Mauszeiger, während er sich bewegt: Die linke dreht nur den Kopf, die rechte dreht Kopf und Körper" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_follow_mouse.gif?raw=true">
 
-Für ältere Versionen (1.19.2 und älter) unterstützen Player-Entity-Elemente keine direkte Größenänderung über die Größenänderungs-Griffe. Stattdessen musst du das Element per Rechtsklick öffnen und auf **Scale** klicken. Damit kannst du eine Skalierung für das Element festlegen. Der Standardwert sollte `30` sein; wenn du ihn beispielsweise auf `60` setzt, ist der Spieler doppelt so groß wie normal, bei `15` wird er in halber Größe angezeigt und so weiter.
+- **Kopf folgt der Maus** und **Körper folgt der Maus** lassen den Spieler auf den Mauszeiger blicken. Bei neuen Spieler-Entities sind beide Optionen aktiviert.
+- **Pose** legt die Körperhaltung fest: **Stehend**, **Duckend**, **Schlafend**, **Schwimmend**, **Sterbend** oder **Drehangriff**.
+- **Körperbewegung** animiert die Pose.
 
-# Abhängigkeit: Fancy Entity Renderer (FER)
+## Entity-Pose
 
-Für **Minecraft 1.20.1+** wird ein **zusätzliches Mod** benötigt, damit Player-Entity-Elemente funktionieren. Das Mod heißt **Fancy Entity Renderer** und ist auf [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer) und [Modrinth](https://modrinth.com/mod/fancy-entity-renderer) verfügbar.
+Über **Entity-Pose** öffnest du ein Fenster mit den X-, Y- und Z-Rotationswerten für **Kopf**, **Körper**, **linken Arm**, **rechten Arm**, **linkes Bein** und **rechtes Bein**. Die Werte reichen von `-180` bis `180`.
 
-Falls für die von dir verwendete Minecraft-Version noch kein Build verfügbar ist, wird er höchstwahrscheinlich zu einem späteren Zeitpunkt veröffentlicht.
+<img width="800" alt="Das Fenster „Entity-Pose“ mit Rotationsreglern für Kopf und Körper des Spielers" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_pose_window.png?raw=true">
 
-Bitte beachte, dass FER nicht von Keksuccino entwickelt wird und er daher keinen Einfluss darauf hat, wann Builds veröffentlicht werden.
+Über **Erweiterter Modus** neben einem Regler wird daraus ein Textfeld, das [Platzhalter](/placeholders) unterstützt. Verwendest du darin eine [Variable](/variables), zum Beispiel `$$arm_angle`, kann ein [Scheduler](/schedulers) den Spieler animieren, indem er den Variablenwert ändert.
+
+# Rüstung, Gegenstände und mehr
+
+- **Rüstung und Werkzeuge** stattet den Spieler mit Gegenständen aus: **Kopfrüstung**, **Brustrüstung**, **Beinrüstung**, **Fußrüstung**, **Gegenstand in der linken Hand** und **Gegenstand in der rechten Hand**. Gib dafür eine Gegenstands-ID an, zum Beispiel `minecraft:diamond_sword`. Gegenstands-IDs unterstützen Platzhalter. **Kopfrüstung verzaubern** und die anderen Verzauberungs-Schalter fügen den Verzauberungsschimmer hinzu.
+- **Ist ein Baby** macht den Spieler klein, wie ein Baby.
+- **Papagei** setzt einen Papagei auf die rechte Schulter. Mit **Papagei auf linker Schulter** sitzt er stattdessen auf der linken.
+
+# Gut zu wissen
+
+- Spieler-Entities können nicht gedreht, geneigt, ausgeblendet oder durchsichtig gemacht werden.
+- Um nur den Kopf eines Spielers anzuzeigen, siehe [Spielerköpfe](/player-heads).
+- Unter Minecraft 1.19.2 benötigen Spieler-Entities Fancy Entity Renderer nicht, bieten aber weniger Einstellungen: **Duckend** statt **Pose** sowie keine **Namensschild-Rotation**, **Körperbewegung** oder **Rüstung und Werkzeuge**. Ihre Größe wird über **Entity-Skalierung** festgelegt (standardmäßig `30`, also ist `60` doppelt so groß), nicht über die Größe des Elements.

@@ -1,16 +1,17 @@
 ---
 title: Niestandardowy kursor
-description: 'Jak sprawić, by menu używały niestandardowego kursora myszy.'
+description: Jak ustawić niestandardowy kursor myszy w menu.
+sourceBlobSha: 6ccd4932bed99ab10c094adffd503bd0a44d9edd
 ---
 
 # Niestandardowy kursor myszy
 
-Dodaj do układu [**element Cursor**](./elements#cursor), aby zastąpić systemowy kursor na tym ekranie:
+Dodaj do układu [element **Kursor**](/elements#cursor), aby zastąpić kursor systemowy na danym ekranie:
 
-1. Wybierz **New Element -> Cursor**.
-2. Ustaw teksturę PNG z kolorem RGBA.
-3. Ustaw **Hotspot X** i **Hotspot Y** na piksel tekstury, w którym mają następować kliknięcia.
-4. Włącz podgląd w edytorze, gdy chcesz sprawdzić kursor podczas edycji.
-5. Użyj [Universal Layout](./universal-layouts), gdy ten sam kursor ma się pojawiać na wielu obsługiwanych ekranach.
+1. Wybierz **Nowy element -> Kursor**.
+2. Ustaw teksturę PNG z kanałem alfa RGBA.
+3. Ustaw wartości **Punkt aktywny X** i **Punkt aktywny Y** na piksel tekstury, w którym mają być rejestrowane kliknięcia.
+4. Włącz podgląd w edytorze, jeśli chcesz sprawdzić wygląd kursora podczas edycji.
+5. Użyj [układu uniwersalnego](/universal-layouts), jeśli ten sam kursor ma być widoczny na wielu obsługiwanych ekranach.
 
-Zalecane są małe tekstury kursora, takie jak `32×32` lub `64×64`. Wygląd i działanie kursora mogą się różnić w zależności od systemu operacyjnego.
+Zalecamy małe tekstury kursora, takie jak `32×32` lub `64×64`. Wygląd i działanie kursora mogą się różnić w zależności od systemu operacyjnego.

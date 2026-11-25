@@ -1,45 +1,46 @@
 ---
 title: Zaawansowane pozycjonowanie i rozmiar
-description: Jak korzystać z zaawansowanego pozycjonowania i ustalania rozmiaru elementów.
+description: Jak korzystać z zaawansowanego pozycjonowania i zmiany rozmiaru elementów.
+sourceBlobSha: 205b887e844f770856bfd4836ea791e0acdca4b8
 ---
 # Zaawansowane pozycjonowanie i rozmiar
 
-Zaawansowane pozycjonowanie i rozmiar daje bezpośrednią kontrolę nad współrzędnymi i wymiarami elementu.
+Zaawansowane pozycjonowanie i zmiana rozmiaru zapewniają bezpośrednią kontrolę nad współrzędnymi i wymiarami elementów.
 
 > [!WARNING]
-> Aby dopasować do skali GUI, najpierw wypróbuj **Auto-Scaling** dla całego układu. Kliknij prawym przyciskiem myszy tło edytora, wymuś skalę GUI, a następnie włącz **Auto-Scaling** w tym samym menu.
+> Aby dostosować układ do skali GUI, najpierw wypróbuj **Automatyczne skalowanie** całego układu. Kliknij prawym przyciskiem myszy tło edytora, wymuś skalę GUI, a następnie włącz **Automatyczne skalowanie** w tym samym menu.
 
 
-# Włączanie trybu zaawansowanego pozycjonowania/rozmiaru
+# Włączanie trybu zaawansowanego pozycjonowania/zmiany rozmiaru
 
-Aby włączyć zaawansowane pozycjonowanie lub rozmiar dla elementu, **kliknij go prawym przyciskiem myszy** i wybierz **Advanced Positioning** lub **Advanced Sizing**.
-Element automatycznie przełączy się w tryb zaawansowany, gdy ustawisz zaawansowaną wartość pozycji lub rozmiaru.
+Aby włączyć zaawansowane pozycjonowanie lub zmianę rozmiaru elementu, kliknij go **prawym przyciskiem myszy** i wybierz **Zaawansowane pozycjonowanie** lub **Zaawansowana zmiana rozmiaru**.
+Element automatycznie przełączy się w tryb zaawansowany po ustawieniu zaawansowanej wartości pozycji lub rozmiaru.
 
-Aby to **wyłączyć** i wrócić do normalnego pozycjonowania/rozmiaru, **wyczyść wszystkie wartości pozycjonowania/rozmiaru**.
+Aby **wyłączyć** ten tryb i wrócić do zwykłego pozycjonowania/zmiany rozmiaru, **wyczyść wszystkie wartości pozycjonowania/zmiany rozmiaru**.
 
 > [!WARNING]
-> Gdy element znajduje się w trybie Advanced Sizing/Positioning, zmiana rozmiaru i/lub przesuwanie elementu może być wyłączone lub ograniczone.
+> Gdy element działa w trybie zaawansowanego pozycjonowania/zmiany rozmiaru, zmiana jego rozmiaru i/lub położenia może być wyłączona lub ograniczona.
 
 # Obliczanie pozycji/rozmiarów
 
-Zaawansowane wartości pozycji i rozmiaru obsługują [placeholders](./placeholders).
+Zaawansowane wartości pozycji i rozmiaru obsługują [zmienne zastępcze](/placeholders).
 
-Dzięki temu możesz łączyć placeholder [**Calculator**](./placeholders#calculator-calc) z placeholderami GUI, takimi jak [**Screen Width**](./placeholders#screen-width-guiwidth), [**GUI Scale**](./placeholders#gui-scale-guiscale) oraz [**Element Width**](./placeholders#element-width-elementwidth).
+Dzięki temu możesz łączyć zmienną zastępczą [**Kalkulator**](/placeholders#calculator) ze zmiennymi GUI, takimi jak [**Szerokość ekranu**](/placeholders#screen-width), [**Skala GUI**](/placeholders#gui-scale) i [**Szerokość elementu**](/placeholders#element-width).
 
 > [!NOTE]
-> Możesz dodać placeholdery, klikając przycisk **Placeholders** w prawym górnym rogu edytora tekstu. Jeśli nie widzisz tego przycisku, treść, którą chcesz edytować, **nie obsługuje** placeholderów.
+> Zmienne zastępcze możesz dodawać, klikając przycisk **Zmienne zastępcze** w prawym górnym rogu edytora tekstu. Jeśli nie widzisz tego przycisku, edytowana treść **nie obsługuje** zmiennych zastępczych.
 
-Aby obliczyć coś za pomocą [placeholdera **Calculator**](./placeholders#calculator-calc), zastąp przykładowe wyrażenie własnym. Zagnieżdżone placeholdery mogą dostarczać wymiary ekranu lub elementu.
+Aby coś obliczyć za pomocą [zmiennej zastępczej **Kalkulator**](/placeholders#calculator), zastąp przykładowe wyrażenie własnym. Zagnieżdżone zmienne zastępcze mogą dostarczać wymiary ekranu lub elementu.
 
-Ten przykład zwraca `2`:
+Ten przykład zwraca wartość `2`:
 
 `{"placeholder":"calc","values":{"expression":"1 + 1","decimal":"false"}}`
 
-Zostaw `decimal` ustawione na `false`, aby wykonywać obliczenia pozycji i rozmiaru w całych pikselach.
+W przypadku obliczeń pozycji i rozmiaru w pełnych pikselach pozostaw wartość `decimal` ustawioną na `false`.
 
-Poniższy kalkulator używa [placeholdera **Screen Width**](./placeholders#screen-width-guiwidth) i dzieli go przez `2`:
+Poniższy kalkulator korzysta ze zmiennej zastępczej [**Szerokość ekranu**](/placeholders#screen-width) i dzieli ją przez `2`:
 
 `{"placeholder":"calc","values":{"expression":"{"placeholder":"guiwidth"} / 2","decimal":"false"}}`
 
 > [!IMPORTANT]
-> **Advanced Positioning** ignoruje punkt zakotwiczenia elementu i używa lewego górnego rogu ekranu (`X0 Y0`) jako punktu odniesienia. Opcja **Stay on Screen** nadal ma zastosowanie.
+> **Zaawansowane pozycjonowanie** ignoruje punkt zakotwiczenia elementu i używa lewego górnego rogu ekranu (`X0 Y0`) jako początku układu współrzędnych. Opcja **Pozostaw na ekranie** nadal obowiązuje.

@@ -1,122 +1,123 @@
 ---
-title: GLSL シェーダー API
-description: FancyMenu の背景、要素、装飾オーバーレイ向けに GLSL シェーダーを記述します。
+title: GLSLシェーダーAPI
+description: 背景、要素、装飾オーバーレイ用のFancyMenu GLSLシェーダーを作成します。
+sourceBlobSha: f3da9c3fe83444dab5c59f74f5011e2d6e8cf9e6
 ---
 
-# FancyMenu GLSL シェーダー API
+# FancyMenu GLSLシェーダーAPI
 
-このドキュメントでは、FancyMenu が使用する GLSL ランタイムについて説明します。
+このドキュメントでは、FancyMenuで使用される次のGLSLランタイムについて説明します。
 
-- `GLSL` メニュー背景
-- `GLSL` 要素
-- `GLSL` 装飾オーバーレイ
+- `GLSL`メニュー背景
+- `GLSL`要素
+- `GLSL`装飾オーバーレイ
 
-ここでは、コンパイルモード、マルチパスのルーティング、対応ユニフォーム、実践的なシェーダー作成パターンを扱います。
+コンパイルモード、マルチパスのルーティング、サポートされているユニフォーム、実用的なシェーダー作成パターンを解説します。
 
-## 1. ランタイム概要
+## 1. ランタイムの概要
 
-FancyMenu は内部 OpenGL パイプライン（`#version 150`）でシェーダーを描画し、次をサポートします。
+FancyMenuは内部のOpenGLパイプライン（`#version 150`）でシェーダーを描画し、次の機能をサポートします。
 
-- シングルパスシェーダー（`Image` パスのみ）
+- シングルパスシェーダー（`Image`パスのみ）
 - マルチパスシェーダー（`Buffer A` / `B` / `C` / `D` + `Image`）
-- Shadertoy 風のエントリーポイント（`mainImage`）
-- 直接フラグメントのエントリーポイント（`main`）
+- Shadertoy形式のエントリーポイント（`mainImage`）
+- フラグメントシェーダーの直接エントリーポイント（`main`）
 
-シェーダーソースはインラインのテキスト欄です。
+シェーダーソースは、インラインのテキストフィールドに記述します。
 
-- `Shader Source`（Image パス、描画に必須）
+- `Shader Source`（Imageパス。描画に必須）
 - `Buffer A Source`（任意）
 - `Buffer B Source`（任意）
 - `Buffer C Source`（任意）
 - `Buffer D Source`（任意）
 
-Image ソースが空の場合、描画は "no source" エラーで失敗します。
+Imageソースが空の場合、「ソースなし」エラーが発生し、描画に失敗します。
 
 ## 2. コンパイルモード
 
-FancyMenu は 3 つのコンパイルモードをサポートします。
+FancyMenuは次の3つのコンパイルモードをサポートします。
 
 - `Auto`
 - `Direct Fragment`
 - `Shadertoy`
 
-### 2.1 Shadertoy モード
+### 2.1 Shadertoyモード
 
-期待されるエントリーポイント:
+次のエントリーポイントが必要です。
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 ```
 
-FancyMenu はこれを `main()` にラップし、ローカル領域座標を渡します。
+FancyMenuはこれを`main()`でラップし、エリア内のローカル座標を渡します。
 
 ```glsl
 mainImage(fmColor_FancyMenu, gl_FragCoord.xy - fmAreaOffset);
 ```
 
-このラッパーは、出力アルファに `fmOpacity` を掛けます。
+ラッパーは出力アルファに`fmOpacity`を乗算します。
 
-### 2.2 Direct モード
+### 2.2 Directモード
 
-期待されるエントリーポイント:
+次のエントリーポイントが必要です。
 
 ```glsl
 void main()
 ```
 
-互換動作:
+互換性に関する動作：
 
-- `gl_FragColor` 互換版を試行します。
-- モダンな明示的 `out vec4` シェーダー向けに、非互換版も試行します。
+- `gl_FragColor`互換のバリアントを試します。
+- 互換性処理なしのバリアントも試します（最新の明示的な`out vec4`シェーダー向け）。
 
-Direct モードでは、`fmOpacity` は出力に自動適用されません。必要であれば手動で適用してください。
+Directモードでは、出力に`fmOpacity`は自動適用されません。必要に応じて手動で適用してください。
 
-### 2.3 Auto モード
+### 2.3 Autoモード
 
-Auto は互換バリアント（Shadertoy/direct）を順に試し、最初にコンパイル成功したものを使用します。
+Autoは互換性のあるバリアント（Shadertoy/direct）を順番に試し、最初にコンパイルできたものを使用します。
 
 ## 3. ソースの前処理と組み込みマクロ
 
-コンパイル前に、FancyMenu はソースを正規化します。
+コンパイル前に、FancyMenuはソースを正規化します。
 
-- UTF-8 BOM を削除
-- CRLF/CR を LF に変換
-- `#version ...` 行を削除
-- `precision ...;` 行を削除
+- UTF-8 BOMを削除
+- CRLF/CRをLFに変換
+- `#version ...`行を削除
+- `precision ...;`行を削除
 
-ランタイム注入のプレアンブルには次が含まれます。
+ランタイムが挿入する前置コードには、次のものが含まれます。
 
 - `#version 150`
-- `in vec2 fmUv_FancyMenu`（全画面 UV、`[0,1]`、左下原点）
+- `in vec2 fmUv_FancyMenu`（`[0,1]`の全画面UV。原点は左下）
 - `#define iGlobalTime iTime`
 - `#define texture2D texture`
 - `#define textureCube texture`
 
-注意:
+注意：
 
-- ソース内に既知のユニフォーム名（例: `iTime`）がすでに宣言されている場合、FancyMenu は重複宣言を注入しません。
-- それでも FancyMenu は実行時にその名前へ値を送信しようとします。
-- `textureCube` はここではエイリアスマクロのみです。`iChannel0..3` は `sampler2D` ユニフォームです。
+- ソース内ですでに既知のユニフォーム名（例：`iTime`）が宣言されている場合、FancyMenuは重複した宣言を挿入しません。
+- その名前への値のアップロードは、引き続きランタイムで試行されます。
+- ここでの`textureCube`は別名マクロにすぎません。`iChannel0..3`は`sampler2D`ユニフォームです。
 
 ## 4. パスシステム（Image + Buffer A-D）
 
-FancyMenu には 5 つのパススロットがあります。
+FancyMenuには5つのパススロットがあります。
 
 - `Buffer A`
 - `Buffer B`
 - `Buffer C`
 - `Buffer D`
-- `Image`（最終的な画面描画パス）
+- `Image`（画面に最終出力するパス）
 
-挙動:
+動作：
 
-- Buffer パスは、ソースが空でない場合のみ実行されます。
-- Image パスは、出力を描画するために必須です。
-- Buffer は浮動小数点テクスチャ（`GL_RGBA16F`）に描画され、ピンポンされます（各フレームで read/write をスワップ）。
+- Bufferパスは、ソースが空でない場合にのみ実行されます。
+- 出力を描画するにはImageパスが必要です。
+- バッファーは浮動小数点テクスチャ（`GL_RGBA16F`）に描画され、その後、各フレームで読み取り用と書き込み用を入れ替えるピンポン方式で処理されます。
 
-### 4.1 パスごとのチャネルルーティング
+### 4.1 パスごとのチャンネルルーティング
 
-各パスは `iChannel0..3` のルーティングを公開します。各チャネルで選択できるのは次のいずれかです。
+各パスでは、`iChannel0..3`のルーティングを設定できます。各チャンネルで次のいずれかを選択できます。
 
 - `None`
 - `Resource 0`
@@ -128,125 +129,125 @@ FancyMenu には 5 つのパススロットがあります。
 - `Buffer C`
 - `Buffer D`
 
-Resource チャネルは `iChannel# Resource` 設定から取得されます。
+Resourceチャンネルは、`iChannel# Resource`設定から取得されます。
 
-デフォルト:
+デフォルト：
 
-- すべての `iChannel` ルーティングは `None`
-- どの Buffer パスも、その Buffer ソースが空でない限り有効になりません
+- すべての`iChannel`ルーティングは`None`
+- Bufferソースが空でない場合を除き、Bufferパスは有効になりません
 
-重要:
+重要：
 
-- 同じ Buffer パスへのルーティング（フィードバック）は、前フレームのデータ（ピンポン read テクスチャ）を読みます。
-- ルーティング先が欠落/無効の場合、フォールバックテクスチャがバインドされ、`iChannelResolution[n].z` は `0.0` になります。
+- 同じBufferパスへのルーティング（フィードバック）では、前フレームのデータ（ピンポン方式の読み取りテクスチャ）を読み取ります。
+- ルーティング先のソースがない、または無効な場合はフォールバックテクスチャがバインドされ、`iChannelResolution[n].z`は`0.0`になります。
 
-## 5. 座標と領域セマンティクス
+## 5. 座標とエリアの仕様
 
-シェーダーは領域の矩形内で実行されます。
+シェーダーは矩形エリア内で実行されます。
 
-- メニュー背景: 画面全体領域
-- GLSL 要素: 要素の矩形
+- メニュー背景：画面全体のエリア
+- GLSL要素：要素の矩形エリア
 
-座標規約:
+座標の規則：
 
-- ピクセル系ユニフォームは、領域ローカルのピクセル単位です。
-- シェーダー側のピクセル座標の Y 原点は左下です。
-- マウス座標はクランプされません。カーソルが領域外にある場合、値も領域外になり得ます。
+- ピクセル単位のユニフォームは、エリア内のローカル座標です。
+- シェーダーに渡されるピクセル座標のY軸の原点は左下です。
+- マウス座標は範囲に制限されません。カーソルがエリア外にある場合、値もエリア外になることがあります。
 
-特別なフィールド:
+専用フィールド：
 
-- `fmAreaOffset`: 画面ピクセル空間における領域左下位置
-- `fmAreaTopLeft`: 画面ピクセル空間における領域左上位置
-- `fmAreaSize`: ピクセル単位の領域サイズ
+- `fmAreaOffset`：画面のピクセル座標におけるエリアの左下位置
+- `fmAreaTopLeft`：画面のピクセル座標におけるエリアの左上位置
+- `fmAreaSize`：エリアのピクセルサイズ
 
-## 6. ユニフォーム API リファレンス
+## 6. ユニフォームAPIリファレンス
 
-以下のユニフォームはすべて、背景シェーダーと要素シェーダーの両方で利用できます。
+以下のすべてのユニフォームは、背景シェーダーと要素シェーダーの両方で使用できます。
 
-## 6.1 Shadertoy 互換ユニフォーム
+## 6.1 Shadertoy互換ユニフォーム
 
-| Uniform | Type | 意味 |
+| ユニフォーム | 型 | 説明 |
 |---|---|---|
 | `iResolution` | `vec3` | `(areaWidthPx, areaHeightPx, 1.0)` |
-| `iTime` | `float` | 累積シェーダー時間（秒） |
-| `iTimeDelta` | `float` | 直近描画のデルタ時間。フリーズ/時間スケールの影響を受けます |
-| `iFrameRate` | `float` | Minecraft FPS のフォールバック実行時 FPS |
+| `iTime` | `float` | シェーダーの累積時間（秒） |
+| `iTimeDelta` | `float` | 直近の描画からの経過時間。フリーズや時間スケールの影響を受けます |
+| `iFrameRate` | `float` | MinecraftのFPS。取得できない場合はランタイムのFPSを使用します |
 | `iFrame` | `int` | ランタイムごとのフレームカウンター |
-| `iMouse` | `vec4` | 詳細は下記参照 |
-| `iDate` | `vec4` | `(year, month, day, secondsOfDayWithFraction)` |
-| `iSampleRate` | `float` | 定数 `44100.0` |
-| `iChannelTime[4]` | `float[4]` | 現在はすべて `iTime` に設定されます |
-| `iChannelResolution[4]` | `vec3[4]` | チャネルごとの `(width, height, validFlag)` |
+| `iMouse` | `vec4` | 詳細は以下を参照 |
+| `iDate` | `vec4` | `(年, 月, 日, 小数部を含む1日の経過秒数)` |
+| `iSampleRate` | `float` | 定数`44100.0` |
+| `iChannelTime[4]` | `float[4]` | 現在はすべて`iTime`に設定されます |
+| `iChannelResolution[4]` | `vec3[4]` | チャンネルごとの`(幅, 高さ, 有効フラグ)` |
 | `iChannel0..3` | `sampler2D` | ルーティングされたテクスチャ入力 |
 
-### `iMouse` の詳細
+### `iMouse`の詳細
 
 `iMouse = vec4(x, y, z, w)`
 
-- `x`, `y`: 現在の領域ローカルマウスピクセル位置、またはトグルが有効な場合はホールド/フリーズ動作
-- `z`, `w`: 左クリックの起点
-  - 左マウスボタン押下中は正
-  - 離した後は負
+- `x`、`y`：エリア内の現在のローカルマウスピクセル位置。切り替えが有効な場合は、押下中の位置を保持する、または固定された値になります
+- `z`、`w`：左クリック開始位置
+  - マウスの左ボタンを押している間は正の値
+  - ボタンを離した後は負の値
 
-トグルで制御される動作:
+切り替えによる動作：
 
-- `Update iMouse Position Only While Holding LMB = Off`:
-  - `iMouse.xy` は継続的に更新されます
-- `... = On`:
-  - `iMouse.xy` は LMB 押下中のみ更新され、その後は最後にホールドした位置のまま保持されます
+- `Update iMouse Position Only While Holding LMB = Off`：
+  - `iMouse.xy`が継続的に更新されます
+- `... = On`：
+  - `iMouse.xy`はLMBを押している間のみ更新され、その後は最後に押下していた位置に留まります
 
-デフォルト値:
+デフォルト値：
 
-- `Off`（継続更新）
+- `Off`（継続的に更新）
 
-## 6.2 FancyMenu 固有のユニフォーム
+## 6.2 FancyMenu固有のユニフォーム
 
-| Uniform | Type | 意味 |
+| ユニフォーム | 型 | 説明 |
 |---|---|---|
-| `fmAreaOffset` | `vec2` | 画面空間における領域左下ピクセルオフセット |
-| `fmAreaSize` | `vec2` | ピクセル単位の領域サイズ |
-| `fmAreaPosition` | `vec2` | `fmAreaOffset` と同じ |
-| `fmAreaTopLeft` | `vec2` | 画面空間における領域左上ピクセルオフセット |
+| `fmAreaOffset` | `vec2` | 画面座標におけるエリア左下のピクセルオフセット |
+| `fmAreaSize` | `vec2` | エリアのピクセルサイズ |
+| `fmAreaPosition` | `vec2` | `fmAreaOffset`と同じ |
+| `fmAreaTopLeft` | `vec2` | 画面座標におけるエリア左上のピクセルオフセット |
 | `fmScreenSize` | `vec2` | 画面全体のピクセルサイズ |
-| `fmGuiScale` | `float` | 現在の GUI スケール |
-| `fmMouse` | `vec4` | `(localPxX, localPxYBottom, localNormX, localNormY)` |
-| `fmMouseDelta` | `vec2` | 領域ピクセル単位のマウス差分（Y はシェーダー上方向に反転済み） |
-| `fmMouseButtons` | `ivec4` | ボタン `0..3` の押下状態 |
-| `fmMouseClickCount` | `ivec4` | ボタン `0..3` の累積押下回数 |
-| `fmMouseReleaseCount` | `ivec4` | ボタン `0..3` の累積リリース回数 |
-| `fmMouseScroll` | `vec2` | このランタイムの前回描画以降のスクロール差分 |
+| `fmGuiScale` | `float` | 現在のGUIスケール |
+| `fmMouse` | `vec4` | `(ローカルPxX, ローカルPxY下端基準, ローカルNormX, ローカルNormY)` |
+| `fmMouseDelta` | `vec2` | エリア内のマウス移動量（Y軸はシェーダーの上方向に反転） |
+| `fmMouseButtons` | `ivec4` | ボタン`0..3`の押下状態 |
+| `fmMouseClickCount` | `ivec4` | ボタン`0..3`の累積押下回数 |
+| `fmMouseReleaseCount` | `ivec4` | ボタン`0..3`の累積リリース回数 |
+| `fmMouseScroll` | `vec2` | このランタイムの前回描画以降のスクロール量 |
 | `fmMouseScrollTotal` | `vec2` | 累積スクロール量 |
-| `fmKeyEvent` | `ivec4` | `(lastKeyCode, lastScanCode, lastModifiers, lastAction)` |
-| `fmKeyEventCount` | `int` | 累積キーイベントカウンター |
-| `fmCharEvent` | `ivec4` | `(lastCodePoint, lastModifiers, 0, 0)` |
-| `fmCharEventCount` | `int` | 累積文字入力イベントカウンター |
-| `fmDateParts` | `ivec4` | `(year, month, day, dayOfWeekIso1To7)` |
-| `fmTimeParts` | `ivec4` | `(hour, minute, second, millisecondPart0To999)` |
-| `fmDayOfYear` | `int` | 年内通算日 |
-| `fmWeekOfYear` | `int` | ISO 週番号 |
-| `fmUnixTimeSeconds` | `int` | Unix エポック秒 |
+| `fmKeyEvent` | `ivec4` | `(最後のキーコード, 最後のスキャンコード, 最後の修飾キー, 最後のアクション)` |
+| `fmKeyEventCount` | `int` | キーイベントの累積カウンター |
+| `fmCharEvent` | `ivec4` | `(最後のコードポイント, 最後の修飾キー, 0, 0)` |
+| `fmCharEventCount` | `int` | 文字入力イベントの累積カウンター |
+| `fmDateParts` | `ivec4` | `(年, 月, 日, 曜日（ISO 1～7）)` |
+| `fmTimeParts` | `ivec4` | `(時, 分, 秒, ミリ秒部分（0～999）)` |
+| `fmDayOfYear` | `int` | 年間通算日 |
+| `fmWeekOfYear` | `int` | 年のISO週番号 |
+| `fmUnixTimeSeconds` | `int` | Unixエポックからの経過秒数 |
 | `fmUnixTimeMilliseconds` | `int` | 現在時刻のミリ秒部分（`0..999`） |
 | `fmPartialTick` | `float` | 現在の部分ティック |
-| `fmGameDeltaTicks` | `float` | Minecraft のゲーム側デルタティック |
-| `fmRealtimeDeltaTicks` | `float` | Minecraft のリアルタイム側デルタティック |
-| `fmInWorld` | `int` | ワールド内なら `1`、それ以外は `0` |
-| `fmIsPaused` | `int` | 一時停止中なら `1`、それ以外は `0` |
-| `fmOpacity` | `float` | 実効不透明度マルチプライヤー（`0..1`） |
-| `fmVariableCount` | `int` | 現在の FancyMenu 変数数 |
+| `fmGameDeltaTicks` | `float` | Minecraftのゲームデルタティック |
+| `fmRealtimeDeltaTicks` | `float` | Minecraftのリアルタイムデルタティック |
+| `fmInWorld` | `int` | ワールド内では`1`、それ以外では`0` |
+| `fmIsPaused` | `int` | 一時停止中は`1`、それ以外では`0` |
+| `fmOpacity` | `float` | 実効不透明度の乗数（`0..1`） |
+| `fmVariableCount` | `int` | 現在のFancyMenu変数の数 |
 
-キーアクション値（`fmKeyEvent.w`）:
+キーアクションの値（`fmKeyEvent.w`）：
 
-- `0` = release
-- `1` = press
-- `2` = repeat
+- `0` = リリース
+- `1` = 押下
+- `2` = リピート
 
-## 6.3 FancyMenu 変数ユニフォーム API
+## 6.3 FancyMenu変数のユニフォームAPI
 
-FancyMenu 変数は、値が変わってもシェーダー再コンパイルなしで、ランタイムユニフォームとして直接公開されます（背景、要素、装飾オーバーレイ シェーダー向け）。
+FancyMenu変数は、値が変わってもシェーダーを再コンパイルすることなく、ランタイムユニフォームとして直接公開されます（背景、要素、装飾オーバーレイの各シェーダーで使用可能）。
 
-### 命名
+### 命名規則
 
-各変数 `<name>` について、FancyMenu は次を公開します。
+各変数`<name>`に対して、FancyMenuは次のユニフォームを公開します。
 
 - `fmVarFloat_<name>`
 - `fmVarInt_<name>`
@@ -254,43 +255,49 @@ FancyMenu 変数は、値が変わってもシェーダー再コンパイルな�
 - `fmVarVec2_<name>`
 - `fmVarVec3_<name>`
 - `fmVarVec4_<name>`
-- `fmVarExists_<name>`（`1` = 現在その変数が存在する、`0` = 存在しない/削除済み）
+- `fmVarExists_<name>`（`1` = 変数が現在存在する、`0` = 存在しない／削除済み）
 
-`<name>` のユニフォーム接尾辞のサニタイズ:
+`<name>`のユニフォーム接尾辞は、次のように整形されます。
 
-- 使用可能文字は `[A-Za-z0-9_]`
-- それ以外の文字はすべて `_` に変換されます
-- 先頭文字が数字の場合は、`_` が前置されます
+- 使用できる文字は`[A-Za-z0-9_]`
+- それ以外の文字はすべて`_`に変換されます
+- 先頭が数字の場合は、先頭に`_`が追加されます
 
-例:
+例：
 
-- 変数 `player_hp` -> 接尾辞 `player_hp`
-- 変数 `player-hp` -> 接尾辞 `player_hp`
-- 変数 `2nd_phase` -> 接尾辞 `_2nd_phase`
+- 変数`player_hp` -> 接尾辞`player_hp`
+- 変数`player-hp` -> 接尾辞`player_hp`
+- 変数`2nd_phase` -> 接尾辞`_2nd_phase`
 
-重要:
+重要：
 
-- これらの動的変数ユニフォームは、シェーダーソース内で **自動宣言されません**（使用するものは手動で宣言してください）
-- 同じ接尾辞にサニタイズされる変数名は避けてください。GLSL ユニフォーム名が同一になるためです
+- これらの動的な変数ユニフォームは、シェーダーソース内で**自動宣言されません**（使用するものは手動で宣言してください）
+- 同じ接尾辞に整形される変数名は避けてください。同じGLSLユニフォーム名に割り当てられます
 
 ### 値の変換
 
-変数のテキスト値 `v` に対して:
+変数のテキスト値を`v`とした場合：
 
-- `fmVarFloat_*`: float として解析（失敗時は `0.0`）
-- `fmVarInt_*`: int として解析（失敗時は `0`）
-- `fmVarBool_*`: 真偽/int 解釈（`true/yes/on/enabled` => `1`、`false/no/off/disabled` => `0`、それ以外は数値の非ゼロ => `1`）
-- ベクトル解析が受け付ける区切り: 空白、`,`、`;`、`|`
-  - `fmVarVec2_*`: 先頭 2 成分
-  - `fmVarVec3_*`: 先頭 3 成分
-  - `fmVarVec4_*`: 先頭 4 成分
-  - 成分が不足する場合は、最後に解析された成分を欠損スロットへ繰り返します
-  - 数値成分が 1 つもない場合は、すべてのベクトル成分にスカラーフォールバックを使用します
+- `fmVarFloat_*`：解析されたfloat（解析できない場合は`0.0`）
+- `fmVarInt_*`：解析されたint（解析できない場合は`0`）
+- `fmVarBool_*`：ブール値／整数として解釈（`true/yes/on/enabled` => `1`、`false/no/off/disabled` => `0`、それ以外は数値が0以外なら`1`）
+- ベクトルの解析には、空白、`,`, `;`, `|`を区切り文字として使用できます
+  - `fmVarVec2_*`：解析された先頭2つの成分
+  - `fmVarVec3_*`：解析された先頭3つの成分
+  - `fmVarVec4_*`：解析された先頭4つの成分
+  - 成分数が足りない場合、不足分には最後に解析された成分が繰り返し使われます
+  - 数値成分がない場合、すべてのベクトル成分にスカラーのフォールバック値が使われます
 
-変数が削除された場合:
+[リスト変数](/variables#text-and-list-variables)では、テキストの代わりにエントリー数が返されます。
 
-- `fmVarExists_*` は `0` になります
-- 対応するすべての `fmVar*_*` 値は `0` にリセットされます
+- `fmVarFloat_*`と`fmVarInt_*`：エントリー数。たとえば、3件のエントリーを持つリストでは`3`
+- `fmVarBool_*`：リストにエントリーがあれば`1`、空なら`0`
+- `fmVarVec2_*`、`fmVarVec3_*`、`fmVarVec4_*`：すべての成分にリストのエントリー数が設定されます
+
+変数が削除された場合：
+
+- `fmVarExists_*`は`0`になります
+- 対応するすべての`fmVar*_*`の値が`0`にリセットされます
 
 ### 宣言と使用例
 
@@ -318,52 +325,52 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-## 7. 入力追跡モデル
+## 7. 入力の追跡モデル
 
-FancyMenu は入力をグローバルに追跡し、各描画ごとにスナップショットを取ります。
+FancyMenuは入力をグローバルに追跡し、描画ごとにその状態をスナップショットとして取得します。
 
-- マウス移動/ドラッグ
-- マウス押下/解放
+- マウス移動／ドラッグ
+- マウス押下／リリース
 - スクロール
-- キー押下/解放/リピート
+- キー押下／リリース／リピート
 - 文字入力
 
-マウスの堅牢性:
+マウス入力の堅牢性：
 
-- ランタイムは、ボタンが押しっぱなしのまま固まるのを防ぐため、各フレームで GLFW のポーリングとボタン状態を照合します。
+- ランタイムは各フレームでGLFWのポーリング結果とボタン状態を照合し、ボタンが押されたままになる状態を防ぎます。
 
-`Pass Input Events To Shader` が無効の場合:
+`Pass Input Events To Shader`が無効の場合：
 
 - 入力ユニフォームは毎フレーム中立値にリセットされます
-- カウンターとイベントはシェーダーから見えるデータ内で 0 にされます
+- シェーダーから参照できるデータ内のカウンターとイベントはゼロになります
 
 ## 8. テクスチャ入力の詳細
 
-Resource チャネル（`iChannel# Resource`）は 2D テクスチャを想定します。
+Resourceチャンネル（`iChannel# Resource`）では、2Dテクスチャを指定します。
 
-チャネルごとのテクスチャ状態:
+チャンネルごとのテクスチャ状態：
 
-- 有効な resource: バインド済みテクスチャ、実際の幅/高さ、`iChannelResolution[n].z = 1.0`
-- 欠落/無効/None: フォールバックテクスチャ、`iChannelResolution[n].xyz = (0,0,0)`
+- 有効なリソース：テクスチャがバインドされ、実際の幅／高さが設定され、`iChannelResolution[n].z = 1.0`
+- 存在しない／無効／None：フォールバックテクスチャがバインドされ、`iChannelResolution[n].xyz = (0,0,0)`
 
-Buffer テクスチャ:
+バッファーテクスチャ：
 
-- 内部フォーマット: `RGBA16F`（浮動小数点）
-- フィルタリング: linear
-- wrap: clamp-to-edge
+- 内部フォーマット：`RGBA16F`（浮動小数点）
+- フィルタリング：リニア
+- ラップ：クランプ・トゥ・エッジ
 
-これは、`[0,1]` の外側の値も含むマルチパスデータに適しています。
+これは、`[0,1]`の範囲外の値を含むマルチパスデータに適しています。
 
-## 9. レンダリングとブレンドに関する注意
+## 9. 描画とブレンドに関する注意
 
-- Buffer パスはブレンドなしでオフスクリーン描画されます。
-- 最終 Image パスは合成のために `Enable Blending` 設定を使用します。
-- Shadertoy ラッパーは、`fmOpacity` を自動的にアルファへ適用します。
-- Direct シェーダーでは、必要に応じて `fmOpacity` を手動で適用してください。
+- Bufferパスはブレンドなしでオフスクリーンに描画されます。
+- 最終のImageパスでは、合成に`Enable Blending`設定が使用されます。
+- Shadertoyラッパーはアルファに`fmOpacity`を自動適用します。
+- 必要に応じて、Directシェーダーでは`fmOpacity`を手動で適用してください。
 
-## 10. 実用テンプレート
+## 10. 実用的なテンプレート
 
-## 10.1 最小の Shadertoy 風シェーダー
+## 10.1 最小限のShadertoy形式シェーダー
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -373,7 +380,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-## 10.2 最小の直接フラグメントシェーダー
+## 10.2 最小限のDirectフラグメントシェーダー
 
 ```glsl
 out vec4 FragColor;
@@ -387,11 +394,11 @@ void main() {
 }
 ```
 
-## 10.3 最小のフィードバック・マルチパス
+## 10.3 最小限のフィードバック付きマルチパス
 
-### Buffer A ソース
+### Buffer Aソース
 
-ルート: `Buffer A iChannel0 Input -> Buffer A`
+ルート：`Buffer A iChannel0 Input -> Buffer A`
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -402,9 +409,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-### Image ソース
+### Imageソース
 
-ルート: `Image iChannel0 Input -> Buffer A`
+ルート：`Image iChannel0 Input -> Buffer A`
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -413,17 +420,17 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-## 11. トラブルシューティング チェックリスト
+## 11. トラブルシューティングチェックリスト
 
-- 出力がない:
-  - Image ソースが空でないか確認する
-  - コンパイルモードがエントリーポイント（`mainImage` vs `main`）と一致しているか確認する
-- 紫色/無効なテクスチャ:
-  - resource バインディングとチャネルルーティングを確認する
-  - `iChannelResolution[n].z` を確認する（`0.0` は無効/利用不可を意味します）
-- Direct シェーダーで座標がおかしい:
-  - ローカル領域座標には `gl_FragCoord.xy - fmAreaOffset` を使う
-- ドラッグ挙動がおかしい:
-  - `Update iMouse Position Only While Holding LMB` トグルを使う
-- Direct シェーダーで不透明度が適用されない:
-  - `fmOpacity` を自分でアルファに掛ける
+- 出力がない：
+  - Imageソースが空でないことを確認する
+  - コンパイルモードがエントリーポイント（`mainImage`または`main`）に合っていることを確認する
+- 紫色になる／テクスチャが無効：
+  - リソースのバインドとチャンネルのルーティングを確認する
+  - `iChannelResolution[n].z`を確認する（`0.0`は無効または利用不可を意味します）
+- Directシェーダーで座標がずれる：
+  - エリア内のローカル座標には`gl_FragCoord.xy - fmAreaOffset`を使用する
+- ドラッグの動作がおかしい：
+  - `Update iMouse Position Only While Holding LMB`の切り替えを使用する
+- Directシェーダーで不透明度が適用されない：
+  - アルファに`fmOpacity`を自分で乗算する

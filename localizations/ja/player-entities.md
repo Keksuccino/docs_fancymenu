@@ -1,41 +1,60 @@
 ---
 title: プレイヤーエンティティ
-description: FancyMenu の「Player Entity」要素の仕組みと、正しく使う方法を説明します。
+description: Player Entity要素を使って、スキン、名前、ポーズ、アーマーなどを備えたプレイヤーをメニューに表示できます。
+sourceBlobSha: b8f8d4340ca3a87e1c55c86f95f36786ab840644
 ---
+
 # プレイヤーエンティティ
 
-FancyMenu では、画面にプレイヤーエンティティを追加できます。これにより、クライアントのプレイヤーや他のプレイヤーを表示できます。さらに、実際のプレイヤーではないカスタムエンティティでも、カスタムスキン、名前、マントなどを使って表示できます。
+Player Entity要素は、タイトル画面のボタンの横に表示されるプレイヤー自身のキャラクターのように、プレイヤーを3Dで表示します。操作中のプレイヤーを表示したり、ほかのプレイヤーを表示したり、独自のスキン、マント、名前を持つキャラクターとして使ったりできます。
 
-# クライアントプレイヤー
+<img width="800" alt="5体のPlayer Entity：スキンとマントを着けた実際のプレイヤー、エンチャント付きダイヤモンドアーマーと剣と盾を装備したプレイヤー、しゃがんだプレイヤー、手を振るプレイヤー、子どものプレイヤー" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_showcase.png?raw=true">
 
-クライアントプレイヤーの「ミラー」を表示するには、Player Entity 要素を右クリックして **Copy Client Player** を有効にしてください。これにより、クライアントプレイヤーのスキン、マント、名前がコピーされます。
+> [!IMPORTANT]
+> Minecraft 1.20.1以降では、Player Entityの表示にmod Fancy Entity Renderer（[CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer)、[Modrinth](https://modrinth.com/mod/fancy-entity-renderer)）が必要です。このmodがない場合、赤いボックスが表示されます。使用中のMinecraftバージョンに対応したビルドがまだない場合、そのバージョンではPlayer Entityを表示できません。
 
-# 他のプレイヤー
+# Player Entityの追加
 
-既存の別のプレイヤーを表示したい場合は、要素を右クリックして **Player Name** を既存のプレイヤー名に設定してください。カスタムスキンやカスタムマントを設定しておらず、かつ **Copy Client Player** が **無効** である限り、その既存プレイヤーのスキン、マント、名前が自動的に表示されます。
+エディターの背景を右クリックし、**New Element -> Player Entity**をクリックします。ハンドルをドラッグしてサイズを変更します。プレイヤーのサイズは要素の高さに合わせて変わります。
 
-# カスタムプレイヤーエンティティ
+以下の設定はすべて、要素の右クリックメニューにあります。
 
-実在するプレイヤーを表示したくなく、代わりにエンティティのスキン、マント、名前を完全にカスタマイズしたい場合は、要素を右クリックしてください。カスタムスキンとマントのテクスチャを設定するオプションがあります。カスタムスキンとマントが有効になっている場合、プレイヤーが存在していても、そのプレイヤー名のスキンをコピーすることなく、好きなプレイヤー名を設定できます。
+# 表示するプレイヤー
 
-# エンティティのポーズ
+- **Copy Client Player**を有効にすると、操作中のプレイヤーが名前、スキン、マントとともに表示されます。有効にしている間は、名前、スキン、マントの設定がロックされます。
+- **Player Name**には任意の名前を指定できます。実在のプレイヤーの名前である必要はありません。[プレースホルダー](/placeholders)にも対応しています。
+- **Show Player Name**を有効にすると、頭上にネームタグが表示されます。**Nametag Rotation**をオフにすると、ネームタグはプレイヤーの向きに合わせて回転しません。
 
-Player Entity 要素はポーズのカスタマイズに完全対応しているため、言い換えると、腕や脚、胴体などの各部位を自由に動かせます。
+## スキンとマント
 
-そのためには、要素を右クリックして **Player Pose** をクリックしてください。すると、すべての体の部位の X/Y/Z 回転を設定できるスライダー付きの画面が開きます。
+- **Auto Skin**と**Auto Cape**は、**Player Name**に指定したプレイヤーのスキンとマントを読み込みます。インターネット接続が必要です。
+- **Skin Texture**と**Cape Texture**では、[アセット](/resources)にあるスキンのように、自分のスキンやマントのファイルを使用できます。スキンには通常のMinecraftのスキンファイルを使います。
+- **Slim Skin**は、Alexのような腕が細いスキンに使います。**Auto Skin**と**Copy Client Player**では、スキンの種類が自動的に判別されます。
 
-プレイヤーポーズの設定には、スライダーで回転を調整できる通常モードのほか、すべての回転をテキスト入力で指定できる高度なモードもあります。高度なモードではプレースホルダーも完全にサポートされているため、回転変数を設定する Ticker 要素を使ってエンティティをアニメーションさせることも可能です。
+# ポーズと動き
 
-# エンティティサイズの変更
+<img width="800" alt="マウスポインターの動きに合わせて向きを変える2体のPlayer Entity：左は頭だけ、右は頭と体を動かす" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_follow_mouse.gif?raw=true">
 
-Minecraft 1.20.1 以降では、要素の通常のリサイズ用ハンドルを使って、エンティティをそのまま拡大・縮小できます。
+- **Head Follows Mouse**と**Body Follows Mouse**を有効にすると、プレイヤーがマウスポインターを見るようになります。新しいPlayer Entityでは、どちらも有効になっています。
+- **Pose**では、体のポーズを**Standing**、**Crouching**、**Sleeping**、**Swimming**、**Dying**、**Spin Attack**から選択できます。
+- **Body Movement**を有効にすると、ポーズに動きが加わります。
 
-古いバージョン（1.19.2 以前）では、Player Entity 要素はリサイズ用ハンドルによる直接のサイズ変更に対応していません。その代わり、要素を右クリックして **Scale** をクリックしてください。これにより、その要素のスケールを設定できます。デフォルト値は `30` です。たとえば `60` にするとプレイヤーは通常の 2 倍の大きさになり、`15` にすると半分の大きさになります。
+## エンティティのポーズ
 
-# 依存関係: Fancy Entity Renderer (FER)
+**Entity Pose**をクリックするとウィンドウが開き、**Head**、**Body**、**Left Arm**、**Right Arm**、**Left Leg**、**Right Leg**のX、Y、Z軸の回転を`-180`から`180`の範囲で設定できます。
 
-**Minecraft 1.20.1 以降** では、Player Entity 要素を動作させるために **追加の Mod** が必要です。その Mod は **Fancy Entity Renderer** という名前で、[CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer) と [Modrinth](https://modrinth.com/mod/fancy-entity-renderer) で入手できます。
+<img width="800" alt="プレイヤーの頭と体の回転スライダーが表示されたEntity Poseウィンドウ" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_pose_window.png?raw=true">
 
-使用している Minecraft バージョン向けのビルドがまだ公開されていない場合は、後日リリースされる可能性が高いです。
+スライダーの横にある**Advanced Mode**を有効にすると、[プレースホルダー](/placeholders)に対応したテキスト値に切り替わります。`$$arm_angle`のような[変数](/variables)を使うと、[スケジューラー](/schedulers)でその変数を変更してプレイヤーをアニメーションさせることができます。
 
-なお、FER は Keksuccino によって開発されているわけではないため、ビルドの公開時期について彼には制御できません。
+# アーマー、アイテムなど
+
+- **Armor and Tools**を使うと、プレイヤーにアイテムを装備させられます。設定できるのは**Head Armor**、**Chest Armor**、**Legs Armor**、**Feet Armor**、**Left Hand Tool**、**Right Hand Tool**です。`minecraft:diamond_sword`のようなアイテムIDを指定してください。アイテムIDにはプレースホルダーを使えます。**Enchant Head Armor**やほかの「Enchant」スイッチを有効にすると、エンチャントの輝きが追加されます。
+- **Is Baby**を有効にすると、プレイヤーが子どものように小さくなります。
+- **Parrot**を使うと、右肩にオウムが乗ります。**Parrot On Left Shoulder**を有効にすると左肩に乗ります。
+
+# 知っておくと便利なこと
+
+- Player Entityは回転、傾斜、フェード、半透明化ができません。
+- プレイヤーの頭だけを表示する場合は、[Player Heads](/player-heads)を参照してください。
+- Minecraft 1.19.2では、Player EntityにFancy Entity Rendererは必要ありません。ただし設定項目が少なく、**Pose**の代わりに**Crouching**があり、**Nametag Rotation**、**Body Movement**、**Armor and Tools**はありません。サイズは要素のサイズではなく**Entity Scale**で決まり、デフォルト値は`30`です。`60`にすると2倍の大きさになります。

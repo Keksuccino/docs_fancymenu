@@ -1,45 +1,46 @@
 ---
 title: リソース
-description: FancyMenu におけるリソースの仕組み。リソースの場所、ローカルリソース、Web リソースについて説明します。
+description: FancyMenuでのリソースの仕組みについて説明します。リソースの場所、ローカルリソース、Webリソースを扱います。
+sourceBlobSha: eb783aaa0098ba295b3ebaf941bb4723e4d08970
 ---
 
 # リソース
 
-リソースフィールドは、次の場所からコンテンツを読み込めます。
+リソースフィールドでは、次の場所からコンテンツを読み込めます。
 
-- **Minecraft:** Minecraft またはリソースパックによって提供されるリソースロケーション。
-- **ローカル:** アクティブなゲームインスタンス内のファイル。
-- **Web:** 直接指定したファイル URL。
+- **Minecraft:** Minecraftまたはリソースパックが提供するリソースロケーション。
+- **ローカル:** 現在のゲームインスタンス内にあるファイル。
+- **Web:** ファイルへの直接URL。
 
-多くの画像、音声、動画、テキストの各フィールドは、同じリソース選択画面を使用します。この選択画面には、Minecraft およびリソースパックのコンテンツを参照するブラウザが含まれています。
+画像、音声、動画、テキストの各フィールドの多くは、同じリソース選択画面を使用します。この選択画面には、Minecraftとリソースパックのコンテンツを参照するブラウザーが含まれています。
 
-# Minecraft リソース（リソースパック）
+# Minecraftのリソース（リソースパック）
 
-リソースロケーションは `namespace:path` 形式を使用します。namespace は `assets` の直下にあるディレクトリで、path はその namespace の下にあるすべてです。
+リソースロケーションは `namespace:path` の形式です。namespaceは `assets` の直下にあるディレクトリで、pathはそのnamespace以下のすべてのパスを指します。
 
-たとえば、`/assets/custom_resources/images/image.png` に保存されたリソースパックの画像を考えます。
-そのリソースロケーションは `custom_resources:images/image.png` です。
+たとえば、リソースパックの画像が `/assets/custom_resources/images/image.png` に保存されているとします。
+リソースロケーションは `custom_resources:images/image.png` です。
 
 > [!NOTE]
-> Minecraft の組み込みリソースは通常 `minecraft` namespace を使用します。
+> Minecraft標準のリソースでは、通常 `minecraft` namespaceが使われます。
 
 # ローカルリソース
 
-ローカルリソースは `<game-directory>/config/fancymenu/assets/` に保存します。`<game-directory>` はアクティブなインスタンスフォルダであり、`.minecraft` とは異なる場合があります。
+ローカルリソースは `<game-directory>/config/fancymenu/assets/` に保存します。`<game-directory>` は現在のインスタンスフォルダーで、`.minecraft` とは異なる場合があります。
 
-リソースフィールドでは、同じパスが `/config/fancymenu/assets/example.png` のように表示されることがあります。これらのフィールドで先頭の `/` は依然として `<game-directory>` を意味し、ファイルシステムのルートパスではありません。
+リソースフィールドでは、同じパスが `/config/fancymenu/assets/example.png` のように表示されることがあります。この場合、先頭の `/` は引き続き `<game-directory>` を意味し、ファイルシステムのルートパスではありません。
 
-これらのファイルは、[modpack](./modpacks) の config フォルダを通じて同梱できます。
+これらのファイルは、設定フォルダーを通じて[Modパックに同梱](/modpacks)できます。
 
-FancyMenu のレイアウト、リソース、設定、生成状態のパスを完全に把握するには、[データ保存場所](./data-storage-locations) を参照してください。
+FancyMenuのレイアウト、リソース、設定、生成状態の各パスの全体像については、[データの保存場所](/data-storage-locations)を参照してください。
 
-# Web リソース
+# Webリソース
 
-ファイルへの直接 URL を使用してください。たとえば `https://example-domain.net/image.png` です。ページ URL やリダイレクトリンクは、リソースのファイル名と拡張子で終わる直接 URL よりも遅く、失敗しやすくなります。
+ファイルへの直接URLを使用します。例: `https://example-domain.net/image.png`。ページURLやリダイレクトURLは、リソースのファイル名と拡張子で終わる直接URLよりも読み込みが遅く、失敗しやすくなります。
 
-# リソースソース内のプレースホルダー
+# リソースソースのプレースホルダー
 
-選択画面付きのリソースフィールドでは、ローカルパス、URL、Minecraft のリソースロケーションに [プレースホルダー](./placeholders) を使用できます。ソースフィールドの横にある **エディターで開く** を選択すると、直接編集できます。
+リソース選択画面を使用するフィールドでは、ローカルパス、URL、Minecraftのリソースロケーションに[プレースホルダー](/placeholders)を使用できます。ソースフィールドの横にある **エディターで開く** を選択すると、直接編集できます。
 
 > [!WARNING]
-> 通常の選択画面を使用しないリソース入力では、プレースホルダーやライブのソース更新がサポートされない場合があります。
+> 通常のリソース選択画面を使用しない入力欄では、プレースホルダーやソースのライブ更新がサポートされない場合があります。

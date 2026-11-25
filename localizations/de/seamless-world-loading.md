@@ -1,26 +1,27 @@
 ---
-title: Nahtloses Weltenladen
-description: Verwende eine aktuelle Weltansicht als nächsten Ladebildschirm-Hintergrund.
+title: Nahtloses Laden von Welten
+description: Verwende eine aktuelle Weltansicht als nächsten Ladehintergrund.
+sourceBlobSha: 2b8e960b11ea70fca33b317a7c14815ce5844e13
 ---
 
-# Nahtloses Weltenladen
+# Nahtloses Laden von Welten
 
-Nahtloses Weltenladen verwendet eine aktuelle Ansicht einer Welt oder eines Servers als nächsten Hintergrund für den Ladebildschirm.
+Beim nahtlosen Laden von Welten wird eine aktuelle Ansicht einer Welt oder eines Servers als Hintergrund für den nächsten Ladebildschirm verwendet.
 
-Aktiviere es über [**Anpassung -> Globale Anpassungen**](./global-customizations) -> **Nahtloses Weltenladen**.
+Aktiviere die Funktion unter [**Anpassung -> Globale Anpassungen**](/global-customizations) -> **Nahtloses Laden von Welten**.
 
-# Wie es funktioniert
+# Funktionsweise
 
-- FancyMenu erfasst in regelmäßigen Abständen das aktuelle Bild, während du dich in einer erfassten Welt oder auf einem erfassten Server befindest.
-- Die neueste Aufnahme wird gespeichert, wenn du die Welt verlässt.
-- Jede Welt und jeder Server hat einen eigenen gehashten PNG-Dateinamen.
-- FancyMenu lädt bis zu fünf aktuelle Welt-Aufnahmen und fünf aktuelle Server-Aufnahmen vor.
-- Für ein Ziel wird nichts angezeigt, bis die erste Aufnahme gespeichert wurde.
+- FancyMenu nimmt regelmäßig das aktuelle Bild auf, während du dich in einer erfassten Welt oder auf einem erfassten Server befindest.
+- Die neueste Aufnahme wird gespeichert, wenn du die Welt oder den Server verlässt.
+- Für jede Welt und jeden Server gibt es eine eigene PNG-Datei mit gehashtem Dateinamen.
+- FancyMenu lädt bis zu fünf aktuelle Weltaufnahmen und fünf aktuelle Serveraufnahmen vor.
+- Für ein Ziel wird erst dann etwas angezeigt, wenn die erste Aufnahme gespeichert wurde.
 
-Aufnahmen werden gespeichert in:
+Die Aufnahmen werden hier gespeichert:
 
 ```text
 <game-directory>/fancymenu_data/seamless_world_loading/
 ```
 
-Die Screenshots können alles enthalten, was zum Zeitpunkt der Aufnahme in der Welt sichtbar war. Das Deaktivieren von Nahtlosem Weltenladen beendet das Erfassen und die Verwendung, löscht jedoch keine vorhandenen PNG-Dateien. Lösche unerwünschte Aufnahmen aus dem Verzeichnis, während das Spiel geschlossen ist.
+Die Screenshots können alles enthalten, was zum Aufnahmezeitpunkt in der Welt sichtbar ist. Wenn du das nahtlose Laden von Welten deaktivierst, werden keine Aufnahmen mehr erstellt oder verwendet. Vorhandene PNG-Dateien werden jedoch nicht gelöscht. Lösche unerwünschte Aufnahmen bei geschlossenem Spiel aus dem Verzeichnis.

@@ -1,324 +1,381 @@
 ---
 title: Elementy
-description: 'Wszystko, co warto wiedzieć o typach elementów FancyMenu.'
+description: >-
+  Wszystkie typy elementów FancyMenu, ich przeznaczenie i sposób dodawania ich
+  do układu.
+sourceBlobSha: 0e457baa99cbf7103634385145b27f07c22e6e51
 ---
+
 # Elementy
 
-Elementy są podstawowymi składnikami niestandardowych układów w FancyMenu. Możesz dodawać je do dowolnego układu, aby wyświetlać informacje, dodawać interaktywność lub tworzyć zachwycające efekty wizualne.
+Elementy to części układu: przyciski, teksty, obrazy, suwaki, muzyka i nie tylko. Na tej stronie znajdziesz wszystkie typy elementów oraz ich najważniejsze ustawienia.
 
-# Dodawanie elementów do układu
+> [!TIP]
+> Przyciski i inne elementy, które są domyślnie dostępne na ekranie, to [elementy Vanilla](/vanilla-elements). Możesz je również przenosić, zmieniać i ukrywać.
 
-Nowy element możesz dodać do układu w **Edytorze układu**.
+# Dodawanie elementów
 
-1.  **Kliknij prawym przyciskiem myszy** tło edytora, aby otworzyć menu kontekstowe.
-2.  Najedź kursorem na **Nowy element**.
-3.  Pojawi się lista wszystkich dostępnych typów elementów. Kliknij ten, który chcesz dodać.
+1. W edytorze układu kliknij prawym przyciskiem myszy wolne miejsce, a następnie kliknij **Nowy element**. Ta sama lista znajduje się na pasku menu w **Element -> Nowy**.
+2. Kliknij typ elementu. Najedź kursorem na typ, aby zobaczyć, do czego służy.
 
-![add_element](https://github.com/Keksuccino/FancyMenu/assets/35544624/865a66c5-76a6-404d-b746-d57802b1c12f)
+Element pojawi się w miejscu kliknięcia. Przeciągnij go, aby go przenieść, przeciągnij jego krawędzie, aby zmienić rozmiar, a następnie kliknij go prawym przyciskiem myszy, aby otworzyć jego ustawienia.
 
-Po dodaniu elementu możesz go przesuwać, zmieniać jego rozmiar i dostosowywać go, **klikając go prawym przyciskiem myszy**, aby otworzyć jego menu kontekstowe. Więcej informacji o rozmieszczaniu elementów znajdziesz w sekcjach [Pozycjonowanie elementów](./positioning-elements) i [Identyfikatory elementów](./element-identifiers).
+<img width="800" alt="Kliknięcie prawym przyciskiem myszy w edytorze układu, dodanie przycisku przez opcję Nowy element, przeniesienie go i poszerzenie oraz ustawienie etykiety Dołącz do serwera" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_add_element.gif?raw=true">
 
-# Szczegółowe informacje o elementach
+Więcej informacji o zaznaczaniu, przenoszeniu, kopiowaniu i usuwaniu elementów oraz wszystkie skróty klawiszowe edytora znajdziesz na stronie [Edytor układu](/layout-editor). Aby elementy zachowywały swoje położenie przy każdym rozmiarze okna, przeczytaj [Pozycjonowanie elementów](/positioning-elements). Informacje o wyświetlaniu elementów przed innymi lub za nimi znajdziesz na stronie [Warstwy i grupy](/layout-editor#layers-and-groups).
 
-W tej sekcji wymieniono wbudowane elementy FancyMenu. Użyj sekcji [Warstwy i grupy](./layers-and-groups), aby uporządkować ich kolejność renderowania.
+# Ustawienia wspólne dla wszystkich elementów
 
-## Przycisk
-Klikalny przycisk, który może wykonywać różnorodne akcje. Jest to jeden z najbardziej zaawansowanych i wszechstronnych elementów do tworzenia interaktywnych menu.
+Każdy element ma w menu dostępnym po kliknięciu prawym przyciskiem myszy poniższe ustawienia, obok ustawień właściwych dla jego typu:
 
-*   **Zastosowania:**
-    *   Tworzenie przycisku „Dołącz do Discorda” lub „Odwiedź stronę internetową”.
-    *   Dodawanie przycisku szybkiego dołączania do określonego serwera.
-    *   Budowanie niestandardowej nawigacji między różnymi menu.
-    *   Tworzenie przycisków włączających lub wyłączających inne układy.
-*   **Najważniejsze funkcje:**
-    *   **Akcje:** Może wykonywać sekwencję [akcji](./action-scripts), takich jak otwieranie adresu URL, dołączanie do serwera, wysyłanie polecenia czatu, naśladowanie funkcji innego przycisku lub sterowanie zmiennymi.
-    *   **Niestandardowy wygląd:** W pełni konfigurowalne tekstury dla stanów normalnego, po najechaniu i nieaktywnego. Obsługuje przezroczyste tła, dziewięciokrotne skalowanie, niestandardowe kolory etykiet, kolory etykiet po najechaniu, skalę etykiet, przełączniki cienia etykiet oraz tekstury ikon przycisków.
-    *   **Dźwięki:** Niestandardowe dźwięki kliknięcia, najechania i opuszczenia kursorem.
-    *   **Tryb szablonu:** Może zastosować swój wygląd i właściwości do innych waniliowych lub zmodyfikowanych przycisków w menu. Zobacz [Szablony przycisków i suwaków](./button-slider-templates).
-    *   **Automatyczne klikanie waniliowych/modyfikowanych widżetów:** Istniejące waniliowe i zmodyfikowane widżety mają właściwość **Automatyczne klikanie**, która może wywołać ich oryginalne działanie kliknięcia określoną liczbę razy podczas ładowania ekranu. Szczegóły znajdziesz w sekcji [Elementy waniliowe](./vanilla-elements#automated-clicks).
+| Ustawienie | Działanie |
+|---|---|
+| **Punkt zakotwiczenia** | Określa, do czego przytwierdzony jest element, na przykład do rogu ekranu lub innego elementu. Zobacz [Pozycjonowanie elementów](/positioning-elements). |
+| **Zaawansowane pozycjonowanie** i **Zaawansowane określanie rozmiaru** | Obliczają położenie i rozmiar, na przykład przy użyciu [symboli zastępczych](/placeholders). Zobacz [Zaawansowane pozycjonowanie i określanie rozmiaru](/advanced-positioning-sizing). |
+| **Wymagania dotyczące wyświetlania** i **Wczytaj tylko raz na sesję** | Wyświetlają element tylko po spełnieniu [wymagań](/conditions) albo tylko raz po uruchomieniu gry. Zobacz [Widoczność elementów](/element-visibility). |
+| **Opóźnij pojawienie się** i **Opóźnij zniknięcie** | Odczekują kilka sekund, zanim element się pojawi lub zniknie. Zobacz [Widoczność elementów](/element-visibility#delaying-elements). |
+| **Pojawianie się/znikanie przez zanikanie** i **Nieprzezroczystość** | Stopniowo pokazują lub ukrywają element albo sprawiają, że staje się przezroczysty. Zobacz [Widoczność elementów](/element-visibility#fading-in-and-out). |
+| **Obrót**, **Pochylenie w pionie** i **Pochylenie w poziomie** | Obracają i pochylają element. Zobacz [Obracanie i pochylanie elementów](/rotating-elements). |
+| **Efekt paralaksy** | Lekko przesuwa element wraz z ruchem myszy. Zobacz [Efekt paralaksy](/parallax). |
+| **Kopiuj identyfikator elementu** | Kopiuje identyfikator używany przez akcje, symbole zastępcze i inne elementy do odnajdywania tego elementu. Zobacz [Identyfikatory elementów](/element-identifiers). |
+| **Nazwa wyświetlana w edytorze** | Nazwa elementu na liście warstw. |
+| **Eksportuj dla AI** | Zamienia element na tekst dla [asystentów AI](/export-for-ai). |
 
-## Suwak
-Suwak, który użytkownicy mogą przeciągać, aby wybrać wartość z listy lub zakresu. Może wykonywać akcje za każdym razem, gdy jego wartość się zmieni.
+# Wszystkie elementy
 
-*   **Zastosowania:**
-    *   Tworzenie niestandardowej regulacji głośności.
-    *   Suwak do przełączania między różnymi motywami lub obrazami tła (przy użyciu typu „Lista”).
-    *   Dostosowywanie konkretnej opcji Minecrafta, takiej jak jasność lub zasięg renderowania.
-*   **Najważniejsze funkcje:**
-    *   **Typy:** Może być `Listą wartości` (np. „Łatwy”, „Normalny”, „Trudny”), `Zakresem liczb całkowitych` (np. 1–100) lub `Zakresem liczb dziesiętnych` (np. 0.0–1.0).
-    *   **Dynamiczne akcje:** Wykonuje akcje po zmianie wartości. Bieżąca wartość może być używana wraz ze [Zmiennymi](./variables).
-    *   **Dostosowywanie:** Etykieta suwaka może dynamicznie wyświetlać jego bieżącą wartość. Tekstury uchwytu i tła można w pełni dostosować, w tym ustawić przezroczyste tło, kolor i skalę etykiety, przełącznik cienia tekstu oraz niestandardowe dźwięki kliknięcia i opuszczenia kursorem.
+Wszystkie elementy dostępne w FancyMenu, uporządkowane według przeznaczenia.
 
-## Pole wyboru
-Standardowe pole wyboru, które można włączać i wyłączać. Może wykonywać akcje po zmianie stanu.
+## Przyciski i pola wprowadzania danych
 
-*   **Zastosowania:**
-    *   Pole wyboru „Zgadzam się z zasadami”.
-    *   Ustawienie włączające lub wyłączające określoną funkcję w niestandardowym menu.
-    *   Włączanie lub wyłączanie układu albo zmiennej.
-*   **Najważniejsze funkcje:**
-    *   **Akcje przy przełączaniu:** Wykonuje [skrypty akcji](./action-scripts), gdy jego stan się zmieni. Bieżący stan (`true` lub `false`) jest dostępny dla tych akcji.
-    *   **Tryb zmiennej:** Może być bezpośrednio połączone ze zmienną FancyMenu, dzięki czemu stan pola wyboru jest odczytywany z tej zmiennej i zapisywany w niej.
-    *   **Trwały stan:** Gdy tryb zmiennej jest wyłączony, pole wyboru automatycznie zapisuje swój stan według identyfikatora elementu i przywraca go po ponownym uruchomieniu gry. Stany te są przechowywane w `<game-directory>/checkbox_states.json`. W trybie zmiennej połączona zmienna FancyMenu jest źródłem stanu pola wyboru.
-    *   **Niestandardowy wygląd:** Obsługuje niestandardowe tekstury tła (dla stanów normalnego, po najechaniu i nieaktywnego) oraz samego znacznika wyboru.
+### Przycisk
 
-## Pole tekstowe
-Pole, w którym użytkownicy mogą wpisywać tekst. Jego zawartość może być połączona ze zmienną FancyMenu, co pozwala przechwytywać i wykorzystywać dane wprowadzone przez użytkownika.
+Przycisk, który po kliknięciu uruchamia [skrypt akcji](/action-scripts), na przykład dołączający do serwera, otwierający stronę internetową lub inne menu.
 
-*   **Zastosowania:**
-    *   Pole „Adres IP serwera” współpracujące z przyciskiem „Dołącz do serwera”.
-    *   Pole do wpisania nazwy gracza na potrzeby podglądu niestandardowej skórki.
-    *   Tworzenie podstawowego interfejsu przypominającego logowanie.
-*   **Najważniejsze funkcje:**
-    *   **Powiązanie ze zmienną:** Przechowuje wprowadzony tekst w określonej [zmiennej](./variables).
-    *   **Walidacja danych wejściowych:** Można skonfigurować je tak, aby akceptowało tylko określone typy znaków, np. liczby, adresy URL lub zwykły tekst.
-    *   **Maksymalna długość:** Możesz ustawić maksymalną liczbę znaków.
-    *   **Wygląd i dźwięki:** Obsługuje niestandardowy kolor tła, kolory i zaokrąglenie obramowania, kolor tekstu, tekst podpowiedzi/elementu zastępczego, kolor podpowiedzi oraz dźwięki najechania, opuszczenia kursorem i kliknięcia.
+<img width="396" alt="Dwa przyciski z etykietami Dołącz do serwera i Otwórz wiki" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_button.png?raw=true">
 
-## Podpowiedź
-Pole tekstowe, które może pojawiać się w stałym miejscu lub podążać za kursorem myszy. Jego widoczność jest zwykle kontrolowana za pomocą [Wymagań ładowania](./conditions).
+- **Edytuj skrypt akcji**: określa działanie przycisku po kliknięciu.
+- **Etykieta** i **Etykieta po najechaniu**: tekst przycisku oraz tekst wyświetlany po najechaniu na niego kursorem. Oba pola obsługują [symbole zastępcze](/placeholders) i [formatowanie tekstu](/text-formatting).
+- **Wyrównanie etykiety**: umieszcza etykietę po **lewej**, **środku** lub **prawej** stronie przycisku. Etykiety, które są zbyt szerokie, przewijają się w obie strony, niezależnie od wyrównania.
+- **Skala etykiety**, **Podstawowy kolor etykiety**, **Kolor etykiety po najechaniu**, **Cień etykiety** i **Podkreśl etykietę po najechaniu**: określają rozmiar, kolory i cień etykiety.
+- **Tekstury przycisku** i **Tekstury ikony przycisku**: własne obrazy przycisku i umieszczonej na nim ikony dla przycisków w stanie zwykłym, po najechaniu i nieaktywnych. Informacje o teksturach, które dobrze skalują się w różnych rozmiarach, znajdziesz na stronie [Dzielenie na dziewięć części i kafelkowanie](/nine-slicing-and-tiling).
+- **Dźwięk po najechaniu**, **Dźwięk po zdjęciu kursora** i **Dźwięk kliknięcia**: dźwięki odtwarzane przez przycisk.
+- **Podpowiedź**: tekst wyświetlany po najechaniu kursorem na przycisk.
+- **Steruj stanem aktywności**: [wymagania](/conditions), które trzeba spełnić, aby można było kliknąć przycisk. Gdy nie są spełnione, przycisk jest wyszarzony.
+- **Tryb szablonu**: nadaje innym przyciskom i suwakom na ekranie wygląd tego przycisku. Zobacz [Szablony przycisków i suwaków](/button-slider-templates).
 
-*   **Zastosowania:**
-    *   Wyświetlanie szczegółowych informacji po najechaniu użytkownika na przycisk lub obraz.
-    *   Tworzenie kontekstowych wskazówek pomocy pojawiających się w określonych warunkach.
-    *   Wyświetlanie dynamicznych informacji (np. statusu serwera) obok kursora.
-*   **Najważniejsze funkcje:**
-    *   **Podążanie za myszą:** Można ustawić podążanie za wskaźnikiem myszy.
-    *   **Obsługa Markdown:** Zawartość podpowiedzi obsługuje pełne formatowanie Markdown.
-    *   **Niestandardowe tło:** Tło może mieć jednolity kolor lub być niestandardową teksturą z dziewięciokrotnym skalowaniem, zapewniając w pełni dopasowany wygląd.
+### Suwak
 
-## Przedmiot
-Wyświetla pojedynczy przedmiot Minecrafta, pochodzący z gry podstawowej lub moda.
+Suwak, który gracze przeciągają, aby wybrać wartość. Przy każdej zmianie wartości uruchamia swój skrypt akcji.
 
-*   **Zastosowania:**
-    *   Używanie przedmiotów jako ikon przycisków lub wyborów w menu.
-    *   Tworzenie interfejsu sklepu lub wyboru zestawu.
-    *   Wyświetlanie trzymanego przez gracza przedmiotu lub elementu zbroi.
-*   **Najważniejsze funkcje:**
-    *   **Niestandardowe dane:** Obsługuje niestandardową nazwę, opis, liczbę przedmiotów, połysk zaklęcia i dane NBT. Zobacz [Placeholder danych NBT](./nbt-data-placeholder).
-    *   **Wyświetlanie podpowiedzi:** Można skonfigurować wyświetlanie standardowej podpowiedzi przedmiotu po najechaniu.
+<img width="436" alt="Suwak Głośność muzyki ustawiony na 70% oraz suwak Poziom trudności ustawiony na Normalny" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_slider.png?raw=true">
 
-## Model JSON bloku/przedmiotu
-Renderuje model JSON bloku lub przedmiotu z zasobów Minecrafta albo ze źródeł zewnętrznych.
+- **Typ suwaka**:
+  - **Lista wartości**: przechodzi kolejno przez teksty z pola **Wartości listy**, po jednym w wierszu. Opcja **Wartości z listy zmiennej** pobiera je zamiast tego ze [zmiennej listowej](/variables#text-and-list-variables).
+  - **Zakres liczb całkowitych**: liczby całkowite od **Minimalnej wartości zakresu** do **Maksymalnej wartości zakresu**.
+  - **Zakres liczb dziesiętnych**: działa tak samo, ale dla liczb dziesiętnych. **Miejsce zaokrąglenia** określa liczbę cyfr po przecinku; `-1` oznacza brak zaokrąglania.
+- **Etykieta suwaka**: jej tekst. `$$value` wyświetla bieżącą wartość.
+- **Edytuj skrypt akcji**: uruchamia się po zmianie wartości. `$$value` oznacza nową wartość.
+- **Wstępnie wybrana wartość**: wartość początkowa suwaka. Ustaw ją na wartość, którą suwak zmienia, aby po otwarciu ekranu wyświetlana była prawidłowa wartość.
 
-*   **Zastosowania:**
-    *   Wyświetlanie trójwymiarowego modelu z paczki zasobów w menu.
-    *   Pokazywanie podglądów przedmiotów/bloków z niestandardowymi teksturami.
-    *   Budowanie dekoracyjnych elementów interfejsu opartych na modelach.
-*   **Najważniejsze funkcje:**
-    *   **Źródło modelu:** Może ładować model JSON z zasobów Minecrafta lub źródeł zewnętrznych.
-    *   **Nadpisywanie tekstury:** Obsługuje ustawianie niestandardowej tekstury.
-    *   **Sterowanie renderowaniem:** Przesunięcie i skala modelu, obrót wokół trzech osi, renderowanie z przezroczystością oraz transformacja modelu GUI.
-    *   **Oświetlenie:** Dwa konfigurowalne źródła światła z niezależnym sterowaniem odcieniem i obrotem.
+Na przykład suwak głośności typu **Zakres liczb całkowitych** od `0` do `100` ma etykietę `Głośność muzyki: $$value%` i akcję [**Ustaw wartość zmiennej (zmienna FM)**](/action-scripts#set-variable-value-fm-variable) z następującą wartością:
 
-## Obraz
-Wyświetla statyczny obraz z pliku lokalnego, adresu URL lub lokalizacji zasobu Minecrafta.
+```
+music_volume:$$value
+```
 
-*   **Zastosowania:**
-    *   Dodawanie logo serwera lub marki paczki modów.
-    *   Tworzenie dekoracyjnych obramowań lub ramek interfejsu.
-    *   Wykorzystywanie obrazów jako części bardziej złożonego projektu interfejsu.
-*   **Najważniejsze funkcje:**
-    *   **Dziewięciokrotne skalowanie:** Skaluje obramowania lub panele bez zniekształcania ich narożników. Zobacz [Dziewięciokrotne skalowanie i kafelkowanie](./nine-slicing-and-tiling).
-    *   **Powtarzanie tekstury:** Obraz może być kafelkowany, aby wypełnić obszar elementu.
-    *   **Barwienie:** Możesz nałożyć na obraz kolorowy filtr.
-    *   **Zaokrąglone narożniki:** Obrazy bez dziewięciokrotnego skalowania i powtarzania mogą mieć zaokrąglone narożniki.
-    *   **Efekt paralaksy:** Obraz porusza się wraz z myszą, tworząc wrażenie głębi. Zobacz [Efekt paralaksy](./parallax).
+Jego **Wstępnie wybrana wartość** to `$$music_volume`, dzięki czemu suwak zaczyna od ostatniej wartości wybranej przez gracza.
 
-## Tekst
-Niezwykle wszechstronny element do wyświetlania tekstu. Można go używać zarówno do pojedynczych etykiet, jak i wielostronicowych, przewijanych dokumentów.
+Suwaki mają takie same ustawienia etykiety, tekstury, dźwięku, podpowiedzi i **Steruj stanem aktywności** jak przyciski. Dzięki opcji **Wyrównanie etykiety** ich etykiety również można umieścić po lewej lub prawej stronie.
 
-*   **Zastosowania:**
-    *   Wyświetlanie zasad serwera, informacji o aktualizacji lub wiadomości powitalnych.
-    *   Tworzenie dynamicznych paneli informacyjnych za pomocą [placeholderów](./placeholders), np. `Witaj, {"placeholder":"playername"}!`.
-    *   Dodawanie etykiet i opisów do interfejsu.
-*   **Najważniejsze funkcje:**
-    *   **Źródła treści:** Tekst można wprowadzić bezpośrednio, załadować z pliku lokalnego lub pobrać z adresu URL.
-    *   **Obsługa Markdown:** Obsługuje nagłówki, listy, bloki kodu, tabele i inne elementy formatowania Markdown. Zobacz [Formatowanie tekstu](./text-formatting).
-    *   **Przewijanie:** Automatycznie staje się przewijalny, jeśli treść jest większa niż obszar elementu. Paski przewijania można dostosować lub wyłączyć.
-    *   **Stylizacja:** Pełna kontrola nad kolorem, skalą, wyrównaniem i cieniem tekstu oraz odstępami między wierszami.
+### Pole wyboru
 
-## Wideo
-Odtwarza plik wideo. Doskonale nadaje się do filmowych wstępów lub dekoracyjnych, zapętlonych teł.
+Pole, które gracze mogą zaznaczyć lub odznaczyć. Po każdej zmianie uruchamia swój skrypt akcji.
 
-> [!WARNING]
-> Natywny element Wideo wymaga **Watermedia V3** i **Watermedia Binaries V3**. Stary element **Wideo [Rinku]** jest przestarzały.
+<img width="588" alt="Zaznaczone pole wyboru obok tekstu Pokaż wskazówki na ekranie tytułowym" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_checkbox.png?raw=true">
 
-*   **Zastosowania:**
-    *   Animowany zwiastun paczki modów lub serwera.
-    *   Zapętlone, nastrojowe wideo ożywiające menu.
-    *   Samouczek wideo wyświetlany w grze.
-*   **Najważniejsze funkcje:**
-    *   **Źródła:** Obsługuje lokalne pliki wideo i adresy URL. Zobacz [Wideo](./video).
-    *   **Sterowanie odtwarzaniem:** Można włączyć automatyczne zapętlanie. Regulować można głośność, kanał dźwiękowy i zachowanie zachowujące proporcje obrazu.
-    *   **Interaktywne sterowanie:** Odtwarzaniem wideo, czasem przewijania i głośnością można sterować za pomocą akcji przycisku.
+- `$$value` w skrypcie akcji i wymaganiach **Steruj stanem aktywności** przyjmuje wartość `true` lub `false`.
+- **Tryb zmiennej** i **Połącz ze zmienną**: pole wyboru wyświetla wartość [zmiennej](/variables) i zapisuje w niej `true` lub `false`. Jeśli jest połączone ze zmienną listową, `true` lub `false` staje się jej jedynym wpisem.
+- Bez trybu zmiennej pole wyboru samodzielnie zapamiętuje swój stan, osobno dla każdego [profilu](/profiles).
+- **Tekstury**: własne obrazy pola i znacznika wyboru.
 
-## Shader GLSL
-Renderuje niestandardowy shader GLSL wewnątrz elementu.
+Pola wyboru mają takie same ustawienia podpowiedzi, dźwięku i **Możliwość nawigacji** jak przyciski.
 
-*   **Zastosowania:**
-    *   Animowane panele shaderów.
-    *   Proceduralne efekty wizualne.
-    *   Efekty menu w stylu Shadertoy ograniczone do prostokąta elementu.
-*   **Najważniejsze funkcje:**
-    *   **Środowisko uruchomieniowe shadera:** Obsługuje shadery jedno- i wieloprzebiegowe.
-    *   **Obsługa Shadertoy:** Może korzystać z shaderów w stylu Shadertoy z funkcją `mainImage`.
-    *   **Uniformy:** Udostępnia uniformy FancyMenu i wejściowe. Zobacz [API shadera GLSL](./glsl-shader-api).
+### Pole tekstowe
 
-## Pokaz slajdów
-Wyświetla sekwencję obrazów. Obrazy i plik konfiguracyjny `properties.txt` znajdują się we własnym podkatalogu pokazu slajdów w `<game-directory>/config/fancymenu/slideshows/`.
+Pole, w którym gracze mogą wpisywać tekst, na przykład adres serwera lub nazwę.
 
-*   **Zastosowania:**
-    *   Obracająca się galeria zrzutów ekranu z gry.
-    *   Prezentowanie najważniejszych funkcji paczki modów.
-    *   Dynamiczne tło zmieniające różne sceny.
-*   **Najważniejsze funkcje:**
-    *   Ładuje wstępnie skonfigurowane [pokazy slajdów](./slideshows).
-    *   Można ustawić zachowywanie proporcji obrazów.
+<img width="456" alt="Pole tekstowe z wpisanym play.example.net oraz puste pole z szarą podpowiedzią Twoja nazwa gracza" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_input_field.png?raw=true">
 
-## Prostokąt
-Prosty prostokąt o jednolitym kolorze.
+- **Połącz ze zmienną**: wpisany tekst trafia do [zmiennej](/variables), a pole wyświetla jej wartość. Jeśli pole jest połączone ze zmienną listową, wpisany tekst zastępuje całą listę.
+- **Typ wprowadzanych danych**: **Tekst**, **Tylko liczby**, **Tylko liczby dziesiętne** lub **URL**. Nie można wpisywać innych znaków.
+- **Tekst podpowiedzi** i **Kolor tekstu podpowiedzi**: tekst wyświetlany, gdy pole jest puste.
+- **Maksymalna długość tekstu**: określa, ile znaków można wpisać.
+- **Kolor tła**, **Kolor obramowania**, **Promień zaokrąglenia obramowania** i **Kolor tekstu**: określają wygląd pola.
 
-*   **Zastosowania:**
-    *   Tworzenie półprzezroczystego tła za tekstem w celu poprawy czytelności.
-    *   Projektowanie prostych paneli interfejsu i separatorów.
-    *   Używanie jako kolorowego elementu zastępczego podczas projektowania układu.
-*   **Najważniejsze funkcje:**
-    *   Obsługuje kolory HEX RGBA, zaokrąglone narożniki i opcjonalne rozmycie, dzięki czemu może pełnić funkcję prostego panelu, filtra lub rozmytego tła.
+Na przykład pole połączone ze zmienną `server_address` oraz przycisk z akcją [**Dołącz do serwera**](/action-scripts#join-server) i wartością `$$server_address` pozwalają graczom dołączyć do dowolnego serwera.
 
-## Okrąg
-Prosty okrąg lub elipsa o jednolitym kolorze.
+Jeśli nie używasz zmiennej, tekst można odczytać za pomocą symbolu zastępczego [**Wartość pola tekstowego**](/placeholders#text-input-field-value), a zmienić go za pomocą akcji [**Ustaw wartość pola tekstowego**](/action-scripts#set-text-input-field-value).
 
-*   **Zastosowania:**
-    *   Tworzenie okrągłych akcentów, wskaźników lub delikatnych obszarów interfejsu.
-    *   Budowanie stylizowanych dekoracji interfejsu bez pliku tekstury.
-*   **Najważniejsze funkcje:**
-    *   Obsługuje kolor, rozmycie oraz konfigurowalną wartość zaokrąglenia/wykładnika.
+## Teksty i podpowiedzi
 
-## Tekst powitalny
-Rekreacja charakterystycznego, żółtego i podskakującego tekstu powitalnego Minecrafta z ekranu tytułowego.
+### Tekst
 
-*   **Zastosowania:**
-    *   Zastępowanie waniliowego tekstu powitalnego własnymi wiadomościami.
-    *   Dodawanie przyciągającej wzrok, animowanej wiadomości do dowolnego menu.
-*   **Najważniejsze funkcje:**
-    *   **Źródła treści:** Może korzystać z domyślnych waniliowych tekstów powitalnych, listy niestandardowych tekstów wprowadzonych bezpośrednio lub tekstu z pliku lokalnego.
-    *   **Dostosowywanie:** Możesz włączyć lub wyłączyć efekt podskakiwania oraz dostosować kolor, skalę, obrót i cień tekstu.
+Tekst o dowolnej długości — od krótkiej etykiety po przewijane zasady lub informacje o aktualizacji — obsługujący [Markdown](/text-formatting) i [symbole zastępcze](/placeholders).
 
-## Postać gracza
-Renderuje model gracza w menu.
+<img width="636" alt="Element Tekst z informacjami o aktualizacji: nagłówkiem i listą z jednym pogrubionym fragmentem" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_text.png?raw=true">
 
-*   **Zastosowania:**
-    *   Wyświetlanie postaci bieżącego gracza w menu głównym.
-    *   Tworzenie ekranu wyboru drużyny lub podglądu klasy.
-    *   Sekcja „profilu” pokazująca skórkę i nazwę gracza.
-*   **Najważniejsze funkcje:**
-    *   **Dynamiczny wygląd:** Może kopiować skórkę, pelerynę i nazwę bieżącego gracza. Zobacz [Głowy graczy](./player-heads).
-    *   **Niestandardowe pozy:** Zapewnia szczegółową kontrolę nad obrotem głowy, ciała, rąk i nóg. Głowę i ciało można również ustawić tak, aby podążały za kursorem myszy.
-    *   **Atrybuty:** Można ustawić postać jako dziecko, kucającą lub korzystającą ze smukłego modelu.
+- **Tryb źródła**: wpisz tekst lub wczytaj go z pliku albo strony internetowej.
+- Możesz wybrać wygląd początkowy i włączyć przewijanie, gdy tekst jest większy niż element.
+- **Tło**: ciemny panel za tekstem. Wyłącz go opcją **Pokaż tło** lub użyj własnej tekstury.
 
-## Przeglądarka
-Element renderujący aktywną stronę internetową wewnątrz gry.
+Więcej informacji znajdziesz na stronie [Tekst w menu](/text-in-menus).
 
-Ten element wymaga zainstalowanego i działającego moda **[Rinku](https://modrinth.com/mod/rinku)**!
+### Podpowiedź
 
-Rinku możesz pobrać z oficjalnych stron projektu w serwisach [CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku) i [Modrinth](https://modrinth.com/mod/rinku).
+Pole tekstowe przypominające podpowiedzi w grze, obsługujące [Markdown](/text-formatting) i [symbole zastępcze](/placeholders).
 
-*   **Zastosowania:**
-    *   Wyświetlanie aktywnej mapy Dynmap serwera.
-    *   Osadzanie odtwarzacza filmów YouTube.
-    *   Wyświetlanie wiki lub dokumentacji bezpośrednio w grze.
-*   **Najważniejsze funkcje:**
-    *   **Interaktywność:** Może być w pełni interaktywna, umożliwiając klikanie odnośników, przewijanie i wpisywanie tekstu.
-    *   **Sterowanie multimediami:** Oferuje opcje wyciszania multimediów, zapętlania filmów i ukrywania elementów sterujących wideo na załadowanej stronie.
+<img width="712" alt="Przycisk Potrzebujesz pomocy? z widoczną obok podpowiedzią" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_tooltip.png?raw=true">
 
-### Ładowanie lokalnych plików HTML
-Element Przeglądarka może ładować lokalne dokumenty HTML z `<game-directory>/config/fancymenu/assets/`.
+- Jest wyświetlana w ustawionym miejscu albo przy kursorze, jeśli włączysz opcję **Podążaj za kursorem**.
+- **Wymagania dotyczące wyświetlania** określają, kiedy się pojawi, na przykład po spełnieniu warunku [**Kursor nad elementem**](/conditions#is-element-hovered) dla przycisku.
+- **Tło podpowiedzi**: własna tekstura zamiast ciemnego pola.
 
-Aby załadować lokalny plik HTML, rozpocznij adres URL od `file:///`, a następnie podaj KRÓTKĄ ścieżkę do pliku, np. `/config/fancymenu/assets/cool_changelog.html`, co da adres: `file:///config/fancymenu/assets/cool_changelog.html`.
+Więcej informacji znajdziesz na stronie [Tekst w menu](/text-in-menus).
 
-W systemie **Linux** użyj [placeholdera **Absolute File/Folder Path**](./placeholders#absolute-filefolder-path-absolute_path) zamiast wpisywać na stałe ścieżkę bezwzględną zależną od konkretnej instancji: `file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/cool_changelog.html"}}`.
+### Tekst powitalny
 
-Krótka ścieżka w systemie Linux musi zaczynać się od `/`, jak pokazano w przykładzie.
+Żółty tekst z ekranu tytułowego, który możesz zastąpić własnymi tekstami.
 
-## Animator elementów
-Zaawansowane narzędzie do tworzenia złożonych animacji opartych na klatkach kluczowych. Może animować położenie, rozmiar i punkt zakotwiczenia jednego lub wielu innych elementów.
+<img width="392" alt="Żółty tekst powitalny o treści Sezon 3 już dostępny!" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_splash_text.png?raw=true">
 
-*   **Zastosowania:**
-    *   Wysuwanie elementów na ekran lub ich chowanie.
-    *   Zmienianie rozmiaru paneli lub powiadomień.
-    *   Animowanie przesunięć pozycji i przejść punktów zakotwiczenia.
-*   **Najważniejsze funkcje:**
-    *   **Edytor klatek kluczowych:** Dedykowany edytor do dodawania, edytowania i porządkowania klatek kluczowych na osi czasu.
-    *   **Wiele celów:** Jeden Animator może jednocześnie sterować wieloma elementami „docelowymi”.
-    *   **Sterowanie:** Animacje można zapętlać. Możesz też wybrać animowanie wyłącznie pozycji lub rozmiaru.
-    *   **Przesunięcia czasowe:** Elementy docelowe mogą korzystać z indywidualnych lub losowych przesunięć czasu rozpoczęcia.
-    *   Zobacz [Animator elementów](./element-animator), aby dowiedzieć się, jak go skonfigurować i edytować klatki kluczowe.
+- **Tryb źródła**: domyślne teksty powitalne, własny tekst lub losowy wiersz z pliku tekstowego.
+- **Odbijanie**, **Skala**, **Obrót**, **Kolor tekstu** i **Cień**: określają wygląd.
+- **Odśwież przy wczytaniu ekranu**: wybiera nowy tekst powitalny za każdym razem, gdy ekran zostanie otwarty.
 
-## Wyzwalacz czasowy
-Niewidoczny element wykonujący listę akcji w regularnych odstępach (przy każdym „ticku”).
+Więcej informacji znajdziesz na stronie [Tekst powitalny](/splash-text).
 
-> [!NOTE]
-> Do automatyzacji działającej w tle rozważ użycie [Harmonogramów](./schedulers). Harmonogramy są globalne i mogą działać niezależnie od konkretnego ekranu.
+## Obrazy i multimedia
 
-*   **Zastosowania:**
-    *   Okresowe sprawdzanie statusu serwera i aktualizowanie elementu tekstowego.
-    *   Tworzenie odliczania aktualizującego etykietę tekstową.
-    *   Wielokrotne uruchamianie skryptu w celu tworzenia niestandardowych zachowań.
-*   **Najważniejsze funkcje:**
-    *   **Sterowanie czasem:** Możesz ustawić opóźnienie między tickami w milisekundach.
-    *   **Tryby ticków:** Można ustawić ciągłe wykonywanie, jednokrotne wykonanie podczas sesji gry lub wykonanie raz przy każdym załadowaniu menu.
-    *   **Asynchroniczność:** Może wykonywać swoje [akcje](./action-scripts) oddzielnie, choć niektóre akcje nie mogą działać przy włączonej tej opcji.
+### Obraz
 
-## Dźwięk
-Niewidoczny element odtwarzający pliki dźwiękowe. Może zarządzać listą odtwarzania utworów i oferuje różne opcje sterowania odtwarzaniem.
+Obraz z plików, strony internetowej lub zasobów gry. Obsługiwane są również obrazy animowane.
 
-*   **Zastosowania:**
-    *   Dodawanie niestandardowej muzyki tła do menu.
-    *   Tworzenie odtwarzacza muzyki z przyciskami sterującymi odtwarzaniem (następny/poprzedni utwór, głośność).
-    *   Odtwarzanie nastrojowych pejzaży dźwiękowych.
-*   **Najważniejsze funkcje:**
-    *   **Lista odtwarzania:** Może zarządzać wieloma utworami dźwiękowymi.
-    *   **Tryby odtwarzania:** Może odtwarzać utwory po kolei lub losowo (z obsługą wag utworów, dzięki czemu niektóre mogą pojawiać się częściej niż inne).
-    *   **Sterowanie:** Obsługuje zapętlanie, regulację głośności i wybór kanału dźwiękowego. Zobacz [Muzyka tła menu](./background-music).
+<img width="608" alt="Element Obraz wyświetlający logo Minecrafta" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_image.png?raw=true">
 
-## Kontroler muzyki
-Niewidoczny element służący do sterowania domyślnym odtwarzaniem muzyki Minecrafta w określonym menu.
+- **Źródło obrazu**: obraz. Obsługiwane pliki wymieniono na stronie [Obrazy](/images).
+- **Zachowaj proporcje**: zmienia szerokość, aby obraz nie był rozciągnięty.
+- **Tekstura z podziałem na dziewięć części** i **Powtarzaj teksturę**: pozwalają skalować ramki bez rozciągania ich krawędzi albo kafelkować obraz. Zobacz [Dzielenie na dziewięć części i kafelkowanie](/nine-slicing-and-tiling).
+- **Odcień obrazu [HEX]**: zmienia kolor obrazu.
+- **Promień zaokrąglenia narożników**: zaokrągla narożniki.
 
-*   **Zastosowania:**
-    *   Wyłączanie domyślnej muzyki menu na ekranie, na którym chcesz odtwarzać własną muzykę za pomocą elementu [**Dźwięk**](#audio).
-    *   Zatrzymywanie muzyki ze świata, aby nie była odtwarzana po otwarciu menu w grze.
-*   **Najważniejsze funkcje:**
-    *   Oddzielne przełączniki do sterowania waniliową „Muzyką menu” i „Muzyką świata”.
+### Pokaz slajdów
 
-## Pasek postępu
-Konfigurowalny pasek, który wizualnie przedstawia wartość liczbową.
+Wyświetla kolejno obrazy z pokazu slajdów. Pokazy slajdów tworzy się w folderze `config/fancymenu/slideshows/`. Zobacz [Pokazy slajdów](/slideshows).
 
-*   **Zastosowania:**
-    *   Pasek ładowania śledzący postęp ładowania świata za pomocą `{"placeholder":"world_load_progress"}`.
-    *   Wizualne paski zdrowia, głodu lub doświadczenia w interfejsie gry.
-    *   Wskaźnik głośności sterowany przez element [**Suwak**](#slider).
-*   **Najważniejsze funkcje:**
-    *   **Dynamiczna wartość:** Wartość postępu (0–100 lub 0.0–1.0) jest ustawiana w polu tekstowym obsługującym [placeholdery](./placeholders).
-    *   **Wygląd:** Kierunek paska (góra, dół, lewo, prawo), kolory, tekstury oraz dziewięciokrotne skalowanie tekstur paska i tła można w pełni dostosować.
-    *   **Animacja:** Płynna animacja wypełniania sprawia, że zmiany postępu są mniej gwałtowne.
-    *   **Zakotwiczenie elementu zależne od postępu:** Gdy inny element używa paska postępu jako zakotwiczenia **Element**, włącz **Użyj postępu jako zakotwiczenia elementu**, aby przenieść to zakotwiczenie na bieżącą krawędź wypełnionego obszaru. Zakotwiczone elementy będą wtedy poruszać się wraz z postępem paska, zamiast pozostawać przy jego statycznych granicach.
+- **Pokaz slajdów**: wybierz pokaz, który ma być wyświetlany.
+- **Zachowaj proporcje**: zmienia szerokość, aby obrazy nie były rozciągnięte.
 
-## Przeciągacz
-Niewidoczny element, który użytkownik może kliknąć i przeciągać. Inne elementy można do niego zakotwiczyć, aby tworzyć ruchome widżety.
+### Wideo
 
-*   **Zastosowania:**
-    *   Tworzenie przeciąganego zegara lub panelu informacyjnego.
-    *   Umożliwianie użytkownikom dostosowania położenia elementów interfejsu do własnych preferencji.
-*   **Najważniejsze funkcje:**
-    *   **Opcjonalna trwałość:** Włącz **Zapisuj przesunięcie przeciągnięcia użytkownika**, aby zachować pozycję przeciągniętego elementu po ponownym otwarciu ekranu i ponownym uruchomieniu gry. Wyłącz tę opcję, aby resetować przesunięcie.
-    *   **Punkt zakotwiczenia:** Działa jako ruchomy punkt zakotwiczenia dla innych elementów, co jest kluczową częścią sekcji [Pozycjonowanie elementów](./positioning-elements).
+Odtwarza plik wideo, na przykład zwiastun lub animowane tło.
 
-## Kursor
-Niewidoczny element, który zastępuje domyślny kursor systemowy niestandardowym obrazem, gdy układ jest aktywny.
+> [!IMPORTANT]
+> Wideo wymaga modów Watermedia V3 i Watermedia Binaries V3. Zobacz [Wideo](/video).
 
-*   **Zastosowania:**
-    *   Tworzenie w pełni stylizowanego interfejsu pasującego do estetyki paczki modów.
-*   **Najważniejsze funkcje:**
-    *   **Niestandardowa tekstura:** Użyj dowolnego obrazu jako kursora.
-    *   **Punkt aktywny:** Określa dokładny piksel obrazu używany jako punkt kliknięcia. Zobacz [Niestandardowy kursor](./custom-cursor).
+- **Źródło wideo**: plik wideo, link internetowy lub zasób gry.
+- **Odtwarzaj w pętli**, **Głośność** i **Kanał dźwięku**: określają sposób odtwarzania.
+- **Odtwarzaj wideo w edytorze układu**: określa, czy wideo ma być odtwarzane także podczas edycji.
+- Akcje takie jak [**Przełącz stan wstrzymania elementu wideo**](/action-scripts#toggle-video-element-paused-state) pozwalają wstrzymać odtwarzanie, przejść do wybranego momentu lub zmienić głośność.
+
+**Wideo [Rinku]** to starszy element wideo, który wymaga moda Rinku. Nadal działa w starych układach, ale nie jest dostępny w menu **Nowy element**.
+
+### Shader GLSL
+
+Uruchamia własny shader GLSL w elemencie, na przykład animowane kolory lub efekty z Shadertoy.
+
+<img width="576" alt="Element Shader GLSL wyświetlający kolorowy gradient" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_glsl_shader.png?raw=true">
+
+- **Źródło shadera**: kod shadera. Shadery Shadertoy zawierające `mainImage` działają bez zmian.
+- **Tryb kompilacji**: **Auto**, **Shadertoy** lub **Direct Fragment**.
+- **Źródło bufora A** do **Źródła bufora D**: dodatkowe etapy przetwarzania dla shaderów korzystających z buforów.
+
+Informacje o tworzeniu shaderów znajdziesz na stronie [API shaderów GLSL](/glsl-shader-api).
+
+### Przeglądarka
+
+Wyświetla na żywo stronę internetową, na przykład mapę serwera lub stronę wiki.
+
+> [!IMPORTANT]
+> Przeglądarka wymaga moda [Rinku](https://modrinth.com/mod/rinku) ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku)).
+
+- **URL**: adres strony internetowej.
+- **Interaktywność**: pozwala graczom klikać, przewijać i wpisywać tekst. W edytorze układu przeglądarka nigdy nie jest interaktywna.
+- **Wycisz przeglądarkę**, **Głośność audio/wideo**, **Odtwarzaj wideo w pętli** i **Ukryj sterowanie wideo**: ustawienia multimediów na stronie.
+
+Aby wczytać plik HTML z folderu `config/fancymenu/assets/`, rozpocznij adres od `file:///`:
+
+```
+file:///config/fancymenu/assets/changelog.html
+```
+
+W systemie Linux użyj zamiast tego symbolu zastępczego [**Bezwzględna ścieżka do pliku/folderu**](/placeholders#absolute-filefolder-path):
+
+```
+file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/changelog.html"}}
+```
+
+Strony internetowe mogą uruchamiać akcje i odczytywać symbole zastępcze: [API JavaScript przeglądarki](/browser-api).
+
+## Kształty, przedmioty i modele
+
+### Prostokąt
+
+Prostokąt w jednym kolorze, na przykład panel za tekstem.
+
+<img width="536" alt="Ciemny, półprzezroczysty panel z zaokrąglonymi rogami i rozmytym tłem, zawierający zasady serwera" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_rectangle_shape.png?raw=true">
+
+- **Kolor**: kolor w formacie HEX. Dwie dodatkowe cyfry określają przezroczystość, na przykład `#101828C8`.
+- **Promień zaokrąglenia narożników**: zaokrągla wszystkie narożniki albo każdy z osobna.
+- **Rozmycie** i **Intensywność rozmycia**: rozmywają tło za elementem.
+
+### Okrąg
+
+Okrąg lub owal w jednym kolorze, na przykład kontrolka stanu.
+
+<img width="428" alt="Zielona kropka obok tekstu Przetrwanie: online i czerwona kropka obok tekstu Kreatywny: offline" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_circle_shape.png?raw=true">
+
+- **Kolor**, **Rozmycie** i **Intensywność rozmycia**: działają tak samo jak w przypadku prostokąta.
+- **Okrągłość**: wartość `2` oznacza okrąg. Większe wartości nadają kształtowi bardziej kwadratowy wygląd, a mniejsze — bardziej spiczasty.
+
+### Przedmiot
+
+Wyświetla przedmiot z Minecrafta lub moda, tak jak w ekwipunku.
+
+<img width="460" alt="Zaklęty diamentowy miecz, 16 jabłek, złote jabłko i totem nieśmiertelności" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_item.png?raw=true">
+
+- **Klucz przedmiotu**: przedmiot, na przykład `minecraft:diamond_sword`.
+- **Liczba przedmiotów**, **Nazwa przedmiotu**, **Opis przedmiotu** i **Zaklęty**: działają tak jak w przypadku prawdziwego przedmiotu.
+- **Pokaż podpowiedź przedmiotu**: wyświetla podpowiedź przedmiotu po najechaniu na niego kursorem.
+- **Niestandardowe dane NBT**: dodatkowe dane przedmiotu, zapisane w formacie takim jak fragment polecenia `/give` umieszczony bezpośrednio po przedmiocie.
+
+### Model bloku/przedmiotu JSON
+
+Wyświetla trójwymiarowy model bloku lub przedmiotu z zasobów gry albo z własnego pliku JSON.
+
+<img width="296" alt="Stół rzemieślniczy w 3D" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_json_model.png?raw=true">
+
+- **Model**: **Źródło modelu**, na przykład `minecraft:models/block/crafting_table.json`.
+- **Tekstura**: zastępuje teksturę modelu własną.
+- **Transformacja**: skaluje, obraca i przesuwa model.
+- **Oświetlenie**: opcja **Odcień światła [HEX]** zmienia kolor oświetlenia modelu.
+
+### Postać gracza
+
+Wyświetla trójwymiarową postać gracza, na przykład postać danego gracza na ekranie tytułowym.
+
+<img width="360" alt="Nowy element Postać gracza z domyślną skórką, zwrócony w prawo" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_player_entity.png?raw=true">
+
+> [!IMPORTANT]
+> Postacie graczy wymagają moda Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Bez niego zamiast postaci wyświetli się błąd.
+
+- **Kopiuj postać gracza**: wyświetla postać osoby grającej w grę, wraz z jej skórką i nazwą.
+- **Nazwa gracza**, **Tekstura skórki** i **Tekstura peleryny**: pozwalają wybrać inną postać lub skórkę.
+- **Poza postaci**, **Głowa podąża za kursorem** i **Tułów podąża za kursorem**: określają postawę i kierunek patrzenia postaci.
+- **Zbroja i narzędzia**, **Papuga**, **Czy małe** i **Pokaż nazwę gracza**: określają, co postać nosi i co jest wyświetlane.
+
+Więcej informacji znajdziesz na stronie [Postacie graczy](/player-entities). Informacje o wyświetlaniu samej głowy znajdziesz na stronie [Głowy graczy](/player-heads).
+
+### Pasek postępu
+
+Wypełniający się pasek, na przykład pasek wczytywania.
+
+<img width="496" alt="Pasek postępu wypełniony w 65%, pod tekstem Wczytywanie świata... 65%" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_progress_bar.png?raw=true">
+
+- **Źródło wartości postępu**: określa stopień wypełnienia. Możesz użyć tu [symboli zastępczych](/placeholders), na przykład [**Postęp wczytywania świata**](/placeholders#world-loading-progress) na ekranie wczytywania świata.
+- **Tryb wartości postępu**: **PROCENTY (0-100)** lub **LICZBA ZMIENNOPRZECINKOWA (0.0-1.0)**.
+- **Kierunek**: określa, w którą stronę pasek się wypełnia.
+- **Kolor paska** i **Kolor tła** albo **Tekstura paska** i **Tekstura tła**.
+- **Płynna animacja wypełniania**: płynnie przechodzi do nowych wartości zamiast przeskakiwać.
+- **Użyj postępu jako punktu zakotwiczenia elementu**: elementy zakotwiczone do paska przesuwają się wraz z końcem wypełnionej części.
+
+## Narzędzia układu
+
+### Obszar przewijania
+
+Zawiera inne elementy i umożliwia ich przewijanie, na przykład listę serwerów lub długą stronę z informacjami.
+
+<img width="800" alt="Trzy obszary przewijania układające przyciski i przedmioty w stos, siatkę oraz układ przepływowy" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/scroll_area_modes.png?raw=true">
+
+- Przeciągnij elementy do obszaru w edytorze układu. Można dodawać tylko elementy niestandardowe, nie elementy Vanilla.
+- **Układ**: rozmieść elementy samodzielnie albo pozwól obszarowi ułożyć je w stos, siatkę lub układ przepływowy.
+- **Tło**: ciemny panel za obszarem. Wyłącz go opcją **Pokaż tło** lub użyj własnej tekstury.
+
+Wszystkie informacje znajdziesz na stronie [Obszary przewijania](/scrollable-areas).
+
+### Uchwyt
+
+Obszar, który gracze mogą chwycić i przesuwać poza edytorem. Zakotwiczone do niego elementy przesuwają się razem z nim, dzięki czemu można na przykład przenosić cały panel informacyjny. Poza edytorem uchwyt jest niewidoczny.
+
+Opcja **Zapisz przesunięcie użytkownika** zachowuje nowe położenie po zamknięciu ekranu i ponownym uruchomieniu gry. Więcej informacji znajdziesz na stronie [Uchwyt](/dragger).
+
+### Animator elementów
+
+Przesuwa i zmienia rozmiar innych elementów za pomocą klatek kluczowych, na przykład animując wjazd panelu na ekran. Poza edytorem jest niewidoczny.
+
+- **Zarządzaj elementami docelowymi**: wybierz elementy, które mają być animowane.
+- **Edytuj klatki kluczowe**: otwiera edytor klatek kluczowych.
+- **Zapętl animację**: rozpoczyna animację od nowa po jej zakończeniu.
+
+Wszystkie informacje znajdziesz na stronie [Animator elementów](/element-animator).
+
+## Elementy niewidoczne
+
+Te elementy są widoczne tylko w edytorze układu.
+
+### Licznik
+
+Wielokrotnie uruchamia swój skrypt akcji, gdy ekran jest otwarty.
+
+> [!IMPORTANT]
+> Zalecanym sposobem na uruchamianie czegoś cyklicznie lub z opóźnieniem są [harmonogramy](/schedulers). W miarę możliwości używaj ich zamiast liczników. Działają na każdym ekranie, a także wtedy, gdy żaden ekran nie jest otwarty. Można w nich uruchamiać wszystkie akcje, a akcje mogą je uruchamiać i zatrzymywać.
+
+Oto jak zastąpić liczniki harmonogramami:
+
+- Uruchamianie przez cały czas, gdy ekran jest otwarty: użyj harmonogramu z ustawieniem **Opóźnienie tyknięcia (ms)**. Uruchom go akcją [**Uruchom harmonogram**](/action-scripts#start-scheduler) w opcji **Edytuj skrypt akcji „Otwórz ekran”** dla układu, a następnie zatrzymaj akcją [**Zatrzymaj harmonogram**](/action-scripts#stop-scheduler) w opcji **Edytuj skrypt akcji „Zamknij ekran”**. Obie opcje znajdziesz w menu dostępnym po kliknięciu prawym przyciskiem myszy tła edytora.
+- Uruchamianie raz na start gry: użyj harmonogramu z włączoną opcją **Uruchom przy starcie** i ustawieniem **Liczba tyknięć** równym `1`.
+- Uruchamianie za każdym razem, gdy ekran zostanie otwarty: nie trzeba używać licznika ani harmonogramu. Dodaj akcje do opcji **Edytuj skrypt akcji „Otwórz ekran”**.
+
+Ustawienia licznika:
+
+- **Opóźnienie tyknięcia [ms]**: odstęp między kolejnymi uruchomieniami w milisekundach. Wartość `0` uruchamia go przy każdym tyknięciu, czyli 20 razy na sekundę.
+- **Tryb tyknięć**: **Normalny** uruchamia go cały czas. **Sesja** uruchamia go tylko raz, aż do ponownego uruchomienia gry. **Przy wczytaniu ekranu** uruchamia go raz za każdym razem, gdy ekran zostanie otwarty, również po zmianie rozmiaru okna.
+- **Asynchronicznie**: uruchamia go w tle. Większość akcji nie może działać w ten sposób i wyświetli błąd.
+
+### Audio
+
+Odtwarza muzykę lub dźwięki, jeden utwór po drugim, gdy ekran jest otwarty.
+
+- **Zarządzaj utworami**: pliki audio, ich kolejność i **Waga utworu** używana przy losowaniu.
+- **Tryb odtwarzania**: **Normalny** odtwarza utwory po kolei, a **Losowo** w przypadkowej kolejności.
+- **Zapętl utwory**, **Głośność** i **Kanał dźwięku**: określają sposób odtwarzania.
+
+Aby muzyka była odtwarzana również podczas przechodzenia między ekranami, umieść element Audio w [układzie uniwersalnym](/universal-layouts). Więcej informacji znajdziesz na stronie [Muzyka w tle menu](/background-music).
+
+### Kontroler muzyki
+
+Wyłącza muzykę gry na tym ekranie.
+
+- **Odtwarzaj muzykę menu**: muzyka odtwarzana w menu, gdy żaden świat nie jest wczytany, na przykład na ekranie tytułowym.
+- **Odtwarzaj muzykę świata**: muzyka świata, która nadal jest odtwarzana w menu, na przykład w ekwipunku.
+
+Działa tylko wtedy, gdy ekran jest otwarty.
+
+### Kursor
+
+Zastępuje kursor myszy własnym obrazem, gdy ekran jest otwarty.
+
+- **Tekstura kursora**: obraz PNG, na przykład o rozmiarze 32×32 pikseli.
+- **Współrzędna X punktu aktywnego** i **Współrzędna Y punktu aktywnego**: piksel obrazu, który odpowiada za kliknięcie, na przykład czubek strzałki.
+- **Tryb podglądu w edytorze**: wyświetla kursor w edytorze, gdy kursor myszy znajduje się nad elementem.
+
+Więcej informacji znajdziesz na stronie [Niestandardowy kursor](/custom-cursor).

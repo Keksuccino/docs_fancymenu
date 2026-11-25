@@ -1,41 +1,62 @@
 ---
-title: Encje gracza
-description: Jak działa element „Encja gracza” w FancyMenu i jak poprawnie go używać.
+title: Encje graczy
+description: >-
+  Wyświetlaj graczy w menu za pomocą elementu Encja gracza — z ich skórką,
+  imieniem, pozą, zbroją i nie tylko.
+sourceBlobSha: b8f8d4340ca3a87e1c55c86f95f36786ab840644
 ---
-# Encje gracza
 
-FancyMenu pozwala dodawać encje gracza do ekranów, dzięki czemu możesz wyświetlać klienta gracza albo innych graczy, a także niestandardowe encje, które w ogóle nie reprezentują prawdziwego gracza, z własnym skinem, nazwą, peleryną i tak dalej.
+# Encje graczy
 
-# Klient gracza
+Element Encja gracza wyświetla gracza w 3D — podobnie jak postać gracza obok przycisków na ekranie tytułowym. Może odwzorować osobę grającą, wyświetlić dowolnego innego gracza albo przedstawiać własną postać z własną skórką, peleryną i imieniem.
 
-Aby wyświetlić „lustrzane odbicie” klienta gracza, kliknij element Encja gracza prawym przyciskiem myszy i włącz **Kopiuj klienta gracza**. Spowoduje to skopiowanie skinu, peleryny i nazwy klienta gracza.
+<img width="800" alt="Pięć encji graczy: prawdziwy gracz ze skórką i peleryną, jeden w zaklętej diamentowej zbroi z mieczem i tarczą, jeden kucający, jeden machający i dziecko" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_showcase.png?raw=true">
 
-# Inni gracze
+> [!IMPORTANT]
+> W Minecraft 1.20.1 i nowszych wersjach encje graczy wymagają moda Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Bez niego są wyświetlane jako czerwony kwadrat. Jeśli nie ma jeszcze jego wersji dla Twojej wersji Minecrafta, encje graczy nie będą się w niej wyświetlać.
 
-Jeśli chcesz wyświetlić innego istniejącego gracza, kliknij element prawym przyciskiem myszy i ustaw **Nazwa gracza** na nazwę istniejącego gracza. Spowoduje to automatyczne wyświetlenie skinu, peleryny i nazwy tego gracza, o ile nie masz ustawionego własnego skina lub peleryny oraz **Kopiuj klienta gracza** jest **wyłączone**.
+# Dodawanie encji gracza
 
-# Niestandardowe encje gracza
+Kliknij prawym przyciskiem myszy tło edytora i wybierz **Nowy element -> Encja gracza**. Przeciągaj uchwyty, aby zmienić jej rozmiar. Rozmiar gracza jest uzależniony od wysokości elementu.
 
-Jeśli nie chcesz w ogóle wyświetlać prawdziwego gracza i zamiast tego chcesz w pełni dostosować skin, pelerynę i nazwę encji, możesz kliknąć element prawym przyciskiem myszy. Dostępne są opcje ustawienia własnego teksturowania skina i peleryny. Jeśli aktywny jest własny skin i peleryna, możesz również ustawić dowolną nazwę gracza, bez kopiowania skinu z nazwy gracza, jeśli taki gracz istnieje.
+Wszystkie poniższe ustawienia znajdziesz w menu elementu otwieranym prawym przyciskiem myszy.
 
-# Poza encji
+# Kogo wyświetla
 
-Element Encja gracza w pełni obsługuje dostosowywanie pozy, więc innymi słowy możesz swobodnie poruszać wszystkimi kończynami, częściami ciała itd.
+- **Kopiuj gracza klienta** wyświetla osobę grającą wraz z jej imieniem, skórką i peleryną. Gdy ta opcja jest włączona, ustawienia imienia, skórki i peleryny są zablokowane.
+- **Imię gracza** może być dowolne — nie musi należeć do prawdziwego gracza. Obsługuje [zmienne](/placeholders).
+- **Pokaż imię gracza** wyświetla plakietkę z imieniem nad głową. Gdy opcja **Obrót plakietki z imieniem** jest wyłączona, plakietka nie obraca się razem z graczem.
 
-Aby to zrobić, kliknij element prawym przyciskiem myszy i wybierz **Poza gracza**. Otworzy się ekran z suwakami do konfiguracji rotacji X/Y/Z wszystkich części ciała.
+## Skórka i peleryna
 
-Ustawienia pozy gracza mają zwykły tryb, w którym możesz dostosowywać rotacje za pomocą suwaków, a także tryb zaawansowany, który umożliwia wpisywanie tekstu dla wszystkich rotacji z pełną obsługą placeholderów, co pozwala nawet animować encję za pomocą elementu Ticker, który ustawia zmienne rotacji!
+- **Automatyczna skórka** i **Automatyczna peleryna** wczytują skórkę i pelerynę gracza o podanym **Imieniu gracza**. Wymaga to połączenia z internetem.
+- **Tekstura skórki** i **Tekstura peleryny** używają własnych plików skórki i peleryny, na przykład skórki z Twoich [zasobów](/resources). Skórki to standardowe pliki skórek Minecrafta.
+- **Wąska skórka** służy do skórek z wąskimi rękami, takich jak skórka Alex. **Automatyczna skórka** i **Kopiuj gracza klienta** same wykrywają ten typ skórki.
 
-# Zmiana rozmiaru encji
+# Poza i ruch
 
-W Minecraft 1.20.1+ możesz po prostu użyć zwykłych uchwytów zmiany rozmiaru elementu, aby skalować encję.
+<img width="800" alt="Dwie encje graczy patrzą na wskaźnik myszy, gdy ten się porusza: lewa obraca tylko głowę, a prawa obraca głowę i tułów" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_follow_mouse.gif?raw=true">
 
-W starszych wersjach (1.19.2 i starszych) elementy Encja gracza nie obsługują bezpośredniej zmiany rozmiaru za pomocą uchwytów zmiany rozmiaru. Zamiast tego musisz kliknąć element prawym przyciskiem myszy i wybrać **Skala**. Umożliwia to ustawienie skali dla elementu. Domyślna wartość powinna wynosić `30`, więc ustawienie jej na przykład na `60` sprawi, że gracz będzie dwa razy większy niż normalnie, ustawienie na `15` pokaże go w połowie rozmiaru i tak dalej.
+- **Głowa podąża za myszą** i **Tułów podąża za myszą** sprawiają, że gracz patrzy na wskaźnik myszy. Obie opcje są domyślnie włączone dla nowych encji graczy.
+- **Poza** pozwala wybrać pozycję ciała: **Stojąca**, **Kucanie**, **Spanie**, **Pływanie**, **Umieranie** lub **Atak obrotowy**.
+- **Ruch ciała** animuje pozę.
 
-# Zależność: Fancy Entity Renderer (FER)
+## Poza encji
 
-Dla **Minecraft 1.20.1+** potrzebny jest **dodatkowy mod**, aby elementy Encja gracza działały. Mod nazywa się **Fancy Entity Renderer** i jest dostępny na [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer) oraz [Modrinth](https://modrinth.com/mod/fancy-entity-renderer).
+Opcja **Poza encji** otwiera okno z ustawieniami obrotu w osiach X, Y i Z dla **Głowy**, **Tułowia**, **Lewej ręki**, **Prawej ręki**, **Lewej nogi** i **Prawej nogi** — od `-180` do `180`.
 
-Jeśli dla używanej przez ciebie wersji Minecrafta nie ma jeszcze dostępnej kompilacji, najprawdopodobniej zostanie ona wydana później.
+<img width="800" alt="Okno Poza encji z suwakami obrotu głowy i tułowia gracza" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_pose_window.png?raw=true">
 
-Pamiętaj, że FER nie jest tworzony przez Keksuccino, więc nie ma on kontroli nad tym, kiedy kolejne kompilacje zostaną wydane.
+Opcja **Tryb zaawansowany** obok suwaka zamienia go w pole tekstowe obsługujące [zmienne](/placeholders). Jeśli użyjesz w nim [zmiennej](/variables), takiej jak `$$arm_angle`, możesz animować gracza za pomocą [harmonogramu](/schedulers), zmieniając wartość tej zmiennej.
+
+# Zbroja, przedmioty i inne
+
+- **Zbroja i narzędzia** pozwala umieścić przedmioty na graczu: **Zbroja na głowę**, **Zbroja na tors**, **Zbroja na nogi**, **Zbroja na stopy**, **Narzędzie w lewej ręce** i **Narzędzie w prawej ręce**. Wybierz identyfikator przedmiotu, na przykład `minecraft:diamond_sword`. Identyfikatory przedmiotów obsługują zmienne. Opcje **Zaklęj zbroję na głowie** i pozostałe przełączniki zaklinania dodają efekt połysku zaklęcia.
+- **Jest dzieckiem** zmniejsza gracza, jakby był dzieckiem.
+- **Papuga** umieszcza papugę na prawym ramieniu, a opcja **Papuga na lewym ramieniu** przenosi ją na lewe.
+
+# Warto wiedzieć
+
+- Encji graczy nie można obracać, przechylać, wygaszać ani czynić przezroczystymi.
+- Jeśli chcesz wyświetlić tylko głowę gracza, zobacz [Głowy graczy](/player-heads).
+- W Minecraft 1.19.2 encje graczy nie wymagają moda Fancy Entity Renderer, ale mają mniej ustawień: zamiast **Pozy** dostępne jest **Kucanie**, a opcji **Obrót plakietki z imieniem**, **Ruch ciała** oraz **Zbroja i narzędzia** nie ma. Rozmiar określa ustawienie **Skala encji** (domyślnie `30`, więc `60` oznacza dwukrotnie większy rozmiar), a nie rozmiar elementu.

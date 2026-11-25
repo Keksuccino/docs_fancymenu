@@ -1,20 +1,23 @@
 ---
-title: Bildschirm-IDs
-description: Über Bildschirm-IDs und wie man die ID eines Bildschirms findet.
+title: Bildschirmkennungen
+description: >-
+  Informationen zu Bildschirmkennungen und dazu, wie du die Kennung eines
+  Bildschirms findest.
+sourceBlobSha: 64414e10bf5f532e075373a6a753e2f667448ceb
 ---
-# Bildschirm-IDs
+# Bildschirmkennungen
 
-FancyMenu verwendet Bildschirm-IDs für Layouts, Vanilla-Widgets, [Bildschirmaktionen](./action-scripts#open-screen-or-custom-gui-opengui) und [Custom-GUI-Overrides](./custom-guis#overriding-an-existing-screen). IDs sind groß-/kleinschreibungssensitiv, also kopiere sie exakt aus dem Debug-Overlay.
+FancyMenu verwendet Bildschirmkennungen für Layouts, Vanilla-Widgets, [Bildschirmaktionen](/action-scripts#open-screen-or-custom-gui) und [Überschreibungen benutzerdefinierter GUIs](/custom-guis#overriding-an-existing-screen). Bei Kennungen wird zwischen Groß- und Kleinschreibung unterschieden. Kopiere sie daher exakt aus dem Debug-Overlay.
 
-Integrierte Bildschirme verwenden normalerweise eine kurze, universelle ID wie `title_screen`. Andere Mod-Bildschirme können ihren Java-Klassennamen verwenden. Custom GUIs verwenden die ID, die im Manager eingegeben wurde. Das sind FancyMenu-Bildschirm-IDs, nicht Minecraft-Resource-Locations.
+Integrierte Bildschirme verwenden normalerweise eine kurze, universelle Kennung wie `title_screen`. Für Bildschirme anderer Mods kann der Name ihrer Java-Klasse verwendet werden. Benutzerdefinierte GUIs verwenden die Kennung, die in ihrem Manager eingetragen wurde. Dies sind FancyMenu-Bildschirmkennungen und keine Minecraft-Ressourcen-IDs.
 
-# Die ID eines Bildschirms finden
+# Kennung eines Bildschirms finden
 
-Du kannst die ID des aktuell aktiven Menüs über das **Debug-Overlay** sehen.
-Es enthält die ID des aktuellen Bildschirms und ermöglicht es dir, sie mit einem Linksklick in die Zwischenablage zu kopieren.
+Mit dem **Debug-Overlay** kannst du die Kennung des aktuell aktiven Menüs anzeigen lassen.
+Es zeigt die Kennung des aktuellen Bildschirms an. Ein Linksklick darauf kopiert sie in die Zwischenablage.
 
 >[!TIP]
->Du kannst das **Debug-Overlay** aktivieren, indem du **STRG + ALT + D** drückst, während du **nicht** im Layout-Editor bist.
+>Du kannst das **Debug-Overlay** mit **STRG + ALT + D** aktivieren, solange du dich **nicht** im Layout-Editor befindest.
 
 <br>
 
@@ -26,6 +29,6 @@ Es enthält die ID des aktuellen Bildschirms und ermöglicht es dir, sie mit ein
 
 # Bildschirme öffnen
 
-Die [**Bildschirm oder Custom GUI öffnen**-Aktion](./action-scripts#open-screen-or-custom-gui-opengui) kann nur Bildschirme öffnen, die FancyMenu im aktuellen Spielzustand erstellen kann. Manche Bildschirme erfordern eine geladene Welt, eine Verbindung, einen Spieler oder den ursprünglichen übergeordneten Bildschirm.
+Die Aktion [**Bildschirm oder benutzerdefinierte GUI öffnen**](/action-scripts#open-screen-or-custom-gui) kann nur Bildschirme öffnen, die FancyMenu im aktuellen Spielzustand erstellen kann. Für manche Bildschirme müssen eine Welt, eine Verbindung, ein Spieler oder der ursprüngliche übergeordnete Bildschirm geladen sein.
 
-Wenn FancyMenu die ID nicht erstellen kann, wird ein Fehler angezeigt. Verwende [**Vanilla/Mod-Button nachahmen**](./action-scripts#mimic-vanillamod-button-mimicbutton) für das Widget, das den Bildschirm normalerweise öffnet.
+Kann FancyMenu die angegebene Kennung nicht verarbeiten, wird eine Fehlermeldung angezeigt. Verwende für das Widget, das den Bildschirm normalerweise öffnet, die Aktion [**Vanilla-/Mod-Button nachahmen**](/action-scripts#mimic-vanillamod-button).

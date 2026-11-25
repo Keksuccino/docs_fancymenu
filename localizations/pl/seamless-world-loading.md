@@ -1,21 +1,22 @@
 ---
-title: Płynne ładowanie świata
-description: Użyj ostatniego widoku świata jako kolejnego tła ładowania.
+title: Płynne wczytywanie świata
+description: Użyj widoku świata jako tła kolejnego ekranu wczytywania.
+sourceBlobSha: 2b8e960b11ea70fca33b317a7c14815ce5844e13
 ---
 
-# Płynne ładowanie świata
+# Płynne wczytywanie świata
 
-Płynne ładowanie świata używa ostatniego widoku świata lub serwera jako kolejnego tła ekranu ładowania.
+Funkcja płynnego wczytywania świata używa ostatniego widoku świata lub serwera jako tła kolejnego ekranu wczytywania.
 
-Włącz tę funkcję w [**Dostosowywanie -> Globalne dostosowania**](./global-customizations) -> **Płynne ładowanie świata**.
+Włącz ją w sekcji [**Dostosowywanie -> Globalne dostosowania**](/global-customizations) -> **Płynne wczytywanie świata**.
 
 # Jak to działa
 
-- FancyMenu okresowo przechwytuje bieżącą klatkę, gdy znajdujesz się w śledzonym świecie lub na serwerze.
-- Najnowszy zrzut jest zapisywany po wyjściu.
-- Każdy świat i każdy serwer ma własną haszowaną nazwę pliku PNG.
-- FancyMenu wstępnie ładuje do pięciu najnowszych zrzutów świata i pięciu najnowszych zrzutów serwera.
-- Dla danego celu nic nie jest wyświetlane, dopóki nie zostanie zapisany jego pierwszy zrzut.
+- FancyMenu okresowo zapisuje bieżący kadr, gdy przebywasz w śledzonym świecie lub na śledzonym serwerze.
+- Po wyjściu zapisywany jest najnowszy zrzut.
+- Każdy świat i serwer ma własny plik PNG o nazwie będącej skrótem.
+- FancyMenu wczytuje wstępnie do pięciu najnowszych zrzutów ze światów i pięciu najnowszych zrzutów z serwerów.
+- Dla danego celu nic nie jest wyświetlane, dopóki nie zostanie zapisany pierwszy zrzut.
 
 Zrzuty są przechowywane w:
 
@@ -23,4 +24,4 @@ Zrzuty są przechowywane w:
 <game-directory>/fancymenu_data/seamless_world_loading/
 ```
 
-Zrzuty ekranu mogą zawierać wszystko, co było widoczne w świecie w momencie wykonania. Wyłączenie funkcji Płynne ładowanie świata zatrzymuje przechwytywanie i używanie zrzutów, ale nie usuwa istniejących plików PNG. Niechciane zrzuty usuń z tego katalogu, gdy gra jest zamknięta.
+Zrzuty ekranu mogą zawierać wszystko, co było widoczne w świecie w chwili ich wykonania. Wyłączenie płynnego wczytywania świata zatrzymuje wykonywanie zrzutów i korzystanie z nich, ale nie usuwa istniejących plików PNG. Niechciane zrzuty usuń z tego katalogu, gdy gra jest zamknięta.

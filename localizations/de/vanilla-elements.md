@@ -1,47 +1,56 @@
 ---
 title: Vanilla-Elemente
-description: 'Wie man Elemente anpasst, die standardmäßig Teil von Bildschirmen sind.'
+description: 'So passt du Elemente an, die standardmäßig zu Bildschirmen gehören.'
+sourceBlobSha: 3943106d1e4f0722aad0d1578908262b7c8d92ec
 ---
 
 # Vanilla-Elemente
 
-FancyMenu ermöglicht es dir nicht nur, neue Elemente zu Bildschirmen hinzuzufügen, sondern auch bestehende Elemente aus dem Basisspiel (Vanilla) und sogar aus anderen Mods anzupassen.
+FancyMenu ermöglicht es dir nicht nur, Bildschirmen neue Inhalte hinzuzufügen, sondern auch vorhandene Elemente aus dem Grundspiel (Vanilla) und sogar aus anderen Mods anzupassen.
 
-## Vanilla-Buttons und -Slider (Widgets)
+## Vanilla-Schaltflächen und Schieberegler (Widgets)
 
-Um vorhandene Vanilla-/Mod-Widgets anzupassen, erstelle einfach ein neues Layout **„für den aktuellen Bildschirm“** (NICHT universell!) und **klicke mit der rechten Maustaste** im Editor auf die Elemente, genau wie bei benutzerdefinierten Elementen.
+Um die Schaltflächen und Schieberegler eines Bildschirms anzupassen, erstelle ein Layout für den aktuellen Bildschirm (kein [universelles Layout](/universal-layouts)) und klicke im Editor mit der rechten Maustaste auf die Elemente.
 
-Du kannst ihre **Beschriftungen und Texturen** anpassen, genau wie bei benutzerdefinierten Buttons und Slidern.
+Sie verfügen über dieselben Einstellungen wie deine eigenen [Schaltflächen](/elements#button) und [Schieberegler](/elements#slider), etwa Texturen, Sounds und Tooltips. Nur ihr Aktionsskript lässt sich nicht ändern: Sie führen weiterhin dieselbe Aktion wie zuvor aus.
 
-Das Einzige, was du bei Vanilla-/Mod-Widgets **nicht** ändern kannst, ist ihr **Aktionsskript** (also z. B. was sie beim Interagieren tun). Das ist nur bei benutzerdefinierten Buttons und Slidern möglich.
+Vanilla-Elemente können nicht in [scrollbare Bereiche](/scrollable-areas) verschoben werden, da sie zum Menü selbst gehören.
 
-## Automatische Klicks
+### Beschriftungen
 
-Vanilla- und Mod-Widgets besitzen die Eigenschaft **Automatische Klicks**. Setze sie auf eine ganze Zahl größer als `0`, um beim Laden des Bildschirms so oft das ursprüngliche Linksklick-Verhalten des Widgets auszulösen. Wenn du zum Beispiel `2` einstellst, wird das Widget beim ersten Update jedes neu geöffneten Bildschirms zweimal geklickt. Der Standardwert `0` deaktiviert automatische Klicks.
+- **Beschriftung** und **Beschriftung beim Darüberfahren** ersetzen den Text einer Schaltfläche. Bei anderen Widgets, etwa Schiebereglern, heißen sie **Widget-Text** und **Widget-Text beim Darüberfahren**. Ohne diese Einstellungen behält das Widget seinen eigenen Text.
+- **Ausrichtung der Beschriftung** positioniert die Beschriftung **Links**, **Zentriert** oder **Rechts** im Widget. Beschriftungen, die zu breit für das Widget sind, scrollen von einer Seite zur anderen – unabhängig von ihrer Ausrichtung.
+- Mit **Skalierung der Beschriftung**, **Grundfarbe der Beschriftung**, **Farbe der Beschriftung beim Darüberfahren**, **Schatten der Beschriftung** und **Beschriftung beim Darüberfahren unterstreichen** kannst du Größe, Farben und Schatten der Beschriftung ändern.
 
-Das sind echte Widget-Klicks: Jeder Klick kann den Wert eines Sliders oder eines Zyklus-Buttons ändern, den normalen Callback des Widgets ausführen oder sogar einen anderen Bildschirm öffnen. Teste das Ergebnis sorgfältig, besonders wenn du mehr als einen Klick konfigurierst.
+Um die Beschriftungen mehrerer Schaltflächen gleichzeitig auszurichten, wähle sie mit `Strg` + Klick aus (siehe [Auswählen](/layout-editor#selecting)), klicke mit der rechten Maustaste auf eine davon und lege für alle die **Ausrichtung der Beschriftung** fest. Für die Beschriftungen aller Menüs verwende **Ausrichtung der Beschriftung** unter [Globale Anpassungen](/global-customizations#labels). Mit einer [Vorlage](/button-slider-templates) kannst du außerdem allen Schaltflächen eines Bildschirms denselben Beschriftungsstil zuweisen.
 
-Um Vanilla-/Mod-Widgets zu **verschieben** und **zu skalieren**, musst du ihnen zuerst einen Ankerpunkt zuweisen. Klicke dazu mit der **rechten Maustaste** darauf und dann auf **Ankerpunkt**. Setze ihn auf etwas anderes als **Original**, denn das ist der Standard-Ankerpunkt von Vanilla-/Mod-Elementen.
+## Automatisierte Klicks
 
-Du kannst Vanilla-/Mod-Widgets auch einfach **ausblenden**, indem du sie mit der **rechten Maustaste** anklickst und auf **Löschen** klickst. Sie werden dabei nicht wirklich gelöscht, sondern nur ausgeblendet, und du kannst sie wiederherstellen, indem du auf **Menüleiste -> Element -> Gelöschte Vanilla-Elemente** klickst und dann auf die Elemente **links klickst**, die wieder sichtbar werden sollen.
+Vanilla- und Mod-Widgets verfügen über die Eigenschaft **Automatisierte Klicks**. Lege dafür eine ganze Zahl größer als `0` fest, damit beim Laden des Bildschirms so oft das ursprüngliche Verhalten des Widgets bei einem Linksklick ausgelöst wird. Wenn du den Wert beispielsweise auf `2` setzt, wird das Widget während der ersten Aktualisierung jedes neu geöffneten Bildschirms zweimal angeklickt. Der Standardwert `0` deaktiviert automatisierte Klicks.
+
+Dabei handelt es sich um echte Widget-Klicks: Jeder Klick kann den Wert eines Schiebereglers oder einer Umschaltfläche ändern, den normalen Callback des Widgets ausführen oder sogar einen anderen Bildschirm öffnen. Teste das Ergebnis sorgfältig, besonders wenn du mehr als einen Klick einstellst.
+
+Um Vanilla-/Mod-Widgets zu **verschieben** und ihre **Größe zu ändern**, musst du ihnen zuerst einen Ankerpunkt zuweisen. Klicke dazu mit der **rechten Maustaste** darauf und wähle **Ankerpunkt**. Stelle einen anderen Wert als **Original** ein, da dies der Standardanker für Vanilla-/Mod-Elemente ist.
+
+Du kannst Vanilla-/Mod-Widgets auch **ausblenden**, indem du einfach mit der **rechten Maustaste** darauf klickst und **Löschen** auswählst. Sie werden dadurch nicht wirklich gelöscht, sondern nur ausgeblendet. Du kannst sie wiederherstellen, indem du auf **Menüleiste -> Element -> Gelöschte Vanilla-Elemente** klickst und mit der **linken Maustaste** die Elemente auswählst, die wieder sichtbar sein sollen.
 
 > [!WARNING]
-> Das **Copyright**-Widget im Titelbildschirm ist das einzige, das du **NICHT** ausblenden/löschen kannst. Das ist absichtlich so vorgesehen. Bitte entferne keine Copyright-Hinweise.
+> Das Widget **Copyright** auf dem Titelbildschirm ist das einzige, das du **NICHT** ausblenden oder löschen kannst. Das ist beabsichtigt. Bitte entferne keine Copyright-Hinweise.
 
 ## Elemente des Titelbildschirms
 
-Der Titelbildschirm enthält Elemente, die keine normalen Widgets sind (wie das Logo, der Splash-Text usw.) und nicht verschoben oder angepasst werden können. Diese sollen gelöscht und durch benutzerdefinierte Elemente ersetzt werden (z. B. ein Bild-Element für das Logo oder ein benutzerdefiniertes Splash-Text-Element für den Vanilla-Splash-Text).
+Auf dem Titelbildschirm gibt es Elemente, die keine normalen Widgets sind (wie das Logo, der Begrüßungstext usw.) und die sich nicht verschieben oder anpassen lassen. Sie sind dafür vorgesehen, gelöscht und durch eigene Elemente ersetzt zu werden (zum Beispiel durch ein Bildelement für das Logo oder ein eigenes Begrüßungstext-Element anstelle des Vanilla-Begrüßungstextes).
 
-Um sie zu löschen, klicke einfach mit der rechten Maustaste darauf. Wenn du sie später wiederherstellen möchtest, klicke einfach auf **Menüleiste -> Element -> Gelöschte Vanilla-Elemente** und **links auf das Element**, das wieder sichtbar werden soll.
+Um sie zu löschen, klicke einfach mit der rechten Maustaste darauf. Wenn du sie später wiederherstellen möchtest, klicke auf **Menüleiste -> Element -> Gelöschte Vanilla-Elemente** und dann mit der **linken Maustaste** auf das Element, das wieder sichtbar sein soll.
 
 ## Fehlerbehebung: Vanilla-Elemente sind im Editor nicht sichtbar
 
-Wenn du Vanilla-Elemente im Editor nicht sehen kannst, liegt das wahrscheinlich daran, dass du ein **universelles Layout** verwendest statt eines **für den aktuellen Bildschirm**. Achte darauf, ein Layout für den aktuellen Bildschirm zu erstellen. Layouts für den aktuellen Bildschirm kannst du nur erstellen, wenn für diesen Bildschirm Anpassungen aktiviert sind.
+Wenn du Vanilla-Elemente im Editor nicht sehen kannst, verwendest du wahrscheinlich ein **universelles Layout** anstelle eines Layouts **für den aktuellen Bildschirm**. Achte darauf, ein Layout für den aktuellen Bildschirm zu erstellen. Layouts für den aktuellen Bildschirm kannst du nur erstellen, wenn Anpassungen für diesen Bildschirm aktiviert sind.
 
-## Fehlerbehebung: Anpassungen werden nicht angewendet
+## Fehlerbehebung: Anpassungen werden nicht übernommen
 
-Wenn Anpassungen an Vanilla-Elementen außerhalb des Editors nicht übernommen werden, liegt das meistens daran, dass eine andere Mod das übergeordnete Menü der Vanilla-Elemente überschreibt oder verändert.
+Wenn Anpassungen an Vanilla-Elementen außerhalb des Editors nicht übernommen werden, liegt das normalerweise daran, dass eine andere Mod das übergeordnete Menü der Vanilla-Elemente überschreibt oder verändert.
 
-Ein gutes Beispiel für eine Mod, die einen Bildschirm/ein Menü überschreibt, ist **Ice and Fire**, das den Titelbildschirm überschreibt.
+Ein gutes Beispiel für eine Mod, die einen Bildschirm bzw. ein Menü überschreibt, ist **Ice and Fire**. Diese Mod überschreibt den Titelbildschirm.
 
-Dass Anpassungen nicht auf Menüs angewendet werden, betrifft nicht nur Vanilla-Elemente. Benutzerdefinierte Elemente, die zu Bildschirmen hinzugefügt werden, werden vermutlich ebenfalls nicht auf Menüs angewendet, wenn eine Mod sie überschreibt oder verändert.
+Dass Anpassungen auf Menüs nicht übernommen werden, betrifft nicht nur Vanilla-Elemente. Auch eigene Elemente, die Bildschirmen hinzugefügt wurden, werden wahrscheinlich nicht auf Menüs angewendet, wenn eine Mod diese überschreibt oder verändert.

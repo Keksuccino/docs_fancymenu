@@ -1,162 +1,172 @@
 ---
 title: FAQ
 description: Najczęściej zadawane pytania.
-sourceBlobSha: 405be9869106a7871195d6e03828f428cc20b4a1
+sourceBlobSha: 4ae872e8e4a54fc6a89de7c87c8a137a89292455
 ---
 # FAQ
 
-### Potrzebuję pomocy z problemem. Jakie informacje powinienem podać?
+### Potrzebuję pomocy z pewnym problemem. Jakie informacje podać?
 
-Aby uzyskać najlepszą pomoc, podaj jak najwięcej informacji:
-1.  **Jasny opis problemu:** Czego się spodziewałeś i co faktycznie się wydarzyło?
-2.  **Twój plik `latest.log`:** Znajdziesz go w `<game-directory>/logs/latest.log`. **Nie wysyłaj raportu awarii**, chyba że zostaniesz o to wyraźnie poproszony; plik `latest.log` zazwyczaj zawiera potrzebny kontekst. Do jego udostępnienia użyj serwisu takiego jak https://gist.github.com.
+Aby uzyskać jak najlepszą pomoc, podaj jak najwięcej kontekstu:
+1.  **Jasny opis problemu:** Czego się spodziewasz, a co faktycznie się dzieje?
+2.  **Plik `latest.log`:** Znajdziesz go w `<game-directory>/logs/latest.log`. **Nie wysyłaj raportu z awarii**, chyba że ktoś wyraźnie o niego poprosi; plik `latest.log` zazwyczaj zawiera potrzebne informacje. Opublikuj go na przykład w serwisie https://gist.github.com.
 3.  **Wersja Minecrafta:** (np. 1.20.1)
-4.  **Loader modów i jego wersja:** (np. Forge 47.2.0, Fabric 0.15.7)
+4.  **Mod loader i jego wersja:** (np. Forge 47.2.0, Fabric 0.15.7)
 5.  **Wersja FancyMenu:** (np. 3.5.2)
-6.  **Zrzuty ekranu lub nagrania wideo** problemu również mogą być bardzo pomocne.
+6.  **Zrzuty ekranu lub nagrania** przedstawiające problem również mogą być bardzo pomocne.
 
-### Jak zmienić kolejność warstw elementów (przenieść coś przed lub za inny element)?
+> [!TIP]
+> Potrzebujesz pomocy Alice lub innej sztucznej inteligencji? Dodaj [eksport dla AI](/export-for-ai) tego, co nie działa. Dzięki niemu AI zobaczy dokładnie, jak wszystko jest skonfigurowane. Eksport zawiera już wersje Minecrafta, mod loadera i FancyMenu.
 
-*   **Niestandardowe vs. niestandardowe:** Otwórz **Window -> Editor Widgets -> Layers** i przeciągaj elementy w hierarchii. Możesz również kliknąć element prawym przyciskiem myszy i użyć opcji **Move One Layer Up/Down**. Zobacz [Warstwy i grupy](./layers-and-groups).
-*   **Niestandardowe vs. waniliowe:** Aby renderować wszystkie niestandardowe elementy za wszystkimi elementami waniliowymi (np. umieścić obraz tła za domyślnymi przyciskami), **kliknij prawym przyciskiem myszy tło edytora** i włącz opcję **„Render Custom Elements Behind Vanilla”**.
+### Jak zmienić kolejność warstw elementów (przenieść coś przed inny element lub za niego)?
 
-### Czy mogę wykluczyć określone przyciski z uniwersalnego szablonu przycisku?
+- **Własne elementy:** przeciągnij ich warstwy w widżecie Warstwy edytora układu albo kliknij element prawym przyciskiem myszy i wybierz **Przenieś o jedną warstwę wyżej** lub **Przenieś o jedną warstwę niżej**. Zobacz [Warstwy i grupy](/layout-editor#layers-and-groups).
+- **Własne elementy i elementy vanilla:** nie można zmienić kolejności elementów vanilla. Aby umieścić wszystkie własne elementy za nimi, na przykład obraz tła za domyślnymi przyciskami, kliknij prawym przyciskiem myszy tło edytora i ustaw **Własne elementy za elementami vanilla** na **Włączone**.
 
-**Nie. Jeśli przycisk szablonu ma ustawione niestandardowe tekstury, są one zawsze współdzielone przez wszystkie objęte nimi elementy. Nie można wykluczyć pojedynczych przycisków.**
+### Czy mogę wykluczyć niektóre przyciski z uniwersalnego szablonu przycisku?
 
-### Jak sprawić, aby przycisk wykonywał określoną czynność po kliknięciu?
+**Nie. Jeśli dla przycisku szablonu ustawiono niestandardowe tekstury, są one zawsze współdzielone przez wszystkie objęte nim elementy. Nie można wykluczyć pojedynczych przycisków.**
 
-Użyj [**Action Script**](./action-scripts).
+### Jak sprawić, żeby kliknięcie przycisku coś robiło?
+
+Użyj [**skryptu akcji**](/action-scripts).
 1.  Kliknij przycisk w edytorze prawym przyciskiem myszy.
-2.  Wybierz **Edit Action Script**.
-3. Kliknij **Add Action** i wybierz czynność, na przykład [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui), [**Join Server**](./action-scripts#join-server-joinserver) lub [**Set Variable Value**](./action-scripts#set-variable-value-fm-variable-set_variable).
+2.  Wybierz **Edytuj skrypt akcji**.
+3. Kliknij **Dodaj akcję** i wybierz akcję, na przykład [**Otwórz ekran lub niestandardowe GUI**](/action-scripts#open-screen-or-custom-gui), [**Dołącz do serwera**](/action-scripts#join-server) lub [**Ustaw wartość zmiennej**](/action-scripts#set-variable-value-fm-variable).
 
-### Czy mogę stworzyć całkowicie nowy ekran menu od podstaw?
+### Czy mogę stworzyć zupełnie nowy ekran menu od podstaw?
 
-Użyj [**Custom GUI**](./custom-guis).
-1.  Na pasku menu przejdź do **Customization -> Custom GUIs -> Manage Custom GUIs**.
-2.  Kliknij **„New GUI”** i nadaj mu unikalny identyfikator.
-3.  Możesz teraz otworzyć ten nowy, pusty ekran i utworzyć dla niego układ, dodając dowolne elementy.
-4. Otwórz Custom GUI za pomocą czynności [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui).
+Tak, za pomocą [niestandardowego GUI](/custom-guis):
 
-### Po włączeniu wstępnego ładowania gra długo się uruchamia.
+1. Otwórz **pasek menu -> Dostosowywanie -> Niestandardowe GUI -> Zarządzaj niestandardowymi GUI** i kliknij **Nowe GUI**.
+2. Nadaj mu identyfikator, na przykład `modpack_info`, i kliknij **Gotowe**.
+3. Otwórz je przyciskiem **Otwórz GUI** i utwórz dla niego układ tak jak dla każdego innego menu.
+4. Otwórz je z poziomu przycisku, używając akcji [**Otwórz ekran lub niestandardowe GUI**](/action-scripts#open-screen-or-custom-gui) i podając jego identyfikator.
 
-To oczekiwane zachowanie. Wstępne ładowanie dużych zasobów, takich jak animacje w wysokiej rozdzielczości lub dźwięki, podczas początkowego uruchamiania naturalnie wydłuża czas ładowania gry.
+### Po włączeniu wstępnego ładowania moja gra uruchamia się bardzo długo.
 
-### Moja animacja FMA zużywa zbyt dużo pamięci RAM!
+To normalne. Wstępne ładowanie dużych zasobów, takich jak animacje w wysokiej rozdzielczości czy dźwięki, podczas uruchamiania gry naturalnie wydłuża czas ładowania.
 
-Klasyczne [animacje FMA](./fma) mogą zużywać dużo pamięci, gdy zawierają wiele klatek w wysokiej rozdzielczości. AFMA lepiej nadaje się do dużych lub złożonych animowanych tekstur. Klasyczne animacje FMA powinny być krótkie; do odtwarzania pełnych filmów używaj funkcji [Video](./video).
+### Moja animacja zużywa dużo pamięci RAM albo spowalnia grę!
 
-### Czy FancyMenu działa z OptiFine?
+Duże klatki i wysoka liczba klatek na sekundę wymagają więcej pamięci i mocy obliczeniowej. Dostosuj rozmiar klatek do tego, jak duże mają być wyświetlane na ekranie, i użyj mniejszej liczby klatek na sekundę. Zobacz [Animacje](/animations#performance). W przypadku długich nagrań z dźwiękiem użyj funkcji [Wideo](/video).
 
-Nie. OptiFine jest **niekompatybilny** i wiadomo, że powoduje problemy z wieloma modami, w tym z FancyMenu. Zdecydowanie zaleca się korzystanie z nowoczesnych alternatyw, takich jak Sodium/Embeddium + Iris/Oculus.
-Zobacz [Alternatywy dla OptiFine](./optifine-alternatives).
+### Czy FancyMenu współpracuje z OptiFine?
+
+Nie. OptiFine **nie jest kompatybilne** i wiadomo, że powoduje problemy z wieloma modami, w tym FancyMenu. Zdecydowanie zalecamy używanie nowoczesnych alternatyw, takich jak Sodium/Embeddium + Iris/Oculus.
+Zobacz [Alternatywy dla OptiFine](/optifine-alternatives).
 
 ### Gra się zawiesza. Jak sprawdzić, czy przyczyną jest konflikt modów?
 
-Najlepszym sposobem sprawdzenia konfliktu modów jest **uruchomienie gry wyłącznie z FancyMenu i jego zależnościami** (Konkrete, Melody). Jeśli awaria przestanie występować, dodawaj pozostałe mody małymi grupami, aż awaria wystąpi ponownie. W ten sposób zidentyfikujesz powodujący konflikt mod.
+Najlepszym sposobem sprawdzenia, czy występuje konflikt modów, jest **uruchomienie gry wyłącznie z FancyMenu i jego zależnościami** (Konkrete, Melody). Jeśli problem przestanie występować, dodawaj pozostałe mody z powrotem małymi grupami, aż awaria wystąpi ponownie. W ten sposób ustalisz, który mod powoduje konflikt.
 
-### Przycisk z innego moda znika lub nie działa, gdy próbuję go edytować.
+### Przycisk z innego moda znika albo nie działa, gdy próbuję go edytować.
 
-Niektóre mody dodają widżety w sposób, którego FancyMenu nie może wykryć ani dostosować. Sprawdź sekcję [Elementy waniliowe/modowane](./vanilla-elements), a w przypadku ekranów opartych na listach także [Dostosowywanie ekranów przewijanych](./customizing-scrollable-screens). Jeśli widżet nadal się nie pojawia, mod, który go dodaje, musi udostępniać go jako obsługiwany widżet ekranu.
+Niektóre mody dodają widżety w sposób, który uniemożliwia FancyMenu ich wykrycie lub dostosowanie. Zobacz [Elementy vanilla/modów](/vanilla-elements), a w przypadku ekranów z listami — [Dostosowywanie przewijanych ekranów](/customizing-scrollable-screens). Jeśli widżet nadal się nie pojawia, mod, który go dodaje, musi udostępniać go jako obsługiwany widżet ekranu.
 
 ### Czy mogę używać układów FancyMenu na serwerze?
 
-Układy i dostosowania wizualne są przechowywane po stronie klienta gracza; serwer nie może wymusić ich na nieskonfigurowanym kliencie. Rozprowadzaj je jako część modpacka. Zainstaluj FancyMenu na serwerze, gdy potrzebujesz [komend serwerowych](./commands), [FM Data](./fm-data), [dostępu do NBT po stronie serwera](./nbt-data-placeholder#server-side-placeholder), gameruli, struktur lub nasłuchiwania zdarzeń serwera.
+Układy i ustawienia wyglądu są przechowywane po stronie klienta gracza, więc serwer nie może narzucić ich klientowi, który nie jest odpowiednio skonfigurowany. Udostępniaj je jako część paczki modów. Zainstaluj FancyMenu na serwerze, jeśli potrzebujesz [komend serwerowych](/commands), [FM Data](/fm-data), [dostępu po stronie serwera do NBT](/nbt-data-placeholder#server-side-placeholder), reguł gry, struktur lub nasłuchiwaczy serwerowych.
 
-### Jaka jest różnica między FancyMenu v2 (dla starszych wersji MC) a v3?
+### Czym różni się FancyMenu v2 (dla starszych wersji MC) od v3?
 
-FancyMenu v3 to całkowicie przepisana wersja z wieloma nowymi funkcjami, stabilniejszą architekturą i lepszą wydajnością. V2 jest przestarzałe, nie jest już wspierane i nie oferuje wielu funkcji, takich jak zaawansowane placeholdery i skrypty. Zdecydowanie zaleca się korzystanie z v3 na nowoczesnej wersji Minecrafta (1.18.2+). Układy z V2 mogą zostać automatycznie przekonwertowane do V3 podczas ich wczytywania, ale może być konieczne ręczne poprawienie niektórych elementów.
+FancyMenu v3 to całkowicie przepisana wersja, która zawiera wiele nowych funkcji, ma stabilniejszą architekturę i działa wydajniej. V2 jest przestarzała, nie jest już wspierana i nie zawiera wielu funkcji, takich jak zaawansowane symbole zastępcze i skrypty. Zdecydowanie zalecamy używanie v3 na nowoczesnej wersji Minecrafta (1.18.2+). Układy v2 można automatycznie przekonwertować do v3 podczas ich wczytywania, ale może być konieczne ręczne poprawienie niektórych elementów.
 
-### Gdzie mogę znaleźć gotowe układy i szablony?
+### Gdzie znajdę gotowe układy i szablony?
 
-Społeczność FancyMenu udostępnia układy na kanale [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) oficjalnego serwera Discord Keksuccino's Mods („Kekscord”).
+Społeczność FancyMenu udostępnia kompletne konfiguracje na kanale [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) na oficjalnym serwerze Discord („Kekscord”). Zainstaluj je jako osobny profil — zobacz [Szablony układów](/profiles#layout-templates).
 
-### Jak sprawić, aby encja gracza była renderowana za innymi elementami?
+### Jak umieścić element postaci gracza za innymi elementami?
 
-Zasadniczo nie można wymusić umieszczenia [elementu encji gracza](./elements#player-entity) za zwykłymi elementami 2D za pomocą widżetu [Warstwy](./layers-and-groups). Jego renderer może ignorować zwykłą kolejność warstw GUI. Zaprojektuj układ z uwzględnieniem tego ograniczenia albo użyj wcześniej wyrenderowanego obrazu, jeśli wymagana jest ścisła kolejność warstw.
+Zazwyczaj nie można wymusić, aby [element postaci gracza](/elements#player-entity) znalazł się za zwykłymi elementami 2D, korzystając z widżetu [Warstwy](/layout-editor#layers-and-groups). Renderer postaci może ignorować standardową kolejność warstw interfejsu. Zaprojektuj układ z uwzględnieniem tego ograniczenia albo użyj wcześniej wyrenderowanego obrazu, jeśli wymagana jest ścisła kolejność warstw.
 
-### Moja encja gracza ma tylko jedną nogę! Co się stało?
+### Moja postać gracza ma tylko jedną nogę! Co się stało?
 
-To błąd wizualny, prawdopodobnie spowodowany konfliktem z innym modem, który zmienia animacje lub modele graczy. Sprawdź ustawienia pozy elementu encji gracza, aby upewnić się, że nogi nie zostały przypadkowo obrócone lub przesunięte.
+To błąd wizualny, najpewniej spowodowany konfliktem z modem, który zmienia animacje lub modele gracza. Sprawdź ustawienia pozy elementu postaci gracza i upewnij się, że nogi nie zostały przypadkowo obrócone lub przesunięte.
 
-### Jak utworzyć opóźnienie między czynnościami w skrypcie?
+### Jak utworzyć opóźnienie między akcjami w skrypcie?
 
-Użyj bloków [**Delay** lub **Execute Later**](./action-scripts#what-are-statements) do obsługi opóźnionych czynności. W przypadku powtarzającej się logiki działającej w tle użyj [harmonogramów](./schedulers).
+Kliknij prawym przyciskiem myszy obszar skryptu w edytorze skryptów akcji, kliknij **Dodaj blok WYKONAJ PÓŹNIEJ** i umieść w nim akcje, które mają poczekać. Wykonają się raz po upływie podanego czasu w milisekundach, a reszta skryptu będzie działać dalej bez oczekiwania. Zobacz [Wykonaj później](/action-scripts#execute-later).
+
+Jeśli coś ma się powtarzać, użyj [harmonogramów](/schedulers).
 
 ### Czy mogę dostosowywać menu z moda Create?
 
-Nie. Dostosowywanie ekranów Create jest celowo wyłączone. Zobacz [Ekrany, na których dostosowywanie jest celowo wyłączone](./incompatibility-list#screens-where-customization-is-intentionally-disabled).
+Nie. Możliwość dostosowywania ekranów Create została celowo wyłączona. Zobacz [Ekrany, dla których celowo wyłączono możliwość dostosowywania](/incompatibility-list#screens-where-customization-is-intentionally-disabled).
 
 ### Jaka rozdzielczość jest zalecana dla obrazów tła i tekstur przycisków?
 
-Tła: Standardowy obraz 1920x1080 (1080p) to świetny punkt wyjścia i będzie dobrze skalować się u większości użytkowników.
-Przyciski: Większość waniliowych przycisków ma około 150–200 pikseli szerokości i 20 pikseli wysokości. Dopasowanie niestandardowych tekstur do tego rozmiaru jest dobrą praktyką zapewniającą spójność.
+Tła: standardowy obraz o rozdzielczości 1920×1080 (1080p) to dobry punkt wyjścia i będzie dobrze skalować się u większości użytkowników.
+Przyciski: większość przycisków vanilla ma około 150–200 pikseli szerokości i 20 pikseli wysokości. Dopasowanie niestandardowych tekstur do tych wymiarów to dobra praktyka, która zapewnia spójny wygląd.
 
-### Czy można automatycznie otworzyć menu lub wykonać komendę, gdy gracz ukończy cel w grze (np. zadanie)?
-FancyMenu ma wiele [wbudowanych nasłuchiwaczy zdarzeń gry](./listeners), ale nie ma uniwersalnego nasłuchiwacza dla każdego zewnętrznego systemu zadań. Jeśli mod z zadaniami obsługuje nagrody w postaci komend, użyj ich do wykonania [`/openguiscreen`](./commands#openguiscreen), [`/fmvariable`](./commands#fmvariable) lub innej odpowiedniej [komendy FancyMenu](./commands).
+### Czy można automatycznie otworzyć menu albo wykonać komendę, gdy gracz ukończy zadanie w grze (na przykład misję)?
+FancyMenu ma wiele [wbudowanych nasłuchiwaczy zdarzeń gry](/listeners), ale nie ma ogólnego nasłuchiwacza obsługującego wszystkie zewnętrzne systemy zadań. Jeśli mod z zadaniami obsługuje nagrody w postaci komend, użyj takiej komendy, aby uruchomić [`/openguiscreen`](/commands#openguiscreen), [`/fmvariable`](/commands#fmvariable) lub inną odpowiednią [komendę FancyMenu](/commands).
 
-### Jak sprawić, aby przycisk był nieaktywny lub „wyszarzony”?
+### Jak dezaktywować przycisk albo sprawić, by był „wyszarzony”?
 
-Stan aktywności przycisku możesz kontrolować za pomocą [wymagań ładowania](./conditions).
-Kliknij przycisk w edytorze prawym przyciskiem myszy i wybierz **Control Active State**.
-Dodaj wymaganie, które musi być spełnione, aby przycisk był aktywny. Aby trwale go wyłączyć, użyj [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number), aby sprawdzić, czy 0 jest równe 1.
-Przycisk będzie teraz używać tekstury „Inactive Background” i nie będzie można go kliknąć.
+Możesz kontrolować stan aktywności przycisku za pomocą [warunków](/conditions).
+Kliknij przycisk w edytorze prawym przyciskiem myszy i wybierz **Kontroluj stan aktywności**.
+Dodaj warunek, który musi być spełniony, aby przycisk był aktywny. Aby wyłączyć go na stałe, użyj warunku [**Czy liczba**](/conditions#is-number), który sprawdza, czy 0 jest równe 1.
+Przycisk będzie teraz używał tekstury „Nieaktywne tło” i nie będzie można go kliknąć.
 
-### Jak usunąć nagłówek i stopkę (paski z teksturą ziemi) z ekranów przewijanych?
+### Jak usunąć nagłówek i stopkę (paski z teksturą ziemi) z przewijanych ekranów?
 
-W edytorze układu otwórz **Layout Properties -> Header/Footer Customizations**. Ustaw tekstury jako przezroczyste. Ta opcja może być niedostępna na niektórych ekranach z modów.
+W edytorze układu otwórz **Właściwości układu -> Dostosowywanie nagłówka/stopki**. Ustaw tekstury na przezroczyste. Ta opcja może być niedostępna na niektórych ekranach z modów.
 
 ### Nie mogę utworzyć układu „dla bieżącego ekranu”. Przycisk jest wyszarzony.
 
-Najpierw musisz włączyć dostosowywanie tego ekranu poprzez **pasek menu -> Customization -> Current Screen Customizations -> Enabled**.
+Najpierw włącz możliwość dostosowywania tego ekranu: kliknij **pasek menu -> Dostosowywanie -> Dostosowywanie bieżącego ekranu**, aby wyświetlał się stan **Włączone**.
 
-### Nie mogę dostosować żadnych elementów ekranu po otwarciu go w edytorze. Ekran jest wtedy pusty.
+### Nie mogę dostosować żadnych elementów ekranu po otwarciu go w edytorze. Ekran jest pusty.
 
-Może to oznaczać, że utworzyłeś [uniwersalny układ](./universal-layouts) zamiast układu **dla bieżącego ekranu**.
+Być może utworzono [układ uniwersalny](/universal-layouts) zamiast układu **dla bieżącego ekranu**.
 
-Może to być również [ekran przewijany](./customizing-scrollable-screens), którego FancyMenu domyślnie nie może dostosowywać.
+Może to być również [przewijany ekran](/customizing-scrollable-screens), którego FancyMenu domyślnie nie może dostosowywać.
 
-Trzecią możliwością jest ekran z moda, który dodaje elementy w sposób inny niż waniliowy, przez co FancyMenu nie może ich dostosować.
+Inną możliwością jest ekran z moda, który dodaje elementy w sposób inny niż vanilla. W takiej sytuacji FancyMenu nie może ich dostosować.
 
 ### Przy moim elemencie tekstowym pojawiają się dziwne szare pola.
 
-Te półprzezroczyste pola to uchwyty przewijania elementu [Tekst](./elements#text), a nie błąd renderowania.
+To paski przewijania [elementu tekstowego](/elements#text). Pojawiają się, gdy tekst nie mieści się w elemencie, aby umożliwić graczom jego przewijanie.
 
-Jeśli nie chcesz, aby pola były widoczne, możesz kliknąć element prawym przyciskiem myszy i całkowicie wyłączyć przewijanie ALBO ustawić tekstury uchwytów jako całkowicie przezroczyste w tym samym menu otwieranym prawym przyciskiem, jeśli element ma nadal umożliwiać przewijanie.
+- Powiększ element albo skróć tekst — wtedy paski znikną.
+- Kliknij element prawym przyciskiem myszy i otwórz **Paski przewijania**. Opcja **Wyświetlanie** pozwala ustawić, kiedy mają się pojawiać: **Zawsze**, tylko **Podczas przewijania** lub **Nigdy**. Przy ustawieniu **Nigdy** nadal można przewijać tekst kółkiem myszy.
+- W tym samym menu opcje **Styl uchwytu przewijania**, **Tekstury uchwytu przewijania** i **Kolor uchwytu przewijania [HEX]** pozwalają zmienić ich wygląd.
 
-### Jak wyświetlać w menu najnowszą listę zmian Minecrafta?
+Zobacz [Tekst w menu](/text-in-menus#scroll-bars), aby poznać wszystkie ustawienia pasków przewijania.
 
-Istnieje świetny [projekt na GitHubie](https://github.com/ClaytonTDM/minecraft-changelogs-markdown), który konwertuje listy zmian Minecrafta do formatu Markdown zgodnego z FancyMenu, dzięki czemu możesz wyświetlać najnowszą listę zmian MC w swoich menu! Projekt aktualizuje się codziennie, aby pobierać nowe listy zmian.
+### Jak wyświetlić w menu najnowszy wykaz zmian w Minecraftcie?
 
-Aby wyświetlić ją w [elemencie tekstowym](./elements#text), ustaw **Source Mode** na **Resource**, a źródło zasobu na **Web**. Użyj adresu `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
+Dostępny jest świetny [projekt na GitHubie](https://github.com/ClaytonTDM/minecraft-changelogs-markdown), który konwertuje wykazy zmian Minecrafta do formatu Markdown obsługiwanego przez FancyMenu. Dzięki temu możesz wyświetlić w menu najnowszy wykaz zmian MC! Projekt aktualizuje się codziennie, aby pobierać nowe wykazy zmian.
 
-### Jaki jest najłatwiejszy sposób na rozciągnięcie dowolnego elementu do rozmiaru ekranu?
+Aby wyświetlić go w [elemencie tekstowym](/elements#text), ustaw **Tryb źródła** na **Zasób**, a źródło zasobu na **Sieć**. Użyj adresu `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
 
-Większość elementów ma w menu kontekstowym otwieranym prawym przyciskiem opcję rozciągania w poziomie i w pionie. Włączenie tej opcji sprawi, że element będzie zawsze rozciągany do pełnej szerokości i/lub wysokości ekranu. Rozciąganie poziome i pionowe można włączać niezależnie.
+### Jak najłatwiej rozciągnąć dowolny element do rozmiaru ekranu?
+
+W menu kontekstowym otwieranym prawym przyciskiem myszy większości elementów znajduje się opcja rozciągania ich w poziomie i w pionie. Po jej włączeniu element będzie zawsze rozciągany na pełną szerokość i/lub wysokość ekranu. Rozciąganie w poziomie i pionie można włączać niezależnie.
 
 ### Nie mogę klikać przycisków ani używać suwaków, gdy znajdują się za elementem tekstowym lub przed nim.
 
-Dzieje się tak, ponieważ elementy tekstowe są domyślnie interaktywne (aby można było chwytać uchwyt przewijania lub klikać hiperłącza Markdown), przez co przechwytują kliknięcia myszy i zdarzenia przewijania. Najlepiej po prostu nie umieszczać przycisków ani suwaków za elementami tekstowymi lub przed nimi, ale jeśli nie da się tego uniknąć, możesz wyłączyć interaktywność elementu tekstowego, **klikając go prawym przyciskiem myszy**, a następnie ustawiając **Interactable** na **Disabled**. Pamiętaj, że element tekstowy stanie się wtedy statycznym, nieinteraktywnym tekstem, więc nie będzie można go przewijać ani klikać jego hiperłączy.
+Dzieje się tak, ponieważ elementy tekstowe są domyślnie interaktywne (umożliwiają chwytanie uchwytu przewijania i klikanie hiperłączy w Markdown), więc przechwytują kliknięcia myszy i zdarzenia przewijania. Najlepiej po prostu nie umieszczać przycisków za elementami tekstowymi ani przed nimi. Jeśli jednak nie da się tego uniknąć, możesz wyłączyć interaktywność elementu tekstowego: **kliknij go prawym przyciskiem myszy**, a następnie ustaw opcję **Interaktywny** na **Wyłączone**. Pamiętaj, że element tekstowy stanie się wtedy statyczny i nieinteraktywny — nie będzie można przewijać jego zawartości ani klikać hiperłączy.
 
-### Jak sprawić, aby przyciski i suwaki nie były już zaznaczane ani aktywowane podczas poruszania się po ekranach za pomocą klawiszy strzałek i Tab?
+### Jak sprawić, żeby przyciski i suwaki nie były zaznaczane ani aktywowane podczas poruszania się po ekranach za pomocą klawiszy strzałek i Tab?
 
-Aby przyciski i suwaki nie były dostępne podczas nawigacji, musisz **kliknąć je prawym przyciskiem myszy** i ustawić **Navigable** na **Disabled**. Przycisk lub suwak nadal będzie można kliknąć, ale nie będzie można go aktywować za pomocą nawigacji klawiszami strzałek i Tab.
+Aby uniemożliwić nawigowanie do przycisków i suwaków, **kliknij je prawym przyciskiem myszy** i ustaw opcję **Możliwość nawigacji** na **Wyłączone**. Nadal będzie można je klikać, ale nie da się ich zaznaczyć za pomocą klawiszy strzałek ani Tab.
 
-Jest to również przydatne, jeśli chcesz dodać przyciski lub suwaki do ekranu czatu, aby nadal móc używać klawisza strzałki w górę do przeglądania starszych wiadomości bez przypadkowego zaznaczania przycisków lub suwaków na ekranie.
+Jest to też przydatne, jeśli chcesz dodać przyciski lub suwaki do ekranu czatu. Dzięki temu nadal można używać klawisza strzałki w górę do przeglądania starszych wiadomości, nie zaznaczając przypadkowo przycisków ani suwaków na ekranie.
 
 ### W jednym z menu kontekstowych FancyMenu brakuje opcji, która powinna się tam znajdować.
 
-Menu kontekstowe FancyMenu (menu otwierane po kliknięciu czegoś prawym przyciskiem myszy lub podczas korzystania z pasków menu) są PRZEWIJANE. Oznacza to, że możesz użyć kółka myszy, gdy kursor znajduje się nad menu, aby przewijać je w górę lub w dół i wyświetlać więcej opcji, które wcześniej nie były widoczne.
+Menu kontekstowe FancyMenu (otwierane po kliknięciu czegoś prawym przyciskiem myszy lub podczas korzystania z pasków menu) są PRZEWIJANE. Oznacza to, że można przewijać menu w górę lub w dół kółkiem myszy, gdy kursor znajduje się nad nim, aby zobaczyć więcej wcześniej niewidocznych opcji.
 
-### Nie mogę dostosować ekranu tytułowego — po wyjściu z edytora ciągle wyświetla się oryginalny ekran.
+### Nie mogę dostosować ekranu tytułowego — po wyjściu z edytora znów widzę oryginalny ekran.
 
 Inny mod zastępuje oryginalny `title_screen`. Wyłącz niestandardowy ekran tytułowy tego moda w jego ustawieniach. Jeśli nie ma takiej opcji, FancyMenu nie może zastosować układu do zastępczego ekranu.
 
-### Gdy próbuję dostosować ekran ekwipunku, nie mogę dostosować kontenera ekwipunku.
+### Podczas dostosowywania ekranu ekwipunku nie mogę edytować jego zawartości.
 
-To oczekiwane zachowanie. FancyMenu nie obsługuje edycji właściwego kontenera żadnego rodzaju ekranu ekwipunku (ekwipunek gracza, skrzynia, stół rzemieślniczy itd.), ponieważ dodanie obsługi takich elementów byłoby bardzo trudne.
+To normalne. FancyMenu nie obsługuje edytowania właściwej zawartości żadnego rodzaju ekranu ekwipunku (ekwipunku gracza, skrzyni, stołu rzemieślniczego itp.), ponieważ dodanie takiej obsługi byłoby bardzo trudne.
 
-Nadal można dodawać nowe elementy do tych ekranów, ale nie można edytować kontenera ani kontenerów.
+Nadal można dodawać nowe elementy do tych ekranów — nie można jedynie edytować ich zawartości.
 
-SpiffyHUD również nie pomoże w tym przypadku, ponieważ służy do edycji HUD-u (na przykład paska szybkiego dostępu), ale nie może edytować ekranów (takich jak ekrany ekwipunku).
+Przy okazji: SpiffyHUD również nie pomoże, ponieważ służy do edytowania HUD-u (na przykład paska przedmiotów), a nie ekranów (takich jak ekrany ekwipunku).

@@ -1,42 +1,43 @@
 ---
 title: GLSL-Shader-API
 description: >-
-  Schreibe ausgefallene FancyMenu-GLSL-Shader für Hintergründe, Elemente und
-  Dekorations-Overlays.
+  Erstelle FancyMenu-GLSL-Shader für Hintergründe, Elemente und dekorative
+  Overlays.
+sourceBlobSha: f3da9c3fe83444dab5c59f74f5011e2d6e8cf9e6
 ---
 
-# FancyMenu GLSL-Shader-API
+# FancyMenu-GLSL-Shader-API
 
-Dieses Dokument beschreibt die GLSL-Laufzeitumgebung, die von FancyMenus folgenden Bereichen verwendet wird:
+Dieses Dokument beschreibt die von FancyMenu verwendete GLSL-Laufzeit für:
 
-- `GLSL`-Menühintergrund
-- `GLSL`-Element
-- `GLSL`-Dekorations-Overlay
+- `GLSL`-Menühintergründe
+- `GLSL`-Elemente
+- `GLSL`-Dekorations-Overlays
 
-Es behandelt Kompiliermodi, Multipass-Routing, unterstützte Uniforms und praktische Muster zum Schreiben von Shadern.
+Es behandelt Kompilierungsmodi, Multipass-Routing, unterstützte Uniforms und praktische Muster zur Shader-Erstellung.
 
-## 1. Überblick über die Laufzeit
+## 1. Laufzeitübersicht
 
 FancyMenu rendert Shader mit einer internen OpenGL-Pipeline (`#version 150`) und unterstützt:
 
-- Ein-Pass-Shader (`Image`-Pass nur)
+- Single-Pass-Shader (nur der `Image`-Pass)
 - Multipass-Shader (`Buffer A` / `B` / `C` / `D` + `Image`)
 - Shadertoy-ähnliche Einstiegspunkte (`mainImage`)
 - direkte Fragment-Einstiegspunkte (`main`)
 
-Shader-Quellen sind eingebettete Textfelder:
+Shader-Quelltexte werden in Textfeldern eingegeben:
 
-- `Shader Source` (Image-Pass, erforderlich für die Ausgabe)
+- `Shader Source` (Image-Pass, zum Rendern erforderlich)
 - `Buffer A Source` (optional)
 - `Buffer B Source` (optional)
 - `Buffer C Source` (optional)
 - `Buffer D Source` (optional)
 
-Wenn die Image-Quelle leer ist, schlägt das Rendering mit einem „no source“-Fehler fehl.
+Ist der Image-Quelltext leer, schlägt das Rendern mit dem Fehler „no source“ fehl.
 
-## 2. Kompiliermodi
+## 2. Kompilierungsmodi
 
-FancyMenu unterstützt drei Kompiliermodi:
+FancyMenu unterstützt drei Kompilierungsmodi:
 
 - `Auto`
 - `Direct Fragment`
@@ -50,13 +51,13 @@ Erwarteter Einstiegspunkt:
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 ```
 
-FancyMenu wickelt ihn in `main()` ein und übergibt lokale Flächenkoordinaten:
+FancyMenu bindet die Funktion in `main()` ein und übergibt lokale Bereichskoordinaten:
 
 ```glsl
 mainImage(fmColor_FancyMenu, gl_FragCoord.xy - fmAreaOffset);
 ```
 
-Der Wrapper multipliziert die Alpha-Ausgabe mit `fmOpacity`.
+Der Wrapper multipliziert die Ausgabealpha mit `fmOpacity`.
 
 ### 2.2 Direct-Modus
 
@@ -68,57 +69,57 @@ void main()
 
 Kompatibilitätsverhalten:
 
-- Eine kompatible Variante mit `gl_FragColor` wird versucht.
-- Zusätzlich wird eine Variante ohne Kompatibilität versucht (für moderne Shader mit explizitem `out vec4`).
+- Es wird eine kompatible Variante mit `gl_FragColor` ausprobiert.
+- Zusätzlich wird eine Variante ohne Kompatibilitätsanpassungen ausprobiert (für moderne Shader mit explizitem `out vec4`).
 
-Im Direct-Modus wird `fmOpacity` nicht automatisch auf deine Ausgabe angewendet. Wende es bei Bedarf manuell an.
+Im Direct-Modus wird `fmOpacity` nicht automatisch auf deine Ausgabe angewendet. Wende den Wert bei Bedarf manuell an.
 
 ### 2.3 Auto-Modus
 
-Auto versucht kompatible Varianten nacheinander (Shadertoy/Direct) und verwendet die erste, die kompiliert.
+Auto probiert der Reihe nach kompatible Varianten (Shadertoy/Direct) aus und verwendet die erste, die sich kompilieren lässt.
 
-## 3. Quellvorverarbeitung und eingebaute Makros
+## 3. Vorverarbeitung des Quelltexts und integrierte Makros
 
 Vor dem Kompilieren normalisiert FancyMenu den Quelltext:
 
-- entfernt UTF-8-BOM
+- entfernt eine UTF-8-BOM
 - wandelt CRLF/CR in LF um
 - entfernt `#version ...`-Zeilen
 - entfernt `precision ...;`-Zeilen
 
-Die zur Laufzeit eingefügte Präambel enthält:
+Der zur Laufzeit eingefügte Präambeltext enthält:
 
 - `#version 150`
-- `in vec2 fmUv_FancyMenu` (Fullscreen-UV in `[0,1]`, Ursprung unten links)
+- `in vec2 fmUv_FancyMenu` (Vollbild-UV-Koordinaten im Bereich `[0,1]`, Ursprung unten links)
 - `#define iGlobalTime iTime`
 - `#define texture2D texture`
 - `#define textureCube texture`
 
 Hinweis:
 
-- Wenn dein Quelltext bereits einen bekannten Uniform-Namen deklariert (z. B. `iTime`), fügt FancyMenu keine doppelte Deklaration ein.
-- FancyMenu versucht trotzdem, zur Laufzeit Werte an diesen Namen zu senden.
-- `textureCube` ist hier nur ein Alias-Makro; `iChannel0..3` sind `sampler2D`-Uniforms.
+- Deklariert dein Quelltext bereits einen bekannten Uniform-Namen (z. B. `iTime`), vermeidet FancyMenu eine doppelte Deklaration.
+- FancyMenu versucht trotzdem, diesem Namen zur Laufzeit Werte zuzuweisen.
+- `textureCube` ist hier lediglich ein Alias-Makro; `iChannel0..3` sind `sampler2D`-Uniforms.
 
-## 4. Pass-System (Image + Buffer A-D)
+## 4. Pass-System (Image + Buffer A–D)
 
-FancyMenu hat 5 Pass-Slots:
+FancyMenu verfügt über fünf Pass-Slots:
 
 - `Buffer A`
 - `Buffer B`
 - `Buffer C`
 - `Buffer D`
-- `Image` (finaler On-Screen-Pass)
+- `Image` (der abschließende Pass für die Bildschirmausgabe)
 
 Verhalten:
 
-- Buffer-Pässe werden nur ausgeführt, wenn ihre Quelle nicht leer ist.
-- Der Image-Pass muss vorhanden sein, damit Ausgabe gerendert wird.
-- Buffer werden in Floating-Point-Texturen (`GL_RGBA16F`) gerendert und dann per Ping-Pong gewechselt (Lese-/Schreibtausch pro Frame).
+- Buffer-Pässe werden nur ausgeführt, wenn ihr Quelltext nicht leer ist.
+- Zum Rendern einer Ausgabe muss ein Image-Pass vorhanden sein.
+- Buffer werden in Fließkomma-Texturen (`GL_RGBA16F`) gerendert und anschließend per Ping-Pong-Verfahren genutzt (Lese-/Schreibtextur werden bei jedem Frame getauscht).
 
 ### 4.1 Kanal-Routing pro Pass
 
-Jeder Pass bietet Routing für `iChannel0..3`. Pro Kanal kannst du wählen:
+Für jeden Pass lässt sich das Routing von `iChannel0..3` festlegen. Pro Kanal kannst du Folgendes auswählen:
 
 - `None`
 - `Resource 0`
@@ -130,125 +131,125 @@ Jeder Pass bietet Routing für `iChannel0..3`. Pro Kanal kannst du wählen:
 - `Buffer C`
 - `Buffer D`
 
-Ressourcenkanäle stammen aus den Einstellungen `iChannel# Resource`.
+Ressourcenkanäle beziehen ihre Werte aus den Einstellungen für `iChannel# Resource`.
 
 Standardwerte:
 
-- alle `iChannel`-Routings stehen standardmäßig auf `None`
-- kein Buffer-Pass ist aktiv, bis die entsprechende Buffer-Quelle nicht leer ist
+- Für alle `iChannel`-Routings ist `None` voreingestellt.
+- Ein Buffer-Pass ist erst aktiv, wenn sein Quelltext nicht leer ist.
 
 Wichtig:
 
-- Routing auf denselben Buffer-Pass (Feedback) liest die Daten des vorherigen Frames (Ping-Pong-Lesetextur).
-- Wenn eine geroutete Quelle fehlt/inaktiv ist, wird eine Fallback-Textur gebunden und `iChannelResolution[n].z` wird `0.0`.
+- Wird ein Pass auf denselben Buffer-Pass geroutet (Feedback), werden Daten aus dem vorherigen Frame gelesen (Ping-Pong-Lesetextur).
+- Fehlt eine geroutete Quelle oder ist sie inaktiv, wird eine Fallback-Textur gebunden und `iChannelResolution[n].z` auf `0.0` gesetzt.
 
-## 5. Koordinaten und Flächen-Semantik
+## 5. Koordinaten und Bereichssemantik
 
-Shader laufen in einem Flächen-Rechteck:
+Shader werden innerhalb eines rechteckigen Bereichs ausgeführt:
 
-- Menühintergrund: vollständige Bildschirmfläche
-- GLSL-Element: Element-Rechteck
+- Menühintergrund: gesamter Bildschirmbereich
+- GLSL-Element: Rechteck des Elements
 
 Koordinatenkonventionen:
 
-- Pixel-Uniforms sind in lokalen Pixeln der Fläche angegeben.
-- Der Y-Ursprung ist für shaderseitige Pixelkoordinaten unten links.
-- Mauskoordinaten werden nicht begrenzt; Werte können außerhalb der Fläche liegen, wenn der Cursor außerhalb ist.
+- Pixel-Uniforms verwenden lokale Pixelkoordinaten des Bereichs.
+- Der Ursprung shaderseitiger Pixelkoordinaten liegt unten links.
+- Mauskoordinaten werden nicht begrenzt; befindet sich der Cursor außerhalb des Bereichs, können die Werte außerhalb des Bereichs liegen.
 
 Spezielle Felder:
 
-- `fmAreaOffset`: Position der unteren linken Ecke der Fläche im Bildschirm-Pixelraum
-- `fmAreaTopLeft`: Position der oberen linken Ecke der Fläche im Bildschirm-Pixelraum
-- `fmAreaSize`: Größe der Fläche in Pixeln
+- `fmAreaOffset`: Position der unteren linken Ecke des Bereichs im Bildschirm-Pixelkoordinatensystem
+- `fmAreaTopLeft`: Position der oberen linken Ecke des Bereichs im Bildschirm-Pixelkoordinatensystem
+- `fmAreaSize`: Größe des Bereichs in Pixeln
 
 ## 6. Referenz der Uniform-API
 
-Alle unten aufgeführten Uniforms stehen sowohl für Hintergrund- als auch für Element-Shader zur Verfügung.
+Alle folgenden Uniforms sind sowohl für Hintergrund- als auch für Element-Shader verfügbar.
 
 ## 6.1 Shadertoy-kompatible Uniforms
 
 | Uniform | Typ | Bedeutung |
 |---|---|---|
 | `iResolution` | `vec3` | `(areaWidthPx, areaHeightPx, 1.0)` |
-| `iTime` | `float` | Aufaddierte Shader-Zeit in Sekunden |
-| `iTimeDelta` | `float` | Delta-Zeit des letzten Renderns, beeinflusst durch Freeze/Zeit-Skalierung |
-| `iFrameRate` | `float` | Fallback-Laufzeit-FPS basierend auf Minecraft-FPS |
-| `iFrame` | `int` | Frame-Zähler pro Laufzeit |
+| `iTime` | `float` | Aufsummierte Shader-Zeit in Sekunden |
+| `iTimeDelta` | `float` | Zeitdifferenz seit dem letzten Rendern, beeinflusst durch Einfrieren und Zeitskalierung |
+| `iFrameRate` | `float` | Minecraft-FPS; dient als Fallback für die Laufzeit-FPS |
+| `iFrame` | `int` | Frame-Zähler pro Laufzeitinstanz |
 | `iMouse` | `vec4` | Siehe Details unten |
-| `iDate` | `vec4` | `(year, month, day, secondsOfDayWithFraction)` |
+| `iDate` | `vec4` | `(Jahr, Monat, Tag, Sekunden des Tages mit Nachkommastellen)` |
 | `iSampleRate` | `float` | Konstante `44100.0` |
-| `iChannelTime[4]` | `float[4]` | Derzeit alle auf `iTime` gesetzt |
-| `iChannelResolution[4]` | `vec3[4]` | `(width, height, validFlag)` pro Kanal |
-| `iChannel0..3` | `sampler2D` | Geroutete Texture-Eingänge |
+| `iChannelTime[4]` | `float[4]` | Aktuell werden alle auf `iTime` gesetzt |
+| `iChannelResolution[4]` | `vec3[4]` | `(Breite, Höhe, Gültigkeitsflag)` für jeden Kanal |
+| `iChannel0..3` | `sampler2D` | Geroutete Textur-Eingaben |
 
 ### Details zu `iMouse`
 
 `iMouse = vec4(x, y, z, w)`
 
-- `x`, `y`: aktuelle Mausposition in Pixeln relativ zur Fläche, oder Hold/Frozen-Verhalten, wenn der Schalter aktiviert ist
-- `z`, `w`: Ursprung des linken Klicks
-  - positiv, solange die linke Maustaste gedrückt gehalten wird
+- `x`, `y`: aktuelle lokale Mausposition im Bereich in Pixeln; abhängig von der Umschaltoption wird sie gehalten bzw. eingefroren
+- `z`, `w`: Ursprung des Linksklicks
+  - positiv, solange die linke Maustaste gedrückt ist
   - negativ nach dem Loslassen
 
-Schaltergesteuertes Verhalten:
+Verhalten abhängig von der Umschaltoption:
 
 - `Update iMouse Position Only While Holding LMB = Off`:
-  - `iMouse.xy` aktualisiert sich fortlaufend
+  - `iMouse.xy` wird kontinuierlich aktualisiert
 - `... = On`:
-  - `iMouse.xy` aktualisiert sich nur, solange LMB gedrückt ist, und bleibt dann an der letzten gehaltenen Position
+  - `iMouse.xy` wird nur aktualisiert, solange die linke Maustaste gedrückt ist, und bleibt anschließend auf der zuletzt gehaltenen Position
 
 Standardwert:
 
-- `Off` (fortlaufende Aktualisierung)
+- `Off` (kontinuierliche Aktualisierung)
 
 ## 6.2 FancyMenu-spezifische Uniforms
 
 | Uniform | Typ | Bedeutung |
 |---|---|---|
-| `fmAreaOffset` | `vec2` | Pixel-Offset der unteren linken Ecke der Fläche im Bildschirmraum |
-| `fmAreaSize` | `vec2` | Größe der Fläche in Pixeln |
-| `fmAreaPosition` | `vec2` | Dasselbe wie `fmAreaOffset` |
-| `fmAreaTopLeft` | `vec2` | Pixel-Offset der oberen linken Ecke der Fläche im Bildschirmraum |
-| `fmScreenSize` | `vec2` | Gesamte Bildschirmgröße in Pixeln |
+| `fmAreaOffset` | `vec2` | Pixelversatz der unteren linken Ecke des Bereichs im Bildschirmkoordinatensystem |
+| `fmAreaSize` | `vec2` | Größe des Bereichs in Pixeln |
+| `fmAreaPosition` | `vec2` | Entspricht `fmAreaOffset` |
+| `fmAreaTopLeft` | `vec2` | Pixelversatz der oberen linken Ecke des Bereichs im Bildschirmkoordinatensystem |
+| `fmScreenSize` | `vec2` | Bildschirmgröße in Pixeln |
 | `fmGuiScale` | `float` | Aktuelle GUI-Skalierung |
-| `fmMouse` | `vec4` | `(localPxX, localPxYBottom, localNormX, localNormY)` |
-| `fmMouseDelta` | `vec2` | Maus-Delta in Flächenpixeln (Y ist zum Shader-Oben invertiert) |
-| `fmMouseButtons` | `ivec4` | Gedrücktzustände für die Tasten `0..3` |
-| `fmMouseClickCount` | `ivec4` | Kumulative Drückzähler für die Tasten `0..3` |
-| `fmMouseReleaseCount` | `ivec4` | Kumulative Loslasszähler für die Tasten `0..3` |
-| `fmMouseScroll` | `vec2` | Scroll-Delta seit dem vorherigen Rendern dieser Laufzeit |
-| `fmMouseScrollTotal` | `vec2` | Kumulative Scroll-Gesamtwerte |
-| `fmKeyEvent` | `ivec4` | `(lastKeyCode, lastScanCode, lastModifiers, lastAction)` |
-| `fmKeyEventCount` | `int` | Kumulativer Zähler für Tastenevents |
-| `fmCharEvent` | `ivec4` | `(lastCodePoint, lastModifiers, 0, 0)` |
-| `fmCharEventCount` | `int` | Kumulativer Zähler für Zeichen-Eingaben |
-| `fmDateParts` | `ivec4` | `(year, month, day, dayOfWeekIso1To7)` |
-| `fmTimeParts` | `ivec4` | `(hour, minute, second, millisecondPart0To999)` |
+| `fmMouse` | `vec4` | `(lokalesPxX, lokalesPxYVonUnten, lokalesNormX, lokalesNormY)` |
+| `fmMouseDelta` | `vec2` | Mausbewegung in Bereichspixeln (Y ist für die Shader-Achse nach oben invertiert) |
+| `fmMouseButtons` | `ivec4` | Gedrückter Zustand der Schaltflächen `0..3` |
+| `fmMouseClickCount` | `ivec4` | Kumulierte Anzahl der Tastendrücke für Schaltflächen `0..3` |
+| `fmMouseReleaseCount` | `ivec4` | Kumulierte Anzahl der Loslassereignisse für Schaltflächen `0..3` |
+| `fmMouseScroll` | `vec2` | Scrollbewegung seit dem vorherigen Rendern dieser Laufzeitinstanz |
+| `fmMouseScrollTotal` | `vec2` | Kumulierte Scrollwerte |
+| `fmKeyEvent` | `ivec4` | `(letzterKeyCode, letzterScanCode, letzteModifier, letzteAktion)` |
+| `fmKeyEventCount` | `int` | Kumulativer Tastaturereignis-Zähler |
+| `fmCharEvent` | `ivec4` | `(letzterCodePoint, letzteModifier, 0, 0)` |
+| `fmCharEventCount` | `int` | Kumulativer Zähler für eingegebene Zeichenereignisse |
+| `fmDateParts` | `ivec4` | `(Jahr, Monat, Tag, Wochentag nach ISO 1 bis 7)` |
+| `fmTimeParts` | `ivec4` | `(Stunde, Minute, Sekunde, Millisekundenanteil 0 bis 999)` |
 | `fmDayOfYear` | `int` | Tag des Jahres |
-| `fmWeekOfYear` | `int` | ISO-Kalenderwoche |
-| `fmUnixTimeSeconds` | `int` | Unix-Epochenzeit in Sekunden |
-| `fmUnixTimeMilliseconds` | `int` | Millisekundenteil der aktuellen Zeit (`0..999`) |
+| `fmWeekOfYear` | `int` | ISO-Kalenderwoche des Jahres |
+| `fmUnixTimeSeconds` | `int` | Sekunden seit der Unix-Epoche |
+| `fmUnixTimeMilliseconds` | `int` | Millisekundenanteil der aktuellen Zeit (`0..999`) |
 | `fmPartialTick` | `float` | Aktueller Partial Tick |
 | `fmGameDeltaTicks` | `float` | Minecraft-Game-Delta-Ticks |
 | `fmRealtimeDeltaTicks` | `float` | Minecraft-Realtime-Delta-Ticks |
-| `fmInWorld` | `int` | `1`, wenn in einer Welt, sonst `0` |
-| `fmIsPaused` | `int` | `1`, wenn pausiert, sonst `0` |
-| `fmOpacity` | `float` | Effektiver Opazitäts-Multiplikator (`0..1`) |
-| `fmVariableCount` | `int` | Aktuelle Anzahl von FancyMenu-Variablen |
+| `fmInWorld` | `int` | `1`, wenn du dich in einer Welt befindest, andernfalls `0` |
+| `fmIsPaused` | `int` | `1`, wenn das Spiel pausiert ist, andernfalls `0` |
+| `fmOpacity` | `float` | Effektiver Deckkraftmultiplikator (`0..1`) |
+| `fmVariableCount` | `int` | Aktuelle Anzahl der FancyMenu-Variablen |
 
-Werte für Tastenevents (`fmKeyEvent.w`):
+Werte für Tastaturaktionen (`fmKeyEvent.w`):
 
 - `0` = Loslassen
 - `1` = Drücken
 - `2` = Wiederholen
 
-## 6.3 FancyMenu Variable Uniform API
+## 6.3 Uniform-API für FancyMenu-Variablen
 
-FancyMenu-Variablen werden direkt als Laufzeit-Uniforms bereitgestellt (für Hintergrund-, Element- und Dekorations-Overlay-Shader), ohne dass bei Wertänderungen der Shader neu kompiliert werden muss.
+FancyMenu-Variablen werden direkt als Laufzeit-Uniforms bereitgestellt (für Hintergrund-, Element- und Dekorations-Overlay-Shader). Änderungen an ihren Werten erfordern keine Neukompilierung des Shaders.
 
 ### Benennung
 
-Für jede Variable `<name>` stellt FancyMenu bereit:
+Für jede Variable `<name>` stellt FancyMenu Folgendes bereit:
 
 - `fmVarFloat_<name>`
 - `fmVarInt_<name>`
@@ -256,13 +257,13 @@ Für jede Variable `<name>` stellt FancyMenu bereit:
 - `fmVarVec2_<name>`
 - `fmVarVec3_<name>`
 - `fmVarVec4_<name>`
-- `fmVarExists_<name>` (`1` = Variable existiert aktuell, `0` = nicht vorhanden/entfernt)
+- `fmVarExists_<name>` (`1` = Variable ist vorhanden, `0` = nicht vorhanden/entfernt)
 
-Sanitizing des Uniform-Suffixes für `<name>`:
+Bereinigung des Uniform-Suffixes für `<name>`:
 
-- erlaubte Zeichen sind `[A-Za-z0-9_]`
-- alle anderen Zeichen werden zu `_` umgewandelt
-- wenn das erste Zeichen eine Ziffer ist, wird `_` vorangestellt
+- Zulässig sind die Zeichen `[A-Za-z0-9_]`.
+- Alle anderen Zeichen werden in `_` umgewandelt.
+- Beginnt der Name mit einer Ziffer, wird `_` vorangestellt.
 
 Beispiele:
 
@@ -272,29 +273,35 @@ Beispiele:
 
 Wichtig:
 
-- diese dynamischen Variablen-Uniforms werden in der Shaderquelle **nicht automatisch deklariert** (deklariere die von dir verwendeten manuell)
-- vermeide Variablennamen, die zum selben Suffix sanitizen, da sie auf denselben GLSL-Uniformnamen abgebildet werden
+- Diese dynamischen Variablen-Uniforms werden im Shader-Quelltext **nicht automatisch deklariert** (deklariere die verwendeten Uniforms manuell).
+- Vermeide Variablennamen, die nach der Bereinigung dasselbe Suffix ergeben, da sie dann demselben GLSL-Uniform-Namen zugeordnet werden.
 
 ### Wertumwandlung
 
-Für den Variablentextwert `v` gilt:
+Für einen Textwert `v` einer Variable gilt:
 
-- `fmVarFloat_*`: geparster Float (`0.0` als Fallback)
-- `fmVarInt_*`: geparster Int (`0` als Fallback)
-- `fmVarBool_*`: boolesche/int-Interpretation (`true/yes/on/enabled` => `1`, `false/no/off/disabled` => `0`, sonst numerisch ungleich `0` => `1`)
-- Vektor-Parsing akzeptiert Trennzeichen: Leerzeichen, `,`, `;`, `|`
-  - `fmVarVec2_*`: erste 2 geparste Komponenten
-  - `fmVarVec3_*`: erste 3 geparste Komponenten
-  - `fmVarVec4_*`: erste 4 geparste Komponenten
-  - wenn weniger Komponenten vorhanden sind, wird die zuletzt geparste Komponente für fehlende Plätze wiederholt
-  - wenn keine numerischen Komponenten vorhanden sind, verwenden alle Vektorkomponenten den Skalar-Fallback
+- `fmVarFloat_*`: geparster Float-Wert (Fallback: `0.0`)
+- `fmVarInt_*`: geparster Int-Wert (Fallback: `0`)
+- `fmVarBool_*`: Interpretation als Boolean/Integer (`true/yes/on/enabled` => `1`, `false/no/off/disabled` => `0`, andernfalls numerischer Wert ungleich null => `1`)
+- Beim Parsen von Vektoren werden folgende Trennzeichen akzeptiert: Leerzeichen, `,`, `;`, `|`
+  - `fmVarVec2_*`: die ersten 2 geparsten Komponenten
+  - `fmVarVec3_*`: die ersten 3 geparsten Komponenten
+  - `fmVarVec4_*`: die ersten 4 geparsten Komponenten
+  - Sind weniger Komponenten vorhanden, wird die letzte geparste Komponente für fehlende Werte wiederholt.
+  - Sind keine numerischen Komponenten vorhanden, wird für alle Vektorkomponenten der skalare Fallback-Wert verwendet.
 
-Wenn eine Variable entfernt wird:
+[Listenvariablen](/variables#text-and-list-variables) liefern statt ihres Textwerts die Anzahl ihrer Einträge:
 
-- `fmVarExists_*` wird zu `0`
-- alle zugehörigen `fmVar*_*`-Werte werden auf `0` zurückgesetzt
+- `fmVarFloat_*` und `fmVarInt_*`: Anzahl der Einträge, z. B. `3` bei einer Liste mit 3 Einträgen
+- `fmVarBool_*`: `1`, wenn die Liste Einträge enthält, andernfalls `0`
+- `fmVarVec2_*`, `fmVarVec3_*` und `fmVarVec4_*`: Anzahl der Einträge in jeder Komponente
 
-### Beispiel-Deklaration und Verwendung
+Wird eine Variable entfernt:
+
+- wird `fmVarExists_*` auf `0` gesetzt
+- werden alle zugehörigen `fmVar*_*`-Werte auf `0` zurückgesetzt
+
+### Beispiel für Deklaration und Verwendung
 
 ```glsl
 uniform float fmVarFloat_player_hp;
@@ -320,52 +327,52 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-## 7. Modell zur Eingabeverfolgung
+## 7. Modell zur Eingabeerfassung
 
-FancyMenu verfolgt Eingaben global und speichert sie pro Render-Snapshot:
+FancyMenu erfasst Eingaben global und erstellt für jeden Renderdurchlauf eine Momentaufnahme:
 
-- Mausbewegung/-ziehen
-- Maus drücken/loslassen
+- Mausbewegung/Ziehen
+- Maustaste drücken/loslassen
 - Scrollen
 - Taste drücken/loslassen/wiederholen
 - Zeichen eingeben
 
-Robustheit der Maus:
+Zuverlässigkeit der Mauseingaben:
 
-- Die Laufzeit gleicht die Tastenzustände jedes Frame mit dem GLFW-Polling ab, um festhängende Button-Zustände zu verhindern.
+- Die Laufzeit gleicht den Schaltflächenzustand in jedem Frame mit der GLFW-Abfrage ab, um dauerhaft als gedrückt erkannte Schaltflächen zu verhindern.
 
 Wenn `Pass Input Events To Shader` deaktiviert ist:
 
-- Eingabe-Uniforms werden pro Frame auf neutrale Werte zurückgesetzt
-- Zähler und Events werden in den shader-sichtbaren Daten auf Null gesetzt
+- werden Eingabe-Uniforms in jedem Frame auf neutrale Werte zurückgesetzt
+- werden Zähler und Ereignisse in den für Shader sichtbaren Daten auf null gesetzt
 
-## 8. Details zu Texture-Eingaben
+## 8. Details zu Textureingaben
 
 Ressourcenkanäle (`iChannel# Resource`) erwarten 2D-Texturen.
 
 Texturstatus pro Kanal:
 
-- gültige Ressource: gebundene Textur, echte Breite/Höhe, `iChannelResolution[n].z = 1.0`
-- fehlt/inaktiv/None: Fallback-Textur, `iChannelResolution[n].xyz = (0,0,0)`
+- gültige Ressource: gebundene Textur, tatsächliche Breite/Höhe, `iChannelResolution[n].z = 1.0`
+- fehlend/inaktiv/None: Fallback-Textur, `iChannelResolution[n].xyz = (0,0,0)`
 
 Buffer-Texturen:
 
-- internes Format: `RGBA16F` (Floating Point)
+- internes Format: `RGBA16F` (Fließkomma)
 - Filterung: linear
-- Wrap: clamp-to-edge
+- Wrap-Modus: Clamp-to-Edge
 
-Das ist für Multipass-Daten geeignet (einschließlich Werten außerhalb von `[0,1]`).
+Das eignet sich für Multipass-Daten, einschließlich Werten außerhalb von `[0,1]`.
 
 ## 9. Hinweise zu Rendering und Blending
 
-- Buffer-Pässe rendern offscreen ohne Blending.
-- Der finale Image-Pass verwendet die Einstellung `Enable Blending` für das Compositing.
-- Der Shadertoy-Wrapper wendet `fmOpacity` automatisch auf Alpha an.
-- Direkte Shader sollten `fmOpacity` bei Bedarf manuell anwenden.
+- Buffer-Pässe werden ohne Blending außerhalb des Bildschirms gerendert.
+- Für das Compositing im abschließenden Image-Pass wird die Einstellung `Enable Blending` verwendet.
+- Der Shadertoy-Wrapper wendet `fmOpacity` automatisch auf die Alpha-Komponente an.
+- Direct-Shader sollten `fmOpacity` bei Bedarf manuell anwenden.
 
 ## 10. Praktische Vorlagen
 
-## 10.1 Minimaler Shadertoy-ähnlicher Shader
+## 10.1 Minimaler Shader im Shadertoy-Stil
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -389,9 +396,9 @@ void main() {
 }
 ```
 
-## 10.3 Minimaler Feedback-Multipass
+## 10.3 Minimales Multipass-Feedback
 
-### Quelle von Buffer A
+### Quelltext für Buffer A
 
 Routing: `Buffer A iChannel0 Input -> Buffer A`
 
@@ -404,7 +411,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-### Quelle von Image
+### Image-Quelltext
 
 Routing: `Image iChannel0 Input -> Buffer A`
 
@@ -418,14 +425,14 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 ## 11. Checkliste zur Fehlerbehebung
 
 - Keine Ausgabe:
-  - prüfen, ob die Image-Quelle nicht leer ist
-  - prüfen, ob der Kompiliermodus zu deinem Einstiegspunkt passt (`mainImage` vs. `main`)
+  - Prüfe, ob der Image-Quelltext nicht leer ist.
+  - Prüfe, ob der Kompilierungsmodus zum Einstiegspunkt passt (`mainImage` oder `main`).
 - Violette/ungültige Texturen:
-  - Ressourcenbindungen und Kanal-Routing prüfen
-  - `iChannelResolution[n].z` prüfen (`0.0` bedeutet ungültig/nicht verfügbar)
+  - Prüfe die Ressourcenbindungen und das Kanal-Routing.
+  - Prüfe `iChannelResolution[n].z` (`0.0` bedeutet ungültig/nicht verfügbar).
 - Falsche Koordinaten im Direct-Shader:
-  - für lokale Flächenkoordinaten `gl_FragCoord.xy - fmAreaOffset` verwenden
-- Drag-Verhalten falsch:
-  - den Schalter `Update iMouse Position Only While Holding LMB` verwenden
-- Opazität wird im Direct-Shader nicht angewendet:
-  - Alpha selbst mit `fmOpacity` multiplizieren
+  - Verwende `gl_FragCoord.xy - fmAreaOffset` für lokale Bereichskoordinaten.
+- Falsches Verhalten beim Ziehen:
+  - Verwende die Umschaltoption `Update iMouse Position Only While Holding LMB`.
+- Deckkraft wird im Direct-Shader nicht angewendet:
+  - Multipliziere die Alpha-Komponente selbst mit `fmOpacity`.

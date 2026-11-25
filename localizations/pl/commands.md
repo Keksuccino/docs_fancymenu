@@ -1,57 +1,58 @@
 ---
 title: Polecenia
-description: Polecenia FancyMenu i sposób ich użycia.
+description: Polecenia FancyMenu i sposób ich używania.
+sourceBlobSha: 265258e46a219a12892146238e379af513ff0848
 ---
 
 # Polecenia
 
-FancyMenu dodaje do gry kilka poleceń, które mogą być bardzo przydatne, zwłaszcza w połączeniu z innymi modami, takimi jak FTB Quests.
+FancyMenu dodaje do gry kilka poleceń, które mogą być bardzo przydatne w połączeniu z innymi modami, takimi jak FTB Quests.
 
 > [!WARNING]
-> FancyMenu musi być obecne na **SERWERZE** (oraz po stronie klienta), aby używać poleceń w trybie wieloosobowym!
+> Aby używać poleceń w trybie wieloosobowym, FancyMenu musi być zainstalowane na **SERWERZE** (i u klienta)!
 
 ## Gracze docelowi i uprawnienia
 
-Argument gracza docelowego w poleceniach `/openguiscreen`, `/closeguiscreen` i `/fmlayout` jest opcjonalny. Gdy gracz go pominie, polecenie dotyczy jego samego. Jeśli podany zostanie cel, można używać zwykłych nazw graczy oraz selektorów, takich jak `@a`.
+Argument gracza docelowego w poleceniach `/openguiscreen`, `/closeguiscreen` i `/fmlayout` jest opcjonalny. Jeśli gracz go pominie, polecenie zadziała na niego. Jeśli wskażesz cel, możesz użyć zwykłych nazw graczy i selektorów, takich jak `@a`.
 
-- Podanie argumentu celu w `/openguiscreen` lub `/closeguiscreen` wymaga **poziomu uprawnień 2** (Game Master / OP poziom 2), nawet jeśli wskazuje źródło polecenia.
-- Podanie argumentu celu w `/fmlayout` wymaga **poziomu uprawnień 3** (Administrator / OP poziom 3), nawet jeśli wskazuje źródło polecenia.
-- Każde polecenie podrzędne `/fmdata` wymaga **poziomu uprawnień 2** (Game Master / OP poziom 2).
+- Podanie argumentu celu w poleceniu `/openguiscreen` lub `/closeguiscreen` wymaga **poziomu uprawnień 2** (Mistrz Gry / poziom OP 2), nawet jeśli wskazuje ono osobę wykonującą polecenie.
+- Podanie argumentu celu w poleceniu `/fmlayout` wymaga **poziomu uprawnień 3** (Administrator / poziom OP 3), nawet jeśli wskazuje ono osobę wykonującą polecenie.
+- Każde podpolecenie `/fmdata` wymaga **poziomu uprawnień 2** (Mistrz Gry / poziom OP 2).
 
-W przypadku trzech poleceń z opcjonalnym celem pominięcie celu działa tylko wtedy, gdy źródłem polecenia jest gracz. Konsola serwera musi podać cel i spełniać wymagania uprawnień dla argumentu celu.
+W przypadku trzech poleceń z opcjonalnym celem pominięcie celu działa tylko wtedy, gdy polecenie wykonuje gracz. Konsola serwera musi podać cel i spełniać wymagania dotyczące uprawnień dla argumentu celu.
 
 ## /openguiscreen
 
-Polecenie `/openguiscreen` otwiera Vanilla, moda lub [Custom GUI](./custom-guis). Może być używane wobec innych graczy, gdy FancyMenu jest zainstalowane na serwerze i na ich klientach.
+Polecenie `/openguiscreen` otwiera ekran Vanilla, moda lub [własne GUI](/custom-guis). Może wskazywać innych graczy, jeśli FancyMenu jest zainstalowane na serwerze i u tych graczy.
 
-Zobacz [Otwieranie GUI za pomocą polecenia](./opengui-command) oraz [Identyfikatory ekranów](./screen-identifiers).
+Zobacz [Otwieranie GUI za pomocą polecenia](/opengui-command) i [Identyfikatory ekranów](/screen-identifiers).
 
-Nie każdy ekran moda można utworzyć bezpośrednio. FancyMenu wyświetla błąd, gdy docelowy ekran nie jest obsługiwany. W lokalnym layoucie użyj [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) na widżecie, który normalnie go otwiera.
+Nie każdy ekran moda można utworzyć bezpośrednio. FancyMenu wyświetli błąd, jeśli wskazany ekran nie jest obsługiwany. W lokalnym układzie użyj opcji [**Naśladuj przycisk Vanilla/moda**](/action-scripts#mimic-vanillamod-button) w widżecie, który normalnie otwiera ten ekran.
 
 **Użycie:** `/openguiscreen <screen_identifier> [<target_players>]`
 
 ## /closeguiscreen
 
-Polecenie `/closeguiscreen` zamyka bieżący ekran dla źródła polecenia lub wybranych graczy. Jest przydatne w modach z zadaniami, wydarzeniami lub automatyzacją, które mogą uruchamiać polecenia.
+Polecenie `/closeguiscreen` zamyka bieżący ekran osoby wykonującej polecenie lub wybranych graczy. Przydaje się w połączeniu z modami do zadań, wydarzeń lub automatyzacji, które mogą uruchamiać polecenia.
 
 **Użycie:** `/closeguiscreen [<target_players>]`
 
 ## /fmlayout
 
-Polecenie `/fmlayout` ustawia, czy układ jest włączony na jednym lub kilku klientach. Użyj dokładnie takiej nazwy układu, jaka jest wyświetlana w FancyMenu, a nazwy zawierające spacje umieść w cudzysłowie.
+Polecenie `/fmlayout` włącza lub wyłącza układ u jednego albo kilku klientów. Użyj nazwy układu dokładnie tak, jak wyświetla się w FancyMenu, a nazwy zawierające spacje ujmij w cudzysłów.
 
 **Użycie:** `/fmlayout <layout_name> <true|false> [<target_players>]`
 
 Przykłady:
 
-- `/fmlayout quest_complete true` włącza `quest_complete` dla gracza, który uruchomił polecenie.
-- `/fmlayout quest_complete false @a` wyłącza je dla każdego gracza online. Podanie argumentu celu wymaga poziomu uprawnień 3.
+- `/fmlayout quest_complete true` włącza układ `quest_complete` u gracza wykonującego polecenie.
+- `/fmlayout quest_complete false @a` wyłącza go u wszystkich graczy online. Podanie argumentu celu wymaga poziomu uprawnień 3.
 
 ## /fmvariable
 
-Polecenie `/fmvariable` ustawia i odczytuje [zmienne FancyMenu](./variables).
+Polecenie `/fmvariable` ustawia i odczytuje [zmienne FancyMenu](/variables).
 
-Aby wykonać to polecenie jako inny gracz, użyj wbudowanego w Vanilla polecenia `/execute as`:
+Aby wykonać to polecenie jako inny gracz, użyj waniliowego polecenia `/execute as`:
 `/execute as ExamplePlayer run fmvariable ...`
 
 **Użycie:**
@@ -59,22 +60,22 @@ Aby wykonać to polecenie jako inny gracz, użyj wbudowanego w Vanilla polecenia
 - `/fmvariable get <variable_name>`
 - `/fmvariable set <variable_name> <send_chat_feedback> <set_to_value>`
 
-### Pobieranie
+### Odczyt
 
-Aby **odczytać wartość zmiennej**, użyj podpolecenia `get` w ten sposób:
+Aby **odczytać wartość zmiennej**, użyj podpolecenia `get` w następujący sposób:
 `/fmvariable get some_variable`
 
-Następnie wartość tej zmiennej zostanie wypisana na czacie.
+Wartość zmiennej zostanie wyświetlona na czacie.
 
 ### Ustawianie
 
-Aby **ustawić zmienną**, podaj wartość logiczną odpowiadającą za informację zwrotną na czacie przed nową wartością:
+Aby **ustawić zmienną**, podaj wartość logiczną określającą informację zwrotną na czacie przed nową wartością:
 `/fmvariable set some_variable true new_value`
 
-Argument `send_chat_feedback` kontroluje, czy FancyMenu potwierdzi zmianę na czacie. Argument `set_to_value` pochłania resztę polecenia, więc wartość może zawierać spacje. Na przykład `/fmvariable set greeting false Hello from FancyMenu` zapisuje `Hello from FancyMenu` bez wysyłania komunikatu o powodzeniu.
+Argument `send_chat_feedback` określa, czy FancyMenu potwierdzi zmianę na czacie. Argument `set_to_value` obejmuje resztę polecenia, więc wartość może zawierać spacje. Na przykład `/fmvariable set greeting false Hello from FancyMenu` zapisuje `Hello from FancyMenu` bez wyświetlania informacji o pomyślnym wykonaniu.
 
 ## /fmdata
 
-Polecenie `/fmdata` wysyła niestandardowe dane między serwerem a klientami FancyMenu, zarządza nasłuchiwaczami po stronie serwera i konfiguruje dane wysyłane podczas dołączania graczy. Każde podpolecenie `/fmdata` wymaga poziomu uprawnień 2.
+Polecenie `/fmdata` przesyła własne dane między serwerem a klientami FancyMenu, zarządza nasłuchiwaczami po stronie serwera, konfiguruje dane wysyłane przy dołączaniu graczy i eksportuje tę konfigurację do [czatów AI](/export-for-ai#servers). Każde podpolecenie `/fmdata` wymaga poziomu uprawnień 2.
 
-Zobacz [FM Data](./fm-data), aby poznać wszystkie podpolecenia, składnię i przykłady.
+Zobacz [FM Data](/fm-data), aby poznać wszystkie podpolecenia, składnię i przykłady.

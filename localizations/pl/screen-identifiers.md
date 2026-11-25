@@ -1,20 +1,23 @@
 ---
 title: Identyfikatory ekranów
-description: 'O identyfikatorach ekranów i o tym, jak znaleźć identyfikator ekranu.'
+description: >-
+  Informacje o identyfikatorach ekranów i o tym, jak znaleźć identyfikator
+  ekranu.
+sourceBlobSha: 64414e10bf5f532e075373a6a753e2f667448ceb
 ---
 # Identyfikatory ekranów
 
-FancyMenu używa identyfikatorów ekranów do układów, widżetów Vanilla, [akcji ekranowych](./action-scripts#open-screen-or-custom-gui-opengui) oraz [nadpisań niestandardowych GUI](./custom-guis#overriding-an-existing-screen). Identyfikatory są rozróżniane wielkością liter, więc kopiuj je dokładnie z nakładki debugowania.
+FancyMenu używa identyfikatorów ekranów w układach, widżetach Vanilla, [akcjach ekranów](/action-scripts#open-screen-or-custom-gui) i [nadpisaniach niestandardowych GUI](/custom-guis#overriding-an-existing-screen). Identyfikatory rozróżniają wielkość liter, dlatego kopiuj je dokładnie z nakładki debugowania.
 
-Wbudowane ekrany zwykle używają krótkiego, uniwersalnego identyfikatora, takiego jak `title_screen`. Inne ekrany modów mogą używać nazwy swojej klasy Java. Niestandardowe GUI używają identyfikatora wpisanego w ich menedżerze. Są to identyfikatory ekranów FancyMenu, a nie lokalizacje zasobów Minecrafta.
+Wbudowane ekrany zazwyczaj używają krótkich, uniwersalnych identyfikatorów, takich jak `title_screen`. Ekrany z innych modów mogą używać nazw swoich klas Javy. Niestandardowe GUI używają identyfikatora podanego w ich menedżerze. Są to identyfikatory ekranów FancyMenu, a nie lokalizacje zasobów Minecrafta.
 
 # Znajdowanie identyfikatora ekranu
 
-Identyfikator aktualnie aktywnego menu możesz zobaczyć, korzystając z **nakładki debugowania**.
-Zawiera ona identyfikator bieżącego ekranu i pozwala skopiować go do schowka przez kliknięcie lewym przyciskiem myszy.
+Identyfikator aktualnie aktywnego menu można sprawdzić za pomocą **nakładki debugowania**.
+Zawiera ona identyfikator bieżącego ekranu. Kliknięcie go lewym przyciskiem myszy kopiuje identyfikator do schowka.
 
 >[!TIP]
->Możesz włączyć **nakładkę debugowania**, naciskając **CTRL + ALT + D**, gdy **nie** jesteś w edytorze układu.
+>Nakładkę debugowania można włączyć, naciskając **CTRL + ALT + D**, gdy **nie** jesteś w edytorze układów.
 
 <br>
 
@@ -26,6 +29,6 @@ Zawiera ona identyfikator bieżącego ekranu i pozwala skopiować go do schowka 
 
 # Otwieranie ekranów
 
-[**Akcja Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui) może otwierać tylko te ekrany, które FancyMenu potrafi utworzyć w bieżącym stanie gry. Niektóre ekrany wymagają załadowanego świata, połączenia, gracza lub oryginalnego ekranu nadrzędnego.
+Akcja [**Otwórz ekran lub niestandardowe GUI**](/action-scripts#open-screen-or-custom-gui) może otworzyć tylko te ekrany, które FancyMenu jest w stanie utworzyć w bieżącym stanie gry. Niektóre ekrany wymagają wczytanego świata, połączenia, gracza lub ekranu nadrzędnego, z którego zostały otwarte.
 
-Jeśli FancyMenu nie może utworzyć identyfikatora, wyświetli błąd. Użyj [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton) na widżecie, który normalnie otwiera dany ekran.
+Jeśli FancyMenu nie może utworzyć ekranu na podstawie identyfikatora, wyświetli błąd. Użyj opcji [**Naśladuj przycisk Vanilla/moda**](/action-scripts#mimic-vanillamod-button) na widżecie, który normalnie otwiera dany ekran.

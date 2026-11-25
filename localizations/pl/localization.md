@@ -1,27 +1,28 @@
 ---
 title: Lokalizowanie układów
 description: Lokalizuj tekst i inne elementy układu.
+sourceBlobSha: f4883414b07e0c024de7bef4f131b878ca4f5f37
 ---
 
 # Lokalizowanie układów
 
-Użyj [**placeholdera Localize Text**](./placeholders#localize-text-local) dla tekstu, który ma być tłumaczony:
+Użyj [**symbolu zastępczego Lokalizuj tekst**](/placeholders#localize-text) dla tekstu do przetłumaczenia:
 
 ```text
 {"placeholder":"local","values":{"key":"modpack.menu.play"}}
 ```
 
-FancyMenu najpierw sprawdza aktywne dane językowe Minecrafta. Jeśli klucz nie jest tam obecny, sprawdza niestandardowe pliki lokalizacji FancyMenu. Jeśli żadne z tych źródeł nie zawiera klucza, wyświetlany jest sam klucz.
+FancyMenu najpierw sprawdza aktywne dane językowe Minecrafta. Jeśli nie ma tam danego klucza, sprawdza niestandardowe pliki lokalizacyjne FancyMenu. Jeśli klucza nie ma w żadnym z tych źródeł, wyświetlany jest sam klucz.
 
-# Niestandardowe pliki lokalizacji FancyMenu
+# Niestandardowe pliki lokalizacyjne FancyMenu
 
-Umieść pliki poniżej:
+Umieść pliki w katalogu:
 
 ```text
 <game-directory>/config/fancymenu/custom_locals/
 ```
 
-Utwórz podkatalog dla swoich plików lokalizacyjnych:
+Utwórz podkatalog na pliki lokalizacyjne:
 
 ```text
 custom_locals/
@@ -29,15 +30,15 @@ custom_locals/
     └── text.json
 ```
 
-Umieszczaj pliki lokalizacji w co najmniej jednym podkatalogu `custom_locals`; pliki znajdujące się bezpośrednio w katalogu głównym `custom_locals` nie są wczytywane. Zagnieżdżone podkatalogi są obsługiwane.
+Umieść pliki lokalizacyjne w co najmniej jednym podkatalogu `custom_locals`; pliki umieszczone bezpośrednio w katalogu głównym `custom_locals` nie są wczytywane. Możesz używać zagnieżdżonych podkatalogów.
 
 Obsługiwane formaty UTF-8:
 
 | Rozszerzenie | Format |
 |---|---|
-| `.json` | Obiekt JSON; zagnieżdżone obiekty stają się kluczami rozdzielanymi kropkami |
-| `.lang` | Linie `key=value` |
-| `.properties` | Składnia plików właściwości Java |
+| `.json` | Obiekt JSON; zagnieżdżone obiekty są zamieniane na klucze rozdzielone kropkami |
+| `.lang` | Wiersze w formacie `key=value` |
+| `.properties` | Składnia plików właściwości języka Java |
 
 Przykład JSON:
 
@@ -45,29 +46,29 @@ Przykład JSON:
 {
   "modpack": {
     "menu": {
-      "play": "Play"
+      "play": "Graj"
     }
   }
 }
 ```
 
-Definiuje to `modpack.menu.play`.
+Definiuje to klucz `modpack.menu.play`.
 
-FancyMenu łączy obsługiwane pliki z tych podkatalogów w jeden niestandardowy słownik lokalizacji. Używaj każdego klucza tylko w jednym pliku. Niestandardowe pliki lokalizacji nie zmieniają się wraz z językiem wybranym w Minecraftcie; gdy potrzebujesz automatycznego przełączania języka, użyj opisanej poniżej metody z paczką zasobów.
+FancyMenu łączy obsługiwane pliki z tych podkatalogów w jeden niestandardowy słownik lokalizacyjny. Każdego klucza używaj tylko w jednym pliku. Niestandardowe pliki lokalizacyjne nie zmieniają się wraz z wybranym językiem Minecrafta; jeśli potrzebujesz automatycznego przełączania języka, skorzystaj z opisanej poniżej metody z pakietem zasobów.
 
-Po edycji niestandardowych plików lokalizacji uruchom ponownie klienta.
+Po edycji niestandardowych plików lokalizacyjnych uruchom ponownie klienta.
 
 # Tekst zależny od języka
 
-Aby automatycznie przełączać język zgodnie z językiem wybranym w Minecraftcie, udostępnij zwykłe pliki językowe Minecrafta za pomocą [pakietu zasobów](./resources#minecraft-resources-resource-packs):
+Aby automatycznie przełączać język zgodnie z ustawieniem Minecrafta, dodaj standardowe pliki językowe Minecrafta do [pakietu zasobów](/resources#minecraft-resources-resource-packs):
 
 ```text
 assets/<namespace>/lang/en_us.json
 assets/<namespace>/lang/de_de.json
 ```
 
-Użyj tych samych kluczy w każdym pliku językowym, włącz pakiet zasobów, a następnie odczytaj je za pomocą [**placeholdera Localize Text**](./placeholders#localize-text-local).
+Użyj tych samych kluczy w każdym pliku językowym, włącz pakiet zasobów, a następnie odczytuj tekst za pomocą [**symbolu zastępczego Lokalizuj tekst**](/placeholders#localize-text).
 
 # Lokalizowanie obrazów i elementów
 
-Użyj [**wymagania Is Game Language**](./conditions#is-game-language-fancymenu_loading_requirement_is_language), aby pokazywać różne elementy lub układy dla różnych kodów językowych, takich jak `en_us` i `de_de`.
+Użyj [warunku **Język gry**](/conditions#is-game-language), aby wyświetlać różne elementy lub układy dla różnych kodów języka, takich jak `en_us` i `de_de`.

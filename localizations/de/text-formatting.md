@@ -1,45 +1,72 @@
 ---
 title: Textformatierung
-description: Wie man Text mit Markdown und den Formatierungscodes von Minecraft formatiert.
+description: >-
+  So formatierst du Text mit Markdown, Minecraft-Formatierungscodes und
+  Textkomponenten.
+sourceBlobSha: c6ddde5939e929b3d4c04541f0b104ee6ee795bc
 ---
-
 # Textformatierung
 
-[Textelemente](./elements#text) unterstützen Markdown. Andere Textfelder verwenden Minecraft-Formatierung, und Schaltflächenbeschriftungen können Minecraft-Textkomponenten verwenden.
+FancyMenu bietet dir drei Möglichkeiten, Text zu formatieren:
+
+- **Markdown** für [Text- und Tooltip-Elemente](/text-in-menus): Überschriften, Listen, Farben, Bilder, Tabellen und mehr.
+- **Minecraft-Formatierungscodes** wie `&c` für schnelle Farbänderungen. Sie funktionieren in fast jedem Textfeld, auch in Markdown-Text.
+- **Minecraft-Textkomponenten** für Beschriftungen von Buttons und Schiebereglern.
+
+> [!TIP]
+> Auf dieser Seite geht es darum, *wie du* formatierten Text schreibst. Wie du Text zu deinen Menüs hinzufügst, sein Aussehen änderst oder ihn scrollen lässt, erfährst du unter [Text in Menüs](/text-in-menus).
+
+<img width="800" alt="Markdown in einem Textelement" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_showcase.png?raw=true">
 
 # Markdown
 
-FancyMenus **Textelemente** unterstützen Markdown vollständig. Das bedeutet, dass du Textinhalte formatieren kannst, indem du spezielle Zeichen hinzufügst.
+Markdown formatiert Text mithilfe einiger Sonderzeichen. Zum Beispiel wird `**fett**` als **fetter** Text dargestellt.
 
-Um zum Beispiel Text fett darzustellen, füge `**` vor und nach dem fetten Text hinzu. `**Ein fetter Text, der sehr fett ist.**` sieht dann so aus:
-**Ein fetter Text, der sehr fett ist.**
+Markdown funktioniert in [Textelementen](/elements#text) und [Tooltip-Elementen](/elements#tooltip). Die Zeichen, die du schreibst, bestimmen, *was* etwas ist (eine Überschrift, eine Liste, ein Zitat). Das [Aussehen](/text-in-menus#looks-and-styles) des Elements bestimmt, wie es dargestellt wird, zum Beispiel mit welchen Farben und Größen.
 
-FancyMenu unterstützt außerdem die unten dokumentierten Erweiterungen.
+## Schnellübersicht
 
-> [!CAUTION]
-> Markdown funktioniert nur in **Textelementen**. Für Schaltflächenbeschriftungen und andere Textfelder verwende bitte [Minecrafts Formatierungscodes](#minecraft-textformatierung).
+| Du schreibst | Du erhältst |
+|---|---|
+| `**fett**` oder `__fett__` | Fetter Text |
+| `*kursiv*` oder `_kursiv_` | Kursiver Text |
+| `++unterstrichen++` | Unterstrichener Text |
+| `~~durchgestrichen~~` | Durchgestrichener Text |
+| `` `Code` `` | Inline-Code |
+| `[Website öffnen](https://example.com)` | Einen anklickbaren Link |
+| `%#ff5555%roter Text%#%` | Farbigen Text |
+| `# Überschrift` | Eine Überschrift |
+| `- Eintrag` | Eine Aufzählungsliste |
+| `1. Eintrag` | Eine nummerierte Liste |
+| `> Text` | Ein Zitat |
+| `> [!TIP]` | Eine Hinweisbox |
+| `---` | Eine Trennlinie |
 
-## Schriftarten
+## Textstile
 
-Du kannst Text in einer benutzerdefinierten Schriftart anzeigen, die über ein Resource Pack geladen wurde, indem du vor den Text `%!!<schriftname>%` und danach `%!!%` einfügst.
+| Stil | So schreibst du ihn |
+|---|---|
+| **Fett** | `**Text**` oder `__Text__` |
+| **Kursiv** | `*Text*` oder `_Text_` |
+| **Unterstrichen** | `++Text++` |
+| **Durchgestrichen** | `~~Text~~` (ein einzelnes `~` auf beiden Seiten funktioniert ebenfalls) |
 
-Eine gültige Schriftart aus dem Basisspiel ist `uniform`. Um Text in der Schriftart `uniform` anzuzeigen, verwende also Folgendes:
-`%!!uniform%dies ist eine benutzerdefinierte Schriftart%!!%`
+Du kannst Stile kombinieren, zum Beispiel mit `***fett und kursiv***`.
 
-Dadurch wird `dies ist eine benutzerdefinierte Schriftart` in der Schriftart `uniform` angezeigt.
+Einzelne Unterstriche innerhalb von Wörtern bleiben normale Unterstriche. `mein_cooles_layout` wird also nicht kursiv dargestellt. Auch Namen wie `C++` bleiben unverändert.
+
+> [!TIP]
+> Markiere im Texteditor einen Textabschnitt und drücke `Ctrl + B`, `Ctrl + I` oder `Ctrl + U` (`Cmd` unter macOS), um ihn fett, kursiv oder unterstrichen zu formatieren. Weitere Informationen findest du unter [Formatierungs-Tastenkürzel](/text-in-menus#formatting-shortcuts).
 
 ## Textfarbe (HEX)
 
-Text in einer bestimmten HEX-Farbe anzeigen zu lassen ist möglich, indem du vor den Text `%<HEX_farbe>%` und danach `%#%` einfügst.
+Setze `%<HEX-Farbe>%` vor den Text und `%#%` dahinter:
 
-Eine gültige HEX-Farbe für Grün ist `#77fc03`. Um Text in dieser Farbe anzuzeigen, verwende also Folgendes:
-`%#77fc03%dieser Text ist grün!%#%`
+```
+%#77fc03%Dieser Text ist grün!%#%
+```
 
-Dadurch wird `dieser Text ist grün!` in `#77fc03` (grün) angezeigt.
-
-Achte darauf, dass die HEX-Farbe mit `#` beginnt!
-
-Übliche farbliche Namen im HTML-Stil werden im selben Farbformatierungscode unterstützt:
+Die HEX-Farbe muss mit `#` beginnen. Du kannst auch Farbnamen verwenden:
 
 ```
 %#red%Dieser Text ist rot!%#%
@@ -47,215 +74,248 @@ Achte darauf, dass die HEX-Farbe mit `#` beginnt!
 
 Unterstützte Namen: `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan` und `transparent`.
 
+## Schriftarten
+
+Um Text in einer anderen Schriftart darzustellen, setze `%!!<Schriftartname>%` davor und `%!!%` dahinter. Die Schriftart kann aus Minecraft oder einem Ressourcenpaket stammen.
+
+```
+%!!uniform%Dieser Text verwendet die Schriftart „uniform“.%!!%
+```
+
 ## Textausrichtung
 
-Du kannst Textzeilen ausrichten, indem du eine Zeile mit dem jeweiligen Ausrichtungs-Formatierungscode beginnst, dann nichts Weiteres folgst, dann die Textzeilen hinzufügst, die mit dieser Ausrichtung angezeigt werden sollen, und anschließend den Ausrichtungscode wieder in einer zusätzlichen Zeile schreibst.
+Text ist standardmäßig linksbündig. Um Zeilen zu zentrieren oder rechtsbündig auszurichten, setze den Ausrichtungscode jeweils in eine eigene Zeile davor und dahinter:
 
-Alle Textinhalte sind standardmäßig **linksbündig** ausgerichtet, daher gibt es nur Formatierungscodes für **zentriert** und **rechtsbündig**.
+- `^^^` zentriert die Zeilen.
+- `|||` richtet sie rechtsbündig aus.
 
-### Zentriert
-
-Um Textzeilen zu zentrieren, verwende den Formatierungscode `^^^`.
-
-Beispiel:
 ```
-Dieser Text ist nicht zentriert.
+Diese Zeile ist linksbündig.
 
 ^^^
-Dieser Text ist zentriert.
-Dieser Text ist ebenfalls zentriert.
+Diese Zeile ist zentriert.
+Diese ebenfalls.
 ^^^
 
-Dieser Text ist nicht mehr zentriert.
-```
-
-### Rechtsbündig
-
-Um Textzeilen rechtsbündig anzuzeigen, verwende den Formatierungscode `|||`.
-
-Beispiel:
-```
-Dieser Text ist nicht rechtsbündig.
-
 |||
-Dieser Text ist rechtsbündig.
-Dieser Text ist ebenfalls rechtsbündig.
+Diese Zeile ist rechtsbündig.
 |||
-
-Dieser Text ist nicht mehr rechtsbündig.
 ```
+
+> [!TIP]
+> Im Texteditor kannst du mit `Ctrl + L`, `Ctrl + E` und `Ctrl + R` (`Cmd` unter macOS) die markierten Zeilen linksbündig, zentriert oder rechtsbündig ausrichten.
 
 ## Überschriften
 
-Um **eine Textzeile** als Überschrift anzuzeigen (größer und unterstrichen), füge `# ` (sehr groß), `## ` (groß) oder `### ` (klein) vor der Textzeile hinzu.
+Beginne eine Zeile mit `# ` (größte), `## ` (große) oder `### ` (kleine Überschrift):
 
-Beispiel:
-`## Große Überschrift`
+```
+# Willkommen!
+## Neuigkeiten
+### Kleine Überschrift
+```
 
-## Fett
+## Listen
 
-Füge `**` vor und nach dem Text hinzu, um ihn **fett** darzustellen.
+<img width="460" alt="Markdown-Listen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_lists.png?raw=true">
 
-Beispiel:
-`**fetter Textinhalt**`
+### Aufzählungslisten
 
-## Kursiv
+Beginne eine Zeile mit `- `. Rücke sie für jede Verschachtelungsebene um zwei Leerzeichen ein:
 
-Füge `_` ODER `*` vor und nach dem Text hinzu, um ihn *kursiv* darzustellen.
+```
+- Erster Eintrag
+- Zweiter Eintrag
+  - Verschachtelter Eintrag
+    - Noch tiefer verschachtelt
+```
 
-Beispiel:
-`*kursiver Textinhalt*`
+### Nummerierte Listen
 
-## Durchgestrichen
+Beginne eine Zeile mit einer Zahl und einem Punkt oder einer Klammer:
 
-Füge `~` vor und nach dem Text hinzu, um ihn ~~durchgestrichen~~ darzustellen.
+```
+1. Öffne die Menüleiste
+2. Klicke auf „Anpassung“
+3) Das funktioniert ebenfalls
+```
 
-Beispiel:
-`~durchgestrichener Textinhalt~`
+### Markierungen für Patchnotes
 
-## Hyperlinks
+Zeilen können auch mit `+`, `-`, `~` oder `*` beginnen. Jedes Zeichen erhält eine eigene Markierung – ideal für Patchnotes und Änderungsprotokolle:
 
-Du kannst Textinhalte mit Hyperlinks versehen, die beim Anklicken eine Website öffnen.
+```
++ Neues Hauptmenü hinzugefügt
+- Altes Logo entfernt
+~ Buttonfarben geändert
+* Absturz beim Start behoben
+```
 
-Text, der als [Hyperlink](https://google.com) erscheinen soll, muss in `[ ]` eingeschlossen werden, gefolgt vom eigentlichen Link in `( )`.
+| Markierung | Bedeutung |
+|---|---|
+| `+` | Etwas wurde hinzugefügt |
+| `-` | Etwas wurde entfernt |
+| `~` | Etwas wurde geändert |
+| `*` | Etwas ist besonders hervorzuheben |
 
-Wenn du also `Beispiel-Textinhalt` anklickbar machen und `https://example-website.net` öffnen lassen willst, verwende Folgendes:
-`[Beispiel-Textinhalt](https://example-website.net)`
+Ein `-`-Eintrag erhält die Markierung „entfernt“ nur dann, wenn die Liste auch einen `+`-Eintrag enthält. Andernfalls ist es ein normaler Aufzählungseintrag. Du kannst dieses Verhalten unter **Markdown -> Listen -> Zusätzliche Markierungen (+ - ~ \*) -> Verwendete Markierung für -** ändern.
+
+> [!NOTE]
+> Bei neuen Text- und Tooltip-Elementen sind nummerierte Listen, Patchnote-Markierungen und [Hinweisboxen](#callouts) standardmäßig aktiviert. Bei Elementen aus älteren Layouts sind sie deaktiviert, damit sich der Text nicht plötzlich verändert. Aktiviere sie im Menü **Markdown** des Elements: **Listen -> Nummerierte Listen**, **Listen -> Zusätzliche Markierungen (+ - ~ \*)** und **Hinweisboxen**.
+
+## Zitate
+
+Beginne eine Zeile mit `> `, um ein Zitat zu erstellen. Das Zitat reicht bis zur nächsten leeren Zeile:
+
+```
+> Das ist ein Zitat.
+Auch diese Zeile gehört dazu.
+
+Diese Zeile ist wieder normaler Text.
+```
+
+Zeilen innerhalb eines Zitats können ebenfalls mit `>` beginnen. Eine Zeile, die nur aus `>` besteht, fügt dem Zitat eine Leerzeile hinzu:
+
+```
+> Erster Absatz des Zitats.
+>
+> Zweiter Absatz des Zitats.
+```
+
+## Hinweisboxen
+
+Hinweisboxen sind farbige Kästen mit einem Symbol und einer Beschriftung – ideal für Tipps und Warnungen. Schreibe ein Zitat, dessen erste Zeile den Typ der Hinweisbox angibt:
+
+```
+> [!WARNING]
+> Vergiss nicht, dein Layout zu speichern!
+```
+
+<img width="640" alt="Markdown-Hinweisboxen" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_callouts.png?raw=true">
+
+Es gibt fünf Typen: `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` und `[!CAUTION]`.
+
+## Links
+
+Setze den Text in `[ ]` und den Link dahinter in `( )`:
+
+```
+[Besuche unsere Website](https://example.com)
+```
+
+Links können runde Klammern enthalten, zum Beispiel `https://en.wikipedia.org/wiki/Minecraft_(video_game)`. Um eckige Klammern im Linktext anzuzeigen, setze ein `\` davor: `[Klicke \[hier\]](https://example.com)`.
 
 ## Klick- und Hover-Ereignisse
 
-Markdown-Klick- und Hover-Ereignisse sind für [Textelemente](./elements#text) und andere Markdown-Texte verfügbar. Verwende [**Bei Klick auf Markdown-Text**](./listeners#on-markdown-text-clicked-text_clicked) und [**Bei Hover über Markdown-Text**](./listeners#on-markdown-text-hovered-text_hovered), um darauf zu reagieren.
-
-Klick-Ereignisse verwenden das Präfix `click:`:
+Text kann auch [Listener](/listeners) auslösen, statt eine Website zu öffnen. Verwende dafür das Präfix `click:` oder `hover:` mit einer ID deiner Wahl:
 
 ```
-[anklickbarer Text](click:unique_text_click_event_id)
+[anklickbarer Beispieltext](click:unique_text_click_event_id)
+[Text mit Hover-Effekt](hover:unique_text_hover_event_id)
 ```
 
-Hover-Ereignisse verwenden das Präfix `hover:`:
-
-```
-[hoverbarer Text](hover:unique_text_hover_event_id)
-```
-
-Beide Listener stellen die Ereignis-ID als `$$text_event_id` bereit.
+Reagiere darauf mit den Listenern [**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked) und [**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered). Beide stellen dir die ID als `$$text_event_id` bereit.
 
 ## Bilder
 
-Markdown unterstützt das Anzeigen von Bildern in Textinhalten.
+Füge ein Bild in einer eigenen Zeile mit `![](` + der Bildquelle + `)` ein:
 
-FancyMenu unterstützt Minecraft-Ressourcen, lokale Ressourcen und Web-Ressourcen in Markdown.
-
-Um ein Bild hinzuzufügen, beginne eine Textzeile mit `![](`, dann die [URL, den Ressourcenpfad oder den Pfad zur Ressource](./resources) und dann `)`.
-
-Um also die Web-Ressource `https://example-website.net/image.png` anzuzeigen, verwende Folgendes:
-`![](https://example-website.net/image.png)`
-
-Bilder können auch **Hyperlinks** sein, indem die gesamte Bild-Textzeile in einen **Hyperlink** eingebettet wird, etwa so:
-`[![](https://example-website.net/image.png)](https://example-website.net)`
-
-> [!WARNING]
-> Lokale Ressourcen müssen sich in `<game-directory>/config/fancymenu/assets/` befinden!
-
-## Zitat
-
-Um Text als Zitat zu formatieren, beginne eine Textzeile mit `> `.
-Dadurch werden alle folgenden Zeilen als Zitat formatiert, bis eine **leere** Zeile gefunden wird.
-
-Beispiel:
 ```
-Das wird nicht wie ein Zitat aussehen.
-
-> Das wird wie ein Zitat aussehen.
-Dieser Text wird ebenfalls wie ein Zitat aussehen.
-
-Das wird nicht mehr wie ein Zitat aussehen.
+![](https://example.com/image.png)
 ```
 
-## Aufzählungen
+Die Quelle kann eine Web-URL, eine lokale Datei wie `/config/fancymenu/assets/image.png` oder ein Bild aus einem Ressourcenpaket sein. Alle Quelltypen findest du unter [Ressourcen](/resources).
 
-Um Text als Aufzählung wie diese anzuzeigen:
-- Eintrag 1
-- Eintrag 2
-  - Untereintrag
+Der Text zwischen den eckigen Klammern wird zur Bildunterschrift:
 
-musst du einfach eine Zeile mit `- ` beginnen.
-
-Beispiel:
 ```
-- Eintrag 1
-- Eintrag 2
-  - Untereintrag
+![Mein toller Screenshot](/config/fancymenu/assets/screenshot.png)
 ```
 
-## Trennlinie
+Bildunterschriften werden unter dem Bild angezeigt, wenn die Option **Markdown -> Bilder -> Bildunterschrift** des Elements aktiviert ist.
 
-Um deinem Text eine Trennlinie mit der Breite einer ganzen Textzeile hinzuzufügen, beginne einfach eine Zeile mit `---` und füge nichts Weiteres hinzu.
+Um ein Bild anklickbar zu machen, füge es in einen Link ein:
 
-Dann sieht sie ungefähr so aus:
+```
+[![](https://example.com/image.png)](https://example.com)
+```
 
----
+## Tabellen
 
-## Codeblöcke
+Trenne Zellen mit `|`. Die erste Zeile ist die Kopfzeile. In der zweiten Zeile steht für jede Spalte `---`:
 
-Codeblöcke helfen dir dabei, Text als `reinen Text` anzuzeigen, ohne dass Markdown versucht, ihn zu formatieren, oder einfach Text in einer codeähnlichen Darstellung ohne automatisches Umbrechen von Textzeilen zu zeigen.
+```
+| Gegenstand | Preis |
+|:---|---:|
+| Diamantschwert | 10 |
+| Goldener Apfel | 5 |
+```
 
-Ein einzeiliger Codeblock (zwischen anderem Text) beginnt und endet mit \` , was in einem Markdown-Text tatsächlich ziemlich schwer darzustellen ist.
+Doppelpunkte in der zweiten Zeile richten die Spalten aus: `:---` linksbündig, `:---:` zentriert und `---:` rechtsbündig. Um ein `|` innerhalb einer Zelle anzuzeigen, schreibe `\|`.
 
-Eine Textzeile mit einem einzeiligen Codeblock sieht so aus:
+<img width="640" alt="Markdown-Tabelle und Code" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_table_code.png?raw=true">
 
-![single_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/e78fd38b-7b1a-4f00-9b11-797d964b3b43)
+## Trennlinien
 
-Mehrzeilige Codeblöcke umfassen mehrere Zeilen in einem großen Codeblock und beginnen mit einer Zeile, die nur \`\`\` enthält, dann folgt der Textinhalt und anschließend erneut \`\`\`:
+Eine Zeile, die nur aus `---` besteht, zeichnet eine Trennlinie über die gesamte Textbreite.
 
-![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+## Code
+
+Code zeigt Text unverändert und ohne Formatierung an.
+
+- **Inline-Code:** Schließe einen Teil einer Zeile in `` ` `` ein, zum Beispiel `` `/spawn` ``.
+- **Codeblöcke:** Setze vor und nach den Zeilen jeweils eine Zeile mit `` ``` ``. Zeilen in Codeblöcken werden nicht umgebrochen.
+
+````
+```
+/give @p minecraft:diamond 64
+```
+````
+
+Du kannst hinter das erste `` ``` `` einen Sprachnamen schreiben, zum Beispiel `` ```json ``. FancyMenu akzeptiert ihn, aber er verändert nicht das Aussehen des Codes.
+
+[Platzhalter](/placeholders) werden auch innerhalb von Code ersetzt.
 
 ## Klartext
 
-Der Klartext-Formatierungscode umgeht alle anderen Formatierungscodes innerhalb davon.
-
-Er funktioniert ähnlich wie Codeblöcke, formatiert den Inhalt jedoch nicht wie einen Codeblock. Stattdessen wird er wie normaler Text angezeigt, aber ohne jegliche Formatierung.
-
-Um einen Textteil innerhalb einer Zeile in einen Klartext-Formatierungscode einzuschließen, musst du `;;` vor und nach dem Textteil hinzufügen, den du als Klartext anzeigen möchtest, etwa so:
+Klartext zeigt Formatierungszeichen unverändert, aber nicht im Code-Stil an. Schließe einen Teil einer Zeile in `;;` ein:
 
 ```
-Dies ist eine Textzeile mit ;;**diesem Teil**;;, der als unformatierter Text mit sichtbarem **- (fett) Formatierungscode angezeigt wird, und _dieser Teil_ als normal formatierter kursiver Text.
+Hier werden ;;**Sternchen**;; statt fettem Text angezeigt.
 ```
 
-Klartext funktioniert auch als mehrzeiliger Umschließungscode. Um ganze Zeilen einzuschließen, füge `;;;` vor und nach den Zeilen hinzu, die du als Klartext anzeigen möchtest, etwa so:
+Für ganze Zeilen setzt du jeweils `;;;` in eine eigene Zeile davor und dahinter:
 
 ```
 ;;;
-Diese Zeile wird **unformatiert** mit sichtbaren **- (fett) Formatierungscodes angezeigt.
-Diese Zeile wird ebenfalls _unformatiert_ mit sichtbaren _- (kursiv) Formatierungscodes angezeigt.
+**Nicht fett**, _nicht kursiv_.
 ;;;
-
-Diese Zeile sieht wieder **normal** aus, wobei "normal" als fetter Text formatiert ist.
 ```
+
+## Sonderzeichen maskieren
+
+Um ein Formatierungszeichen als normalen Text anzuzeigen, setze ein `\` davor. Zum Beispiel wird `\*nicht kursiv\*` als `*nicht kursiv*` angezeigt.
+
+Das funktioniert mit `\` `` ` `` `*` `_` `{` `}` `[` `]` `(` `)` `#` `+` `-` `.` `!` `|` `>` `~` und `^`.
 
 # Minecraft-Textformatierung
 
-Minecraft-Formatierungscodes funktionieren in unterstützten formatierten Textfeldern in ganz FancyMenu. Verwende `&` anstelle des Minecraft-Präfixes `§`; zum Beispiel zeigt `&cWarnung` roten Text an.
+Minecraft-Formatierungscodes funktionieren in den meisten Textfeldern von FancyMenu. Verwende `&` anstelle von Minecrafts `§`. Zum Beispiel stellt `&cWarnung` roten Text dar und `&l` macht Text fett. `&r` setzt die Formatierung zurück.
 
-Siehe die [Referenz zu Formatierungscodes im Minecraft-Wiki](https://minecraft.wiki/w/Formatting_codes) für die verfügbaren Farben und Stile.
+Alle Codes findest du im [Minecraft Wiki](https://minecraft.wiki/w/Formatting_codes).
 
-> [!CAUTION]
-> Minecraft-Formatierungscodes sind in **Textelementen** unzuverlässig, da diese Elemente Markdown parsen. Verwende stattdessen die oben beschriebene Markdown-Formatierung.
+Formatierungscodes funktionieren auch in Markdown-Text, außer innerhalb von Code und Klartext. Für Stile wie fett und kursiv ist Markdown meist leichter lesbar, für schnelle Farbänderungen sind Formatierungscodes jedoch praktisch.
 
 # Minecraft-Textkomponenten (Raw Component System)
 
-Das Textkomponentensystem von Minecraft ist ziemlich mächtig für **einzeilige** Textinhalte wie **Schaltflächenbeschriftungen**.
+Minecraft-Textkomponenten sind formatierter Text im JSON-Format. Sie funktionieren für **einzeilige** Texte wie **Beschriftungen von Buttons und Schiebereglern**, aber nicht in Textelementen.
 
-Im Vanilla-Minecraft kannst du es in den Befehlen `/tellraw` und `/title` verwenden (und wahrscheinlich auch an anderen Stellen).
-Es handelt sich um formatierten Text, der als JSON serialisiert wird, sodass du Formatierungsattribute zu Textinhalten hinzufügen kannst.
+Um eine Textkomponente zu verwenden, setze sie als einzigen Inhalt der Beschriftung:
 
-Um mehr über Textkomponenten im Detail zu erfahren, wirf bitte einen Blick auf [diese Minecraft-Wiki-Seite](https://minecraft.wiki/w/Raw_JSON_text_format).
-Um mehr über Schriftarten in Minecraft zu erfahren, schau dir bitte [diese Minecraft-Wiki-Seite](https://minecraft.wiki/w/Resource_pack#Fonts) an.
+```
+{"text":"Button-Beschriftung","font":"uniform"}
+```
 
-Damit FancyMenu eine Schaltflächenbeschriftung als **Textkomponente** erkennt, darfst du als Beschriftung nichts weiter als den serialisierten Komponententext angeben, also so:
-`{"text":"Schaltflächenbeschriftungstext","font":"uniform"}`
+Damit wird `Button-Beschriftung` in der Schriftart `uniform` angezeigt. Im Wert von `text` kannst du [Platzhalter](/placeholders) verwenden.
 
-Das obige Beispiel zeigt die Schaltflächenbeschriftung `Schaltflächenbeschriftungstext` in der Schriftart `uniform` an.
-
-> [!NOTE]
-> Du kannst in den `text`-Wert von Komponenten die Platzhalter von FancyMenu verwenden.
+Weitere Informationen findest du in den Minecraft-Wiki-Artikeln zum [Textkomponentenformat](https://minecraft.wiki/w/Raw_JSON_text_format) und zu [Schriftarten](https://minecraft.wiki/w/Resource_pack#Fonts).
