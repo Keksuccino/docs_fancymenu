@@ -61,7 +61,7 @@ type = panorama
 
 panorama-meta {
   name = forest_homestead
-  speed = 1.0
+  speed = 2.0
   fov = 85.0
   angle = 25.0
   start_rotation = 0
@@ -76,7 +76,7 @@ panorama-meta {
 | `angle` | How far it looks down, in degrees. `0` looks straight at the horizon, negative numbers look up. |
 | `start_rotation` | Where it starts turning, in degrees from `0` to `360`. `0` starts with the front image in the middle. |
 
-Only `name` is required. Settings you leave out use the values of the example. Keep the `type = panorama` and `panorama-meta {` lines as they are, write one setting per line and use a point for decimals, like `1.5`.
+Only `name` is required. Settings you leave out use `speed = 1.0`, `fov = 85.0`, `angle = 25.0` and `start_rotation = 0`. Keep the `type = panorama` and `panorama-meta {` lines as they are, write one setting per line and use a point for decimals, like `1.5`.
 
 # Overlay
 
@@ -86,11 +86,11 @@ An `overlay.png` next to `properties.txt` gets drawn over the panorama, stretche
 
 ## As Menu Background
 
-<img width="800" alt="Opening Menu Backgrounds, Cubic Panorama in the layout editor, turning on Show Background and picking forest_homestead in Choose Panorama, then it shows behind the Title screen buttons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/panoramas_background.gif?raw=true">
+<img width="800" alt="Opening Menu Backgrounds, Cubic Panorama in the layout editor, turning on Show Background and picking forest_homestead in Choose Panorama, then it turns behind the Title screen buttons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/panoramas_background.gif?raw=true">
 
 1. In the [layout editor](/layout-editor), right-click the background and open **Menu Backgrounds -> Cubic Panorama**.
 2. Click **Show Background** to turn it on.
-3. Click **Panorama Name**, pick your panorama and click **Done**. The preview on the right shows it.
+3. Click **Panorama Name**, pick your panorama and click **Done**. The preview on the right shows it turning.
 
 **Clear Panorama** takes it out again. To combine it with other backgrounds, see [Menu Backgrounds](/menu-backgrounds).
 
