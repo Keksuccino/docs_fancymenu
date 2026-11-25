@@ -13,12 +13,14 @@ It works for [elements](/elements) and for **Image** and **Video** [menu backgro
 
 # Elements
 
-<img width="640" alt="In the layout editor, right-clicking the foreground layer of a title screen, setting Parallax Effect to Enabled and Parallax Intensity (X) to 1.0, then saving and closing the editor. On the title screen, only the foreground layer moves while the mouse goes left and right" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/parallax_element_settings.gif?raw=true">
+<img width="640" alt="On a title screen with its buttons in a column on the left, selecting the five buttons in the layout editor with a click and Ctrl + Click, setting Parallax Effect to Enabled and Parallax Intensity (X) to 1.0 for all of them, then saving and closing the editor. On the title screen, the buttons move a bit while the mouse goes left and right, and the logo and the landscape stay still" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/parallax_element_settings.gif?raw=true">
 
 1. Right-click the element in the layout editor and scroll down to **Parallax Effect**.
 2. Click **Parallax Effect** to set it to **Enabled**.
 3. Click **Parallax Intensity (X)** and **Parallax Intensity (Y)** to set how far it moves.
 4. Save the layout and close the editor. Elements only move outside of the editor.
+
+To give several elements the effect at once, [select](/layout-editor#selecting) them first (`Ctrl` + click adds an element to the selection), then right-click one of them.
 
 | Setting | What it does |
 |---|---|
@@ -32,6 +34,7 @@ At `1.0`, an element moves up to 5% of the screen width to the side and 5% of th
 - Elements that are [anchored](/positioning-elements) to an element with the effect move along with it, and their own effect adds to that.
 - **Stay on Screen** doesn't keep elements with the effect on the screen, so they can move past its edges.
 - Stretched elements don't move in the direction they're stretched in.
+- [Vanilla buttons and sliders](/vanilla-elements) only move after you moved them. With the anchor point **Vanilla (Original)**, they stay where the game puts them.
 - Buttons stay clickable where they show.
 - [Scrollable Areas](/scrollable-areas), the elements in them and Tooltip elements have no Parallax Effect.
 
