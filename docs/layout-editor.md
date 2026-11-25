@@ -73,7 +73,7 @@ Resizing only works while one element is selected.
 
 ## Rotating and Tilting
 
-Selected elements that support it show controls for [rotating](/rotating-elements) and [tilting](/tilting-elements) them. Hold `Shift` while you drag them to snap to steps: 45° for rotation, 15° for tilt.
+Selected elements that support it show controls for [rotating and tilting](/rotating-elements) them. Hold `Shift` while you drag them to snap to steps: 45° for rotation, 15° for tilt.
 
 **Window -> Element Rotation Controls** and **Element Tilt Controls** hide the controls.
 
