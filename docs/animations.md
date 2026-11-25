@@ -4,7 +4,7 @@ description: How to use animated images in FancyMenu, and how to make them.
 ---
 # Animations
 
-FancyMenu plays animated images almost everywhere you can use an image: in [Image elements](/elements#image), [image menu backgrounds](/menu-backgrounds), button and slider textures, the [Game Intro](/game-intro) and more.
+FancyMenu plays animated images almost everywhere you can use an image: in [Image elements](/elements#image), [image menu backgrounds](/menu-backgrounds#image), button and slider textures, the [Game Intro](/game-intro) and more.
 
 Use **APNG** or **GIF** files for your animations:
 

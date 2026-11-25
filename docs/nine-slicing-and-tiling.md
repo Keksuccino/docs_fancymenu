@@ -37,7 +37,7 @@ Button and Image settings use X/Y border sizes. Progress Bars and Tooltips expos
 Repeating textures are available for:
 
 - [Image elements](/elements#image).
-- [Image menu backgrounds](/menu-backgrounds).
+- [Image menu backgrounds](/menu-backgrounds#image).
 - [Scroll-list header and footer textures](/customizing-scrollable-screens).
 
 Enable **Repeat Texture** on an Image element or Image background. For scrollable screens, use the repeat options in the header/footer customization menu.
