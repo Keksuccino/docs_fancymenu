@@ -37,7 +37,7 @@ There are two ways to do it. Both keep the element where it is.
 
 If the pointer is already over the other element when you start dragging, move it off the other element once and back. Elements that are under the pointer from the start don't count.
 
-**Window -> Anchor Element Hovering** turns this on and off. **Anchor Area/Element Hover Charging Time (Seconds)** in the same menu sets how long you have to hold, 2 seconds by default.
+It needs **Anchor Area Hovering** and **Anchor Element Hovering** in the **Window** menu, both on by default. The first turns anchoring by holding on and off, the second adds other elements to the anchor points. **Anchor Area/Element Hover Charging Time (Seconds)** in the same menu sets how long you have to hold, 2 seconds by default.
 
 ### By ID
 

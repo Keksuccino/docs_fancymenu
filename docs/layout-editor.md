@@ -155,7 +155,7 @@ The **Window** menu has the settings of the editor's helpers:
   - **Always Visible**: all the time.
   - **Show On Key Press (Key "O")**: while you hold `O`.
   - **Disabled**: never.
-- **Anchor Area Hovering** and **Anchor Element Hovering** set if holding an element over an anchor point or another element changes its anchor.
+- **Anchor Area Hovering** sets if holding an element over an anchor point changes its anchor. **Anchor Element Hovering** adds other elements to the anchor points, so it only works while **Anchor Area Hovering** is on too.
 
 # Saving and Closing
 
