@@ -84,11 +84,21 @@ There's a lot more you can add, like buttons, texts, videos and players. See [El
 
 ## Changing the Buttons
 
-Right-click a button for its settings: its label, its textures, its sounds, what it does when clicked ([Action Scripts](/action-scripts)) and when it shows ([Element Visibility](/element-visibility)). Drag it to move it and drag its edges to resize it. See [Vanilla/Mod Elements](/vanilla-elements).
+<img width="800" alt="Clicking the Singleplayer button and Ctrl-clicking the other four buttons, then giving all five a wooden texture at once with Button Textures, Set, Normal Background" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_buttons_normal.gif?raw=true">
+
+1. Click the first button, then hold `Ctrl` (`Cmd` on macOS) and click the others, so all of them are selected. A right-click on one of them changes all selected ones at once.
+2. Right-click one of them, click **Button Textures -> Set -> Normal Background** and pick your texture, like the background.
+
+<img width="800" alt="Setting a glowing texture with Button Textures, Set, Hover Background, turning on Nine-Slice Custom Background, which keeps the edges of the wood sharp, and hovering the Multiplayer button, which glows" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_buttons_hover.gif?raw=true">
+
+3. Do the same with **Hover Background**, the texture for when the mouse is over a button.
+4. Click **Button Textures -> Nine-Slice Custom Background**, so it shows **Enabled**. It keeps the edges of the texture sharp on buttons of every width. See [Nine-Slicing](/nine-slicing-and-tiling).
+
+The right-click menu of several elements only has the settings all of them have, so select only buttons. Right-click a single button for all of its settings, like its label, sounds, what it does when clicked ([Action Scripts](/action-scripts)) and when it shows ([Element Visibility](/element-visibility)). See [Vanilla/Mod Elements](/vanilla-elements).
 
 ## Saving
 
-<img width="800" alt="Pressing Ctrl + S, clicking Save in the Save File window, closing the editor with the X and the finished title screen with the valley and the Wildwood logo" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_save.gif?raw=true">
+<img width="800" alt="Pressing Ctrl + S, clicking Save in the Save File window, closing the editor with the X and the finished title screen with the valley, the Wildwood logo and the wooden buttons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_save.gif?raw=true">
 
 1. Press `Ctrl + S` (`Cmd + S` on macOS), or click **Layout -> Save**.
 2. The first time, FancyMenu asks for a file name. Keep it or type a new one, and click **Save**.
@@ -102,7 +112,6 @@ The title screen at the top of this page adds a few things to the one you built:
 
 - The sky, the hills and the trees are three images that move with the mouse, the trees the most. See [Parallax Effect](/parallax).
 - The hills and the trees are Image elements as big as the screen. So they stay behind the buttons and texts, the right-click menu of the editor background has **Custom Elements Behind Vanilla** turned on.
-- The buttons have wooden textures in their **Button Textures -> Set -> Normal Background**, and glowing ones in **Hover Background**. **Button Textures -> Nine-Slice Custom Background** keeps their corners sharp on every width. See [Nine-Slicing](/nine-slicing-and-tiling).
 - The fireflies are a [Decoration Overlay](/decoration-overlays#fireflies).
 
 # Where to Go Next
