@@ -5,11 +5,11 @@ description: Show your own images one after another, with a soft fade between th
 
 # Slideshows
 
-A slideshow shows images one after another and fades softly from one to the next, like a tour through the places of your modpack.
+A slideshow shows images one after another and fades softly from one to the next, like screenshots of the world of your modpack.
 
 You can show it as the [menu background](/menu-backgrounds) of a layout, or with a [Slideshow element](/elements#slideshow) in a part of the screen.
 
-<img width="800" alt="The Title screen with a slideshow as background, showing pixel art of snowy mountains under an aurora at night, with an igloo by a frozen lake" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/slideshows_title.png?raw=true">
+<img width="800" alt="The Title screen with a slideshow as background that fades from a river valley to a cherry grove and a coast, screenshots of a Minecraft world" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/slideshows_title.gif?raw=true">
 
 # Making a Slideshow
 
@@ -24,10 +24,9 @@ config/fancymenu/slideshows/
     ├── properties.txt
     ├── overlay.png
     └── images/
-        ├── 01_cherry_grove.png
-        ├── 02_badlands.png
-        ├── 03_frozen_peaks.png
-        └── 04_coral_reef.png
+        ├── 01_river_valley.png
+        ├── 02_cherry_grove.png
+        └── 03_coast.png
 ```
 
 # The Images
@@ -44,8 +43,8 @@ type = slideshow
 
 slideshow-meta {
   name = world_tour
-  duration = 8.0
-  fadespeed = 3.0
+  duration = 5.0
+  fadespeed = 5.0
   randomize = false
 }
 ```
@@ -65,8 +64,6 @@ Slideshows made for older versions can have `width`, `height`, `x` and `y` lines
 
 An `overlay.png` next to `properties.txt` gets drawn over every image, stretched to the size of the slideshow. It doesn't fade with the images, so it's made for frames, vignettes or a logo in a corner. Its transparent parts let the images show through.
 
-<img width="800" alt="The Title screen with its buttons on the left and a Slideshow element on the right, whose overlay is a wooden picture frame with gold corners around pixel art of striped badlands cliffs with a mineshaft" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/slideshows_gallery.png?raw=true">
-
 The overlay belongs to the slideshow, so it shows everywhere the slideshow does. For the same images with and without a frame, make two slideshows.
 
 # Using a Slideshow
@@ -84,6 +81,8 @@ The overlay belongs to the slideshow, so it shows everywhere the slideshow does.
 The slideshow gets stretched to the whole screen. To keep the shape of its images, turn on **Preserve Background Aspect Ratio** in **Menu Backgrounds**. It then fills the screen and gets cut off at its sides or at its top and bottom.
 
 ## As Element
+
+<img width="800" alt="The Title screen with its buttons on the left and a Slideshow element on the right that fades through screenshots of a Minecraft world" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/slideshows_element.gif?raw=true">
 
 1. In the layout editor, right-click a free spot and add a Slideshow with **New Element**.
 2. Right-click the element, click **Slideshow** and pick your slideshow. The element takes the shape of its images.
