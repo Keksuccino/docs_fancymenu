@@ -11,6 +11,9 @@ FancyMenu lets you change every menu of Minecraft, like the title screen, the pa
 
 This page shows you the basics step by step. On the way, you build a simpler version of this title screen, and [How the Example Is Made](#how-the-example-is-made) shows what the full one adds.
 
+> [!TIP]
+> Get this title screen for your own game: download [wildwood_title_screen.fmp](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/wildwood_title_screen.fmp?raw=true), then [import](/profiles#importing) and [load](/profiles#loading-a-profile) it in **menu bar -> Customization -> Profiles**. It's free to use for anything, like trying FancyMenu, learning from it, or your modpack, with or without changes. No credit needed.
+
 # The Menu Bar
 
 The menu bar at the top of every menu is where all of FancyMenu's features are.
@@ -113,6 +116,9 @@ The title screen at the top of this page adds a few things to the one you built:
 - The sky, the hills and the trees are three images that move with the mouse, the trees the most. See [Parallax Effect](/parallax).
 - The hills and the trees are Image elements as big as the screen. So they stay behind the buttons and texts, the right-click menu of the editor background has **Custom Elements Behind Vanilla** turned on.
 - The fireflies are a [Decoration Overlay](/decoration-overlays#fireflies).
+- The hills, the trees and the logo get their size from the size of the screen, through [Advanced Positioning & Sizing](/advanced-positioning-sizing) with placeholders, so the menu fits every window size. The logo gets smaller on short screens, so it never covers the buttons.
+
+To look at all of it in the layout editor, load the [example profile](#getting-started) and edit its layout.
 
 # Where to Go Next
 
