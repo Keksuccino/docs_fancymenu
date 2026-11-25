@@ -1,44 +1,45 @@
 ---
-title: Musique de fond du menu
-description: Personnalisez la musique jouée dans les menus.
+title: Musique de fond des menus
+description: Personnalisez la musique diffusée dans les menus.
+sourceBlobSha: 46d219f5573b915991f23082cfbc42e6ed11d132
 ---
 
-# Musique de fond du menu
+# Musique de fond des menus
 
-FancyMenu peut désactiver la musique des menus Vanilla, lire une liste de pistes globale, ou utiliser des [éléments Audio](./elements#audio) pour une musique spécifique à la disposition.
+FancyMenu peut désactiver la musique des menus de Minecraft, diffuser une liste globale de pistes ou utiliser des [éléments Audio](/elements#audio) pour définir une musique propre à chaque mise en page.
 
 # Musique globale des menus
 
-Ouvrez [**Personnalisations globales**](./global-customizations) via **Personnalisation -> Personnalisations globales** en dehors de l’éditeur de disposition.
+Ouvrez [**Personnalisations globales**](/global-customizations) via **Personnalisation -> Personnalisations globales**, en dehors de l’éditeur de mise en page.
 
-Utilisez ces paramètres :
+Utilisez les paramètres suivants :
 
-- **Lire la musique de menu Vanilla** active ou désactive globalement la musique de menu Vanilla.
-- **Pistes de musique de menu personnalisées** gère la liste globale des pistes de remplacement.
+- **Lire la musique des menus de Minecraft** active ou désactive globalement la musique des menus de Minecraft.
+- **Pistes musicales personnalisées des menus** permet de gérer la liste globale de pistes de remplacement.
 
 > [!IMPORTANT]
-> Les pistes de menu personnalisées globales ne jouent que lorsqu’aucun monde n’est chargé, par exemple sur l’écran titre. Utilisez un élément [**Audio**](./elements#audio) pour l’audio de menu en jeu.
+> Les pistes personnalisées globales ne sont diffusées que lorsqu’aucun monde n’est chargé, par exemple sur l’écran titre. Pour diffuser de la musique dans les menus en jeu, utilisez un élément [**Audio**](/elements#audio).
 
-Les pistes globales utilisent le canal sonore Music. La première piste démarre après environ cinq secondes ; les pistes suivantes utilisent un délai aléatoire d’environ une à trente secondes. La sélection est aléatoire et évite de répéter immédiatement la piste précédente lorsqu’il y a plus d’une piste configurée.
+Les pistes globales utilisent le canal sonore Musique. La première piste démarre après environ cinq secondes ; les suivantes sont diffusées après un délai aléatoire d’environ une à trente secondes. La sélection est aléatoire et évite de répéter immédiatement la piste précédente si plusieurs pistes sont configurées.
 
 # Contrôle de la musique par écran
 
-Ajoutez un élément [**Music Controller**](./elements#music-controller) à une disposition pour contrôler la musique Vanilla pour cet écran :
+Ajoutez un élément [**Contrôleur musical**](/elements#music-controller) à une mise en page pour contrôler la musique de Minecraft sur cet écran :
 
 1. Faites un clic droit sur l’arrière-plan de l’éditeur.
-2. Sélectionnez **Nouvel élément -> Music Controller**.
-3. Configurez séparément la musique des menus et la musique du monde.
+2. Sélectionnez **Nouvel élément -> Contrôleur musical**.
+3. Configurez séparément la musique des menus et celle des mondes.
 
-L’élément prend en charge les [conditions de chargement](./conditions).
+Cet élément prend en charge les [conditions de chargement](/conditions).
 
-Désactiver la musique de menu avec un Music Controller empêche également la lecture de la liste globale de pistes de menu personnalisées sur cet écran.
+Désactiver la musique des menus avec un contrôleur musical empêche également la diffusion de la liste globale de pistes personnalisées sur cet écran.
 
 # Musique personnalisée avec des éléments Audio
 
-Utilisez un élément [**Audio**](./elements#audio) lorsque vous avez besoin de :
+Utilisez un élément [**Audio**](/elements#audio) si vous avez besoin :
 
-- Musique différente selon les écrans.
-- Musique dans les écrans en jeu.
-- Conditions de disposition, listes de lecture ordonnées, réglages de lecture aléatoire, volume ou contrôle du canal.
+- D’une musique différente selon les écrans.
+- De musique sur les écrans en jeu.
+- De conditions de mise en page, de listes de lecture ordonnées, de paramètres de lecture aléatoire, de réglages du volume ou du contrôle des canaux.
 
-Placez un élément [Audio](./elements#audio) dans une [Disposition universelle](./universal-layouts) pour conserver le même lecteur actif sur les écrans pris en charge qui chargent cette disposition. La personnalisation d’écran doit être activée sur chaque écran ordinaire où la disposition universelle doit s’appliquer.
+Placez un [élément Audio](/elements#audio) dans une [mise en page universelle](/universal-layouts) pour conserver le même lecteur actif sur les écrans compatibles qui chargent cette mise en page. La personnalisation de l’écran doit être activée sur chaque écran ordinaire où la mise en page universelle doit s’appliquer.

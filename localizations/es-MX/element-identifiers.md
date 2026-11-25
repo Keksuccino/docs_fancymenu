@@ -1,14 +1,15 @@
 ---
 title: Identificadores de elementos
 description: Cómo funcionan los identificadores de elementos en FancyMenu.
+sourceBlobSha: 8be9feee139d1e15feb31f95ffcedb72a360475a
 ---
 
 # Identificadores de elementos
 
-Cada elemento en FancyMenu tiene un identificador único que se le aplica automáticamente al crearlo.
+Cada elemento de FancyMenu tiene un identificador único que se le asigna automáticamente al crearlo.
 
-Estos identificadores se usan, pues, para identificar el elemento, de modo que otras partes de FancyMenu, como los placeholders, las acciones y los requisitos de carga, puedan comunicarse con el elemento.
+Estos identificadores sirven para identificar el elemento, de modo que otras partes de FancyMenu, como los marcadores de posición, las acciones y los requisitos de carga, puedan comunicarse con él.
 
-# Obtener el identificador de los elementos
+# Cómo obtener el identificador de un elemento
 
-Para obtener el identificador de un elemento, porque lo necesitas en otro lugar, solo haz **clic derecho** sobre el elemento en el editor y haz clic en **Copy Element Identifier**. Al hacerlo, el identificador del elemento se copiará al portapapeles, para que puedas pegarlo fácilmente donde lo necesites.
+Para obtener el identificador de un elemento, haz clic derecho sobre él en el editor y selecciona **Copiar ID del elemento**. El identificador se copiará al portapapeles para que puedas pegarlo donde lo necesites.

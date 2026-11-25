@@ -1,162 +1,172 @@
 ---
 title: FAQ
 description: Foire aux questions.
-sourceBlobSha: 405be9869106a7871195d6e03828f428cc20b4a1
+sourceBlobSha: 4ae872e8e4a54fc6a89de7c87c8a137a89292455
 ---
 # FAQ
 
-### J'ai besoin d'aide pour résoudre un problème. Quelles informations dois-je fournir ?
+### J’ai besoin d’aide pour résoudre un problème. Quelles informations dois-je fournir ?
 
 Pour obtenir la meilleure aide possible, fournissez autant de contexte que possible :
-1.  **Une description claire du problème :** Que pensiez-vous qu'il allait se passer et que s'est-il réellement passé ?
-2.  **Votre fichier `latest.log` :** Vous le trouverez à l'emplacement `<game-directory>/logs/latest.log`. **N'envoyez pas de rapport de crash** sauf si cela vous est expressément demandé ; `latest.log` contient généralement le contexte nécessaire. Utilisez un site tel que https://gist.github.com pour le publier.
+1.  **Une description claire du problème :** Qu’espériez-vous voir se produire, et que s’est-il réellement passé ?
+2.  **Votre fichier `latest.log` :** Vous le trouverez dans `<game-directory>/logs/latest.log`. **N’envoyez pas de journal de crash**, sauf si on vous le demande expressément ; `latest.log` contient généralement le contexte nécessaire. Utilisez un site comme https://gist.github.com pour le partager.
 3.  **Votre version de Minecraft :** (par ex. 1.20.1)
 4.  **Votre chargeur de mods et sa version :** (par ex. Forge 47.2.0, Fabric 0.15.7)
 5.  **Votre version de FancyMenu :** (par ex. 3.5.2)
-6.  **Des captures d'écran ou des vidéos** du problème peuvent également être très utiles.
+6.  **Des captures d’écran ou des vidéos** du problème peuvent également être très utiles.
 
-### Comment modifier la superposition des éléments (déplacer quelque chose devant ou derrière un autre élément) ?
+> [!TIP]
+> Vous demandez de l’aide à Alice ou à une autre IA ? Ajoutez un [Export for AI](/export-for-ai) de ce qui ne fonctionne pas. L’IA pourra voir exactement comment votre configuration est faite, et l’export contient déjà les versions de Minecraft, du chargeur de mods et de FancyMenu.
 
-*   **Personnalisé contre personnalisé :** Ouvrez **Window -> Editor Widgets -> Layers** et faites glisser les éléments dans la hiérarchie. Vous pouvez également faire un clic droit sur un élément et utiliser **Move One Layer Up/Down**. Consultez [Calques et groupes](./layers-and-groups).
-*   **Personnalisé contre vanilla :** Pour afficher tous vos éléments personnalisés derrière tous les éléments vanilla (par ex. pour placer une image d'arrière-plan derrière les boutons par défaut), **faites un clic droit sur l'arrière-plan de l'éditeur** et activez l'option **"Render Custom Elements Behind Vanilla"**.
+### Comment modifier la superposition des éléments (placer un élément devant ou derrière un autre) ?
 
-### Puis-je exclure certains boutons d'un modèle de bouton universel ?
+- **Vos propres éléments :** faites glisser leurs calques dans le widget Layers de l’éditeur de mise en page, ou faites un clic droit sur un élément et sélectionnez **Move One Layer Up** ou **Move One Layer Down**. Consultez [Calques et groupes](/layout-editor#layers-and-groups).
+- **Vos éléments et les éléments vanilla :** l’ordre des éléments vanilla ne peut pas être modifié. Pour placer tous vos éléments derrière eux, par exemple une image d’arrière-plan derrière les boutons par défaut, faites un clic droit sur l’arrière-plan de l’éditeur et réglez **Custom Elements Behind Vanilla** sur **Enabled**.
 
-**Non. Si un bouton modèle possède des textures personnalisées, celles-ci sont toujours partagées avec tous les éléments concernés. Vous ne pouvez pas exclure des boutons individuels.**
+### Puis-je exclure certains boutons d’un modèle universel de boutons ?
 
-### Comment faire pour qu'un bouton effectue une action lorsqu'on clique dessus ?
+**Non. Si des textures personnalisées sont définies pour un bouton de modèle, elles sont toujours partagées avec tous les éléments concernés. Vous ne pouvez pas exclure des boutons individuellement.**
 
-Utilisez un [**script d'action**](./action-scripts).
-1.  Faites un clic droit sur le bouton dans l'éditeur.
+### Comment faire en sorte qu’un bouton déclenche une action quand on clique dessus ?
+
+Utilisez un [**script d’action**](/action-scripts).
+1.  Faites un clic droit sur le bouton dans l’éditeur.
 2.  Sélectionnez **Edit Action Script**.
-3. Cliquez sur **Add Action** et choisissez une action, telle que [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui), [**Join Server**](./action-scripts#join-server-joinserver) ou [**Set Variable Value**](./action-scripts#set-variable-value-fm-variable-set_variable).
+3. Cliquez sur **Add Action** et choisissez une action, comme [**Open Screen or Custom GUI**](/action-scripts#open-screen-or-custom-gui), [**Join Server**](/action-scripts#join-server) ou [**Set Variable Value**](/action-scripts#set-variable-value-fm-variable).
 
-### Puis-je créer un écran de menu entièrement nouveau à partir de zéro ?
+### Puis-je créer un tout nouvel écran de menu à partir de zéro ?
 
-Utilisez une [**interface graphique personnalisée**](./custom-guis).
-1.  Dans la barre de menu, accédez à **Customization -> Custom GUIs -> Manage Custom GUIs**.
-2.  Cliquez sur **"New GUI"** et donnez-lui un identifiant unique.
-3.  Vous pourrez ensuite ouvrir ce nouvel écran vide et créer sa disposition en y ajoutant les éléments de votre choix.
-4. Ouvrez l'interface graphique personnalisée avec l'action [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui).
+Oui, avec une [interface graphique personnalisée](/custom-guis) :
 
-### Mon jeu met beaucoup de temps à se charger après l'activation du préchargement.
+1. Ouvrez **menu bar -> Customization -> Custom GUIs -> Manage Custom GUIs**, puis cliquez sur **New GUI**.
+2. Donnez-lui un identifiant, comme `modpack_info`, puis cliquez sur **Done**.
+3. Ouvrez-la avec **Open GUI** et créez sa mise en page comme pour n’importe quel autre menu.
+4. Ouvrez-la depuis un bouton avec l’action [**Open Screen or Custom GUI**](/action-scripts#open-screen-or-custom-gui) et son identifiant.
 
-C'est le comportement attendu. Le préchargement de ressources volumineuses, comme des animations haute résolution ou des sons, au démarrage initial augmente naturellement le temps de chargement du jeu.
+### Mon jeu met longtemps à se charger après l’activation du préchargement.
 
-### Mon animation FMA utilise trop de RAM !
+C’est normal. Le préchargement de ressources volumineuses, comme des animations haute résolution ou des sons, au démarrage initial augmente naturellement le temps de chargement du jeu.
 
-Les [animations FMA classiques](./fma) peuvent consommer beaucoup de mémoire lorsqu'elles contiennent de nombreuses images haute résolution. AFMA est mieux adapté aux textures animées volumineuses ou complexes. Gardez les animations FMA classiques courtes ; utilisez [Video](./video) pour lire des vidéos complètes.
+### Mon animation utilise beaucoup de RAM ou ralentit le jeu !
 
-### FancyMenu fonctionne-t-il avec OptiFine ?
+Les images de grande taille et les fréquences d’images élevées consomment beaucoup de mémoire et de ressources. Donnez aux images une taille proche de celle de leur affichage à l’écran et réduisez le nombre d’images par seconde. Consultez [Animations](/animations#performance). Pour les clips longs avec du son, utilisez plutôt une [vidéo](/video).
 
-Non. OptiFine est **incompatible** et est connu pour casser de nombreux mods, y compris FancyMenu. Il est fortement recommandé d'utiliser des alternatives modernes telles que Sodium/Embeddium + Iris/Oculus.
-Consultez [Alternatives à OptiFine](./optifine-alternatives).
+### FancyMenu est-il compatible avec OptiFine ?
 
-### Mon jeu plante. Comment savoir s'il s'agit d'un conflit entre mods ?
+Non. OptiFine est **incompatible** et est connu pour provoquer des problèmes avec de nombreux mods, dont FancyMenu. Il est fortement recommandé d’utiliser des alternatives modernes comme Sodium/Embeddium + Iris/Oculus.
+Consultez [Alternatives à OptiFine](/optifine-alternatives).
 
-La meilleure façon de vérifier la présence d'un conflit entre mods est de **lancer le jeu avec uniquement FancyMenu et ses dépendances** (Konkrete, Melody). Si le crash ne se produit plus, réactivez progressivement vos autres mods par petits groupes jusqu'à ce que le crash se reproduise, afin d'identifier le mod en conflit.
+### Mon jeu plante. Comment savoir si le problème vient d’un conflit entre mods ?
 
-### Un bouton provenant d'un autre mod disparaît ou ne fonctionne pas lorsque j'essaie de le modifier.
+Le meilleur moyen de vérifier s’il y a un conflit entre mods est de **lancer le jeu avec uniquement FancyMenu et ses dépendances** (Konkrete, Melody). Si le jeu ne plante plus, réactivez vos autres mods par petits groupes jusqu’à ce que le plantage se reproduise, afin d’identifier le mod en conflit.
 
-Certains mods ajoutent des widgets d'une manière que FancyMenu ne peut ni détecter ni personnaliser. Consultez [Éléments vanilla/de mods](./vanilla-elements) et, pour les écrans basés sur des listes, [Personnalisation des écrans défilants](./customizing-scrollable-screens). Si le widget n'apparaît toujours pas, le mod qui l'ajoute doit l'exposer en tant que widget d'écran pris en charge.
+### Un bouton ajouté par un autre mod disparaît ou ne fonctionne pas lorsque j’essaie de le modifier.
 
-### Puis-je utiliser des dispositions FancyMenu sur un serveur ?
+Certains mods ajoutent des widgets d’une manière que FancyMenu ne peut pas détecter ni personnaliser. Consultez [Éléments vanilla et de mods](/vanilla-elements) et, pour les écrans basés sur des listes, [Personnaliser les écrans défilants](/customizing-scrollable-screens). Si le widget n’apparaît toujours pas, le mod qui l’ajoute doit l’exposer en tant que widget d’écran pris en charge.
 
-Les dispositions et personnalisations visuelles sont stockées sur le client du joueur ; un serveur ne peut pas les imposer à un client qui n'est pas configuré. Distribuez-les dans un modpack. Installez FancyMenu sur le serveur lorsque vous avez besoin des [commandes serveur](./commands), de [FM Data](./fm-data), de [l'accès aux données NBT côté serveur](./nbt-data-placeholder#server-side-placeholder), des règles de jeu, des structures ou des écouteurs serveur.
+### Puis-je utiliser des mises en page FancyMenu sur un serveur ?
 
-### Quelle est la différence entre FancyMenu v2 (pour les anciennes versions de Minecraft) et la v3 ?
+Les mises en page et personnalisations visuelles sont enregistrées sur le client du joueur ; un serveur ne peut pas les imposer à un client qui n’est pas configuré. Distribuez-les dans le cadre d’un modpack. Installez FancyMenu sur le serveur si vous avez besoin des [commandes serveur](/commands), de [FM Data](/fm-data), de l’[accès aux données NBT côté serveur](/nbt-data-placeholder#server-side-placeholder), des règles de jeu, des structures ou des écouteurs côté serveur.
 
-FancyMenu v3 est une réécriture complète qui offre de nombreuses nouvelles fonctionnalités, une architecture plus stable et de meilleures performances. La v2 est obsolète, n'est plus prise en charge et ne possède pas de nombreuses fonctionnalités telles que les espaces réservés avancés et les scripts. Il est fortement recommandé d'utiliser la v3 avec une version moderne de Minecraft (1.18.2+). Les dispositions de la v2 peuvent être converties automatiquement vers la v3 lors de leur chargement, mais quelques corrections manuelles peuvent être nécessaires.
+### Quelle est la différence entre FancyMenu v2 (pour les anciennes versions de Minecraft) et v3 ?
 
-### Où puis-je trouver des dispositions et des modèles déjà créés ?
+FancyMenu v3 est une réécriture complète qui apporte de nombreuses nouvelles fonctionnalités, une architecture plus stable et de meilleures performances. La v2 est obsolète, n’est plus prise en charge et ne dispose pas de nombreuses fonctionnalités, comme les espaces réservés avancés et les scripts. Il est fortement recommandé d’utiliser la v3 avec une version moderne de Minecraft (1.18.2+). Les mises en page v2 peuvent être converties automatiquement en v3 lors de leur chargement, mais certaines corrections manuelles peuvent être nécessaires.
 
-La communauté FancyMenu partage des dispositions dans le canal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) du serveur Discord officiel Keksuccino's Mods ("Kekscord").
+### Où trouver des mises en page et des modèles déjà créés ?
 
-### Comment faire pour afficher l'entité du joueur derrière les autres éléments ?
+La communauté FancyMenu partage des configurations complètes dans le salon [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) du serveur Discord officiel (« Kekscord »). Installez-les comme profils distincts ; consultez [Modèles de mise en page](/profiles#layout-templates).
 
-En général, vous ne pouvez pas forcer un [élément Entité du joueur](./elements#player-entity) à se placer derrière les éléments 2D normaux via le [widget Calques](./layers-and-groups). Son moteur de rendu peut ignorer l'ordre normal des calques de l'interface. Concevez la disposition en tenant compte de cette limitation ou utilisez une image pré-rendue lorsqu'un ordre strict des calques est nécessaire.
+### Comment faire en sorte que l’entité du joueur s’affiche derrière les autres éléments ?
 
-### Mon entité du joueur n'a qu'une seule jambe ! Que s'est-il passé ?
+En général, il est impossible de forcer un [élément Entité du joueur](/elements#player-entity) à passer derrière les éléments 2D classiques à l’aide du [widget Layers](/layout-editor#layers-and-groups). Son moteur de rendu peut ignorer l’ordre normal des calques de l’interface. Concevez votre mise en page en tenant compte de cette limite ou utilisez une image pré-rendue lorsque l’ordre des calques doit être strictement respecté.
 
-Il s'agit d'un problème visuel probablement causé par un conflit avec un autre mod qui modifie les animations ou les modèles des joueurs. Vérifiez les paramètres de pose de l'entité du joueur pour voir si les jambes ont été tournées ou déplacées par accident.
+### Il ne reste qu’une seule jambe à mon entité du joueur ! Que s’est-il passé ?
 
-### Comment créer un délai entre les actions d'un script ?
+Il s’agit d’un problème d’affichage, probablement causé par un conflit avec un autre mod qui modifie les animations ou les modèles du joueur. Vérifiez les paramètres de pose de l’entité du joueur pour voir si ses jambes ont été tournées ou déplacées par inadvertance.
 
-Utilisez les blocs [**Delay** ou **Execute Later**](./action-scripts#what-are-statements) pour gérer les actions différées. Pour une logique répétitive exécutée en arrière-plan, utilisez les [planificateurs](./schedulers).
+### Comment créer un délai entre les actions d’un script ?
+
+Faites un clic droit dans la zone de script de l’éditeur de scripts d’action, cliquez sur **Add EXECUTE LATER Block** et placez-y les actions qui doivent attendre. Elles s’exécutent une fois le délai écoulé, en millisecondes, tandis que le reste du script continue immédiatement. Consultez [Execute Later](/action-scripts#execute-later).
+
+Pour les actions qui doivent se répéter, utilisez les [planificateurs](/schedulers).
 
 ### Puis-je personnaliser les menus du mod Create ?
 
-Non. La personnalisation est volontairement désactivée pour les écrans de Create. Consultez [Écrans pour lesquels la personnalisation est volontairement désactivée](./incompatibility-list#screens-where-customization-is-intentionally-disabled).
+Non. La personnalisation des écrans de Create est volontairement désactivée. Consultez [Écrans dont la personnalisation est volontairement désactivée](/incompatibility-list#screens-where-customization-is-intentionally-disabled).
 
-### Quelle est la résolution recommandée pour les images d'arrière-plan et les textures des boutons ?
+### Quelle résolution est recommandée pour les images d’arrière-plan et les textures des boutons ?
 
-Arrière-plans : une image standard de 1920x1080 (1080p) constitue un excellent point de départ et s'adaptera correctement pour la plupart des utilisateurs.
-Boutons : la plupart des boutons vanilla mesurent environ 150 à 200 pixels de large et 20 pixels de haut. Utiliser cette taille pour les textures personnalisées est une bonne pratique pour conserver une certaine cohérence.
+Arrière-plans : une image standard de 1920 × 1080 (1080p) constitue un excellent point de départ et s’adaptera bien à la plupart des utilisateurs.
+Boutons : la plupart des boutons vanilla mesurent environ 150 à 200 pixels de large et 20 pixels de haut. Pour assurer une certaine cohérence, il est recommandé de donner aux textures personnalisées une taille similaire.
 
-### Est-il possible d'ouvrir automatiquement un menu ou d'exécuter une commande lorsqu'un joueur termine un objectif en jeu (comme une quête) ?
-FancyMenu possède de nombreux [écouteurs d'événements de jeu intégrés](./listeners), mais il n'existe pas d'écouteur générique pour chaque système de quêtes tiers. Si le mod de quêtes prend en charge les récompenses sous forme de commandes, utilisez-en une pour exécuter [`/openguiscreen`](./commands#openguiscreen), [`/fmvariable`](./commands#fmvariable) ou une autre [commande FancyMenu](./commands) appropriée.
+### Est-il possible d’ouvrir automatiquement un menu ou d’exécuter une commande lorsqu’un joueur termine un objectif en jeu (comme une quête) ?
+FancyMenu dispose de nombreux [écouteurs d’événements de jeu intégrés](/listeners), mais il n’existe pas d’écouteur générique pour tous les systèmes de quêtes tiers. Si le mod de quêtes prend en charge les récompenses sous forme de commandes, utilisez-en une pour lancer [`/openguiscreen`](/commands#openguiscreen), [`/fmvariable`](/commands#fmvariable) ou une autre [commande FancyMenu](/commands) adaptée.
 
-### Comment rendre un bouton inactif ou « grisé » ?
+### Comment désactiver un bouton ou le rendre « grisé » ?
 
-Vous pouvez contrôler l'état actif d'un bouton à l'aide des [conditions de chargement](./conditions).
-Faites un clic droit sur le bouton dans l'éditeur et sélectionnez **Control Active State**.
-Ajoutez une condition qui doit être remplie pour que le bouton soit actif. Pour le désactiver définitivement, utilisez [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) afin de vérifier si 0 est égal à 1.
+Vous pouvez contrôler l’état actif d’un bouton à l’aide de [conditions](/conditions).
+Faites un clic droit sur le bouton dans l’éditeur et sélectionnez **Control Active State**.
+Ajoutez une condition qui doit être remplie pour que le bouton soit actif. Pour le désactiver de façon permanente, utilisez [**Is Number**](/conditions#is-number) afin de vérifier si 0 est égal à 1.
 Le bouton utilisera alors sa texture « Inactive Background » et ne pourra pas être cliqué.
 
-### Comment supprimer l'en-tête et le pied de page (les barres de texture de terre) des écrans défilants ?
+### Comment supprimer l’en-tête et le pied de page (les bandes texturées de terre) des écrans défilants ?
 
-Dans l'éditeur de dispositions, ouvrez **Layout Properties -> Header/Footer Customizations**. Définissez les textures comme transparentes. Cette option peut être indisponible sur certains écrans modifiés par des mods.
+Dans l’éditeur de mise en page, ouvrez **Layout Properties -> Header/Footer Customizations**. Définissez les textures comme transparentes. Cette option peut être indisponible sur certains écrans moddés.
 
-### Je ne peux pas créer une disposition « pour l'écran actuel ». Le bouton est grisé.
+### Je ne peux pas créer de mise en page « pour l’écran actuel ». Le bouton est grisé.
 
-Vous devez d'abord activer les personnalisations pour cet écran via **menu bar -> Customization -> Current Screen Customizations -> Enabled**.
+Activez d’abord les personnalisations pour cet écran : cliquez sur **menu bar -> Customization -> Current Screen Customization** pour afficher **Enabled**.
 
-### Je ne peux personnaliser aucun élément d'un écran lorsque je l'ouvre dans l'éditeur. L'écran est alors vide.
+### Je ne peux personnaliser aucun élément d’un écran lorsque je l’ouvre dans l’éditeur. L’écran est vide.
 
-Cela peut signifier que vous avez créé une [disposition universelle](./universal-layouts) au lieu d'une disposition **pour l'écran actuel**.
+Vous avez peut-être créé une [mise en page universelle](/universal-layouts) au lieu d’une mise en page **pour l’écran actuel**.
 
-Il peut également s'agir d'un [écran défilant](./customizing-scrollable-screens), que FancyMenu ne peut pas personnaliser par défaut.
+Il peut aussi s’agir d’un [écran défilant](/customizing-scrollable-screens), que FancyMenu ne peut pas personnaliser par défaut.
 
-La troisième possibilité est qu'il s'agisse d'un écran provenant d'un mod qui ajoute des éléments d'une manière non vanilla, ce qui empêche FancyMenu de les personnaliser.
+Enfin, il peut s’agir d’un écran provenant d’un mod qui ajoute des éléments d’une manière non vanilla, ce qui empêche FancyMenu de les personnaliser.
 
-### Des cases grises étranges apparaissent sur mon élément Texte.
+### Des cases grises bizarres apparaissent sur mon élément Texte.
 
-Ces cases translucides sont les poignées de défilement de l'[élément Texte](./elements#text), et non un problème de rendu.
+Ce sont les barres de défilement de l’[élément Texte](/elements#text). Elles apparaissent lorsque le texte ne tient pas dans l’élément, afin que les joueurs puissent le faire défiler.
 
-Si vous ne voulez pas que ces cases soient visibles, vous pouvez soit faire un clic droit sur l'élément et désactiver complètement le défilement, soit définir les textures des poignées comme entièrement transparentes dans le même menu contextuel si vous souhaitez que l'élément reste défilable.
+- Agrandissez l’élément ou raccourcissez le texte pour les faire disparaître.
+- Faites un clic droit sur l’élément et ouvrez **Scroll Bars**. L’option **Show** détermine quand elles apparaissent : **Always**, **While Scrolling** uniquement ou **Never**. Avec **Never**, la molette de la souris permet toujours de faire défiler le texte.
+- Dans le même menu, les options **Scroll Grabber Style**, **Scroll Grabber Textures** et **Scroll Grabber Color [HEX]** permettent de modifier leur apparence.
 
-### Comment afficher le journal des modifications Minecraft le plus récent dans mes menus ?
+Consultez [Texte dans les menus](/text-in-menus#scroll-bars) pour voir tous les paramètres des barres de défilement.
 
-Il existe un excellent [projet GitHub](https://github.com/ClaytonTDM/minecraft-changelogs-markdown) qui convertit les journaux des modifications de Minecraft en Markdown compatible avec FancyMenu, afin que vous puissiez afficher le journal le plus récent dans vos menus ! Il est mis à jour quotidiennement pour récupérer les nouveaux journaux.
+### Comment afficher les dernières notes de version de Minecraft dans mes menus ?
 
-Pour l'afficher dans un [élément Texte](./elements#text), définissez le **Source Mode** sur **Resource** et sa source de ressource sur **Web**. Utilisez `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
+Il existe un excellent [projet GitHub](https://github.com/ClaytonTDM/minecraft-changelogs-markdown) qui convertit les notes de version de Minecraft en Markdown compatible avec FancyMenu, afin de vous permettre d’afficher les dernières notes de version de Minecraft dans vos menus ! Il est mis à jour quotidiennement pour récupérer les nouvelles notes.
 
-### Quelle est la manière la plus simple d'étirer n'importe quel élément à la taille de l'écran ?
+Pour les afficher dans un [élément Texte](/elements#text), réglez **Source Mode** sur **Resource** et la source de la ressource sur **Web**. Utilisez `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
 
-La plupart des éléments disposent, dans leur menu contextuel accessible par clic droit, d'une option permettant de les étirer horizontalement et verticalement. En l'activant, ils s'étendront toujours sur toute la largeur et/ou toute la hauteur de l'écran. L'étirement horizontal et l'étirement vertical peuvent être activés indépendamment.
+### Quel est le moyen le plus simple d’étirer un élément aux dimensions de l’écran ?
 
-### Je ne peux pas cliquer sur les boutons ni interagir avec les curseurs lorsqu'ils se trouvent derrière ou devant un élément Texte.
+La plupart des éléments proposent, dans leur menu contextuel accessible par clic droit, une option permettant de les étirer horizontalement et verticalement. Une fois activée, l’option étire toujours l’élément sur toute la largeur et/ou la hauteur de l’écran. L’étirement horizontal et vertical peut être activé indépendamment.
 
-Cela se produit parce que les éléments Texte sont interactifs par défaut (pour pouvoir saisir la poignée de défilement ou cliquer sur les hyperliens Markdown), ce qui signifie qu'ils interceptent les clics de souris et les événements de défilement. Le mieux serait simplement de ne pas placer les boutons derrière ou devant les éléments Texte, mais si cela est inévitable, vous pouvez rendre l'élément Texte non interactif en **faisant un clic droit dessus**, puis en définissant **Interactable** sur **Disabled**. Gardez à l'esprit que l'élément Texte deviendra alors un texte statique et non interactif : vous ne pourrez plus le faire défiler ni cliquer sur ses hyperliens.
+### Je ne peux pas cliquer sur les boutons ni interagir avec les curseurs lorsqu’ils sont derrière ou devant un élément Texte.
 
-### Comment empêcher les boutons et les curseurs d'être sélectionnés ou ciblés lors de la navigation dans les écrans avec les touches fléchées et Tab ?
+Cela se produit parce que les éléments Texte sont interactifs par défaut (pour pouvoir saisir la poignée de défilement ou cliquer sur les liens Markdown) ; ils interceptent donc les clics de souris et les événements de défilement. Le plus simple est de ne pas placer de boutons derrière ou devant des éléments Texte. Si cela n’est pas possible, vous pouvez rendre l’élément Texte non interactif en faisant **un clic droit dessus**, puis en réglant **Interactable** sur **Disabled**. Notez que l’élément Texte devient alors un texte statique non interactif : vous ne pourrez plus le faire défiler ni cliquer sur ses liens.
 
-Pour rendre les boutons et les curseurs non navigables, vous devez **faire un clic droit dessus** et définir **Navigable** sur **Disabled**. Le bouton ou le curseur restera cliquable, mais vous ne pourrez plus lui donner le focus avec la navigation par les touches fléchées ou Tab.
+### Comment empêcher les boutons et les curseurs d’être sélectionnés ou de recevoir le focus quand je navigue dans les écrans avec les touches fléchées et Tab ?
 
-Cette option est également utile si vous souhaitez ajouter des boutons ou des curseurs à l'écran de discussion, afin de pouvoir continuer à utiliser la touche Flèche haut pour parcourir les anciens messages sans sélectionner accidentellement les boutons ou les curseurs présents à l'écran.
+Pour empêcher la navigation vers les boutons et les curseurs, faites **un clic droit dessus** et réglez **Navigable** sur **Disabled**. Le bouton ou le curseur restera cliquable, mais vous ne pourrez plus lui donner le focus avec les touches fléchées ou Tab.
 
-### Il manque une option dans l'un des menus contextuels de FancyMenu alors qu'elle devrait s'y trouver.
+C’est également utile si vous souhaitez ajouter des boutons ou des curseurs à l’écran de discussion : vous pourrez toujours utiliser la flèche vers le haut pour parcourir les anciens messages sans sélectionner accidentellement les boutons ou les curseurs de l’écran.
 
-Les menus contextuels de FancyMenu (les menus qui s'ouvrent lorsque vous faites un clic droit quelque part ou lorsque vous interagissez avec les barres de menu) sont DÉFILABLES. Cela signifie que vous pouvez utiliser la molette de la souris lorsque le curseur se trouve au-dessus du menu pour faire défiler son contenu vers le haut ou vers le bas et voir davantage d'options qui n'étaient pas visibles auparavant.
+### Une option manque dans l’un des menus contextuels de FancyMenu.
 
-### Je ne peux pas personnaliser l'écran titre : l'original s'affiche toujours lorsque je quitte l'éditeur.
+Les menus contextuels de FancyMenu (ceux qui s’ouvrent lorsque vous faites un clic droit quelque part ou interagissez avec les barres de menu) sont **défilants**. Vous pouvez donc utiliser la molette de la souris lorsque le curseur se trouve sur le menu pour faire défiler les options vers le haut ou vers le bas et afficher celles qui n’étaient pas visibles auparavant.
 
-Un autre mod remplace l'écran original `title_screen`. Désactivez l'écran titre personnalisé de ce mod dans ses paramètres. S'il ne propose pas cette option, FancyMenu ne peut pas appliquer la disposition à l'écran de remplacement.
+### Je ne peux pas personnaliser l’écran titre ; l’écran d’origine réapparaît lorsque je quitte l’éditeur.
 
-### Lorsque j'essaie de personnaliser l'écran d'inventaire, je ne peux pas personnaliser le conteneur de l'inventaire.
+Un autre mod remplace l’écran `title_screen` d’origine. Désactivez l’écran titre personnalisé de ce mod dans ses paramètres. S’il ne propose pas cette option, FancyMenu ne peut pas appliquer la mise en page à l’écran de remplacement.
 
-C'est normal. FancyMenu ne prend pas en charge la modification du conteneur lui-même pour quelque type d'écran d'inventaire que ce soit (inventaire du joueur, coffre, établi, etc.), car l'ajout de cette fonctionnalité serait très difficile.
+### Lorsque j’essaie de personnaliser l’écran d’inventaire, je ne peux pas modifier le conteneur d’inventaire.
 
-Il est néanmoins possible d'ajouter de nouveaux éléments à ces écrans ; vous ne pouvez simplement pas modifier le ou les conteneurs.
+C’est normal. FancyMenu ne permet pas de modifier le conteneur lui-même, quel que soit le type d’écran d’inventaire (inventaire du joueur, coffre, établi, etc.), car la prise en charge de cette fonctionnalité serait très difficile à mettre en œuvre.
 
-SpiffyHUD ne vous aidera pas non plus dans ce cas, car il sert à modifier l'interface du jeu (par exemple la barre d'objets), mais ne peut pas modifier les écrans (comme les écrans d'inventaire).
+Il est néanmoins possible d’ajouter de nouveaux éléments à ces écrans ; vous ne pouvez simplement pas modifier le ou les conteneurs.
+
+Au passage, SpiffyHUD ne vous aidera pas non plus, car il sert à modifier le HUD (par exemple, la barre d’objets), et non les écrans (comme les écrans d’inventaire).

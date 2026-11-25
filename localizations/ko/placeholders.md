@@ -1,2756 +1,2425 @@
 ---
-title: 플레이스홀더
-description: 플레이스홀더 사용 방법.
+title: 자리표시자
+description: '플레이어 이름, 시간, 서버 플레이어 수처럼 실시간으로 바뀌는 값을 텍스트에 표시하고 FancyMenu의 모든 자리표시자를 확인하세요.'
+sourceBlobSha: 951d7772d640bc6b19d6f4dcc2fef4adcd1f13aa
 ---
-# 플레이스홀더
 
-플레이스홀더는 텍스트, 버튼, 요구 조건, 그리고 지원되는 다른 필드에 실시간 값을 삽입합니다.
+# 자리표시자
 
-# 일반 정보
+자리표시자는 FancyMenu가 플레이어 이름, 시간, 서버 플레이어 수와 같은 실시간 값으로 바꿔 주는 짧은 코드입니다. 요소의 텍스트, 버튼 레이블, 툴팁, 작업 및 요구 사항의 값과 입력할 수 있는 대부분의 텍스트에서 사용할 수 있습니다.
 
-## 기본 구문
-FancyMenu에서 플레이스홀더는 JSON과 비슷한 구문을 사용합니다:
+<img width="800" alt="레이아웃 편집기에서 텍스트 요소에 플레이어 이름 자리표시자를 추가하는 모습: 텍스트 편집기의 자리표시자 메뉴, Player 카테고리, 플레이어 이름으로 인사하는 텍스트" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_add.gif?raw=true">
+
+> [!TIP]
+> 직접 만든 [변수](/variables)도 같은 텍스트에서 사용할 수 있습니다. `$$` 뒤에 변수 이름을 입력하세요. 예: `$$coins`.
+
+# 자리표시자 추가하기
+
+1. 텍스트 편집기에서 텍스트를 엽니다. 예를 들어 [텍스트 요소](/text-in-menus)의 **Text Content**를 엽니다. 작업의 값처럼 창에 있는 텍스트 필드 옆에는 **Open in Editor** 버튼이 있습니다.
+2. 자리표시자를 넣을 위치를 클릭합니다.
+3. 텍스트 편집기의 오른쪽 위에서 **Placeholders**를 클릭합니다.
+4. 카테고리를 클릭하거나 이름, 식별자 또는 설명으로 검색합니다. **BACK**을 클릭하면 카테고리 목록으로 돌아갑니다. 카테고리가 없는 자리표시자는 카테고리 아래에 표시됩니다.
+5. 자리표시자 위에 마우스를 올려 기능을 확인한 다음 클릭하여 추가합니다.
+6. **Mod Version**의 모드 ID처럼 예시로 입력된 값을 바꿉니다.
+
+텍스트 편집기에 **Placeholders** 버튼이 없는 텍스트에서는 자리표시자를 사용할 수 없습니다.
+
+# 자리표시자의 작동 방식
+
+자리표시자는 다음과 같은 형식입니다.
+
+```
+{"placeholder":"playername"}
+```
+
+설정이 있는 자리표시자의 값은 `values`에 지정합니다.
+
 ```
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
 
-예를 들어, 플레이어 이름을 표시하려면:
-```
-{"placeholder":"playername"}
-```
+- `playername`과 같은 식별자는 대소문자를 구분합니다. 아래 각 자리표시자에는 식별자와 값이 나와 있습니다.
+- 값의 순서는 중요하지 않습니다. 선택 사항으로 표시된 값은 생략할 수 있습니다.
+- 오타가 있는 경우처럼 FancyMenu가 바꿀 수 없는 자리표시자는 입력한 그대로 텍스트에 남습니다.
+- 자리표시자는 항상 텍스트를 반환합니다. 표시할 값이 없으면 `0`, `0.0`, `---` 또는 빈 문자열과 같은 대체 값을 반환합니다.
+- [서식 코드](/text-formatting)는 자리표시자 앞뒤에서 사용할 수 있습니다. `&6{"placeholder":"playername"}`은 이름을 금색으로 표시합니다.
 
-## 플레이스홀더 중첩
-하나의 플레이스홀더 안에 다른 플레이스홀더를 값으로 사용할 수 있습니다.
+> [!IMPORTANT]
+> 자리표시자는 JSON처럼 보이지만 JSON이 아닙니다. 자리표시자를 JSON 포매터나 검사기에 넣지 마세요. 다른 자리표시자 안에 포함된 자리표시자는 유효한 JSON이 아닙니다.
 
-중첩 플레이스홀더 예시:
+## 자리표시자 안의 자리표시자
+
+값에는 다른 자리표시자와 [변수](/variables#showing-variables-in-text)를 넣을 수 있습니다. FancyMenu는 안쪽에 있는 항목부터 바꿉니다. 값 안의 따옴표는 이스케이프할 필요가 없습니다.
+
+다음 예시는 최대 RAM 값을 MB에서 GB로 변환합니다.
+
 ```
 {"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
 ```
-이 예시는 최대 RAM 값을 1024로 나누어 MB를 GB로 변환합니다.
 
-> [!IMPORTANT]
-> 이것은 JSON이 아니라 FancyMenu 구문입니다. 중첩 플레이스홀더는 위에 표시된 그대로, 이스케이프되지 않은 정확한 형식을 사용하므로 JSON 포매터는 이를 거부하거나 다시 작성할 수 있습니다. 플레이스홀더 이름은 대소문자를 구분하며, 형식이 잘못되었거나 알 수 없는 플레이스홀더는 텍스트로 그대로 표시되고 로그에 기록됩니다.
+다음 예시는 `rank` 변수를 대문자로 표시합니다.
 
-# 플레이스홀더 사용하기
-
-텍스트 입력을 제공하는 대부분의 요소는 플레이스홀더를 지원합니다. 편집할 때 해당 텍스트 입력이 플레이스홀더를 지원하는지 확인할 수 있습니다. 텍스트를 편집할 때 전체 화면 **텍스트 편집기**가 열리면 플레이스홀더를 지원하는 것입니다.
-
-**모든 플레이스홀더 목록**을 찾으려면 **텍스트 편집기**의 **오른쪽 상단**에 있는 **플레이스홀더** 버튼을 클릭하세요.
-
-플레이스홀더 목록 상단에는 플레이스홀더를 검색할 수 있는 **검색창**이 있습니다.
-
-플레이스홀더 목록에서 항목을 클릭하면 해당 플레이스홀더가 텍스트 내용에 붙여넣어집니다.
-
-# 플레이스홀더 자세히 보기
-
-이 섹션에는 FancyMenu의 내장 플레이스홀더가 나열되어 있습니다.
-
-## 사용할 수 없는 결과
-
-플레이스홀더의 출력은 항상 텍스트입니다. 데이터를 사용할 수 없을 때 결과는 플레이스홀더에 따라 다릅니다. 일반적인 대체값은 빈 문자열, `0`, `0.0`, `00:00`, `false`, `UNKNOWN`, 또는 `ERROR`입니다. 특정 대체값이 있는 항목은 이를 직접 명시합니다. 환경에 따라 달라지는 출력을 [요구 조건](./conditions), 경로, 명령 또는 URL에서 사용하기 전에 대체값을 테스트하세요.
-
-## 플레이어 이름 (`playername`)
-
-**목적:** 현재 플레이어의 사용자 이름을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"playername"}
-```
-
-**출력:** `Steve`
-
-## 플레이어 UUID (`playeruuid`)
-
-**목적:** 플레이어의 고유 식별자를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"playeruuid"}
-```
-
-**출력:** `c8cde7fe-7ced-11eb-9439-0242ac130002`
-
-## Minecraft 버전 (`mcversion`)
-
-**목적:** 현재 Minecraft 버전을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"mcversion"}
-```
-
-**출력:** `1.21.1`
-
-## 모드 로더 버전 (`loaderver`)
-
-**목적:** 모드 로더(Fabric/NeoForge)의 버전을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"loaderver"}
-```
-
-**출력:** `0.16.14`
-
-## 모드 로더 이름 (`loadername`)
-
-**목적:** 모드 로더의 이름을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"loadername"}
-```
-
-**출력:** `Fabric`
-
-## 모드 버전 (`modversion`)
-
-**목적:** 특정 모드의 버전을 반환합니다.
-
-**값:** `modid`
-
-**예시:**
-
-```
-{"placeholder":"modversion","values":{"modid":"example_mod"}}
-```
-
-**출력:** `1.2.3`
-
-## 총 모드 수 (`totalmods`)
-
-**목적:** `mods` 디렉터리와 로드된 모드 수를 바탕으로 대략적인 모드 파일 개수를 반환합니다. 비활성화된 모든 모드를 정확하게 세지는 않습니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"totalmods"}
-```
-
-**출력:** `45`
-
-## 활성 모드 수 (`loadedmods`)
-
-**목적:** 현재 로드된 모드 수를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"loadedmods"}
-```
-
-**출력:** `43`
-
-## 월드 로딩 진행률 (`world_load_progress`)
-
-**목적:** 현재 월드 로딩 진행률을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"world_load_progress"}
-```
-
-**출력:** `75`
-
-## Minecraft 옵션 값 (`minecraft_option_value`)
-
-**목적:** Minecraft 옵션의 값을 반환합니다.
-
-**값:** `name`
-
-**예시:**
-
-```
-{"placeholder":"minecraft_option_value","values":{"name":"fov"}}
-```
-
-**출력:** `70`
-
-## 마지막 월드 또는 서버 (`last_world_server`)
-
-**목적:** 마지막으로 접근한 월드 또는 서버에 대한 정보를 반환합니다.
-
-**값:** `type`, `full_world_path`
-
-**예시:**
-
-```
-{"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
-```
-매개변수:
-- `type`: 반환할 정보 유형을 결정합니다
-  - `"both"`: 마지막으로 접근한 월드 또는 서버를 반환합니다(기본값)
-  - `"server"`: 마지막으로 접근한 대상이 서버인 경우에만 반환합니다
-  - `"world"`: 마지막으로 접근한 대상이 월드인 경우에만 반환합니다
-- `full_world_path`: 월드 경로 표시 방식을 제어합니다
-  - `"true"`: 전체 월드 경로를 반환합니다(기본값)
-  - `"false"`: 경로 없이 월드 이름만 반환합니다(서버에는 영향을 주지 않음)
-
-예시:
-- 서버: `mc.hypixel.net`
-- 전체 경로가 있는 월드: `saves/New World`
-- 전체 경로가 없는 월드: `New World`
-
-## 화면 너비 (`guiwidth`)
-
-**목적:** 물리적인 모니터 픽셀이 아니라 GUI 스케일 기준 픽셀로 현재 화면 너비를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"guiwidth"}
-```
-
-**출력:** `960`
-
-## 화면 높이 (`guiheight`)
-
-**목적:** 물리적인 모니터 픽셀이 아니라 GUI 스케일 기준 픽셀로 현재 화면 높이를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"guiheight"}
-```
-
-**출력:** `540`
-
-## 현재 화면 식별자 (`screenid`)
-
-**목적:** 현재 화면의 식별자를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"screenid"}
-```
-
-**출력:** `title_screen`
-
-## 요소 너비 (`elementwidth`)
-
-**목적:** 특정 요소의 너비를 반환합니다.
-
-**값:** `id`
-
-**예시:**
-
-```
-{"placeholder":"elementwidth","values":{"id":"my_button"}}
-```
-
-**출력:** `200`
-
-## 요소 높이 (`elementheight`)
-
-**목적:** 특정 요소의 높이를 반환합니다.
-
-**값:** `id`
-
-**예시:**
-
-```
-{"placeholder":"elementheight","values":{"id":"my_button"}}
-```
-
-**출력:** `20`
-
-## 요소 X 위치 (`elementposx`)
-
-**목적:** 특정 요소의 X 위치를 반환합니다.
-
-**값:** `id`
-
-**예시:**
-
-```
-{"placeholder":"elementposx","values":{"id":"my_button"}}
-```
-
-**출력:** `150`
-
-## 요소 Y 위치 (`elementposy`)
-
-**목적:** 특정 요소의 Y 위치를 반환합니다.
-
-**값:** `id`
-
-**예시:**
-
-```
-{"placeholder":"elementposy","values":{"id":"my_button"}}
-```
-
-**출력:** `100`
-
-## 마우스 X 위치 (`mouseposx`)
-
-**목적:** 현재 마우스의 X 위치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"mouseposx"}
-```
-
-**출력:** `960`
-
-## 마우스 Y 위치 (`mouseposy`)
-
-**목적:** 현재 마우스의 Y 위치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"mouseposy"}
-```
-
-**출력:** `540`
-
-## 초당 클릭 수 (`clicks_per_second`)
-
-**목적:** 마우스 버튼의 현재 초당 클릭 수를 반환합니다.
-
-**값:** `mouse_button`
-
-**예시:**
-
-```
-{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
-```
-매개변수:
-- `mouse_button`: `left` 또는 `right`
-
-**출력:** `8`
-
-## GUI 스케일 (`guiscale`)
-
-**목적:** 현재 GUI 스케일을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"guiscale"}
-```
-
-**출력:** `2`
-
-## 바닐라 위젯 라벨/텍스트 (`vanillabuttonlabel`)
-
-**목적:** 바닐라 위젯/버튼의 라벨 또는 텍스트를 반환합니다.
-
-**값:** `locator`
-
-**예시:**
-
-```
-{"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
-```
-
-**출력:** `Options...`
-
-## 텍스트 입력 필드 값 (`text_input_field_value`)
-
-**목적:** 요소 식별자로 사용자 정의 또는 바닐라 텍스트 입력 필드의 현재 값을 반환합니다.
-
-**값:** `element_identifier`
-
-**예시:**
-
-```
-{"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
-```
-
-**출력:** `Hello World`
-
-## 현재 플레이어 체력 (`current_player_health`)
-
-**목적:** 플레이어의 현재 체력을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_health"}
-```
-
-**출력:** `20.0`
-
-## 플레이어 최대 체력 (`max_player_health`)
-
-**목적:** 플레이어의 최대 체력을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"max_player_health"}
-```
-
-**출력:** `20.0`
-
-## 현재 플레이어 체력(퍼센트) (`current_player_health_percent`)
-
-**목적:** 플레이어 체력을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_health_percent"}
-```
-
-**출력:** `100`
-
-## 현재 플레이어 흡수 체력 (`current_player_absorption_health`)
-
-**목적:** 플레이어의 흡수 체력(황금 하트)을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_absorption_health"}
-```
-
-**출력:** `4.0`
-
-## 플레이어 최대 흡수 체력 (`max_player_absorption_health`)
-
-**목적:** 최대 흡수 체력을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"max_player_absorption_health"}
-```
-
-**출력:** `4.0`
-
-## 현재 플레이어 흡수 체력(퍼센트) (`current_player_absorption_health_percent`)
-
-**목적:** 플레이어의 흡수 체력을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_absorption_health_percent"}
-```
-
-**출력:** `100`
-
-## 현재 플레이어 배고픔 수치 (`current_player_hunger`)
-
-**목적:** 플레이어의 현재 배고픔 수치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_hunger"}
-```
-
-**출력:** `20`
-
-## 플레이어 최대 배고픔 수치 (`max_player_hunger`)
-
-**목적:** 최대 배고픔 수치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"max_player_hunger"}
-```
-
-**출력:** `20`
-
-## 현재 플레이어 배고픔 수치(퍼센트) (`current_player_hunger_percent`)
-
-**목적:** 플레이어의 배고픔을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_hunger_percent"}
-```
-
-**출력:** `100`
-
-## 현재 플레이어 포만도 (`current_player_hunger_saturation`)
-
-**목적:** 플레이어의 현재 포만도 값을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_hunger_saturation"}
-```
-
-**출력:** `5.0`
-
-## 현재 플레이어 방어력 (`current_player_armor`)
-
-**목적:** 플레이어의 현재 방어력 값을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_armor"}
-```
-
-**출력:** `20`
-
-## 플레이어 방어 강도 (`player_armor_toughness`)
-
-**목적:** 플레이어의 총 방어 강도 값을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_armor_toughness"}
-```
-
-**출력:** `8.0`
-
-## 플레이어 최대 방어력 (`max_player_armor`)
-
-**목적:** 최대 방어력 값을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"max_player_armor"}
-```
-
-**출력:** `20`
-
-## 현재 플레이어 방어력(퍼센트) (`current_player_armor_percent`)
-
-**목적:** 플레이어의 방어력을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_armor_percent"}
-```
-
-**출력:** `100`
-
-## 현재 플레이어 산소량 (`current_player_oxygen`)
-
-**목적:** 플레이어의 현재 산소량(호흡 게이지)을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_oxygen"}
-```
-
-**출력:** `300`
-
-## 플레이어 최대 산소량 (`max_player_oxygen`)
-
-**목적:** 최대 산소량을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"max_player_oxygen"}
-```
-
-**출력:** `300`
-
-## 현재 플레이어 산소량(퍼센트) (`current_player_oxygen_percent`)
-
-**목적:** 플레이어의 산소량을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_oxygen_percent"}
-```
-
-**출력:** `100`
-
-## 현재 플레이어 레벨 (`current_player_level`)
-
-**목적:** 플레이어의 현재 경험치 레벨을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_level"}
-```
-
-**출력:** `30`
-
-## 현재 플레이어 경험치 (`current_player_exp`)
-
-**목적:** 플레이어의 총 경험치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_exp"}
-```
-
-**출력:** `1250`
-
-## 플레이어 경험치 진행률(퍼센트) (`current_player_exp_progress`)
-
-**목적:** 다음 레벨까지의 경험치 진행률을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_player_exp_progress"}
-```
-
-**출력:** `75`
-
-## 플레이어 공격 강도(퍼센트) (`player_attack_strength`)
-
-**목적:** 플레이어의 공격 쿨다운을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_attack_strength"}
-```
-
-**출력:** `100`
-
-## 플레이어 게임 모드 (`player_gamemode`)
-
-**목적:** 플레이어의 현재 게임 모드를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_gamemode"}
-```
-
-**출력:** `survival`
-
-## 플레이어 시선 방향 (`player_view_direction`)
-
-**목적:** 플레이어가 바라보는 방향을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_view_direction"}
-```
-
-**출력:** `north`
-
-## 플레이어 X 좌표 (`player_x_coordinate`)
-
-**목적:** 월드에서 플레이어의 X 위치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_x_coordinate"}
-```
-
-**출력:** `125`
-
-## 플레이어 Y 좌표 (`player_y_coordinate`)
-
-**목적:** 월드에서 플레이어의 Y 위치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_y_coordinate"}
-```
-
-**출력:** `64`
-
-## 플레이어 Z 좌표 (`player_z_coordinate`)
-
-**목적:** 월드에서 플레이어의 Z 위치를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_z_coordinate"}
-```
-
-**출력:** `-250`
-
-## 현재 탑승체 체력 (`current_mount_health`)
-
-**목적:** 플레이어가 타고 있는 엔티티의 현재 체력을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_mount_health"}
-```
-
-**출력:** `30.0`
-
-## 최대 탑승체 체력 (`max_mount_health`)
-
-**목적:** 플레이어가 타고 있는 엔티티의 최대 체력을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"max_mount_health"}
-```
-
-**출력:** `30.0`
-
-## 현재 탑승체 체력(퍼센트) (`current_mount_health_percent`)
-
-**목적:** 탑승체의 체력을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_mount_health_percent"}
-```
-
-**출력:** `100`
-
-## 현재 탑승체 점프 게이지(퍼센트) (`current_mount_jump_meter`)
-
-**목적:** 탑승체의 점프 파워 게이지 값을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_mount_jump_meter"}
-```
-
-**출력:** `75`
-
-## 현재 보스 체력(퍼센트) (`current_boss_health`)
-
-**목적:** 선택한 활성 보스의 체력을 `0`~`100` 사이의 정수 백분율로 반환합니다. `boss_index`는 0부터 시작하며, `0`은 첫 번째 보스 바를 선택합니다.
-
-**값:** `boss_index`
-
-**예시:**
-
-```
-{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
-```
-
-**출력:** `75`
-
-## 보스 이름 (`boss_name`)
-
-**목적:** 활성 보스의 이름을 반환합니다.
-
-**값:** `boss_index`, `as_json`
-
-**예시:**
-
-```
-{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
-```
-
-**출력:** `Ender Dragon`
-
-## 보스 수 (`boss_count`)
-
-**목적:** 활성 보스의 수를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"boss_count"}
-```
-
-**출력:** `1`
-
-## 활성 효과 수 (`effects_count`)
-
-**목적:** 활성 포션 효과의 수를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"effects_count"}
-```
-
-**출력:** `3`
-
-## 활성 효과 (`active_effect`)
-
-**목적:** 특정 활성 효과에 대한 정보를 반환합니다.
-
-**값:** `effect_index`
-
-**예시:**
-
-```
-{"placeholder":"active_effect","values":{"effect_index":"0"}}
-```
-
-**출력:** `minecraft:speed`
-
-## 선택된 핫바 슬롯 (`active_hotbar_slot`)
-
-**목적:** 현재 선택된 핫바 슬롯(0-8)을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"active_hotbar_slot"}
-```
-
-**출력:** `4`
-
-## 슬롯 아이템 (`slot_item`)
-
-**목적:** 특정 인벤토리 슬롯의 아이템 정보를 반환합니다.
-
-**값:** `slot`
-
-**예시:**
-
-```
-{"placeholder":"slot_item","values":{"slot":"0"}}
-```
-
-**출력:** `minecraft:diamond_sword`
-
-## 슬롯 아이템 개수 (`slot_item_count`)
-
-**목적:** 특정 플레이어 인벤토리 슬롯에 있는 아이템의 스택 개수를 반환합니다.
-
-**값:** `slot`
-
-**예시:**
-
-```
-{"placeholder":"slot_item_count","values":{"slot":"0"}}
-```
-
-**출력:** `64`
-
-## 슬롯 아이템 내구도 (`slot_item_durability`)
-
-**목적:** 특정 플레이어 인벤토리 슬롯의 아이템 내구도 정보를 반환합니다.
-
-**값:** `slot`, `format`
-
-**예시:**
-
-```
-{"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
-```
-매개변수:
-- `slot`: 플레이어 인벤토리 슬롯 번호.
-- `format`: `current`, `remaining`, `max`, `damage`, `percentage`, 또는 `percent`.
-
-**출력:** `87`
-
-## 슬롯 아이템 표시 이름 (`slot_item_display_name_fm`)
-
-**목적:** 특정 슬롯의 아이템 표시 이름을 JSON 텍스트 컴포넌트로 반환합니다. 관전자 모드에서는 `ignore_spectator`가 `true`가 아닌 경우 핫바 슬롯이 관전자 메뉴 아이템 이름으로 해석될 수 있습니다.
-
-**값:** `slot`, `ignore_spectator`
-
-**예시:**
-
-```
-{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
-```
-
-**출력:** `{"text":"Diamond Sword","color":"aqua"}`
-
-## 인벤토리 아이템 개수 (`inventory_item_count`)
-
-**목적:** 플레이어 인벤토리 전체에서 일치하는 아이템의 총 개수를 반환합니다. `item`이 비어 있으면 점유된 모든 인벤토리 슬롯의 스택 개수를 합산합니다.
-
-**값:** `item`
-
-**예시:**
-
-```
-{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
-```
-
-**출력:** `12`
-
-## 인벤토리 슬롯 음식 회복량 (`inventory_slot_food_point_restore_amount`)
-
-**목적:** 지정된 플레이어 인벤토리 슬롯의 음식 아이템이 회복하는 배고픔 수치를 반환합니다.
-
-**값:** `slot`
-
-**예시:**
-
-```
-{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
-```
-
-**출력:** `4.0`
-
-## 마우스 오버된 인벤토리 아이템 (`hovered_inventory_item`)
-
-**목적:** 인벤토리 화면에서 현재 마우스 오버된 아이템의 아이템 키를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"hovered_inventory_item"}
-```
-
-**출력:** `minecraft:apple`
-
-## 월드 게임 시간 (`game_time`)
-
-**목적:** 현재 게임 내 시간 틱 카운터를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"game_time"}
-```
-
-**출력:** `18000`
-
-## 월드 낮 시간 (`world_daytime`)
-
-**목적:** 현재 월드 낮 시간을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"world_daytime"}
-```
-
-**출력:** `13000`
-
-## 월드 낮 시간 시 (`world_daytime_hour`)
-
-**목적:** 월드 시간의 시 값을 반환합니다. 기본값은 24시간 형식입니다. 12시간 형식이 필요하면 `twelve_hour_format`을 `"true"`로 설정하세요.
-
-**값:** `twelve_hour_format`
-
-**예시:**
-
-```
-{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
-```
-
-**출력:** `12`
-
-## 월드 낮 시간 분 (`world_daytime_minute`)
-
-**목적:** 월드 시간의 분 값을 반환합니다(00-59).
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"world_daytime_minute"}
-```
-
-**출력:** `30`
-
-## 월드 난이도 (`world_difficulty`)
-
-**목적:** 현재 월드 난이도를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"world_difficulty"}
-```
-
-**출력:** `normal`
-
-## 현재 월드 시드 (`current_world_seed`)
-
-**목적:** 현재 싱글플레이 월드의 시드를 반환합니다. 시드를 사용할 수 없으면 빈 값을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_world_seed"}
-```
-
-**출력:** `123456789`
-
-## 현재 바이옴 (`current_biome`)
-
-**목적:** 플레이어가 현재 있는 바이옴을 반환합니다. 번역/표시 이름이 가능하면 반환하도록 하려면 `as_key`를 `"false"`로 설정하세요.
-
-**값:** `as_key`
-
-**예시:**
-
-```
-{"placeholder":"current_biome","values":{"as_key":"true"}}
-```
-
-**출력:** `minecraft:plains`
-
-## 현재 차원 (`current_dimension`)
-
-**목적:** 플레이어가 현재 있는 차원을 반환합니다. 번역/표시 이름이 가능하면 반환하도록 하려면 `as_key`를 `"false"`로 설정하세요.
-
-**값:** `as_key`
-
-**예시:**
-
-```
-{"placeholder":"current_dimension","values":{"as_key":"true"}}
-```
-
-**출력:** `minecraft:overworld`
-
-## 게임 규칙 값 (`gamerule_value`)
-
-**목적:** 불러온 월드/서버에서 게임 규칙의 현재 값을 반환합니다. 서버 월드에서는 서버에 FancyMenu가 설치되어 있어야 합니다.
-
-**값:** `name`
-
-**예시:**
-
-```
-{"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
-```
-
-**출력:** `true`
-
-## 아이템 카테고리 (`item_category`)
-
-**목적:** 아이템의 크리에이티브 탭 카테고리를 반환합니다. 카테고리 키를 표시 이름 대신 반환하려면 `as_key`를 `"true"`로 설정하세요.
-
-**값:** `item`, `as_key`
-
-**예시:**
-
-```
-{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
-```
-
-**출력:** `Combat`
-
-## 현재 HUD 제목/부제목 (`current_title`)
-
-**목적:** 현재 표시 중인 제목 텍스트를 반환합니다.
-
-**값:** `is_subtitle`, `as_json`
-
-**예시:**
-
-```
-{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
-```
-
-**출력:** `Game Over!`
-
-## 액션 바 메시지 (`action_bar_message_fm`)
-
-**목적:** 현재 바닐라 액션 바 메시지를 직렬화된 Minecraft 텍스트 컴포넌트로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"action_bar_message_fm"}
-```
-
-**출력:** `{"text":"You may not rest now","color":"red"}`
-
-## 액션 바 메시지 시간 (`action_bar_message_time_fm`)
-
-**목적:** 현재 바닐라 액션 바 메시지가 앞으로 몇 틱 동안 더 표시될지 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"action_bar_message_time_fm"}
-```
-
-**출력:** `42`
-
-## 카메라 회전 X (`camera_rotation_x_fm`)
-
-**목적:** 현재 카메라 피치를 도 단위로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"camera_rotation_x_fm"}
-```
-
-**출력:** `12.5`
-
-## 카메라 회전 Y (`camera_rotation_y_fm`)
-
-**목적:** 현재 카메라 요를 도 단위로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"camera_rotation_y_fm"}
-```
-
-**출력:** `-90.0`
-
-## 카메라 회전 변화량 X (`camera_rotation_delta_x_fm`)
-
-**목적:** 틱당 카메라 피치 변화량을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"camera_rotation_delta_x_fm"}
-```
-
-**출력:** `0.4`
-
-## 카메라 회전 변화량 Y (`camera_rotation_delta_y_fm`)
-
-**목적:** 틱당 카메라 요 변화량을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"camera_rotation_delta_y_fm"}
-```
-
-**출력:** `-1.2`
-
-## 강조된 아이템 시간 (`highlighted_item_time_fm`)
-
-**목적:** 강조된 아이템 이름이 핫바 위에 앞으로 몇 틱 더 표시될지 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"highlighted_item_time_fm"}
-```
-
-**출력:** `30`
-
-## 플레이어 아이템 사용 진행률 (`player_item_use_progress_fm`)
-
-**목적:** 현재 아이템 사용 진행률을 `0.0`~`1.0` 사이로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_item_use_progress_fm"}
-```
-
-**출력:** `0.65`
-
-## 플레이어 위치 변화량 X (`player_position_delta_x_fm`)
-
-**목적:** 플레이어 위치의 X축 틱당 변화량을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_position_delta_x_fm"}
-```
-
-**출력:** `0.0`
-
-## 플레이어 위치 변화량 Y (`player_position_delta_y_fm`)
-
-**목적:** 플레이어 위치의 Y축 틱당 변화량을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_position_delta_y_fm"}
-```
-
-**출력:** `-0.08`
-
-## 플레이어 위치 변화량 Z (`player_position_delta_z_fm`)
-
-**목적:** 플레이어 위치의 Z축 틱당 변화량을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"player_position_delta_z_fm"}
 ```
-
-**출력:** `0.12`
-
-## 현재 서버 IP (`current_server_ip`)
-
-**목적:** 연결된 서버의 IP를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"current_server_ip"}
-```
-
-**출력:** `mc.hypixel.net`
-
-## 월드 플레이어 목록 (`world_players_list`)
-
-**목적:** 현재 월드에 있는 모든 플레이어의 목록을 반환합니다.
-
-**값:** `separator`
-
-**예시:**
-
-```
-{"placeholder":"world_players_list","values":{"separator":", "}}
-```
-
-**출력:** `Steve, Alex, Notch`
-
-## 서버 MOTD (`servermotd`)
-
-**목적:** 서버의 오늘의 메시지(MOTD)를 반환합니다.
-
-**값:** `ip`, `line`
-
-**예시:**
-
-```
-{"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
-```
-
-**출력:** `Welcome to Hypixel!`
-
-## 서버 PING (`serverping`)
-
-**목적:** 서버까지의 핑을 밀리초 단위로 반환합니다.
-
-**값:** `ip`
-
-**예시:**
-
-```
-{"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
-```
-
-**출력:** `54`
-
-## 서버 플레이어 수 (`serverplayercount`)
-
-**목적:** 서버의 플레이어 수를 반환합니다.
-
-**값:** `ip`
-
-**예시:**
-
-```
-{"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
-```
-
-**출력:** `25000/30000`
-
-## 서버 상태 (`serverstatus`)
-
-**목적:** 서버의 온라인/오프라인 상태를 반환합니다.
-
-**값:** `ip`
-
-**예시:**
-
-```
-{"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
-```
-
-**출력:** `§aOnline` 또는 `§cOffline`
-
-## 서버 버전 (`serverversion`)
-
-**목적:** 서버의 Minecraft 버전을 반환합니다.
-
-**값:** `ip`
-
-**예시:**
-
-```
-{"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
-```
-
-**출력:** `1.21.1`
-
-> [!NOTE]
-> 아래 실시간 플레이스홀더는 `timezone` 값을 받을 수 있습니다. `UTC`, `Europe/Berlin`, `America/New_York` 같은 Java 시간대 ID를 사용하세요. 시스템 시간대를 사용하려면 이 값을 생략하거나 `system`을 사용하세요. `unix_time`은 항상 Unix 타임스탬프를 반환하며 `timezone` 값을 사용하지 않습니다.
-
-## 연 (`realtimeyear`)
-
-**목적:** 현재 연도를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"realtimeyear"}
-```
-
-**출력:** `2024`
-
-## 월 (`realtimemonth`)
-
-**목적:** 현재 월을 반환합니다(01-12).
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"realtimemonth"}
-```
-
-**출력:** `01`
-
-## 일 (`realtimeday`)
-
-**목적:** 현재 날짜의 일을 반환합니다(01-31).
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"realtimeday"}
-```
-
-**출력:** `27`
-
-## 시 (`realtimehour`)
-
-**목적:** 현재 시간을 반환합니다. 기본값은 24시간 형식입니다. 12시간 형식이 필요하면 `twelve_hour_format`을 `"true"`로 설정하세요.
-
-**값:** `twelve_hour_format`, `timezone`
-
-**예시:**
-
-```
-{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
-```
-
-**출력:** `14`
-
-## 분 (`realtimeminute`)
-
-**목적:** 현재 분을 반환합니다(00-59).
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"realtimeminute"}
-```
-
-**출력:** `30`
-
-## 초 (`realtimesecond`)
-
-**목적:** 현재 초를 반환합니다(00-59).
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"realtimesecond"}
-```
-
-**출력:** `45`
-
-## 현재 시간 밀리초(Unix 타임스탬프) (`unix_time`)
-
-**목적:** 현재 Unix 타임스탬프를 밀리초 단위로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"unix_time"}
-```
-
-**출력:** `1716552478123`
-
-## CPU 정보 (`cpuinfo`)
-
-**목적:** CPU에 대한 정보를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"cpuinfo"}
-```
-
-**출력:** `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
-
-## CPU 사용량(JVM) (`jvmcpu`)
-
-**목적:** JVM의 CPU 사용량을 백분율로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"jvmcpu"}
+{"placeholder":"uppercase_text","values":{"text":"$$rank"}}
 ```
 
-**출력:** `25.5`
+자리표시자가 [**File Text**](#file-text)로 읽은 파일처럼 자리표시자가 포함된 텍스트를 반환하면 FancyMenu는 그 안의 자리표시자도 바꿉니다.
 
-## CPU 사용량(OS) (`oscpu`)
+# 알아 두면 좋은 점
 
-**목적:** OS의 CPU 사용량을 백분율로 반환합니다.
+- 자리표시자는 자동으로 갱신됩니다. FancyMenu는 바꾼 텍스트를 30밀리초 동안 캐시한 다음 자리표시자를 다시 바꿉니다. **menu bar -> Customization -> Settings**에서 **Placeholder Caching Duration [MS]**를 변경할 수 있습니다. 값을 `0`으로 설정하면 매 프레임마다 바뀌므로 성능 부담이 커집니다.
+- **Web Text**나 **Server Status**처럼 웹사이트, 파일 또는 서버를 읽는 자리표시자는 백그라운드에서 로드됩니다. 로드가 끝날 때까지 빈 값이나 대체 값을 반환합니다.
+- [작업](/action-scripts)에서는 작업이 실행되는 순간의 값을 반환합니다.
+- 월드, 화면, 요소와 관련된 자리표시자는 게임의 메인 스레드에서만 작동합니다. 백그라운드에서 실행되는 비동기 [Ticker](/elements#ticker)에서는 FancyMenu가 오류를 표시합니다.
+- **Random Number**는 텍스트가 갱신될 때마다 새 숫자를 반환합니다. 숫자를 유지하려면 [**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable)를 사용해 [변수](/variables)에 저장하세요.
 
-**값:** 없음
+> [!CAUTION]
+> **JSON Parser**, **File Text**, **Clipboard Content**와 같은 자리표시자는 게임 폴더의 파일과 클립보드를 읽을 수 있습니다. 웹사이트에 연결하는 작업과 함께 사용하면 레이아웃이 해당 데이터를 외부로 전송할 수 있습니다. 신뢰할 수 있는 레이아웃만 사용하세요.
 
-**예시:**
+# 예시
 
-```
-{"placeholder":"oscpu"}
-```
-
-**출력:** `42.8`
-
-## GPU 정보 (`gpuinfo`)
-
-**목적:** Minecraft의 활성 렌더링 장치에 대해 보고된 이름을 반환합니다. 특정 물리적 GPU를 정확히 식별한다고 보장되지는 않습니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"gpuinfo"}
-```
-
-**출력:** `NVIDIA GeForce RTX 3080`
-
-## Java 버전 (`javaver`)
-
-**목적:** Java 버전을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"javaver"}
-```
-
-**출력:** `17.0.2`
-
-## Java 가상 머신 (`jvmname`)
-
-**목적:** Java 가상 머신의 이름을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"jvmname"}
-```
-
-**출력:** `OpenJDK 64-Bit Server VM`
-
-## OpenGL 버전 (`glver`)
-
-**목적:** Minecraft의 활성 렌더링 장치에 대한 드라이버 정보를 반환합니다. 레거시 이름인 `glver`와 달리 값이 OpenGL 버전 문자열만이라고 보장되지는 않습니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"glver"}
-```
-
-**출력:** `4.6.0 NVIDIA 516.94`
-
-## 운영 체제 이름 (`osname`)
-
-**목적:** 운영 체제 이름을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"osname"}
-```
-
-**출력:** `Windows 10`
-
-## FPS(초당 프레임 수) (`fps`)
-
-**목적:** 현재 초당 프레임 수를 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"fps"}
-```
-
-**출력:** `120`
-
-## 사용 중인 RAM(MB) (`usedram`)
-
-**목적:** 현재 사용 중인 RAM 양을 MB 단위로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"usedram"}
-```
-
-**출력:** `4096`
-
-## 최대 RAM(MB) (`maxram`)
-
-**목적:** 할당된 최대 RAM 양을 MB 단위로 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"maxram"}
-```
-
-**출력:** `8192`
-
-## 사용 중인 RAM(%%) (`percentram`)
-
-**목적:** 현재 사용 중인 RAM의 비율을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"percentram"}
-```
-
-**출력:** `50`
-
-## 오디오 요소 볼륨 (`audio_element_vol`)
-
-**목적:** 오디오 요소의 볼륨을 반환합니다.
-
-**값:** `element_identifier`
-
-**예시:**
-
-```
-{"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
-```
-
-**출력:** `0.5`
-
-## 현재 오디오 트랙 (`audio_element_current_track`)
-
-**목적:** 오디오 요소의 트랙 이름을 반환합니다.
-
-**값:** `element_identifier`, `display_name_mappings`
-
-**예시:**
-
-```
-{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Menu Theme%:%track2.ogg=>Credits Theme"}}
-```
-
-`display_name_mappings`에서 `=>`는 파일 이름과 표시 이름을 구분하며, `%:%`는 매핑을 구분합니다.
-
-**출력:** `Menu Theme`
-
-## 오디오 재생 시간 (`audio_duration`)
-
-**목적:** [오디오 요소](./elements#audio)의 현재 로드된 트랙 길이를 `MM:SS` 형식으로 반환합니다. 트랙은 재생 중, 일시정지, 또는 정지 상태일 수 있습니다.
-
-**값:** `element_identifier`
-
-**예시:**
+## 환영 패널
 
-```
-{"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
-```
-
-**출력:** `03:45`
-
-## 오디오 재생 시간 진행 (`audio_playtime`)
+<img width="800" alt="텍스트 요소가 플레이어 이름으로 인사하고 Minecraft 버전, 모드 수, 시간을 표시하는 모습" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_welcome.png?raw=true">
 
-**목적:** 오디오 트랙의 현재 재생 시간을 반환합니다. `show_percentage`를 `"true"`로 설정하면 `MM:SS` 대신 0-100 진행률 값을 반환합니다.
-
-**값:** `element_identifier`, `show_percentage`
-
-**예시:**
-
 ```
-{"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
+### Welcome back, {"placeholder":"playername"}!
+Minecraft {"placeholder":"mcversion"} with {"placeholder":"loadedmods"} mods
+It's {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
-
-**출력:** `01:30` (또는 `show_percentage`가 `"true"`일 때 `45`)
 
-**사용할 수 없는 결과:** `00:00`, 또는 퍼센트 모드에서는 `0`. 현재 값은 트랙이 재생 중이거나 일시정지된 동안 사용할 수 있으며, 정지되었거나 누락되었거나 준비되지 않은 트랙은 사용할 수 없는 결과를 사용합니다.
+## 서버 상태 및 플레이어 수
 
-## 오디오 재생 상태 (`audio_playing_state`)
-
-**목적:** 오디오 요소가 재생 중인지(true/false) 반환합니다.
-
-**값:** `element_identifier`
-
-**예시:**
-
 ```
-{"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
+Survival: {"placeholder":"serverstatus","values":{"ip":"play.example.net"}}&r, {"placeholder":"serverplayercount","values":{"ip":"play.example.net"}} players
 ```
-
-**출력:** `true`
-
-## 비디오 요소 볼륨 (`video_element_vol`)
-
-**목적:** 비디오 요소의 볼륨 수준을 반환합니다(0.0~1.0).
-
-**값:** `element_identifier`
 
-**예시:**
+## 날짜 및 시간
 
 ```
-{"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"realtimeday"}.{"placeholder":"realtimemonth"}.{"placeholder":"realtimeyear"}, {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
 
-**출력:** `0.5`
+## RAM 사용량
 
-## 비디오 요소 재생 시간 (`video_element_duration`)
-
-**목적:** 비디오 요소의 총 길이를 `MM:SS` 형식으로 반환합니다. 밀리초 타임스탬프로 반환하려면 `output_as_timestamp`를 `"true"`로 설정하세요.
-
-**값:** `element_identifier`, `output_as_timestamp`
-
-**예시:**
-
 ```
-{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
+RAM: {"placeholder":"usedram"} / {"placeholder":"maxram"} MB ({"placeholder":"percentram"}%)
 ```
 
-**출력:** `02:00` (또는 `output_as_timestamp`가 `"true"`일 때 `120000`)
+# 모든 자리표시자
 
-## 비디오 요소 재생 시간 진행 (`video_element_playtime`)
+FancyMenu에서 사용할 수 있는 모든 자리표시자입니다. 자리표시자 메뉴의 큰 **Advanced** 및 **World** 카테고리는 여기에서 더 작은 그룹으로 나누었습니다.
 
-**목적:** 비디오 요소의 현재 재생 시간(진행률)을 `MM:SS` 형식으로 반환합니다. 0-100 진행률 값을 원하면 `show_percentage`를 `"true"`로, 밀리초 값을 원하면 `output_as_timestamp`를 `"true"`로 설정하세요.
-
-**값:** `element_identifier`, `show_percentage`, `output_as_timestamp`
-
-**예시:**
-
-```
-{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
-```
+## 변수 및 목록
 
-**출력:** `00:45` (또는 백분율로 `38`, 또는 타임스탬프로 `45200`)
+이 항목은 **Advanced** 카테고리에 있습니다. 변수와 목록을 만드는 방법은 [변수](/variables)를 참조하세요.
 
-## 비디오 요소 일시정지 상태 (`video_element_paused_state`)
+### 변수 값 가져오기 (FM Variable)
 
-**목적:** 비디오 요소가 일시정지 상태인지(true/false) 반환합니다.
+**식별자:** `getvariable`
 
-**값:** `element_identifier`
+변수의 값입니다. 변수가 비어 있거나 존재하지 않으면 `0`을 반환하므로 숫자를 다룰 때 유용합니다. 목록은 `["Steve","Alex"]`와 같은 JSON 배열로 모든 항목을 반환합니다.
 
-**예시:**
+- `name`: `$$`를 제외한 변수 이름
 
 ```
-{"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"getvariable","values":{"name":"clicks"}}
 ```
-
-**출력:** `false`
 
-## 비디오 배경 볼륨 (`video_background_vol`)
+### 목록 항목 가져오기 (FM Variable)
 
-**목적:** 비디오 메뉴 배경의 볼륨 수준을 반환합니다(0.0~1.0).
+**식별자:** `list_get`
 
-**값:** `background_identifier`
+목록 변수의 항목 하나를 가져옵니다.
 
-**예시:**
+- `name`: 목록 이름
+- `index`: 항목의 위치입니다. 첫 항목은 `0`이며, 음수는 끝에서부터 셉니다. 따라서 `-1`은 마지막 항목입니다.
+- `fallback`(선택 사항): 해당 위치에 항목이 없거나 이름이 일치하는 목록이 없을 때 반환할 값입니다. 기본값은 빈 문자열입니다.
 
 ```
-{"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}
 ```
 
-**출력:** `0.7`
+### 목록 크기 (FM Variable)
 
-## 비디오 배경 재생 시간 (`video_background_duration`)
+**식별자:** `list_size`
 
-**목적:** 비디오 메뉴 배경의 총 길이를 `MM:SS` 형식으로 반환합니다. 밀리초 타임스탬프로 반환하려면 `output_as_timestamp`를 `"true"`로 설정하세요.
+목록에 있는 항목 수입니다. 해당 이름의 목록이 없으면 `0`을 반환합니다.
 
-**값:** `background_identifier`, `output_as_timestamp`
+- `name`: 목록 이름
 
-**예시:**
-
 ```
-{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
+{"placeholder":"list_size","values":{"name":"tips"}}
 ```
-
-**출력:** `03:00` (또는 `output_as_timestamp`가 `"true"`일 때 `180000`)
 
-## 비디오 배경 재생 시간 진행 (`video_background_playtime`)
+### 목록 항목의 인덱스 (FM Variable)
 
-**목적:** 비디오 메뉴 배경의 현재 재생 시간(진행률)을 `MM:SS` 형식으로 반환합니다. 0-100 진행률 값을 원하면 `show_percentage`를 `"true"`로, 밀리초 값을 원하면 `output_as_timestamp`를 `"true"`로 설정하세요.
+**식별자:** `list_index_of`
 
-**값:** `background_identifier`, `show_percentage`, `output_as_timestamp`
+`value`와 완전히 일치하는 첫 번째 항목의 인덱스입니다. 목록에 해당 항목이 없으면 `-1`을 반환합니다.
 
-**예시:**
+- `name`: 목록 이름
+- `value`: 찾을 항목
+- `ignore_case`(선택 사항): `true`이면 `Apple`과 `apple`을 같은 값으로 처리합니다. 기본값은 `false`입니다.
 
 ```
-{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
+{"placeholder":"list_index_of","values":{"name":"read_news","value":"news_42","ignore_case":"false"}}
 ```
 
-**출력:** `01:00` (또는 백분율로 `33`, 또는 타임스탬프로 `60500`)
+### 목록 항목 합치기 (FM Variable)
 
-## 비디오 배경 일시정지 상태 (`video_background_paused_state`)
+**식별자:** `list_join`
 
-**목적:** 비디오 메뉴 배경이 일시정지 상태인지(true/false) 반환합니다.
+목록의 모든 항목을 하나의 텍스트로 반환합니다. 해당 이름의 목록이 없으면 빈 문자열을 반환합니다.
 
-**값:** `background_identifier`
+- `name`: 목록 이름
+- `separator`(선택 사항): 항목 사이에 넣을 텍스트입니다. `\n`은 줄바꿈입니다. 기본값은 `, `입니다.
 
-**예시:**
-
 ```
-{"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}
 ```
 
-**출력:** `true`
+## 수학
 
-## 계산기 (`calc`)
+이 항목은 **Advanced** 카테고리에 있습니다. 소수점에는 `2.5`처럼 점을 사용합니다.
 
-**목적:** 계산기 플레이스홀더는 레이아웃 안에서 수학 계산을 수행할 수 있게 해주는 강력한 도구입니다. 다양한 수학 연산을 지원하며 소수와 정수를 모두 다룰 수 있습니다.
+### 계산기
 
-**값:** `decimal`, `expression`
+**식별자:** `calc`
 
-### 기본 구문
+`2 + 3 * 4`와 같은 수식을 계산합니다.
 
-**예시:**
+- `expression`: 계산할 수식
+- `decimal`(선택 사항): `false`이면 결과를 정수로 반올림합니다. 기본값은 `true`이며, 이 경우 `14.0`과 같은 결과를 반환합니다.
 
 ```
-{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeholder":"usedram"} * 100 / {"placeholder":"maxram"}"}}
 ```
-
-계산기에는 두 가지 주요 매개변수가 있습니다:
-- `decimal`: 결과에 소수점이 포함될지(`true`) 또는 정수로 반올림될지(`false`)를 결정합니다
-- `expression`: 평가할 수학 표현식
 
-### 지원되는 연산
-계산기는 다음 수학 연산을 지원합니다:
-- 기본 산술: `+`(덧셈), `-`(뺄셈), `*`(곱셈), `/`(나눗셈)
-- 괄호: 연산을 묶는 `( )`
-- 거듭제곱: 지수 연산 `^`
-- 제곱근: `sqrt()`
-- 삼각 함수: `sin()`, `cos()`, `tan()`
-- 수학 상수: `pi`, `e`
-- 절댓값: `abs()`
-- 로그: `log()`, `ln()`
+| 수식에서 사용 | 기능 |
+|---|---|
+| `+` `-` `*` `/` | 더하기, 빼기, 곱하기, 나누기 |
+| `^` | 거듭제곱. 예: `2 ^ 3`은 8 |
+| `%` | 나머지. 예: `7 % 3`은 1 |
+| `( )` | 계산 순서를 묶습니다. 예: `(2 + 3) * 4` |
+| `pi`, `e` | π와 e 값 |
+| `abs(x)` | 부호를 제외한 숫자 |
+| `sqrt(x)`, `cbrt(x)` | 제곱근, 세제곱근 |
+| `pow(x, y)` | x의 y제곱 |
+| `floor(x)`, `ceil(x)` | 내림, 올림 |
+| `sin(x)`, `cos(x)`, `tan(x)`, `cot(x)` | 삼각 함수. 각도는 라디안 단위입니다. |
+| `asin(x)`, `acos(x)`, `atan(x)` | 역삼각 함수 |
+| `sinh(x)`, `cosh(x)`, `tanh(x)` | 쌍곡선 함수 |
+| `log(x)`, `log2(x)`, `log10(x)` | 밑이 각각 e, 2, 10인 로그 |
+| `exp(x)` | e의 x제곱 |
+| `signum(x)` | [**Sign (Math)**](#sign-math)와 같이 `1`, `-1` 또는 `0`을 반환합니다. |
 
-## 난수 (`random_number`)
+### 난수
 
-**목적:** 지정한 범위 내의 무작위 숫자를 생성합니다.
+**식별자:** `random_number`
 
-**값:** `min`, `max`
+`min`과 `max` 사이의 임의의 정수입니다. 텍스트가 갱신될 때마다 값이 바뀝니다.
 
-**예시:**
+- `min`, `max`: 최솟값과 최댓값
 
 ```
-{"placeholder":"random_number","values":{"min":"1","max":"100"}}
+{"placeholder":"random_number","values":{"min":"1","max":"6"}}
 ```
 
-**출력:** `42`
+### 최댓값
 
-## 최대값 (`maxnum`)
+**식별자:** `maxnum`
 
-**목적:** 두 숫자 중 더 큰 값을 반환합니다.
+두 숫자 중 더 큰 값을 반환합니다.
 
-**값:** `first`, `second`
+- `first`, `second`: 비교할 숫자
 
-**예시:**
-
 ```
-{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+{"placeholder":"maxnum","values":{"first":"$$score","second":"$$best_score"}}
 ```
 
-**출력:** `20`
+### 최솟값
 
-## 최소값 (`minnum`)
+**식별자:** `minnum`
 
-**목적:** 두 숫자 중 더 작은 값을 반환합니다.
+두 숫자 중 더 작은 값을 반환합니다.
 
-**값:** `first`, `second`
+- `first`, `second`: 비교할 숫자
 
-**예시:**
-
 ```
-{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+{"placeholder":"minnum","values":{"first":"10","second":"15"}}
 ```
-
-**출력:** `10`
 
-## 절대값 (`absnum`)
+### 절댓값
 
-**목적:** 숫자의 절대값을 반환합니다.
+**식별자:** `absnum`
 
-**값:** `num`
+부호를 제외한 숫자를 반환합니다. 예를 들어 `-10.5`는 `10.5`가 됩니다.
 
-**예시:**
+- `num`: 숫자
 
 ```
 {"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
 
-**출력:** `10.5`
+### 숫자 부호 반전
 
-## 숫자를 음수로 만들기 (`negnum`)
+**식별자:** `negnum`
 
-**목적:** 양수를 음수로 만듭니다. 0과 이미 음수인 값은 그대로 반환됩니다.
+양수를 음수로 바꿉니다. 예를 들어 `10.5`는 `-10.5`가 됩니다. 0과 음수는 그대로 유지됩니다.
 
-**값:** `num`
-
-**예시:**
+- `num`: 숫자
 
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
 
-**출력:** `-10.5`
+### 반올림 (Math)
 
-## *pi* (수학) (`math_pi`)
+**식별자:** `math_round`
 
-**목적:** π 값을 반환합니다.
+숫자를 반올림합니다. `2.5`는 `3`으로 반올림됩니다.
 
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"math_pi"}
-```
-
-**출력:** `3.141592653589793`
-
-## 삼각함수 사인 (수학) (`math_sin`)
-
-**목적:** 라디안 단위 각도의 사인을 반환합니다. 도 단위 값은 먼저 라디안으로 변환하세요.
-
-**값:** `angle`
-
-**예시:**
-
-```
-{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
-```
-
-**출력:** `1.0`
-
-## 삼각함수 코사인 (수학) (`math_cos`)
-
-**목적:** 라디안 단위 각도의 코사인을 반환합니다. 도 단위 값은 먼저 라디안으로 변환하세요.
-
-**값:** `angle`
-
-**예시:**
-
-```
-{"placeholder":"math_cos","values":{"angle":"0"}}
-```
-
-**출력:** `1.0`
-
-## 삼각함수 탄젠트 (수학) (`math_tan`)
-
-**목적:** 라디안 단위 각도의 탄젠트를 반환합니다. 도 단위 값은 먼저 라디안으로 변환하세요.
-
-**값:** `angle`
-
-**예시:**
-
-```
-{"placeholder":"math_tan","values":{"angle":"0"}}
-```
-
-**출력:** `0.0`
-
-## 내림 (수학) (`math_floor`)
-
-**목적:** 숫자의 수학적 내림값을 `.0` 소수 접미사와 함께 반환합니다.
-
-**값:** `num`
-
-**예시:**
-
-```
-{"placeholder":"math_floor","values":{"num":"3.14"}}
-```
-
-**출력:** `3.0`
-
-## 올림 (수학) (`math_ceil`)
-
-**목적:** 숫자의 수학적 올림값을 `.0` 소수 접미사와 함께 반환합니다.
-
-**값:** `num`
-
-**예시:**
-
-```
-{"placeholder":"math_ceil","values":{"num":"3.14"}}
-```
-
-**출력:** `4.0`
-
-`.0` 없이 정수 텍스트가 필요할 때는 [**반올림**](#round-math-math_round) 또는 소수 출력이 꺼진 [**계산기**](#calculator-calc)를 사용하세요.
-
-## 반올림 (수학) (`math_round`)
-
-**목적:** 숫자를 반올림합니다. 기본적으로 가장 가까운 정수로 반올림하며, `decimals`를 0 이상의 숫자로 설정하면 해당 소수 자리까지 반올림합니다.
-
-**값:** `num`, `decimals`
-
-**예시:**
+- `num`: 숫자
+- `decimals`(선택 사항): 유지할 소수 자릿수입니다. 예를 들어 `2`이면 `3.14159`가 `3.14`가 됩니다. `0`, `-1` 또는 빈 값이면 정수로 반올림합니다.
 
 ```
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
 
-**출력:** `3.14` (`decimals:-1` 또는 생략 시 → `3`)
+### 내림 (Math)
 
-## 부호 (수학) (`math_sign`)
+**식별자:** `math_floor`
 
-**목적:** 숫자의 부호를 반환합니다(양수는 1, 음수는 -1, 0은 0).
+숫자를 정수로 내림합니다. 예를 들어 `3.7`은 `3`, `-3.2`는 `-4`가 됩니다.
 
-**값:** `num`
+- `num`: 숫자
 
-**예시:**
+```
+{"placeholder":"math_floor","values":{"num":"3.7"}}
+```
+
+### 올림 (Math)
+
+**식별자:** `math_ceil`
+
+숫자를 정수로 올림합니다. 예를 들어 `3.2`는 `4`, `-3.7`은 `-3`이 됩니다.
+
+- `num`: 숫자
+
+```
+{"placeholder":"math_ceil","values":{"num":"3.2"}}
+```
+
+### 부호 (Math)
+
+**식별자:** `math_sign`
+
+양수이면 `1`, 음수이면 `-1`, 0이면 `0`을 반환합니다.
+
+- `num`: 숫자
 
 ```
 {"placeholder":"math_sign","values":{"num":"-3.14"}}
 ```
 
-**출력:** `-1`
+### *pi* (Math)
 
-## 쌍곡선 사인 (수학) (`math_sinh`)
+**식별자:** `math_pi`
 
-**목적:** 숫자의 쌍곡선 사인을 반환합니다.
+π 값인 `3.141592653589793`을 반환합니다.
 
-**값:** `num`
+```
+{"placeholder":"math_pi"}
+```
 
-**예시:**
+### 사인 (Math)
+
+**식별자:** `math_sin`
+
+라디안 단위 각도의 사인 값입니다. 도 단위를 사용하려면 계산기에서 먼저 π / 180을 곱하세요.
+
+- `angle`: 라디안 단위의 각도
+
+```
+{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
+```
+
+### 코사인 (Math)
+
+**식별자:** `math_cos`
+
+라디안 단위 각도의 코사인 값입니다.
+
+- `angle`: 라디안 단위의 각도
+
+```
+{"placeholder":"math_cos","values":{"angle":"0"}}
+```
+
+### 탄젠트 (Math)
+
+**식별자:** `math_tan`
+
+라디안 단위 각도의 탄젠트 값입니다.
+
+- `angle`: 라디안 단위의 각도
+
+```
+{"placeholder":"math_tan","values":{"angle":"0.7853981633974483"}}
+```
+
+### 쌍곡선 사인 (Math)
+
+**식별자:** `math_sinh`
+
+숫자의 쌍곡선 사인 값입니다.
+
+- `num`: 숫자
 
 ```
 {"placeholder":"math_sinh","values":{"num":"1"}}
 ```
 
-**출력:** `1.1752011936438014`
+### 쌍곡선 코사인 (Math)
 
-## 쌍곡선 코사인 (수학) (`math_cosh`)
+**식별자:** `math_cosh`
 
-**목적:** 숫자의 쌍곡선 코사인을 반환합니다.
+숫자의 쌍곡선 코사인 값입니다.
 
-**값:** `num`
-
-**예시:**
+- `num`: 숫자
 
 ```
 {"placeholder":"math_cosh","values":{"num":"1"}}
 ```
 
-**출력:** `1.5430806348152437`
+### 쌍곡선 탄젠트 (Math)
 
-## 쌍곡선 탄젠트 (수학) (`math_tanh`)
+**식별자:** `math_tanh`
 
-**목적:** 숫자의 쌍곡선 탄젠트를 반환합니다.
+숫자의 쌍곡선 탄젠트 값입니다.
 
-**값:** `num`
-
-**예시:**
+- `num`: 숫자
 
 ```
 {"placeholder":"math_tanh","values":{"num":"1"}}
 ```
 
-**출력:** `0.7615941559557649`
+### 진법 변환
 
-## 텍스트 분리 (`split_text`)
+**식별자:** `number_base_convert`
 
-**목적:** 지정한 구분자를 사용해 텍스트를 분리합니다.
+10진수에서 2진수나 16진수로 바꾸는 것처럼 숫자의 진법을 변환합니다. 소수도 변환할 수 있으며 소수점 뒤 최대 16자리까지 지원합니다. 결과의 알파벳은 `FF`처럼 대문자로 표시됩니다.
 
-**값:** `input`, `regex`, `max_parts`, `split_index`
-
-**예시:**
-
-```
-{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
-```
-
-**출력:** `world`
-
-## 텍스트 공백 제거 (`trim_text`)
-
-**목적:** 앞뒤 공백을 제거합니다.
-
-**값:** `text`
-
-**예시:**
+- `input`: 숫자
+- `from_base`(선택 사항): `input`의 진법. `2`부터 `36`까지 지정할 수 있으며 기본값은 `10`입니다.
+- `to_base`(선택 사항): 결과의 진법. `2`부터 `36`까지 지정할 수 있으며 기본값은 `10`입니다.
 
 ```
-{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+{"placeholder":"number_base_convert","values":{"input":"255","from_base":"10","to_base":"16"}}
 ```
 
-**출력:** `hello world`
+## 텍스트
 
-## 텍스트 자르기 (`crop_text`)
+이 항목은 **Advanced** 카테고리에 있습니다.
 
-**목적:** 텍스트의 시작과 끝에서 문자를 제거합니다.
+### 대문자로 변환
 
-**값:** `text`, `remove_from_start`, `remove_from_end`
+**식별자:** `uppercase_text`
 
-**예시:**
+텍스트를 대문자로 바꿉니다. `Hello World`는 `HELLO WORLD`가 됩니다. `&a`와 같은 [서식 코드](/text-formatting)는 그대로 유지됩니다.
 
-```
-{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
-```
-
-**출력:** `ello worl`
-
-## 문자열화 (`stringify`)
-
-**목적:** 모든 구문 문자를 이스케이프하여 텍스트를 문자열화합니다.
-
-**값:** `text`
-
-**예시:**
-
-```
-{"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
-```
-
-**출력:** `text with \{special\} \"characters\"`
-
-## 텍스트 현지화 (`local`)
-
-**목적:** 키에 대한 현지화된 텍스트를 가져옵니다.
-
-**값:** `key`
-
-**예시:**
-
-```
-{"placeholder":"local","values":{"key":"menu.singleplayer"}}
-```
-
-**출력:** `Singleplayer`
-
-## 웹 텍스트 (`webtext`)
-
-**목적:** 웹 URL에서 텍스트 콘텐츠를 가져옵니다.
-
-**값:** `link`
-
-**예시:**
-
-```
-{"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
-```
-
-**출력:** `Welcome to the server!`
-
-## 랜덤 텍스트 (`randomtext`)
-
-**목적:** 텍스트 파일, URL 또는 직접 입력한 일반 텍스트에서 무작위 한 줄을 반환합니다. 텍스트는 지정된 간격으로 변경됩니다. 파일과 URL 콘텐츠는 약 30초마다 새로고침되며, 직접 입력한 일반 텍스트는 다시 로드할 필요가 없기 때문에 캐시된 상태로 유지됩니다.
-
-**값:** `source`, `interval`
-
-플레이스홀더 값에서 `/config/...`는 `<game-directory>/config/...`를 의미합니다. 파일 시스템 루트 경로가 아닙니다. [리소스](./resources#local-resources)를 참조하세요.
-
-**예시:**
-
-```
-{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
-```
-매개변수:
-- `source`: 텍스트 줄의 소스(기존 `path` 매개변수를 대체)
-  - 파일 경로: `/config/fancymenu/assets/quotes.txt`
-  - URL: `https://example.com/quotes.txt`
-  - 일반 텍스트: `Line 1\nLine 2\nLine 3`
-- `interval`: 텍스트가 바뀌는 간격(초)
-
-이 플레이스홀더는 이제 세 가지 소스 유형을 지원합니다:
-1. **로컬 파일**: 게임 디렉터리의 텍스트 파일
-   ```
-   {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
-   ```
-2. **URL**: 인터넷의 원격 텍스트 파일
-   ```
-   {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
-   ```
-3. **일반 텍스트**: `\n`으로 줄을 구분한 직접 입력 텍스트
-   ```
-   {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
-   ```
-
-참고: `path` 대신 `source`를 사용하는 이전 플레이스홀더도 계속 작동합니다.
-
-## JSON 파서 (`json`)
-
-**목적:** 파일, URL 또는 직접 JSON 콘텐츠에서 JSON 데이터를 파싱하고 JSON 경로 표현식을 사용해 값을 추출합니다.
-
-**값:** `source`, `json_path`
-
-**예시:**
-
-```
-{"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
-```
-매개변수:
-- `source`: JSON 데이터의 소스
-  - 파일 경로: `/config/fancymenu/assets/data.json`
-  - URL: `https://api.example.com/data.json`
-  - 직접 JSON: `{"name":"Steve","level":42}`
-- `json_path`: 데이터를 추출할 JSON 경로 표현식
-
-이 플레이스홀더는 이제 세 가지 소스 유형을 지원합니다:
-1. **로컬 파일**: 게임 디렉터리의 JSON 파일
-   ```
-   {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
-   ```
-2. **URL**: API 또는 웹 서비스의 원격 JSON 데이터
-   ```
-   {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
-   ```
-3. **직접 JSON**: 인라인 JSON 콘텐츠
-   ```
-   {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
-   ```
-
-예시 JSON 경로:
-- `$.name` - 루트에서 "name" 필드를 가져옵니다
-- `$.player.level` - "player" 안의 중첩된 "level" 필드를 가져옵니다
-- `$.items[0].id` - 배열의 첫 번째 항목의 "id"를 가져옵니다
-- `$.scores.*` - "scores" 객체의 모든 값을 가져옵니다
-
-## 절대 파일/폴더 경로 (`absolute_path`)
-
-**목적:** 파일의 절대 경로를 반환합니다.
-
-**값:** `short_path`
-
-**예시:**
-
-```
-{"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
-```
-
-**출력:** `C:/Games/PrismLauncher/instances/My Pack/relative/path/to/file.txt`
-
-## 텍스트 문자 수 (`text_character_count`)
-
-**목적:** 주어진 텍스트의 문자 수를 반환합니다.
-
-**값:** `text`
-
-**예시:**
-
-```
-{"placeholder":"text_character_count","values":{"text":"Hello World!"}}
-```
-
-**출력:** `12`
-
-## 텍스트 너비 (`text_width`)
-
-**목적:** 렌더링했을 때 주어진 텍스트의 픽셀 너비를 반환합니다.
-
-**값:** `text`
-
-**예시:**
-
-```
-{"placeholder":"text_width","values":{"text":"Hello World!"}}
-```
-
-**출력:** `66`
-
-## 대문자 텍스트 (`uppercase_text`)
-
-**목적:** 입력 텍스트를 모두 대문자로 변환합니다.
-
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"uppercase_text","values":{"text":"Hello World"}}
 ```
 
-**출력:** `HELLO WORLD`
+### 소문자로 변환
 
-## 소문자 텍스트 (`lowercase_text`)
+**식별자:** `lowercase_text`
 
-**목적:** 입력 텍스트를 모두 소문자로 변환합니다.
+텍스트를 소문자로 바꿉니다. `HELLO WORLD`는 `hello world`가 됩니다. 서식 코드는 그대로 유지됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
-{"placeholder":"lowercase_text","values":{"text":"Hello World"}}
+{"placeholder":"lowercase_text","values":{"text":"HELLO WORLD"}}
 ```
 
-**출력:** `hello world`
+### 각 단어의 첫 글자를 대문자로
 
-## Title Case 텍스트 (`title_case_text`)
+**식별자:** `title_case_text`
 
-**목적:** 입력 텍스트를 Title Case로 변환합니다.
+각 단어의 첫 글자를 대문자로 바꿉니다. `hello world`는 `Hello World`가 됩니다. 서식 코드는 그대로 유지됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
 
-**출력:** `Hello World`
+### 문장 첫 글자를 대문자로
 
-## 문장 형식 텍스트 (`sentence_case_text`)
+**식별자:** `sentence_case_text`
 
-**목적:** 입력 텍스트를 문장 형식으로 변환합니다.
+각 문장의 첫 글자를 대문자로 바꿉니다. `hello world. this is fancymenu!`는 `Hello world. This is fancymenu!`가 됩니다. 서식 코드는 그대로 유지됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
 ```
 
-**출력:** `Hello world. This is fancymenu!`
+### 스네이크 케이스로 변환
 
-## 스네이크 케이스 텍스트 (`snake_case_text`)
+**식별자:** `snake_case_text`
 
-**목적:** 입력 텍스트를 `snake_case`로 변환합니다.
+소문자로 바꾸고 단어 사이에 `_`를 넣습니다. `Hello World`는 `hello_world`가 됩니다. 서식 코드는 제거됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
 
-**출력:** `hello_world`
+### 케밥 케이스로 변환
 
-## 케밥 케이스 텍스트 (`kebab_case_text`)
+**식별자:** `kebab_case_text`
 
-**목적:** 입력 텍스트를 `kebab-case`로 변환합니다.
+소문자로 바꾸고 단어 사이에 `-`를 넣습니다. `Hello World`는 `hello-world`가 됩니다. 서식 코드는 제거됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
 
-**출력:** `hello-world`
+### 대소문자 번갈아 표시
 
-## 교대 대소문자 텍스트 (`alternating_case_text`)
+**식별자:** `alternating_case_text`
 
-**목적:** 입력 텍스트를 교대 대소문자로 변환합니다.
+소문자와 대문자를 번갈아 표시합니다. `alternating case`는 `aLtErNaTiNg CaSe`가 됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
 
-**출력:** `aLtErNaTiNg CaSe`
+### 대소문자 반전
 
-## 토글 케이스 텍스트 (`toggle_case_text`)
+**식별자:** `toggle_case_text`
 
-**목적:** 입력 텍스트의 모든 글자의 대소문자를 뒤바꿉니다.
+소문자는 대문자로, 대문자는 소문자로 바꿉니다. `Toggle Case`는 `tOGGLE cASE`가 됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: 텍스트
 
 ```
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
 
-**출력:** `tOGGLE cASE`
+### 텍스트 앞뒤 공백 제거
 
-## Base64로 인코딩 (`base64_encode`)
+**식별자:** `trim_text`
 
-**목적:** 주어진 텍스트를 Base64로 인코딩합니다.
+텍스트의 시작과 끝에 있는 공백을 제거합니다. 텍스트 안쪽의 공백은 그대로 유지됩니다.
 
-**값:** `text`
+- `text`: 텍스트
 
-**예시:**
+```
+{"placeholder":"trim_text","values":{"text":"  Welcome!  "}}
+```
+
+### 텍스트 일부 자르기
+
+**식별자:** `crop_text`
+
+텍스트의 시작과 끝에서 지정한 수의 문자를 제거합니다. `hello world`에서 양쪽 끝의 문자 하나씩 제거하면 `ello worl`이 됩니다.
+
+- `text`: 텍스트
+- `remove_from_start`: 앞에서 제거할 문자 수
+- `remove_from_end`: 끝에서 제거할 문자 수
+
+```
+{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+```
+
+### 텍스트 나누기
+
+**식별자:** `split_text`
+
+텍스트를 나누고 그중 한 부분을 반환합니다. `Steve,Alex,Notch`를 `,`에서 나누면 1번 부분으로 `Alex`를 반환합니다.
+
+- `input`: 텍스트
+- `regex`: 정규식으로 지정하는 분리 지점입니다. `.`, `|`, `?`와 같은 문자는 `\.`처럼 앞에 `\`를 넣어야 합니다.
+- `max_parts`(선택 사항): 나눌 최대 부분 수입니다. 기본값인 `-1`은 일치하는 모든 위치에서 나눕니다.
+- `split_index`: 반환할 부분의 인덱스입니다. 첫 번째 부분은 `0`입니다.
+
+```
+{"placeholder":"split_text","values":{"input":"Steve,Alex,Notch","regex":",","max_parts":"-1","split_index":"1"}}
+```
+
+### 텍스트 바꾸기
+
+**식별자:** `replace_text`
+
+텍스트의 일부를 바꿉니다. `Hello World!`에서 `World`를 `FancyMenu`로 바꾸면 `Hello FancyMenu!`가 됩니다.
+
+- `text`: 텍스트
+- `search`: 찾을 내용
+- `replacement`(선택 사항): 찾은 내용을 대체할 텍스트입니다. 기본값은 빈 문자열이며, 이 경우 찾은 내용이 제거됩니다.
+- `use_regex`(선택 사항): `true`이면 `search`를 정규식으로 처리합니다. 이때 `replacement`의 `$1`, `$2` 등은 찾은 그룹을 나타냅니다. 기본값은 `false`입니다.
+- `replace_all`(선택 사항): `false`이면 첫 번째 일치 항목만 바꿉니다. 기본값은 `true`입니다.
+
+```
+{"placeholder":"replace_text","values":{"text":"Hello World!","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
+```
+
+### 조건에 따라 값 바꾸기
+
+**식별자:** `switch_case`
+
+값과 일치하는 조건의 결과를 반환합니다. 예시에서 변수 `difficulty_level`의 값이 `2`이면 `Hard Mode`를 반환합니다.
+
+- `value`: 확인할 값
+- `cases`: 값과 결과의 쌍입니다. 예: `1:Easy Mode,2:Hard Mode`. 값과 결과에는 `,` 또는 `:`를 넣을 수 없습니다.
+- `default`(선택 사항): 일치하는 조건이 없을 때 반환할 결과입니다. 지정하지 않으면 자리표시자는 그대로 유지됩니다.
+
+```
+{"placeholder":"switch_case","values":{"value":"$$difficulty_level","cases":"1:Easy Mode,2:Hard Mode","default":"Normal Mode"}}
+```
+
+### 텍스트 현지화
+
+**식별자:** `local`
+
+게임의 현재 언어에 맞는 현지화 키의 텍스트를 반환합니다. 예를 들어 `menu.singleplayer`는 `Singleplayer`로 표시됩니다. Minecraft 키, 모드 키, 직접 만든 키를 사용할 수 있습니다([현지화](/localization) 참조).
+
+- `key`: 현지화 키
+
+```
+{"placeholder":"local","values":{"key":"menu.singleplayer"}}
+```
+
+### 문자열로 변환
+
+**식별자:** `stringify`
+
+텍스트 안의 자리표시자를 먼저 바꾼 다음 `"`, `{`, `}` 앞에 `\`를 넣습니다. 이렇게 하면 웹사이트처럼 외부에서 가져온 텍스트가 자리표시자로 처리되는 것을 막을 수 있습니다.
+
+- `text`: 텍스트
+
+```
+{"placeholder":"stringify","values":{"text":"{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}"}}
+```
+
+## 데이터 및 파일
+
+이 항목은 **Advanced** 카테고리에 있습니다. 로컬 경로는 `/config/fancymenu/assets/news.txt`처럼 게임 폴더를 기준으로 하며, 게임 폴더 밖으로 이동할 수 없습니다([리소스](/resources#local-resources) 참조).
+
+### JSON 파서
+
+**식별자:** `json`
+
+JSON에서 값을 읽습니다. 결과가 여러 개면 한 줄에 하나씩 표시합니다.
+
+- `source`: JSON 텍스트, 게임 폴더에 있는 JSON 파일 또는 JSON 파일의 URL
+- `json_path`: `$.name` 또는 `$.players[0].name`처럼 값의 경로를 지정합니다. JSON 경로에 대한 자세한 내용은 [json.fancymenu.net](https://json.fancymenu.net)을 참조하세요.
+
+```
+{"placeholder":"json","values":{"source":"https://example.com/server_info.json","json_path":"$.news.title"}}
+```
+
+웹에서 가져온 JSON은 한 번 로드되며 FancyMenu를 다시 불러올 때 다시 로드됩니다. 파일의 변경 사항은 바로 반영됩니다.
+
+| 경로 | 반환 값 |
+|---|---|
+| `$.name` | 최상위의 `name` 값 |
+| `$.player.level` | `player` 안의 `level` 값 |
+| `$.items[0].id` | `items`의 첫 번째 항목에 있는 `id` 값 |
+| `$.scores.*` | `scores` 안의 모든 값 |
+
+### 파일 텍스트
+
+**식별자:** `file_text`
+
+파일 또는 URL의 텍스트를 반환합니다. 파일은 매초 다시 읽고 URL은 10초마다 다시 읽습니다. 로드 중이거나 읽을 수 없으면 빈 값을 반환합니다.
+
+- `path_or_url`: 게임 폴더에 있는 파일 또는 URL입니다. `.minecraft/`로 시작하는 경로는 기본 Minecraft 폴더를 가리킵니다.
+- `mode`(선택 사항): 전체 텍스트는 `all`, 마지막 줄만 가져오려면 `last`를 지정합니다. 기본값은 `all`입니다.
+- `separator`(선택 사항): 줄 사이에 넣을 텍스트입니다. 기본값은 줄바꿈인 `\n`입니다.
+- `last_lines`(선택 사항): `last` 모드에서 가져올 줄 수입니다. 기본값은 `1`입니다.
+
+```
+{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/changelog.txt","mode":"all","separator":"\n","last_lines":"1"}}
+```
+
+### 파일 크기
+
+**식별자:** `file_size`
+
+파일 크기를 바이트 단위로 반환합니다. 파일이 없으면 `0`을 반환합니다. `.minecraft/`로 시작하는 경로는 기본 Minecraft 폴더를 가리킵니다.
+
+- `path`: 파일 경로
+
+```
+{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/news.txt"}}
+```
+
+### 파일 MD5
+
+**식별자:** `file_md5`
+
+파일의 MD5 해시를 반환합니다. 예: `d41d8cd98f00b204e9800998ecf8427e`. 파일이 없으면 빈 값을 반환합니다. `.minecraft/`로 시작하는 경로는 기본 Minecraft 폴더를 가리킵니다.
+
+- `path`: 파일 경로
+
+```
+{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/menu_music.ogg"}}
+```
+
+### Base64 인코딩
+
+**식별자:** `base64_encode`
+
+텍스트를 Base64로 변환합니다. `Hello World`는 `SGVsbG8gV29ybGQ=`가 됩니다.
+
+- `text`: 텍스트
 
 ```
 {"placeholder":"base64_encode","values":{"text":"Hello World"}}
 ```
 
-**출력:** `SGVsbG8gV29ybGQ=`
+### Base64 디코딩
 
-## Base64에서 디코딩 (`base64_decode`)
+**식별자:** `base64_decode`
 
-**목적:** Base64 문자열을 일반 텍스트로 디코딩합니다.
+Base64를 텍스트로 변환합니다. `SGVsbG8gV29ybGQ=`는 `Hello World`가 됩니다.
 
-**값:** `text`
-
-**예시:**
+- `text`: Base64 텍스트
 
 ```
 {"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
 ```
 
-**출력:** `Hello World`
+### NBT 데이터 가져오기 (클라이언트 측)
 
-## 파일 텍스트 (`file_text`)
+**식별자:** `nbt_data_get`
 
-**목적:** 파일 또는 URL에서 텍스트 줄을 반환합니다. 모든 줄 또는 마지막 X줄만 반환할 수 있습니다.
+게임이 월드에 대해 알고 있는 정보에서 `/data get`과 같은 방식으로 NBT 데이터를 읽습니다. 빠르게 작동하지만 서버가 플레이어에게 모든 데이터를 보내는 것은 아닙니다.
 
-**값:** `path_or_url`, `mode`, `separator`, `last_lines`
-
-**예시:**
-
-```
-{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
-```
-매개변수:
-- `path_or_url`: 읽어올 파일 경로 또는 URL
-- `mode`: `"all"`(모든 줄 반환) 또는 `"last"`(마지막 X줄만 반환)
-- `separator`: 줄 사이에 사용할 텍스트(기본값: `"\n"`)
-- `last_lines`: `mode`가 `"last"`일 때 반환할 줄 수(기본값: `"1"`)
-
-**출력:**
-
-```text
-First line
-Second line
-```
-
-## 클립보드 내용 (`clipboard_content`)
-
-**목적:** 시스템 클립보드에 저장된 현재 텍스트 내용을 반환합니다.
-
-**값:** 없음
-
-**예시:**
-
-```
-{"placeholder":"clipboard_content"}
-```
-
-**출력:** `Hello from the clipboard`
-
-## 텍스트 바꾸기 (`replace_text`)
-
-**목적:** 리터럴 텍스트 또는 정규식을 사용해 문자열의 텍스트를 바꿉니다.
-
-**값:** `text`, `search`, `replacement`, `use_regex`, `replace_all`
-
-**예시:**
-
-```
-{"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
-```
-매개변수:
-- `text`: 처리할 입력 텍스트
-- `search`: 찾을 텍스트 또는 정규식 패턴
-- `replacement`: 대체 텍스트
-- `use_regex`: 정규식을 사용할지(`"true"`) 또는 리터럴 일치로 찾을지(`"false"`)
-- `replace_all`: 모든 항목을 바꿀지(`"true"`) 아니면 첫 번째만 바꿀지(`"false"`)
-
-**출력:** `Hello FancyMenu! This is a test.`
-
-## 분기 처리 (`switch_case`)
-
-**목적:** 값에 따라 switch-case 작업을 수행합니다.
-
-**값:** `value`, `cases`, `default`
-
-**예시:**
-
-```
-{"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
-```
-
-**출력:** `first case` (값이 1인 경우)
-
-## 변수 값 가져오기(FM 변수) (`getvariable`)
-
-**목적:** 이전에 저장한 변수의 값을 가져옵니다.
-
-**값:** `name`
-
-**예시:**
-
-```
-{"placeholder":"getvariable","values":{"name":"some_variable"}}
-```
-
-**출력:** `42`
-
-## NBT 데이터 가져오기 (`nbt_data_get`)
-
-**목적:** 클라이언트에서 NBT 데이터를 가져옵니다(`/data get` 명령과 유사). 서버에 연결되어 있고 서버 측의 확정된 값이 필요하면 서버용 버전 `nbt_data_get_server`를 사용하세요.
-
-**값:** `source_type`, `entity_selector`, `nbt_path`, `scale`, `return_type`
-
-**예시:**
+- `source_type`: `entity` 또는 `block`
+- `entity_selector`: `entity`일 때 사용할 선택자입니다. `@s`(자신), `@p`, `@e[type=minecraft:horse,limit=1,sort=nearest]`와 같은 선택자나 엔티티의 이름 또는 UUID를 지정할 수 있습니다. 선택자에는 `type`, `name`, `tag`, `limit`, `sort`, `distance`, `x`, `y`, `z`, `dx`, `dy`, `dz`를 사용할 수 있습니다. 첫 번째로 일치하는 대상이 선택됩니다.
+- `block_pos`: `block`일 때 상자와 같은 블록 엔티티의 위치입니다. 예: `120 64 -35`
+- `nbt_path`: `foodLevel` 또는 `Inventory[0].id`와 같은 NBT 경로
+- `scale`(선택 사항): 숫자에 곱할 값입니다. 기본값은 `1.0`입니다.
+- `return_type`(선택 사항): `value`(숫자와 텍스트를 그대로 반환), `string`, `snbt` 또는 `json`입니다. 기본값은 `value`입니다.
 
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
-매개변수:
-- `source_type`: `"entity"` 또는 `"block"`
-- `entity_selector`: `@s`, `@p`, `@e` 같은 엔티티 선택자 또는 UUID/이름(엔티티용)
-- `block_pos`: `"x y z"` 형식의 블록 위치(블록용)
-- `nbt_path`: 가져올 NBT 경로
-- `scale`: 숫자 값에 대한 선택적 배율(기본값: `"1.0"`)
-- `return_type`: 데이터를 반환하는 방식:
-  - `"value"`: 기본값, 값 반환(숫자에는 선택적 스케일 적용)
-  - `"string"`: 실제 NBT 데이터를 문자열로 반환
-  - `"snbt"`: SNBT(서식이 적용된 NBT)로 반환
-  - `"json"`: JSON 형식 컴포넌트로 반환(compound 태그용)
 
-**출력:** `20` (배고픔 수치)
+### NBT 데이터 가져오기 (서버 측)
 
-## NBT 데이터 가져오기(서버 측) (`nbt_data_get_server`)
+**식별자:** `nbt_data_get_server`
 
-**목적:** 서버 측에서 패킷을 사용해 NBT 데이터를 조회하고 결과를 잠시 캐시합니다. 값은 클라이언트 측 플레이스홀더와 동일합니다.
+`/data get`과 동일하게 서버에서 NBT 데이터를 읽습니다. 서버에 FancyMenu가 설치되어 있어야 합니다. 싱글플레이에서는 항상 작동합니다. 서버가 응답하기 전까지는 빈 값을 반환하며, 응답 후에는 약 100밀리초마다 갱신됩니다.
 
-**값:** `source_type`, `entity_selector`, `block_pos`, `storage_id`, `nbt_path`, `scale`, `return_type`
-
-**예시:**
+- `source_type`: `entity`, `block` 또는 `storage`
+- `entity_selector`: `entity`일 때 사용할 선택자입니다. `@s`, `@e[type=minecraft:villager,limit=1,sort=nearest]`처럼 `/data get`에서 엔티티 하나를 찾는 선택자를 지정합니다.
+- `block_pos`: `block`일 때 위치입니다. 예: `120 64 -35`, `~ ~-1 ~` 또는 `^ ^ ^1`
+- `storage_id`: `storage`일 때 `mypack:quests`와 같은 명령 저장소 ID
+- `nbt_path`(선택 사항): NBT 경로입니다. 지정하지 않으면 모든 데이터를 가져옵니다.
+- `scale`(선택 사항): 숫자에 곱할 값입니다. 기본값은 `1.0`입니다.
+- `return_type`(선택 사항): `value`, `string`, `snbt` 또는 `json`입니다. 기본값은 `value`입니다.
 
 ```
-{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
+{"placeholder":"nbt_data_get_server","values":{"source_type":"storage","storage_id":"mypack:quests","nbt_path":"completed","return_type":"value"}}
 ```
 
-**출력:** `minecraft:diamond_sword`
+## 오디오
 
-## 마지막 사망 메시지 (`lastdeathmessage`)
+열려 있는 메뉴의 [오디오 요소](/elements#audio)를 읽습니다. 레이아웃 편집기에서 오디오 요소를 마우스 오른쪽 버튼으로 클릭하고 **Copy Element ID**를 선택해 ID를 복사하세요.
 
-**목적:** 클라이언트 플레이어의 마지막으로 기록된 사망 메시지를 반환합니다. 원시 JSON 텍스트 컴포넌트를 얻으려면 `as_json_component`를 `"true"`로 설정하세요.
+### 오디오 요소 볼륨
 
-**값:** `as_json_component`
+**식별자:** `audio_element_vol`
 
-**예시:**
+오디오 요소의 볼륨입니다. `0.0`은 0%, `1.0`은 100%입니다.
+
+- `element_identifier`: 오디오 요소의 ID
+
+```
+{"placeholder":"audio_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 현재 오디오 트랙
+
+**식별자:** `audio_element_current_track`
+
+현재 재생 중인 트랙의 파일 이름입니다. 예: `menu_theme.ogg`. 재생 중인 트랙이 없으면 `---`를 반환합니다.
+
+- `element_identifier`: 오디오 요소의 ID
+- `display_name_mappings`(선택 사항): 파일 이름 대신 표시할 이름입니다. 파일 이름과 표시 이름 사이는 `=>`, 각 쌍 사이는 `%:%`로 구분합니다.
+
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","display_name_mappings":"menu_theme.ogg=>Menu Theme%:%credits.ogg=>Credits Theme"}}
+```
+
+### 오디오 길이
+
+**식별자:** `audio_duration`
+
+현재 트랙의 길이입니다. 예: `03:45`. 로드 중에는 `00:00`을 반환합니다.
+
+- `element_identifier`: 오디오 요소의 ID
+
+```
+{"placeholder":"audio_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 오디오 재생 시간
+
+**식별자:** `audio_playtime`
+
+현재 트랙의 재생 위치입니다. 예: `01:30`. 재생이 중지되면 `00:00`(또는 `0`)을 반환합니다.
+
+- `element_identifier`: 오디오 요소의 ID
+- `show_percentage`(선택 사항): `true`이면 진행률을 `0`부터 `100`까지 표시합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"audio_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false"}}
+```
+
+### 오디오 재생 상태
+
+**식별자:** `audio_playing_state`
+
+오디오 요소가 재생 중이면 `true`, 일시 정지되었거나 정지되어 있으면 `false`를 반환합니다.
+
+- `element_identifier`: 오디오 요소의 ID
+
+```
+{"placeholder":"audio_playing_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+## 클라이언트
+
+게임과 설치된 모드에 관한 자리표시자입니다.
+
+### Minecraft 버전
+
+**식별자:** `mcversion`
+
+Minecraft 버전입니다. 예: `1.21.1`.
+
+```
+{"placeholder":"mcversion"}
+```
+
+### 모드 로더 이름
+
+**식별자:** `loadername`
+
+모드 로더 이름입니다. 예: `Fabric` 또는 `NeoForge`.
+
+```
+{"placeholder":"loadername"}
+```
+
+### 모드 로더 버전
+
+**식별자:** `loaderver`
+
+모드 로더 버전입니다. 예: `0.16.14`.
+
+```
+{"placeholder":"loaderver"}
+```
+
+### 모드 버전
+
+**식별자:** `modversion`
+
+설치된 모드의 버전입니다. 예: `3.11.0`. 모드가 설치되지 않았다면 `0.0.0`을 반환합니다.
+
+- `modid`: `fancymenu`와 같은 모드 ID
+
+```
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+```
+
+### 활성 모드 수
+
+**식별자:** `loadedmods`
+
+로드된 모드 수입니다. 라이브러리와 다른 모드 안에 포함된 모드도 계산되므로 모드 파일 수보다 큰 경우가 많습니다.
+
+```
+{"placeholder":"loadedmods"}
+```
+
+### 전체 모드 수
+
+**식별자:** `totalmods`
+
+게임을 시작할 때마다 `mods` 폴더의 `.jar` 파일을 기준으로 대략적인 설치 모드 수를 계산합니다. **활성 모드 수**보다 적은 값은 반환하지 않습니다.
+
+```
+{"placeholder":"totalmods"}
+```
+
+### 월드 로딩 진행률
+
+**식별자:** `world_load_progress`
+
+월드 로딩 화면이 표시되는 동안의 로딩 진행률을 `0`부터 `100`까지 반환합니다. 로딩 바에 유용합니다. 다른 화면에서는 `0`을 반환합니다.
+
+```
+{"placeholder":"world_load_progress"}
+```
+
+### Minecraft 옵션 값
+
+**식별자:** `minecraft_option_value`
+
+게임 폴더의 `options.txt` 파일에 저장된 Minecraft 옵션 값입니다. 예를 들어 `renderDistance`의 값은 `12`일 수 있습니다. 해당 이름의 옵션이 없으면 빈 값을 반환합니다.
+
+- `name`: `options.txt`에 있는 옵션 이름
+
+```
+{"placeholder":"minecraft_option_value","values":{"name":"renderDistance"}}
+```
+
+### 키 지정 키
+
+**식별자:** `keybind_key`
+
+조작 설정 화면에 표시되는 현재 키 지정 키입니다. 예를 들어 점프 키는 `Space`입니다. 해당 이름의 키 지정이 없으면 빈 값을 반환합니다.
+
+- `keybind`: `key.jump` 또는 `key.inventory`와 같은 키 지정 이름입니다. 이름은 `options.txt`에 있으며 앞의 `key_`는 제외합니다. 예: `key_key.jump`는 `key.jump`입니다.
+
+```
+Press {"placeholder":"keybind_key","values":{"keybind":"key.inventory"}} to open your inventory!
+```
+
+### 마지막으로 접속한 월드 또는 서버
+
+**식별자:** `last_world_server`
+
+플레이어가 마지막으로 접속한 월드 또는 서버입니다. 서버는 `play.example.net:25565`와 같이 표시됩니다.
+
+- `type`: 월드와 서버 모두는 `both`, 월드만은 `world`, 서버만은 `server`입니다. `world` 또는 `server`를 지정했을 때 마지막 접속 대상이 다른 유형이면 빈 값을 반환합니다.
+- `full_world_path`(선택 사항): `false`이면 `New World`처럼 월드 이름만 반환합니다. `true`이면 월드 폴더 경로를 반환합니다. 기본값은 `true`입니다.
+
+```
+{"placeholder":"last_world_server","values":{"type":"world","full_world_path":"false"}}
+```
+
+## GUI
+
+열려 있는 화면과 그 요소에 관한 자리표시자입니다. 요소 자리표시자에는 요소 ID가 필요합니다. 레이아웃 편집기에서 요소를 마우스 오른쪽 버튼으로 클릭하고 **Copy Element ID**를 선택하세요.
+
+### 화면 너비
+
+**식별자:** `guiwidth`
+
+GUI 픽셀 단위의 화면 너비입니다. 모니터의 실제 픽셀 수가 아니라 요소에 적용되는 크기입니다.
+
+```
+{"placeholder":"guiwidth"}
+```
+
+### 화면 높이
+
+**식별자:** `guiheight`
+
+GUI 픽셀 단위의 화면 높이입니다.
+
+```
+{"placeholder":"guiheight"}
+```
+
+### GUI 배율
+
+**식별자:** `guiscale`
+
+게임의 GUI 배율입니다. 예: `2`.
+
+```
+{"placeholder":"guiscale"}
+```
+
+### 현재 화면 식별자
+
+**식별자:** `screenid`
+
+열려 있는 화면의 [식별자](/screen-identifiers)입니다. 예: `title_screen`. 열린 화면이 없으면 빈 값을 반환합니다.
+
+```
+{"placeholder":"screenid"}
+```
+
+### 요소 너비
+
+**식별자:** `elementwidth`
+
+GUI 픽셀 단위의 요소 너비입니다. 해당 ID의 요소가 없으면 `1`을 반환합니다.
+
+- `id`: 요소 ID
+
+```
+{"placeholder":"elementwidth","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 요소 높이
+
+**식별자:** `elementheight`
+
+GUI 픽셀 단위의 요소 높이입니다. 해당 ID의 요소가 없으면 `1`을 반환합니다.
+
+- `id`: 요소 ID
+
+```
+{"placeholder":"elementheight","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 요소 X 위치
+
+**식별자:** `elementposx`
+
+화면 왼쪽을 기준으로 GUI 픽셀 단위로 표시한 요소 왼쪽 가장자리의 위치입니다. 해당 ID의 요소가 없으면 `1`을 반환합니다.
+
+- `id`: 요소 ID
+
+```
+{"placeholder":"elementposx","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 요소 Y 위치
+
+**식별자:** `elementposy`
+
+화면 위쪽을 기준으로 GUI 픽셀 단위로 표시한 요소 위쪽 가장자리의 위치입니다. 해당 ID의 요소가 없으면 `1`을 반환합니다.
+
+- `id`: 요소 ID
+
+```
+{"placeholder":"elementposy","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 텍스트 요소 콘텐츠 높이
+
+**식별자:** `text_element_content_height`
+
+[텍스트 요소](/text-in-menus)의 텍스트 전체를 스크롤 없이 표시하는 데 필요한 높이입니다. 줄 바꿈, 텍스트 배율, 줄 간격을 계산하므로 텍스트 크기에 맞는 배경을 만들 때 유용합니다. 텍스트 요소가 아니면 `0`을 반환합니다.
+
+- `element_identifier`: 텍스트 요소 ID
+
+```
+{"placeholder":"text_element_content_height","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 요소 스크롤 위치
+
+**식별자:** `scroll_area_scroll_position`
+
+[스크롤 가능 영역](/scrollable-areas) 또는 텍스트 요소의 콘텐츠가 시작점에서부터 GUI 픽셀 단위로 얼마나 스크롤되었는지 나타냅니다. 다른 요소에서는 `0`을 반환합니다.
+
+- `element_identifier`: 요소 ID
+- `axis`: `vertical` 또는 `horizontal`입니다. 그 외의 값은 요소의 스크롤 방향을 나타냅니다.
+
+```
+{"placeholder":"scroll_area_scroll_position","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### 요소 스크롤 비율
+
+**식별자:** `scroll_area_scroll_percent`
+
+스크롤 가능 영역 또는 텍스트 요소의 콘텐츠가 시작점(`0`)부터 끝점(`100`)까지 얼마나 스크롤되었는지 나타냅니다. 다른 요소이거나 스크롤할 내용이 없으면 `0`을 반환합니다.
+
+- `element_identifier`: 요소 ID
+- `axis`: `vertical` 또는 `horizontal`입니다. 그 외의 값은 요소의 스크롤 방향을 나타냅니다.
+
+```
+{"placeholder":"scroll_area_scroll_percent","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### 요소 스크롤 콘텐츠 크기
+
+**식별자:** `scroll_area_content_size`
+
+스크롤 가능 영역 또는 텍스트 요소의 콘텐츠 크기입니다. `vertical`이면 높이, `horizontal`이면 너비를 반환합니다. 다른 요소에서는 `0`을 반환합니다.
+
+- `element_identifier`: 요소 ID
+- `axis`: `vertical` 또는 `horizontal`입니다. 그 외의 값은 요소의 스크롤 방향을 나타냅니다.
+
+```
+{"placeholder":"scroll_area_content_size","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### 텍스트 입력 필드 값
+
+**식별자:** `text_input_field_value`
+
+[텍스트 입력 필드](/elements#text-input-field) 또는 원래 화면의 텍스트 필드에 입력된 내용입니다. 요소가 텍스트 필드가 아니면 빈 값을 반환합니다.
+
+- `element_identifier`: 요소 ID
+
+```
+{"placeholder":"text_input_field_value","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 바닐라 위젯 레이블/텍스트
+
+**식별자:** `vanillabuttonlabel`
+
+`Options...`와 같이 원래 화면의 버튼 또는 다른 위젯에 표시되는 레이블입니다. 레이아웃 편집기에서 위젯을 마우스 오른쪽 버튼으로 클릭하고 **Copy Widget Locator**를 선택해 위치 식별자를 복사하세요.
+
+- `locator`: 위젯의 위치 식별자
+
+```
+{"placeholder":"vanillabuttonlabel","values":{"locator":"title_screen:mc_titlescreen_options_button"}}
+```
+
+### 마우스 X 위치
+
+**식별자:** `mouseposx`
+
+화면 왼쪽을 기준으로 GUI 픽셀 단위로 표시한 마우스 위치입니다. 레이아웃 편집기에서는 항상 `10`을 반환하므로 마우스를 따라가는 요소를 편집할 수 있는 위치에 고정합니다.
+
+```
+{"placeholder":"mouseposx"}
+```
+
+### 마우스 Y 위치
+
+**식별자:** `mouseposy`
+
+화면 위쪽을 기준으로 GUI 픽셀 단위로 표시한 마우스 위치입니다. 레이아웃 편집기에서는 항상 `10`을 반환합니다.
+
+```
+{"placeholder":"mouseposy"}
+```
+
+### 초당 클릭 수
+
+**식별자:** `clicks_per_second`
+
+지난 1초 동안 마우스 버튼을 클릭한 횟수입니다.
+
+- `mouse_button`(선택 사항): `left` 또는 `right`입니다. 기본값은 `left`입니다.
+
+```
+{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
+```
+
+## 플레이어
+
+### 플레이어 이름
+
+**식별자:** `playername`
+
+플레이어 이름입니다. 예: `Steve`.
+
+```
+{"placeholder":"playername"}
+```
+
+### 플레이어 UUID
+
+**식별자:** `playeruuid`
+
+플레이어의 UUID입니다. 예: `c8cde7fe-7ced-11eb-9439-0242ac130002`.
+
+```
+{"placeholder":"playeruuid"}
+```
+
+### 마지막 사망 메시지
+
+**식별자:** `lastdeathmessage`
+
+게임을 시작한 뒤 플레이어가 마지막으로 사망했을 때의 메시지입니다. 예: `Steve was slain by Zombie`. 첫 사망 전에는 빈 값을 반환합니다.
+
+- `as_json_component`(선택 사항): `true`이면 색상 정보를 포함한 JSON 텍스트 컴포넌트로 반환합니다. 기본값은 `false`입니다.
 
 ```
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
 
-**출력:** `Steve was slain by Zombie`
+## 실시간
 
-## 실행 시간 (`uptime_duration`)
+컴퓨터의 현재 시간을 기준으로 합니다. 날짜 및 시간 관련 자리표시자에는 선택 사항인 `timezone` 값이 있습니다. 컴퓨터의 시간대는 `system`(기본값)으로 지정하거나 `UTC`, `Europe/Berlin`, `America/New_York`와 같은 ID를 사용할 수 있습니다. 모든 ID는 [nodatime.org/TimeZones](https://nodatime.org/TimeZones)를 참조하세요.
 
-**목적:** FancyMenu가 로드된 시간을 반환합니다. 기본값은 초 단위이며, 밀리초를 받으려면 `output_as_millis`를 `"true"`로 설정하세요.
+### 실시간 연도
 
-**값:** `output_as_millis`
+**식별자:** `realtimeyear`
 
-**예시:**
+연도입니다. 예: `2026`.
 
 ```
-{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+{"placeholder":"realtimeyear","values":{"timezone":"system"}}
 ```
 
-**출력:** `742` (로드 이후 초)
+### 실시간 월
 
-## 월드 저장 이름 (`level_save_names`)
+**식별자:** `realtimemonth`
 
-**목적:** 선택한 구분자로 연결된 모든 로컬 월드 저장 이름을 나열합니다. 클라이언트 스레드에서 실행됩니다.
+월입니다. `01`부터 `12`까지 표시됩니다.
 
-**값:** `separator`
+```
+{"placeholder":"realtimemonth","values":{"timezone":"system"}}
+```
 
-**예시:**
+### 실시간 날짜
+
+**식별자:** `realtimeday`
+
+한 달 중 날짜입니다. `01`부터 `31`까지 표시됩니다.
+
+```
+{"placeholder":"realtimeday","values":{"timezone":"system"}}
+```
+
+### 실시간 시
+
+**식별자:** `realtimehour`
+
+시각의 시 부분입니다. `00`부터 `23`까지 표시됩니다.
+
+- `twelve_hour_format`(선택 사항): `true`이면 `01`부터 `12`까지 표시합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"Europe/Berlin"}}
+```
+
+### 실시간 분
+
+**식별자:** `realtimeminute`
+
+분입니다. `00`부터 `59`까지 표시됩니다.
+
+```
+{"placeholder":"realtimeminute","values":{"timezone":"system"}}
+```
+
+### 실시간 초
+
+**식별자:** `realtimesecond`
+
+초입니다. `00`부터 `59`까지 표시됩니다.
+
+```
+{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+```
+
+### 현재 시각(밀리초, Unix 타임스탬프)
+
+**식별자:** `unix_time`
+
+1970년 1월 1일(UTC) 이후 경과한 밀리초입니다. 예: `1732456789012`. 타이머에 유용합니다. 값을 변수에 저장한 뒤 계산기를 사용해 나중에 얻은 값에서 빼면 됩니다.
+
+```
+{"placeholder":"unix_time"}
+```
+
+## 서버
+
+서버 목록처럼 서버에 상태를 요청합니다. 사용자 지정 화면이 열려 있는 동안 FancyMenu는 30초마다 요청합니다. 첫 응답을 받을 때까지 서버는 오프라인으로 간주됩니다.
+
+- `ip`: 서버 주소입니다. 기본 포트가 아니라면 포트도 포함합니다. 예: `play.example.net` 또는 `play.example.net:25566`
+
+### 서버 상태
+
+**식별자:** `serverstatus`
+
+온라인이면 초록색 `Online`, 오프라인이면 빨간색 `Offline`을 표시합니다.
+
+```
+{"placeholder":"serverstatus","values":{"ip":"play.example.net"}}
+```
+
+### 서버 플레이어 수
+
+**식별자:** `serverplayercount`
+
+온라인 플레이어 수와 최대 플레이어 수를 표시합니다. 예: `12/100`. 서버가 응답하기 전까지는 `0/0`을 반환합니다.
+
+```
+{"placeholder":"serverplayercount","values":{"ip":"play.example.net"}}
+```
+
+### 서버 MOTD
+
+**식별자:** `servermotd`
+
+서버의 오늘의 메시지 중 한 줄을 반환합니다.
+
+- `line`: `1` 또는 `2`
+
+```
+{"placeholder":"servermotd","values":{"ip":"play.example.net","line":"1"}}
+```
+
+### 서버 핑
+
+**식별자:** `serverping`
+
+서버까지의 핑을 밀리초 단위로 표시합니다. 예: `54`. 오프라인 상태에서는 `-1`을 반환합니다.
+
+```
+{"placeholder":"serverping","values":{"ip":"play.example.net"}}
+```
+
+### 서버 버전
+
+**식별자:** `serverversion`
+
+서버의 Minecraft 버전입니다. 예: `1.21.1`. 일부 서버는 여기에 자체 텍스트를 표시합니다. 서버가 응답하기 전까지는 `---`를 반환합니다.
+
+```
+{"placeholder":"serverversion","values":{"ip":"play.example.net"}}
+```
+
+## 비디오
+
+열려 있는 메뉴의 [비디오 요소와 비디오 메뉴 배경](/video)을 읽습니다. 비디오 요소의 경우 레이아웃 편집기에서 요소를 마우스 오른쪽 버튼으로 클릭하고 **Copy Element ID**를 선택하세요. 배경의 경우 편집기 배경을 마우스 오른쪽 버튼으로 클릭하고 **Copy Background Identifier**를 선택하세요.
+
+### 비디오 요소 볼륨
+
+**식별자:** `video_element_vol`
+
+비디오 요소의 볼륨입니다. `0.0`은 0%, `1.0`은 100%입니다.
+
+- `element_identifier`: 비디오 요소의 ID
+
+```
+{"placeholder":"video_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 비디오 요소 길이
+
+**식별자:** `video_element_duration`
+
+비디오 요소의 영상 길이입니다. 예: `02:00`. 로드 중에는 `00:00`(또는 `0`)을 반환합니다.
+
+- `element_identifier`: 비디오 요소의 ID
+- `output_as_timestamp`(선택 사항): `true`이면 밀리초로 반환합니다. 예: `120000`. 기본값은 `false`입니다.
+
+```
+{"placeholder":"video_element_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","output_as_timestamp":"false"}}
+```
+
+### 비디오 요소 재생 시간
+
+**식별자:** `video_element_playtime`
+
+비디오 요소 영상의 현재 재생 위치입니다. 예: `00:45`. 로드 중에는 `00:00`(또는 `0`)을 반환합니다.
+
+- `element_identifier`: 비디오 요소의 ID
+- `show_percentage`(선택 사항): `true`이면 진행률을 `0`부터 `100`까지 표시합니다. 기본값은 `false`입니다.
+- `output_as_timestamp`(선택 사항): `true`이면 밀리초로 반환합니다. 둘 다 `true`이면 `show_percentage`가 우선합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"video_element_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false","output_as_timestamp":"false"}}
+```
+
+### 비디오 요소 일시 정지 상태
+
+**식별자:** `video_element_paused_state`
+
+비디오 요소가 일시 정지되어 있으면 `true`, 그렇지 않으면 `false`를 반환합니다.
+
+- `element_identifier`: 비디오 요소의 ID
+
+```
+{"placeholder":"video_element_paused_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 비디오 배경 볼륨
+
+**식별자:** `video_background_vol`
+
+비디오 메뉴 배경의 볼륨입니다. `0.0`은 0%, `1.0`은 100%입니다.
+
+- `background_identifier`: 메뉴 배경의 식별자
+
+```
+{"placeholder":"video_background_vol","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+### 비디오 배경 길이
+
+**식별자:** `video_background_duration`
+
+메뉴 배경 영상의 길이입니다. 예: `03:00`. 로드 중에는 `00:00`(또는 `0`)을 반환합니다.
+
+- `background_identifier`: 메뉴 배경의 식별자
+- `output_as_timestamp`(선택 사항): `true`이면 밀리초로 반환합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"video_background_duration","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","output_as_timestamp":"false"}}
+```
+
+### 비디오 배경 재생 시간
+
+**식별자:** `video_background_playtime`
+
+메뉴 배경 영상의 현재 재생 위치입니다. 예: `01:00`. 로드 중에는 `00:00`(또는 `0`)을 반환합니다.
+
+- `background_identifier`: 메뉴 배경의 식별자
+- `show_percentage`(선택 사항): `true`이면 진행률을 `0`부터 `100`까지 표시합니다. 기본값은 `false`입니다.
+- `output_as_timestamp`(선택 사항): `true`이면 밀리초로 반환합니다. 둘 다 `true`이면 `show_percentage`가 우선합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"video_background_playtime","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","show_percentage":"true","output_as_timestamp":"false"}}
+```
+
+### 비디오 배경 일시 정지 상태
+
+**식별자:** `video_background_paused_state`
+
+비디오 메뉴 배경이 일시 정지되어 있으면 `true`, 그렇지 않으면 `false`를 반환합니다.
+
+- `background_identifier`: 메뉴 배경의 식별자
+
+```
+{"placeholder":"video_background_paused_state","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+## 월드: 플레이어 능력치
+
+**World** 카테고리는 플레이 중인 월드에 관한 항목입니다. 대부분의 자리표시자는 월드가 로드되어 있어야 작동합니다. 월드가 로드되지 않았으면 `0`, `0.0` 또는 빈 값을 반환합니다.
+
+### 현재 플레이어 체력
+
+**식별자:** `current_player_health`
+
+플레이어의 체력입니다. 예: `20.0`. 하트 하나는 `2.0`입니다.
+
+```
+{"placeholder":"current_player_health"}
+```
+
+### 플레이어 최대 체력
+
+**식별자:** `max_player_health`
+
+플레이어의 최대 체력입니다. 예: `20.0`.
+
+```
+{"placeholder":"max_player_health"}
+```
+
+### 현재 플레이어 체력(백분율)
+
+**식별자:** `current_player_health_percent`
+
+플레이어의 체력을 백분율로 표시합니다. 범위는 `0`부터 `100`입니다.
+
+```
+{"placeholder":"current_player_health_percent"}
+```
+
+### 현재 플레이어 흡수 체력
+
+**식별자:** `current_player_absorption_health`
+
+플레이어의 흡수 체력(황금 하트)입니다. 예: `4.0`.
+
+```
+{"placeholder":"current_player_absorption_health"}
+```
+
+### 플레이어 최대 흡수 체력
+
+**식별자:** `max_player_absorption_health`
+
+플레이어의 최대 흡수 체력입니다. 예: `4.0`.
+
+```
+{"placeholder":"max_player_absorption_health"}
+```
+
+### 현재 플레이어 흡수 체력(백분율)
+
+**식별자:** `current_player_absorption_health_percent`
+
+플레이어의 흡수 체력을 백분율로 표시합니다. 범위는 `0`부터 `100`입니다.
+
+```
+{"placeholder":"current_player_absorption_health_percent"}
+```
+
+### 현재 플레이어 허기
+
+**식별자:** `current_player_hunger`
+
+플레이어의 허기 수치입니다. 범위는 `0.0`부터 `20.0`입니다.
+
+```
+{"placeholder":"current_player_hunger"}
+```
+
+### 플레이어 최대 허기
+
+**식별자:** `max_player_hunger`
+
+플레이어의 최대 허기 수치입니다. 항상 `20.0`입니다.
+
+```
+{"placeholder":"max_player_hunger"}
+```
+
+### 현재 플레이어 허기(백분율)
+
+**식별자:** `current_player_hunger_percent`
+
+플레이어의 허기 수치를 백분율로 표시합니다. 범위는 `0`부터 `100`입니다.
+
+```
+{"placeholder":"current_player_hunger_percent"}
+```
+
+### 현재 플레이어 포만감
+
+**식별자:** `current_player_hunger_saturation`
+
+플레이어의 포만감입니다. 예: `5.0`. 포만감이 모두 소모된 뒤에 허기가 줄어듭니다.
+
+```
+{"placeholder":"current_player_hunger_saturation"}
+```
+
+### 현재 플레이어 방어력
+
+**식별자:** `current_player_armor`
+
+플레이어의 방어력 수치입니다. 범위는 `0.0`부터 `20.0`입니다.
+
+```
+{"placeholder":"current_player_armor"}
+```
+
+### 플레이어 최대 방어력
+
+**식별자:** `max_player_armor`
+
+방어력 막대의 최대 수치입니다. 항상 `20.0`입니다.
+
+```
+{"placeholder":"max_player_armor"}
+```
+
+### 현재 플레이어 방어력(백분율)
+
+**식별자:** `current_player_armor_percent`
+
+플레이어의 방어력을 백분율로 표시합니다. 범위는 `0`부터 `100`입니다.
+
+```
+{"placeholder":"current_player_armor_percent"}
+```
+
+### 플레이어 방어 강도
+
+**식별자:** `player_armor_toughness`
+
+플레이어의 방어 강도입니다. 다이아몬드 방어구를 모두 착용하면 `8.0`과 같은 값이 됩니다.
+
+```
+{"placeholder":"player_armor_toughness"}
+```
+
+### 현재 플레이어 산소 수치
+
+**식별자:** `current_player_oxygen`
+
+물속에서 플레이어가 사용할 수 있는 공기량입니다. 범위는 `0.0`부터 `300.0`입니다.
+
+```
+{"placeholder":"current_player_oxygen"}
+```
+
+### 플레이어 최대 산소 수치
+
+**식별자:** `max_player_oxygen`
+
+플레이어의 최대 공기량입니다. 예: `300.0`.
+
+```
+{"placeholder":"max_player_oxygen"}
+```
+
+### 현재 플레이어 산소 수치(백분율)
+
+**식별자:** `current_player_oxygen_percent`
+
+플레이어의 공기량을 백분율로 표시합니다. 범위는 `0`부터 `100`입니다.
+
+```
+{"placeholder":"current_player_oxygen_percent"}
+```
+
+### 현재 플레이어 레벨
+
+**식별자:** `current_player_level`
+
+플레이어의 경험치 레벨입니다. 예: `30`.
+
+```
+{"placeholder":"current_player_level"}
+```
+
+### 현재 플레이어 경험치
+
+**식별자:** `current_player_exp`
+
+플레이어의 총 경험치입니다. 예: `1395.0`. 레벨을 의미하지는 않습니다.
+
+```
+{"placeholder":"current_player_exp"}
+```
+
+### 플레이어 경험치 진행률(백분율)
+
+**식별자:** `current_player_exp_progress`
+
+경험치 막대가 얼마나 찼는지 `0`부터 `100`까지 표시합니다.
+
+```
+{"placeholder":"current_player_exp_progress"}
+```
+
+### 플레이어 공격 강도(백분율)
+
+**식별자:** `player_attack_strength`
+
+공격 표시기처럼 다음 공격이 얼마나 충전되었는지 `0`부터 `100`까지 표시합니다.
+
+```
+{"placeholder":"player_attack_strength"}
+```
+
+### 플레이어 게임 모드
+
+**식별자:** `player_gamemode`
+
+`survival`, `creative`, `adventure` 또는 `spectator`를 반환합니다.
+
+```
+{"placeholder":"player_gamemode"}
+```
+
+### 플레이어 아이템 사용 진행률 (FM)
+
+**식별자:** `player_item_use_progress_fm`
+
+먹기, 마시기, 활 당기기처럼 플레이어가 아이템을 사용하는 진행률을 `0.0`부터 `1.0`까지 표시합니다.
+
+```
+{"placeholder":"player_item_use_progress_fm"}
+```
+
+### 현재 탑승 생물 체력
+
+**식별자:** `current_mount_health`
+
+말과 같이 플레이어가 타고 있는 몹의 체력입니다. 예: `30.0`.
+
+```
+{"placeholder":"current_mount_health"}
+```
+
+### 탑승 생물 최대 체력
+
+**식별자:** `max_mount_health`
+
+플레이어가 타고 있는 몹의 최대 체력입니다.
+
+```
+{"placeholder":"max_mount_health"}
+```
+
+### 현재 탑승 생물 체력(백분율)
+
+**식별자:** `current_mount_health_percent`
+
+플레이어가 타고 있는 몹의 체력을 백분율로 표시합니다. 범위는 `0`부터 `100`입니다.
+
+```
+{"placeholder":"current_mount_health_percent"}
+```
+
+### 현재 탑승 생물 점프 충전량(백분율)
+
+**식별자:** `current_mount_jump_meter`
+
+말의 점프 충전량을 `0`부터 `100`까지 표시합니다.
+
+```
+{"placeholder":"current_mount_jump_meter"}
+```
+
+### 활성 효과 수
+
+**식별자:** `effects_count`
+
+현재 플레이어에게 적용된 효과의 수입니다.
+
+```
+{"placeholder":"effects_count"}
+```
+
+### 활성 효과
+
+**식별자:** `active_effect`
+
+플레이어에게 적용된 효과의 ID입니다. 예: `minecraft:speed`. 화면 오른쪽 위에 표시되는 효과 아이콘 순서대로 반환합니다. 해당 인덱스에 효과가 없으면 빈 값을 반환합니다.
+
+- `effect_index`: 효과의 위치입니다. 첫 번째 효과는 `0`입니다.
+
+```
+{"placeholder":"active_effect","values":{"effect_index":"0"}}
+```
+
+## 월드: 인벤토리 및 아이템
+
+이 항목은 **World** 카테고리에 있습니다. 슬롯 번호는 `0`~`8`이 핫바, `9`~`35`가 나머지 인벤토리, `36`~`39`가 부츠부터 투구까지의 방어구, `40`이 보조 손입니다.
+
+### 선택한 핫바 슬롯
+
+**식별자:** `active_hotbar_slot`
+
+선택한 핫바 슬롯입니다. 범위는 `0`부터 `8`입니다.
+
+```
+{"placeholder":"active_hotbar_slot"}
+```
+
+### 슬롯 아이템
+
+**식별자:** `slot_item`
+
+슬롯에 있는 아이템의 ID입니다. 예: `minecraft:diamond_sword`. 빈 슬롯은 `minecraft:air`를 반환합니다.
+
+- `slot`: 슬롯 번호
+
+```
+{"placeholder":"slot_item","values":{"slot":"0"}}
+```
+
+### 슬롯 아이템 수량
+
+**식별자:** `slot_item_count`
+
+슬롯에 있는 아이템의 개수입니다. 예: `64`.
+
+- `slot`: 슬롯 번호
+
+```
+{"placeholder":"slot_item_count","values":{"slot":"0"}}
+```
+
+### 슬롯 아이템 내구도
+
+**식별자:** `slot_item_durability`
+
+슬롯에 있는 아이템의 내구도입니다. 내구도가 없는 아이템은 `0`을 반환합니다.
+
+- `slot`: 슬롯 번호
+- `format`(선택 사항): `current`(남은 내구도), `max`, `damage`(소모한 내구도) 또는 `percentage`(남은 내구도의 백분율, `0`~`100`)입니다. 기본값은 `current`입니다.
+
+```
+{"placeholder":"slot_item_durability","values":{"slot":"39","format":"percentage"}}
+```
+
+### 슬롯 아이템 표시 이름 (FM)
+
+**식별자:** `slot_item_display_name_fm`
+
+슬롯에 있는 아이템의 이름을 희귀도 색상을 포함한 JSON 텍스트 컴포넌트로 반환합니다. 예: `{"text":"Diamond Sword","color":"aqua"}`. 관전자 모드에서는 핫바 슬롯이 관전자 메뉴의 이름을 반환합니다.
+
+- `slot`: 슬롯 번호
+- `ignore_spectator`(선택 사항): `true`이면 관전자 모드에서도 아이템 이름을 반환합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
+```
+
+### 인벤토리 아이템 수
+
+**식별자:** `inventory_item_count`
+
+플레이어의 인벤토리 전체에 특정 아이템이 몇 개 있는지 반환합니다.
+
+- `item`: `minecraft:diamond`와 같은 아이템 ID입니다. 비워 두면 모든 아이템의 개수를 반환합니다.
+
+```
+{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
+```
+
+### 인벤토리 슬롯 음식 회복량
+
+**식별자:** `inventory_slot_food_point_restore_amount`
+
+슬롯에 있는 아이템을 먹었을 때 회복되는 허기 수치입니다. 사과는 `4.0`입니다. 음식이 아닌 아이템은 `0.0`을 반환합니다.
+
+- `slot`: 슬롯 번호
+
+```
+{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
+```
+
+### 아이템 카테고리
+
+**식별자:** `item_category`
+
+아이템이 속한 크리에이티브 인벤토리 탭입니다. 예: `Combat`. 탭이 없는 아이템은 `UNKNOWN`을 반환합니다.
+
+- `item`: 아이템 ID
+- `as_key`(선택 사항): `true`이면 `minecraft:combat`과 같은 탭 ID를 반환합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
+```
+
+### 마우스를 올린 인벤토리 아이템
+
+**식별자:** `hovered_inventory_item`
+
+인벤토리 화면에서 마우스가 가리키는 아이템의 ID입니다. 예: `minecraft:apple`. 해당 아이템이 없으면 빈 값을 반환합니다.
+
+```
+{"placeholder":"hovered_inventory_item"}
+```
+
+## 월드: HUD 및 보스
+
+이 항목은 **World** 카테고리에 있습니다. 습격 관련 자리표시자는 화면 위쪽에 막대가 표시된 습격을 읽으며 서버에 FancyMenu가 설치되어 있어야 합니다. 싱글플레이에서는 항상 작동합니다. 습격 중이 아니면 `0` 또는 빈 값을 반환합니다.
+
+### 액션 바 메시지 (FM)
+
+**식별자:** `action_bar_message_fm`
+
+핫바 위에 표시되는 메시지를 JSON 텍스트 컴포넌트로 반환합니다. 예: `{"text":"You may not rest now","color":"red"}`. 메시지가 없으면 빈 값을 반환합니다.
+
+```
+{"placeholder":"action_bar_message_fm"}
+```
+
+### 액션 바 메시지 표시 시간 (FM)
+
+**식별자:** `action_bar_message_time_fm`
+
+핫바 위에 메시지가 표시되는 남은 틱 수입니다. 20틱은 1초입니다.
+
+```
+{"placeholder":"action_bar_message_time_fm"}
+```
+
+### 강조 표시 아이템 시간 (FM)
+
+**식별자:** `highlighted_item_time_fm`
+
+선택한 아이템의 이름이 핫바 위에 표시되는 남은 틱 수입니다.
+
+```
+{"placeholder":"highlighted_item_time_fm"}
+```
+
+### 현재 HUD 제목/부제목
+
+**식별자:** `current_title`
+
+`/title` 명령 등으로 현재 표시되는 제목 또는 부제목입니다. 표시되는 항목이 없으면 빈 값을 반환합니다.
+
+- `is_subtitle`(선택 사항): `true`이면 부제목을 반환합니다. 기본값은 `false`입니다.
+- `as_json`(선택 사항): `true`이면 JSON 텍스트 컴포넌트로 반환합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
+```
+
+### 보스 수
+
+**식별자:** `boss_count`
+
+현재 표시되는 보스 막대 수입니다.
+
+```
+{"placeholder":"boss_count"}
+```
+
+### 보스 이름
+
+**식별자:** `boss_name`
+
+보스 막대의 이름입니다. 예: `Ender Dragon`. 해당 인덱스에 보스 막대가 없으면 빈 값을 반환합니다.
+
+- `boss_index`: 보스 막대의 위치입니다. 맨 위의 막대는 `0`입니다.
+- `as_json`(선택 사항): `true`이면 JSON 텍스트 컴포넌트로 반환합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
+```
+
+### 현재 보스 체력(백분율)
+
+**식별자:** `current_boss_health`
+
+보스 막대가 얼마나 차 있는지 `0`부터 `100`까지 표시합니다.
+
+- `boss_index`: 보스 막대의 위치입니다. 맨 위의 막대는 `0`입니다.
+
+```
+{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
+```
+
+### 활성 습격의 전체 웨이브 수
+
+**식별자:** `active_raid_total_waves`
+
+보너스 웨이브를 포함한 습격의 전체 웨이브 수입니다.
+
+```
+{"placeholder":"active_raid_total_waves"}
+```
+
+### 활성 습격의 남은 웨이브 수
+
+**식별자:** `active_raid_remaining_waves`
+
+습격에서 앞으로 남은 웨이브 수입니다.
+
+```
+{"placeholder":"active_raid_remaining_waves"}
+```
+
+### 현재 활성 습격 웨이브
+
+**식별자:** `active_raid_current_wave`
+
+가장 최근 웨이브의 번호입니다. 첫 번째 웨이브가 공격 중이면 `1`, 첫 웨이브 전이면 `0`을 반환합니다.
+
+```
+Wave {"placeholder":"active_raid_current_wave"} of {"placeholder":"active_raid_total_waves"}
+```
+
+### 활성 습격의 생존 약탈자 수
+
+**식별자:** `active_raid_alive_raiders_count`
+
+습격에서 아직 살아 있는 약탈자 수입니다.
+
+```
+{"placeholder":"active_raid_alive_raiders_count"}
+```
+
+### 활성 습격의 생존 약탈자 목록
+
+**식별자:** `active_raid_alive_raiders_list`
+
+아직 살아 있는 모든 약탈자를 쉼표로 구분해 표시합니다. 각 항목은 몹 ID와 약탈자의 UUID로 구성됩니다. 예: `minecraft:pillager#0d9a4b2e-5f1c-4a8e-9b3d-6c2f1e7a8b90`.
+
+```
+{"placeholder":"active_raid_alive_raiders_list"}
+```
+
+## 월드: 위치 및 카메라
+
+이 항목은 **World** 카테고리에 있습니다.
+
+### 플레이어 X 좌표
+
+**식별자:** `player_x_coordinate`
+
+플레이어가 서 있는 블록의 X 좌표입니다. 예: `125`.
+
+```
+{"placeholder":"player_x_coordinate"}
+```
+
+### 플레이어 Y 좌표
+
+**식별자:** `player_y_coordinate`
+
+플레이어가 서 있는 블록의 Y 좌표입니다. 예: `64`.
+
+```
+{"placeholder":"player_y_coordinate"}
+```
+
+### 플레이어 Z 좌표
+
+**식별자:** `player_z_coordinate`
+
+플레이어가 서 있는 블록의 Z 좌표입니다. 예: `-250`.
+
+```
+{"placeholder":"player_z_coordinate"}
+```
+
+### 플레이어 시선 방향
+
+**식별자:** `player_view_direction`
+
+플레이어가 바라보는 방향입니다. `north`, `east`, `south` 또는 `west`를 반환합니다.
+
+```
+{"placeholder":"player_view_direction"}
+```
+
+### 플레이어 X 위치 변화량 (FM)
+
+**식별자:** `player_position_delta_x_fm`
+
+지난 틱 이후 X축을 따라 플레이어가 이동한 블록 수입니다. 예: `0.12`. 반대 방향으로 이동하면 음수입니다.
+
+```
+{"placeholder":"player_position_delta_x_fm"}
+```
+
+### 플레이어 Y 위치 변화량 (FM)
+
+**식별자:** `player_position_delta_y_fm`
+
+지난 틱 이후 Y축을 따라 플레이어가 이동한 거리입니다. 떨어지는 중에는 `-0.08`과 같은 값이 됩니다.
+
+```
+{"placeholder":"player_position_delta_y_fm"}
+```
+
+### 플레이어 Z 위치 변화량 (FM)
+
+**식별자:** `player_position_delta_z_fm`
+
+지난 틱 이후 Z축을 따라 플레이어가 이동한 거리입니다.
+
+```
+{"placeholder":"player_position_delta_z_fm"}
+```
+
+### 카메라 X 회전 (FM)
+
+**식별자:** `camera_rotation_x_fm`
+
+카메라가 위나 아래를 향하는 각도입니다. 단위는 도이며 `-90.0`은 바로 위, `90.0`은 바로 아래를 나타냅니다.
+
+```
+{"placeholder":"camera_rotation_x_fm"}
+```
+
+### 카메라 Y 회전 (FM)
+
+**식별자:** `camera_rotation_y_fm`
+
+카메라가 향하는 방향입니다. 각도 범위는 `-180.0`부터 `180.0`이며 `0.0`은 남쪽입니다.
+
+```
+{"placeholder":"camera_rotation_y_fm"}
+```
+
+### 카메라 X 회전 변화량 (FM)
+
+**식별자:** `camera_rotation_delta_x_fm`
+
+지난 틱 이후 카메라가 위나 아래로 회전한 각도입니다.
+
+```
+{"placeholder":"camera_rotation_delta_x_fm"}
+```
+
+### 카메라 Y 회전 변화량 (FM)
+
+**식별자:** `camera_rotation_delta_y_fm`
+
+지난 틱 이후 카메라가 왼쪽이나 오른쪽으로 회전한 각도입니다.
+
+```
+{"placeholder":"camera_rotation_delta_y_fm"}
+```
+
+## 월드: 월드 정보
+
+이 항목은 **World** 카테고리에 있습니다.
+
+### 월드 낮 시간
+
+**식별자:** `world_daytime`
+
+틱 단위의 월드 시각입니다. 하루는 24000틱이며 오전 6시에 시작합니다. 날짜가 바뀌어도 계속 증가하므로 계산기에 `{"placeholder":"world_daytime"} % 24000`을 입력하면 현재 날짜의 시간을 구할 수 있습니다.
+
+```
+{"placeholder":"world_daytime"}
+```
+
+### 월드 시각의 시
+
+**식별자:** `world_daytime_hour`
+
+월드 시각의 시 부분입니다. `00`부터 `23`까지 표시됩니다.
+
+- `twelve_hour_format`(선택 사항): `true`이면 `01`부터 `12`까지 표시합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
+```
+
+### 월드 시각의 분
+
+**식별자:** `world_daytime_minute`
+
+월드 시각의 분 부분입니다. `00`부터 `59`까지 표시됩니다.
+
+```
+{"placeholder":"world_daytime_hour"}:{"placeholder":"world_daytime_minute"}
+```
+
+### 월드 전체 플레이 시간
+
+**식별자:** `game_time`
+
+월드에서 진행된 총 틱 수입니다. 낮 시간과 달리 `/time set`과 같은 명령으로 값이 바뀌지 않습니다.
+
+```
+{"placeholder":"game_time"}
+```
+
+### 월드 난이도
+
+**식별자:** `world_difficulty`
+
+`peaceful`, `easy`, `normal` 또는 `hard`를 반환합니다.
+
+```
+{"placeholder":"world_difficulty"}
+```
+
+### 현재 차원
+
+**식별자:** `current_dimension`
+
+플레이어가 있는 차원입니다. 예: `minecraft:overworld`.
+
+- `as_key`(선택 사항): `false`이면 `Overworld`와 같은 이름을 반환합니다. 이름이 없는 차원은 ID를 반환합니다. 기본값은 `true`입니다.
+
+```
+{"placeholder":"current_dimension","values":{"as_key":"false"}}
+```
+
+### 현재 생물 군계
+
+**식별자:** `current_biome`
+
+플레이어가 있는 생물 군계입니다. 예: `minecraft:plains`.
+
+- `as_key`(선택 사항): `false`이면 `Plains`와 같은 이름을 반환합니다. 기본값은 `true`입니다.
+
+```
+{"placeholder":"current_biome","values":{"as_key":"false"}}
+```
+
+### 현재 월드 시드
+
+**식별자:** `current_world_seed`
+
+싱글플레이 월드의 시드입니다. 예: `-4172144997902289642`. 서버에서는 빈 값을 반환합니다.
+
+```
+{"placeholder":"current_world_seed"}
+```
+
+### 게임 규칙 값
+
+**식별자:** `gamerule_value`
+
+`true` 또는 `3`과 같은 게임 규칙 값입니다. 싱글플레이에서는 항상 작동합니다. 서버에서는 서버에 FancyMenu가 설치되어 있어야 합니다. 해당 이름의 게임 규칙이 없으면 빈 값을 반환합니다.
+
+- `name`: `keep_inventory`와 같은 게임 규칙 이름입니다. Minecraft 1.21.10 이하에서는 `keepInventory`와 같은 이름을 사용하며, 이전 이름은 최신 버전에서도 사용할 수 있습니다.
+
+```
+{"placeholder":"gamerule_value","values":{"name":"keep_inventory"}}
+```
+
+### 현재 서버 IP
+
+**식별자:** `current_server_ip`
+
+플레이어가 접속한 서버의 주소입니다. 예: `play.example.net`. 싱글플레이에서는 빈 값을 반환합니다.
+
+```
+{"placeholder":"current_server_ip"}
+```
+
+### 월드 플레이어 목록
+
+**식별자:** `world_players_list`
+
+게임에서 확인할 수 있는 월드 플레이어 이름을 알파벳순으로 반환합니다. 예: `Alex, Notch, Steve`.
+
+- `separator`(선택 사항): 이름 사이에 넣을 텍스트입니다. 기본값은 `, `입니다.
+
+```
+{"placeholder":"world_players_list","values":{"separator":", "}}
+```
+
+## 월드: 월드 저장 데이터
+
+이 항목은 **World** 카테고리에 있으며 월드가 로드되지 않은 상태에서도 모든 메뉴에서 작동합니다.
+
+### 월드 저장 수
+
+**식별자:** `level_save_count`
+
+싱글플레이 월드의 수입니다.
+
+```
+{"placeholder":"level_save_count"}
+```
+
+### 월드 저장 이름
+
+**식별자:** `level_save_names`
+
+월드 목록 순서대로 모든 싱글플레이 월드의 이름을 반환합니다. 예: `Survival World, Creative Test`.
+
+- `separator`(선택 사항): 이름 사이에 넣을 텍스트입니다. 기본값은 `, `입니다.
 
 ```
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
 
-**출력:** `Creative Test, Survival World, Hardcore`
+### 월드 저장 데이터
 
-## 월드 저장 데이터 (`level_save_data`)
+**식별자:** `level_save_data`
 
-**목적:** 주어진 월드 이름에 대한 직렬화된 월드 데이터를 반환합니다(저장 목록에 표시되는 이름과 정확히 일치해야 함).
+싱글플레이 월드의 모든 데이터를 `{"file_name":"Survival World","game_type":"survival","difficulty":"normal",...}`와 같은 JSON으로 반환합니다. `file_name`, `display_name`, `game_type`, `difficulty`, `allow_commands`, Unix 타임스탬프 형식의 `last_played`, `minecraft_version_name` 등이 포함됩니다. [**JSON Parser**](#json-parser)를 사용해 개별 값을 읽을 수 있습니다.
 
-**값:** `level_name`
-
-**예시:**
+- `level_name`: 월드 목록에 표시되는 것과 정확히 일치하는 월드 이름
 
 ```
-{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
+{"placeholder":"json","values":{"source":"{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}","json_path":"$.game_type"}}
 ```
 
-**출력:** `{"name":"Survival World","gameMode":"survival",...}`
+## 기타
 
-## 숫자 진법 변환기 (`number_base_convert`)
+카테고리가 없는 항목이므로 자리표시자 메뉴에서 카테고리 목록 아래에 표시됩니다.
 
-**목적:** 숫자(정수 또는 소수)를 한 진법에서 다른 진법으로 변환합니다(2–36). 진법이 제공되지 않으면 10진수를 기본으로 사용합니다.
+### FPS(초당 프레임 수)
 
-**값:** `input`, `from_base`, `to_base`
+**식별자:** `fps`
 
-**예시:**
-
-```
-{"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
-```
-
-**출력:** `43.8`
-
-## 파일 크기 (`file_size`)
-
-**목적:** 로컬 파일의 크기를 바이트 단위로 반환합니다. 로컬 경로만 허용됩니다.
-
-**값:** `path`
-
-**예시:**
+초당 프레임 수입니다. 예: `120`.
 
 ```
-{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"fps"}
 ```
 
-**출력:** `1284`
+### 사용 중인 RAM(MB)
 
-## 파일 MD5 (`file_md5`)
+**식별자:** `usedram`
 
-**목적:** 로컬 파일의 MD5 해시를 소문자 16진수 문자열로 반환합니다.
-
-**값:** `path`
-
-**예시:**
+게임이 현재 사용하는 RAM입니다. 단위는 MB입니다. 예: `4096`.
 
 ```
-{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"usedram"}
 ```
 
-**출력:** `d41d8cd98f00b204e9800998ecf8427e`
+### 최대 RAM(MB)
 
-# 실용 예시
+**식별자:** `maxram`
 
-## 동적 메모리 표시 만들기
-```
-사용 중인 RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholder":"percentram"}%)
-```
+게임에서 사용할 수 있는 최대 RAM입니다. 단위는 MB입니다. 예: `8192`.
 
-## 실시간 시계 만들기
 ```
-{"placeholder":"realtimehour","values":{"timezone":"system"}}:{"placeholder":"realtimeminute","values":{"timezone":"system"}}:{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+{"placeholder":"maxram"}
 ```
 
-## 시스템 정보 표시 만들기
-```
-OS: {"placeholder":"osname"}
-CPU: {"placeholder":"cpuinfo"}
-GPU: {"placeholder":"gpuinfo"}
-Java: {"placeholder":"javaver"}
-```
+### 사용 중인 RAM(%)
 
-## 플레이어 상태 HUD
+**식별자:** `percentram`
+
+최대 RAM 대비 게임이 사용하는 RAM의 비율입니다. 예: `50`.
+
 ```
-체력: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
-방어력: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
-XP 레벨: {"placeholder":"current_player_level"}
+{"placeholder":"percentram"}
 ```
 
-## 중첩 플레이스홀더를 사용한 복잡한 계산
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
-```
+### CPU 사용량(JVM)
 
-## 반올림이 적용된 좌표 표시
+**식별자:** `jvmcpu`
+
+게임이 사용하는 CPU 비율입니다. 예: `25.5`.
+
 ```
-X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
-Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
-Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordinate"}"}}
+{"placeholder":"jvmcpu"}
 ```
 
-# 모범 사례
+### CPU 사용량(OS)
 
-1. **비용이 큰 작업은 캐시하기**: 일부 플레이스홀더(예: 시스템 정보를 읽는 것)는 리소스를 많이 사용할 수 있습니다. 여러 번 사용해야 한다면 변수에 값을 저장하는 것을 고려하세요.
+**식별자:** `oscpu`
 
-2. **적절한 소수 설정 사용하기**: 계산을 다룰 때는 `decimal` 매개변수를 적절히 사용하세요. 정수가 필요하면 `false`, 정확한 소수 값이 필요하면 `true`로 설정하세요.
+컴퓨터 전체의 CPU 사용률입니다. 예: `42.8`.
 
-3. **누락된 값 처리하기**: 플레이스홀더가 값을 반환하지 않을 때 어떻게 할지 항상 고려하세요. 이런 경우 기본값을 제공하고 싶을 수 있습니다.
+```
+{"placeholder":"oscpu"}
+```
 
-4. **성능 테스트하기**: 많은 플레이스홀더나 복잡한 중첩 구조를 사용할 때는 성능 영향을 테스트하세요. 특히 저사양 시스템에서 중요합니다.
+### CPU 정보
 
-5. **고급 크기 조정/위치 지정 활용하기**: 동적 UI 요소의 경우 플레이스홀더를 고급 크기 조정 및 위치 지정과 결합해 반응형 레이아웃을 만드세요.
+**식별자:** `cpuinfo`
 
-6. **변수와 함께 사용하기**: 플레이스홀더를 변수와 함께 사용하면 액션을 통해 업데이트할 수 있는 더 동적인 콘텐츠를 만들 수 있습니다.
+CPU 이름입니다. 예: `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`.
 
-# 흔한 문제와 해결 방법
+```
+{"placeholder":"cpuinfo"}
+```
 
-## 플레이스홀더가 업데이트되지 않음
-플레이스홀더 값이 예상대로 업데이트되지 않는다면 다음을 확인하세요:
-- 플레이스홀더 형식이 올바른지
-- 플레이스홀더 ID의 대소문자가 올바른지
-- 플레이스홀더를 업데이트하려면 특정 조건이 필요한지
+### GPU 정보
 
-## 중첩 플레이스홀더가 작동하지 않음
-플레이스홀더를 중첩할 때:
-- 따옴표 이스케이프가 올바른지 확인하세요
-- 각 중첩 플레이스홀더가 단독으로도 유효한지 확인하세요
+**식별자:** `gpuinfo`
 
-## 성능 문제
-성능 문제가 보인다면:
-- 사용 중인 플레이스홀더 수를 줄이세요
-- 불필요한 중첩을 피하세요
-- 자주 접근하는 값에는 변수를 사용하는 것을 고려하세요
-- 필요에 맞는 적절한 플레이스홀더를 사용하세요(예: 정적인 값으로 충분하다면 실시간 플레이스홀더를 사용하지 않기)
+게임에서 사용하는 그래픽 장치 이름입니다. 예: `NVIDIA GeForce RTX 3080`.
+
+```
+{"placeholder":"gpuinfo"}
+```
+
+### OpenGL 버전
+
+**식별자:** `glver`
+
+게임에서 사용하는 그래픽 장치의 드라이버 정보입니다. 예: `4.6.0 NVIDIA 566.36`.
+
+```
+{"placeholder":"glver"}
+```
+
+### Java 버전
+
+**식별자:** `javaver`
+
+게임이 실행되는 Java 버전입니다. 예: `21.0.5`.
+
+```
+{"placeholder":"javaver"}
+```
+
+### Java 가상 머신
+
+**식별자:** `jvmname`
+
+Java 가상 머신의 이름입니다. 예: `OpenJDK 64-Bit Server VM`.
+
+```
+{"placeholder":"jvmname"}
+```
+
+### 운영 체제 이름
+
+**식별자:** `osname`
+
+운영 체제 이름입니다. 예: `Windows 11`.
+
+```
+{"placeholder":"osname"}
+```
+
+### 실행 시간
+
+**식별자:** `uptime_duration`
+
+게임이 실행된 시간(초)입니다. 예: `742`.
+
+- `output_as_millis`(선택 사항): `true`이면 밀리초로 반환합니다. 기본값은 `false`입니다.
+
+```
+{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+```
+
+### 무작위 텍스트
+
+**식별자:** `randomtext`
+
+텍스트 파일, URL 또는 직접 입력한 텍스트에서 무작위 한 줄을 반환합니다. 무작위 팁을 표시하는 데 사용할 수 있습니다. 파일과 URL은 30초마다 다시 읽습니다.
+
+- `source`: 게임 폴더의 `.txt` 파일, URL 또는 `Tip 1\nTip 2\nTip 3`처럼 `\n`으로 구분한 줄
+- `interval`(선택 사항): 새 줄을 선택하기까지의 시간(초)입니다. `0`이면 게임 세션마다 한 줄을 선택합니다. 기본값은 `10`입니다.
+
+```
+{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/tips.txt","interval":"10"}}
+```
+
+### 웹 텍스트
+
+**식별자:** `webtext`
+
+웹페이지 텍스트의 첫 번째 줄입니다. 예를 들어 웹사이트의 텍스트 파일에서 가져올 수 있습니다. 한 번 로드되며 FancyMenu를 다시 불러올 때 다시 로드됩니다. 로드 중에는 빈 값을 반환합니다.
+
+- `link`: 페이지 URL
+
+```
+{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}
+```
+
+### 파일/폴더 절대 경로
+
+**식별자:** `absolute_path`
+
+게임 폴더에 있는 파일 또는 폴더의 전체 경로입니다. 예: `C:/Users/Steve/AppData/Roaming/.minecraft/config/fancymenu`.
+
+- `short_path`: 게임 폴더 안의 경로
+
+```
+{"placeholder":"absolute_path","values":{"short_path":"config/fancymenu"}}
+```
+
+### 텍스트 문자 수
+
+**식별자:** `text_character_count`
+
+텍스트의 문자 수입니다. `Hello World!`는 `12`입니다.
+
+- `text`: 텍스트
+
+```
+{"placeholder":"text_character_count","values":{"text":"$$player_nickname"}}
+```
+
+### 텍스트 너비
+
+**식별자:** `text_width`
+
+GUI 픽셀 단위의 텍스트 너비입니다. `Hello World!`는 `57`입니다. `&l`과 같은 서식 코드도 게임에서처럼 계산되므로 굵은 텍스트는 더 넓습니다.
+
+- `text`: 텍스트
+
+```
+{"placeholder":"text_width","values":{"text":"Hello World!"}}
+```
+
+### 텍스트 높이
+
+**식별자:** `text_height`
+
+모든 줄을 포함한 텍스트의 GUI 픽셀 단위 높이입니다. 줄바꿈은 `\n`으로 표시합니다. 텍스트 요소의 크기에 맞추려면 텍스트 배율, 줄 간격, 줄바꿈까지 계산하는 [**Text Element Content Height**](#text-element-content-height)를 사용하세요.
+
+- `text`: 텍스트
+
+```
+{"placeholder":"text_height","values":{"text":"First line\nSecond line"}}
+```
+
+### 클립보드 내용
+
+**식별자:** `clipboard_content`
+
+컴퓨터 클립보드의 텍스트입니다. 클립보드가 비어 있으면 빈 값을 반환합니다.
+
+```
+{"placeholder":"clipboard_content"}
+```

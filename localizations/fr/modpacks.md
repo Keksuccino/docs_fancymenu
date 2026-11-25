@@ -1,41 +1,49 @@
 ---
 title: Packs de mods
-description: Comment inclure des configurations dans un pack de mods.
-sourceBlobSha: deb3c58e9536e0fe085820a2b9e463f5faaa7819
+description: Comment inclure des mises en page dans un pack de mods.
+sourceBlobSha: c19df01d8e726bbff6c9d1d147287ada5d1773eb
 ---
 
 # FancyMenu dans les packs de mods
 
-Inclure votre configuration FancyMenu dans un pack de mods est très simple et ne nécessite que quelques étapes.
+Inclure votre configuration FancyMenu dans un pack de mods est très simple et ne demande que quelques étapes.
 
 > [!CAUTION]
-> Les configurations FancyMenu peuvent exécuter des actions. Importez-les uniquement depuis des sources de confiance.
+> Les configurations FancyMenu peuvent exécuter des actions. N’importez que celles provenant de sources fiables.
 
 > [!WARNING]
-> Cette page concerne **UNIQUEMENT** les configurations FancyMenu entièrement créées avec **FancyMenu v3 ou version ultérieure**. Si vous utilisez une ancienne configuration (créée avec la v2 puis convertie vers la v3), certaines étapes peuvent être différentes.
+> Cette page concerne **UNIQUEMENT** les configurations FancyMenu créées entièrement avec **FancyMenu v3 ou une version ultérieure**. Si vous utilisez une ancienne configuration (créée avec la v2, puis convertie vers la v3), certaines étapes peuvent être différentes.
 
-# Importer votre configuration dans le pack de mods
+# Ajouter votre configuration au pack de mods
 
-La manière la plus simple de déplacer votre configuration depuis l’instance sur laquelle vous l’avez conçue vers l’instance de votre pack de mods consiste à utiliser un [profil](./profiles) :
+Le moyen le plus simple de transférer votre configuration de l’instance où vous l’avez créée vers celle de votre pack de mods est d’utiliser un [profil](/profiles) :
 
-1. Dans l’instance contenant votre configuration, ouvrez **barre de menu -> Personnalisation -> Profils**, sélectionnez votre configuration et [exportez-la](./profiles#exporting) au format `.fmp`.
-2. Dans l’instance de votre pack de mods, ouvrez la fenêtre des profils et [importez](./profiles#importing) le fichier `.fmp`, par exemple en le faisant glisser sur la fenêtre.
+1. Dans l’instance contenant votre configuration, ouvrez **barre de menu -> Personnalisation -> Profils**, sélectionnez votre configuration, puis [exportez-la](/profiles#exporting) au format `.fmp`.
+2. Dans l’instance de votre pack de mods, ouvrez la fenêtre Profils et [importez](/profiles#importing) le fichier `.fmp`, par exemple en le faisant glisser dans la fenêtre.
 3. Sélectionnez le profil importé et cliquez sur **Charger le profil**.
 
-La configuration FancyMenu présente auparavant dans l’instance du pack de mods n’est pas supprimée. Elle reste disponible dans son propre profil, ce qui vous permet de revenir à tout moment à cette configuration.
+La configuration FancyMenu qui se trouvait auparavant dans l’instance de votre pack de mods n’est pas perdue. Elle reste disponible sous la forme de son propre profil, et vous pouvez donc toujours y revenir.
 
 # Inclure la configuration dans votre pack de mods
 
-Le profil chargé correspond au contenu de `<game-directory>/config/fancymenu/`. Il est donc inclus dans le dossier `config` de votre pack de mods, comme les fichiers de configuration des autres mods.
+Le profil chargé correspond au contenu de `<game-directory>/config/fancymenu/`. Il sera donc inclus dans le dossier `config` de votre pack de mods, comme les fichiers de configuration des autres mods.
 
-Tous les autres profils de l’instance sont enregistrés dans `<game-directory>/config/fancymenu/profiles/`. Supprimez les profils que les joueurs ne doivent pas recevoir avant d’exporter votre pack de mods, ou excluez le dossier `profiles` de l’exportation du pack de mods.
+Tous les autres profils de l’instance sont stockés dans `<game-directory>/config/fancymenu/profiles/`. Avant d’exporter votre pack de mods, supprimez les profils que vous ne souhaitez pas distribuer aux joueurs, ou excluez le dossier `profiles` de l’exportation du pack.
 
 > [!CAUTION]
-> Veuillez garder à l’esprit que les anciennes configurations créées avec FancyMenu v2 (même si elles ont été converties vers la v3) permettaient de stocker des ressources de mise en page en dehors du dossier `<game-directory>/config/fancymenu/assets/` de FancyMenu. Les profils ne contiennent que le dossier de configuration de FancyMenu ; dans ce cas, vous devez donc également vous assurer d’inclure toutes vos ressources dans le pack de mods.
+> N’oubliez pas que les anciennes configurations créées avec FancyMenu v2 (même si elles ont été converties vers la v3) permettaient de stocker les ressources des mises en page en dehors du dossier `<game-directory>/config/fancymenu/assets/` de FancyMenu. Comme les profils ne contiennent que le dossier de configuration de FancyMenu, vous devez également inclure toutes vos ressources dans le pack de mods.
 
-## Comment trouver le dossier de l’instance
+## Réinitialiser les cases à cocher avant l’exportation
 
-Le dossier de l’instance est le dossier principal de votre ordinateur dans lequel sont stockés tous les fichiers d’une configuration Minecraft spécifique. Des lanceurs comme CurseForge et Modrinth appellent ces dossiers des « instances » ou des « profils » (à ne pas confondre avec les profils de FancyMenu).
+Les [éléments de type case à cocher](/elements#checkbox) mémorisent leur état dans `config/fancymenu/checkbox_states.json`. Les cases sur lesquelles vous avez cliqué pendant vos tests seront donc aussi cochées pour vos joueurs.
+
+Pour que les joueurs commencent avec une configuration vierge, fermez le jeu et supprimez `checkbox_states.json` avant d’exporter votre pack de mods ou votre profil. En l’absence de ce fichier, toutes les cases sont décochées au démarrage. Les cases qui utilisent une [variable](/variables) enregistrent leur état dans cette variable.
+
+Cela s’applique également aux éléments modifiés par des actions pendant vos tests, comme le volume des [éléments vidéo](/video). Consultez [Emplacements de stockage des données](/data-storage-locations#your-setup) pour connaître les fichiers concernés.
+
+## Trouver le dossier de l’instance
+
+Le dossier de l’instance est le dossier principal de votre ordinateur où sont stockés tous les fichiers d’une configuration Minecraft donnée. Les lanceurs comme CurseForge et Modrinth appellent ces configurations des « instances » ou des « profils » (à ne pas confondre avec les profils de FancyMenu).
 
 ### Si vous utilisez l’application CurseForge
 
@@ -44,7 +52,7 @@ Le dossier de l’instance est le dossier principal de votre ordinateur dans leq
 3. Cliquez sur les trois points.
 4. Choisissez « Ouvrir le dossier ». Le dossier principal de cette instance Minecraft s’ouvrira.
 
-<img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/curseforge_launcher_instance.png">
+<img width="630" alt="Capture d’écran 1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/curseforge_launcher_instance.png">
 
 ### Si vous utilisez l’application Modrinth
 
@@ -53,28 +61,28 @@ Le dossier de l’instance est le dossier principal de votre ordinateur dans leq
 3. Cliquez sur les trois points.
 4. Choisissez « Ouvrir le dossier ». Le dossier principal de cette instance Minecraft s’ouvrira.
 
-<img width="630" alt="Screenshot_1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
+<img width="630" alt="Capture d’écran 1" src="https://raw.githubusercontent.com/Keksuccino/FancyMenu/refs/heads/master/assets/docs/modrinth_launcher_instance.png">
 
 ### Pour les autres lanceurs
 
-Recherchez une option similaire à « Ouvrir le dossier », « Ouvrir le dossier de l’instance » ou « Afficher les fichiers » pour votre configuration Minecraft.
+Cherchez une option similaire, comme « Ouvrir le dossier », « Ouvrir le dossier de l’instance » ou « Afficher les fichiers », pour votre configuration Minecraft.
 
 # Désactiver la barre de menu et les raccourcis clavier
 
-Vous ne souhaitez certainement pas que la barre de menu de FancyMenu reste visible dans votre pack de mods ; vous devriez donc la désactiver. Cependant, comme les utilisateurs peuvent toujours appuyer sur le raccourci clavier pour la rendre visible à nouveau, faisons quelque chose d’un peu plus *radical*.
+Vous ne souhaitez sûrement pas que la barre de menu de FancyMenu reste visible dans votre pack de mods : vous devriez donc la désactiver. Mais comme les joueurs pourraient toujours appuyer sur le raccourci clavier pour la faire réapparaître, prenons une mesure un peu plus *radicale*.
 
 Accédez à `<game-directory>/config/fancymenu/options.txt` et ouvrez le fichier dans un éditeur de texte.
 
-Définissez maintenant `modpack_mode` sur `true`, puis enregistrez le fichier.
+Définissez ensuite `modpack_mode` sur `true` et enregistrez le fichier.
 Cela désactivera complètement toutes les superpositions et tous les raccourcis clavier.
 
-Pour pouvoir modifier à nouveau vos mises en page, redéfinissez cette option de configuration sur `false`.
+Pour pouvoir modifier à nouveau vos mises en page, remettez cette option de configuration sur `false`.
 
-# Désactiver l’écran d’accueil
+# Désactiver l’écran de bienvenue
 
-Cela ne devrait pas être nécessaire dans la plupart des cas, mais si vous n’avez pas encore fermé l’écran d’accueil (l’écran qui vous invite à lire la documentation), assurez-vous de définir `show_welcome_screen` sur `false` dans `<game-directory>/config/fancymenu/options.txt`.
+Cela ne devrait généralement pas être nécessaire, mais si vous n’avez pas encore fermé l’écran de bienvenue (celui qui vous invite à lire la documentation), veillez à définir `show_welcome_screen` sur `false` dans `<game-directory>/config/fancymenu/options.txt`.
 
-Cet écran ne s’affiche qu’une seule fois et se désactive lorsque vous cliquez sur le bouton **Ouvrir la documentation**. Une intervention manuelle ne devrait donc, là encore, pas être nécessaire dans la plupart des cas.
+Cet écran ne s’affiche qu’une seule fois et se désactive lorsque vous cliquez sur le bouton **Ouvrir la documentation**. Il n’est donc généralement pas nécessaire de le faire manuellement.
 
 <br>
-<img width="630" alt="Screenshot_1" src="https://github.com/user-attachments/assets/4383b39f-f55a-4eb8-8142-34a425474bb3">
+<img width="630" alt="Capture d’écran 1" src="https://github.com/user-attachments/assets/4383b39f-f55a-4eb8-8142-34a425474bb3">

@@ -1,2756 +1,2425 @@
 ---
 title: プレースホルダー
-description: プレースホルダーの使い方。
+description: テキスト内にプレイヤー名、時刻、サーバーのプレイヤー数などのリアルタイム値や、FancyMenuで使えるすべてのプレースホルダーを表示します。
+sourceBlobSha: 951d7772d640bc6b19d6f4dcc2fef4adcd1f13aa
 ---
+
 # プレースホルダー
 
-プレースホルダーは、テキスト、ボタン、要件、その他対応フィールドにリアルタイムの値を差し込みます。
+プレースホルダーは、FancyMenuがプレイヤー名、時刻、サーバーのプレイヤー数などのリアルタイム値に置き換える短いコードです。要素のテキスト、ボタンラベル、ツールチップ、アクションや要件の値、その他のほとんどの入力可能なテキストで使用できます。
 
-# 一般情報
+<img width="800" alt="レイアウトエディターでテキスト要素にプレイヤー名プレースホルダーを追加する様子：テキストエディターのプレースホルダー、Playerカテゴリー、プレイヤー名で挨拶するテキスト" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_add.gif?raw=true">
 
-## 基本構文
-FancyMenu のプレースホルダーは、JSON に似た構文を使用します:
+> [!TIP]
+> 独自の[変数](/variables)も、`$$`と変数名を使って同じテキスト内で利用できます（例：`$$coins`）。
+
+# プレースホルダーの追加
+
+1. [テキスト要素](/text-in-menus)の**Text Content**など、テキストエディターでテキストを開きます。アクションの値など、ウィンドウ内のテキストフィールドには、横に**Open in Editor**ボタンがあります。
+2. プレースホルダーを挿入する位置をクリックします。
+3. テキストエディターの右上にある**Placeholders**をクリックします。
+4. カテゴリーをクリックするか、名前、識別子、説明で検索します。**BACK**をクリックするとカテゴリー一覧に戻ります。カテゴリーのないプレースホルダーは、カテゴリーの下に表示されます。
+5. プレースホルダーにマウスを合わせて機能を確認し、クリックして追加します。
+6. **Mod Version**のmod IDなど、例として入っている値を置き換えます。
+
+テキストエディターに**Placeholders**ボタンがないテキストでは、プレースホルダーを使用できません。
+
+# プレースホルダーの仕組み
+
+プレースホルダーは次のような形式です。
+
+```
+{"placeholder":"playername"}
+```
+
+設定値のあるプレースホルダーでは、値を`values`に指定します。
+
 ```
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
 
-たとえば、プレイヤー名を表示するには:
-```
-{"placeholder":"playername"}
-```
+- `playername`のような識別子は大文字と小文字を区別します。以下では各プレースホルダーの識別子と値を記載しています。
+- 値の順番は問いません。省略可能と記載されている値は省略できます。
+- 誤字のあるものなど、FancyMenuが置き換えられないプレースホルダーは、入力したままテキストに残ります。
+- プレースホルダーが返す値は常にテキストです。表示する値がない場合は、`0`、`0.0`、`---`、または空の値など、代替値を返します。
+- [書式コード](/text-formatting)はプレースホルダーの前後でも使えます。`&6{"placeholder":"playername"}`なら名前が金色で表示されます。
 
-## プレースホルダーのネスト
-1つのプレースホルダーの値の中に、別のプレースホルダーを入れ子で使えます。
+> [!IMPORTANT]
+> プレースホルダーはJSONのように見えますが、JSONではありません。プレースホルダーの中に別のプレースホルダーを含めると有効なJSONにならないため、JSONフォーマッターやバリデーターにかけないでください。
 
-ネストされたプレースホルダーの例:
+## プレースホルダーの中にプレースホルダーを入れる
+
+値には、別のプレースホルダーや[変数](/variables#showing-variables-in-text)を含められます。FancyMenuは内側のものから先に置き換えます。値の中の引用符をエスケープする必要はありません。
+
+次の例では、最大RAMの単位をMBからGBに変換します。
+
 ```
 {"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
 ```
-この例では、最大 RAM 値を 1024 で割って、MB から GB に変換しています。
 
-> [!IMPORTANT]
-> これは FancyMenu の構文であり、JSON ではありません。ネストされたプレースホルダーは、上に示したエスケープされていない正確な形式を使うため、JSON フォーマッターは拒否または書き換えます。プレースホルダー名は大文字と小文字を区別します。形式が壊れている、または不明なプレースホルダーはそのままテキストとして表示され、ログに記録されます。
+次の例では、変数`rank`を大文字で表示します。
 
-# プレースホルダーの使い方
-
-テキスト入力に対応している要素の多くは、プレースホルダーをサポートしています。編集時に、そのテキスト入力がプレースホルダー対応かどうかを確認できます。テキストを編集したときに全画面の **テキストエディター** が開く場合、その項目はプレースホルダーに対応しています。
-
-**利用可能なすべてのプレースホルダーの一覧** を確認するには、**テキストエディター** の **右上** にある **Placeholders** ボタンをクリックします。
-
-プレースホルダー一覧の上部には、プレースホルダーを検索できる **検索バー** があります。
-
-一覧の中のプレースホルダーをクリックすると、そのプレースホルダーがテキスト内容に貼り付けられます。
-
-# プレースホルダーの詳細
-
-このセクションでは、FancyMenu に組み込まれているプレースホルダーを一覧で紹介します。
-
-## 取得できない場合の結果
-
-プレースホルダーの出力は常にテキストです。データが取得できない場合、結果はプレースホルダーによって異なります。一般的なフォールバックは、空文字列、`0`、`0.0`、`00:00`、`false`、`UNKNOWN`、`ERROR` です。特定のフォールバックがある項目ではそれを直接示しています。環境に依存する出力を [要件](./conditions)、パス、コマンド、URL で使う前に、必ずフォールバックをテストしてください。
-
-## プレイヤー名 (`playername`)
-
-**目的:** 現在のプレイヤーのユーザー名を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"playername"}
-```
-
-**出力:** `Steve`
-
-## プレイヤー UUID (`playeruuid`)
-
-**目的:** プレイヤーの一意識別子を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"playeruuid"}
-```
-
-**出力:** `c8cde7fe-7ced-11eb-9439-0242ac130002`
-
-## Minecraft バージョン (`mcversion`)
-
-**目的:** 現在の Minecraft のバージョンを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"mcversion"}
-```
-
-**出力:** `1.21.1`
-
-## Mod ローダーのバージョン (`loaderver`)
-
-**目的:** Mod ローダー（Fabric/NeoForge）のバージョンを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"loaderver"}
-```
-
-**出力:** `0.16.14`
-
-## Mod ローダー名 (`loadername`)
-
-**目的:** Mod ローダーの名前を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"loadername"}
-```
-
-**出力:** `Fabric`
-
-## Mod バージョン (`modversion`)
-
-**目的:** 特定の Mod のバージョンを返します。
-
-**値:** `modid`
-
-**例:**
-
-```
-{"placeholder":"modversion","values":{"modid":"example_mod"}}
-```
-
-**出力:** `1.2.3`
-
-## 総 Mod 数 (`totalmods`)
-
-**目的:** `mods` ディレクトリと読み込まれている Mod 数に基づいて、おおよその Mod ファイル数を返します。無効化されたすべての Mod を正確に数えるわけではありません。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"totalmods"}
-```
-
-**出力:** `45`
-
-## 有効な Mod 数 (`loadedmods`)
-
-**目的:** 現在読み込まれている Mod の数を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"loadedmods"}
-```
-
-**出力:** `43`
-
-## ワールド読み込み進行状況 (`world_load_progress`)
-
-**目的:** 現在のワールド読み込み進行状況をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"world_load_progress"}
-```
-
-**出力:** `75`
-
-## Minecraft オプション値 (`minecraft_option_value`)
-
-**目的:** Minecraft のオプションの値を返します。
-
-**値:** `name`
-
-**例:**
-
-```
-{"placeholder":"minecraft_option_value","values":{"name":"fov"}}
-```
-
-**出力:** `70`
-
-## 最後に開いたワールドまたはサーバー (`last_world_server`)
-
-**目的:** 最後にアクセスしたワールドまたはサーバーの情報を返します。
-
-**値:** `type`, `full_world_path`
-
-**例:**
-
-```
-{"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
-```
-パラメーター:
-- `type`: 返す情報の種類を決定します
-  - `"both"`: 最後に開いたワールドまたはサーバーを返します（既定）
-  - `"server"`: 最後に開いたものがサーバーだった場合のみ返します
-  - `"world"`: 最後に開いたものがワールドだった場合のみ返します
-- `full_world_path`: ワールドパスの表示方法を制御します
-  - `"true"`: ワールドの完全なパスを返します（既定）
-  - `"false"`: パスなしのワールド名のみを返します（サーバーには影響しません）
-
-例:
-- サーバー: `mc.hypixel.net`
-- 完全パス付きワールド: `saves/New World`
-- 完全パスなしワールド: `New World`
-
-## 画面幅 (`guiwidth`)
-
-**目的:** 現在の画面幅を GUI スケールのピクセル単位で返します。物理モニターのピクセルではありません。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"guiwidth"}
-```
-
-**出力:** `960`
-
-## 画面高さ (`guiheight`)
-
-**目的:** 現在の画面高さを GUI スケールのピクセル単位で返します。物理モニターのピクセルではありません。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"guiheight"}
-```
-
-**出力:** `540`
-
-## 現在の画面 ID (`screenid`)
-
-**目的:** 現在の画面の識別子を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"screenid"}
-```
-
-**出力:** `title_screen`
-
-## 要素の幅 (`elementwidth`)
-
-**目的:** 特定の要素の幅を返します。
-
-**値:** `id`
-
-**例:**
-
-```
-{"placeholder":"elementwidth","values":{"id":"my_button"}}
-```
-
-**出力:** `200`
-
-## 要素の高さ (`elementheight`)
-
-**目的:** 特定の要素の高さを返します。
-
-**値:** `id`
-
-**例:**
-
-```
-{"placeholder":"elementheight","values":{"id":"my_button"}}
-```
-
-**出力:** `20`
-
-## 要素の X 位置 (`elementposx`)
-
-**目的:** 特定の要素の X 座標を返します。
-
-**値:** `id`
-
-**例:**
-
-```
-{"placeholder":"elementposx","values":{"id":"my_button"}}
-```
-
-**出力:** `150`
-
-## 要素の Y 位置 (`elementposy`)
-
-**目的:** 特定の要素の Y 座標を返します。
-
-**値:** `id`
-
-**例:**
-
-```
-{"placeholder":"elementposy","values":{"id":"my_button"}}
-```
-
-**出力:** `100`
-
-## マウスの X 位置 (`mouseposx`)
-
-**目的:** 現在のマウスの X 座標を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"mouseposx"}
-```
-
-**出力:** `960`
-
-## マウスの Y 位置 (`mouseposy`)
-
-**目的:** 現在のマウスの Y 座標を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"mouseposy"}
-```
-
-**出力:** `540`
-
-## 1 秒あたりのクリック数 (`clicks_per_second`)
-
-**目的:** マウスボタンの現在の 1 秒あたりのクリック数を返します。
-
-**値:** `mouse_button`
-
-**例:**
-
-```
-{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
-```
-パラメーター:
-- `mouse_button`: `left` または `right`
-
-**出力:** `8`
-
-## GUI スケール (`guiscale`)
-
-**目的:** 現在の GUI スケールを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"guiscale"}
-```
-
-**出力:** `2`
-
-## バニラのウィジェット/ボタンのラベル・テキスト (`vanillabuttonlabel`)
-
-**目的:** バニラのウィジェット/ボタンのラベルまたはテキストを返します。
-
-**値:** `locator`
-
-**例:**
-
-```
-{"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
-```
-
-**出力:** `Options...`
-
-## テキスト入力欄の値 (`text_input_field_value`)
-
-**目的:** 要素識別子で、カスタムまたはバニラのテキスト入力欄の現在の値を返します。
-
-**値:** `element_identifier`
-
-**例:**
-
-```
-{"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
-```
-
-**出力:** `Hello World`
-
-## 現在のプレイヤー体力 (`current_player_health`)
-
-**目的:** プレイヤーの現在の体力を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_health"}
-```
-
-**出力:** `20.0`
-
-## プレイヤー最大体力 (`max_player_health`)
-
-**目的:** プレイヤーの最大体力を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"max_player_health"}
-```
-
-**出力:** `20.0`
-
-## 現在のプレイヤー体力（パーセント） (`current_player_health_percent`)
-
-**目的:** プレイヤーの体力をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_health_percent"}
-```
-
-**出力:** `100`
-
-## 現在のプレイヤー吸収体力 (`current_player_absorption_health`)
-
-**目的:** プレイヤーの吸収体力（黄金のハート）を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_absorption_health"}
-```
-
-**出力:** `4.0`
-
-## プレイヤー最大吸収体力 (`max_player_absorption_health`)
-
-**目的:** 吸収体力の最大値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"max_player_absorption_health"}
-```
-
-**出力:** `4.0`
-
-## 現在のプレイヤー吸収体力（パーセント） (`current_player_absorption_health_percent`)
-
-**目的:** プレイヤーの吸収体力をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_absorption_health_percent"}
-```
-
-**出力:** `100`
-
-## 現在のプレイヤー満腹度 (`current_player_hunger`)
-
-**目的:** プレイヤーの現在の満腹度を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_hunger"}
-```
-
-**出力:** `20`
-
-## プレイヤー最大満腹度 (`max_player_hunger`)
-
-**目的:** 最大満腹度を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"max_player_hunger"}
-```
-
-**出力:** `20`
-
-## 現在のプレイヤー満腹度（パーセント） (`current_player_hunger_percent`)
-
-**目的:** プレイヤーの満腹度をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_hunger_percent"}
-```
-
-**出力:** `100`
-
-## 現在のプレイヤー満腹度飽和値 (`current_player_hunger_saturation`)
-
-**目的:** プレイヤーの現在の満腹度飽和値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_hunger_saturation"}
-```
-
-**出力:** `5.0`
-
-## 現在のプレイヤー防具値 (`current_player_armor`)
-
-**目的:** プレイヤーの現在の防具値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_armor"}
-```
-
-**出力:** `20`
-
-## プレイヤーの防具耐性 (`player_armor_toughness`)
-
-**目的:** プレイヤーの総防具耐性値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_armor_toughness"}
-```
-
-**出力:** `8.0`
-
-## プレイヤー最大防具値 (`max_player_armor`)
-
-**目的:** 最大防具値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"max_player_armor"}
-```
-
-**出力:** `20`
-
-## 現在のプレイヤー防具値（パーセント） (`current_player_armor_percent`)
-
-**目的:** プレイヤーの防具値をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_armor_percent"}
-```
-
-**出力:** `100`
-
-## 現在のプレイヤー酸素レベル (`current_player_oxygen`)
-
-**目的:** プレイヤーの現在の酸素レベル（空気の泡）を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_oxygen"}
-```
-
-**出力:** `300`
-
-## プレイヤー最大酸素レベル (`max_player_oxygen`)
-
-**目的:** 最大酸素レベルを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"max_player_oxygen"}
-```
-
-**出力:** `300`
-
-## 現在のプレイヤー酸素レベル（パーセント） (`current_player_oxygen_percent`)
-
-**目的:** プレイヤーの酸素レベルをパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_oxygen_percent"}
-```
-
-**出力:** `100`
-
-## 現在のプレイヤーレベル (`current_player_level`)
-
-**目的:** プレイヤーの現在の経験値レベルを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_level"}
-```
-
-**出力:** `30`
-
-## 現在のプレイヤー経験値 (`current_player_exp`)
-
-**目的:** プレイヤーの総経験値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_exp"}
-```
-
-**出力:** `1250`
-
-## プレイヤー経験値進行度（パーセント） (`current_player_exp_progress`)
-
-**目的:** 次のレベルまでのプレイヤーの経験値進行度をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_player_exp_progress"}
-```
-
-**出力:** `75`
-
-## プレイヤー攻撃力（パーセント） (`player_attack_strength`)
-
-**目的:** プレイヤーの攻撃クールダウンをパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_attack_strength"}
-```
-
-**出力:** `100`
-
-## プレイヤーのゲームモード (`player_gamemode`)
-
-**目的:** プレイヤーの現在のゲームモードを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_gamemode"}
-```
-
-**出力:** `survival`
-
-## プレイヤーの向いている方向 (`player_view_direction`)
-
-**目的:** プレイヤーが向いている方向を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_view_direction"}
-```
-
-**出力:** `north`
-
-## プレイヤーの X 座標 (`player_x_coordinate`)
-
-**目的:** ワールド内のプレイヤーの X 位置を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_x_coordinate"}
-```
-
-**出力:** `125`
-
-## プレイヤーの Y 座標 (`player_y_coordinate`)
-
-**目的:** ワールド内のプレイヤーの Y 位置を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_y_coordinate"}
-```
-
-**出力:** `64`
-
-## プレイヤーの Z 座標 (`player_z_coordinate`)
-
-**目的:** ワールド内のプレイヤーの Z 位置を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_z_coordinate"}
-```
-
-**出力:** `-250`
-
-## 現在の乗り物の体力 (`current_mount_health`)
-
-**目的:** プレイヤーが乗っているエンティティの現在の体力を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_mount_health"}
-```
-
-**出力:** `30.0`
-
-## 乗り物の最大体力 (`max_mount_health`)
-
-**目的:** プレイヤーが乗っているエンティティの最大体力を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"max_mount_health"}
-```
-
-**出力:** `30.0`
-
-## 現在の乗り物の体力（パーセント） (`current_mount_health_percent`)
-
-**目的:** 乗り物の体力をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_mount_health_percent"}
-```
-
-**出力:** `100`
-
-## 現在の乗り物ジャンプメーター（パーセント） (`current_mount_jump_meter`)
-
-**目的:** 乗り物のジャンプ力メーター値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_mount_jump_meter"}
-```
-
-**出力:** `75`
-
-## 現在のボス体力（パーセント） (`current_boss_health`)
-
-**目的:** 選択されたアクティブなボスの体力を、`0` から `100` の整数パーセンテージで返します。`boss_index` は 0 から始まります。`0` は最初のボスバーを選択します。
-
-**値:** `boss_index`
-
-**例:**
-
-```
-{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
-```
-
-**出力:** `75`
-
-## ボス名 (`boss_name`)
-
-**目的:** アクティブなボスの名前を返します。
-
-**値:** `boss_index`, `as_json`
-
-**例:**
-
-```
-{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
-```
-
-**出力:** `Ender Dragon`
-
-## ボス数 (`boss_count`)
-
-**目的:** アクティブなボスの数を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"boss_count"}
-```
-
-**出力:** `1`
-
-## アクティブな効果数 (`effects_count`)
-
-**目的:** 有効なポーション効果の数を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"effects_count"}
-```
-
-**出力:** `3`
-
-## アクティブな効果 (`active_effect`)
-
-**目的:** 特定の有効効果の情報を返します。
-
-**値:** `effect_index`
-
-**例:**
-
-```
-{"placeholder":"active_effect","values":{"effect_index":"0"}}
-```
-
-**出力:** `minecraft:speed`
-
-## 選択中のホットバー スロット (`active_hotbar_slot`)
-
-**目的:** 現在選択されているホットバーのスロット（0-8）を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"active_hotbar_slot"}
-```
-
-**出力:** `4`
-
-## スロット内アイテム (`slot_item`)
-
-**目的:** 特定のインベントリスロット内のアイテム情報を返します。
-
-**値:** `slot`
-
-**例:**
-
-```
-{"placeholder":"slot_item","values":{"slot":"0"}}
-```
-
-**出力:** `minecraft:diamond_sword`
-
-## スロット内アイテム数 (`slot_item_count`)
-
-**目的:** 特定のプレイヤーインベントリスロットにあるアイテムのスタック数を返します。
-
-**値:** `slot`
-
-**例:**
-
-```
-{"placeholder":"slot_item_count","values":{"slot":"0"}}
-```
-
-**出力:** `64`
-
-## スロット内アイテム耐久値 (`slot_item_durability`)
-
-**目的:** 特定のプレイヤーインベントリスロットにあるアイテムの耐久値情報を返します。
-
-**値:** `slot`, `format`
-
-**例:**
-
-```
-{"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
-```
-パラメーター:
-- `slot`: プレイヤーインベントリのスロット番号。
-- `format`: `current`、`remaining`、`max`、`damage`、`percentage`、`percent` のいずれか。
-
-**出力:** `87`
-
-## スロット内アイテム表示名 (`slot_item_display_name_fm`)
-
-**目的:** 特定スロット内のアイテムの表示名を JSON テキストコンポーネントとして返します。スペクテイターモードでは、`ignore_spectator` が `true` でない限り、ホットバースロットはスペクテイター用メニューアイテム名に解決される場合があります。
-
-**値:** `slot`, `ignore_spectator`
-
-**例:**
-
-```
-{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
-```
-
-**出力:** `{"text":"Diamond Sword","color":"aqua"}`
-
-## インベントリ内アイテム数 (`inventory_item_count`)
-
-**目的:** プレイヤーのインベントリ全体で一致するアイテムの合計数を返します。`item` が空の場合は、空でないすべてのインベントリスロットのスタック数を合計します。
-
-**値:** `item`
-
-**例:**
-
-```
-{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
-```
-
-**出力:** `12`
-
-## インベントリスロットの食料回復量 (`inventory_slot_food_point_restore_amount`)
-
-**目的:** 指定したプレイヤーインベントリスロットの食料アイテムが回復する満腹度を返します。
-
-**値:** `slot`
-
-**例:**
-
-```
-{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
-```
-
-**出力:** `4.0`
-
-## ホバー中のインベントリアイテム (`hovered_inventory_item`)
-
-**目的:** インベントリ画面で現在ホバーしているアイテムのアイテムキーを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"hovered_inventory_item"}
-```
-
-**出力:** `minecraft:apple`
-
-## ワールドゲーム時間 (`game_time`)
-
-**目的:** 現在のゲーム内ティックカウンターを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"game_time"}
-```
-
-**出力:** `18000`
-
-## ワールド時刻 (`world_daytime`)
-
-**目的:** 現在のワールドの時刻を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"world_daytime"}
-```
-
-**出力:** `13000`
-
-## ワールド時刻の時 (`world_daytime_hour`)
-
-**目的:** ワールド時刻の「時」を返します。既定では 24 時間形式を使います。12 時間形式にするには `twelve_hour_format` を `"true"` にしてください。
-
-**値:** `twelve_hour_format`
-
-**例:**
-
-```
-{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
-```
-
-**出力:** `12`
-
-## ワールド時刻の分 (`world_daytime_minute`)
-
-**目的:** ワールド時刻の「分」（00-59）を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"world_daytime_minute"}
-```
-
-**出力:** `30`
-
-## ワールドの難易度 (`world_difficulty`)
-
-**目的:** 現在のワールド難易度を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"world_difficulty"}
-```
-
-**出力:** `normal`
-
-## 現在のワールドシード (`current_world_seed`)
-
-**目的:** 現在のシングルプレイワールドのシードを返します。シードが利用できない場合は空の値を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_world_seed"}
-```
-
-**出力:** `123456789`
-
-## 現在のバイオーム (`current_biome`)
-
-**目的:** プレイヤーが現在いるバイオームを返します。表示名や翻訳済みの名前が利用可能な場合は、それを返すには `as_key` を `"false"` に設定してください。
-
-**値:** `as_key`
-
-**例:**
-
-```
-{"placeholder":"current_biome","values":{"as_key":"true"}}
-```
-
-**出力:** `minecraft:plains`
-
-## 現在のディメンション (`current_dimension`)
-
-**目的:** プレイヤーが現在いるディメンションを返します。表示名や翻訳済みの名前が利用可能な場合は、それを返すには `as_key` を `"false"` に設定してください。
-
-**値:** `as_key`
-
-**例:**
-
-```
-{"placeholder":"current_dimension","values":{"as_key":"true"}}
-```
-
-**出力:** `minecraft:overworld`
-
-## ゲームルールの値 (`gamerule_value`)
-
-**目的:** 読み込まれているワールド/サーバー内のゲームルールの現在値を返します。サーバーワールドではサーバー側に FancyMenu が必要です。
-
-**値:** `name`
-
-**例:**
-
-```
-{"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
-```
-
-**出力:** `true`
-
-## アイテムカテゴリ (`item_category`)
-
-**目的:** アイテムのクリエイティブタブのカテゴリを返します。カテゴリ名ではなくカテゴリキーを返すには `as_key` を `"true"` に設定してください。
-
-**値:** `item`, `as_key`
-
-**例:**
-
-```
-{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
-```
-
-**出力:** `Combat`
-
-## 現在の HUD タイトル/サブタイトル (`current_title`)
-
-**目的:** 現在表示されているタイトルテキストを返します。
-
-**値:** `is_subtitle`, `as_json`
-
-**例:**
-
-```
-{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
-```
-
-**出力:** `Game Over!`
-
-## アクションバーのメッセージ (`action_bar_message_fm`)
-
-**目的:** 現在のバニラのアクションバーメッセージをシリアライズされた Minecraft テキストコンポーネントとして返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"action_bar_message_fm"}
-```
-
-**出力:** `{"text":"You may not rest now","color":"red"}`
-
-## アクションバーメッセージの表示時間 (`action_bar_message_time_fm`)
-
-**目的:** 現在のバニラのアクションバーメッセージがあと何ティック表示されるかを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"action_bar_message_time_fm"}
-```
-
-**出力:** `42`
-
-## カメラ回転 X (`camera_rotation_x_fm`)
-
-**目的:** 現在のカメラのピッチを度単位で返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"camera_rotation_x_fm"}
-```
-
-**出力:** `12.5`
-
-## カメラ回転 Y (`camera_rotation_y_fm`)
-
-**目的:** 現在のカメラのヨーを度単位で返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"camera_rotation_y_fm"}
-```
-
-**出力:** `-90.0`
-
-## カメラ回転の変化量 X (`camera_rotation_delta_x_fm`)
-
-**目的:** 1 ティックあたりのカメラピッチの変化量を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"camera_rotation_delta_x_fm"}
-```
-
-**出力:** `0.4`
-
-## カメラ回転の変化量 Y (`camera_rotation_delta_y_fm`)
-
-**目的:** 1 ティックあたりのカメラヨーの変化量を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"camera_rotation_delta_y_fm"}
-```
-
-**出力:** `-1.2`
-
-## ハイライトされたアイテムの表示時間 (`highlighted_item_time_fm`)
-
-**目的:** ハイライトされたアイテム名がホットバー上にあと何ティック表示されるかを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"highlighted_item_time_fm"}
-```
-
-**出力:** `30`
-
-## プレイヤーのアイテム使用進行度 (`player_item_use_progress_fm`)
-
-**目的:** 現在のアイテム使用進行度を `0.0` から `1.0` で返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_item_use_progress_fm"}
-```
-
-**出力:** `0.65`
-
-## プレイヤー位置の変化量 X (`player_position_delta_x_fm`)
-
-**目的:** 1 ティックあたりのプレイヤー位置の X 軸変化量を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_position_delta_x_fm"}
-```
-
-**出力:** `0.0`
-
-## プレイヤー位置の変化量 Y (`player_position_delta_y_fm`)
-
-**目的:** 1 ティックあたりのプレイヤー位置の Y 軸変化量を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_position_delta_y_fm"}
-```
-
-**出力:** `-0.08`
-
-## プレイヤー位置の変化量 Z (`player_position_delta_z_fm`)
-
-**目的:** 1 ティックあたりのプレイヤー位置の Z 軸変化量を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"player_position_delta_z_fm"}
 ```
-
-**出力:** `0.12`
-
-## 現在のサーバー IP (`current_server_ip`)
-
-**目的:** 接続中のサーバーの IP を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"current_server_ip"}
-```
-
-**出力:** `mc.hypixel.net`
-
-## ワールド内プレイヤー一覧 (`world_players_list`)
-
-**目的:** 現在ワールド内にいるすべてのプレイヤーの一覧を返します。
-
-**値:** `separator`
-
-**例:**
-
-```
-{"placeholder":"world_players_list","values":{"separator":", "}}
-```
-
-**出力:** `Steve, Alex, Notch`
-
-## サーバー MOTD (`servermotd`)
-
-**目的:** サーバーの MOTD（Message of the Day）を返します。
-
-**値:** `ip`, `line`
-
-**例:**
-
-```
-{"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
-```
-
-**出力:** `Welcome to Hypixel!`
-
-## サーバー PING (`serverping`)
-
-**目的:** サーバーへの ping をミリ秒で返します。
-
-**値:** `ip`
-
-**例:**
-
-```
-{"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
-```
-
-**出力:** `54`
-
-## サーバーのプレイヤー数 (`serverplayercount`)
-
-**目的:** サーバーのプレイヤー数を返します。
-
-**値:** `ip`
-
-**例:**
-
-```
-{"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
-```
-
-**出力:** `25000/30000`
-
-## サーバーの状態 (`serverstatus`)
-
-**目的:** サーバーのオンライン/オフライン状態を返します。
-
-**値:** `ip`
-
-**例:**
-
-```
-{"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
-```
-
-**出力:** `§aOnline` または `§cOffline`
-
-## サーバーバージョン (`serverversion`)
-
-**目的:** サーバーの Minecraft バージョンを返します。
-
-**値:** `ip`
-
-**例:**
-
-```
-{"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
-```
-
-**出力:** `1.21.1`
-
-> [!NOTE]
-> 以下のリアルタイム系プレースホルダーは `timezone` 値を受け付けます。`UTC`、`Europe/Berlin`、`America/New_York` のような Java のタイムゾーン ID を使用してください。システムのタイムゾーンを使う場合は省略するか `system` を指定します。`unix_time` は常に Unix タイムスタンプを返し、`timezone` 値はありません。
-
-## 年 (`realtimeyear`)
-
-**目的:** 現在の年を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"realtimeyear"}
-```
-
-**出力:** `2024`
-
-## 月 (`realtimemonth`)
-
-**目的:** 現在の月を返します（01-12）。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"realtimemonth"}
-```
-
-**出力:** `01`
-
-## 日 (`realtimeday`)
-
-**目的:** 現在の日付を返します（01-31）。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"realtimeday"}
-```
-
-**出力:** `27`
-
-## 時 (`realtimehour`)
-
-**目的:** 現在の時を返します。既定では 24 時間形式を使います。12 時間形式にするには `twelve_hour_format` を `"true"` にしてください。
-
-**値:** `twelve_hour_format`, `timezone`
-
-**例:**
-
-```
-{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
-```
-
-**出力:** `14`
-
-## 分 (`realtimeminute`)
-
-**目的:** 現在の分を返します（00-59）。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"realtimeminute"}
-```
-
-**出力:** `30`
-
-## 秒 (`realtimesecond`)
-
-**目的:** 現在の秒を返します（00-59）。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"realtimesecond"}
-```
-
-**出力:** `45`
-
-## 現在時刻ミリ秒（Unix タイムスタンプ） (`unix_time`)
-
-**目的:** 現在の Unix タイムスタンプをミリ秒で返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"unix_time"}
-```
-
-**出力:** `1716552478123`
-
-## CPU 情報 (`cpuinfo`)
-
-**目的:** CPU に関する情報を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"cpuinfo"}
-```
-
-**出力:** `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
-
-## CPU 使用率（JVM） (`jvmcpu`)
-
-**目的:** JVM の CPU 使用率をパーセンテージで返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"jvmcpu"}
+{"placeholder":"uppercase_text","values":{"text":"$$rank"}}
 ```
 
-**出力:** `25.5`
+[**File Text**](#file-text)で読み込んだファイルのように、プレースホルダーがプレースホルダーを含むテキストを返す場合、FancyMenuはその中のプレースホルダーも置き換えます。
 
-## CPU 使用率（OS） (`oscpu`)
+# 知っておくと便利なこと
 
-**目的:** OS の CPU 使用率をパーセンテージで返します。
+- プレースホルダーは自動的に更新されます。FancyMenuは置き換え後のテキストを30ミリ秒保持してから、プレースホルダーを再度置き換えます。この値は**menu bar -> Customization -> Settings**の**Placeholder Caching Duration [MS]**で変更できます。`0`にすると毎フレーム置き換えるため、パフォーマンスへの負荷が高くなります。
+- **Web Text**や**Server Status**のように、ウェブサイト、ファイル、サーバーを読み取るプレースホルダーはバックグラウンドで読み込みます。読み込みが終わるまでは、空の値か代替値を返します。
+- [アクション](/action-scripts)内のプレースホルダーは、アクションの実行時点の値を取得します。
+- ワールド、画面、要素に関するプレースホルダーは、ゲームのメインスレッドでのみ動作します。バックグラウンド（非同期）で実行する[Ticker](/elements#ticker)では、代わりにエラーが表示されます。
+- **Random Number**はテキストが更新されるたびに新しい数値を返します。値を固定するには、[**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable)で[変数](/variables)に保存します。
 
-**値:** なし
+> [!CAUTION]
+> **JSON Parser**、**File Text**、**Clipboard Content**などのプレースホルダーは、ゲームフォルダー内のファイルやクリップボードを読み取ることができます。ウェブサイトにアクセスするアクションと組み合わせると、レイアウトからデータを外部に送信できてしまいます。信頼できるレイアウトのみを使用してください。
 
-**例:**
+# 例
 
-```
-{"placeholder":"oscpu"}
-```
-
-**出力:** `42.8`
-
-## GPU 情報 (`gpuinfo`)
-
-**目的:** Minecraft のアクティブな描画デバイスとして報告される名前を返します。特定の物理 GPU を必ずしも識別できるとは限りません。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"gpuinfo"}
-```
-
-**出力:** `NVIDIA GeForce RTX 3080`
-
-## Java バージョン (`javaver`)
-
-**目的:** Java のバージョンを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"javaver"}
-```
-
-**出力:** `17.0.2`
-
-## Java 仮想マシン (`jvmname`)
-
-**目的:** Java Virtual Machine の名前を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"jvmname"}
-```
-
-**出力:** `OpenJDK 64-Bit Server VM`
-
-## OpenGL バージョン (`glver`)
-
-**目的:** Minecraft のアクティブな描画デバイスのドライバー情報を返します。旧来の `glver` という名前ですが、値が OpenGL のバージョン文字列だけであるとは限りません。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"glver"}
-```
-
-**出力:** `4.6.0 NVIDIA 516.94`
-
-## OS 名 (`osname`)
-
-**目的:** オペレーティングシステム名を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"osname"}
-```
-
-**出力:** `Windows 10`
-
-## FPS（フレーム毎秒） (`fps`)
-
-**目的:** 現在のフレームレートを返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"fps"}
-```
-
-**出力:** `120`
-
-## 使用中 RAM（MB） (`usedram`)
-
-**目的:** 現在使用中の RAM 量を MB で返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"usedram"}
-```
-
-**出力:** `4096`
-
-## 最大 RAM（MB） (`maxram`)
-
-**目的:** 割り当てられた最大 RAM を MB で返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"maxram"}
-```
-
-**出力:** `8192`
-
-## 使用中 RAM（%%） (`percentram`)
-
-**目的:** 現在使用中の RAM の割合を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"percentram"}
-```
-
-**出力:** `50`
-
-## オーディオ要素の音量 (`audio_element_vol`)
-
-**目的:** オーディオ要素の音量を返します。
-
-**値:** `element_identifier`
-
-**例:**
-
-```
-{"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
-```
-
-**出力:** `0.5`
-
-## 現在のオーディオトラック (`audio_element_current_track`)
-
-**目的:** オーディオ要素のトラック名を返します。
-
-**値:** `element_identifier`, `display_name_mappings`
-
-**例:**
-
-```
-{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Menu Theme%:%track2.ogg=>Credits Theme"}}
-```
-
-`display_name_mappings` では、`=>` がファイル名と表示名の区切り、`%:%` が各マッピングの区切りです。
-
-**出力:** `Menu Theme`
-
-## オーディオの再生時間 (`audio_duration`)
-
-**目的:** [Audio element](./elements#audio) の現在読み込まれているトラックの長さを `MM:SS` 形式で返します。トラックは再生中、停止中、または一時停止中のいずれでもかまいません。
-
-**値:** `element_identifier`
-
-**例:**
+## ウェルカムパネル
 
-```
-{"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
-```
-
-**出力:** `03:45`
-
-## オーディオ再生時間 (`audio_playtime`)
+<img width="800" alt="プレイヤー名で挨拶し、Minecraftのバージョン、modの数、時刻を表示するテキスト要素" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_welcome.png?raw=true">
 
-**目的:** オーディオトラックの現在の再生時間を返します。`show_percentage` を `"true"` にすると、`MM:SS` の代わりに 0-100 の進行値を返します。
-
-**値:** `element_identifier`, `show_percentage`
-
-**例:**
-
 ```
-{"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
+### おかえりなさい、{"placeholder":"playername"}！
+Minecraft {"placeholder":"mcversion"}、{"placeholder":"loadedmods"}個のmod
+現在の時刻：{"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
-
-**出力:** `01:30`（`show_percentage` が `"true"` の場合は `45`）
 
-**取得できない場合の結果:** `00:00`、またはパーセンテージモードでは `0`。現在値はトラックの再生中または一時停止中に利用できます。停止中、欠落、未準備のトラックでは取得できない場合の結果になります。
+## サーバーの状態とプレイヤー数
 
-## オーディオ再生状態 (`audio_playing_state`)
-
-**目的:** オーディオ要素が再生中かどうか（true/false）を返します。
-
-**値:** `element_identifier`
-
-**例:**
-
 ```
-{"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
+サバイバル：{"placeholder":"serverstatus","values":{"ip":"play.example.net"}}&r、プレイヤー数：{"placeholder":"serverplayercount","values":{"ip":"play.example.net"}}
 ```
-
-**出力:** `true`
-
-## ビデオ要素の音量 (`video_element_vol`)
-
-**目的:** ビデオ要素の音量レベルを返します（0.0 から 1.0）。
-
-**値:** `element_identifier`
 
-**例:**
+## 日付と時刻
 
 ```
-{"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"realtimeday"}.{"placeholder":"realtimemonth"}.{"placeholder":"realtimeyear"}、{"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
 
-**出力:** `0.5`
+## RAM使用量
 
-## ビデオ要素の長さ (`video_element_duration`)
-
-**目的:** ビデオ要素の総再生時間を `MM:SS` 形式で返します。ミリ秒のタイムスタンプで返すには `output_as_timestamp` を `"true"` にしてください。
-
-**値:** `element_identifier`, `output_as_timestamp`
-
-**例:**
-
 ```
-{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
+RAM：{"placeholder":"usedram"} / {"placeholder":"maxram"} MB（{"placeholder":"percentram"}%）
 ```
 
-**出力:** `02:00`（`output_as_timestamp` が `"true"` の場合は `120000`）
+# すべてのプレースホルダー
 
-## ビデオ要素の再生時間 (`video_element_playtime`)
+FancyMenuで使用できるすべてのプレースホルダーです。プレースホルダーメニューの大きな**Advanced**カテゴリーと**World**カテゴリーは、ここではより小さなグループに分けてあります。
 
-**目的:** ビデオ要素の現在の再生時間（進行度）を `MM:SS` 形式で返します。0-100 の進行値を返すには `show_percentage` を `"true"` に、ミリ秒で返すには `output_as_timestamp` を `"true"` にしてください。
-
-**値:** `element_identifier`, `show_percentage`, `output_as_timestamp`
-
-**例:**
-
-```
-{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
-```
+## 変数とリスト
 
-**出力:** `00:45`（パーセンテージなら `38`、タイムスタンプなら `45200`）
+これらは**Advanced**カテゴリーにあります。変数やリストの作成方法については[変数](/variables)を参照してください。
 
-## ビデオ要素の一時停止状態 (`video_element_paused_state`)
+### Get Variable Value (FM Variable)
 
-**目的:** ビデオ要素が一時停止中かどうか（true/false）を返します。
+**識別子：** `getvariable`
 
-**値:** `element_identifier`
+変数の値を取得します。変数が空か存在しない場合は`0`を返すため、数値に適しています。リストの場合は、`["Steve","Alex"]`のようなJSON配列形式ですべての項目を返します。
 
-**例:**
+- `name`：変数名（`$$`は付けません）
 
 ```
-{"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"getvariable","values":{"name":"clicks"}}
 ```
-
-**出力:** `false`
 
-## ビデオ背景の音量 (`video_background_vol`)
+### Get List Entry (FM Variable)
 
-**目的:** ビデオメニュー背景の音量レベルを返します（0.0 から 1.0）。
+**識別子：** `list_get`
 
-**値:** `background_identifier`
+リスト変数から項目を1つ取得します。
 
-**例:**
+- `name`：リスト名
+- `index`：項目の位置。最初の項目は`0`です。負の数は末尾から数え、`-1`は最後の項目です。
+- `fallback`（省略可能）：指定した位置に項目がない場合や、指定した名前のリストがない場合に返す値。既定では空です。
 
 ```
-{"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}
 ```
 
-**出力:** `0.7`
+### List Size (FM Variable)
 
-## ビデオ背景の長さ (`video_background_duration`)
+**識別子：** `list_size`
 
-**目的:** ビデオメニュー背景の総再生時間を `MM:SS` 形式で返します。ミリ秒のタイムスタンプで返すには `output_as_timestamp` を `"true"` にしてください。
+リストの項目数を返します。指定した名前のリストがない場合は`0`です。
 
-**値:** `background_identifier`, `output_as_timestamp`
+- `name`：リスト名
 
-**例:**
-
 ```
-{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
+{"placeholder":"list_size","values":{"name":"tips"}}
 ```
-
-**出力:** `03:00`（`output_as_timestamp` が `"true"` の場合は `180000`）
 
-## ビデオ背景の再生時間 (`video_background_playtime`)
+### Index of List Entry (FM Variable)
 
-**目的:** ビデオメニュー背景の現在の再生時間（進行度）を `MM:SS` 形式で返します。0-100 の進行値を返すには `show_percentage` を `"true"` に、ミリ秒で返すには `output_as_timestamp` を `"true"` にしてください。
+**識別子：** `list_index_of`
 
-**値:** `background_identifier`, `show_percentage`, `output_as_timestamp`
+リスト全体の中で`value`と一致する最初の項目のインデックスを返します。該当項目がない場合は`-1`です。
 
-**例:**
+- `name`：リスト名
+- `value`：検索する項目
+- `ignore_case`（省略可能）：`true`にすると`Apple`と`apple`を一致とみなします。既定値は`false`です。
 
 ```
-{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
+{"placeholder":"list_index_of","values":{"name":"read_news","value":"news_42","ignore_case":"false"}}
 ```
 
-**出力:** `01:00`（パーセンテージなら `33`、タイムスタンプなら `60500`）
+### Join List Entries (FM Variable)
 
-## ビデオ背景の一時停止状態 (`video_background_paused_state`)
+**識別子：** `list_join`
 
-**目的:** ビデオメニュー背景が一時停止中かどうか（true/false）を返します。
+リストのすべての項目を1つのテキストにまとめます。指定した名前のリストがない場合は空です。
 
-**値:** `background_identifier`
+- `name`：リスト名
+- `separator`（省略可能）：項目間に入れるテキスト。`\n`は改行です。既定値は`, `です。
 
-**例:**
-
 ```
-{"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}
 ```
 
-**出力:** `true`
+## 数学
 
-## 計算機 (`calc`)
+これらは**Advanced**カテゴリーにあります。小数点にはピリオドを使います（例：`2.5`）。
 
-**目的:** 計算機プレースホルダーは、レイアウト内で数式計算を行える強力なツールです。幅広い数学演算をサポートし、小数と整数の両方で動作します。
+### Calculator
 
-**値:** `decimal`, `expression`
+**識別子：** `calc`
 
-### 基本構文
+`2 + 3 * 4`のような数式を計算します。
 
-**例:**
+- `expression`：計算する数式
+- `decimal`（省略可能）：`false`にすると結果を整数に丸めます。既定値は`true`で、`14.0`のような結果を返します。
 
 ```
-{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeholder":"usedram"} * 100 / {"placeholder":"maxram"}"}}
 ```
-
-計算機には、主に次の 2 つのパラメーターがあります:
-- `decimal`: 結果に小数点以下を含めるか（`true`）、整数に丸めるか（`false`）を決定します
-- `expression`: 評価する数式
 
-### 対応演算
-計算機は次の数学演算をサポートしています:
-- 基本四則演算: `+`（加算）、`-`（減算）、`*`（乗算）、`/`（除算）
-- 括弧: `( )` によるグループ化
-- べき乗: 指数の `^`
-- 平方根: `sqrt()`
-- 三角関数: `sin()`、`cos()`、`tan()`
-- 数学定数: `pi`、`e`
-- 絶対値: `abs()`
-- 対数: `log()`、`ln()`
+| 式で使うもの | 機能 |
+|---|---|
+| `+` `-` `*` `/` | 加算、減算、乗算、除算 |
+| `^` | べき乗。例：`2 ^ 3`は8 |
+| `%` | 剰余。例：`7 % 3`は1 |
+| `( )` | 計算順序をグループ化。例：`(2 + 3) * 4` |
+| `pi`, `e` | πとeの値 |
+| `abs(x)` | xの絶対値 |
+| `sqrt(x)`, `cbrt(x)` | 平方根、立方根 |
+| `pow(x, y)` | xのy乗 |
+| `floor(x)`, `ceil(x)` | 切り捨て、切り上げ |
+| `sin(x)`, `cos(x)`, `tan(x)`, `cot(x)` | 三角関数。角度の単位はラジアン |
+| `asin(x)`, `acos(x)`, `atan(x)` | 逆三角関数 |
+| `sinh(x)`, `cosh(x)`, `tanh(x)` | 双曲線関数 |
+| `log(x)`, `log2(x)`, `log10(x)` | 底がe、2、10の対数 |
+| `exp(x)` | eのx乗 |
+| `signum(x)` | [**Sign (Math)**](#sign-math)と同様に`1`、`-1`、`0`を返します |
 
-## 乱数 (`random_number`)
+### Random Number
 
-**目的:** 指定範囲内の乱数を生成します。
+**識別子：** `random_number`
 
-**値:** `min`, `max`
+`min`から`max`までのランダムな整数を返します。テキストが更新されるたびに値が変わります。
 
-**例:**
+- `min`、`max`：最小値と最大値
 
 ```
-{"placeholder":"random_number","values":{"min":"1","max":"100"}}
+{"placeholder":"random_number","values":{"min":"1","max":"6"}}
 ```
 
-**出力:** `42`
+### Max Number
 
-## 最大値 (`maxnum`)
+**識別子：** `maxnum`
 
-**目的:** 2 つの数値のうち大きい方を返します。
+2つの数値のうち、大きい方を返します。
 
-**値:** `first`, `second`
+- `first`、`second`：数値
 
-**例:**
-
 ```
-{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+{"placeholder":"maxnum","values":{"first":"$$score","second":"$$best_score"}}
 ```
 
-**出力:** `20`
+### Min Number
 
-## 最小値 (`minnum`)
+**識別子：** `minnum`
 
-**目的:** 2 つの数値のうち小さい方を返します。
+2つの数値のうち、小さい方を返します。
 
-**値:** `first`, `second`
+- `first`、`second`：数値
 
-**例:**
-
 ```
-{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+{"placeholder":"minnum","values":{"first":"10","second":"15"}}
 ```
-
-**出力:** `10`
 
-## 絶対値 (`absnum`)
+### Absolute Number
 
-**目的:** 数値の絶対値を返します。
+**識別子：** `absnum`
 
-**値:** `num`
+数値の絶対値を返します。たとえば`-10.5`は`10.5`になります。
 
-**例:**
+- `num`：数値
 
 ```
 {"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
 
-**出力:** `10.5`
+### Negate Number
 
-## 数値を負にする (`negnum`)
+**識別子：** `negnum`
 
-**目的:** 正の数を負の数にします。0 と、すでに負の値はそのまま返されます。
+正の数を負の数にします。たとえば`10.5`は`-10.5`になります。0と負の数はそのままです。
 
-**値:** `num`
-
-**例:**
+- `num`：数値
 
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
 
-**出力:** `-10.5`
+### Round (Math)
 
-## *pi*（数学） (`math_pi`)
+**識別子：** `math_round`
 
-**目的:** π の値を返します。
+数値を四捨五入します。`2.5`は`3`になります。
 
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"math_pi"}
-```
-
-**出力:** `3.141592653589793`
-
-## 三角関数サイン（数学） (`math_sin`)
-
-**目的:** ラジアン単位の角度の正弦を返します。度数法の値は先にラジアンへ変換してください。
-
-**値:** `angle`
-
-**例:**
-
-```
-{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
-```
-
-**出力:** `1.0`
-
-## 三角関数コサイン（数学） (`math_cos`)
-
-**目的:** ラジアン単位の角度の余弦を返します。度数法の値は先にラジアンへ変換してください。
-
-**値:** `angle`
-
-**例:**
-
-```
-{"placeholder":"math_cos","values":{"angle":"0"}}
-```
-
-**出力:** `1.0`
-
-## 三角関数タンジェント（数学） (`math_tan`)
-
-**目的:** ラジアン単位の角度の正接を返します。度数法の値は先にラジアンへ変換してください。
-
-**値:** `angle`
-
-**例:**
-
-```
-{"placeholder":"math_tan","values":{"angle":"0"}}
-```
-
-**出力:** `0.0`
-
-## 切り捨て（数学） (`math_floor`)
-
-**目的:** 数値の数学的な床関数を返します。結果は `.0` の小数接尾辞付きで書式化されます。
-
-**値:** `num`
-
-**例:**
-
-```
-{"placeholder":"math_floor","values":{"num":"3.14"}}
-```
-
-**出力:** `3.0`
-
-## 切り上げ（数学） (`math_ceil`)
-
-**目的:** 数値の数学的な天井関数を返します。結果は `.0` の小数接尾辞付きで書式化されます。
-
-**値:** `num`
-
-**例:**
-
-```
-{"placeholder":"math_ceil","values":{"num":"3.14"}}
-```
-
-**出力:** `4.0`
-
-整数テキストを `.0` なしで使いたい場合は、[**Round**](#round-math-math_round) または、小数出力を無効にした [**Calculator**](#calculator-calc) を使ってください。
-
-## 四捨五入（数学） (`math_round`)
-
-**目的:** 数値を丸めます。既定では最も近い整数に丸めます。`decimals` を 0 以上の数にすると、その桁数まで丸めます。
-
-**値:** `num`, `decimals`
-
-**例:**
+- `num`：数値
+- `decimals`（省略可能）：小数点以下の桁数。たとえば`2`にすると`3.14159`は`3.14`になります。`0`、`-1`、または省略した場合は整数に丸めます。
 
 ```
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
 
-**出力:** `3.14`（`decimals:-1` または省略 → `3`）
+### Floor (Math)
 
-## 符号（数学） (`math_sign`)
+**識別子：** `math_floor`
 
-**目的:** 数値の符号を返します（正なら 1、負なら -1、0 なら 0）。
+数値を整数に切り下げます。たとえば`3.7`は`3`、`-3.2`は`-4`になります。
 
-**値:** `num`
+- `num`：数値
 
-**例:**
+```
+{"placeholder":"math_floor","values":{"num":"3.7"}}
+```
+
+### Ceiling (Math)
+
+**識別子：** `math_ceil`
+
+数値を整数に切り上げます。たとえば`3.2`は`4`、`-3.7`は`-3`になります。
+
+- `num`：数値
+
+```
+{"placeholder":"math_ceil","values":{"num":"3.2"}}
+```
+
+### Sign (Math)
+
+**識別子：** `math_sign`
+
+正の数には`1`、負の数には`-1`、0には`0`を返します。
+
+- `num`：数値
 
 ```
 {"placeholder":"math_sign","values":{"num":"-3.14"}}
 ```
 
-**出力:** `-1`
+### *pi* (Math)
 
-## 双曲線サイン（数学） (`math_sinh`)
+**識別子：** `math_pi`
 
-**目的:** 数値の双曲線正弦を返します。
+円周率πの値`3.141592653589793`を返します。
 
-**値:** `num`
+```
+{"placeholder":"math_pi"}
+```
 
-**例:**
+### Trigonometric Sine (Math)
+
+**識別子：** `math_sin`
+
+ラジアン単位の角度の正弦を返します。度数法を使う場合は、Calculatorで先にπ / 180を掛けてください。
+
+- `angle`：ラジアン単位の角度
+
+```
+{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
+```
+
+### Trigonometric Cosine (Math)
+
+**識別子：** `math_cos`
+
+ラジアン単位の角度の余弦を返します。
+
+- `angle`：ラジアン単位の角度
+
+```
+{"placeholder":"math_cos","values":{"angle":"0"}}
+```
+
+### Trigonometric Tangent (Math)
+
+**識別子：** `math_tan`
+
+ラジアン単位の角度の正接を返します。
+
+- `angle`：ラジアン単位の角度
+
+```
+{"placeholder":"math_tan","values":{"angle":"0.7853981633974483"}}
+```
+
+### Hyperbolic Sine (Math)
+
+**識別子：** `math_sinh`
+
+数値の双曲線正弦を返します。
+
+- `num`：数値
 
 ```
 {"placeholder":"math_sinh","values":{"num":"1"}}
 ```
 
-**出力:** `1.1752011936438014`
+### Hyperbolic Cosine (Math)
 
-## 双曲線コサイン（数学） (`math_cosh`)
+**識別子：** `math_cosh`
 
-**目的:** 数値の双曲線余弦を返します。
+数値の双曲線余弦を返します。
 
-**値:** `num`
-
-**例:**
+- `num`：数値
 
 ```
 {"placeholder":"math_cosh","values":{"num":"1"}}
 ```
 
-**出力:** `1.5430806348152437`
+### Hyperbolic Tangent (Math)
 
-## 双曲線タンジェント（数学） (`math_tanh`)
+**識別子：** `math_tanh`
 
-**目的:** 数値の双曲線正接を返します。
+数値の双曲線正接を返します。
 
-**値:** `num`
-
-**例:**
+- `num`：数値
 
 ```
 {"placeholder":"math_tanh","values":{"num":"1"}}
 ```
 
-**出力:** `0.7615941559557649`
+### Number Base Converter
 
-## テキスト分割 (`split_text`)
+**識別子：** `number_base_convert`
 
-**目的:** 指定した区切り文字でテキストを分割します。
+10進数から2進数や16進数など、数値を別の基数に変換します。小数にも対応し、小数点以下は最大16桁です。変換結果の英字は大文字（例：`FF`）になります。
 
-**値:** `input`, `regex`, `max_parts`, `split_index`
-
-**例:**
-
-```
-{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
-```
-
-**出力:** `world`
-
-## テキストのトリム (`trim_text`)
-
-**目的:** 前後の空白を削除します。
-
-**値:** `text`
-
-**例:**
+- `input`：数値
+- `from_base`（省略可能）：`input`の基数。`2`から`36`まで指定できます。既定値は`10`です。
+- `to_base`（省略可能）：変換後の基数。`2`から`36`まで指定できます。既定値は`10`です。
 
 ```
-{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+{"placeholder":"number_base_convert","values":{"input":"255","from_base":"10","to_base":"16"}}
 ```
 
-**出力:** `hello world`
+## テキスト
 
-## テキストの切り取り (`crop_text`)
+これらは**Advanced**カテゴリーにあります。
 
-**目的:** テキストの先頭と末尾から文字を削除します。
+### Uppercase Text
 
-**値:** `text`, `remove_from_start`, `remove_from_end`
+**識別子：** `uppercase_text`
 
-**例:**
+テキストをすべて大文字にします。`Hello World`は`HELLO WORLD`になります。`&a`などの[書式コード](/text-formatting)はそのまま残ります。
 
-```
-{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
-```
-
-**出力:** `ello worl`
-
-## 文字列化 (`stringify`)
-
-**目的:** すべての構文文字をエスケープしてテキストを文字列化します。
-
-**値:** `text`
-
-**例:**
-
-```
-{"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
-```
-
-**出力:** `text with \{special\} \"characters\"`
-
-## ローカライズテキスト取得 (`local`)
-
-**目的:** キーに対応するローカライズ済みテキストを取得します。
-
-**値:** `key`
-
-**例:**
-
-```
-{"placeholder":"local","values":{"key":"menu.singleplayer"}}
-```
-
-**出力:** `Singleplayer`
-
-## Web テキスト (`webtext`)
-
-**目的:** Web URL からテキスト内容を取得します。
-
-**値:** `link`
-
-**例:**
-
-```
-{"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
-```
-
-**出力:** `Welcome to the server!`
-
-## ランダムテキスト (`randomtext`)
-
-**目的:** テキストファイル、URL、または直接入力したプレーンテキストからランダムな行を返します。テキストは指定間隔で切り替わります。ファイルと URL の内容は約 30 秒ごとに更新されます。直接入力のプレーンテキストは再読み込み不要のためキャッシュされたままです。
-
-**値:** `source`, `interval`
-
-プレースホルダーの値では、`/config/...` は `<game-directory>/config/...` を意味します。ファイルシステムのルートパスではありません。[Resources](./resources#local-resources) を参照してください。
-
-**例:**
-
-```
-{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
-```
-パラメーター:
-- `source`: テキスト行のソース（旧 `path` パラメーターの代わり）
-  - ファイルパス: `/config/fancymenu/assets/quotes.txt`
-  - URL: `https://example.com/quotes.txt`
-  - プレーンテキスト: `Line 1\nLine 2\nLine 3`
-- `interval`: テキストが切り替わるまでの秒数
-
-このプレースホルダーは、次の 3 種類のソースに対応しています:
-1. **ローカルファイル**: ゲームディレクトリ内のテキストファイル
-   ```
-   {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
-   ```
-2. **URL**: インターネット上のリモートテキストファイル
-   ```
-   {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
-   ```
-3. **プレーンテキスト**: `\n` で区切られた直接入力テキスト
-   ```
-   {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
-   ```
-
-注: `source` の代わりに `path` を使っている古いプレースホルダーも引き続き動作します。
-
-## JSON パーサー (`json`)
-
-**目的:** ファイル、URL、または直接入力の JSON からデータを解析し、JSON パス式を使って値を抽出します。
-
-**値:** `source`, `json_path`
-
-**例:**
-
-```
-{"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
-```
-パラメーター:
-- `source`: JSON データのソース
-  - ファイルパス: `/config/fancymenu/assets/data.json`
-  - URL: `https://api.example.com/data.json`
-  - 直接 JSON: `{"name":"Steve","level":42}`
-- `json_path`: データを抽出する JSON パス式
-
-このプレースホルダーは、次の 3 種類のソースに対応しています:
-1. **ローカルファイル**: ゲームディレクトリ内の JSON ファイル
-   ```
-   {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
-   ```
-2. **URL**: API や Web サービスからのリモート JSON データ
-   ```
-   {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
-   ```
-3. **直接 JSON**: インラインの JSON コンテンツ
-   ```
-   {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
-   ```
-
-JSON パスの例:
-- `$.name` - ルートから「name」フィールドを取得
-- `$.player.level` - 「player」内のネストされた「level」フィールドを取得
-- `$.items[0].id` - 配列の最初の要素の「id」を取得
-- `$.scores.*` - 「scores」オブジェクトのすべての値を取得
-
-## 絶対ファイル/フォルダパス (`absolute_path`)
-
-**目的:** ファイルの絶対パスを返します。
-
-**値:** `short_path`
-
-**例:**
-
-```
-{"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
-```
-
-**出力:** `C:/Games/PrismLauncher/instances/My Pack/relative/path/to/file.txt`
-
-## テキスト文字数 (`text_character_count`)
-
-**目的:** 指定されたテキストの文字数を返します。
-
-**値:** `text`
-
-**例:**
-
-```
-{"placeholder":"text_character_count","values":{"text":"Hello World!"}}
-```
-
-**出力:** `12`
-
-## テキスト幅 (`text_width`)
-
-**目的:** 描画時の指定テキストの幅をピクセル単位で返します。
-
-**値:** `text`
-
-**例:**
-
-```
-{"placeholder":"text_width","values":{"text":"Hello World!"}}
-```
-
-**出力:** `66`
-
-## 文字列を大文字に (`uppercase_text`)
-
-**目的:** 入力テキストをすべて大文字に変換します。
-
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"uppercase_text","values":{"text":"Hello World"}}
 ```
 
-**出力:** `HELLO WORLD`
+### Lowercase Text
 
-## 文字列を小文字に (`lowercase_text`)
+**識別子：** `lowercase_text`
 
-**目的:** 入力テキストをすべて小文字に変換します。
+テキストをすべて小文字にします。`HELLO WORLD`は`hello world`になります。書式コードはそのまま残ります。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
-{"placeholder":"lowercase_text","values":{"text":"Hello World"}}
+{"placeholder":"lowercase_text","values":{"text":"HELLO WORLD"}}
 ```
 
-**出力:** `hello world`
+### Title Case Text
 
-## 文字列をタイトルケースに (`title_case_text`)
+**識別子：** `title_case_text`
 
-**目的:** 入力テキストをタイトルケースに変換します。
+各単語の先頭を大文字にします。`hello world`は`Hello World`になります。書式コードはそのまま残ります。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
 
-**出力:** `Hello World`
+### Sentence Case Text
 
-## 文字列を文頭のみ大文字に (`sentence_case_text`)
+**識別子：** `sentence_case_text`
 
-**目的:** 入力テキストを文頭のみ大文字に変換します。
+各文の先頭を大文字にします。`hello world. this is fancymenu!`は`Hello world. This is fancymenu!`になります。書式コードはそのまま残ります。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
 ```
 
-**出力:** `Hello world. This is fancymenu!`
+### Snake Case Text
 
-## 文字列をスネークケースに (`snake_case_text`)
+**識別子：** `snake_case_text`
 
-**目的:** 入力テキストを `snake_case` に変換します。
+小文字に変換し、単語の間に`_`を入れます。`Hello World`は`hello_world`になります。書式コードは削除されます。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
 
-**出力:** `hello_world`
+### Kebab Case Text
 
-## 文字列をケバブケースに (`kebab_case_text`)
+**識別子：** `kebab_case_text`
 
-**目的:** 入力テキストを `kebab-case` に変換します。
+小文字に変換し、単語の間に`-`を入れます。`Hello World`は`hello-world`になります。書式コードは削除されます。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
 
-**出力:** `hello-world`
+### Alternating Case Text
 
-## 文字列を交互大小文字に (`alternating_case_text`)
+**識別子：** `alternating_case_text`
 
-**目的:** 入力テキストを交互の大小文字に変換します。
+小文字と大文字を交互にします。`alternating case`は`aLtErNaTiNg CaSe`になります。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
 
-**出力:** `aLtErNaTiNg CaSe`
+### Toggle Case Text
 
-## 文字列の大文字小文字を反転 (`toggle_case_text`)
+**識別子：** `toggle_case_text`
 
-**目的:** 入力テキストの各文字の大文字小文字を反転します。
+小文字を大文字に、大文字を小文字に変換します。`Toggle Case`は`tOGGLE cASE`になります。
 
-**値:** `text`
-
-**例:**
+- `text`：テキスト
 
 ```
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
 
-**出力:** `tOGGLE cASE`
+### Trim Text
 
-## Base64 にエンコード (`base64_encode`)
+**識別子：** `trim_text`
 
-**目的:** 指定テキストを Base64 としてエンコードします。
+テキストの先頭と末尾にある空白を削除します。途中の空白はそのまま残ります。
 
-**値:** `text`
+- `text`：テキスト
 
-**例:**
+```
+{"placeholder":"trim_text","values":{"text":"  Welcome!  "}}
+```
+
+### Crop Text
+
+**識別子：** `crop_text`
+
+テキストの先頭と末尾から指定した文字数を削除します。`hello world`の両端から1文字ずつ削除すると`ello worl`になります。
+
+- `text`：テキスト
+- `remove_from_start`：先頭から削除する文字数
+- `remove_from_end`：末尾から削除する文字数
+
+```
+{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+```
+
+### Split Text
+
+**識別子：** `split_text`
+
+テキストを分割し、その一部を返します。`Steve,Alex,Notch`を`,`で分割すると、パート`1`として`Alex`を取得できます。
+
+- `input`：テキスト
+- `regex`：正規表現で指定する分割位置。`.`、`|`、`?`などの文字の前には`\`を付けます（例：`\.`）。
+- `max_parts`（省略可能）：分割後のパート数の上限。既定値は`-1`で、すべての一致箇所で分割します。
+- `split_index`：取得するパート。最初のパートは`0`です。
+
+```
+{"placeholder":"split_text","values":{"input":"Steve,Alex,Notch","regex":",","max_parts":"-1","split_index":"1"}}
+```
+
+### Replace Text
+
+**識別子：** `replace_text`
+
+テキストの一部を置き換えます。`Hello World!`の`World`を`FancyMenu`に置き換えると、`Hello FancyMenu!`になります。
+
+- `text`：テキスト
+- `search`：検索する文字列
+- `replacement`（省略可能）：置き換える文字列。既定値は空で、一致した部分を削除します。
+- `use_regex`（省略可能）：`true`にすると、`search`を正規表現として扱います。その場合、`replacement`内の`$1`、`$2`などは一致したグループを表します。既定値は`false`です。
+- `replace_all`（省略可能）：`false`にすると最初の一致のみを置き換えます。既定値は`true`です。
+
+```
+{"placeholder":"replace_text","values":{"text":"Hello World!","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
+```
+
+### Switch Case
+
+**識別子：** `switch_case`
+
+値に一致するケースの結果を返します。変数`difficulty_level`が`2`の場合、次の例では`Hard Mode`を返します。
+
+- `value`：照合する値
+- `cases`：値と結果のペア。例：`1:Easy Mode,2:Hard Mode`。値と結果には`,`または`:`を含められません。
+- `default`（省略可能）：どのケースにも一致しない場合の結果。指定しない場合、プレースホルダーはそのまま残ります。
+
+```
+{"placeholder":"switch_case","values":{"value":"$$difficulty_level","cases":"1:Easy Mode,2:Hard Mode","default":"Normal Mode"}}
+```
+
+### Localize Text
+
+**識別子：** `local`
+
+ゲームの現在の言語におけるローカライズキーのテキストを返します。たとえば、`menu.singleplayer`は`Singleplayer`になります。Minecraftやmodのキーに加え、独自のキーも使用できます（[ローカライズ](/localization)を参照）。
+
+- `key`：ローカライズキー
+
+```
+{"placeholder":"local","values":{"key":"menu.singleplayer"}}
+```
+
+### Stringify
+
+**識別子：** `stringify`
+
+テキスト内のプレースホルダーを置き換えた後、すべての`"`、`{`、`}`の前に`\`を挿入します。これにより、ウェブサイトなど外部から取得したテキストがプレースホルダーとして解釈されるのを防げます。
+
+- `text`：テキスト
+
+```
+{"placeholder":"stringify","values":{"text":"{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}"}}
+```
+
+## データとファイル
+
+これらは**Advanced**カテゴリーにあります。ローカルパスは`/config/fancymenu/assets/news.txt`のようにゲームフォルダーを起点とし、ゲームフォルダーの外には移動できません（[リソース](/resources#local-resources)を参照）。
+
+### JSON Parser
+
+**識別子：** `json`
+
+JSONから値を読み取ります。結果が複数ある場合は、1行に1つずつ表示します。
+
+- `source`：JSONテキスト、ゲームフォルダー内のJSONファイル、またはJSONファイルのURL
+- `json_path`：`$.name`や`$.players[0].name`のように、値へのパスを指定します。JSONパスの詳細は[json.fancymenu.net](https://json.fancymenu.net)を参照してください。
+
+```
+{"placeholder":"json","values":{"source":"https://example.com/server_info.json","json_path":"$.news.title"}}
+```
+
+ウェブ上のJSONは一度読み込まれ、FancyMenuの再読み込み時に再度読み込まれます。ファイルの変更はすぐに反映されます。
+
+| パス | 取得する値 |
+|---|---|
+| `$.name` | 最上位にある`name` |
+| `$.player.level` | `player`内の`level` |
+| `$.items[0].id` | `items`の最初の項目にある`id` |
+| `$.scores.*` | `scores`内のすべての値 |
+
+### File Text
+
+**識別子：** `file_text`
+
+ファイルまたはURLのテキストを取得します。ファイルは1秒ごと、URLは10秒ごとに再読み込みされます。読み込み中、または読み取れない場合は空の値を返します。
+
+- `path_or_url`：ゲームフォルダー内のファイル、またはURL。`.minecraft/`で始まるパスは既定のMinecraftフォルダーを指します。
+- `mode`（省略可能）：全文を取得する場合は`all`、末尾の行を取得する場合は`last`。既定値は`all`です。
+- `separator`（省略可能）：行の間に入れるテキスト。既定値は改行の`\n`です。
+- `last_lines`（省略可能）：`last`で取得する行数。既定値は`1`です。
+
+```
+{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/changelog.txt","mode":"all","separator":"\n","last_lines":"1"}}
+```
+
+### File Size
+
+**識別子：** `file_size`
+
+ファイルサイズをバイト単位で返します。ファイルが存在しない場合は`0`です。`.minecraft/`で始まるパスは既定のMinecraftフォルダーを指します。
+
+- `path`：ファイル
+
+```
+{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/news.txt"}}
+```
+
+### File MD5
+
+**識別子：** `file_md5`
+
+ファイルのMD5ハッシュを返します（例：`d41d8cd98f00b204e9800998ecf8427e`）。ファイルが存在しない場合は空です。`.minecraft/`で始まるパスは既定のMinecraftフォルダーを指します。
+
+- `path`：ファイル
+
+```
+{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/menu_music.ogg"}}
+```
+
+### Encode To Base64
+
+**識別子：** `base64_encode`
+
+テキストをBase64に変換します。`Hello World`は`SGVsbG8gV29ybGQ=`になります。
+
+- `text`：テキスト
 
 ```
 {"placeholder":"base64_encode","values":{"text":"Hello World"}}
 ```
 
-**出力:** `SGVsbG8gV29ybGQ=`
+### Decode From Base64
 
-## Base64 からデコード (`base64_decode`)
+**識別子：** `base64_decode`
 
-**目的:** Base64 文字列をプレーンテキストにデコードします。
+Base64をテキストに戻します。`SGVsbG8gV29ybGQ=`は`Hello World`になります。
 
-**値:** `text`
-
-**例:**
+- `text`：Base64テキスト
 
 ```
 {"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
 ```
 
-**出力:** `Hello World`
+### Get NBT Data (Client-Side)
 
-## ファイルテキスト (`file_text`)
+**識別子：** `nbt_data_get`
 
-**目的:** ファイルまたは URL からテキスト行を返します。すべての行、または最後の X 行のみを返せます。
+`/data get`のように、ゲームがワールドについて把握している情報からNBTデータを読み取ります。処理は高速ですが、サーバーはすべての情報をプレイヤーに送信するわけではありません。
 
-**値:** `path_or_url`, `mode`, `separator`, `last_lines`
-
-**例:**
-
-```
-{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
-```
-パラメーター:
-- `path_or_url`: 読み取り元のファイルパスまたは URL
-- `mode`: `"all"`（すべての行を返す）または `"last"`（最後の X 行のみ返す）
-- `separator`: 行の間に使う文字列（既定: `"\n"`）
-- `last_lines`: `mode` が `"last"` のときに返す行数（既定: `"1"`）
-
-**出力:**
-
-```text
-First line
-Second line
-```
-
-## クリップボードの内容 (`clipboard_content`)
-
-**目的:** システムのクリップボードに保存されている現在のテキスト内容を返します。
-
-**値:** なし
-
-**例:**
-
-```
-{"placeholder":"clipboard_content"}
-```
-
-**出力:** `Hello from the clipboard`
-
-## テキスト置換 (`replace_text`)
-
-**目的:** 文字列内のテキストを、リテラル文字列または正規表現で置き換えます。
-
-**値:** `text`, `search`, `replacement`, `use_regex`, `replace_all`
-
-**例:**
-
-```
-{"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
-```
-パラメーター:
-- `text`: 処理対象の入力テキスト
-- `search`: 検索する文字列または正規表現パターン
-- `replacement`: 置換後の文字列
-- `use_regex`: 正規表現を使うかどうか（`"true"`）またはリテラル一致か（`"false"`）
-- `replace_all`: すべて置換するか（`"true"`）、最初の 1 件だけにするか（`"false"`）
-
-**出力:** `Hello FancyMenu! This is a test.`
-
-## スイッチケース (`switch_case`)
-
-**目的:** 値に基づいて switch-case 処理を行います。
-
-**値:** `value`, `cases`, `default`
-
-**例:**
-
-```
-{"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
-```
-
-**出力:** `first case`（value が 1 の場合）
-
-## 変数の値を取得（FM 変数） (`getvariable`)
-
-**目的:** 以前に保存した変数の値を取得します。
-
-**値:** `name`
-
-**例:**
-
-```
-{"placeholder":"getvariable","values":{"name":"some_variable"}}
-```
-
-**出力:** `42`
-
-## NBT データを取得 (`nbt_data_get`)
-
-**目的:** クライアント側で NBT データを取得します（`/data get` コマンドに似ています）。サーバー接続中に、サーバー側の確定値が必要な場合は、サーバー版の `nbt_data_get_server` を使ってください。
-
-**値:** `source_type`, `entity_selector`, `nbt_path`, `scale`, `return_type`
-
-**例:**
+- `source_type`：`entity`または`block`
+- `entity_selector`：`entity`の場合に使うセレクター。`@s`（自分）、`@p`、`@e[type=minecraft:horse,limit=1,sort=nearest]`、またはエンティティの名前やUUIDを指定します。セレクターでは`type`、`name`、`tag`、`limit`、`sort`、`distance`、`x`、`y`、`z`、`dx`、`dy`、`dz`を使用できます。最初に一致した対象が使われます。
+- `block_pos`：`block`の場合に指定するブロックエンティティ（チェストなど）の座標。例：`120 64 -35`
+- `nbt_path`：`foodLevel`や`Inventory[0].id`のようなNBTパス
+- `scale`（省略可能）：数値に掛ける倍率。既定値は`1.0`です。
+- `return_type`（省略可能）：`value`（数値とテキストをそのまま返す）、`string`、`snbt`、`json`のいずれか。既定値は`value`です。
 
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
-パラメーター:
-- `source_type`: `"entity"` または `"block"`
-- `entity_selector`: `@s`、`@p`、`@e`、UUID/名前などのエンティティセレクター（エンティティ用）
-- `block_pos`: ブロック位置の形式 `"x y z"`（ブロック用）
-- `nbt_path`: 取得する NBT パス
-- `scale`: 数値に適用する任意のスケール係数（既定: `"1.0"`）
-- `return_type`: データの返し方:
-  - `"value"`: 既定。値を返します（数値には任意でスケーリング適用）
-  - `"string"`: 実際の NBT データを文字列で返します
-  - `"snbt"`: SNBT（整形済み NBT）として返します
-  - `"json"`: JSON 形式のコンポーネントとして返します（compound タグ用）
 
-**出力:** `20`（food level の場合）
+### Get NBT Data (Server-Side)
 
-## NBT データを取得（サーバー側） (`nbt_data_get_server`)
+**識別子：** `nbt_data_get_server`
 
-**目的:** パケットを使ってサーバー側の NBT データを問い合わせ、結果を短時間キャッシュします。値はクライアント側プレースホルダーと同じです。
+`/data get`と同じ方法で、サーバーからNBTデータを読み取ります。サーバーにもFancyMenuが必要です。シングルプレイでは常に動作します。サーバーから応答があるまでは空の値を返し、その後は約100ミリ秒ごとに更新されます。
 
-**値:** `source_type`, `entity_selector`, `block_pos`, `storage_id`, `nbt_path`, `scale`, `return_type`
-
-**例:**
+- `source_type`：`entity`、`block`、`storage`のいずれか
+- `entity_selector`：`entity`の場合に使うセレクター。`@s`や`@e[type=minecraft:villager,limit=1,sort=nearest]`など、`/data get`でエンティティを1体だけ取得できるものを指定します。
+- `block_pos`：`block`の場合に指定する座標。`120 64 -35`、`~ ~-1 ~`、`^ ^ ^1`などを指定できます。
+- `storage_id`：`storage`の場合に指定するコマンドストレージのID（例：`mypack:quests`）。
+- `nbt_path`（省略可能）：NBTパス。指定しない場合はすべてのデータを取得します。
+- `scale`（省略可能）：数値に掛ける倍率。既定値は`1.0`です。
+- `return_type`（省略可能）：`value`、`string`、`snbt`、`json`のいずれか。既定値は`value`です。
 
 ```
-{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
+{"placeholder":"nbt_data_get_server","values":{"source_type":"storage","storage_id":"mypack:quests","nbt_path":"completed","return_type":"value"}}
 ```
 
-**出力:** `minecraft:diamond_sword`
+## オーディオ
 
-## 最後の死亡メッセージ (`lastdeathmessage`)
+開いているメニューの[Audio要素](/elements#audio)の情報を取得します。レイアウトエディターでAudio要素を右クリックし、**Copy Element ID**をクリックすると、そのIDをコピーできます。
 
-**目的:** クライアントプレイヤーの最後に記録された死亡メッセージを返します。生の JSON テキストコンポーネントを取得するには `as_json_component` を `"true"` にしてください。
+### Audio Element Volume
 
-**値:** `as_json_component`
+**識別子：** `audio_element_vol`
 
-**例:**
+Audio要素の音量を返します。範囲は`0.0`（0%）から`1.0`（100%）です。
+
+- `element_identifier`：Audio要素のID
+
+```
+{"placeholder":"audio_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Current Audio Track
+
+**識別子：** `audio_element_current_track`
+
+現在再生中のトラックのファイル名を返します（例：`menu_theme.ogg`）。トラックが再生されていない場合は`---`です。
+
+- `element_identifier`：Audio要素のID
+- `display_name_mappings`（省略可能）：ファイル名の代わりに表示する名前。ファイル名と表示名の間は`=>`、各ペアの間は`%:%`で区切ります。
+
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","display_name_mappings":"menu_theme.ogg=>Menu Theme%:%credits.ogg=>Credits Theme"}}
+```
+
+### Audio Duration
+
+**識別子：** `audio_duration`
+
+現在のトラックの長さを返します（例：`03:45`）。読み込み中は`00:00`です。
+
+- `element_identifier`：Audio要素のID
+
+```
+{"placeholder":"audio_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Audio Play Time
+
+**識別子：** `audio_playtime`
+
+現在のトラックの再生位置を返します（例：`01:30`）。停止中は`00:00`（または`0`）です。
+
+- `element_identifier`：Audio要素のID
+- `show_percentage`（省略可能）：`true`にすると、代わりに`0`から`100`までの進捗率を返します。既定値は`false`です。
+
+```
+{"placeholder":"audio_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false"}}
+```
+
+### Audio Playing State
+
+**識別子：** `audio_playing_state`
+
+Audio要素の再生中は`true`、一時停止中または停止中は`false`を返します。
+
+- `element_identifier`：Audio要素のID
+
+```
+{"placeholder":"audio_playing_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+## クライアント
+
+ゲームとそのmodに関する情報です。
+
+### Minecraft Version
+
+**識別子：** `mcversion`
+
+Minecraftのバージョンを返します（例：`1.21.1`）。
+
+```
+{"placeholder":"mcversion"}
+```
+
+### Mod Loader Name
+
+**識別子：** `loadername`
+
+modローダーの名前を返します（例：`Fabric`、`NeoForge`）。
+
+```
+{"placeholder":"loadername"}
+```
+
+### Mod Loader Version
+
+**識別子：** `loaderver`
+
+modローダーのバージョンを返します（例：`0.16.14`）。
+
+```
+{"placeholder":"loaderver"}
+```
+
+### Mod Version
+
+**識別子：** `modversion`
+
+インストール済みmodのバージョンを返します（例：`3.11.0`）。modがインストールされていない場合は`0.0.0`です。
+
+- `modid`：modのID（例：`fancymenu`）
+
+```
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+```
+
+### Active Mods Count
+
+**識別子：** `loadedmods`
+
+読み込まれているmodの数を返します。ライブラリや他のmodに含まれるmodも数えるため、modファイルの数より多くなることがあります。
+
+```
+{"placeholder":"loadedmods"}
+```
+
+### Total Mods Count
+
+**識別子：** `totalmods`
+
+インストールされているmodの概数を返します。ゲーム起動時に`mods`フォルダー内の`.jar`ファイルから数えます。**Active Mods Count**の数より小さくなることはありません。
+
+```
+{"placeholder":"totalmods"}
+```
+
+### World Loading Progress
+
+**識別子：** `world_load_progress`
+
+ワールドの読み込み中に、読み込み画面が表示されている間の進捗を`0`から`100`で返します。プログレスバーに適しています。それ以外の画面では`0`です。
+
+```
+{"placeholder":"world_load_progress"}
+```
+
+### Minecraft Option Value
+
+**識別子：** `minecraft_option_value`
+
+ゲームフォルダー内の`options.txt`に保存されているMinecraft設定の値を返します。たとえば`renderDistance`は`12`です。その名前の設定がない場合は空です。
+
+- `name`：`options.txt`内の設定名
+
+```
+{"placeholder":"minecraft_option_value","values":{"name":"renderDistance"}}
+```
+
+### Keybind Key
+
+**識別子：** `keybind_key`
+
+操作設定画面と同じ形式で、キー割り当てに現在設定されているキーを返します。たとえばジャンプは`Space`です。その名前のキー割り当てがない場合は空です。
+
+- `keybind`：キー割り当て名（例：`key.jump`、`key.inventory`）。名前は`options.txt`に記載されていますが、先頭の`key_`は不要です。`key_key.jump`の場合は`key.jump`を指定します。
+
+```
+インベントリを開くには{"placeholder":"keybind_key","values":{"keybind":"key.inventory"}}を押してください！
+```
+
+### Last World or Server
+
+**識別子：** `last_world_server`
+
+プレイヤーが最後に参加したワールドまたはサーバーを返します。サーバーは`play.example.net:25565`のように表示されます。
+
+- `type`：ワールドとサーバーの両方を対象にする場合は`both`、ワールドのみなら`world`、サーバーのみなら`server`。`world`または`server`を指定した場合、最後に参加したものが別の種類なら空です。
+- `full_world_path`（省略可能）：`false`では`New World`のようなワールド名のみを返します。`true`ではワールドフォルダーのパスを返します。既定値は`true`です。
+
+```
+{"placeholder":"last_world_server","values":{"type":"world","full_world_path":"false"}}
+```
+
+## GUI
+
+開いている画面とその要素に関する情報です。要素のプレースホルダーには要素IDを指定します。レイアウトエディターで要素を右クリックし、**Copy Element ID**をクリックしてください。
+
+### Screen Width
+
+**識別子：** `guiwidth`
+
+画面のGUIピクセル単位の幅です。モニターのピクセル数ではなく、要素のサイズに使われる値です。
+
+```
+{"placeholder":"guiwidth"}
+```
+
+### Screen Height
+
+**識別子：** `guiheight`
+
+画面のGUIピクセル単位の高さです。
+
+```
+{"placeholder":"guiheight"}
+```
+
+### GUI Scale
+
+**識別子：** `guiscale`
+
+ゲームのGUIスケールを返します（例：`2`）。
+
+```
+{"placeholder":"guiscale"}
+```
+
+### Current Screen Identifier
+
+**識別子：** `screenid`
+
+開いている画面の[識別子](/screen-identifiers)を返します（例：`title_screen`）。画面が開いていない場合は空です。
+
+```
+{"placeholder":"screenid"}
+```
+
+### Element Width
+
+**識別子：** `elementwidth`
+
+要素のGUIピクセル単位の幅を返します。指定したIDの要素がない場合は`1`です。
+
+- `id`：要素のID
+
+```
+{"placeholder":"elementwidth","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Element Height
+
+**識別子：** `elementheight`
+
+要素のGUIピクセル単位の高さを返します。指定したIDの要素がない場合は`1`です。
+
+- `id`：要素のID
+
+```
+{"placeholder":"elementheight","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Element X Position
+
+**識別子：** `elementposx`
+
+要素の左端が画面左端からGUIピクセル単位でどの位置にあるかを返します。指定したIDの要素がない場合は`1`です。
+
+- `id`：要素のID
+
+```
+{"placeholder":"elementposx","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Element Y Position
+
+**識別子：** `elementposy`
+
+要素の上端が画面上端からGUIピクセル単位でどの位置にあるかを返します。指定したIDの要素がない場合は`1`です。
+
+- `id`：要素のID
+
+```
+{"placeholder":"elementposy","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Text Element Content Height
+
+**識別子：** `text_element_content_height`
+
+[テキスト要素](/text-in-menus)のテキスト全体をスクロールせずに表示するために必要な高さを、GUIピクセル単位で返します。折り返された行、テキストの拡大率、行間も計算されるため、テキストに合わせた背景の作成に便利です。対象がテキスト要素でない場合は`0`です。
+
+- `element_identifier`：テキスト要素のID
+
+```
+{"placeholder":"text_element_content_height","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Element Scroll Position
+
+**識別子：** `scroll_area_scroll_position`
+
+[スクロール可能エリア](/scrollable-areas)またはテキスト要素のコンテンツが、開始位置からGUIピクセル単位でどれだけスクロールしたかを返します。それ以外の要素では`0`です。
+
+- `element_identifier`：要素のID
+- `axis`：`vertical`または`horizontal`。それ以外の値では、要素のスクロール方向を使用します。
+
+```
+{"placeholder":"scroll_area_scroll_position","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### Element Scroll Percent
+
+**識別子：** `scroll_area_scroll_percent`
+
+スクロール可能エリアまたはテキスト要素のコンテンツが、開始位置の`0`から末尾の`100`までのどこにあるかを返します。それ以外の要素や、スクロールするものがない場合は`0`です。
+
+- `element_identifier`：要素のID
+- `axis`：`vertical`または`horizontal`。それ以外の値では、要素のスクロール方向を使用します。
+
+```
+{"placeholder":"scroll_area_scroll_percent","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### Element Scroll Content Size
+
+**識別子：** `scroll_area_content_size`
+
+スクロール可能エリアまたはテキスト要素のコンテンツサイズを返します。`vertical`の場合は高さ、`horizontal`の場合は幅です。それ以外の要素では`0`です。
+
+- `element_identifier`：要素のID
+- `axis`：`vertical`または`horizontal`。それ以外の値では、要素のスクロール方向を使用します。
+
+```
+{"placeholder":"scroll_area_content_size","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### Text Input Field Value
+
+**識別子：** `text_input_field_value`
+
+[テキスト入力フィールド](/elements#text-input-field)または元の画面のテキストフィールドに入力されている内容を返します。対象の要素がテキストフィールドでない場合は空です。
+
+- `element_identifier`：要素のID
+
+```
+{"placeholder":"text_input_field_value","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Vanilla Widget Label/Text
+
+**識別子：** `vanillabuttonlabel`
+
+元の画面にあるボタンなどのウィジェットのラベルを返します（例：`Options...`）。レイアウトエディターでウィジェットを右クリックし、**Copy Widget Locator**をクリックするとロケーターをコピーできます。
+
+- `locator`：ウィジェットのロケーター
+
+```
+{"placeholder":"vanillabuttonlabel","values":{"locator":"title_screen:mc_titlescreen_options_button"}}
+```
+
+### Mouse X Position
+
+**識別子：** `mouseposx`
+
+マウスカーソルが画面左端からGUIピクセル単位でどの位置にあるかを返します。レイアウトエディターでは常に`10`になり、マウスに追従する要素を編集可能な位置に保ちます。
+
+```
+{"placeholder":"mouseposx"}
+```
+
+### Mouse Y Position
+
+**識別子：** `mouseposy`
+
+マウスカーソルが画面上端からGUIピクセル単位でどの位置にあるかを返します。レイアウトエディターでは常に`10`です。
+
+```
+{"placeholder":"mouseposy"}
+```
+
+### Clicks Per Second
+
+**識別子：** `clicks_per_second`
+
+直近1秒間にマウスボタンがクリックされた回数を返します。
+
+- `mouse_button`（省略可能）：`left`または`right`。既定値は`left`です。
+
+```
+{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
+```
+
+## プレイヤー
+
+### Player Name
+
+**識別子：** `playername`
+
+プレイヤー名を返します（例：`Steve`）。
+
+```
+{"placeholder":"playername"}
+```
+
+### Player UUID
+
+**識別子：** `playeruuid`
+
+プレイヤーのUUIDを返します（例：`c8cde7fe-7ced-11eb-9439-0242ac130002`）。
+
+```
+{"placeholder":"playeruuid"}
+```
+
+### Last Death Message
+
+**識別子：** `lastdeathmessage`
+
+ゲーム開始後にプレイヤーが最後に死亡したときのメッセージを返します（例：`Steve was slain by Zombie`）。初めて死亡するまでは空です。
+
+- `as_json_component`（省略可能）：`true`にすると、色付きのJSONテキストコンポーネントとして返します。既定値は`false`です。
 
 ```
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
 
-**出力:** `Steve was slain by Zombie`
+## 現在時刻
 
-## 稼働時間 (`uptime_duration`)
+コンピューターの時刻に関する情報です。日付と時刻のプレースホルダーには省略可能な`timezone`を指定できます。`system`はコンピューターのタイムゾーン（既定値）です。また、`UTC`、`Europe/Berlin`、`America/New_York`などのIDも使えます。すべてのIDは[nodatime.org/TimeZones](https://nodatime.org/TimeZones)を参照してください。
 
-**目的:** FancyMenu が読み込まれてからの経過時間を返します。既定では秒単位です。ミリ秒で受け取るには `output_as_millis` を `"true"` にしてください。
+### Realtime Year
 
-**値:** `output_as_millis`
+**識別子：** `realtimeyear`
 
-**例:**
+年を返します（例：`2026`）。
 
 ```
-{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+{"placeholder":"realtimeyear","values":{"timezone":"system"}}
 ```
 
-**出力:** `742`（読み込み後の秒数）
+### Realtime Month
 
-## ワールドセーブ名 (`level_save_names`)
+**識別子：** `realtimemonth`
 
-**目的:** ローカルのワールドセーブ名を、選択した区切り文字で連結して一覧表示します。クライアントスレッドで実行されます。
+月を`01`から`12`の範囲で返します。
 
-**値:** `separator`
+```
+{"placeholder":"realtimemonth","values":{"timezone":"system"}}
+```
 
-**例:**
+### Realtime Day
+
+**識別子：** `realtimeday`
+
+月の日を`01`から`31`の範囲で返します。
+
+```
+{"placeholder":"realtimeday","values":{"timezone":"system"}}
+```
+
+### Realtime Hour
+
+**識別子：** `realtimehour`
+
+時を`00`から`23`の範囲で返します。
+
+- `twelve_hour_format`（省略可能）：`true`にすると、代わりに`01`から`12`で返します。既定値は`false`です。
+
+```
+{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"Europe/Berlin"}}
+```
+
+### Realtime Minute
+
+**識別子：** `realtimeminute`
+
+分を`00`から`59`の範囲で返します。
+
+```
+{"placeholder":"realtimeminute","values":{"timezone":"system"}}
+```
+
+### Realtime Second
+
+**識別子：** `realtimesecond`
+
+秒を`00`から`59`の範囲で返します。
+
+```
+{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+```
+
+### Current Time in Millis (Unix Timestamp)
+
+**識別子：** `unix_time`
+
+1970年1月1日（UTC）からの経過時間をミリ秒で返します（例：`1732456789012`）。タイマーに便利です。値を変数に保存し、後で取得した値からCalculatorで引き算してください。
+
+```
+{"placeholder":"unix_time"}
+```
+
+## サーバー
+
+サーバーリストと同じように、サーバーの状態を問い合わせます。カスタマイズされた画面が開いている間、FancyMenuは30秒ごとに問い合わせます。最初の応答があるまでは、サーバーはオフラインとして扱われます。
+
+- `ip`：サーバーのアドレス。ポートが既定値でない場合はポートも指定します（例：`play.example.net`、`play.example.net:25566`）。
+
+### Server Status
+
+**識別子：** `serverstatus`
+
+オンラインなら緑色の`Online`、オフラインなら赤色の`Offline`を返します。
+
+```
+{"placeholder":"serverstatus","values":{"ip":"play.example.net"}}
+```
+
+### Server Player Count
+
+**識別子：** `serverplayercount`
+
+オンライン中のプレイヤー数と最大プレイヤー数を返します（例：`12/100`）。サーバーから応答があるまでは`0/0`です。
+
+```
+{"placeholder":"serverplayercount","values":{"ip":"play.example.net"}}
+```
+
+### Server MOTD
+
+**識別子：** `servermotd`
+
+サーバーのMOTD（今日のメッセージ）の1行を返します。
+
+- `line`：`1`または`2`
+
+```
+{"placeholder":"servermotd","values":{"ip":"play.example.net","line":"1"}}
+```
+
+### Server PING
+
+**識別子：** `serverping`
+
+サーバーへのpingをミリ秒単位で返します（例：`54`）。オフラインの場合は`-1`です。
+
+```
+{"placeholder":"serverping","values":{"ip":"play.example.net"}}
+```
+
+### Server Version
+
+**識別子：** `serverversion`
+
+サーバーのMinecraftバージョンを返します（例：`1.21.1`）。サーバーによっては独自のテキストが表示されます。サーバーから応答があるまでは`---`です。
+
+```
+{"placeholder":"serverversion","values":{"ip":"play.example.net"}}
+```
+
+## 動画
+
+開いているメニューの[Video要素と動画メニュー背景](/video)の情報を取得します。Video要素の場合は、レイアウトエディターで要素を右クリックし、**Copy Element ID**をクリックします。背景の場合は、エディターの背景を右クリックし、**Copy Background Identifier**をクリックします。
+
+### Video Element Volume
+
+**識別子：** `video_element_vol`
+
+Video要素の音量を返します。範囲は`0.0`（0%）から`1.0`（100%）です。
+
+- `element_identifier`：Video要素のID
+
+```
+{"placeholder":"video_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Video Element Duration
+
+**識別子：** `video_element_duration`
+
+Video要素の動画の長さを返します（例：`02:00`）。読み込み中は`00:00`（または`0`）です。
+
+- `element_identifier`：Video要素のID
+- `output_as_timestamp`（省略可能）：`true`にすると、代わりに`120000`のようなミリ秒で返します。既定値は`false`です。
+
+```
+{"placeholder":"video_element_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","output_as_timestamp":"false"}}
+```
+
+### Video Element Play Time
+
+**識別子：** `video_element_playtime`
+
+Video要素の動画の再生位置を返します（例：`00:45`）。読み込み中は`00:00`（または`0`）です。
+
+- `element_identifier`：Video要素のID
+- `show_percentage`（省略可能）：`true`にすると、進捗を`0`から`100`で返します。既定値は`false`です。
+- `output_as_timestamp`（省略可能）：`true`にするとミリ秒で返します。両方が`true`の場合は`show_percentage`が優先されます。既定値は`false`です。
+
+```
+{"placeholder":"video_element_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false","output_as_timestamp":"false"}}
+```
+
+### Video Element Paused State
+
+**識別子：** `video_element_paused_state`
+
+Video要素が一時停止中なら`true`、それ以外なら`false`を返します。
+
+- `element_identifier`：Video要素のID
+
+```
+{"placeholder":"video_element_paused_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### Video Background Volume
+
+**識別子：** `video_background_vol`
+
+動画メニュー背景の音量を返します。範囲は`0.0`（0%）から`1.0`（100%）です。
+
+- `background_identifier`：メニュー背景の識別子
+
+```
+{"placeholder":"video_background_vol","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+### Video Background Duration
+
+**識別子：** `video_background_duration`
+
+メニュー背景の動画の長さを返します（例：`03:00`）。読み込み中は`00:00`（または`0`）です。
+
+- `background_identifier`：メニュー背景の識別子
+- `output_as_timestamp`（省略可能）：`true`にすると、代わりにミリ秒で返します。既定値は`false`です。
+
+```
+{"placeholder":"video_background_duration","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","output_as_timestamp":"false"}}
+```
+
+### Video Background Play Time
+
+**識別子：** `video_background_playtime`
+
+メニュー背景の動画の再生位置を返します（例：`01:00`）。読み込み中は`00:00`（または`0`）です。
+
+- `background_identifier`：メニュー背景の識別子
+- `show_percentage`（省略可能）：`true`にすると、進捗を`0`から`100`で返します。既定値は`false`です。
+- `output_as_timestamp`（省略可能）：`true`にするとミリ秒で返します。両方が`true`の場合は`show_percentage`が優先されます。既定値は`false`です。
+
+```
+{"placeholder":"video_background_playtime","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","show_percentage":"true","output_as_timestamp":"false"}}
+```
+
+### Video Background Paused State
+
+**識別子：** `video_background_paused_state`
+
+動画メニュー背景が一時停止中なら`true`、それ以外なら`false`を返します。
+
+- `background_identifier`：メニュー背景の識別子
+
+```
+{"placeholder":"video_background_paused_state","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+## ワールド：プレイヤーのステータス
+
+**World**カテゴリーは、プレイ中のワールドに関する情報です。ほとんどのプレースホルダーは読み込み済みのワールドを必要とします。ワールドに入っていない場合は、`0`、`0.0`、または空の値を返します。
+
+### Current Player Health
+
+**識別子：** `current_player_health`
+
+プレイヤーの体力を返します（例：`20.0`）。ハート1個は`2.0`です。
+
+```
+{"placeholder":"current_player_health"}
+```
+
+### Max Player Health
+
+**識別子：** `max_player_health`
+
+プレイヤーの最大体力を返します（例：`20.0`）。
+
+```
+{"placeholder":"max_player_health"}
+```
+
+### Current Player Health (Percent)
+
+**識別子：** `current_player_health_percent`
+
+プレイヤーの体力をパーセントで、`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_player_health_percent"}
+```
+
+### Current Player Absorption Health
+
+**識別子：** `current_player_absorption_health`
+
+プレイヤーの吸収体力（金色のハート）を返します（例：`4.0`）。
+
+```
+{"placeholder":"current_player_absorption_health"}
+```
+
+### Max Player Absorption Health
+
+**識別子：** `max_player_absorption_health`
+
+プレイヤーの最大吸収体力を返します（例：`4.0`）。
+
+```
+{"placeholder":"max_player_absorption_health"}
+```
+
+### Current Player Absorption Health (Percent)
+
+**識別子：** `current_player_absorption_health_percent`
+
+プレイヤーの吸収体力をパーセントで、`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_player_absorption_health_percent"}
+```
+
+### Current Player Food Level
+
+**識別子：** `current_player_hunger`
+
+プレイヤーの満腹度を`0.0`から`20.0`の範囲で返します。
+
+```
+{"placeholder":"current_player_hunger"}
+```
+
+### Max Player Food Level
+
+**識別子：** `max_player_hunger`
+
+プレイヤーの最大満腹度を返します。常に`20.0`です。
+
+```
+{"placeholder":"max_player_hunger"}
+```
+
+### Current Player Food Level (Percent)
+
+**識別子：** `current_player_hunger_percent`
+
+プレイヤーの満腹度をパーセントで、`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_player_hunger_percent"}
+```
+
+### Current Player Hunger Saturation
+
+**識別子：** `current_player_hunger_saturation`
+
+プレイヤーの隠し満腹度を返します（例：`5.0`）。これが消費されてから満腹度が減少します。
+
+```
+{"placeholder":"current_player_hunger_saturation"}
+```
+
+### Current Player Armor
+
+**識別子：** `current_player_armor`
+
+プレイヤーの防具ポイントを`0.0`から`20.0`の範囲で返します。
+
+```
+{"placeholder":"current_player_armor"}
+```
+
+### Max Player Armor
+
+**識別子：** `max_player_armor`
+
+防具ゲージの最大防具ポイントを返します。常に`20.0`です。
+
+```
+{"placeholder":"max_player_armor"}
+```
+
+### Current Player Armor (Percent)
+
+**識別子：** `current_player_armor_percent`
+
+プレイヤーの防具ポイントをパーセントで、`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_player_armor_percent"}
+```
+
+### Player Armor Toughness
+
+**識別子：** `player_armor_toughness`
+
+プレイヤーの防具強度を返します。ダイヤモンド防具一式なら`8.0`です。
+
+```
+{"placeholder":"player_armor_toughness"}
+```
+
+### Current Player Oxygen Level
+
+**識別子：** `current_player_oxygen`
+
+水中でのプレイヤーの空気量を`0.0`から`300.0`の範囲で返します。
+
+```
+{"placeholder":"current_player_oxygen"}
+```
+
+### Max Player Oxygen Level
+
+**識別子：** `max_player_oxygen`
+
+プレイヤーの最大空気量を返します（例：`300.0`）。
+
+```
+{"placeholder":"max_player_oxygen"}
+```
+
+### Current Player Oxygen Level (Percent)
+
+**識別子：** `current_player_oxygen_percent`
+
+プレイヤーの空気量をパーセントで、`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_player_oxygen_percent"}
+```
+
+### Current Player Level
+
+**識別子：** `current_player_level`
+
+プレイヤーの経験値レベルを返します（例：`30`）。
+
+```
+{"placeholder":"current_player_level"}
+```
+
+### Current Player Experience
+
+**識別子：** `current_player_exp`
+
+プレイヤーの合計経験値ポイントを返します（例：`1395.0`）。レベルではありません。
+
+```
+{"placeholder":"current_player_exp"}
+```
+
+### Player Experience Progress (Percent)
+
+**識別子：** `current_player_exp_progress`
+
+経験値バーの進捗を`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_player_exp_progress"}
+```
+
+### Player Attack Strength (Percent)
+
+**識別子：** `player_attack_strength`
+
+次の攻撃のチャージ具合を、攻撃インジケーターと同じように`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"player_attack_strength"}
+```
+
+### Player Game Mode
+
+**識別子：** `player_gamemode`
+
+`survival`、`creative`、`adventure`、`spectator`のいずれかを返します。
+
+```
+{"placeholder":"player_gamemode"}
+```
+
+### Player Item Use Progress (FM)
+
+**識別子：** `player_item_use_progress_fm`
+
+食べる、飲む、弓を引くなど、アイテム使用の進行度を`0.0`から`1.0`の範囲で返します。
+
+```
+{"placeholder":"player_item_use_progress_fm"}
+```
+
+### Current Mount Health
+
+**識別子：** `current_mount_health`
+
+プレイヤーが乗っている馬などのMobの体力を返します（例：`30.0`）。
+
+```
+{"placeholder":"current_mount_health"}
+```
+
+### Max Mount Health
+
+**識別子：** `max_mount_health`
+
+プレイヤーが乗っているMobの最大体力を返します。
+
+```
+{"placeholder":"max_mount_health"}
+```
+
+### Current Mount Health (Percent)
+
+**識別子：** `current_mount_health_percent`
+
+プレイヤーが乗っているMobの体力をパーセントで、`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_mount_health_percent"}
+```
+
+### Current Mount Jump Meter (Percent)
+
+**識別子：** `current_mount_jump_meter`
+
+馬のジャンプのチャージ具合を`0`から`100`の範囲で返します。
+
+```
+{"placeholder":"current_mount_jump_meter"}
+```
+
+### Active Effects Count
+
+**識別子：** `effects_count`
+
+プレイヤーに現在付与されているエフェクトの数を返します。
+
+```
+{"placeholder":"effects_count"}
+```
+
+### Active Effect
+
+**識別子：** `active_effect`
+
+画面右上のエフェクトアイコンの順序に従って、プレイヤーのエフェクトID（例：`minecraft:speed`）を返します。指定した位置にエフェクトがない場合は空です。
+
+- `effect_index`：エフェクトの位置。最初のエフェクトは`0`です。
+
+```
+{"placeholder":"active_effect","values":{"effect_index":"0"}}
+```
+
+## ワールド：インベントリとアイテム
+
+これらは**World**カテゴリーにあります。スロット番号は、`0`から`8`がホットバー、`9`から`35`が残りのインベントリ、`36`から`39`がブーツからヘルメットまでの防具スロット、`40`がオフハンドです。
+
+### Selected Hotbar Slot
+
+**識別子：** `active_hotbar_slot`
+
+選択中のホットバースロットを`0`から`8`の範囲で返します。
+
+```
+{"placeholder":"active_hotbar_slot"}
+```
+
+### Slot Item
+
+**識別子：** `slot_item`
+
+スロット内のアイテムIDを返します（例：`minecraft:diamond_sword`）。空のスロットでは`minecraft:air`を返します。
+
+- `slot`：スロット番号
+
+```
+{"placeholder":"slot_item","values":{"slot":"0"}}
+```
+
+### Slot Item Count
+
+**識別子：** `slot_item_count`
+
+スロット内のアイテム数を返します（例：`64`）。
+
+- `slot`：スロット番号
+
+```
+{"placeholder":"slot_item_count","values":{"slot":"0"}}
+```
+
+### Slot Item Durability
+
+**識別子：** `slot_item_durability`
+
+スロット内のアイテムの耐久値を返します。耐久値のないアイテムでは`0`です。
+
+- `slot`：スロット番号
+- `format`（省略可能）：`current`（残り耐久値）、`max`、`damage`（消耗した耐久値）、`percentage`（残り耐久値の割合、`0`から`100`）のいずれか。既定値は`current`です。
+
+```
+{"placeholder":"slot_item_durability","values":{"slot":"39","format":"percentage"}}
+```
+
+### Slot Item Display Name (FM)
+
+**識別子：** `slot_item_display_name_fm`
+
+スロット内のアイテム名を、レア度の色を含むJSONテキストコンポーネントで返します（例：`{"text":"Diamond Sword","color":"aqua"}`）。スペクテイターモードでは、ホットバースロットにスペクテイターメニューの項目名を返します。
+
+- `slot`：スロット番号
+- `ignore_spectator`（省略可能）：`true`にすると、スペクテイターモードでもアイテム名を返します。既定値は`false`です。
+
+```
+{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
+```
+
+### Inventory Item Count
+
+**識別子：** `inventory_item_count`
+
+プレイヤーのインベントリ全体にある指定アイテムの個数を返します。
+
+- `item`：アイテムID（例：`minecraft:diamond`）。空の場合はすべてのアイテムを数えます。
+
+```
+{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
+```
+
+### Inventory Slot Food Point Restore Amount
+
+**識別子：** `inventory_slot_food_point_restore_amount`
+
+スロット内のアイテムを食べたときに回復する満腹度を返します。リンゴなら`4.0`です。食料でないアイテムは`0.0`です。
+
+- `slot`：スロット番号
+
+```
+{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
+```
+
+### Item Category
+
+**識別子：** `item_category`
+
+アイテムが属するクリエイティブインベントリのタブを返します（例：`Combat`）。タブのないアイテムでは`UNKNOWN`です。
+
+- `item`：アイテムID
+- `as_key`（省略可能）：`true`にすると、`minecraft:combat`のようなタブIDを返します。既定値は`false`です。
+
+```
+{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
+```
+
+### Hovered Inventory Item
+
+**識別子：** `hovered_inventory_item`
+
+インベントリ画面でマウスカーソルが重なっているアイテムのIDを返します（例：`minecraft:apple`）。該当するアイテムがない場合は空です。
+
+```
+{"placeholder":"hovered_inventory_item"}
+```
+
+## ワールド：HUDとボス
+
+これらは**World**カテゴリーにあります。襲撃関連のプレースホルダーは画面上部にバーが表示されている襲撃の情報を取得し、サーバーにもFancyMenuが必要です。シングルプレイでは常に動作します。襲撃がない場合は`0`または空の値を返します。
+
+### Action Bar Message (FM)
+
+**識別子：** `action_bar_message_fm`
+
+ホットバーの上に表示されるメッセージを、JSONテキストコンポーネントで返します（例：`{"text":"You may not rest now","color":"red"}`）。メッセージがない場合は空です。
+
+```
+{"placeholder":"action_bar_message_fm"}
+```
+
+### Action Bar Message Time (FM)
+
+**識別子：** `action_bar_message_time_fm`
+
+ホットバーの上のメッセージが表示され続ける残りtick数を返します。20 tickは1秒です。
+
+```
+{"placeholder":"action_bar_message_time_fm"}
+```
+
+### Highlighted Item Time (FM)
+
+**識別子：** `highlighted_item_time_fm`
+
+選択中のアイテム名がホットバーの上に表示され続ける残りtick数を返します。
+
+```
+{"placeholder":"highlighted_item_time_fm"}
+```
+
+### Current HUD Title/Subtitle
+
+**識別子：** `current_title`
+
+`/title`などで現在表示されているタイトルまたはサブタイトルを返します。表示がない場合は空です。
+
+- `is_subtitle`（省略可能）：`true`にするとサブタイトルを返します。既定値は`false`です。
+- `as_json`（省略可能）：`true`にするとJSONテキストコンポーネントとして返します。既定値は`false`です。
+
+```
+{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
+```
+
+### Bosses Count
+
+**識別子：** `boss_count`
+
+現在表示されているボスバーの数を返します。
+
+```
+{"placeholder":"boss_count"}
+```
+
+### Boss Name
+
+**識別子：** `boss_name`
+
+ボスバーの名前を返します（例：`Ender Dragon`）。指定した位置にボスバーがない場合は空です。
+
+- `boss_index`：ボスバーの位置。一番上のボスバーは`0`です。
+- `as_json`（省略可能）：`true`にするとJSONテキストコンポーネントとして返します。既定値は`false`です。
+
+```
+{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
+```
+
+### Current Boss Health (Percent)
+
+**識別子：** `current_boss_health`
+
+ボスバーの体力の割合を`0`から`100`の範囲で返します。
+
+- `boss_index`：ボスバーの位置。一番上のボスバーは`0`です。
+
+```
+{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
+```
+
+### Total Active Raid Waves
+
+**識別子：** `active_raid_total_waves`
+
+ボーナスウェーブを含む、襲撃の総ウェーブ数を返します。
+
+```
+{"placeholder":"active_raid_total_waves"}
+```
+
+### Remaining Active Raid Waves
+
+**識別子：** `active_raid_remaining_waves`
+
+襲撃で残っているウェーブ数を返します。
+
+```
+{"placeholder":"active_raid_remaining_waves"}
+```
+
+### Current Active Raid Wave
+
+**識別子：** `active_raid_current_wave`
+
+直近のウェーブ番号を返します。最初のウェーブが始まると`1`、始まる前は`0`です。
+
+```
+Wave {"placeholder":"active_raid_current_wave"} of {"placeholder":"active_raid_total_waves"}
+```
+
+### Active Raid Alive Raiders Count
+
+**識別子：** `active_raid_alive_raiders_count`
+
+襲撃中に生存している襲撃者の数を返します。
+
+```
+{"placeholder":"active_raid_alive_raiders_count"}
+```
+
+### Active Raid Alive Raiders List
+
+**識別子：** `active_raid_alive_raiders_list`
+
+生存している襲撃者をカンマ区切りで返します。各項目はMob IDと襲撃者のUUIDで、`minecraft:pillager#0d9a4b2e-5f1c-4a8e-9b3d-6c2f1e7a8b90`のような形式です。
+
+```
+{"placeholder":"active_raid_alive_raiders_list"}
+```
+
+## ワールド：位置とカメラ
+
+これらは**World**カテゴリーにあります。
+
+### Player X Coordinate
+
+**識別子：** `player_x_coordinate`
+
+プレイヤーが立っているブロックのX座標を返します（例：`125`）。
+
+```
+{"placeholder":"player_x_coordinate"}
+```
+
+### Player Y Coordinate
+
+**識別子：** `player_y_coordinate`
+
+プレイヤーが立っているブロックのY座標を返します（例：`64`）。
+
+```
+{"placeholder":"player_y_coordinate"}
+```
+
+### Player Z Coordinate
+
+**識別子：** `player_z_coordinate`
+
+プレイヤーが立っているブロックのZ座標を返します（例：`-250`）。
+
+```
+{"placeholder":"player_z_coordinate"}
+```
+
+### Player View Direction
+
+**識別子：** `player_view_direction`
+
+プレイヤーが向いている方角を返します。`north`、`east`、`south`、`west`のいずれかです。
+
+```
+{"placeholder":"player_view_direction"}
+```
+
+### Player Position Delta X (FM)
+
+**識別子：** `player_position_delta_x_fm`
+
+前回のtickからX方向に移動した距離をブロック単位で返します（例：`0.12`）。逆方向への移動は負の値になります。
+
+```
+{"placeholder":"player_position_delta_x_fm"}
+```
+
+### Player Position Delta Y (FM)
+
+**識別子：** `player_position_delta_y_fm`
+
+前回のtickからY方向に移動した距離を返します。落下中は`-0.08`のようになります。
+
+```
+{"placeholder":"player_position_delta_y_fm"}
+```
+
+### Player Position Delta Z (FM)
+
+**識別子：** `player_position_delta_z_fm`
+
+前回のtickからZ方向に移動した距離を返します。
+
+```
+{"placeholder":"player_position_delta_z_fm"}
+```
+
+### Camera Rotation X (FM)
+
+**識別子：** `camera_rotation_x_fm`
+
+カメラが上下を向く角度を度数で返します。`-90.0`が真上、`90.0`が真下です。
+
+```
+{"placeholder":"camera_rotation_x_fm"}
+```
+
+### Camera Rotation Y (FM)
+
+**識別子：** `camera_rotation_y_fm`
+
+カメラが向いている水平方向を、`-180.0`から`180.0`の角度で返します。`0.0`は南です。
+
+```
+{"placeholder":"camera_rotation_y_fm"}
+```
+
+### Camera Rotation Delta X (FM)
+
+**識別子：** `camera_rotation_delta_x_fm`
+
+前回のtickからカメラが上下に動いた角度を度数で返します。
+
+```
+{"placeholder":"camera_rotation_delta_x_fm"}
+```
+
+### Camera Rotation Delta Y (FM)
+
+**識別子：** `camera_rotation_delta_y_fm`
+
+前回のtickからカメラが左右に動いた角度を度数で返します。
+
+```
+{"placeholder":"camera_rotation_delta_y_fm"}
+```
+
+## ワールド：ワールド情報
+
+これらは**World**カテゴリーにあります。
+
+### World Day Time
+
+**識別子：** `world_daytime`
+
+ワールドの時刻をtick数で返します。1日は24000 tickで、朝6時に始まります。日ごとにカウントが続くため、Calculatorで`{"placeholder":"world_daytime"} % 24000`と計算すると、現在の日の時刻を取得できます。
+
+```
+{"placeholder":"world_daytime"}
+```
+
+### World Day Time Hour
+
+**識別子：** `world_daytime_hour`
+
+ワールド内の時刻の「時」を`00`から`23`の範囲で返します。
+
+- `twelve_hour_format`（省略可能）：`true`にすると、代わりに`01`から`12`で返します。既定値は`false`です。
+
+```
+{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
+```
+
+### World Day Time Minute
+
+**識別子：** `world_daytime_minute`
+
+ワールド内の時刻の「分」を`00`から`59`の範囲で返します。
+
+```
+{"placeholder":"world_daytime_hour"}:{"placeholder":"world_daytime_minute"}
+```
+
+### World Game Time
+
+**識別子：** `game_time`
+
+ワールドで経過した合計tick数を返します。時刻とは異なり、`/time set`などのコマンドでは変化しません。
+
+```
+{"placeholder":"game_time"}
+```
+
+### World Difficulty
+
+**識別子：** `world_difficulty`
+
+`peaceful`、`easy`、`normal`、`hard`のいずれかを返します。
+
+```
+{"placeholder":"world_difficulty"}
+```
+
+### Current Dimension
+
+**識別子：** `current_dimension`
+
+プレイヤーがいるディメンションを返します（例：`minecraft:overworld`）。
+
+- `as_key`（省略可能）：`false`にすると`Overworld`のような名前を返します。名前のないディメンションではIDを返します。既定値は`true`です。
+
+```
+{"placeholder":"current_dimension","values":{"as_key":"false"}}
+```
+
+### Current Biome
+
+**識別子：** `current_biome`
+
+プレイヤーがいるバイオームを返します（例：`minecraft:plains`）。
+
+- `as_key`（省略可能）：`false`にすると`Plains`のような名前を返します。既定値は`true`です。
+
+```
+{"placeholder":"current_biome","values":{"as_key":"false"}}
+```
+
+### Current World Seed
+
+**識別子：** `current_world_seed`
+
+シングルプレイのワールドシードを返します（例：`-4172144997902289642`）。サーバーでは空です。
+
+```
+{"placeholder":"current_world_seed"}
+```
+
+### Gamerule Value
+
+**識別子：** `gamerule_value`
+
+ゲームルールの値を返します（例：`true`、`3`）。シングルプレイでは常に動作します。サーバーではサーバー側にもFancyMenuが必要です。その名前のゲームルールがない場合は空です。
+
+- `name`：ゲームルール名（例：`keep_inventory`）。Minecraft 1.21.10以前では`keepInventory`のような名前ですが、古い名前も新しいバージョンで使えます。
+
+```
+{"placeholder":"gamerule_value","values":{"name":"keep_inventory"}}
+```
+
+### Current Server IP
+
+**識別子：** `current_server_ip`
+
+プレイヤーが接続しているサーバーのアドレスを返します（例：`play.example.net`）。シングルプレイでは空です。
+
+```
+{"placeholder":"current_server_ip"}
+```
+
+### World Players List
+
+**識別子：** `world_players_list`
+
+ゲームが把握しているワールド内のプレイヤー名を、アルファベット順に返します（例：`Alex, Notch, Steve`）。
+
+- `separator`（省略可能）：名前の間に入れるテキスト。既定値は`, `です。
+
+```
+{"placeholder":"world_players_list","values":{"separator":", "}}
+```
+
+## ワールド：ワールドセーブ
+
+これらは**World**カテゴリーにあり、ワールドが読み込まれていなくても、どのメニューでも動作します。
+
+### World Save Count
+
+**識別子：** `level_save_count`
+
+シングルプレイのワールド数を返します。
+
+```
+{"placeholder":"level_save_count"}
+```
+
+### World Save Names
+
+**識別子：** `level_save_names`
+
+すべてのシングルプレイのワールド名を、ワールド一覧と同じ順序で返します（例：`Survival World, Creative Test`）。
+
+- `separator`（省略可能）：名前の間に入れるテキスト。既定値は`, `です。
 
 ```
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
 
-**出力:** `Creative Test, Survival World, Hardcore`
+### World Save Data
 
-## ワールドセーブデータ (`level_save_data`)
+**識別子：** `level_save_data`
 
-**目的:** 指定したワールド名のシリアライズ済みレベルデータを返します（セーブ一覧に表示される表示名と一致している必要があります）。
+シングルプレイのワールドのすべてのデータをJSON形式で返します（例：`{"file_name":"Survival World","game_type":"survival","difficulty":"normal",...}`）。`file_name`、`display_name`、`game_type`、`difficulty`、`allow_commands`、`last_played`（Unixタイムスタンプ）、`minecraft_version_name`などが含まれます。[**JSON Parser**](#json-parser)で個別の値を読み取れます。
 
-**値:** `level_name`
-
-**例:**
+- `level_name`：ワールド一覧に表示される名前と完全に同じワールド名
 
 ```
-{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
+{"placeholder":"json","values":{"source":"{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}","json_path":"$.game_type"}}
 ```
 
-**出力:** `{"name":"Survival World","gameMode":"survival",...}`
+## その他
 
-## 数値基数変換 (`number_base_convert`)
+これらにはカテゴリーがないため、プレースホルダーメニューではカテゴリー一覧の下に表示されます。
 
-**目的:** 数値（整数または小数）をある基数から別の基数へ変換します（2〜36）。基数が指定されていない場合は 10 進数を既定とします。
+### FPS (Frames Per Second)
 
-**値:** `input`, `from_base`, `to_base`
+**識別子：** `fps`
 
-**例:**
-
-```
-{"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
-```
-
-**出力:** `43.8`
-
-## ファイルサイズ (`file_size`)
-
-**目的:** ローカルファイルのサイズをバイト単位で返します。ローカルパスのみ使用できます。
-
-**値:** `path`
-
-**例:**
+フレームレートを返します（例：`120`）。
 
 ```
-{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"fps"}
 ```
 
-**出力:** `1284`
+### Used RAM in MB
 
-## ファイル MD5 (`file_md5`)
+**識別子：** `usedram`
 
-**目的:** ローカルファイルの MD5 ハッシュを小文字の 16 進文字列で返します。
-
-**値:** `path`
-
-**例:**
+ゲームが現在使用しているRAMをMB単位で返します（例：`4096`）。
 
 ```
-{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"usedram"}
 ```
 
-**出力:** `d41d8cd98f00b204e9800998ecf8427e`
+### Max RAM in MB
 
-# 実践例
+**識別子：** `maxram`
 
-## 動的なメモリ表示の作成
-```
-使用中 RAM: {"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB ({"placeholder":"percentram"}%)
-```
+ゲームが使用できる最大RAMをMB単位で返します（例：`8192`）。
 
-## リアルタイム時計の作成
 ```
-{"placeholder":"realtimehour","values":{"timezone":"system"}}:{"placeholder":"realtimeminute","values":{"timezone":"system"}}:{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+{"placeholder":"maxram"}
 ```
 
-## システム情報表示の作成
-```
-OS: {"placeholder":"osname"}
-CPU: {"placeholder":"cpuinfo"}
-GPU: {"placeholder":"gpuinfo"}
-Java: {"placeholder":"javaver"}
-```
+### Used RAM in %
 
-## プレイヤー状態 HUD
+**識別子：** `percentram`
+
+ゲームが使用しているRAMの割合を、最大RAMに対するパーセントで返します（例：`50`）。
+
 ```
-体力: {"placeholder":"current_player_health"} / {"placeholder":"max_player_health"} ({"placeholder":"current_player_health_percent"}%)
-防具: {"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
-XP レベル: {"placeholder":"current_player_level"}
+{"placeholder":"percentram"}
 ```
 
-## ネストされたプレースホルダーを使った複雑な計算
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
-```
+### CPU Usage (JVM)
 
-## 四捨五入付きの座標表示
+**識別子：** `jvmcpu`
+
+ゲームが使用しているCPUの割合をパーセントで返します（例：`25.5`）。
+
 ```
-X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
-Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
-Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordinate"}"}}
+{"placeholder":"jvmcpu"}
 ```
 
-# ベストプラクティス
+### CPU Usage (OS)
 
-1. **重い処理はキャッシュする**: 一部のプレースホルダー（システム情報を読み取るものなど）は、負荷が高い場合があります。複数回使うなら、変数に保存して使い回すことを検討してください。
+**識別子：** `oscpu`
 
-2. **適切な小数設定を使う**: 計算を行うときは、`decimal` パラメーターを適切に使ってください。整数が必要なら `false`、正確な小数値が必要なら `true` に設定します。
+コンピューター全体のCPU使用率をパーセントで返します（例：`42.8`）。
 
-3. **欠損値を考慮する**: プレースホルダーが値を返さない場合にどうするか、常に考慮してください。そのような場合は、既定値を用意するとよいでしょう。
+```
+{"placeholder":"oscpu"}
+```
 
-4. **パフォーマンスをテストする**: 多数のプレースホルダーや複雑なネスト構造を使う場合は、特に低スペック環境で性能への影響を確認してください。
+### CPU Info
 
-5. **高度なサイズ/配置を活用する**: 動的な UI 要素では、プレースホルダーと高度なサイズ調整・配置を組み合わせて、レスポンシブなレイアウトを作成してください。
+**識別子：** `cpuinfo`
 
-6. **変数と組み合わせる**: プレースホルダーを変数と併用すると、アクションで更新できるさらに動的なコンテンツを作れます。
+CPU名を返します（例：`Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`）。
 
-# よくある問題と解決策
+```
+{"placeholder":"cpuinfo"}
+```
 
-## プレースホルダーが更新されない
-プレースホルダーの値が期待どおりに更新されない場合は、次を確認してください:
-- プレースホルダーの形式が正しいか
-- プレースホルダー ID の大文字小文字が正しいか
-- そのプレースホルダーに、更新に必要な特定条件があるか
+### GPU Info
 
-## ネストされたプレースホルダーが動作しない
-プレースホルダーをネストする場合は:
--  उद्ध? Ensure proper escaping of quotes  
-- 各ネストされたプレースホルダーが、それ単体でも有効であることを確認する
+**識別子：** `gpuinfo`
 
-## パフォーマンス問題
-パフォーマンスに問題がある場合は:
-- 使用するプレースホルダーの数を減らす
-- 不要なネストを避ける
-- よく使う値には変数の使用を検討する
-- 必要に合った適切なプレースホルダーを使う（たとえば、静的な値で足りるならリアルタイム系プレースホルダーは使わない）
+ゲームが使用しているグラフィックデバイス名を返します（例：`NVIDIA GeForce RTX 3080`）。
+
+```
+{"placeholder":"gpuinfo"}
+```
+
+### OpenGL Version
+
+**識別子：** `glver`
+
+ゲームが使用しているグラフィックデバイスのドライバー情報を返します（例：`4.6.0 NVIDIA 566.36`）。
+
+```
+{"placeholder":"glver"}
+```
+
+### Java Version
+
+**識別子：** `javaver`
+
+ゲームの実行に使われているJavaのバージョンを返します（例：`21.0.5`）。
+
+```
+{"placeholder":"javaver"}
+```
+
+### Java Virtual Machine
+
+**識別子：** `jvmname`
+
+Java仮想マシンの名前を返します（例：`OpenJDK 64-Bit Server VM`）。
+
+```
+{"placeholder":"jvmname"}
+```
+
+### Operating System Name
+
+**識別子：** `osname`
+
+オペレーティングシステム名を返します（例：`Windows 11`）。
+
+```
+{"placeholder":"osname"}
+```
+
+### Uptime Duration
+
+**識別子：** `uptime_duration`
+
+ゲームの起動時間を秒単位で返します（例：`742`）。
+
+- `output_as_millis`（省略可能）：`true`にすると、代わりにミリ秒で返します。既定値は`false`です。
+
+```
+{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+```
+
+### Random Text
+
+**識別子：** `randomtext`
+
+テキストファイル、URL、または入力したテキストから、ランダムな1行を返します。ランダムなヒントなどに使えます。ファイルとURLは30秒ごとに再読み込みされます。
+
+- `source`：ゲームフォルダー内の`.txt`ファイル、URL、または`Tip 1\nTip 2\nTip 3`のように`\n`で区切った複数行のテキスト
+- `interval`（省略可能）：新しい行を選ぶまでの秒数。`0`にするとゲームセッション中は同じ行を使用します。既定値は`10`です。
+
+```
+{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/tips.txt","interval":"10"}}
+```
+
+### Web Text
+
+**識別子：** `webtext`
+
+ウェブページのテキスト（ウェブサイト上のテキストファイルなど）の最初の行を返します。一度読み込まれ、FancyMenuの再読み込み時に再度読み込まれます。読み込み中は空です。
+
+- `link`：ページのURL
+
+```
+{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}
+```
+
+### Absolute File/Folder Path
+
+**識別子：** `absolute_path`
+
+ゲームフォルダー内のファイルまたはフォルダーの絶対パスを返します（例：`C:/Users/Steve/AppData/Roaming/.minecraft/config/fancymenu`）。
+
+- `short_path`：ゲームフォルダー内のパス
+
+```
+{"placeholder":"absolute_path","values":{"short_path":"config/fancymenu"}}
+```
+
+### Text Character Count
+
+**識別子：** `text_character_count`
+
+テキストの文字数を返します。`Hello World!`は`12`文字です。
+
+- `text`：テキスト
+
+```
+{"placeholder":"text_character_count","values":{"text":"$$player_nickname"}}
+```
+
+### Text Width
+
+**識別子：** `text_width`
+
+テキストのGUIピクセル単位の幅を返します。`Hello World!`は`57`です。`&l`などの書式コードはゲーム内と同じように反映されるため、太字のテキストは幅が広くなります。
+
+- `text`：テキスト
+
+```
+{"placeholder":"text_width","values":{"text":"Hello World!"}}
+```
+
+### Text Height
+
+**識別子：** `text_height`
+
+すべての行を含むテキストの高さをGUIピクセル単位で返します。改行には`\n`を使います。テキスト要素に合わせてサイズを調整する場合は、テキストの拡大率、行間、折り返し行数も考慮される[**Text Element Content Height**](#text-element-content-height)を使ってください。
+
+- `text`：テキスト
+
+```
+{"placeholder":"text_height","values":{"text":"First line\nSecond line"}}
+```
+
+### Clipboard Content
+
+**識別子：** `clipboard_content`
+
+コンピューターのクリップボード内のテキストを返します。クリップボードが空の場合は空です。
+
+```
+{"placeholder":"clipboard_content"}
+```

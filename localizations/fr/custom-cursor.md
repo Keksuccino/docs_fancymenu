@@ -1,17 +1,17 @@
 ---
 title: Curseur personnalisé
-description: >-
-  Comment faire en sorte que les menus utilisent un curseur de souris
-  personnalisé.
+description: Comment utiliser un curseur de souris personnalisé dans les menus.
+sourceBlobSha: 6ccd4932bed99ab10c094adffd503bd0a44d9edd
 ---
+
 # Curseur de souris personnalisé
 
-Ajoutez un [élément **Cursor**](./elements#cursor) à une mise en page pour remplacer le curseur système sur cet écran :
+Ajoutez un [élément **Curseur**](/elements#cursor) à une disposition pour remplacer le curseur système sur cet écran :
 
-1. Sélectionnez **New Element -> Cursor**.
-2. Définissez une texture PNG avec couleur RGBA.
-3. Réglez **Hotspot X** et **Hotspot Y** sur le pixel de la texture où les clics doivent se produire.
-4. Activez l’aperçu de l’éditeur lorsque vous souhaitez vérifier le curseur pendant l’édition.
-5. Utilisez une [mise en page universelle](./universal-layouts) lorsque le même curseur doit apparaître sur plusieurs écrans pris en charge.
+1. Sélectionnez **Nouvel élément -> Curseur**.
+2. Définissez une texture PNG avec des couleurs RGBA.
+3. Réglez **Point actif X** et **Point actif Y** sur le pixel de la texture où les clics doivent être effectués.
+4. Activez l’aperçu de l’éditeur pour vérifier l’apparence du curseur pendant l’édition.
+5. Utilisez une [disposition universelle](/universal-layouts) si le même curseur doit apparaître sur plusieurs écrans compatibles.
 
-Il est recommandé d’utiliser de petites textures de curseur, comme `32×32` ou `64×64`. L’apparence et le comportement du curseur peuvent varier selon le système d’exploitation.
+Il est recommandé d’utiliser de petites textures de curseur, par exemple `32×32` ou `64×64`. L’apparence et le comportement du curseur peuvent varier selon le système d’exploitation.

@@ -1,259 +1,319 @@
 ---
 title: テキストの書式設定
-description: Markdown と Minecraft の書式コードを使ってテキストを整形する方法。
+description: Markdown、Minecraftの書式コード、テキストコンポーネントを使ったテキストの書式設定方法。
+sourceBlobSha: c6ddde5939e929b3d4c04541f0b104ee6ee795bc
 ---
 # テキストの書式設定
 
-[テキスト要素](./elements#text) は Markdown をサポートしています。その他のテキスト欄では Minecraft の書式設定を使用し、ボタンラベルには Minecraft のテキストコンポーネントを使えます。
+FancyMenuでは、テキストを3つの方法で書式設定できます。
+
+- [テキスト要素とツールチップ要素](/text-in-menus)で使える**Markdown**：見出し、リスト、色、画像、表など。
+- 手軽に色を付けられる`&c`などの**Minecraft書式コード**。Markdownテキストを含め、ほとんどのテキスト入力欄で使えます。
+- ボタンやスライダーのラベルに使える**Minecraftテキストコンポーネント**。
+
+> [!TIP]
+> このページでは、書式付きテキストの*書き方*を説明します。メニューへのテキストの追加方法や、見た目の変更、スクロール表示については、[メニュー内のテキスト](/text-in-menus)をご覧ください。
+
+<img width="800" alt="テキスト要素内のMarkdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_showcase.png?raw=true">
 
 # Markdown
 
-FancyMenu の **テキスト要素** は完全な Markdown に対応しており、特別な文字を追加することでテキスト内容を整形できます。
+Markdownでは、いくつかの特殊文字でテキストを囲んで書式を設定します。たとえば、`**太字**`は**太字**になります。
 
-たとえば、文字を太字にしたい場合は太字にしたいテキストの前後に `**` を追加します。すると `**Some bold text that's very bold.**` は次のように表示されます:
-**Some bold text that's very bold.**
+Markdownは[テキスト要素](/elements#text)と[ツールチップ要素](/elements#tooltip)で使えます。入力した文字によって、テキストの種類（見出し、リスト、引用など）が決まります。色やサイズなどの見た目は、要素の[外観](/text-in-menus#looks-and-styles)で設定します。
 
-FancyMenu は下記に記載する拡張機能にも対応しています。
+## クイックガイド
 
-> [!CAUTION]
-> Markdown は **テキスト要素** のみで動作します。ボタンラベルやその他のテキスト欄では、[Minecraft の書式コード](#minecraft-text-formatting) を使用してください。
+| 入力する内容 | 表示される内容 |
+|---|---|
+| `**太字**` または `__太字__` | 太字 |
+| `*斜体*` または `_斜体_` | 斜体 |
+| `++下線++` | 下線付きテキスト |
+| `~~取り消し線~~` | 取り消し線付きテキスト |
+| `` `コード` `` | インラインコード |
+| `[ウェブサイトを開く](https://example.com)` | クリックできるリンク |
+| `%#ff5555%赤いテキスト%#%` | 色付きテキスト |
+| `# 見出し` | 見出し |
+| `- 項目` | 箇条書き |
+| `1. 項目` | 番号付きリスト |
+| `> テキスト` | 引用 |
+| `> [!TIP]` | コールアウトボックス |
+| `---` | 区切り線 |
+
+## テキストスタイル
+
+| スタイル | 入力方法 |
+|---|---|
+| **太字** | `**テキスト**` または `__テキスト__` |
+| **斜体** | `*テキスト*` または `_テキスト_` |
+| **下線** | `++テキスト++` |
+| **取り消し線** | `~~テキスト~~`（両側に `~` を1つずつ付けても使えます） |
+
+`***太字と斜体***`のように、スタイルを組み合わせることもできます。
+
+単語の中にあるアンダースコアは通常の文字として扱われるため、`my_cool_layout`が斜体になることはありません。`C++`などもそのまま表示されます。
+
+> [!TIP]
+> テキストエディターでテキストを選択し、`Ctrl + B`、`Ctrl + I`、`Ctrl + U`（macOSでは`Cmd`）を押すと、それぞれ太字、斜体、下線を設定できます。[書式設定のショートカット](/text-in-menus#formatting-shortcuts)をご覧ください。
+
+## テキストの色（HEX）
+
+テキストの前に`%<HEX color>%`、後ろに`%#%`を付けます。
+
+```
+%#77fc03%このテキストは緑色です！%#%
+```
+
+HEXカラーは`#`で始める必要があります。色名も使えます。
+
+```
+%#red%このテキストは赤色です！%#%
+```
+
+使用できる色名：`black`、`silver`、`gray`、`grey`、`white`、`maroon`、`red`、`purple`、`fuchsia`、`magenta`、`green`、`lime`、`olive`、`yellow`、`navy`、`blue`、`teal`、`aqua`、`cyan`、`transparent`。
 
 ## フォント
 
-テキストの前に `%!!<font_name>%` を、後ろに `%!!%` を追加すると、リソースパックで読み込まれたカスタムフォントでテキストを表示できます。
-
-ベースゲームに含まれる有効なフォントは `uniform` です。`uniform` フォントでテキストを表示するには、次のようにします:
-`%!!uniform%this is a custom font%!!%`
-
-これにより `this is a custom font` が `uniform` フォントで表示されます。
-
-## テキスト色（HEX）
-
-テキストの前に `%<HEX_color>%` を、後ろに `%#%` を追加すると、特定の HEX 色で表示できます。
-
-緑の有効な HEX 色は `#77fc03` です。この色で表示するには、次のようにします:
-`%#77fc03%this text is green!%#%`
-
-これにより `this text is green!` が `#77fc03`（緑）で表示されます。
-
-HEX 色は `#` で始める必要があります。
-
-一般的な HTML 風の色名も同じ色指定コードでサポートされています:
+別のフォントでテキストを表示するには、テキストの前に`%!!<font name>%`、後ろに`%!!%`を付けます。Minecraftのフォントやリソースパックのフォントを指定できます。
 
 ```
-%#red%This text is red!%#%
+%!!uniform%このテキストはuniformフォントです%!!%
 ```
-
-対応している名前: `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan`, `transparent`。
 
 ## テキストの配置
 
-特定の配置用書式コードで行を開始し、その後に何も置かず、表示したいテキスト行をその配置で続けたあと、空の行にもう一度その配置コードを書いて閉じることで、テキスト行を配置できます。
+テキストは初期設定で左揃えです。行を中央揃えまたは右揃えにするには、配置コードを対象の行の前後に単独の行として入力します。
 
-すべてのテキスト内容は **左寄せがデフォルト** なので、書式コードは **中央寄せ** と **右寄せ** だけがあります。
+- `^^^`は中央揃えです。
+- `|||`は右揃えです。
 
-### 中央寄せ
-
-テキスト行を中央寄せにするには、書式コード `^^^` を使用します。
-
-例:
 ```
-This text is not centered.
+この行は左揃えです。
 
 ^^^
-This text is centered.
-This text is also centered.
+この行は中央揃えです。
+こちらの行も中央揃えです。
 ^^^
 
-This text is not centered anymore.
-```
-
-### 右寄せ
-
-テキスト行を右寄せで表示するには、書式コード `|||` を使用します。
-
-例:
-```
-This text is not right-aligned.
-
 |||
-This text is right-aligned.
-This text is also right-aligned.
+この行は右揃えです。
 |||
-
-This text is not right-aligned anymore.
 ```
+
+> [!TIP]
+> テキストエディターで`Ctrl + L`、`Ctrl + E`、`Ctrl + R`（macOSでは`Cmd`）を押すと、選択した行をそれぞれ左揃え、中央揃え、右揃えにできます。
 
 ## 見出し
 
-**1 行のテキスト** を見出し（大きく、下線付き）として表示するには、テキスト行の前に `# `（とても大きい）、`## `（大きい）、または `### `（小さい）を追加します。
-
-例:
-`## Big Headline`
-
-## 太字
-
-テキストの前後に `**` を追加すると、**太字** になります。
-
-例:
-`**bold text content**`
-
-## 斜体
-
-テキストの前後に `_` または `*` を追加すると、*斜体* になります。
-
-例:
-`*italic text content*`
-
-## 打ち消し線
-
-テキストの前後に `~` を追加すると、~~打ち消し線~~ になります。
-
-例:
-`~strikethrough text content~`
-
-## ハイパーリンク
-
-クリックするとウェブサイトを開くリンクをテキスト内容に追加できます。
-
-[ハイパーリンク](https://google.com) として表示したいテキストは `[ ]` で囲み、その後に実際のリンクを `( )` で囲みます。
-
-たとえば、`example text content` をクリック可能にして `https://example-website.net` を開かせたい場合は、次のようにします:
-`[example text content](https://example-website.net)`
-
-## クリックイベントとホバーイベント
-
-Markdown のクリックイベントとホバーイベントは、[テキスト要素](./elements#text) および他の Markdown テキストで利用できます。これらに反応するには [**Markdown テキストがクリックされたとき**](./listeners#on-markdown-text-clicked-text_clicked) と [**Markdown テキストがホバーされたとき**](./listeners#on-markdown-text-hovered-text_hovered) を使用してください。
-
-クリックイベントは `click:` プレフィックスを使用します:
+行の先頭に`# `（最大）、`## `（大）、`### `（小）を付けます。
 
 ```
-[some clickable text](click:unique_text_click_event_id)
+# ようこそ！
+## お知らせ
+### 小さな見出し
 ```
 
-ホバーイベントは `hover:` プレフィックスを使用します:
+## リスト
+
+<img width="460" alt="Markdownのリスト" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_lists.png?raw=true">
+
+### 箇条書き
+
+行の先頭に`- `を付けます。階層を1つ深くするごとに、前にスペースを2つ追加します。
 
 ```
-[some hoverable text](hover:unique_text_hover_event_id)
+- 1つ目の項目
+- 2つ目の項目
+  - 入れ子の項目
+    - さらに深い項目
 ```
 
-どちらのリスナーでも、イベント ID は `$$text_event_id` として公開されます。
+### 番号付きリスト
 
-## 画像
+行の先頭に数字とピリオド、または閉じ括弧を付けます。
 
-Markdown では、テキスト内容内に画像を表示できます。
+```
+1. メニューバーを開く
+2. カスタマイズをクリックする
+3) この書き方も使えます
+```
 
-FancyMenu は Markdown 内で Minecraft リソース、ローカルリソース、ウェブリソースをサポートしています。
+### パッチノート用マーカー
 
-画像を追加するには、テキスト行を `![](` で始め、その後に [URL、リソースの場所、またはパス](./resources) を書き、最後に `)` を付けます。
+行の先頭には`+`、`-`、`~`、`*`も使えます。それぞれに専用のマーカーが付くため、パッチノートや変更履歴に最適です。
 
-たとえば、ウェブリソース `https://example-website.net/image.png` を表示するには、次のようにします:
-`![](https://example-website.net/image.png)`
+```
++ 新しいメインメニューを追加
+- 古いロゴを削除
+~ ボタンの色を変更
+* 起動時のクラッシュを修正
+```
 
-画像全体を **ハイパーリンク** で囲むことで、画像を **リンク** にすることもできます:
-`[![](https://example-website.net/image.png)](https://example-website.net)`
+| マーカー | 意味 |
+|---|---|
+| `+` | 追加された項目 |
+| `-` | 削除された項目 |
+| `~` | 変更された項目 |
+| `*` | 特に注目すべき項目 |
 
-> [!WARNING]
-> ローカルリソースは `<game-directory>/config/fancymenu/assets/` に配置する必要があります!
+`-`の項目が「削除」マーカーになるのは、同じリストに`+`の項目がある場合だけです。それ以外の場合は通常の箇条書きとして表示されます。この動作は、**Markdown -> Lists -> Extra Markers (+ - ~ \*) -> - Marker Used**で変更できます。
+
+> [!NOTE]
+> 新しいテキスト要素とツールチップ要素では、番号付きリスト、パッチノート用マーカー、[コールアウト](#callouts)が有効になっています。以前のレイアウトの要素では、テキストが突然変わらないよう、これらは無効になっています。有効にするには、要素の**Markdown**メニューで**Lists -> Numbered Lists**、**Lists -> Extra Markers (+ - ~ \*)**、**Callouts**を設定してください。
 
 ## 引用
 
-テキストを引用として整形するには、テキスト行を `> ` で始めます。
-これは、**空の** 行が見つかるまで、その後のすべての行を引用として整形します。
+引用にするには、行の先頭に`> `を付けます。引用は次の空行まで続きます。
 
-例:
 ```
-This will not look like a quote.
+> これは引用です。
+この行も引用に含まれます。
 
-> This will look like a quote.
-This will also look like a quote.
-
-This will not look like a quote anymore.
+この行からは通常のテキストに戻ります。
 ```
 
-## 箇条書きリスト
+引用内の行にも`>`を付けられます。また、`>`だけの行を入れると、引用内に空行が追加されます。
 
-次のような箇条書きリストを表示するには:
-- Entry 1
-- Entry 2
-  - Sub-Entry
-
-各行の先頭に `- ` を付けるだけです。
-
-例:
 ```
-- Entry 1
-- Entry 2
-  - Sub-Entry
+> 引用の第1段落。
+>
+> 引用の第2段落。
 ```
+
+## コールアウト
+
+コールアウトは、アイコンとラベルが付いた色付きのボックスです。ヒントや警告に便利です。引用の先頭行にコールアウトの種類を指定します。
+
+```
+> [!WARNING]
+> レイアウトの保存を忘れないでください！
+```
+
+<img width="640" alt="Markdownのコールアウト" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_callouts.png?raw=true">
+
+コールアウトには、`[!NOTE]`、`[!TIP]`、`[!IMPORTANT]`、`[!WARNING]`、`[!CAUTION]`の5種類があります。
+
+## ハイパーリンク
+
+テキストを`[ ]`で囲み、その後ろにリンクを`( )`で指定します。
+
+```
+[ウェブサイトを見る](https://example.com)
+```
+
+リンクには、`https://en.wikipedia.org/wiki/Minecraft_(video_game)`のように丸括弧を含めることもできます。リンクのテキストに角括弧を表示するには、前に`\`を付けます。例：`[ここを\[クリック\]](https://example.com)`。
+
+## クリックイベントとホバーイベント
+
+ウェブサイトを開く代わりに、テキストから[リスナー](/listeners)を呼び出すこともできます。`click:`または`hover:`のプレフィックスと、任意のIDを使います。
+
+```
+[クリックできるテキスト](click:unique_text_click_event_id)
+[ホバーできるテキスト](hover:unique_text_hover_event_id)
+```
+
+[**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked)リスナーと[**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered)リスナーを使ってイベントに反応できます。どちらのリスナーでも、IDは`$$text_event_id`として取得できます。
+
+## 画像
+
+画像のソースの前後を`![](`と`)`で囲み、画像を単独の行に記述します。
+
+```
+![](https://example.com/image.png)
+```
+
+ソースにはウェブURL、`/config/fancymenu/assets/image.png`のようなローカルファイル、リソースパックの画像を指定できます。ソースの種類について詳しくは、[リソース](/resources)をご覧ください。
+
+角括弧の間に入力したテキストは、画像のキャプションになります。
+
+```
+![お気に入りのスクリーンショット](/config/fancymenu/assets/screenshot.png)
+```
+
+要素の**Markdown -> Images -> Caption**が有効になっている場合、キャプションは画像の下に表示されます。
+
+画像をクリックできるようにするには、リンクで囲みます。
+
+```
+[![](https://example.com/image.png)](https://example.com)
+```
+
+## 表
+
+セルは`|`で区切ります。1行目が見出しで、2行目には各列に`---`を指定します。
+
+```
+| アイテム | 価格 |
+|:---|---:|
+| ダイヤモンドの剣 | 10 |
+| 金のリンゴ | 5 |
+```
+
+2行目のコロンで列の配置を指定できます。`:---`は左揃え、`:---:`は中央揃え、`---:`は右揃えです。セル内に`|`を表示するには、`\|`と入力します。
+
+<img width="640" alt="Markdownの表とコード" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_table_code.png?raw=true">
 
 ## 区切り線
 
-テキスト行全体の幅を持つ区切り線を追加するには、行の先頭に `---` を置き、それ以外は何も書きません。
+`---`だけの行を入力すると、テキスト内に区切り線が表示されます。
 
-すると、次のように表示されます:
+## コード
 
----
+コードは書式を適用せず、入力したテキストをそのまま表示します。
 
-## コードブロック
+- **インラインコード：** 行の一部を`` ` ``で囲みます。例：`` `/spawn` ``。
+- **コードブロック：** 対象の行の前後に、`` ``` ``だけの行を置きます。コードブロック内の行は折り返されません。
 
-コードブロックを使うと、Markdown による整形を避けて `プレーンテキスト` として表示したり、テキストをコード風に表示したりできます。なお、テキスト行の自動折り返しはされません。
+````
+```
+/give @p minecraft:diamond 64
+```
+````
 
-1 行コードブロック（他のテキストの途中にあるもの）は、開始と終了に \` を使います。Markdown テキストでは、これは実際にはかなり表示しにくいです。
+最初の`` ``` ``の後ろに、`` ```json ``のように言語名を付けることもできます。FancyMenuでは受け付けられますが、コードの見た目は変わりません。
 
-1 行コードブロックを含むテキスト行は、次のように表示されます:
-
-![single_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/e78fd38b-7b1a-4f00-9b11-797d964b3b43)
-
-複数行コードブロックは、複数行を 1 つの大きなコードブロックにまとめます。`\`\`\`` のみを含む行で始め、その後にテキスト内容を書き、最後にもう一度 `\`\`\`` を置きます:
-
-![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+コード内でも[プレースホルダー](/placeholders)は置き換えられます。
 
 ## プレーンテキスト
 
-プレーンテキストの書式コードは、その中にある他のすべての書式コードを無視します。
-
-コードブロックに似ていますが、コードブロックのような見た目にはなりません。代わりに通常のテキストとして表示されますが、書式は適用されません。
-
-行の一部をプレーンテキストの書式コードで囲むには、次のように表示したいテキスト部分の前後に `;;` を追加します:
+プレーンテキストでは、コードのような見た目にはせず、書式文字をそのまま表示します。行の一部を`;;`で囲みます。
 
 ```
-This is a line of text with ;;**this part**;; showing as unformatted text with visible ** (bold) formatting code and _this part_ as normal formatted italic text.
+太字の代わりに;;**アスタリスク**;;を表示します。
 ```
 
-プレーンテキストは複数行のラッパーコードとしても機能します。行全体を囲むには、次のように表示したい行の前後に `;;;` を追加します:
+行全体をプレーンテキストにするには、対象の行の前後に`;;;`だけの行を置きます。
 
 ```
 ;;;
-This line will show **unformatted** with visible ** (bold) formatting codes.
-This line will also show _unformatted_ with visible _ (italic) formatting codes.
+**太字にならず**、_斜体にもなりません_。
 ;;;
-
-This line will look **normal** again with the "normal" formatted as bold text.
 ```
 
-# Minecraft のテキスト書式設定
+## 文字のエスケープ
 
-Minecraft の書式コードは、FancyMenu 全体の対応した書式付きテキスト欄で使えます。Minecraft の `§` プレフィックスの代わりに `&` を使用してください。たとえば、`&cWarning` は赤いテキストを表示します。
+書式文字を通常のテキストとして表示するには、前に`\`を付けます。たとえば、`\*斜体にならない\*`は`*斜体にならない*`と表示されます。
 
-利用可能な色とスタイルについては、[Minecraft Wiki の書式コード参照](https://minecraft.wiki/w/Formatting_codes) をご覧ください。
+次の文字で使えます：`\` `` ` `` `*` `_` `{` `}` `[` `]` `(` `)` `#` `+` `-` `.` `!` `|` `>` `~` `^`。
 
-> [!CAUTION]
-> **テキスト要素** では Markdown を解析するため、Minecraft の書式コードは信頼性がありません。代わりに、上記の Markdown 書式を使用してください。
+# Minecraftのテキスト書式設定
 
-# Minecraft のテキストコンポーネント（生コンポーネントシステム）
+Minecraftの書式コードは、FancyMenuのほとんどのテキスト入力欄で使えます。Minecraftの`§`の代わりに`&`を使います。たとえば、`&c警告`は赤いテキストになり、`&l`を使うと太字になります。`&r`で書式をリセットできます。
 
-Minecraft のテキストコンポーネントシステムは、**ボタンラベル** のような **1 行** のテキスト内容に対して非常に強力です。
+すべてのコードについては、[Minecraft Wiki](https://minecraft.wiki/w/Formatting_codes)をご覧ください。
 
-バニラ Minecraft では、`/tellraw` や `/title` コマンド（おそらく他の場所でも）で使用できます。
-これは JSON にシリアライズされた書式付きテキストなので、テキスト内容に書式属性を追加できます。
+書式コードは、コードとプレーンテキストの内部を除き、Markdownテキストでも使えます。太字や斜体などのスタイルにはMarkdownのほうが読みやすいことが多いですが、色を手軽に変えるには書式コードが便利です。
 
-テキストコンポーネントの詳細については、[この Minecraft Wiki のページ](https://minecraft.wiki/w/Raw_JSON_text_format) を参照してください。Minecraft のフォントについて詳しく知りたい場合は、[この Minecraft Wiki のページ](https://minecraft.wiki/w/Resource_pack#Fonts) をご覧ください。
+# Minecraftテキストコンポーネント（Raw Component System）
 
-FancyMenu にボタンラベルを **テキストコンポーネント** として認識させるには、シリアライズされたコンポーネントテキストだけをラベルとして設定します。次のようにします:
-`{"text":"Button Label Text","font":"uniform"}`
+Minecraftテキストコンポーネントは、JSONで記述する書式付きテキストです。**ボタンやスライダーのラベル**などの**1行のテキスト**に使えますが、テキスト要素では使えません。
 
-上の例では、ボタンラベル `Button Label Text` が `uniform` フォントで表示されます。
+使うには、ラベルにコンポーネントだけを設定します。
 
-> [!NOTE]
-> コンポーネントの `text` 値には FancyMenu のプレースホルダーを使用できます。
+```
+{"text":"ボタンのラベルテキスト","font":"uniform"}
+```
+
+これにより、`ボタンのラベルテキスト`が`uniform`フォントで表示されます。`text`の値には[プレースホルダー](/placeholders)を使えます。
+
+詳しくは、Minecraft Wikiの[テキストコンポーネント形式](https://minecraft.wiki/w/Raw_JSON_text_format)と[フォント](https://minecraft.wiki/w/Resource_pack#Fonts)のページをご覧ください。

@@ -1,621 +1,874 @@
 ---
 title: アクションスクリプト
-description: ボタン、スライダー、ティッカーなどでアクションスクリプトを使う方法。
+description: アクションスクリプトを使ってボタンやメニューに動作を設定し、FancyMenuで使えるすべてのアクションを確認しましょう。
+sourceBlobSha: 07ed5af6f189a91c518131cf3a7ab7a1e0a8305d
 ---
+
 # アクションスクリプト
 
-アクションスクリプトは、[Button](./elements#button) がクリックされたとき、[Ticker](./elements#ticker) が更新されたとき、[Slider](./elements#slider) が変化したとき、画面が開閉されたとき、またはその他の対応イベントが発生したときに、設定されたタスクを実行します。**if**、**else-if**、**else**、**while** などの文によって条件付き制御を追加できます。
+アクションスクリプトは、ボタンのクリックやメニューの表示など、何かが起きたときにFancyMenuが実行する処理のリストです。各処理はアクションと呼ばれ、メニューを開く、サーバーに参加する、メッセージを表示する、サウンドを再生するなど、さまざまな動作を行います。IFやWHILEなどのステートメントを使うと、どのアクションを実行するか、何回実行するかを決められます。
 
 > [!CAUTION]
-> インポートされたアクションスクリプトは、ファイルの変更、サーバーへの接続、リンクの開封、コマンドの実行を行う場合があります。信頼できるソースのものだけを使用してください。
+> アクションスクリプトは、ファイルの変更、サーバーへの接続、リンクの表示、コマンドの実行を行う場合があります。信頼できるレイアウトのスクリプトだけを使用してください。
 
-<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="Action script editor" style="max-width:800px;width:100%;height:auto;">
+<img width="800" alt="レイアウトエディターでボタンのアクションスクリプトを作成する画面：Edit Action Script、Show Toastを選択したアクション選択画面、トーストのタイトルとメッセージ" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/action_script_make.gif?raw=true">
 
-# アクションとは？
+# アクションスクリプトの作成
 
-**アクション**とは、トリガーされたときに FancyMenu が実行するタスクや処理のことです。たとえば、アクションは新しい画面を開いたり、チャットメッセージを送信したり、[Audio element](./elements#audio) の音量を調整したりできます。FancyMenu のエディタでは、必要に応じて、URL やサーバーアドレスなどの追加情報を与える値とともにアクションを設定します。
+1. レイアウトエディターでボタンを右クリックし、**Edit Action Script**をクリックします。
+2. `A`キーを押してアクション選択画面を開きます。
+3. アクションを検索してクリックし、**Next Step**をクリックします。
+4. 表示されたウィンドウでアクションを設定し、**Done**をクリックします。設定項目のないアクションは、選択画面で**Done**をクリックするだけです。
+5. スクリプトエディターで**Done**をクリックし、レイアウトを保存します。
 
-# 文
+エディターを閉じた状態では、ボタンをクリックするとスクリプトが実行されます。
 
-より複雑な動作を作成するために、FancyMenu はアクションスクリプト内で制御文をサポートしています。
+<img width="800" alt="タイトル画面でWhat's New?ボタンをクリックすると、アップデートのタイトルとメッセージがトーストで表示される" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/action_script_use.gif?raw=true">
 
-| 文 | 動作 |
-|---|---|
-| **If** | [条件](./conditions) が満たされた場合にのみ、そのアクションを実行します。 |
-| **Else-If** | 直前の **If** または **Else-If** が実行されなかった場合に、別の [条件](./conditions) を確認します。 |
-| **Else** | それ以前の **If** または **Else-If** の条件がどれも満たされなかった場合に実行します。 |
-| **While** | [条件](./conditions) が真である間、そのアクションを繰り返し実行します。無限ループを防ぐため 3 秒後に停止します。タイマーとして使用しないでください。 |
+> [!TIP]
+> スクリプト領域を右クリックし、**Add Action**を開くと、すべてのアクションを一覧できます。一覧内のアクションを右クリックしてお気に入りにすると、一覧の上部に表示されます。
 
-# ブロック
+# アクションスクリプトを使える場所
 
-ブロックをスクリプトに追加すると、スクリプトの実行フローやタイミングをより細かく制御でき、便利な QoL 機能も利用できます。
+| 場所 | 実行されるタイミング | 編集方法 |
+|---|---|---|
+| [ボタン](/elements#button) | ボタンがクリックされたとき。 | ボタンを右クリック -> **Edit Action Script** |
+| [スライダー](/elements#slider) | スライダーの値が変わったとき。`$$value`は新しい値です。 | スライダーを右クリック -> **Edit Action Script** |
+| [チェックボックス](/elements#checkbox) | チェックボックスがオンまたはオフになったとき。`$$value`は新しい状態（`true`または`false`）です。 | チェックボックスを右クリック -> **Edit Action Script** |
+| [Ticker](/elements#ticker) | **Tick Mode**の設定に応じて、繰り返し、ゲームセッションごとに1回、またはメニューの読み込み時に1回実行されます。 | Tickerを右クリック -> **Edit Action Script** |
+| メニューを開くとき | レイアウトのメニューが開いたとき。 | エディターの背景を右クリック -> **Edit 'Open Screen' Action Script** |
+| メニューを閉じるとき | レイアウトのメニューが閉じたとき。 | エディターの背景を右クリック -> **Edit 'Close Screen' Action Script** |
+| [リスナー](/listeners) | キー入力やチャットメッセージなど、イベントが発生したとき。 | **メニューバー -> Customization -> Manage Listeners** |
+| [スケジューラー](/schedulers) | メニューが開いていないときも、設定したタイマーに従って実行されます。 | **メニューバー -> Customization -> Manage Schedulers** |
 
-| ブロック | 動作 |
-|---|---|
-| **Delay** | スクリプトの残りの部分を止めずにカウントダウンを開始します。ネストされたアクションは遅延後に実行可能になり、画面の再初期化でカウントダウンはリセットされます。 |
-| **Execute Later** | ブロックに到達するたびに、遅延後にネストされたアクションの新しい実行を予約します。 |
-| **Comment** | 整理用のメモをスクリプト内に追加し、アクションは実行しません。 |
+メニューの開閉スクリプトは、エディターの**Layout -> Layout Properties**メニューからも編集できます。
 
-# スクリプトの実行
+# スクリプトエディター
 
-アクションは上から下へ実行されます。失敗したアクションはログに記録され、その後スクリプトは続行されます。
-
-ダウンロード、ZIP の展開、HTTP リクエストは後で完了するため、次のアクションは待機しません。結果に依存する後続処理がある場合は、[**On File Downloaded via Action**](./listeners#on-file-downloaded-via-action-file_downloaded_via_action)、[**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action)、または HTTP 応答変数を使用してください。
-
-# アクションスクリプトはどこで使えますか？
-
-アクションスクリプトは柔軟で、レイアウト全体で使用できます。たとえば、次のような場所に割り当てられます。
-
-- [**Buttons**](./elements#button): ボタンがクリックされたときにアクションを実行します。
-- [**Tickers**](./elements#ticker): レイアウト内の画面情報を更新するために、アクションスクリプトを継続的に実行します。
-- [**Sliders**](./elements#slider): スライダーの値が変わるたびにアクションスクリプトをトリガーします。
-- **Screen Events:** 画面が開いたり閉じたりしたときにスクリプトを実行します（たとえば、メニューが表示されたときに音を鳴らす）。
-- [**Listeners**](./listeners): リスナーが設定されたイベントを受信すると、アクションスクリプトを実行します。
-- [**Schedulers**](./schedulers): 画面が開いていなくても、一定間隔でアクションを実行します。
-
-# アクションでプレースホルダーを使う
-
-アクションの値は、**プレースホルダー**による動的な内容をサポートしています。ほとんどの場合、これらのプレースホルダーは JSON 風の構文を使い、アクション実行時にライブデータへ置き換えられます。
-
-## JSON 風プレースホルダー
-
-これらは、レイアウト内の多くの場所で使用できる通常の [プレースホルダー](./placeholders) です。
-
-構文は次のとおりです。
-
-```json
-{"placeholder": "placeholder_id", "values": {"key1": "value1", "key2": "value2"}}
-```
-
-プレーヤー名、画面サイズ、[**Calculator** プレースホルダー](./placeholders#calculator-calc) を使った計算値などのゲームデータを取得できます。さらに、より高度な用途のためにプレースホルダーを入れ子にすることもできます。
-
-## `$$` プレースホルダー（変数）
-
-`$$` 値は、それを実行している機能から特定のアクションスクリプトに渡される読み取り専用の値です。
-
-たとえば、[Slider](./elements#slider) は現在の値を `$$value` として提供します。
-
-各 [listener](./listeners) は、押されたマウスボタンや入力された構造など、提供する `$$` 値を文書化しています。
-
-`$$` 名は大文字と小文字を区別し、その値を提供するスクリプト内でのみ機能します。[Listeners](./listeners#listener-variables) を参照してください。
-
-## アクション値の区切り文字
-
-各アクションで表示されている正確な区切り文字を使用してください: `:`、`||`、または `|||`。フィールド内で区切り文字をエスケープする構文はありません。
-
-プレースホルダーは値を分割する前に置換されます。`set_variable` では、最初のコロンだけが名前と値を分け、それ以降のコロンは値の一部として残ります。
-
-## テキスト値
-
-[FancyMenu の書式コード](./text-formatting#minecraft-text-formatting) は、アクションが書式付きテキストを受け付ける場所では、Minecraft の `§` 文字の代わりに `&` を使います。
-
-- [**Send Chat Message/Command**](#send-chat-messagecommand-sendmessage) と [**Paste to Chat**](#paste-to-chat-paste_to_chat) はこれらの書式コードをサポートします。
-- [**Display In Chat [Client-Side]**](#display-in-chat-client-side-display_in_chat_client_side) は、プレーンテキストまたはシリアライズされた Minecraft テキストコンポーネント JSON を受け付けます。
-- [**Open URL in Browser**](#open-url-in-browser-openlink) は、URL を OS に渡す前に同じ書式コード変換を適用します。
-
-# アクションの設定と編集方法
-
-要素のアクションと文ブロックを編集するには、**要素を右クリック**して **Manage Action Script** を選択します。エディタでは次のことができます。
-
-- **新しいアクションまたは文を追加する:** 新しいアクション項目や制御文（if、else-if、else、while）を挿入してスクリプトを構築します。
-- **既存のアクションまたは文を編集する:** アクション値を変更したり、制御ロジックを変更したりできます。
-- **アクションまたは文を削除する:** 不要なアクションをスクリプトから削除します。
-
-リスナースクリプトは [**Customization -> Manage Listeners**](./listeners#using-listeners) から作成・編集します。
-
-# アクションスクリプトエディタのショートカット
+- アクションは上から順に実行されます。ステートメントやフォルダーの中にある項目は、インデントして表示されます。
+- 新しい項目は、選択中の項目の下に追加されます。ステートメントまたはフォルダーを選択している場合は、その先頭に追加されます。
+- 値をダブルクリックすると、リスト上で直接編集できます。短い概要が表示されている値は、代わりに専用ウィンドウが開きます。
+- 項目をドラッグして移動できます。IFの連鎖、ループ、フォルダーは、手前にある小さな切り替えボタンで折りたためます。これは表示方法だけを変更します。
+- 右側のバーはスクリプト全体のマップです。クリックすると該当箇所に移動できます。
+- スクリプト領域を右クリックすると、ステートメントの追加や**Export Action Script for AI**（[AI向けエクスポート](/export-for-ai)を参照）など、その他の操作を行えます。
+- **Cancel**をクリックするかウィンドウを閉じると、変更は破棄されます。変更がある場合は、確認メッセージが表示されます。
 
 ## ショートカット
 
-- `DEL` : 選択中の項目をすばやく削除
-- `ENTER` : 選択中の項目のインライン編集を開始する（または、選択中の項目にインライン編集がない場合は編集画面を開く）
-- `Ctrl/Command + C` : 選択中のアクションをコピー（現時点ではアクションのみ対応）
-- `Ctrl/Command + V` : 以前コピーしたアクションを貼り付け
-- `Ctrl/Command + Z` : 1 ステップ戻る（元に戻す）
-- `Ctrl/Command + Y` : 1 ステップ進む（やり直し）
-- `ARROW UP` : 現在選択中の項目から 1 つ上へ移動
-- `ARROW DOWN` : 現在選択中の項目から 1 つ下へ移動
-- `SHIFT + ARROW UP` : 選択中の項目を 1 つ上へ移動
-- `SHIFT + ARROW DOWN` : 選択中の項目を 1 つ下へ移動
-- `A` : アクション選択画面をすばやく開いて新しいアクションを追加
-- `Ctrl/Command + S` : エディタウィンドウで完了/保存
+macOSでは`Ctrl`の代わりに`Cmd`を使います。
 
-## 編集
+| ショートカット | 動作 |
+|---|---|
+| `A` | アクション選択画面を開きます。 |
+| `Enter` | 選択中の項目を編集します。 |
+| `Delete` | 選択中の項目を削除します。 |
+| `Up` / `Down` | 1つ上または下の項目を選択します。 |
+| `Shift + Up` / `Shift + Down` | 選択中の項目を上または下に移動します。 |
+| `Ctrl + C` / `Ctrl + V` | アクションをコピーして貼り付けます。ステートメントとブロックはコピーできません。 |
+| `Ctrl + Z` | 操作を元に戻します。 |
+| `Ctrl + Y`または`Ctrl + Shift + Z` | 操作をやり直します。 |
+| `Ctrl + S` | **Done**と同様に、スクリプトを保存してエディターを閉じます。 |
 
-- アクションの値をダブルクリックすると、完全な値編集画面に入らずに値を編集できます。
-- IF 文の連鎖（追加された ELSE/ELSE-IF 文を含む）、WHILE ループ、フォルダは折りたたみ可能です（見た目のみで、スクリプトのロジックには影響しません）。
-- エディタは常に、選択中の項目の下（または選択中の連鎖/ループ/フォルダ内）に新しいアクションを追加します。
-- 濃いグレーのスクリプト領域の背景を右クリックすると、アクション、文、その他重要な項目を追加するためのコンテキストメニューが開きます。
+# ステートメント
 
-# アクションの詳細
+ステートメントを使うと、実行するアクションとその実行回数を決められます。スクリプト領域を右クリックして追加します。
 
-このセクションでは、FancyMenu に組み込まれているアクションを一覧表示します。
+## If、Else-If、Else
 
-## 次のトラック (`audio_next_track`)
+**Add IF Statement**を選ぶと、[条件](/conditions)を設定できます。IFの中にあるアクションは、条件を満たした場合にのみ実行されます。
 
-**目的:** [Audio element](./elements#audio) の次のトラックに移動します
+IFを右クリックすると、連鎖に項目を追加できます。
 
-**値:** 必須 — `audio_element_identifier`（制御するオーディオ要素の ID）
+- **Append ELSE-IF Statement**：上のIFが実行されなかった場合に、この項目の条件を確認します。
+- **Append ELSE Statement**：連鎖内の上の項目がどれも実行されなかった場合に実行します。
 
-## 前のトラック (`audio_previous_track`)
+たとえば、**Is Layout Enabled**を条件にしたIFを使うと、冬のレイアウトが有効な間だけトーストを表示し、そうでない場合はELSEでサウンドを再生できます。
 
-**目的:** [Audio element](./elements#audio) の前のトラックに移動します
+## Whileループ
 
-**値:** 必須 — `audio_element_identifier`（制御するオーディオ要素の ID）
+**Add WHILE Loop**を選ぶと、[条件](/conditions)を満たしている間、内側のアクションを繰り返し実行します。
 
-## トラック音量を設定 (`set_audio_element_volume`)
+実行は毎回3秒後に停止するため、終わらないループがゲームをフリーズさせることはありません。これはタイマーではありません。後で実行したり、繰り返し実行したりする処理には、[Execute Later](#execute-later)、[Ticker](/elements#ticker)、または[Scheduler](/schedulers)を使ってください。
 
-**目的:** [Audio element](./elements#audio) の音量を設定します（`0.0`～`1.0`）
+## For Eachループ
 
-**値:** 必須 — `element_identifier:volume`
+**Add FOR EACH Loop**を選ぶと、[リスト変数](/variables#text-and-list-variables)の各項目に対して、先頭から末尾まで順にアクションを1回ずつ実行します。
 
-## 再生/一時停止を切り替え (`audio_toggle_play`)
+- `$$list_entry`は現在の項目、`$$list_index`はそのインデックスです。先頭の項目のインデックスは0です。
+- ループ内では、アクションの値と条件の両方でこれらを使えます。
+- リストの名前は`$$`を付けずに入力します（例：`quest_log`）。名前にはプレースホルダーも使えます。
+- ループ開始時にリストを読み込むため、ループ内のアクションで安全にリストを変更できます。
+- WHILEループと同様、実行は毎回3秒後に停止します。
 
-**目的:** [Audio element](./elements#audio) の現在のトラックを再生と一時停止の間で切り替えます
+例については[リストの処理](/variables#going-through-a-list)を参照してください。
 
-**値:** 必須 — `audio_element_identifier`
+# ブロック
 
-## オーディオを再生 (`play_audio`)
+ブロックを使うと、アクションの実行タイミングを変えたり、スクリプトを整理したりできます。スクリプト領域を右クリックして追加します。
 
-**目的:** オーディオリソースを 1 回再生します。このアクションで開始された音声は、後で [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios) で停止できます。
+## Delay Gate
 
-**値:** 必須 — `audioSource`、`soundChannel`、`baseVolume` を含む JSON 設定
+**Add DELAY GATE Block**を選ぶと、指定した時間（ミリ秒）が経過するまで、内側のアクションの実行を保留します（`1000`は1秒です）。
 
-**例:** `{"audioSource":"[source:local]/config/fancymenu/assets/example.ogg","soundChannel":"master","baseVolume":1.0}`
+- スクリプトが初めてゲートに到達すると、タイマーを開始して内側のアクションをスキップします。スクリプトの残りの部分はすぐに実行されます。
+- 時間が経過する前にスクリプトが再びゲートに到達した場合も、アクションはスキップされます。
+- タイマーが終了した後は、スクリプトがゲートに到達するたびに内側のアクションが実行されます。
+- 要素のスクリプトでは、メニューを再度開いたとき、またはサイズを変更したときにタイマーがリセットされます。
 
-**動作:**
+メニューを開いてから数秒後にだけ何かを表示するなど、[Ticker](/elements#ticker)で使うのに適しています。ブロック自体が何かを実行することはありません。その用途にはExecute Laterを使ってください。
 
-- `baseVolume` は `0.0`～`1.0` にクランプされます。
-- 不明なサウンドチャンネルは Master チャンネルを使用します。
-- このアクションは非同期の [Ticker](./elements#ticker) からは実行できません。FancyMenu は代わりにエラーを表示します。
-- FancyMenu はオーディオリソースの準備が整うまで最大 10 秒待機します。
-- 正常に開始したトラックは [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios) で停止できます。
+## Execute Later
 
-## すべてのアクション音声を停止 (`stop_all_action_audios`)
+**Add EXECUTE LATER Block**を選ぶと、指定した時間（ミリ秒）が経過した後に、内側のアクションを1回実行します。スクリプトの残りの部分はすぐに実行されます。
 
-**目的:** [**Play Audio** アクション](#play-audio-play_audio) で開始されたすべてのオーディオトラックを停止します。これは [Audio element](./elements#audio)、メニューの開閉音、ボタン音、その他のオーディオシステムは停止しません。
+スクリプトがこのブロックに到達するたびに、新しいカウントダウンが始まります。ボタンのクリックやメニューを開くときなど、1回だけ実行されるスクリプトに適しています。
 
-**値:** 不要
+## フォルダー
 
-## 動画要素の音量を設定 (`set_video_element_volume`)
+**Add Folder**を選ぶと、名前を付けたグループにアクションをまとめられます。中にあるすべての項目を実行しますが、長いスクリプトを整理するためだけの機能です。フォルダー名をダブルクリックすると、名前を変更できます。
 
-**目的:** [Video element](./video) の音量を設定します（`0.0`～`1.0`）
+## コメント
 
-**値:** 必須 — `video_element_identifier:volume`
+**Add Comment**を選ぶと、自分用のメモを追加できます。実行される処理はありません。ダブルクリックすると編集できます。
 
-## 動画要素の再生位置を設定 (`set_video_element_play_time`)
+# スクリプトの実行方法
 
-**目的:** [Video element](./video) をミリ秒単位のタイムスタンプにシークします
+- アクションは上から順に実行されます。アクションが失敗するとゲームログにエラーが記録されますが、スクリプトの残りの部分は引き続き実行されます。
+- 値に含まれるプレースホルダーは、アクションの実行時に現在の値へ置き換えられます。そのため、アクションはそれより前に実行されたアクションによる変更を確認できます。
+- ダウンロード、ZIPファイルの展開、Webリクエストはバックグラウンドで完了します。次のアクションは完了を待ちません。処理の完了後にアクションを実行するには、リスナーの[**On File Downloaded via Action**](/listeners#on-file-downloaded-via-action)や[**On ZIP Extracted via Action**](/listeners#on-zip-extracted-via-action)、または[**Send HTTP Request**](#send-http-request)のレスポンス変数を使ってください。
 
-**値:** 必須 — `video_element_identifier:timestamp_ms`
+# アクションの値
 
-## 動画要素の一時停止状態を切り替え (`toggle_video_element_pause_state`)
+ほとんどのアクションでは、サーバーアドレスなどの値が必要です。単純な値はテキストで入力します。設定項目が多いアクションには専用のウィンドウがあります。
 
-**目的:** [Video element](./video) の一時停止状態を切り替えます
+## プレースホルダー
 
-**値:** 必須 — `video_element_identifier`
+値にはプレイヤー名などの[プレースホルダー](/placeholders)を含められます。アクションの実行時にプレースホルダーが置き換えられます。
 
-## 動画メニュー背景の音量を設定 (`set_video_menu_background_volume`)
+```
+/say Welcome back, {"placeholder":"playername"}!
+```
 
-**目的:** [Video menu background](./video) の音量を設定します（`0.0`～`1.0`）
+## $$変数
 
-**値:** 必須 — `background_identifier:volume`
+`$$`の後に変数名を入力すると、アクションや条件でその変数の値を使えます。変数名の大文字と小文字は区別されます。次の2種類の変数を使えます。
+
+### 自分で作成した変数
+
+**メニューバー -> Customization -> Manage Variables**で作成したすべての変数は、`$$`と変数名を使って参照できます。`coins`という名前の変数は、すべてのスクリプトで`$$coins`として使えます。たとえば、**Display In Chat [Client-Side]**に次の値を指定すると、プレイヤーが所持しているコイン数を表示できます。
+
+```
+&6You have $$coins coins!
+```
+
+変数の作成や変更については[変数](/variables)を参照してください。
+
+### スクリプトの変数
+
+機能によっては、そのスクリプト専用の変数が用意されています。
+
+- [スライダー](/elements#slider)は、新しい値を`$$value`として渡します。
+- [チェックボックス](/elements#checkbox)は、新しい状態（`true`または`false`）を`$$value`として渡します。
+- [For Eachループ](#for-each-loop)は、`$$list_entry`と`$$list_index`を渡します。
+- 各[リスナー](/listeners#listener-variables)には、押されたキーなど、渡される変数が記載されています。
+
+これらの変数は、スクリプトの実行中だけ存在します。自分で作成した変数と名前が同じ場合、`$$name`はスクリプトの変数を指します。
+
+# すべてのアクション
+
+FancyMenuで使えるすべてのアクションを、動作別に紹介します。
+
+## 画面とメニュー
+
+### 画面またはカスタムGUIを開く
+
+**識別子：** `opengui`
+
+ゲームやMODのメニュー、または[カスタムGUI](/custom-guis)を開きます。
+
+**値：** `options_screen`などの[画面識別子](/screen-identifiers)
+
+大文字と小文字は区別されます。この方法では開けないMODメニューもあります。その場合は、メニューを開くボタンに[**Mimic Vanilla/Mod Button**](#mimic-vanillamod-button)を使ってください。
+
+### 画面を閉じる
+
+**識別子：** `closegui`
+
+開いているメニューを閉じます。ワールドの外にいる場合は、タイトル画面が開きます。
+
+**値：** なし
+
+### 画面を更新
+
+**識別子：** `update_screen`
+
+ウィンドウのサイズ変更時と同様に、開いているメニューを再構築します。GUIスケールなどの設定を変更した後に便利です。
+
+**値：** なし
+
+### 前の画面に戻る
+
+**識別子：** `back_to_last_screen`
+
+直前に開いていたメニューに戻ります。[カスタムGUI](/custom-guis)の場合は、そのGUIを開く前に表示されていたメニューに戻ります。
+
+**値：** なし
+
+### トーストを表示
+
+**識別子：** `show_toast`
+
+右上にトースト通知を表示します。専用ウィンドウで次の項目を設定します。
+
+- **Toast Width**：120～320ピクセル。
+- **Duration (ms)**：表示時間。1秒（`1000`）から10分まで指定できます。
+- **Title**および**Message**：[書式コード](/text-formatting#minecraft-text-formatting)を含むテキスト、またはMinecraftのテキストコンポーネントJSONを指定します。
+- **Icon Texture Source**および**Background Texture Source**：任意の[画像](/resources)を指定します。アイコンは20x20ピクセル、背景は高さ32ピクセルで、トーストと同じ幅にすると見栄えがよくなります。
+
+### Vanilla／MODのボタンを再現
+
+**識別子：** `mimicbutton`
+
+プレイヤーがクリックしたときと同じように、ゲームまたはMODのボタンをクリックします。
+
+**値：** `title_screen:mc_titlescreen_options_button`などのボタンの[ウィジェットロケーター](/widget-locators)
+
+取得するには、エディターでボタンを右クリックし、**Copy Widget Locator**をクリックします。
+
+## レイアウトと要素
+
+### レイアウトを切り替え
+
+**識別子：** `toggle_layout`
+
+有効なレイアウトを無効にし、無効なレイアウトを有効にします。
+
+**値：** `winter_title_screen`など、`.txt`を除いたレイアウト名
+
+### レイアウトを有効化
+
+**識別子：** `enable_layout`
+
+レイアウトを有効にします。
+
+**値：** `.txt`を除いたレイアウト名
+
+### レイアウトを無効化
+
+**識別子：** `disable_layout`
+
+レイアウトを無効にします。
+
+**値：** `.txt`を除いたレイアウト名
+
+これら3つのレイアウトアクションは、変更を保存し、開いているメニューをすぐに更新します。名前の大文字と小文字は区別されます。
+
+### Element Animatorを切り替え
+
+**識別子：** `toggle_element_animator`
+
+[Element Animator](/element-animator)が無効なら有効にし、有効なら無効にします。アニメーションは最初から再生されます。状態は保存されます。
+
+**値：** Element Animatorの識別子
+
+### Element Animatorを有効化
+
+**識別子：** `enable_element_animator`
+
+[Element Animator](/element-animator)を有効にします。無効だった場合は、アニメーションが最初から再生されます。
+
+**値：** Element Animatorの識別子
+
+### Element Animatorを無効化
+
+**識別子：** `disable_element_animator`
+
+[Element Animator](/element-animator)を無効にし、アニメーションをリセットします。
+
+**値：** Element Animatorの識別子
+
+### Element Animatorをリセット
+
+**識別子：** `reset_element_animator`
+
+[Element Animator](/element-animator)を有効または無効にせずに、アニメーションを最初から再生します。
+
+**値：** Element Animatorの識別子
+
+### テキスト入力欄の値を設定
+
+**識別子：** `set_text_input_field_value`
+
+FancyMenuまたはゲームの[テキスト入力欄](/elements#text-input-field)にテキストを設定します。
+
+**値：** `element_identifier|||text|||force`
+
+`force`を`true`にすると、入力欄が無効（非アクティブ）でもテキストが変更されます。
+
+### 要素をスクロール
+
+**識別子：** `scroll_scroll_area`
+
+[スクロール可能な領域](/scrollable-areas)または[テキスト](/elements#text)要素をスクロールします。専用ウィンドウで次の項目を設定します。
+
+- **Identifier of the Element to Scroll**：スクロールする領域またはテキストの識別子。
+- **Scroll To**：
+  - **Start**または**End**。
+  - **Position**：ピクセル単位の**Horizontal Position**と**Vertical Position**。一方を空欄にすると、その方向の位置は維持されます。
+  - **Element**（領域のみ）：**Identifier of the Element to Scroll To**で指定した要素が先頭に来るまでスクロールします。
+  - **Line Number**（テキストのみ）：先頭行は`1`です。
+  - **Line with Text**（テキストのみ）：**Text in the Line**を含む最初の行までスクロールします。大文字と小文字は区別されません。
+- **Glide There**：ジャンプではなく、滑らかにスクロールします。要素のスムーズスクロールが有効である必要があります。
+
+該当する要素がない場合は何も起こりません。
+
+## 音声と動画
+
+### 次のトラック
+
+**識別子：** `audio_next_track`
+
+[Audio要素](/elements#audio)の次のトラックに進みます。
+
+**値：** `menu_music`などのAudio要素の識別子
+
+### 前のトラック
+
+**識別子：** `audio_previous_track`
+
+[Audio要素](/elements#audio)の前のトラックに戻ります。
+
+**値：** Audio要素の識別子
+
+### トラックの音量を設定
+
+**識別子：** `set_audio_element_volume`
+
+[Audio要素](/elements#audio)の音量を`0.0`（0%）から`1.0`（100%）の範囲で設定します。
+
+**値：** `element_identifier:volume`（例：`menu_music:0.5`）
+
+### トラックの再生／一時停止を切り替え
+
+**識別子：** `audio_toggle_play`
+
+再生中の[Audio要素](/elements#audio)を一時停止するか、一時停止中のものを再生します。
+
+**値：** Audio要素の識別子
+
+### 音声を再生
+
+**識別子：** `play_audio`
+
+音声ファイルを1回再生します。専用ウィンドウで**Audio Source**、**Sound Channel**、**Base Volume**（最大100%）を設定します。
+
+- FancyMenuは音声の読み込みを最大10秒間待ちます。
+- バックグラウンドで実行される（非同期の）[Ticker](/elements#ticker)では動作しません。その場合、FancyMenuはエラーを表示します。
+
+このアクションで再生した音声は、[**Stop All Action Audios**](#stop-all-action-audios)で停止できます。
+
+### アクションの音声をすべて停止
+
+**識別子：** `stop_all_action_audios`
+
+[**Play Audio**](#play-audio)で再生した音声をすべて停止します。Audio要素、メニュー音、ボタン音の再生は継続します。
+
+**値：** なし
+
+### 動画要素の音量を設定
+
+**識別子：** `set_video_element_volume`
+
+[Video要素](/video)の音量を`0.0`（0%）から`1.0`（100%）の範囲で設定します。
+
+**値：** `video_element_identifier:volume`
+
+### 動画要素の再生位置を設定
+
+**識別子：** `set_video_element_play_time`
+
+[Video要素](/video)の再生位置をミリ秒単位で変更します。
+
+**値：** `video_element_identifier:time_in_ms`（例：`intro_video:30000`）
+
+### 動画要素の一時停止状態を切り替え
+
+**識別子：** `toggle_video_element_pause_state`
+
+再生中の[Video要素](/video)を一時停止するか、一時停止中のものを再生します。
+
+**値：** Video要素の識別子
+
+### 動画メニュー背景の音量を設定
+
+**識別子：** `set_video_menu_background_volume`
+
+[動画メニュー背景](/video)の音量を`0.0`（0%）から`1.0`（100%）の範囲で設定します。
+
+**値：** `background_identifier:volume`
 
 > [!NOTE]
-> 背景の識別子を取得するには、エディタ背景を右クリックして 'Copy Background Identifier' をクリックしてください。
+> メニュー背景の識別子を取得するには、エディターの背景を右クリックし、**Copy Background Identifier**をクリックします。
 
-## 動画メニュー背景の再生位置を設定 (`set_video_menu_background_play_time`)
+### 動画メニュー背景の再生位置を設定
 
-**目的:** [Video menu background](./video) をミリ秒単位のタイムスタンプにシークします
+**識別子：** `set_video_menu_background_play_time`
 
-**値:** 必須 — `background_identifier:timestamp_ms`
+[動画メニュー背景](/video)の再生位置をミリ秒単位で変更します。
 
-> [!NOTE]
-> 背景の識別子を取得するには、エディタ背景を右クリックして 'Copy Background Identifier' をクリックしてください。
+**値：** `background_identifier:time_in_ms`
 
-## 動画メニュー背景の一時停止状態を切り替え (`toggle_video_menu_background_pause_state`)
+### 動画メニュー背景の一時停止状態を切り替え
 
-**目的:** [Video menu background](./video) の一時停止状態を切り替えます
+**識別子：** `toggle_video_menu_background_pause_state`
 
-**値:** 必須 — `background_identifier`
+再生中の[動画メニュー背景](/video)を一時停止するか、一時停止中のものを再生します。
 
-> [!NOTE]
-> 背景の識別子を取得するには、エディタ背景を右クリックして 'Copy Background Identifier' をクリックしてください。
+**値：** メニュー背景の識別子
 
-## レイアウトを切り替え (`toggle_layout`)
+## ワールドとサーバー
 
-**目的:** `.txt` を除いたファイル名でレイアウトを切り替え（有効/無効）ます
+### サーバーに参加
 
-**値:** 必須 — `layout_name`
+**識別子：** `joinserver`
 
-## レイアウトを有効化 (`enable_layout`)
+Minecraftサーバーに接続します。
 
-**目的:** `.txt` を除いたファイル名でレイアウトを有効化し、保存します
+**値：** `address`または`address:port`（例：`play.example.net`）
 
-**値:** 必須 — `layout_name`
+ポートを指定しない場合は`25565`が使われます。ワールドまたはサーバーを読み込み中の場合は、代わりにエラーが表示されます。サーバーリストにないサーバーはリストに追加されます。
 
-## レイアウトを無効化 (`disable_layout`)
+### ワールドに入る
 
-**目的:** `.txt` を除いたファイル名でレイアウトを無効化し、保存します
+**識別子：** `loadworld`
 
-**値:** 必須 — `layout_name`
+シングルプレイのワールドを読み込みます。
 
-これら 3 つのレイアウトアクションはいずれも、状態をレイアウトファイルに保存し、現在の画面を即座に更新します。`.txt` を付けない、大文字小文字を区別するファイル名を使用してください。
+**値：** `saves`内のワールドフォルダー名（例：`Survival Island`）
 
-## 画面またはカスタム GUI を開く (`opengui`)
+該当するワールドがない場合は何も起こりません。ワールドまたはサーバーを読み込み中の場合は、代わりにエラーが表示されます。
 
-**目的:** 識別子で画面（バニラ、MOD、またはカスタム GUI）を開きます
+### 前回のワールド／サーバーに入る
 
-**値:** 必須 — `screen_identifier`
+**識別子：** `join_last_world`
 
-[Screen Identifiers](./screen-identifiers) のデバッグオーバーレイから、正確な大文字小文字を区別する識別子をコピーしてください。
+プレイヤーが最後にプレイしたワールドを読み込むか、最後に参加したサーバーに接続します。
 
-一部の MOD 画面は直接生成できません。開けない場合は、その画面を通常開くウィジェットに対して [**Mimic Vanilla/Mod Button**](#mimic-vanillamod-button-mimicbutton) を使用してください。
+**値：** なし
 
-## 画面を閉じる (`closegui`)
+ワールドまたはサーバーを読み込み中の場合は、代わりにエラーが表示されます。サーバーリストにないサーバーはリストに追加されます。
 
-**目的:** アクティブな画面を閉じます
+### ワールドまたはサーバーから退出
 
-**値:** 不要
+**識別子：** `disconnect_server_or_world`
 
-## 画面を更新 (`update_screen`)
+ワールドまたはサーバーから退出し、メニューを開きます。
 
-**目的:** 現在の画面を再初期化します
+**値：** 開くメニューの[画面識別子](/screen-identifiers)（例：`title_screen`）
 
-**値:** 不要
+ワールドを読み込み中の場合のみ動作します。[カスタムGUI](/custom-guis)も使用できます。メニューを開けない場合は、タイトル画面が開きます。
 
-## 前の画面に戻る (`back_to_last_screen`)
+## チャットとコマンド
 
-**目的:** [Custom GUI](./custom-guis) の親、または直近に閉じた画面インスタンスに戻ります
+### チャットメッセージ／コマンドを送信
 
-**値:** 不要
+**識別子：** `sendmessage`
 
-## サーバーに参加 (`joinserver`)
+プレイヤーが入力した場合と同じように、チャットメッセージを送信するか、コマンドを実行します。
 
-**目的:** プレーヤーを Minecraft サーバーに接続します
+**値：** メッセージ、または`/spawn`のように`/`で始まるコマンド
 
-**値:** 必須 — `server_ip` または `server_ip:port`
+### 統合サーバーとしてコマンドを実行
 
-このアクションは、ワールドまたはサーバーがすでに読み込まれている間は実行できません。ポートは省略時に `25565` が使用されます。アドレスが Minecraft の保存済みサーバー一覧にない場合、FancyMenu はそれを追加して保存します。
+**識別子：** `execute_command_as_integrated_server`
 
-## ワールドに入る (`loadworld`)
+シングルプレイで、プレイヤーの権限やチート設定に関係なく、サーバーとしてコマンドを実行します。
 
-**目的:** Minecraft のワールドに入ります
-
-**値:** 必須 — `world_folder_name`
-
-値はセーブフォルダ名です。そのセーブが存在しない場合、または別のワールド/サーバーがすでに読み込まれている場合、このアクションは何もしません。
-
-## 最後のワールド/サーバーに参加 (`join_last_world`)
-
-**目的:** プレーヤーが最後にいたワールドまたはサーバーに入る/参加します
-
-**値:** 不要
-
-このアクションは、別のワールド/サーバーが読み込まれている間は実行できません。Minecraft の保存済みサーバー一覧にない記憶済みサーバーは、接続前に追加されて保存されます。
-
-## ワールドまたはサーバーから退出 (`disconnect_server_or_world`)
-
-**目的:** ワールドまたはサーバーから退出し、指定した画面を開きます
-
-**値:** 必須 — `screen_identifier`
-
-このアクションは、ワールドとプレーヤーが読み込まれているときのみ実行されます。対象は [Custom GUI](./custom-guis) の識別子、または FancyMenu が構築できる [screen identifier](./screen-identifiers) です。対象を開けない場合、FancyMenu はタイトル画面に戻ります。
-
-## Minecraft を終了 (`quitgame`)
-
-**目的:** Minecraft を完全に終了します
-
-**値:** 不要
-
-## チャットメッセージ/コマンドを送信 (`sendmessage`)
-
-**目的:** チャットメッセージを送信するか、チャットコマンドを実行します。メッセージテキストは [FancyMenu の書式コード](./text-formatting#minecraft-text-formatting) をサポートします。
-
-**値:** 必須 — `message_text` または `/command_text`
-
-## 統合サーバーとしてコマンドを実行 (`execute_command_as_integrated_server`)
-
-**目的:** シングルプレイで統合サーバーとしてコマンドを強制実行し、権限とチート設定を無視します。
-
-**値:** 必須 — コマンドテキスト、たとえば `/give @p minecraft:diamond 1`
+**値：** `/give @p minecraft:diamond 1`のようなコマンド
 
 > [!WARNING]
-> このアクションは、シングルプレイ中かつワールドが **LAN 公開されていない** 場合にのみ機能します。統合サーバーが存在しない場合、または統合サーバーが LAN に公開されている場合は、意図的に何もしません。
+> ワールドがLANに公開されていないシングルプレイでのみ動作します。それ以外の状況では何も起こりません。
 
-## チャットに貼り付け (`paste_to_chat`)
+### チャットに貼り付け
 
-**目的:** プレーヤー/ワールドが読み込まれている間、書式付きテキストをチャット入力欄に貼り付けます
+**識別子：** `paste_to_chat`
 
-**値:** 必須 — `true:Text` または `false:Text`
+ワールドを読み込み中に、チャット入力欄へテキストを入力します。チャットが開いていない場合は、テキストを入力した状態で開きます。
 
-チャットがまだ開いていない場合、FancyMenu はチャットを開いて入力テキストを設定します。チャットがすでに開いている場合、`true` は既存の入力に追加し、`false` は置き換えます。
+**値：** `true:text`は入力済みのテキストに追加し、`false:text`は置き換えます。
 
-## チャットに表示 [クライアント側] (`display_in_chat_client_side`)
+### チャットに表示［クライアント側］
 
-**目的:** ワールドまたはサーバーが読み込まれている間に、クライアント側のチャットメッセージを表示します。サーバーには何も送信しません。
+**識別子：** `display_in_chat_client_side`
 
-**値:** 必須 — `text_or_json`
+このプレイヤーにだけ表示されるチャットメッセージを表示します。サーバーには送信されません。
 
-値はプレーンテキストまたはシリアライズされた Minecraft テキストコンポーネントにできます。ワールドが読み込まれていない場合、このアクションは何もしません。
+**値：** [書式コード](/text-formatting#minecraft-text-formatting)を含むテキスト、またはMinecraftのテキストコンポーネントJSON（例：`&aWelcome back!`）
 
-## FM データをサーバーに送信 (`send_fm_data_to_server`)
+ワールドが読み込まれていない場合は何も起こりません。
 
-**目的:** [FM Data](./fm-data) を現在の FancyMenu サーバーに送信します。
+## 変数とリスト
 
-**値:** 必須 — `data_identifier||data`
+### 変数の値を設定（FM Variable）
 
-## リモートサーバーに接続 (`connect_to_remote_server`)
+**識別子：** `set_variable`
 
-**目的:** クライアント起点の WebSocket 接続を外部のリモートサーバーに開くか、再利用します。
+[変数](/variables)の値を設定します。
 
-**値:** 必須 — リモートサーバー URL、たとえば `wss://example.com/ws`
+**値：** `variable_name:value`（例：`coins:100`）
 
-受け付ける URL 形式については [Remote Server Communication](./remote-server-communication#url-modes) を参照してください。
+- 名前と値を分けるのは、最初の`:`だけです。
+- [リスト変数](/variables#text-and-list-variables)はリストのままです。JSON配列（例：`["a","b"]`）は各要素がリスト項目になり、それ以外のテキストは1つの項目になり、空のテキストを指定するとリストが空になります。
 
-## リモートサーバーにデータを送信 (`send_data_to_remote_server`)
+### 変数を削除（FM Variable）
 
-**目的:** リモートサーバー接続を開くか再利用し、テキストデータを送信します。
+**識別子：** `delete_variable`
 
-**値:** 必須 — `remote_server_url||data`
+[変数](/variables)を完全に削除します。他の変数はそのまま残ります。変数を空にするだけの場合は、[**変数の値を設定（FM Variable）**](#set-variable-value-fm-variable)を使ってください。
 
-## リモートサーバー接続を閉じる (`close_remote_server_connection`)
+**値：** 変数名
 
-**目的:** リクエスト ID によって特定のリモートサーバー接続を閉じます。
+### すべての変数を消去（FM Variable）
 
-**値:** 必須 — リクエスト ID。通常は [**On Remote Server Connected**](./listeners#on-remote-server-connected-remote_server_connected) の `$$request_id`
+**識別子：** `clear_variables`
 
-## すべてのリモートサーバー接続を閉じる (`close_all_remote_server_connections`)
+テキスト変数とリスト変数を含む、すべての[変数](/variables)を削除します。
 
-**目的:** FancyMenu が開いたすべてのアクティブなリモートサーバー接続を閉じます。
+**値：** なし
 
-**値:** 不要
+### リストに追加（FM Variable）
 
-## ブラウザーで URL を開く (`openlink`)
+**識別子：** `add_to_list`
 
-**目的:** FancyMenu の確認プロンプトなしで、URL を OS の既定の処理に渡します
+[リスト変数](/variables#list-actions)に項目を追加します。
 
-**値:** 必須 — `https://example.com`
+- **List Variable**：リスト名。この名前の変数がまだない場合は、アクションがリストを作成します。
+- **New Entry**：追加する項目のテキスト。
+- **Index (Optional)**：項目を追加する位置。空欄の場合は末尾に追加されます。追加位置以降の項目は1つ後ろに移動します。
+- **Skip If Already in List**：同じテキストの項目がリストにすでにある場合、追加しません。**Ignore Case**を有効にすると、`Apple`と`apple`を同じものとして扱います。
 
-信頼できる `https://` リンクを使用してください。FancyMenu は URL を OS に渡す前に確認プロンプトを表示しません。
+### リスト項目を設定（FM Variable）
 
-## テキストをクリップボードにコピー (`copytoclipboard`)
+**識別子：** `set_list_entry`
 
-**目的:** テキストをクリップボードにコピーします
+[リスト変数](/variables#list-actions)の**Index**で指定した項目を、**New Value**で置き換えます。指定位置に項目がない場合は何も起こりません。
 
-**値:** 必須 — `text_to_copy`
+### リストから削除（FM Variable）
 
-## ゲームログに出力 (`print_to_log`)
+**識別子：** `remove_from_list`
 
-**目的:** ゲームログに 1 行を書き込みます
+[リスト変数](/variables#list-actions)から項目を削除します。**Remove**で削除方法を選びます。
 
-**値:** 必須 — `text_to_log`
+- **Entry at Index**：指定したインデックスの項目。
+- **First Match**：**Value to Remove**と完全に一致する最初の項目。
+- **All Matches**：一致するすべての項目。
 
-## 変数値を設定（FM 変数） (`set_variable`)
+**Ignore Case**を有効にすると、`Apple`と`apple`を同じものとして扱います。
 
-**目的:** テキスト内容を [FancyMenu 変数](./variables) に保存します
+### リストを消去（FM Variable）
 
-**値:** 必須 — `variable_name:variable_value`
+**識別子：** `clear_list`
 
-最初のコロンが名前と値を分けます。それ以降のコロンは値の一部として残ります。変更はすぐに保存されます。
+[リスト変数](/variables#list-actions)からすべての項目を削除します。空のリストはそのまま残ります。
 
-## すべての変数をクリア（FM 変数） (`clear_variables`)
+### リストを設定（FM Variable）
 
-**目的:** 保存されているすべての [FancyMenu 変数](./variables) の値をクリアします
+**識別子：** `set_list`
 
-**値:** 不要
+[リスト変数](/variables#list-actions)のすべての項目を置き換えます。**Entries From**で項目の取得元を選びます。
 
-## HTTP リクエストを送信 (`send_http_request`)
+- **Split Text**：**Text to Split**を**Separator**（例：`,`）で分割します。区切り文字を空にすると、改行で分割されます。**Trim Entries**を有効にすると各項目の先頭と末尾の空白が削除され、**Skip Empty Entries**を有効にすると空の項目が除外されます。
+- **JSON Array**：`["Diamonds","Emeralds"]`のような配列の要素を使います。`$$other_list`を指定すると、別のリストをコピーできます。それ以外のテキストは1つの項目になり、空のテキストを指定するとリストが空になります。
 
-**目的:** バックグラウンドで HTTP/HTTPS リクエストを開始します。レスポンスをログに出したり、変数に保存したりできます
+ウィンドウには項目のプレビューが表示されます。
 
-**値:** 必須 — HTTP リクエスト設定
+### リストを並べ替え（FM Variable）
+
+**識別子：** `arrange_list`
+
+[リスト変数](/variables#list-actions)の順序を変更します。**Arrangement**で次の操作を選びます。
+
+- **Sort A–Z**と**Sort Z–A**：アルファベット順に並べ替えます。
+- **Numbers, Smallest First**と**Numbers, Biggest First**：数値順に並べ替えます。数値ではない項目は末尾に移動します。
+- **Reverse Order**：最後の項目を先頭に移動します。
+- **Shuffle**：ランダムな順序に並べ替えます。
+- **Remove Duplicates**：各値の最初の項目だけを残します。
+
+すべてのリストアクションで、先頭の項目のインデックスは`0`、末尾の項目は`-1`です。リスト名にはプレースホルダーを含められます。また、名前の前に`$$`を付けると、その変数の値をリスト名として使います。値のあるテキスト変数はリストに変換されず、そのまま残ります。その場合、アクションはゲームログに警告を記録します。
+
+## Webとネットワーク
+
+### ブラウザーでURLを開く
+
+**識別子：** `openlink`
+
+確認を表示せず、既定のブラウザーでリンクを開きます。
+
+**値：** `https://discord.gg/example`のようなリンク
+
+信頼できるリンクだけを使用してください。
+
+### HTTPリクエストを送信
+
+**識別子：** `send_http_request`
+
+バックグラウンドでWebリクエストを送信します。応答をゲームログに記録したり、変数に保存したりできます。
 
 | 設定 | 動作 |
 |---|---|
-| URL | HTTP または HTTPS のエンドポイント |
-| Method | `GET`、`POST`、`PUT`、`DELETE`、`PATCH`、`HEAD`、または `OPTIONS` |
-| Body | `GET` と `HEAD` 以外のメソッドで送信されます |
-| Content type | リクエストの `Content-Type` 値 |
-| Timeout | 接続とレスポンス読み取りの両方に使われる秒数 |
-| Log response | レスポンスを読み取り、ログに書き込みます |
-| Response variable | レスポンスを読み取り、リクエスト完了後に保存します |
-| Single-line response | 保存前にレスポンスの改行を削除します |
-| Authentication | なし、Basic、Bearer、または API key |
-| Headers | 任意のカスタムリクエストヘッダー |
+| URL | HTTPまたはHTTPSのアドレス。 |
+| Method | `GET`、`POST`、`PUT`、`DELETE`、`PATCH`、`HEAD`、`OPTIONS`のいずれか。 |
+| Body | 送信するデータ。`GET`と`HEAD`では送信されません。 |
+| Content type | リクエスト本文の`Content-Type`（例：`application/json`）。 |
+| Timeout | 接続と応答を待つ秒数。 |
+| Log response | 応答をゲームログに記録します。 |
+| Response variable | 応答が届いたときに、その内容をこの変数に保存します。 |
+| Single-line response | 保存前に応答から改行を削除します。 |
+| Authentication | 認証方式。None、Basic、Bearer、API keyから選びます。 |
+| Headers | リクエストに追加するヘッダー。 |
 
-リクエストは非同期で実行されるため、次のアクションは待機しません。レスポンス本文は、ログ記録が有効な場合、またはレスポンス変数が設定されている場合にのみ読み取られます。成功しなかった場合の本文はエラーレスポンスから読み取られます。パスワードやアクセストークンはアクション設定に保存しないでください。
+次のアクションは応答を待ちません。エラー応答もログに記録され、変数に保存されます。パスワードやアクセストークンをアクションに記載しないでください。レイアウトを持っている人なら誰でも内容を読めます。
 
-## リソースパックを管理 (`manage_resource_pack`)
+### FM Dataをサーバーに送信
 
-**目的:** リソースパックを有効化、無効化、または切り替えします。必要に応じて再読み込みも行えます
+**識別子：** `send_fm_data_to_server`
 
-**値:** 必須 — `pack_name_or_id|||MODE|||reload_bool`
+[FМ Data](/fm-data)をサーバーに送信します。サーバー側にもFancyMenuが必要です。
 
-表示名と内部のパック ID は、大文字小文字を区別せずに照合されます。必須としてマークされたパックは無効化できません。
+**値：** `data_identifier||data`
 
-## リソースパックを再読み込み (`reload_resource_packs`)
+### リモートサーバーに接続
 
-**目的:** Minecraft のリソースパックを再読み込みします。組み込みの 5 秒クールダウンにより、その期間中の繰り返しトリガーは無視され、再読み込みの連打を防ぎます。
+**識別子：** `connect_to_remote_server`
 
-**値:** 不要
+リモートサーバーに接続します。すでに接続が開いている場合は、その接続を使います。
 
-## FancyMenu を再読み込み (`reloadmenu`)
+**値：** `wss://example.com/ws`のようなサーバーアドレス
 
-**目的:** レイアウト、[Custom GUIs](./custom-guis)、[panoramas](./panoramas)、[slideshows](./slideshows)、設定、および FancyMenu が管理するリソースを再読み込みします
+使用できるアドレスについては、[リモートサーバー通信](/remote-server-communication#url-modes)を参照してください。
 
-**値:** 不要
+### リモートサーバーにデータを送信
 
-これは Minecraft のリソースパックは再読み込みしません。必要な場合は [**Reload Resource Packs**](#reload-resource-packs-reload_resource_packs) を使用してください。
+**識別子：** `send_data_to_remote_server`
+
+リモートサーバーにテキストを送信します。必要に応じて、先に接続します。
+
+**値：** `server_address||data`
+
+### リモートサーバー接続を閉じる
+
+**識別子：** `close_remote_server_connection`
+
+リモートサーバーへの接続を1つ閉じます。
+
+**値：** リクエストID。[**On Remote Server Connected**](/listeners#on-remote-server-connected)の`$$request_id`を使うのが一般的です。
+
+### すべてのリモートサーバー接続を閉じる
+
+**識別子：** `close_all_remote_server_connections`
+
+FancyMenuが開いたリモートサーバーへの接続をすべて閉じます。
+
+**値：** なし
+
+## ファイル
+
+### ゲームディレクトリにファイルを作成
+
+**識別子：** `create_file_in_game_dir`
+
+空のファイルを作成します。存在しないフォルダーも作成されます。ファイルがすでに存在する場合は変更されません。
+
+**値：** `config/mymodpack/first_start.txt`のようなファイルパス
+
+すべてのファイルアクションはゲームフォルダー（インスタンスフォルダー）内でのみ動作します。`.minecraft/`で始まるパスは、代わりに既定の`.minecraft`フォルダーを使用します。別のフォルダーを指す場合もあります。
+
+### ゲームディレクトリのファイル／フォルダーを削除
+
+**識別子：** `delete_file_in_game_dir`
+
+ファイル、または中身も含めたフォルダーを削除します。
+
+**値：** `config/mymodpack/cache.txt`のようなパス
+
+`config/downloads/*`のように末尾に`*`を付けると、そのフォルダー内にあるファイルをすべて削除します。フォルダー自体と、その中のフォルダーは残ります。
+
+### ゲームディレクトリのファイル／フォルダーをコピー
+
+**識別子：** `copy_file_in_game_dir`
+
+ファイル、または中身も含めたフォルダーをコピーします。
+
+**値：** `source||destination`（例：`config/presets/default.json||config/mymod/settings.json`）
+
+- コピー元の末尾に`*`を付けると（例：`config/presets/*||config/mymod/`）、そのフォルダー内にあるファイルだけをコピーし、フォルダーはコピーしません。この場合、コピー先はフォルダーとなり、必要に応じて作成されます。
+- 既存のファイルは上書きされません。コピー先にすでにファイルがある場合、アクションは失敗します。
+
+### ゲームディレクトリのファイル／フォルダーを移動
+
+**識別子：** `move_file_in_game_dir`
+
+ファイル、または中身も含めたフォルダーを移動します。
+
+**値：** `source||destination`
+
+コピー元の末尾に付ける`*`は、[**ゲームディレクトリのファイル／フォルダーをコピー**](#copy-filefolder-in-game-directory)と同じように機能します。既存のファイルは上書きされません。
+
+### ゲームディレクトリのファイル／フォルダー名を変更
+
+**識別子：** `rename_file_in_game_dir`
+
+ファイルまたはフォルダーの名前を変更します。変更後の名前がすでに存在する場合は失敗します。
+
+**値：** `path||new_name`（例：`config/mymod/old_name.txt||new_name.txt`）
+
+### ゲームディレクトリにファイルをダウンロード
+
+**識別子：** `download_file_to_game_dir`
+
+ファイルをフォルダーにバックグラウンドでダウンロードします。
+
+**値：** `url||target_folder`（例：`https://example.com/pack.zip||downloads`）
+
+- 2つ目の値はファイル名ではなくフォルダーです。FancyMenuはダウンロード情報またはリンクからファイル名を取得します。
+- 同じ名前のファイルがある場合は上書きされます。
+- ダウンロードが完了または失敗すると、[**On File Downloaded via Action**](/listeners#on-file-downloaded-via-action)が実行されます。成功した場合、`$$target_file_path`には保存されたファイルのパスが入ります。
+
+### ゲームディレクトリでZIPファイルを展開
+
+**識別子：** `extract_zip_file_in_game_dir`
+
+ZIPファイルをフォルダーにバックグラウンドで展開します。
+
+**値：** `zip_path||target_folder`（例：`downloads/pack.zip||resourcepacks/MyPack`）
+
+同じ名前のファイルは置き換えられ、ZIPファイル名と同じ追加フォルダーは作成されません。展開が終わると[**On ZIP Extracted via Action**](/listeners#on-zip-extracted-via-action)が実行されます。信頼できるZIPファイルだけを展開してください。
+
+### ゲームディレクトリのファイル／フォルダーを開く
+
+**識別子：** `open_file_folder_in_game_dir`
+
+システムでそのファイルやフォルダーに関連付けられているプログラムを使って開きます。
+
+**値：** `screenshots`のようなパス
+
+### ゲームディレクトリのファイルに書き込む
+
+**識別子：** `write_file_in_game_dir`
+
+ファイルにテキストを書き込みます。必要に応じてファイルとフォルダーが作成されます。
+
+**値：** `path|||text|||append`（例：`config/mymodpack/log.txt|||Joined the server\n|||true`）
+
+`\n`は改行を表します。`append`を`true`にするとテキストをファイルの末尾に追加し、`false`にすると既存の内容を置き換えます。
+
+### システムからファイルを選択
+
+**識別子：** `select_file_to_game_dir`
+
+システムのファイル選択画面を開き、選択したファイルをゲームフォルダーにコピーします。
+
+**値：** `target_path|||filter_name|||extensions|||overwrite`（例：`config/fancymenu/assets/background.png|||Images|||png;jpg|||true`）
+
+- `target_path`は、ファイル名を含むコピー先の完全なパスです。
+- 拡張子は`;`または`,`で区切ります。拡張子を指定しない場合は、すべてのファイルを選択できます。
+- `overwrite`を`false`にすると、ファイルがすでに存在する場合にアクションが失敗します。
+
+ファイルのコピー、ファイル選択画面のキャンセル、またはエラーが発生したときに[**On File Selected**](/listeners#on-file-selected)が実行されます。
+
+## ゲームとFancyMenu
+
+### Minecraftを終了
+
+**識別子：** `quitgame`
+
+ゲームを終了します。
+
+**値：** なし
+
+### Minecraftの設定を変更
+
+**識別子：** `edit_minecraft_option`
+
+描画距離やGUIスケールなど、Minecraftの設定を変更します。
+
+**値：** `option_name:value`（例：`renderDistance:12`）
+
+設定名については[Minecraftの設定](/minecraft-options)を参照してください。
+
+### キーバインドを再現
+
+**識別子：** `mimic_keybind`
+
+ジャンプやスニークなど、Minecraftのキーバインドを押します。キーを押し続けることもできます。
+
+**値：** `keybind|||hold|||duration_ms`（例：`key.jump|||false|||1000`）
+
+| 部分 | 説明 |
+|---|---|
+| `keybind` | キーバインドのID（例：`key.jump`または`key.sneak`）。 |
+| `hold` | `true`はキーを押し続け、`false`は1回だけ押します。 |
+| `duration_ms` | キーを押し続ける時間（ミリ秒）。省略した場合は`1000`です。 |
+
+### リソースパックを管理
+
+**識別子：** `manage_resource_pack`
+
+専用ウィンドウで設定したリソースパックを有効または無効にします。
+
+- **Target Resource Pack**：リソースパック画面に表示されるパック名。大文字と小文字は区別されません。
+- **Action Mode**：**Enable**、**Disable**、**Toggle**から選択します。
+- **Reload Resources**：変更後すぐにリソースパックを再読み込みします。これをオフにすると、[**Reload Resource Packs**](#reload-resource-packs)などを使って後から再読み込みできます。
+
+ゲームが必要とするパックは無効にできません。
+
+### リソースパックを再読み込み
+
+**識別子：** `reload_resource_packs`
+
+`F3 + T`と同様に、リソースパックを再読み込みします。再読み込み後5秒間はこのアクションが何も行わないため、繰り返し再読み込みされることはありません。
+
+**値：** なし
+
+### FancyMenuを再読み込み
+
+**識別子：** `reloadmenu`
+
+FancyMenuのレイアウト、[カスタムGUI](/custom-guis)、[パノラマ](/panoramas)、[スライドショー](/slideshows)、設定、ファイルを再読み込みします。リソースパックは再読み込みされません。
+
+**値：** なし
 
 > [!WARNING]
-> 再読み込みは重い処理です。[Ticker](./elements#ticker) や頻繁に発火する [listener](./listeners) ではなく、意図したボタン操作からトリガーしてください。
+> 再読み込みには少し時間がかかります。ボタンでのみ使用し、頻繁に実行される[Ticker](/elements#ticker)や[リスナー](/listeners)では使わないでください。
 
-## 要素アニメーターを切り替え (`toggle_element_animator`)
+### スケジューラーを開始
 
-**目的:** 保存された再生状態を切り替え、対応するアクティブな Animator タイムラインをリセットします
+**識別子：** `start_scheduler`
 
-**値:** 必須 — `animator_identifier`
+[スケジューラー](/schedulers)を開始します。
 
-設定と識別子の詳細は [Element Animator](./element-animator) を参照してください。
+**値：** スケジューラーの識別子
 
-## 要素アニメーターを有効化 (`enable_element_animator`)
+### スケジューラーを停止
 
-**目的:** 再生を有効化します。アクティブな Animator タイムラインは、状態が無効から有効へ変わったときのみリセットされます
+**識別子：** `stop_scheduler`
 
-**値:** 必須 — `animator_identifier`
+[スケジューラー](/schedulers)を停止します。
 
-## 要素アニメーターを無効化 (`disable_element_animator`)
+**値：** スケジューラーの識別子
 
-**目的:** 再生を無効化し、対応するアクティブな Animator タイムラインをリセットします
+### テキストをクリップボードにコピー
 
-**値:** 必須 — `animator_identifier`
+**識別子：** `copytoclipboard`
 
-## 要素アニメーターをリセット (`reset_element_animator`)
+テキストをクリップボードにコピーします。
 
-**目的:** 再生が有効かどうかを変えずに、対応するアクティブな Animator タイムラインをリセットします
+**値：** `play.example.net`のようなテキスト
 
-**値:** 必須 — `animator_identifier`
+### ゲームログに出力
 
-## バニラ/Mod ボタンを模倣 (`mimicbutton`)
+**識別子：** `print_to_log`
 
-**目的:** バニラまたは MOD のボタンのクリック動作を模倣します
+ゲームログに1行書き込みます。スクリプトの動作確認に便利です。
 
-**値:** 必須 — 完全な [widget locator](./widget-locators)、たとえば `example.menu.identifier:505280`
-
-## キーバインドを模倣 (`mimic_keybind`)
-
-**目的:** Minecraft のキーボードまたはマウスのキーバインドを実行します。必要に応じて押し続けることもできます
-
-**値:** 必須 — `keybind_id|||keep_pressed_bool|||duration_ms`
-
-| フィールド | 意味 |
-|---|---|
-| `keybind_id` | `key.jump` などの Minecraft キーバインド識別子 |
-| `keep_pressed_bool` | キーを押し続ける場合は `true`、通常の押下なら `false` |
-| `duration_ms` | `keep_pressed_bool` が `true` のときの保持時間。既定は `1000` |
-
-## テキスト入力欄の値を設定 (`set_text_input_field_value`)
-
-**目的:** カスタムまたはバニラの [Text Input Field](./elements#text-input-field) の値を要素識別子で設定します。
-
-**値:** 必須 — `element_identifier|||new_value|||force_set_when_inactive`
-
-3 つのフィールドは triple-pipe 区切り `|||` で分ける必要があります。`force_set_when_inactive` を `true` にすると無効化された入力欄も更新します。`false` の場合、非アクティブな欄は変更されません。
-
-## ゲームディレクトリにファイルを作成 (`create_file_in_game_dir`)
-
-**目的:** アクティブなゲームディレクトリを基準に空ファイルを作成します。`.minecraft/` プレフィックスを指定すると、現在のインスタンスと異なる場合でも標準の Minecraft ディレクトリを対象にできます。
-
-**値:** 必須 — `file_path`
-
-例: `config/some_mod_folder/new_file.txt`。親ディレクトリが存在しない場合は作成され、既存ファイルは変更されません。
-
-## ゲームディレクトリのファイル/フォルダを削除 (`delete_file_in_game_dir`)
-
-**目的:** アクティブなゲームディレクトリを基準にファイルを削除するか、フォルダを再帰的に削除します。`.minecraft/` を付けると標準の Minecraft ディレクトリを対象にします。フォルダ内の **すべての直接ファイル** を削除するには、末尾に `*` を付けます（サブディレクトリは無視され、フォルダ自体は残ります）。
-
-**値:** 必須 — `target_path`
-
-たとえば `config/downloads/*` は `config/downloads/` の直下にあるファイルを削除しますが、サブディレクトリには入らず、それらを削除もしません。
-
-## ゲームディレクトリのファイル/フォルダをコピー (`copy_file_in_game_dir`)
-
-**目的:** アクティブなゲームディレクトリ内でコピーします。`.minecraft/` は標準の Minecraft ディレクトリを対象にします。名前付きディレクトリは再帰的にコピーされます。**ソース** パスの末尾に `*` を付けると、直下の子ファイルだけをすべてコピーします。コピー先はディレクトリでなければならず、`*` は使用できません。
-
-**値:** 必須 — `source||destination`
-
-たとえば `config/source/*||config/destination/` は `config/source/` の直下にあるファイルだけをコピーします。ワイルドカードソースの場合、FancyMenu は必要に応じてコピー先ディレクトリを作成しますが、ソースのサブディレクトリはコピーしません。コピーは既存のコピー先や衝突するファイルを上書きせず、拒否します。
-
-## ゲームディレクトリのファイル/フォルダを移動 (`move_file_in_game_dir`)
-
-**目的:** アクティブなゲームディレクトリ内で移動します。`.minecraft/` は標準の Minecraft ディレクトリを対象にします。**ソース** パスの末尾に `*` を付けると、直下の子ファイルだけをすべて移動します。コピー先はディレクトリでなければならず、`*` は使用できません。
-
-**値:** 必須 — `source||destination`
-
-たとえば `config/source/*||config/destination/` は `config/source/` の直下にあるファイルだけを移動します。ワイルドカードソースの場合、FancyMenu は必要に応じてコピー先ディレクトリを作成しますが、ソースのサブディレクトリはそのまま残します。移動は既存のコピー先や衝突するファイルを上書きせず、拒否します。
-
-## ゲームディレクトリのファイル/フォルダ名を変更 (`rename_file_in_game_dir`)
-
-**目的:** ファイルまたはフォルダを現在の親ディレクトリ内で名前変更します。`.minecraft/` は標準の Minecraft ディレクトリを対象にします。内容はそのまま保持され、既存のターゲット名は拒否されます。
-
-**値:** 必須 — `path||new_name`
-
-## ゲームディレクトリにファイルをダウンロード (`download_file_to_game_dir`)
-
-**目的:** アクティブなゲームディレクトリを基準としたディレクトリへ、バックグラウンドでファイルをダウンロードします。`.minecraft/` は標準の Minecraft ディレクトリを対象にします。
-
-**値:** 必須 — `url||target_folder`
-
-2 つ目のフィールドは **ターゲットディレクトリ** であり、完全な保存先ファイルパスではありません。FancyMenu は必要に応じてディレクトリを作成し、レスポンスの `Content-Disposition` ヘッダーからファイル名を決定し、なければ URL パスを使用します。解決された名前は使用前に URL デコードとサニタイズが行われます。どちらのソースからも有効な名前が得られない場合、FancyMenu が名前を生成します。同名の既存ファイルは上書きされます。
-
-[**On File Downloaded via Action** リスナー](./listeners#on-file-downloaded-via-action-file_downloaded_via_action) は、ダウンロード成功・失敗の両方の試行後に発火し、URL、解決されたターゲットパス、成功状態を公開します。
-
-成功時、`$$target_file_path` は保存されたファイルパスです。失敗時、最終ファイル名が解決されていないため、ターゲットディレクトリだけが含まれることがあります。
-
-## ゲームディレクトリ内の ZIP を展開 (`extract_zip_file_in_game_dir`)
-
-**目的:** アクティブなゲームディレクトリまたは標準の `.minecraft` ディレクトリ内のターゲットフォルダへ ZIP を展開します。完了時に [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) を発火します。
-
-**値:** 必須 — `source_zip_path||target_folder_path`
-
-名前が一致する既存ファイルは置き換えられます。信頼できる ZIP ファイルのみを展開してください。
-
-## ゲームディレクトリ内のファイル/フォルダを開く (`open_file_folder_in_game_dir`)
-
-**目的:** ファイルまたはフォルダを OS の既定アプリで開きます。安全上の理由から、対象はゲームディレクトリまたは既定の `.minecraft` ディレクトリ内にある必要があります。
-
-**値:** 必須 — `target_path`
-
-## ゲームディレクトリにファイルを書き込む (`write_file_in_game_dir`)
-
-**目的:** アクティブなゲームディレクトリを基準にテキストを書き込む、または追記します。`.minecraft/` は標準の Minecraft ディレクトリを対象にします。ファイルや親ディレクトリがなければ作成します。`\n` で改行を挿入できます。`append_bool=false` で既存ファイルを置き換えます。
-
-**値:** 必須 — `path|||content|||append_bool`
-
-## システムからファイルを選択 (`select_file_to_game_dir`)
-
-**目的:** ネイティブのファイルピッカーを開き、選択したファイルをアクティブなゲームディレクトリ内、またはプレフィックス指定時は標準の `.minecraft/` にコピーします。拡張子フィルター、カスタムフィルターラベル、上書き切り替えに対応しています。
-
-**値:** 必須 — `target_path|||filter_description|||extensions|||overwrite_bool`
-
-`target_path` は完全な保存先ファイルパスです。複数の拡張子は `;` または `,` で区切ります。たとえば `png;jpg`。拡張子リストが空の場合はすべてのファイルが許可されます。`overwrite_bool` が `false` の場合、既存の保存先ファイルを置き換える代わりにアクションは失敗します。
-
-[**On File Selected** リスナー](./listeners#on-file-selected-file_selected_via_action) は、ファイルがコピーされたとき、ピッカーがキャンセルされたとき、または選択に失敗したときに発火します。選択されたパス、解決されたターゲットパス、成功/キャンセル状態、および失敗理由を公開します。
-
-## トーストを表示 (`show_toast`)
-
-**目的:** 設定可能なトースト通知を表示します
-
-**値:** 必須 — JSON 形式のトースト設定
-
-エディタはこのアクションを JSON として保存します。値を手動で編集するよりも、設定ウィンドウの使用を推奨します。
-
-| フィールド | 意味 |
-|---|---|
-| `width` | `120`～`320` ピクセルにクランプされます |
-| `durationMs` | `1000`～`600000` ミリ秒にクランプされます |
-| `title` | プレーンテキスト、シリアライズされた Minecraft テキストコンポーネント、または空 |
-| `message` | プレーンテキスト、シリアライズされたテキストコンポーネント、または空 |
-| `iconSource` | 任意の [image source](./resources) |
-| `backgroundSource` | 任意の [image source](./resources) |
-
-## スケジューラーを開始 (`start_scheduler`)
-
-**目的:** スケジューラー ID でスケジューラーを開始します。
-
-**値:** 必須 — `scheduler_id`
-
-スケジューラー ID の作成と管理については [Schedulers](./schedulers) を参照してください。
-
-## スケジューラーを停止 (`stop_scheduler`)
-
-**目的:** スケジューラー ID でスケジューラーを停止します。
-
-**値:** 必須 — `scheduler_id`
-
-## Minecraft オプションを設定 (`edit_minecraft_option`)
-
-**目的:** Minecraft の設定オプションを編集します
-
-**値:** 必須 — `option_name:set_to_value`
+**値：** テキスト

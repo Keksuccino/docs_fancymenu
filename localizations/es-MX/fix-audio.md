@@ -1,18 +1,19 @@
 ---
-title: Corregir archivos de audio
-description: Soluciona archivos de audio que FancyMenu no puede reproducir.
+title: Solucionar problemas con archivos de audio
+description: Soluciona problemas con archivos de audio que FancyMenu no puede reproducir.
+sourceBlobSha: ca4c2e0bf2c12f28f0f74b5b3011a949e1a99413
 ---
 
-# Cómo corregir archivos de audio
+# Solucionar problemas con archivos de audio
 
-Si un archivo de audio se reproduce en otros lugares pero no en FancyMenu, vuelve a codificarlo como OGG o WAV PCM. Para WAV, prueba audio de 48 kHz y 16 bits.
+Si un archivo de audio se reproduce en otros programas, pero no en FancyMenu, vuelve a codificarlo como OGG o WAV PCM. Para WAV, prueba con audio de 48 kHz y 16 bits.
 
-Puedes usar FFmpeg u otro convertidor de audio de confianza. Volver a codificar es útil incluso cuando la extensión actual del archivo y la configuración que reporta ya parecen correctas.
+Puedes usar FFmpeg u otro convertidor de audio de confianza. Volver a codificar el archivo puede ser útil incluso si la extensión actual y la configuración que se muestra parecen correctas.
 
-# Verificaciones
+# Comprobaciones
 
-- Confirma que el archivo recodificado se reproduzca en otro reproductor de audio.
-- Evita usar archivos de audio muy grandes en pantallas sensibles al uso de memoria.
-- Verifica el canal de sonido seleccionado por el [elemento Audio](./elements#audio) o por la acción.
-- Revisa el volumen general de Minecraft y el volumen del canal seleccionado.
-- Si el audio aún falla, prueba sin otros mods que reemplacen o procesen el audio de Minecraft.
+- Confirma que el archivo convertido se reproduzca en otro reproductor de audio.
+- Evita usar archivos de audio muy grandes en pantallas que tengan poca memoria disponible.
+- Verifica el canal de sonido seleccionado en el [elemento de audio](/elements#audio) o la acción.
+- Revisa el volumen principal de Minecraft y el volumen del canal seleccionado.
+- Si el audio sigue sin funcionar, haz una prueba sin otros mods que reemplacen o procesen el audio de Minecraft.

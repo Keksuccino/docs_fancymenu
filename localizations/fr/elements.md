@@ -1,324 +1,381 @@
 ---
 title: Éléments
-description: Tout ce qu’il faut savoir sur les types d’éléments de FancyMenu.
+description: >-
+  Tous les types d’éléments de FancyMenu, leur utilité et comment les ajouter à
+  une mise en page.
+sourceBlobSha: 0e457baa99cbf7103634385145b27f07c22e6e51
 ---
+
 # Éléments
 
-Les éléments sont les composants de base de vos mises en page personnalisées dans FancyMenu. Vous pouvez les ajouter à n’importe quelle mise en page pour afficher des informations, ajouter de l’interactivité ou créer des effets visuels impressionnants.
+Les éléments sont les composants d’une mise en page : boutons, textes, images, curseurs, musique et bien plus encore. Cette page répertorie tous les types d’éléments et leurs principaux paramètres.
 
-# Ajouter des éléments à une mise en page
+> [!TIP]
+> Les boutons et les autres composants présents par défaut sur un écran sont des [éléments Vanilla](/vanilla-elements). Vous pouvez aussi les déplacer, les modifier et les masquer.
 
-Vous pouvez ajouter un nouvel élément à votre mise en page depuis l’**éditeur de mise en page**.
+# Ajouter des éléments
 
-1.  **Faites un clic droit** sur l’arrière-plan de l’éditeur pour ouvrir le menu contextuel.
-2.  Survolez **Nouvel élément**.
-3.  Une liste de tous les types d’éléments disponibles s’affiche. Cliquez sur celui que vous souhaitez ajouter.
+1. Dans l’éditeur de mise en page, faites un clic droit sur un espace libre, puis cliquez sur **Nouvel élément**. La barre de menus propose la même liste sous **Élément -> Nouveau**.
+2. Cliquez sur un type d’élément. Survolez un type pour découvrir son utilité.
 
-![add_element](https://github.com/Keksuccino/FancyMenu/assets/35544624/865a66c5-76a6-404d-b746-d57802b1c12f)
+L’élément apparaît à l’endroit où vous avez fait un clic droit. Faites-le glisser pour le déplacer, faites glisser ses bords pour le redimensionner et faites un clic droit dessus pour accéder à ses paramètres.
 
-Une fois l’élément ajouté, vous pouvez le déplacer, le redimensionner et le personnaliser en **faisant un clic droit** dessus pour ouvrir son menu contextuel spécifique. Pour en savoir plus sur l’organisation des éléments, consultez [Positionner les éléments](./positioning-elements) et [Identifiants des éléments](./element-identifiers).
+<img width="800" alt="Clic droit dans l’éditeur de mise en page, ajout d’un bouton via Nouvel élément, déplacement et élargissement du bouton, puis définition de son libellé sur Rejoindre le serveur" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_add_element.gif?raw=true">
 
-# Les éléments en détail
+Pour savoir comment sélectionner, déplacer, copier et supprimer des éléments, et découvrir tous les raccourcis de l’éditeur : [Éditeur de mise en page](/layout-editor). Pour que les éléments restent en place quelle que soit la taille de la fenêtre, consultez [Positionner les éléments](/positioning-elements). Pour placer des éléments devant ou derrière d’autres éléments, consultez [Calques et groupes](/layout-editor#layers-and-groups).
 
-Cette section répertorie les éléments intégrés de FancyMenu. Utilisez [Calques et groupes](./layers-and-groups) pour organiser leur ordre de rendu.
+# Paramètres communs à tous les éléments
 
-## Bouton
-Un bouton cliquable capable d’effectuer une grande variété d’actions. C’est l’un des éléments les plus puissants et polyvalents pour créer des menus interactifs.
+Chaque élément dispose des paramètres suivants dans son menu contextuel, en plus de ceux propres à son type :
 
-*   **Cas d’utilisation :**
-    *   Créer un bouton « Rejoindre Discord » ou « Visiter le site web ».
-    *   Ajouter un bouton de connexion rapide à un serveur spécifique.
-    *   Créer une navigation personnalisée entre différents menus.
-    *   Créer des boutons qui activent ou désactivent d’autres mises en page.
-*   **Fonctionnalités principales :**
-    *   **Actions :** Peut exécuter une séquence d’[actions](./action-scripts), comme ouvrir une URL, rejoindre un serveur, envoyer une commande de chat, reproduire la fonction d’un autre bouton ou contrôler des variables.
-    *   **Apparence personnalisée :** Textures entièrement personnalisables pour les états normal, survolé et inactif. Prend en charge les arrière-plans transparents, le découpage en neuf parties, les couleurs personnalisées du libellé, les couleurs du libellé au survol, l’échelle du libellé, l’activation ou la désactivation de son ombre et les textures d’icône du bouton.
-    *   **Sons :** Sons personnalisés de clic, de survol et de fin de survol.
-    *   **Mode modèle :** Peut appliquer son apparence et ses propriétés à d’autres boutons Vanilla ou moddés du menu. Consultez [Modèles de boutons et de curseurs](./button-slider-templates).
-    *   **Clics automatisés des widgets Vanilla/moddés :** Les widgets Vanilla et moddés existants disposent d’une propriété **Clics automatisés** qui peut déclencher leur comportement de clic d’origine un nombre choisi de fois au chargement de l’écran. Consultez [Éléments Vanilla](./vanilla-elements#automated-clicks) pour plus de détails.
+| Paramètre | Fonction |
+|---|---|
+| **Point d’ancrage** | Définit à quoi l’élément est rattaché, par exemple à un coin de l’écran ou à un autre élément. Voir [Positionner les éléments](/positioning-elements). |
+| **Positionnement avancé** et **Dimensionnement avancé** | Calcule la position et la taille, par exemple à l’aide de [placeholders](/placeholders). Voir [Positionnement et dimensionnement avancés](/advanced-positioning-sizing). |
+| **Conditions de chargement** et **Charger une seule fois par session** | Affiche l’élément uniquement si les [conditions](/conditions) sont remplies, ou une seule fois par lancement du jeu. Voir [Visibilité des éléments](/element-visibility). |
+| **Retarder l’apparition** et **Retarder la disparition** | Attend quelques secondes avant d’afficher ou de masquer l’élément. Voir [Visibilité des éléments](/element-visibility#delaying-elements). |
+| **Fondu entrant/sortant** et **Opacité** | Applique un fondu à l’élément ou le rend transparent. Voir [Visibilité des éléments](/element-visibility#fading-in-and-out). |
+| **Rotation**, **Inclinaison verticale** et **Inclinaison horizontale** | Fait pivoter et incliner l’élément. Voir [Faire pivoter et incliner les éléments](/rotating-elements). |
+| **Effet de parallaxe** | Déplace légèrement l’élément avec la souris. Voir [Effet de parallaxe](/parallax). |
+| **Copier l’identifiant de l’élément** | Copie l’identifiant utilisé par les actions, les placeholders et les autres éléments pour le retrouver. Voir [Identifiants des éléments](/element-identifiers). |
+| **Nom d’affichage dans l’éditeur** | Nom de l’élément dans la liste des calques. |
+| **Exporter pour l’IA** | Convertit l’élément en texte destiné aux [assistants IA](/export-for-ai). |
 
-## Curseur
-Un curseur que les utilisateurs peuvent faire glisser pour sélectionner une valeur dans une liste ou une plage. Il peut exécuter des actions chaque fois que sa valeur change.
+# Tous les éléments
 
-*   **Cas d’utilisation :**
-    *   Créer un contrôle de volume personnalisé.
-    *   Créer un curseur pour basculer entre différents thèmes ou images d’arrière-plan (avec le type « Liste »).
-    *   Ajuster une option spécifique de Minecraft, comme la luminosité ou la distance de rendu.
-*   **Fonctionnalités principales :**
-    *   **Types :** Peut être une `Liste de valeurs` (par exemple « Facile », « Normal », « Difficile »), une `Plage entière` (par exemple 1-100) ou une `Plage décimale` (par exemple 0.0-1.0).
-    *   **Actions dynamiques :** Exécute des actions lorsque sa valeur change. La valeur actuelle peut être utilisée avec les [variables](./variables).
-    *   **Personnalisation :** Le libellé du curseur peut afficher dynamiquement sa valeur actuelle. Les textures de la poignée et de l’arrière-plan sont entièrement personnalisables, y compris les arrière-plans transparents, les options de couleur et d’échelle du libellé, l’activation ou la désactivation de l’ombre du texte et les sons personnalisés de clic et de fin de survol.
+Tous les éléments disponibles dans FancyMenu, classés selon leur fonction.
 
-## Case à cocher
-Une case à cocher standard qui peut être activée ou désactivée. Elle peut exécuter des actions lorsqu’elle est basculée.
+## Boutons et champs de saisie
 
-*   **Cas d’utilisation :**
-    *   Une case « J’accepte les règles ».
-    *   Un paramètre permettant d’activer ou de désactiver une fonctionnalité spécifique de votre menu personnalisé.
-    *   Activer ou désactiver une mise en page ou une variable.
-*   **Fonctionnalités principales :**
-    *   **Actions lors du basculement :** Exécute des [scripts d’action](./action-scripts) lorsque son état change. L’état actuel (`true` ou `false`) est disponible pour ses actions.
-    *   **Mode variable :** Peut être directement liée à une variable FancyMenu, de sorte que l’état de la case soit lu depuis cette variable et y soit écrit.
-    *   **État persistant :** Lorsque le mode variable est désactivé, la case enregistre automatiquement son état par identifiant d’élément et le restaure après le redémarrage du jeu. Ces états sont stockés dans `<game-directory>/checkbox_states.json`. En mode variable, la variable FancyMenu liée constitue à la place la source de l’état de la case.
-    *   **Apparence personnalisée :** Prend en charge les textures personnalisées de l’arrière-plan (dans les états normal, survolé et inactif) ainsi que de la coche elle-même.
+### Bouton
 
-## Champ de saisie de texte
-Un champ dans lequel les utilisateurs peuvent saisir du texte. Son contenu peut être lié à une variable FancyMenu, ce qui permet de récupérer et d’utiliser la saisie de l’utilisateur.
+Un bouton qui exécute un [script d’action](/action-scripts) lorsqu’on clique dessus, par exemple pour rejoindre un serveur, ouvrir un site Web ou afficher un autre menu.
 
-*   **Cas d’utilisation :**
-    *   Un champ « Adresse IP du serveur » fonctionnant avec un bouton « Rejoindre le serveur ».
-    *   Un champ permettant de saisir le nom d’un joueur pour un aperçu de skin personnalisé.
-    *   Créer une interface de type connexion basique.
-*   **Fonctionnalités principales :**
-    *   **Liaison à une variable :** Enregistre le texte saisi dans une [variable](./variables) spécifiée.
-    *   **Validation de la saisie :** Peut être configuré pour n’accepter que certains types de caractères, comme des chiffres, des URL ou du texte brut.
-    *   **Longueur maximale :** Vous pouvez définir une limite maximale de caractères pour la saisie.
-    *   **Apparence et sons :** Prend en charge la couleur d’arrière-plan personnalisée, les couleurs et l’arrondi des bordures, la couleur du texte, le texte indicatif/placeholder, la couleur du texte indicatif, les sons de survol, de fin de survol et de clic.
+<img width="396" alt="Deux boutons intitulés Rejoindre le serveur et Ouvrir le wiki" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_button.png?raw=true">
 
-## Info-bulle
-Une boîte de texte qui peut apparaître à une position fixe ou suivre le curseur de la souris. Sa visibilité est généralement contrôlée par les [conditions de chargement](./conditions).
+- **Modifier le script d’action** : définit ce que fait le bouton lorsqu’on clique dessus.
+- **Libellé** et **Libellé au survol** : définit son texte et celui qui s’affiche lorsque la souris le survole. Les deux prennent en charge les [placeholders](/placeholders) et la [mise en forme du texte](/text-formatting).
+- **Alignement du libellé** : place le libellé à **gauche**, au **centre** ou à **droite** du bouton. Les libellés trop longs défilent d’un côté à l’autre, quel que soit leur alignement.
+- **Échelle du libellé**, **Couleur de base du libellé**, **Couleur du libellé au survol**, **Ombre du libellé** et **Souligner le libellé au survol** : définit la taille, les couleurs et l’ombre du libellé.
+- **Textures du bouton** et **Textures de l’icône du bouton** : permet d’utiliser vos propres images pour le bouton et son icône, lorsque le bouton est normal, survolé ou inactif. Pour des textures qui s’adaptent proprement au redimensionnement, voir [Découpage en neuf et répétition](/nine-slicing-and-tiling).
+- **Son au survol**, **Son à la sortie du survol** et **Son au clic** : définit les sons émis par le bouton.
+- **Info-bulle** : texte qui s’affiche lorsque la souris survole le bouton.
+- **Contrôler l’état actif** : définit les [conditions](/conditions) à remplir pour pouvoir cliquer sur le bouton. Si elles ne sont pas remplies, le bouton apparaît grisé.
+- **Mode modèle** : applique l’apparence de ce bouton aux autres boutons et curseurs de l’écran. Voir [Modèles de boutons et de curseurs](/button-slider-templates).
 
-*   **Cas d’utilisation :**
-    *   Afficher des informations détaillées lorsqu’un utilisateur survole un bouton ou une image.
-    *   Créer des conseils contextuels qui apparaissent dans certaines conditions.
-    *   Afficher des informations dynamiques (comme l’état d’un serveur) à côté du curseur.
-*   **Fonctionnalités principales :**
-    *   **Suivi de la souris :** Peut être configurée pour suivre le pointeur de la souris.
-    *   **Prise en charge de Markdown :** Le contenu de l’info-bulle prend entièrement en charge la mise en forme Markdown.
-    *   **Arrière-plan personnalisé :** L’arrière-plan peut être une couleur unie ou une texture personnalisée découpée en neuf parties pour un style entièrement thématisé.
+### Curseur
 
-## Objet
-Affiche un objet Minecraft unique, provenant du jeu de base ou d’un mod.
+Un curseur que les joueurs font glisser pour choisir une valeur. Son script d’action s’exécute chaque fois que la valeur change.
 
-*   **Cas d’utilisation :**
-    *   Utiliser des objets comme icônes pour des boutons ou des sélections de menu.
-    *   Créer une interface graphique de boutique ou de sélection d’équipement.
-    *   Afficher l’objet tenu ou l’armure d’un joueur.
-*   **Fonctionnalités principales :**
-    *   **Données personnalisées :** Prend en charge un nom personnalisé, une description, une quantité, l’effet de brillance d’enchantement et les données NBT. Consultez [Placeholder de données NBT](./nbt-data-placeholder).
-    *   **Affichage de l’info-bulle :** Peut être configuré pour afficher l’info-bulle standard de l’objet au survol.
+<img width="436" alt="Un curseur Volume de la musique réglé à 70 % et un curseur Difficulté réglé sur Normal" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_slider.png?raw=true">
 
-## Modèle JSON de bloc/objet
-Affiche un modèle JSON de bloc ou d’objet provenant des ressources de Minecraft ou de sources externes.
+- **Type de curseur** :
+  - **Liste de valeurs** : parcourt les textes de **Valeurs de la liste**, à raison d’une valeur par ligne. **Valeurs issues d’une variable de liste** les récupère plutôt depuis une [variable de liste](/variables#text-and-list-variables).
+  - **Plage d’entiers** : nombres entiers compris entre **Valeur minimale de la plage** et **Valeur maximale de la plage**.
+  - **Plage de nombres décimaux** : fonctionne de la même façon, mais avec des nombres décimaux. **Nombre de décimales** définit le nombre de chiffres après la virgule ; `-1` désactive l’arrondi.
+- **Libellé du curseur** : son texte. `$$value` affiche la valeur actuelle.
+- **Modifier le script d’action** : définit ce qui se produit lorsque la valeur change. `$$value` correspond à la nouvelle valeur.
+- **Valeur présélectionnée** : valeur initiale du curseur. Associez-la à la valeur modifiée par le curseur pour afficher la bonne valeur à l’ouverture de l’écran.
 
-*   **Cas d’utilisation :**
-    *   Afficher un modèle 3D de pack de ressources dans un menu.
-    *   Afficher des aperçus d’objets/blocs avec des textures personnalisées.
-    *   Créer des éléments d’interface décoratifs basés sur des modèles.
-*   **Fonctionnalités principales :**
-    *   **Source du modèle :** Peut charger un modèle JSON depuis les ressources de Minecraft ou des sources externes.
-    *   **Remplacement de texture :** Permet de définir une texture personnalisée.
-    *   **Contrôles du rendu :** Décalage, échelle et rotation sur trois axes du modèle, rendu translucide et transformation d’interface graphique du modèle.
-    *   **Éclairage :** Deux lumières configurables avec des contrôles indépendants de teinte et de rotation.
+Par exemple, un curseur de volume de type **Plage d’entiers**, allant de `0` à `100`, peut avoir pour libellé `Volume de la musique : $$value%` et utiliser une action [**Définir la valeur d’une variable (variable FM)**](/action-scripts#set-variable-value-fm-variable) avec cette valeur :
 
-## Image
-Affiche une image statique provenant d’un fichier local, d’une URL web ou d’un emplacement de ressource Minecraft.
+```
+music_volume:$$value
+```
 
-*   **Cas d’utilisation :**
-    *   Ajouter le logo d’un serveur ou la marque d’un modpack.
-    *   Créer des bordures décoratives ou des cadres d’interface.
-    *   Utiliser des images dans une conception d’interface plus complexe.
-*   **Fonctionnalités principales :**
-    *   **Découpage en neuf parties :** Redimensionne les bordures ou les panneaux sans déformer leurs coins. Consultez [Découpage en neuf parties et mosaïque](./nine-slicing-and-tiling).
-    *   **Répétition de texture :** L’image peut être répétée pour remplir la zone de l’élément.
-    *   **Teinte :** Vous pouvez appliquer une teinte de couleur à l’image.
-    *   **Coins arrondis :** Les images qui ne sont ni découpées en neuf parties ni répétées peuvent avoir des coins arrondis.
-    *   **Effet de parallaxe :** Se déplace avec la souris pour créer une profondeur visuelle. Consultez [Effet de parallaxe](./parallax).
+Sa **Valeur présélectionnée** est `$$music_volume` : le curseur commence ainsi à la dernière valeur choisie par le joueur.
 
-## Texte
-Un élément très polyvalent pour afficher du texte. Il peut être utilisé pour tout, des libellés sur une seule ligne aux documents multipages avec défilement.
+Les curseurs disposent des mêmes paramètres de libellé, de texture, de son, d’info-bulle et de **Contrôler l’état actif** que les boutons. Vous pouvez donc aussi placer leur libellé à gauche ou à droite avec **Alignement du libellé**.
 
-*   **Cas d’utilisation :**
-    *   Afficher les règles du serveur, des notes de mise à jour ou des messages de bienvenue.
-    *   Créer des panneaux d’informations dynamiques avec des [placeholders](./placeholders), par exemple `Bienvenue, {"placeholder":"playername"} !`.
-    *   Ajouter des libellés et des descriptions à votre interface.
-*   **Fonctionnalités principales :**
-    *   **Sources du contenu :** Le texte peut être saisi directement, chargé depuis un fichier local ou récupéré depuis une URL web.
-    *   **Prise en charge de Markdown :** Prend en charge les titres, listes, blocs de code, tableaux et autres formats Markdown. Consultez [Mise en forme du texte](./text-formatting).
-    *   **Défilement :** Devient automatiquement défilable si le contenu dépasse la zone de l’élément. Les barres de défilement peuvent être personnalisées ou désactivées.
-    *   **Style :** Contrôle total de la couleur, de l’échelle, de l’alignement et de l’ombre du texte, ainsi que de l’espacement entre les lignes.
+### Case à cocher
 
-## Vidéo
-Lit un fichier vidéo. Cet élément est idéal pour les introductions cinématiques ou les arrière-plans décoratifs en boucle.
+Une case que les joueurs peuvent cocher et décocher. Son script d’action s’exécute chaque fois que son état change.
 
-> [!WARNING]
-> L’élément Vidéo natif nécessite **Watermedia V3** et **Watermedia Binaries V3**. L’ancien élément **Vidéo [Rinku]** est obsolète.
+<img width="588" alt="Une case cochée à côté du texte Afficher des astuces sur l’écran titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_checkbox.png?raw=true">
 
-*   **Cas d’utilisation :**
-    *   Une bande-annonce animée de modpack ou de serveur.
-    *   Une vidéo d’ambiance en boucle pour donner vie à votre menu.
-    *   Une vidéo de tutoriel en jeu.
-*   **Fonctionnalités principales :**
-    *   **Sources :** Prend en charge les fichiers vidéo locaux et les URL web. Consultez [Vidéos](./video).
-    *   **Contrôle de la lecture :** Peut être configurée pour se répéter automatiquement. Son volume, son canal audio et son comportement de conservation des proportions sont réglables.
-    *   **Contrôle interactif :** La lecture, la position et le volume de la vidéo peuvent être contrôlés par des actions de bouton.
+- Dans son script d’action et les conditions de **Contrôler l’état actif**, `$$value` vaut `true` ou `false`.
+- **Mode variable** et **Lier à une variable** : la case affiche la valeur d’une [variable](/variables) et y écrit `true` ou `false`. Si elle est liée à une variable de liste, `true` ou `false` devient son unique entrée.
+- Sans le mode variable, la case mémorise son état de manière autonome, séparément pour chaque [profil](/profiles).
+- **Textures** : permet d’utiliser vos propres images pour la case et la coche.
 
-## Shader GLSL
-Affiche un shader GLSL personnalisé à l’intérieur d’un élément.
+Les cases à cocher disposent des mêmes paramètres d’info-bulle, de son et de **Navigation** que les boutons.
 
-*   **Cas d’utilisation :**
-    *   Panneaux de shaders animés.
-    *   Effets visuels procéduraux.
-    *   Effets de menu de type Shadertoy limités au rectangle d’un élément.
-*   **Fonctionnalités principales :**
-    *   **Exécution du shader :** Prend en charge les shaders en une ou plusieurs passes.
-    *   **Prise en charge de Shadertoy :** Peut utiliser des shaders de type Shadertoy avec `mainImage`.
-    *   **Uniformes :** Expose les uniformes de FancyMenu et d’entrée. Consultez l’[API des shaders GLSL](./glsl-shader-api).
+### Champ de saisie de texte
 
-## Diaporama
-Affiche une suite d’images. Ses images et son fichier de configuration `properties.txt` se trouvent dans le sous-dossier du diaporama, sous `<game-directory>/config/fancymenu/slideshows/`.
+Un champ dans lequel les joueurs saisissent du texte, par exemple une adresse de serveur ou un nom.
 
-*   **Cas d’utilisation :**
-    *   Une galerie tournante de captures d’écran du jeu.
-    *   Mettre en avant les fonctionnalités principales d’un modpack.
-    *   Un arrière-plan dynamique qui alterne entre différentes scènes.
-*   **Fonctionnalités principales :**
-    *   Charge des [diaporamas](./slideshows) préconfigurés.
-    *   Peut être configuré pour conserver les proportions des images.
+<img width="456" alt="Un champ de texte contenant play.example.net et un champ vide affichant l’indication grise Votre nom de joueur" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_input_field.png?raw=true">
 
-## Forme rectangulaire
-Un simple rectangle de couleur unie.
+- **Lier à une variable** : le texte saisi est enregistré dans la [variable](/variables), et le champ affiche sa valeur. Si le champ est lié à une variable de liste, le texte saisi remplace toute la liste.
+- **Type de saisie** : **Texte**, **Nombres uniquement**, **Nombres décimaux uniquement** ou **URL**. Les autres caractères ne peuvent pas être saisis.
+- **Texte indicatif** et **Couleur du texte indicatif** : texte affiché lorsque le champ est vide.
+- **Longueur maximale du texte** : nombre de caractères que le champ peut contenir.
+- **Couleur d’arrière-plan**, **Couleur de bordure**, **Rayon d’arrondi de la bordure** et **Couleur du texte** : définit son apparence.
 
-*   **Cas d’utilisation :**
-    *   Créer un arrière-plan semi-transparent derrière du texte pour améliorer sa lisibilité.
-    *   Concevoir des panneaux et séparateurs d’interface simples.
-    *   Servir de placeholder coloré pendant la conception de la mise en page.
-*   **Fonctionnalités principales :**
-    *   Prend en charge les couleurs HEX RGBA, les coins arrondis et le flou facultatif, permettant à la forme de servir de panneau simple, de teinte ou d’arrière-plan flouté.
+Par exemple, un champ lié à `server_address` et un bouton doté de l’action [**Rejoindre le serveur**](/action-scripts#join-server), auquel est transmise la valeur `$$server_address`, permettent aux joueurs de rejoindre n’importe quel serveur.
 
-## Forme circulaire
-Une simple forme circulaire/elliptique de couleur unie.
+Sans variable, le placeholder [**Valeur du champ de saisie de texte**](/placeholders#text-input-field-value) permet de lire le texte, et l’action [**Définir la valeur du champ de saisie de texte**](/action-scripts#set-text-input-field-value) permet de le modifier.
 
-*   **Cas d’utilisation :**
-    *   Créer des accents circulaires, des indicateurs ou des zones d’interface douces.
-    *   Créer des décorations d’interface thématiques sans fichier de texture.
-*   **Fonctionnalités principales :**
-    *   Prend en charge la couleur, le flou et une valeur configurable d’arrondi/exposant.
+## Textes et info-bulles
 
-## Texte d’éclaboussure
-Une reproduction du célèbre texte d’éclaboussure jaune et bondissant de Minecraft, présent sur l’écran-titre.
+### Texte
 
-*   **Cas d’utilisation :**
-    *   Remplacer le texte d’éclaboussure Vanilla par vos propres messages personnalisés.
-    *   Ajouter un message animé accrocheur à n’importe quel menu.
-*   **Fonctionnalités principales :**
-    *   **Sources du contenu :** Peut utiliser les textes d’éclaboussure Vanilla par défaut, une liste de textes personnalisés saisis directement ou du texte provenant d’un fichier local.
-    *   **Personnalisation :** Vous pouvez activer ou désactiver l’effet de rebond et personnaliser la couleur, l’échelle, la rotation et l’ombre du texte.
+Un texte de n’importe quelle longueur, d’un court libellé à des règles ou des notes de mise à jour défilantes, avec prise en charge de [Markdown](/text-formatting) et des [placeholders](/placeholders).
 
-## Entité joueur
-Affiche un modèle de joueur dans le menu.
+<img width="636" alt="Un élément Texte affichant des notes de mise à jour : un titre et une liste dont un élément est en gras" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_text.png?raw=true">
 
-*   **Cas d’utilisation :**
-    *   Afficher le personnage du joueur actuel dans le menu principal.
-    *   Créer un écran de sélection d’équipe ou d’aperçu de classe.
-    *   Une section « profil » affichant le skin et le nom du joueur.
-*   **Fonctionnalités principales :**
-    *   **Apparence dynamique :** Peut copier le skin, la cape et le nom du joueur actuel. Consultez [Têtes de joueur](./player-heads).
-    *   **Positions personnalisées :** Offre un contrôle précis de la rotation de la tête, du corps, des bras et des jambes. La tête et le corps peuvent également être configurés pour suivre le curseur de la souris.
-    *   **Attributs :** Peut être configurée comme étant un bébé, accroupie ou dotée d’un modèle fin.
+- **Mode source** : saisissez le texte ou chargez-le depuis un fichier ou un site Web.
+- Choisissez une apparence de départ et activez le défilement lorsque le texte dépasse la taille de l’élément.
+- **Arrière-plan** : panneau sombre derrière le texte. Désactivez-le avec **Afficher l’arrière-plan**, ou utilisez une texture personnalisée.
 
-## Navigateur
-Un élément qui affiche une page web en direct dans le jeu.
+Pour en savoir plus, consultez [Le texte dans les menus](/text-in-menus).
 
-Cet élément nécessite l’installation et le fonctionnement du mod **[Rinku](https://modrinth.com/mod/rinku)** !
+### Info-bulle
 
-Vous pouvez télécharger Rinku depuis les pages officielles du projet sur [CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku) et [Modrinth](https://modrinth.com/mod/rinku).
+Une boîte de texte semblable aux info-bulles du jeu, avec prise en charge de [Markdown](/text-formatting) et des [placeholders](/placeholders).
 
-*   **Cas d’utilisation :**
-    *   Afficher la Dynmap en direct d’un serveur.
-    *   Intégrer un lecteur vidéo YouTube.
-    *   Afficher directement en jeu une page de wiki ou de documentation.
-*   **Fonctionnalités principales :**
-    *   **Interactivité :** Peut être rendu entièrement interactif, permettant aux utilisateurs de cliquer sur des liens, de faire défiler la page et de saisir du texte.
-    *   **Contrôle des médias :** Offre des options pour couper le son des médias, répéter les vidéos et masquer les contrôles vidéo de la page chargée.
+<img width="712" alt="Un bouton Besoin d’aide ? avec une info-bulle à côté" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_tooltip.png?raw=true">
 
-### Charger des fichiers HTML locaux
-L’élément Navigateur peut charger des documents HTML locaux depuis `<game-directory>/config/fancymenu/assets/`.
+- L’info-bulle s’affiche à l’endroit où vous l’avez placée, ou près de la souris avec **Suivre la souris**.
+- Ses **Conditions de chargement** déterminent quand elle s’affiche, par exemple avec [**Élément survolé**](/conditions#is-element-hovered) pour un bouton.
+- **Arrière-plan de l’info-bulle** : remplace la boîte sombre par une texture personnalisée.
 
-Pour charger un fichier HTML local, commencez votre URL par `file:///`, suivi du CHEMIN court du fichier, par exemple `/config/fancymenu/assets/cool_changelog.html`, ce qui donne : `file:///config/fancymenu/assets/cool_changelog.html`.
+Pour en savoir plus, consultez [Le texte dans les menus](/text-in-menus).
 
-Sous **Linux**, utilisez le [placeholder **Chemin absolu du fichier/dossier**](./placeholders#absolute-filefolder-path-absolute_path) au lieu d’inscrire en dur un chemin absolu propre à l’instance : `file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/cool_changelog.html"}}`.
+### Texte d’accueil
 
-Le chemin court Linux doit commencer par `/`, comme dans l’exemple.
+Le texte jaune de l’écran titre, que vous pouvez remplacer par vos propres textes.
 
-## Animateur d’éléments
-Un outil puissant permettant de créer des animations complexes basées sur des images clés. Il peut animer la position, la taille et le point d’ancrage d’un ou plusieurs autres éléments.
+<img width="392" alt="Un texte d’accueil jaune indiquant La saison 3 est lancée !" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_splash_text.png?raw=true">
 
-*   **Cas d’utilisation :**
-    *   Faire apparaître ou disparaître des éléments en les faisant glisser.
-    *   Redimensionner des panneaux ou des notifications.
-    *   Animer les décalages de position et les transitions d’ancrage.
-*   **Fonctionnalités principales :**
-    *   **Éditeur d’images clés :** Un éditeur dédié pour ajouter, modifier et séquencer des images clés sur une timeline.
-    *   **Cibles multiples :** Un même animateur peut contrôler plusieurs éléments « cibles » à la fois.
-    *   **Contrôle :** Les animations peuvent être configurées pour se répéter. Vous pouvez également choisir d’animer uniquement la position ou la taille.
-    *   **Décalages temporels :** Les éléments cibles peuvent utiliser des décalages de démarrage individuels ou aléatoires.
-    *   Consultez [Animateur d’éléments](./element-animator) pour la configuration et la modification des images clés.
+- **Mode source** : textes d’accueil Vanilla, texte personnalisé ou ligne aléatoire d’un fichier texte.
+- **Rebond**, **Échelle**, **Rotation**, **Couleur du texte** et **Ombre** : définit son apparence.
+- **Actualiser à l’ouverture de l’écran** : choisit un nouveau texte d’accueil chaque fois que l’écran s’ouvre.
 
-## Déclencheur périodique
-Un élément invisible qui exécute une liste d’actions à intervalles réguliers (à chaque « tick »).
+Pour en savoir plus, consultez [Textes d’accueil](/splash-text).
 
-> [!NOTE]
-> Pour l’automatisation en arrière-plan, envisagez d’utiliser les [planificateurs](./schedulers). Les planificateurs sont globaux et peuvent fonctionner indépendamment d’un écran spécifique.
+## Images et médias
 
-*   **Cas d’utilisation :**
-    *   Vérifier périodiquement l’état en ligne d’un serveur et mettre à jour un élément texte.
-    *   Créer un compte à rebours qui met à jour un libellé de texte.
-    *   Exécuter un script de manière répétée pour créer des comportements personnalisés.
-*   **Fonctionnalités principales :**
-    *   **Contrôle du timing :** Vous pouvez définir le délai entre les ticks en millisecondes.
-    *   **Modes de tick :** Peut être configuré pour fonctionner en continu, une seule fois par session de jeu ou une fois à chaque chargement du menu.
-    *   **Asynchrone :** Peut exécuter ses [actions](./action-scripts) séparément, bien que certaines actions ne puissent pas fonctionner lorsque cette option est activée.
+### Image
 
-## Audio
-Un élément invisible qui lit des fichiers audio. Il peut gérer une playlist de pistes et propose différents contrôles de lecture.
+Une image provenant de vos fichiers, d’un site Web ou des ressources du jeu. Les images animées sont également prises en charge.
 
-*   **Cas d’utilisation :**
-    *   Ajouter une musique de fond personnalisée à un menu.
-    *   Créer un lecteur de musique avec des boutons de contrôle de la lecture (piste suivante/précédente, volume).
-    *   Lire des paysages sonores d’ambiance.
-*   **Fonctionnalités principales :**
-    *   **Playlist :** Peut gérer plusieurs pistes audio.
-    *   **Modes de lecture :** Peut lire les pistes dans l’ordre ou les mélanger (avec la possibilité de pondérer les pistes pour que certaines apparaissent plus souvent que d’autres).
-    *   **Contrôle :** Prend en charge la répétition, le réglage du volume et la sélection du canal audio. Consultez [Musique de fond des menus](./background-music).
+<img width="608" alt="Un élément Image affichant le logo de Minecraft" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_image.png?raw=true">
 
-## Contrôleur de musique
-Un élément invisible utilisé pour contrôler la lecture de la musique par défaut de Minecraft dans un menu spécifique.
+- **Source de l’image** : définit l’image. Les formats pris en charge sont répertoriés dans [Images](/images).
+- **Conserver les proportions** : modifie la largeur pour éviter de déformer l’image.
+- **Texture découpée en neuf** et **Répéter la texture** : redimensionne les cadres sans étirer leurs bordures ou répète l’image. Voir [Découpage en neuf et répétition](/nine-slicing-and-tiling).
+- **Teinte de l’image [HEX]** : colore l’image.
+- **Rayon d’arrondi des coins** : arrondit les coins de l’image.
 
-*   **Cas d’utilisation :**
-    *   Désactiver la musique de menu par défaut sur un écran où vous souhaitez lire votre propre musique personnalisée via un élément [**Audio**](#audio).
-    *   Empêcher la musique du monde de continuer à jouer lorsqu’un menu est ouvert en jeu.
-*   **Fonctionnalités principales :**
-    *   Boutons distincts permettant de contrôler la « Musique des menus » et la « Musique du monde » Vanilla.
+### Diaporama
 
-## Barre de progression
-Une barre personnalisable qui représente visuellement une valeur numérique.
+Affiche successivement les images d’un diaporama. Créez vos diaporamas dans `config/fancymenu/slideshows/`. Voir [Diaporamas](/slideshows).
 
-*   **Cas d’utilisation :**
-    *   Une barre de chargement qui suit la progression du chargement du monde à l’aide de `{"placeholder":"world_load_progress"}`.
-    *   Des barres visuelles de santé, de faim ou d’expérience pour une interface en jeu.
-    *   Un indicateur de volume contrôlé par un élément [**Curseur**](#slider).
-*   **Fonctionnalités principales :**
-    *   **Valeur dynamique :** La valeur de progression (0-100 ou 0.0-1.0) est définie via un champ de texte prenant en charge les [placeholders](./placeholders).
-    *   **Apparence :** La direction de la barre (haut, bas, gauche, droite), ses couleurs, ses textures et le découpage en neuf parties des textures de la barre et de l’arrière-plan sont entièrement personnalisables.
-    *   **Animation :** Offre une animation de remplissage fluide afin de rendre les changements de progression moins brusques.
-    *   **Ancrage d’élément basé sur la progression :** Lorsqu’un autre élément utilise la barre de progression comme ancrage **Élément**, activez **Utiliser la progression pour l’ancrage de l’élément** afin de déplacer cet ancrage vers le bord actuel de la zone remplie. Les éléments ancrés suivent alors la progression de la barre au lieu de rester attachés à ses limites statiques.
+- **Diaporama** : définit le diaporama à afficher.
+- **Conserver les proportions** : modifie la largeur pour éviter de déformer les images.
 
-## Déplaceur
-Un élément invisible que l’utilisateur peut cliquer et faire glisser pour le déplacer. D’autres éléments peuvent y être ancrés afin de créer des widgets mobiles.
+### Vidéo
 
-*   **Cas d’utilisation :**
-    *   Créer une horloge ou un panneau d’informations déplaçable.
-    *   Permettre aux utilisateurs de personnaliser la position des éléments de l’interface selon leurs préférences.
-*   **Fonctionnalités principales :**
-    *   **Persistance facultative :** Activez **Enregistrer le décalage de déplacement de l’utilisateur** pour conserver la position déplacée par l’utilisateur lors des ouvertures d’écran suivantes et des redémarrages du jeu. Désactivez cette option pour réinitialiser le décalage.
-    *   **Point d’ancrage :** Sert d’ancrage mobile pour les autres éléments, ce qui constitue une partie importante de [Positionner les éléments](./positioning-elements).
+Lit un fichier vidéo, par exemple une bande-annonce ou un arrière-plan animé.
 
-## Curseur
-Un élément invisible qui remplace le curseur système par défaut par une image personnalisée lorsqu’une mise en page est active.
+> [!IMPORTANT]
+> Les vidéos nécessitent les mods Watermedia V3 et Watermedia Binaries V3. Voir [Vidéos](/video).
 
-*   **Cas d’utilisation :**
-    *   Créer une interface entièrement thématisée correspondant à l’esthétique de votre modpack.
-*   **Fonctionnalités principales :**
-    *   **Texture personnalisée :** Utilisez n’importe quelle image pour votre curseur.
-    *   **Point actif :** Définit le pixel exact de l’image utilisé comme point de clic. Consultez [Curseur personnalisé](./custom-cursor).
+- **Source vidéo** : fichier vidéo, lien Web ou ressource du jeu.
+- **Mettre la vidéo en boucle**, **Volume** et **Canal audio** : définit la lecture.
+- **Lire la vidéo dans l’éditeur de mise en page** : indique si la vidéo est aussi lue pendant l’édition.
+- Des actions telles que [**Activer/désactiver la pause de l’élément vidéo**](/action-scripts#toggle-video-element-paused-state) permettent de la mettre en pause, de passer à un instant précis ou de modifier son volume.
+
+**Vidéo [Rinku]** est un ancien élément vidéo qui nécessite le mod Rinku. Il fonctionne toujours dans les anciennes mises en page, mais n’est pas proposé dans **Nouvel élément**.
+
+### Shader GLSL
+
+Exécute votre propre shader GLSL dans l’élément, par exemple pour créer des couleurs animées ou des effets de Shadertoy.
+
+<img width="576" alt="Un élément Shader GLSL affichant un dégradé coloré" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_glsl_shader.png?raw=true">
+
+- **Source du shader** : code du shader. Les shaders Shadertoy utilisant `mainImage` fonctionnent tels quels.
+- **Mode de compilation** : **Automatique**, **Shadertoy** ou **Fragment direct**.
+- **Source du tampon A** à **Source du tampon D** : passes supplémentaires pour les shaders utilisant des tampons.
+
+Pour apprendre à les écrire, consultez l’[API des shaders GLSL](/glsl-shader-api).
+
+### Navigateur
+
+Affiche un site Web en direct, par exemple une carte de serveur ou une page de wiki.
+
+> [!IMPORTANT]
+> Le navigateur nécessite le mod [Rinku](https://modrinth.com/mod/rinku) ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku)).
+
+- **URL** : adresse du site Web.
+- **Interactif** : permet aux joueurs de cliquer, de faire défiler la page et d’y saisir du texte. L’élément n’est jamais interactif dans l’éditeur de mise en page.
+- **Mettre le navigateur en sourdine**, **Volume audio/vidéo**, **Lire les vidéos en boucle** et **Masquer les commandes vidéo** : paramètres des médias de la page.
+
+Pour charger un fichier HTML depuis `config/fancymenu/assets/`, faites commencer l’URL par `file:///` :
+
+```
+file:///config/fancymenu/assets/changelog.html
+```
+
+Sous Linux, utilisez plutôt le placeholder [**Chemin absolu du fichier/dossier**](/placeholders#absolute-filefolder-path) :
+
+```
+file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/changelog.html"}}
+```
+
+Les sites Web peuvent exécuter des actions et lire des placeholders : [API JavaScript du navigateur](/browser-api).
+
+## Formes, objets et modèles
+
+### Rectangle
+
+Un rectangle d’une seule couleur, par exemple un panneau placé derrière du texte.
+
+<img width="536" alt="Un panneau sombre et semi-transparent aux coins arrondis, avec un flou et des règles de serveur" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_rectangle_shape.png?raw=true">
+
+- **Couleur** : couleur au format HEX. Deux chiffres supplémentaires permettent de régler la transparence, par exemple `#101828C8`.
+- **Rayon d’arrondi des coins** : arrondit tous les coins ou permet de régler chaque coin individuellement.
+- **Flou** et **Intensité du flou** : floute ce qui se trouve derrière l’élément.
+
+### Cercle
+
+Un cercle ou un ovale d’une seule couleur, par exemple un voyant d’état.
+
+<img width="428" alt="Un point vert à côté de Survie : en ligne et un point rouge à côté de Créatif : hors ligne" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_circle_shape.png?raw=true">
+
+- **Couleur**, **Flou** et **Intensité du flou** : mêmes paramètres que pour le rectangle.
+- **Rondeur** : `2` correspond à un cercle. Les nombres plus grands donnent une forme plus carrée, et les nombres plus petits une forme plus pointue.
+
+### Objet
+
+Affiche un objet de Minecraft ou d’un mod, comme dans l’inventaire.
+
+<img width="460" alt="Une épée en diamant enchantée, 16 pommes, une pomme dorée et un totem d’immortalité" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_item.png?raw=true">
+
+- **Clé de l’objet** : définit l’objet, par exemple `minecraft:diamond_sword`.
+- **Quantité**, **Nom de l’objet**, **Description de l’objet** et **Enchanté** : paramètres similaires à ceux d’un objet réel.
+- **Afficher l’info-bulle de l’objet** : affiche l’info-bulle de l’objet lorsque la souris le survole.
+- **Données NBT personnalisées** : ajoute des données à l’objet, sous la même forme que la partie d’une commande `/give` située juste après l’objet.
+
+### Modèle JSON de bloc/d’objet
+
+Affiche en 3D un modèle de bloc ou d’objet provenant des ressources du jeu ou d’un fichier JSON personnalisé.
+
+<img width="296" alt="Une table de fabrication en 3D" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_json_model.png?raw=true">
+
+- **Modèle** : définit la **Source du modèle**, par exemple `minecraft:models/block/crafting_table.json`.
+- **Texture** : remplace la texture du modèle par la vôtre.
+- **Transformation** : permet de redimensionner, faire pivoter et déplacer le modèle.
+- **Éclairage** : **Teinte de la lumière [HEX]** colore la lumière du modèle.
+
+### Entité joueur
+
+Affiche un joueur en 3D, par exemple le personnage du joueur sur l’écran titre.
+
+<img width="360" alt="Une nouvelle entité joueur avec le skin par défaut, tournée vers la droite" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_player_entity.png?raw=true">
+
+> [!IMPORTANT]
+> Les entités joueur nécessitent le mod Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Sans ce mod, elles affichent une erreur à la place du joueur.
+
+- **Copier le joueur client** : affiche le joueur qui joue, avec son skin et son nom.
+- **Nom du joueur**, **Texture du skin** et **Texture de la cape** : permet d’afficher un autre joueur ou skin.
+- **Posture de l’entité**, **La tête suit la souris** et **Le corps suit la souris** : définit sa posture et son orientation.
+- **Armure et outils**, **Perroquet**, **Bébé** et **Afficher le nom du joueur** : définit ce qu’il porte et ce qui est affiché.
+
+Pour en savoir plus, consultez [Entités joueur](/player-entities). Pour afficher uniquement une tête, voir [Têtes de joueur](/player-heads).
+
+### Barre de progression
+
+Une barre qui se remplit, comme une barre de chargement.
+
+<img width="496" alt="Une barre de progression remplie à 65 %, sous le texte Chargement du monde… 65 %" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_progress_bar.png?raw=true">
+
+- **Source de la valeur de progression** : définit le niveau de remplissage. Utilisez des [placeholders](/placeholders), par exemple [**Progression du chargement du monde**](/placeholders#world-loading-progress) sur un écran de chargement du monde.
+- **Mode de valeur de progression** : **POURCENTAGE (0-100)** ou **NOMBRE À VIRGULE FLOTTANTE (0.0-1.0)**.
+- **Direction** : côté vers lequel la barre se remplit.
+- **Couleur de la barre** et **Couleur d’arrière-plan**, ou **Texture de la barre** et **Texture d’arrière-plan**.
+- **Animation de remplissage fluide** : fait glisser la barre vers les nouvelles valeurs au lieu de passer directement à celles-ci.
+- **Utiliser la progression comme ancrage de l’élément** : les éléments ancrés à la barre se déplacent avec l’extrémité de la partie remplie.
+
+## Outils de mise en page
+
+### Zone défilante
+
+Contient d’autres éléments et permet de les faire défiler, par exemple pour afficher une liste de serveurs ou une longue page d’informations.
+
+<img width="800" alt="Trois zones défilantes qui disposent des boutons et des objets en pile, en grille et en flux" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/scroll_area_modes.png?raw=true">
+
+- Déposez des éléments dans la zone depuis l’éditeur de mise en page. Seuls les éléments personnalisés peuvent y être placés, pas les éléments Vanilla.
+- **Disposition** : placez les éléments manuellement ou laissez la zone les aligner en pile, en grille ou en flux.
+- **Arrière-plan** : panneau sombre derrière la zone. Désactivez-le avec **Afficher l’arrière-plan**, ou utilisez une texture personnalisée.
+
+Pour en savoir plus, consultez [Zones défilantes](/scrollable-areas).
+
+### Déplaceur
+
+Une zone que les joueurs peuvent saisir et déplacer en dehors de l’éditeur. Les éléments qui lui sont ancrés se déplacent avec elle, comme un panneau d’informations mobile. Elle est invisible en dehors de l’éditeur.
+
+**Enregistrer le décalage de déplacement de l’utilisateur** conserve la nouvelle position après la fermeture de l’écran et le redémarrage du jeu. Pour en savoir plus, consultez [Déplaceur](/dragger).
+
+### Animateur d’élément
+
+Déplace et redimensionne d’autres éléments à l’aide d’images clés, par exemple pour faire glisser un panneau dans l’écran. Il est invisible en dehors de l’éditeur.
+
+- **Gérer les éléments cibles** : définit les éléments animés.
+- **Modifier les images clés** : ouvre l’éditeur d’images clés.
+- **Répéter l’animation** : la relance à la fin.
+
+Pour en savoir plus, consultez [Animateur d’élément](/element-animator).
+
+## Éléments invisibles
+
+Ces éléments sont visibles uniquement dans l’éditeur de mise en page.
+
+### Déclencheur périodique
+
+Exécute son script d’action en boucle tant que l’écran est ouvert.
+
+> [!IMPORTANT]
+> Les [planificateurs](/schedulers) sont recommandés pour tout ce qui s’exécute en boucle ou ultérieurement. Utilisez-les plutôt que les déclencheurs périodiques chaque fois que possible. Ils fonctionnent sur tous les écrans, même lorsqu’aucun écran n’est ouvert. Toutes les actions y sont disponibles, et les actions permettent de les démarrer et de les arrêter.
+
+Voici comment remplacer les déclencheurs périodiques par des planificateurs :
+
+- Exécution continue tant qu’un écran est ouvert : utilisez un planificateur avec un **Délai entre les ticks (ms)**. Démarrez-le avec [**Démarrer le planificateur**](/action-scripts#start-scheduler) dans **Modifier le script d’action « Ouverture de l’écran »** de la mise en page, puis arrêtez-le avec [**Arrêter le planificateur**](/action-scripts#stop-scheduler) dans **Modifier le script d’action « Fermeture de l’écran »**. Ces deux options se trouvent dans le menu contextuel de l’arrière-plan de l’éditeur.
+- Exécution unique à chaque lancement du jeu : utilisez un planificateur avec **Démarrer au lancement** et **Nombre de ticks à exécuter** réglé sur `1`.
+- Exécution unique à chaque ouverture d’un écran : aucun déclencheur périodique ni planificateur n’est nécessaire. Placez les actions dans **Modifier le script d’action « Ouverture de l’écran »**.
+
+Paramètres du déclencheur périodique :
+
+- **Délai entre les ticks [ms]** : délai, en millisecondes, entre deux exécutions. `0` l’exécute à chaque tick, soit 20 fois par seconde.
+- **Mode de tick** : **Normal** l’exécute en continu. **Session** ne l’exécute qu’une fois, jusqu’au redémarrage du jeu. **À l’ouverture de l’écran** l’exécute à chaque ouverture de l’écran, y compris lorsque la fenêtre est redimensionnée.
+- **Asynchrone** : exécute le script en arrière-plan. La plupart des actions ne peuvent pas s’exécuter de cette façon et affichent une erreur.
+
+### Audio
+
+Lit de la musique ou des sons tant que l’écran est ouvert, avec une piste après l’autre.
+
+- **Gérer les pistes** : définit les fichiers audio, leur ordre et leur **poids** lors de la lecture aléatoire.
+- **Mode de lecture** : **Normal** les lit dans l’ordre, tandis que **Aléatoire** les lit dans un ordre aléatoire.
+- **Lire les pistes en boucle**, **Volume** et **Canal audio** : définit la lecture.
+
+Pour que la musique continue d’un écran à l’autre, placez l’élément Audio dans une [mise en page universelle](/universal-layouts). Pour en savoir plus, consultez [Musique de fond des menus](/background-music).
+
+### Contrôleur musical
+
+Désactive la musique du jeu sur cet écran.
+
+- **Lire la musique des menus** : musique des menus lorsqu’aucun monde n’est chargé, par exemple sur l’écran titre.
+- **Lire la musique du monde** : musique du monde qui continue dans les menus, par exemple dans l’inventaire.
+
+Fonctionne uniquement lorsqu’un écran est ouvert.
+
+### Curseur de souris
+
+Remplace le curseur de la souris par votre propre image tant que l’écran est ouvert.
+
+- **Texture du curseur** : image PNG, par exemple de 32 × 32 pixels.
+- **Coordonnée X du point actif** et **Coordonnée Y du point actif** : pixel de l’image qui sert à cliquer, par exemple la pointe d’une flèche.
+- **Mode d’aperçu dans l’éditeur** : affiche le curseur dans l’éditeur lorsque la souris survole l’élément.
+
+Pour en savoir plus, consultez [Curseur personnalisé](/custom-cursor).

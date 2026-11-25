@@ -1,21 +1,22 @@
 ---
-title: Localización de diseños
-description: Localiza texto y otro contenido del diseño.
+title: Localizar diseños
+description: Localiza texto y otros contenidos del diseño.
+sourceBlobSha: f4883414b07e0c024de7bef4f131b878ca4f5f37
 ---
 
-# Localización de diseños
+# Localizar diseños
 
-Usa el [**marcador de posición Localize Text**](./placeholders#localize-text-local) para texto traducible:
+Usa el marcador de posición [**Localizar texto**](/placeholders#localize-text) para el texto que quieras traducir:
 
 ```text
 {"placeholder":"local","values":{"key":"modpack.menu.play"}}
 ```
 
-FancyMenu primero revisa los datos de idioma activos de Minecraft. Si la clave no está presente ahí, revisa los archivos de localización personalizados de FancyMenu. Si ninguna de las dos fuentes contiene la clave, se muestra la propia clave.
+FancyMenu primero revisa los datos de idioma activos de Minecraft. Si la clave no está ahí, revisa los archivos de localización personalizados de FancyMenu. Si ninguna de las dos fuentes contiene la clave, se muestra la propia clave.
 
 # Archivos de localización personalizados de FancyMenu
 
-Coloca los archivos aquí:
+Coloca los archivos en:
 
 ```text
 <game-directory>/config/fancymenu/custom_locals/
@@ -29,23 +30,23 @@ custom_locals/
     └── text.json
 ```
 
-Pon los archivos de localización dentro de al menos un subdirectorio de `custom_locals`; los archivos colocados directamente en la raíz de `custom_locals` no se cargan. Se admiten subdirectorios anidados.
+Coloca los archivos de localización dentro de al menos un subdirectorio de `custom_locals`; los archivos que pongas directamente en la carpeta raíz de `custom_locals` no se cargarán. Se admiten subdirectorios anidados.
 
-Formatos UTF-8 compatibles:
+Formatos UTF-8 admitidos:
 
 | Extensión | Formato |
 |---|---|
 | `.json` | Objeto JSON; los objetos anidados se convierten en claves separadas por puntos |
-| `.lang` | Líneas `key=value` |
+| `.lang` | Líneas con el formato `clave=valor` |
 | `.properties` | Sintaxis de propiedades de Java |
 
-Ejemplo JSON:
+Ejemplo de JSON:
 
 ```json
 {
   "modpack": {
     "menu": {
-      "play": "Play"
+      "play": "Jugar"
     }
   }
 }
@@ -53,21 +54,21 @@ Ejemplo JSON:
 
 Esto define `modpack.menu.play`.
 
-FancyMenu combina los archivos compatibles de estos subdirectorios en un solo diccionario de localización personalizado. Usa cada clave solo en un archivo. Los archivos de localización personalizados no cambian con el idioma seleccionado en Minecraft; usa el método de paquete de recursos de abajo cuando necesites cambio automático de idioma.
+FancyMenu combina los archivos admitidos de estos subdirectorios en un solo diccionario de localización personalizado. Usa cada clave en un solo archivo. Los archivos de localización personalizados no cambian según el idioma seleccionado en Minecraft; si necesitas que el idioma cambie automáticamente, usa el método del paquete de recursos que se describe abajo.
 
 Reinicia el cliente después de editar los archivos de localización personalizados.
 
-# Texto específico del idioma
+# Texto específico para cada idioma
 
-Para el cambio automático según el idioma seleccionado en Minecraft, proporciona archivos de idioma normales de Minecraft mediante un [paquete de recursos](./resources#minecraft-resources-resource-packs):
+Para que el idioma cambie automáticamente según el idioma seleccionado en Minecraft, proporciona archivos de idioma normales de Minecraft mediante un [paquete de recursos](/resources#minecraft-resources-resource-packs):
 
 ```text
 assets/<namespace>/lang/en_us.json
 assets/<namespace>/lang/de_de.json
 ```
 
-Usa las mismas claves en cada archivo de idioma, habilita el paquete de recursos y luego léelos con el [**marcador de posición Localize Text**](./placeholders#localize-text-local).
+Usa las mismas claves en cada archivo de idioma, activa el paquete de recursos y luego léelas con el marcador de posición [**Localizar texto**](/placeholders#localize-text).
 
-# Localización de imágenes y elementos
+# Localizar imágenes y elementos
 
-Usa el [**requisito Is Game Language**](./conditions#is-game-language-fancymenu_loading_requirement_is_language) para mostrar diferentes elementos o diseños para distintos códigos de idioma, como `en_us` y `de_de`.
+Usa el requisito [**Es el idioma del juego**](/conditions#is-game-language) para mostrar distintos elementos o diseños según los códigos de idioma, como `en_us` y `de_de`.

@@ -1,85 +1,188 @@
 ---
 title: 変数
-description: 変数の作成と使用方法。
+description: 変数にテキストやリストを保存し、テキスト、アクション、要件で使用する方法。
+sourceBlobSha: 2f0d48fd6cc100f976d4fdf1bceb28fe1a540a52
 ---
-# FancyMenu の変数
 
-変数にはテキスト値を保存できます。レイアウト、アクション、プレースホルダー、要件、リスナー、スケジューラー、カスタム GUI で再利用できます。
+# 変数
 
-## 変数の作成
+変数は、ゲームを終了した後も FancyMenu が記憶しておく値です。クリック数を数えたり、選択内容を記憶したり、進行状況を追跡したり、ロード中のヒントのようなリストを保存したりできます。テキスト、アクション、要件、リスナー、一部の要素から変数を読み取ったり変更したりできます。
 
-FancyMenu で変数を作成するには、次の手順を行います。
+> [!TIP]
+> 変数用のアクションは[アクションスクリプト](/action-scripts)、要件は[要件](/conditions)、リスナーは[リスナー](/listeners#on-variable-updated-fm-variable)に記載されています。
 
-1. 現在レイアウトエディターを開いていないことを確認します。
-2. 画面上部のメニューバーをクリックします。
-3. **Customization -> Variables -> Manage Variables** に進みます。
-4. 表示された「Manage Variables」画面で、**Add Variable** ボタンをクリックします。
-5. 新しい変数の名前を入力し、**OK** をクリックします。
+# テキスト変数とリスト変数
 
-これで完了です。変数を使用できるようになりました。「Manage Variables」画面に一覧表示されます。
+変数には次の2種類があります。
 
-「Manage Variables」ウィンドウでは、右クリックのコンテキストメニュー、キーボード操作、コピー/貼り付け、元に戻す/やり直し、検索入力、**Delete** による削除、**Ctrl/Command + S** による保存をサポートしています。
+- テキスト変数には、`dark`、`5`、`true`のようなテキストを1つ保存します。
+- リスト変数には、ロード中のヒントやサーバー名のような項目のリストを保存します。各項目はそれぞれ独立したテキストです。
 
-## 変数の値を設定する
+リスト内の項目の位置をインデックスと呼びます。最初の項目のインデックスは`0`、2番目は`1`で、以降も同様です。負のインデックスは末尾から数えるため、`-1`は最後の項目です。
 
-空の変数だけではあまり役に立ちません。変数を活用するには、その中にデータを入れる必要があります。FancyMenu では、これを「変数の値を設定する」と呼びます。
+`$$name`や**変数の値を取得 (FM Variable)**のようにテキストしか扱えない機能では、リストは各項目を含むJSON配列として取得されます。例：`["最初の夜を迎える前にベッドを作りましょう。","たいまつがあれば、ほとんどのモブを遠ざけられます。"]`
 
-変数の値を設定する主な方法は 2 つあります。
+# 変数の管理
 
-1. 「Manage Variables」画面で一覧から変数を見つけてクリックし、**Set Value** をクリックします。保存したいデータを入力します。
+**メニューバー -> カスタマイズ -> 変数を管理**を開きます。この項目はレイアウトエディターの外でのみメニューバーに表示されます。
 
-2. メニューをカスタマイズしている最中に、[**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) を [Button](./elements#button)、[Slider](./elements#slider)、または [Ticker](./elements#ticker) 要素に使用します。
+<img width="800" alt="変数の管理で、値がdarkのテキスト変数menu_themeと、3つのヒントを含むリスト変数tipsを追加する" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_manage.gif?raw=true">
 
-たとえば、`clicks` という名前の変数を作成し、ボタンに [**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) を追加します。
+## 変数の追加
+
+1. リストを右クリックし、**テキスト変数を追加**または**リスト変数を追加**をクリックします。
+2. 名前を入力し、**完了**をクリックします。
+
+名前には小文字、数字、`.`、`_`、`-`を使用できます。同じ名前の変数は1つしか作成できません。
+
+## 変数の変更
+
+変数を右クリックすると、次の操作を選べます。
+
+| 項目 | 説明 |
+|---|---|
+| **値を設定** | テキスト変数の値を設定します。 |
+| **リストを編集** | リスト変数のエディターを開きます（下記参照）。 |
+| **リストに変換…** | テキスト変数をリストに変換します。**区切り文字**でテキストを項目に分割します。改行で分割するには`\n`と入力します。**項目の前後の空白を削除**すると各項目の前後にある空白が削除され、**空の項目をスキップ**すると空の項目が除外されます。`["a","b"]`のように、すでにJSON配列になっているテキストは1つの配列として読み取られます（**JSON配列として読み取る**）。 |
+| **テキストに変換…** | リストをテキスト変数に変換します。**区切り文字**は項目間に挿入されます。または**JSONテキストを保持**を選ぶと、リストをJSON配列のまま保持します。 |
+| **ゲーム起動時に変数をクリア** | ゲームを起動するたびに変数を空にします。1回のセッション中だけ有効にしたい値に便利です。 |
+| **変数を削除** | 変数を削除します。 |
+| **コピー**と**貼り付け** | 変数のコピーを作成します。 |
+| **AI用に変数をエクスポート** | [AIチャット](/export-for-ai)用に変数をエクスポートします。 |
+
+変更はすぐに反映されます。`Ctrl + Z`で元に戻し、`Ctrl + Y`でやり直せます（macOSでは`Cmd`）。検索するには入力を始めます。選択中の変数を編集するには`Enter`、削除するには`Delete`を押します。
+
+## リストの編集
+
+リストエディターには、各項目とそのインデックスが表示されます。
+
+- 項目を追加するには、リストの下にある**項目を追加**をクリックし、項目を入力して`Enter`を押します。すぐに次の新しい項目を入力できます。空の項目で`Enter`を押すか、`Esc`を押すと追加を終了します。
+- 項目を編集するには、項目をダブルクリックします。`Shift + Enter`を押すとテキストエディターで開き、改行を入力できます。
+- 項目の順序を変更するには、ドラッグするか、`Alt + Up`および`Alt + Down`を押します。
+- 項目を右クリックすると、**項目を複製**（`Ctrl + D`）、**項目を削除**（`Delete`）、**コピー**、**貼り付け**、**上へ移動**、**下へ移動**を選べます。
+- **テキストとして編集**では、すべての項目を一度に、1行につき1項目として編集します。
+
+**完了**をクリックするとリストが保存されます。**キャンセル**をクリックすると、リストエディターでの変更がすべて破棄されます。
+
+# テキスト内での変数の表示
+
+`$$`の後に変数名を入力すると、その値を表示できます。たとえば、`menu_theme`という変数は`$$menu_theme`と記述します。[プレースホルダー](/placeholders)に対応したテキストならどこでも使用できます。[テキスト要素](/text-in-menus)、ボタンのラベル、ツールチップ、アクションや要件の値などが該当します。変数が変更されると、テキストも自動的に更新されます。
 
 ```
-clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
+現在のテーマ：$$menu_theme
 ```
 
-この仕組みは次のとおりです。
-1. [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) が `clicks` 変数の現在値を取得します。
-2. [**Calculator** プレースホルダー](./placeholders#calculator-calc) がその値に 1 を足します。
-3. 結果は [**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) を使って `clicks` に保存されます。
+- 存在しない変数の`$$name`は、そのまま表示されます。
+- `coins`と`coins_record`のように、同じ文字列で始まる名前がある場合、`$$coins_record`は常に長い方の名前を指します。
+- リストはJSON配列として表示されます。次のプレースホルダーを使うと、リストをより見やすく表示できます。
 
-そのため、ボタンがクリックされるたびに `clicks` 変数が 1 ずつ増え、クリック数の合計を数えられます。
+| プレースホルダー | 例 | 結果 |
+|---|---|---|
+| **変数の値を取得 (FM Variable)** | `{"placeholder":"getvariable","values":{"name":"clicks"}}` | 値を返します。変数が空、または存在しない場合は`0`を返します。数値に最適です。 |
+| **リスト項目を取得 (FM Variable)** | `{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}` | 指定したインデックスの項目を返します。項目がない場合は`fallback`を返します。 |
+| **リストのサイズ (FM Variable)** | `{"placeholder":"list_size","values":{"name":"tips"}}` | リスト内の項目数を返します。 |
+| **リスト項目のインデックス (FM Variable)** | `{"placeholder":"list_index_of","values":{"name":"tips","value":"たいまつがあれば、ほとんどのモブを遠ざけられます。","ignore_case":"false"}}` | `value`全体と一致する最初の項目のインデックスを返します。一致する項目がない場合は`-1`を返します。 |
+| **リスト項目を結合 (FM Variable)** | `{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}` | すべての項目を1つのテキストにまとめ、項目間に`separator`を挿入します（省略した場合は`, `）。`\n`は改行です。 |
 
-## 変数の使用
+# アクションによる変数の変更
 
-変数にデータを保存したら、そのデータをメニューのさまざまな部分で使えます。
+[アクションスクリプト](/action-scripts)を使うと、ボタンのクリック時、ティッカーの実行時、リスナーの発火時などに変数を変更できます。
 
-* [**Loading Requirements**](./conditions): 変数の値を確認して、要素を表示するタイミングを制御できます。たとえば、[**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) と [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を組み合わせて、`clicks` が 5 より大きいときに要素を表示できます。
+## テキスト変数
 
-* **プレースホルダー**: [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を使って、テキスト内に変数を挿入できます。たとえば `{"placeholder":"getvariable","values":{"name":"clicks"}}` のようにします。
+[**変数の値を設定 (FM Variable)**](/action-scripts#set-variable-value-fm-variable)では、変数名と新しい値を`:`で区切って指定します。まだ存在しない変数は新しく作成されます。
 
-* **ネストされたプレースホルダー**: [**Calculator** プレースホルダー](./placeholders#calculator-calc) の中で [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を使えます。
+```
+menu_theme:dark
+```
 
-* **アクション**: 変数を使うことで動的な動作を作れます。
-  - [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) と [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) を使い、アクションスクリプトの [IF](./action-scripts#what-are-statements) 文で条件分岐できます。
-  - [**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) と [**Copy Text to Clipboard**](./action-scripts#copy-text-to-clipboard-copytoclipboard) を組み合わせられます。
-  - [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui) で変数を使い、保存された進行状況や設定に応じて画面を選択できます。
+名前を区切るのは最初の`:`だけなので、値には複数の`:`を含められます。例：`last_server:play.example.net:25565`。
 
-## 変数の使用例
+ボタンのクリック数を数えるには、古い値に1を加えます。
 
-自分の変数活用の参考になるいくつかの例を紹介します。
+```
+clicks:{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
+```
 
-1. **ハイスコア**: `highscore` 変数を作成し、現在のプレイヤースコアが既存値より高い場合にその値を設定するボタンを作ります。[**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) で表示できます。
+`clicks`がまだ空の場合、**変数の値を取得 (FM Variable)**は`0`を返すため、最初のクリックで値が`1`になります。
 
-2. **難易度セレクター**: `easy`、`medium`、`hard` など、ゲームの難易度ごとに変数を作成します。ボタンで難易度変数を設定し、選択された難易度に応じて要素の表示/非表示を切り替えます。
+「変数の値を設定」は、リストをテキストに変換しません。JSON配列を指定すると、その項目がリストの項目になります。空のテキストを指定するとリストが空になり、それ以外のテキストを指定すると、そのテキストだけを含むリストになります。
 
-3. **チュートリアルの進行状況**: `tutorial_step` のような変数を追加して、プレイヤーのチュートリアル進行を追跡します。各ステップを完了するたびに変数を増やし、Loading Requirements を使ってメニューの内容を少しずつ表示します。
+[**変数を削除 (FM Variable)**](/action-scripts#delete-variable-fm-variable)は変数を1つ削除し、[**すべての変数をクリア (FM Variable)**](/action-scripts#clear-all-variables-fm-variable)はすべての変数を削除します。
 
-## 永続性、スコープ、保存先
+## リスト用アクション
 
-変数は現在の Minecraft インスタンス全体で共有されます。レイアウト、ワールド、サーバー、プレイヤーごとには分かれません。
+リスト用アクションは、それぞれ専用のウィンドウで設定します。すべての項目でプレースホルダーを使用できます。
 
-値は `<game-directory>/config/fancymenu/user_variables.db` に即座に保存され、再起動後も保持されます。
+| アクション | 説明 |
+|---|---|
+| [**リストに追加 (FM Variable)**](/action-scripts#add-to-list-fm-variable) | 項目を末尾、または指定したインデックスに追加します。**すでにリストにある場合はスキップ**を有効にすると、リストに同じ項目がある場合は追加しません。 |
+| [**リスト項目を設定 (FM Variable)**](/action-scripts#set-list-entry-fm-variable) | 指定したインデックスの項目を置き換えます。 |
+| [**リストから削除 (FM Variable)**](/action-scripts#remove-from-list-fm-variable) | **インデックスの項目**、値が一致する**最初の項目**、または**一致するすべての項目**を削除します。 |
+| [**リストをクリア (FM Variable)**](/action-scripts#clear-list-fm-variable) | すべての項目を削除します。リスト自体は空のまま残ります。 |
+| [**リストを設定 (FM Variable)**](/action-scripts#set-list-fm-variable) | **分割するテキスト**の各部分、または**JSON配列**の各項目で、リスト内のすべての項目を置き換えます。JSON配列として指定した`$$other_list`を使うと、別のリストをコピーできます。 |
+| [**リストを並べ替え (FM Variable)**](/action-scripts#arrange-list-fm-variable) | **A–Z順**、**Z–A順**、**数値の小さい順**、**数値の大きい順**、**順序を反転**、**シャッフル**、または**重複を削除**します。 |
 
-- **Reset on Launch** は、次回ゲーム起動時にその変数を空にします。
-- [**Clear All Variables**](./action-scripts#clear-all-variables-fm-variable-clear_variables) は、保存されているすべての変数値を削除します。
-- 名前は大文字と小文字を区別します。`tutorial_step` のような、シンプルで一意な名前を使ってください。
+- リスト用アクションは、まだ存在しないリストを作成し、空のテキスト変数をリストに変換します。値のあるテキスト変数は変更しません。先に[変換してください](#変数の変更)。
+- `$$`を付けずにリスト名を入力します。`$$`を付けると、その変数の値をリスト名として使用します。
 
-[**Get Stored Variable** プレースホルダー](./placeholders#get-variable-value-fm-variable-getvariable) は、指定した名前の変数が存在しない場合、または保存値が空の場合に `0` を返します。このフォールバックは、比較や計算式で重要です。
+たとえば、テキスト要素にリスト`tips`の最初の項目を表示するには、次のようにします。
 
-[**Set Variable Value** アクション](./action-scripts#set-variable-value-fm-variable-set_variable) は `variable_name:variable_value` の形式を使い、最初のコロンで分割します。そのため、値にコロンを複数含めることができます。
+```
+{"placeholder":"list_get","values":{"name":"tips","index":"0"}}
+```
 
-FancyMenu の変数には、パスワード、トークン、その他の秘密情報を保存しないでください。変数は読み取り可能な設定データです。
+その下にある「次のヒント」ボタンのアクションスクリプトには、**リストを並べ替え (FM Variable)**を追加し、**シャッフル**を設定します。
+
+<img width="800" alt="レイアウトエディターで、次のヒントボタンのアクションスクリプトに、リストtipsとシャッフルを設定したリストを並べ替えを追加する" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_next_tip_script.gif?raw=true">
+
+クリックするたびにリストがシャッフルされるため、テキストにランダムなヒントが表示されます。
+
+<img width="800" alt="次のヒントボタンをクリックすると、日替わりのヒントが別の内容に変わる" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_next_tip_result.gif?raw=true">
+
+## リストの各項目に対する処理
+
+[FOR EACHループ](/action-scripts#for-each-loop)は、リストの最初から最後まで、項目ごとにループ内のアクションを1回ずつ実行します。
+
+1. アクションスクリプトエディターのスクリプト領域を右クリックし、**FOR EACHループを追加**をクリックします。
+2. `$$`を付けずにリスト変数の名前を入力し、**完了**をクリックします。
+3. ループ内にアクションを追加します。アクションの値では、`$$list_entry`が現在の項目、`$$list_index`がそのインデックスを表します。
+
+たとえば、`/time set day`と`/weather clear`を含むリスト`starter_commands`を作成し、ループ内の[**チャットメッセージ/コマンドを送信**](/action-scripts#send-chat-messagecommand)アクションに次の値を指定すると、両方のコマンドが実行されます。
+
+```
+$$list_entry
+```
+
+- ループは開始時にリストを1回読み込みます。ループ内のアクションでリストを変更しても、ループが処理する項目は変わりません。
+- テキスト変数、または存在しないリストを指定した場合、ループは0回実行されます。
+- WHILEループと同様に、3秒経過すると停止するため、ゲームがフリーズすることはありません。
+
+# 変数の確認
+
+[要件](/conditions)を使うと、変数が特定の値を持つ場合にのみ要素を表示したり、アクションスクリプトの一部を実行したりできます。
+
+- [**変数の値を確認 (FM Variable)**](/conditions#is-variable-value-fm-variable)は値全体を確認します。リストの場合は、すべての項目を含むJSON配列と比較します。
+- [**リストに項目が含まれるか確認 (FM Variable)**](/conditions#list-contains-entry-fm-variable)は、リストに項目が含まれるか確認します。項目全体が一致する必要があります。**大文字と小文字を区別しない**を有効にすると、`Apple`と`apple`が一致します。
+- [**数値かどうか**](/conditions#is-number)は、`$$clicks`が`5`より大きいかのように、数値を比較します。
+
+たとえば、ボタンを押すと最新のニュース記事が開き、**リストに追加 (FM Variable)**によって`news_42`がリスト`read_news`に追加されるとします。このボタンの横にある「新着！」バッジには、`news_42`を対象とする**リストに項目が含まれるか確認 (FM Variable)**要件を設定し、**要件モード**を「反対」にします。すると、プレイヤーが記事を読んだ後にバッジが非表示になります。
+
+# 変数と要素の連携
+
+- [テキスト入力欄](/elements#text-input-field)：**変数にリンク**を設定すると、プレイヤーが入力した内容が変数に書き込まれ、入力欄には変数の値が表示されます。リストにリンクした場合、入力したテキストでリスト全体が置き換えられます。
+- [チェックボックス](/elements#checkbox)：**変数モード**を有効にし、**変数にリンク**を設定します。チェックボックスは変数に`true`または`false`を書き込みます。
+- [スライダー](/elements#slider)の種類が**値リスト**の場合：**リスト変数から値を取得**を使うと、リストからスライダーの値を取得できます。リストに項目が追加または削除されると、すぐに反映されます。
+
+# 変更への反応
+
+- [**変数の更新時 [FM Variable]**](/listeners#on-variable-updated-fm-variable)リスナーは、変数が設定されるたびにアクションスクリプトを実行します。
+- [`/fmvariable`コマンド](/commands#fmvariable)を使うと、チャット、コマンドブロック、その他のMODから変数を設定したり読み取ったりできます。
+
+# 変数の保存場所
+
+FancyMenuは変数を`<game-directory>/config/fancymenu/user_variables.db`にすぐ保存するため、再起動後も保持されます。
+
+- 変数はMinecraftのインスタンス全体と、そのインスタンスで有効な[プロファイル](/profiles)に属します。レイアウト、ワールド、サーバー、プレイヤーごとに分けて保存されるわけではありません。
+- 名前では大文字と小文字が区別されます。
+- パスワード、トークンなどの秘密情報を変数に保存しないでください。ゲームフォルダーにアクセスできる人なら誰でも読み取れます。

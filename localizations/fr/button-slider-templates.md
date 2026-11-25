@@ -1,131 +1,57 @@
 ---
 title: Modèles de boutons et de curseurs
 description: >-
-  Comment utiliser des modèles de boutons/curseurs pour appliquer un design
-  spécifique à TOUS les boutons en une seule fois.
+  Appliquez à tous les boutons ou curseurs d’un écran les textures, les sons et
+  le style de libellé d’un bouton modèle.
+sourceBlobSha: 805a2ae3221a644c78cd5eafebc5579bc8d60815
 ---
 
-# Utiliser des éléments bouton comme modèles pour les boutons et les curseurs
+# Modèles de boutons et de curseurs
 
-Il est possible d'utiliser un élément Bouton comme modèle pour d'autres boutons et même des curseurs. En procédant ainsi, vous pouvez appliquer un design spécifique de bouton/curseur à TOUS les boutons/curseurs d'un menu, ou même à tous les menus d'un coup lorsque vous utilisez une disposition universelle.
+Un modèle est un [élément Bouton](/elements#button) qui transmet son apparence à tous les autres boutons ou à tous les curseurs de l’écran, qu’ils soient natifs ou personnalisés. Modifiez le modèle et ils changeront tous avec lui.
 
-> [!IMPORTANT]
-> Préférez les [Personnalisations globales](./global-customizations) pour un style large des boutons et curseurs Vanilla. Utilisez les modèles de boutons/curseurs lorsque le comportement doit dépendre de la disposition.
+> [!TIP]
+> Pour obtenir la même apparence dans tous les menus du jeu, utilisez plutôt les [personnalisations globales](/global-customizations). Les modèles s’appliquent à un seul écran, ou à tous les écrans chargés par une [disposition universelle](/universal-layouts).
 
-# Important avant de commencer
+# Créer un modèle
 
-Pour un seul bouton ou curseur, faites simplement un **clic droit** dessus dans l'éditeur et modifiez directement ses **Textures d'arrière-plan** ou les textures de la poignée du curseur.
+1. Ajoutez un élément Bouton à la disposition.
+2. Faites un clic droit dessus, ouvrez **Paramètres du modèle** et activez **Mode modèle**.
+3. Réglez **Partager les paramètres avec** sur **Boutons** ou **Curseurs**.
+4. Attribuez au modèle les textures, les sons et les paramètres de libellé souhaités, comme pour n’importe quel bouton. Lorsque l’option **Curseurs** est sélectionnée, les paramètres de texture correspondent aux textures des curseurs.
 
-# Qu'est-ce qu'un bouton modèle ?
+Le modèle n’apparaît pas en dehors de l’éditeur : placez-le donc où il ne gênera pas. Dans l’éditeur, un modèle destiné aux curseurs ressemble à un curseur.
 
-Un bouton modèle est un type spécial de bouton personnalisé dans FancyMenu qui vous permet de contrôler l'apparence et le comportement des autres boutons et curseurs. C'est comme créer un design maître que de nombreux autres éléments suivront.
+# Paramètres partagés par les modèles
 
-Lorsque vous créez un bouton modèle, vous pouvez faire en sorte que plusieurs boutons ou curseurs partagent les mêmes éléments :
-- Taille (largeur et hauteur)
-- Position
-- Visibilité
-- Opacité (le niveau de transparence)
-- Libellés de texte
-- **Textures du bouton** (partagées automatiquement lorsque des textures personnalisées sont définies)
+## Toujours
 
-C'est très utile lorsque vous voulez rendre votre menu cohérent ou lorsque vous devez mettre à jour de nombreux boutons en même temps !
+- Ses textures de bouton (ou de curseur), ainsi que leurs paramètres de [découpage en neuf parties](/nine-slicing-and-tiling).
+- Ses sons de survol, de fin de survol et de clic.
 
-# Qui peut utiliser les modèles ?
+Lorsqu’un modèle est actif, les boutons utilisent ses textures et ses sons à la place des leurs. Si le modèle n’a pas de textures, les boutons n’utilisent pas non plus les leurs.
 
-Seuls les **boutons personnalisés** peuvent servir de modèles. Cependant, ces modèles peuvent être appliqués à :
-- Boutons Vanilla (les boutons Minecraft par défaut)
-- Boutons personnalisés (les boutons que vous créez dans FancyMenu)
-- Curseurs Vanilla (comme les réglages de volume)
-- Curseurs personnalisés (les curseurs que vous créez dans FancyMenu)
+## À activer
 
-# Comment créer un bouton modèle
+Activez les paramètres suivants dans les **Paramètres du modèle** :
 
-1. Ouvrez l'éditeur FancyMenu pour l'écran que vous souhaitez personnaliser
-2. Ajoutez un nouvel élément bouton personnalisé à votre disposition
-3. Faites un clic droit sur votre nouveau bouton
-4. Sélectionnez "Template Settings" dans le menu
-5. Cliquez sur "Is Template: ON" pour activer le mode modèle
+| Paramètre | Paramètres appliqués aux boutons par le modèle |
+|---|---|
+| **Partager le libellé en mode modèle** | Son **Libellé** et son **Libellé au survol**, ainsi que l’ensemble de son style de libellé : **Alignement du libellé**, **Échelle du libellé**, **Couleur de base du libellé**, **Couleur du libellé au survol**, **Ombre du libellé** et **Souligner le libellé au survol**. |
+| **Partager la position X en mode modèle** et **Partager la position Y en mode modèle** | Sa position. Les boutons natifs ne se déplacent que si leur **Point d’ancrage** est différent de **Natif (original)**. |
+| **Partager l’opacité en mode modèle** | Son opacité. |
 
-Votre bouton est maintenant prêt à servir de modèle pour d'autres boutons et curseurs !
+## Alignement du libellé de tous les boutons
 
-# Options de partage du modèle
+Avec **Partager le libellé en mode modèle**, tous les boutons reprennent également le texte du modèle : cette option est donc destinée aux écrans où tous les boutons doivent afficher le même texte.
 
-Vous pouvez choisir quels types d'éléments votre modèle affectera :
-- **Buttons** - Votre modèle n'affectera que les boutons (vanilla et personnalisés)
-- **Sliders** - Votre modèle n'affectera que les curseurs (vanilla et personnalisés)
+Pour aligner uniquement les libellés tout en conservant leur texte :
 
-Pour définir cette option :
-1. Faites un clic droit sur votre bouton modèle
-2. Allez dans "Template Settings"
-3. Cliquez sur "Share With: [Current Option]" pour faire défiler les options
+- Pour un seul écran, sélectionnez les boutons en maintenant `Ctrl` et en cliquant (voir [Sélection](/layout-editor#selecting)), faites un clic droit sur l’un d’eux, puis définissez une seule fois **Alignement du libellé** pour tous.
+- Pour tous les menus, utilisez **Alignement du libellé** dans les [personnalisations globales](/global-customizations#labels).
 
-> [!WARNING]
-> **Important** : Vous pouvez avoir deux modèles actifs en même temps - un pour les boutons ET un pour les curseurs. Cela signifie que vous pouvez créer des designs de modèle distincts pour différents types d'éléments sur le même écran !
+# Bon à savoir
 
-# Ce qui peut être modélisé
-
-Vous pouvez contrôler précisément quelles propriétés votre modèle partagera avec d'autres éléments :
-
-## Propriétés pouvant être activées/désactivées :
-
-1. Faites un clic droit sur votre bouton modèle
-2. Allez dans "Template Settings" 
-3. Activez ou désactivez l'une de ces options :
-   - **Width** - Rend tous les éléments concernés aussi larges que votre modèle
-   - **Height** - Rend tous les éléments concernés aussi hauts que votre modèle
-   - **X Position** - Place tous les éléments concernés à la même coordonnée X que votre modèle
-   - **Y Position** - Place tous les éléments concernés à la même coordonnée Y que votre modèle
-   - **Opacity** - Donne à tous les éléments concernés la même transparence que votre modèle
-   - **Visibility** - Contrôle si les éléments concernés sont affichés ou masqués
-   - **Label** - Fait en sorte que tous les éléments concernés utilisent le même texte que votre modèle
-
-## Propriétés toujours partagées :
-
-- **Textures du bouton** - Lorsque vous définissez des textures personnalisées sur votre modèle, elles seront automatiquement appliquées à tous les éléments concernés
-  - Contrairement aux autres propriétés, le partage des textures ne peut pas être désactivé
-  - Les textures ne sont appliquées que lorsque des textures personnalisées sont réellement définies sur le modèle
-  - Si aucune texture personnalisée n'est définie, les textures d'origine de l'élément seront utilisées
-
-# Personnaliser l'apparence du modèle
-
-Votre bouton modèle peut être personnalisé comme n'importe quel autre bouton :
-
-1. Faites un clic droit sur votre bouton modèle
-2. Vous pouvez définir :
-   - Les textures du bouton (états normal, survolé et inactif)
-   - Les libellés (normal et survolé)
-   - Les sons (survol et clic)
-   - Les info-bulles
-
-Pour les boutons, vous pouvez définir des textures personnalisées pour différents états :
-- Arrière-plan normal (quand il n'y a pas d'interaction)
-- Arrière-plan au survol (quand la souris est dessus)
-- Arrière-plan inactif (quand le bouton est désactivé)
-
-Pour les curseurs, vous pouvez également définir :
-- Les textures de la poignée du curseur
-- Les textures d'arrière-plan du curseur
-
-# Conseils importants
-
-1. **Les boutons modèles n'apparaîtront pas en jeu** - Ils ne sont visibles que dans l'éditeur, donc placez-les où c'est le plus pratique.
-
-2. **Vous pouvez avoir deux modèles actifs simultanément** - Un modèle pour les boutons et un modèle pour les curseurs peuvent être actifs en même temps.
-
-3. **Un seul modèle par type est actif** - Si vous avez plusieurs modèles de boutons, seul celui situé le plus haut dans votre liste d'éléments sera utilisé pour les boutons. La même règle s'applique aux modèles de curseurs.
-
-4. **Les modifications du modèle sont mises à jour instantanément** - Lorsque vous modifiez votre modèle, tous les boutons et curseurs concernés se mettent à jour immédiatement.
-
-5. **Utilisez le bon mode de partage** - N'oubliez pas que le mode "Buttons" n'affecte pas les curseurs, et que le mode "Sliders" n'affecte pas les boutons.
-
-6. **Appliquez les propriétés de manière sélective** - Vous n'êtes pas obligé d'appliquer toutes les propriétés. Par exemple, vous pouvez vouloir ne modéliser que les textures et la taille, tout en laissant les éléments conserver leurs positions d'origine.
-
-7. **Les textures sont toujours partagées lorsqu'elles sont définies** - Contrairement aux autres propriétés, toutes les textures personnalisées que vous appliquez au modèle seront automatiquement partagées avec les éléments correspondants. Vous n'avez pas besoin d'activer ou de désactiver cette fonctionnalité.
-
-# Exemples d'utilisation
-
-- Créer un style cohérent pour tous les boutons d'un écran
-- Faire correspondre tous les curseurs à votre thème personnalisé avec un modèle séparé
-- Créer un "mode caché" où vous pouvez afficher/masquer plusieurs boutons à la fois
-- Modifier la taille de nombreux boutons en une seule édition
-- Donner à tous les boutons de votre menu les mêmes textures et sons personnalisés
+- Seuls les éléments Bouton peuvent servir de modèles, mais ceux-ci fonctionnent avec les boutons et les curseurs natifs comme personnalisés.
+- Un écran peut avoir simultanément un modèle pour les boutons et un autre pour les curseurs. S’il existe plusieurs modèles du même type, un seul d’entre eux fonctionne.
+- Un modèle ne fonctionne que lorsqu’il est visible. Vous pouvez l’activer et le désactiver à l’aide de [conditions](/element-visibility).

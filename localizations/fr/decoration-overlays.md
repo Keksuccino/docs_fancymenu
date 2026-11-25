@@ -1,107 +1,361 @@
 ---
 title: Superpositions décoratives
 description: >-
-  Ajoutez des superpositions visuelles en plein écran aux menus dans l’éditeur
-  de mise en page de FancyMenu.
+  Ajoutez de la neige, de la pluie, des lucioles, des guirlandes lumineuses et
+  d’autres effets animés à vos menus.
+sourceBlobSha: ee440d4a4cc4b88b86d876fe233a9638de8bb73b
 ---
 # Superpositions décoratives
 
-Les superpositions décoratives sont des effets en plein écran qui s’affichent devant les éléments de votre menu.
+Les superpositions décoratives sont des effets animés qui couvrent tout l’écran, comme des chutes de neige, des lucioles, du brouillard ou des guirlandes lumineuses. Beaucoup interagissent avec votre menu : la neige s’accumule sur vos boutons, des oiseaux s’y posent et le brouillard se dissipe autour de la souris.
 
-Elles sont utiles lorsque vous souhaitez ajouter une atmosphère ou du mouvement à un menu sans devoir créer ces effets manuellement.
+<img width="800" alt="Un écran-titre de nuit avec les superpositions Chute de neige et Guirlandes lumineuses, et de la neige qui s’accumule sur les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_hero.png?raw=true">
 
-# Où les trouver
+# Ajouter une superposition
 
-Ouvrez une mise en page dans l’éditeur, puis faites un clic droit sur l’arrière-plan de l’éditeur et ouvrez **Superpositions décoratives**.
+1. Ouvrez une disposition dans l’éditeur de disposition.
+2. Faites un clic droit sur l’arrière-plan de l’éditeur, puis ouvrez **Superpositions décoratives**.
+3. Ouvrez une superposition, comme **Chute de neige**.
+4. Cliquez sur **Afficher la superposition** pour l’activer.
 
-# Démarrage rapide
+Les superpositions activées sont marquées d’un ✔ dans la liste. Une disposition peut afficher autant de superpositions que vous le souhaitez. Survolez une superposition ou l’un de ses paramètres pour découvrir son effet.
 
-1. Ouvrez une mise en page dans l’éditeur.
-2. Faites un clic droit sur l’arrière-plan (zone vide).
-3. Ouvrez **Superpositions décoratives**.
-4. Sélectionnez un type de superposition.
-5. Réglez **Afficher la superposition** sur **Activé**.
-6. Configurez les paramètres de la superposition.
-7. Enregistrez la mise en page et testez l’écran.
+Les superpositions sont aussi visibles dans l’éditeur de disposition, mais elles n’interagissent avec vos éléments que dans le vrai menu. Enregistrez la disposition et ouvrez le menu pour voir le résultat complet.
 
-# Fonctionnement des types de superposition
+Lorsque plusieurs dispositions d’un même écran comportent des superpositions, elles s’affichent toutes, même si une même superposition apparaît plusieurs fois. Cela inclut les [dispositions universelles](/universal-layouts).
 
-Chaque type de superposition possède son propre sous-menu et son propre bouton **Afficher la superposition**.
+# Paramètres communs à toutes les superpositions
 
-- Vous pouvez activer uniquement les types souhaités.
-- Vous pouvez combiner plusieurs types activés dans une même mise en page.
-- Les paramètres sont propres à chaque type de superposition (par exemple la couleur, l’intensité, la vitesse, la densité, l’échelle ou certains comportements spéciaux).
+Chaque superposition comporte les deux paramètres suivants :
 
-> [!INFO]
-> Il est possible d’empiler plusieurs instances d’un même type de superposition en utilisant plusieurs mises en page avec ce même type activé.
+- **Afficher la superposition** active ou désactive la superposition.
+- **Calques** définit où la superposition est dessinée :
+  - **Arrière-plan et premier plan** : les éléments éloignés sont dessinés derrière vos éléments et les éléments proches devant, pour donner une belle impression de profondeur. C’est le réglage par défaut.
+  - **Arrière-plan uniquement** : tout est dessiné derrière vos éléments, mais devant l’arrière-plan du menu.
+  - **Premier plan uniquement** : tout est dessiné devant vos éléments.
 
-# Types de superposition
+Les effets appliqués directement à vos éléments, comme la neige sur un bouton, restent toujours sur ceux-ci.
 
-- **Chute de neige** : chute de neige avec accumulation facultative sur les surfaces et les boutons.
-- **Pluie** : pluie avec flaques et gouttes facultatives, ainsi que des éclairs de tonnerre optionnels.
-- **Lucioles** : groupes de lucioles en mouvement avec quantité, densité, taille et couleur configurables.
-- **Guirlandes lumineuses** : combinaisons de guirlandes, couleurs des ampoules, comportement au vent et au scintillement, ainsi qu’un mode de couleurs de fête configurables.
-- **Feuilles** : feuilles qui tombent avec couleurs, vent, vitesse, échelle et densité configurables.
-- **Feux d’artifice** : feux d’artifice fréquents avec quantité, taille des explosions et échelle configurables.
-- **Confettis** : pluie de confettis avec un mode de confettis déclenché par les clics de souris, en option.
-- **Buddy** : animal virtuel interactif avec faim, bonheur, énergie, amusement, activités, niveaux, succès et état persistant.
-- **Navigateur** : superposition de navigateur en plein écran avec paramètres d’URL et de contenu multimédia.
-- **Shader GLSL** : superposition de shader personnalisé en plein écran (pour des visuels animés ou statiques basés sur des shaders).
+De nombreuses superpositions comportent aussi les paramètres suivants :
 
-# Animal virtuel Buddy
+| Paramètre | Effet |
+|---|---|
+| **Quantité (%)** | Définit la quantité, de 25 % à 300 %. La valeur normale est 100 %. |
+| **Taille** | Agrandit les pixels de 2 ou 3 fois. Chaque pixel reste un carré bien net. |
+| **Style** | **Détaillé** affiche tous les pixels avec leurs ombres et effets supplémentaires. **Simple** est plus épuré et se rapproche du style classique. |
 
-La superposition **Buddy** est un animal virtuel de type Tamagotchi, et pas seulement un personnage visuel. Il se déplace en bas de l’écran, affiche des bulles de pensée pour signaler ses besoins, réagit aux interactions et conserve son état entre les sessions de jeu.
+# Superpositions et vos éléments
 
-## Besoins et commandes
+De nombreuses superpositions interagissent avec vos éléments : la neige, la cendre et les confettis s’y accumulent, des stalactites de glace en pendent, de la mousse y pousse et des oiseaux s’y posent.
 
-Buddy suit quatre valeurs comprises entre `0` et `100` :
+Pour choisir les éléments concernés, faites un clic droit sur un élément et définissez **Doit être affecté par les superpositions décoratives** :
 
-- La **Faim** diminue avec le temps et est restaurée par la nourriture.
-- Le **Bonheur** diminue avec le temps et augmente grâce aux soins, notamment les caresses et le jeu.
-- L’**Énergie** diminue lorsqu’il est éveillé et pendant les activités, puis se régénère lorsqu’il dort.
-- L’**Amusement** diminue avec le temps et augmente pendant les parties de jeu.
+- Cette option est activée par défaut pour les boutons, les curseurs, les cases à cocher, les champs de saisie et les [éléments vanilla](/vanilla-elements).
+- Cela inclut le logo, le texte d’accueil, la marque et le copyright de l’écran-titre. Désactivez cette option pour ces éléments si vous ne souhaitez pas que quoi que ce soit s’y pose.
+- Les éléments masqués ne sont pas concernés. Il en va de même pour les parties d’un élément coupées par une [zone défilante](/scrollable-areas).
 
-Utilisez ces commandes de souris et l’écran d’état pour vous en occuper :
+> [!TIP]
+> Laissez au moins 13 pixels entre vos éléments. Les éléments qui s’accumulent dessus ou pendent dessous ne peuvent pas dépasser l’espace disponible jusqu’à l’élément suivant.
 
-- **Clic gauche sur Buddy** pour le caresser. Un clic gauche pendant son sommeil le réveille et applique une légère pénalité de bonheur.
-- **Clic droit sur Buddy** pour ouvrir son écran d’état. L’onglet Statistiques affiche les quatre besoins, le niveau et l’XP ; l’onglet Succès affiche la progression des succès.
-- Sélectionnez **Nourrir** dans l’écran d’état, puis faites glisser la nourriture jusqu’à Buddy. La nourriture restaure la faim et le bonheur.
-- Sélectionnez **Jouer** dans l’écran d’état, puis faites glisser et relâchez la balle. La balle utilise le mouvement de la souris pour calculer la vitesse du lancer, et Buddy peut la poursuivre, l’attraper, la tenir et jouer avec.
-- Sélectionnez **Dormir** lorsque le bouton est disponible pour restaurer l’énergie. Buddy s’endort également automatiquement lorsque son énergie devient dangereusement faible.
-- Buddy laisse parfois des crottes derrière lui. **Faites un clic gauche sur les crottes** pour les nettoyer. Laisser au moins trois crottes à l’écran réduit continuellement le bonheur jusqu’à ce qu’il en reste moins de trois ; le nombre maximal de crottes est configurable.
+Certaines superpositions réagissent aux clics, comme **Bulles**, **Givre** et **Confettis**. Vos boutons continuent de recevoir tous les clics.
 
-## XP, niveaux et succès
+# Toutes les superpositions décoratives
 
-S’occuper de Buddy, nettoyer les crottes, maintenir de bons niveaux de besoins et accomplir d’autres étapes importantes rapporte de l’XP. Buddy commence au niveau 1 et peut atteindre le niveau 30. Les niveaux supérieurs réduisent progressivement la diminution de la faim, du bonheur et de l’énergie (jusqu’à 50 % au niveau 30) et améliorent plusieurs effets liés aux soins et à l’XP.
+Voici toutes les superpositions décoratives de FancyMenu, classées par thème.
 
-Les succès suivent les interactions, les statistiques, les niveaux, les sessions et certaines étapes spéciales. Ouvrez l’écran d’état avec un clic droit pour consulter ces deux systèmes de progression.
+## Météo
 
-## Mort et réinitialisation de la sauvegarde
+### Chute de neige
 
-**Buddy peut mourir** est activé par défaut. Si la faim ou le bonheur reste continuellement à `0` pendant **10 heures réelles**, Buddy meurt et est remplacé par une pierre tombale. Augmenter le besoin à zéro avant l’expiration du délai réinitialise le minuteur correspondant ; désactiver **Buddy peut mourir** efface les deux minuteurs.
+La neige tombe et s’accumule lentement sur vos boutons et le long du bas de l’écran.
 
-Pour recommencer après sa mort, faites un clic gauche sur la pierre tombale. Vous pouvez également utiliser **Réinitialiser la sauvegarde de Buddy** dans les paramètres de la superposition Buddy à tout moment. La réinitialisation supprime à la fois la sauvegarde de l’état de l’animal et la sauvegarde distincte des niveaux et des succès pour cette instance de superposition.
+<img width="800" alt="Chute de neige sur un écran-titre de nuit, avec de la neige sur les boutons et le long du bas de l’écran" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_snowfall.png?raw=true">
+
+- **Accumuler la neige** permet à la neige de s’accumuler.
+- **Couleur de la neige [HEX]**, **Vitesse de chute de neige**, **Quantité (%)** et **Taille** modifient la neige.
+
+### Pluie
+
+La pluie tombe, forme des ondulations dans de fines flaques et goutte depuis vos boutons.
+
+<img width="800" alt="Pluie sur un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_rainfall.png?raw=true">
+
+- **Flaques** recouvre vos éléments et le bas de l’écran d’un film humide qui ondule lorsque les gouttes le frappent.
+- **Gouttes** permet aux gouttes de s’accrocher à vos éléments et d’en tomber.
+- **Éclairs de tonnerre** ajoute de temps en temps des éclairs, avec une décharge ramifiée et une lueur diffuse. **Luminosité des éclairs** définit leur intensité.
+- **Couleur de la pluie [HEX]**, **Quantité (%)** et **Taille** modifient la pluie.
 
 > [!WARNING]
-> La réinitialisation d’une sauvegarde Buddy supprime définitivement ses besoins, son niveau, son XP, ses succès, les compteurs d’activités et l’état sauvegardé de ses crottes.
+> **Éclairs de tonnerre** fait clignoter l’écran. Désactivez cette option si certains joueurs sont sensibles aux lumières clignotantes.
 
-## Persistance et personnalisation
+### Brouillard
 
-L’état de Buddy est automatiquement sauvegardé environ toutes les deux minutes et lorsque son écran se ferme. L’état de l’animal et l’état de progression utilisent des fichiers JSON distincts pour chaque instance de superposition dans `<game-directory>/fancymenu_data/buddy/`. Consultez [Emplacements de stockage des données](./data-storage-locations) pour connaître le chemin complet des données de FancyMenu.
+De douces couches de brume dérivent sur l’écran et vos éléments. Elles sont plus épaisses près du sol.
 
-Les paramètres de la superposition vous permettent également de remplacer l’atlas de sprites de Buddy, les objets d’interaction, les icônes des besoins, les textures de l’écran d’état et la pierre tombale. Les paramètres avancés des statistiques contrôlent la diminution des besoins, les coûts et gains des activités, l’efficacité des soins, le nombre maximal de crottes et l’activation ou non de la mort.
+<img width="800" alt="Du brouillard dérive sur un écran-titre et s’épaissit vers le bas" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_fog.png?raw=true">
 
-# Superposition Navigateur : interactive ou passive
+- **Dissiper autour du pointeur** écarte le brouillard autour de la souris.
 
-La superposition Navigateur peut être configurée soit comme un navigateur interactif, soit comme une couche visuelle passive.
+### Givre
 
-- Les paramètres **Traiter la souris/le clavier** contrôlent si le navigateur lui-même gère les entrées.
-- Les paramètres **Intercepter la souris/le clavier** contrôlent si les entrées sont bloquées pour le menu situé derrière.
+Votre menu se couvre de glace. La glace s’étend le long des bords, dans les coins et sur vos éléments. Cliquez dessus pour en briser un morceau.
 
-Exemples de configuration pratiques :
+<img width="800" alt="Du givre sur un écran-titre, avec de la glace sur les bords, dans les coins et sur les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_frost.png?raw=true">
 
-- Navigateur interactif au premier plan : activez **Traiter** et **Intercepter**.
-- Couche de navigateur uniquement visuelle : désactivez **Traiter** et **Intercepter**.
+- **Bords de l’écran**, **Coins** et **Sur les éléments** activent ou désactivent chaque partie de la glace. Les libellés de vos éléments restent dégagés.
+
+## Nature
+
+### Feuilles
+
+Des feuilles tombent et sont emportées par les rafales de vent.
+
+<img width="800" alt="Des feuilles tombent sur un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_leaves.png?raw=true">
+
+- **Style** permet de choisir entre des feuilles **Détaillées** et **Simples**.
+- **Couleurs** permet de choisir **Mélange automnal** (cinq couleurs chaudes d’automne) ou **Plage personnalisée** (cinq couleurs comprises entre **Couleur de départ des feuilles [HEX]** et **Couleur de fin des feuilles [HEX]**).
+- **Rafales de vent** active ou désactive les fortes rafales. **Intensité du vent** définit leur puissance.
+- **Densité des feuilles**, **Vitesse de chute des feuilles** et **Échelle de la superposition de feuilles** modifient les feuilles.
+
+### Fleurs de cerisier
+
+Des branches en fleurs apparaissent dans les coins supérieurs et des pétales dérivent vers le bas.
+
+<img width="800" alt="Des fleurs de cerisier sur un écran-titre, avec des branches dans les coins supérieurs et des pétales sur les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_cherry_blossoms.png?raw=true">
+
+- **Branche gauche** et **Branche droite** affichent ou masquent chaque branche.
+- **Style** et **Quantité (%)** modifient les pétales.
+
+### Végétation envahissante
+
+La nature reprend votre menu : de la mousse, des lianes, de l’herbe et des fleurs y poussent lentement.
+
+<img width="800" alt="Végétation envahissante sur un écran-titre, avec des lianes, de l’herbe, des fleurs et de la mousse sur les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_overgrowth.png?raw=true">
+
+- **Herbe**, **Lianes à gauche**, **Lianes à droite** et **Sur les éléments** activent ou désactivent chaque type de végétation. Les libellés de vos éléments restent dégagés.
+- **Fleurs sur les lianes**, **Fleurs sur les éléments** et **Fleurs dans l’herbe** permettent aux fleurs d’y éclore. **Fleurs (%)** définit leur quantité.
+
+### Nuages
+
+Des nuages pixelisés et cotonneux dérivent dans le ciel derrière vos éléments, sur trois plans de profondeur. Les nuages n’ont pas de paramètres propres.
+
+<img width="800" alt="Des nuages dérivent derrière le logo et les boutons d’un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_clouds.png?raw=true">
+
+### Rayons de soleil
+
+Des rayons de soleil partent d’un soleil situé juste hors de l’écran, tandis que de la poussière danse dans la lumière.
+
+<img width="800" alt="Des rayons de soleil brillent depuis le coin supérieur gauche sur un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_sunbeams.png?raw=true">
+
+- **Côté du soleil** définit le bord de l’écran derrière lequel se trouve le soleil. **Angle du soleil (°)** le déplace le long de ce bord.
+- **Couleur de la lumière du soleil [HEX]** et **Intensité (%)** modifient la lumière.
+- **Lueur du soleil** diffuse une douce lueur depuis le soleil.
+- **Poussière** fait dériver de la poussière dans les rayons. Votre souris la soulève.
+- **Interagir avec les éléments** fait s’arrêter les rayons sur vos éléments, éclaire leurs bords et projette des ombres. Si cette option est désactivée, les rayons brillent devant vos éléments.
+
+### Bulles
+
+Des bulles ondulent en remontant par groupes et glissent sous vos éléments. Cliquez dessus pour les faire éclater ! Les bulles n’ont pas de paramètres propres.
+
+<img width="800" alt="Des bulles remontent sur un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_bubbles.png?raw=true">
+
+## Animaux
+
+### Oiseaux
+
+De petits oiseaux arrivent en volant, sautillent sur vos éléments et s’envolent lorsque la souris s’approche trop.
+
+<img width="800" alt="Des oiseaux, en taille 2x et à 50 % de quantité, sont posés sur les boutons d’un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_birds.png?raw=true">
+
+### Papillons
+
+Des papillons colorés voltigent, se reposent sur vos éléments et s’éloignent de la souris.
+
+<img width="800" alt="Des papillons voltigent autour des boutons d’un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_butterflies.png?raw=true">
+
+### Chauves-souris
+
+Des chauves-souris traversent l’écran en petits groupes et s’accrochent, endormies, sous vos éléments. Approchez-vous trop et elles se réveillent !
+
+<img width="800" alt="Des chauves-souris en taille 2x volent au-dessus d’un écran-titre et s’accrochent sous les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_bats.png?raw=true">
+
+Les superpositions **Oiseaux**, **Papillons** et **Chauves-souris** comportent les paramètres **Quantité (%)** et **Taille**.
+
+### Lucioles
+
+Des groupes de lucioles brillent et se déplacent, et certaines se posent sur vos éléments.
+
+<img width="800" alt="Des lucioles à l’échelle 2x brillent autour d’un bouton d’un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_fireflies.png?raw=true">
+
+- **Style** permet de choisir entre des lucioles **Détaillées** et **Simples**. **Corps non lumineux** affiche leur petit corps sombre entre deux clignotements.
+- **Suivre la souris** permet aux groupes de suivre la souris lorsqu’elle s’approche.
+- **Se poser** permet aux lucioles de se poser de temps en temps sur vos éléments.
+- **Couleur des lucioles [HEX]**, **Nombre de groupes**, **Densité des groupes**, **Taille des groupes** et **Échelle des lucioles** modifient les lucioles.
+
+### Buddy
+
+Buddy est un petit animal de compagnie virtuel qui vit en bas de votre menu. Il se promène, indique ses besoins dans des bulles de pensée, réagit lorsque vous jouez avec lui et se souvient de tout entre les sessions de jeu.
+
+<img width="480" alt="Buddy, un petit animal rose, se promène en bas d’un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_buddy.png?raw=true">
+
+#### Prendre soin de Buddy
+
+Buddy a quatre besoins, qui vont de `0` à `100` :
+
+- **Faim** diminue avec le temps. La nourriture la comble.
+- **Bonheur** diminue avec le temps. Les caresses, la nourriture et les jeux l’augmentent.
+- **Énergie** diminue lorsque Buddy est éveillé et remonte pendant son sommeil.
+- **Amusement** diminue avec le temps. Les jeux l’augmentent.
+
+Pour prendre soin de Buddy :
+
+- Faites un clic gauche sur Buddy pour le caresser. Le réveiller de cette façon le rend un peu moins heureux.
+- Faites un clic droit sur Buddy pour ouvrir son écran d’état. L’onglet **Statistiques** affiche ses besoins, son niveau et son XP. L’onglet **Succès** affiche ses succès.
+- Cliquez sur **Nourrir** dans l’écran d’état, puis faites glisser la nourriture jusqu’à Buddy.
+- Cliquez sur **Jouer** dans l’écran d’état, puis faites glisser la balle et relâchez-la pour la lancer. Buddy la poursuit et l’attrape.
+- Cliquez sur **Dormir** pour laisser Buddy se reposer. Il s’endort aussi de lui-même lorsque son énergie devient très faible.
+- Buddy fait ses besoins de temps en temps. Faites un clic gauche dessus pour les nettoyer. S’il y en a trois ou plus, Buddy devient de moins en moins heureux.
+
+#### Niveaux et succès
+
+Prendre soin de Buddy lui fait gagner de l’XP. Buddy peut passer du niveau 1 au niveau 30. Plus son niveau est élevé, plus sa faim, son bonheur et son énergie diminuent lentement : au niveau 30, ils diminuent deux fois moins vite.
+
+#### Lorsque Buddy meurt
+
+Si sa faim ou son bonheur reste à `0` pendant 10 heures réelles, Buddy meurt et laisse une pierre tombale. Faites un clic gauche sur la pierre tombale pour recommencer avec un nouveau Buddy. Désactivez **Buddy peut mourir** pour l’empêcher de mourir.
+
+**Réinitialiser la sauvegarde de Buddy** permet de recommencer à tout moment.
+
+> [!WARNING]
+> La réinitialisation de Buddy supprime définitivement ses besoins, son niveau, son XP, ses succès et ses besoins faits.
+
+#### Sauvegarde et personnalisation
+
+Buddy se sauvegarde environ toutes les deux minutes et lorsque son écran se ferme, dans `<game-directory>/fancymenu_data/buddy/`. Chaque superposition Buddy possède sa propre sauvegarde. Consultez [Emplacements de stockage des données](/data-storage-locations).
+
+- **Textures personnalisées** remplace les sprites, les objets, les icônes, l’écran d’état et la pierre tombale de Buddy par vos propres textures.
+- **Réglage des statistiques** modifie la vitesse à laquelle ses besoins diminuent, le coût et les récompenses de ses activités, ainsi que le nombre maximal de besoins faits qui peuvent rester au sol (**Maximum de besoins faits**).
+
+## Ciel nocturne
+
+### Aurore boréale
+
+Des aurores boréales lumineuses ondulent lentement dans le ciel et derrière vos éléments.
+
+<img width="800" alt="Une aurore boréale brille derrière le logo d’un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_aurora.png?raw=true">
+
+- **Couleur du bord [HEX]** définit la couleur du bord inférieur lumineux. **Couleur de la pointe [HEX]** définit la couleur vers laquelle les rayons s’estompent.
+
+### Étoiles filantes
+
+Un ciel nocturne scintillant apparaît derrière vos éléments, avec une étoile filante toutes les quelques secondes et une pluie de météores de temps en temps. Les étoiles filantes n’ont pas de paramètres propres.
+
+<img width="800" alt="Un ciel nocturne étoilé avec une étoile filante derrière un écran-titre" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_shooting_stars.png?raw=true">
+
+### Lanternes célestes
+
+Des lanternes en papier lumineuses s’envolent dans le ciel nocturne, parfois par groupes entiers. Les lanternes célestes comportent les paramètres **Quantité (%)** et **Taille**.
+
+<img width="800" alt="Des lanternes célestes, en taille 2x et à 25 % de quantité, s’envolent au-dessus d’un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_sky_lanterns.png?raw=true">
+
+## Fête
+
+### Confettis
+
+Des canons à confettis placés dans les coins inférieurs tirent quelques confettis toutes les quelques secondes. Ceux-ci s’accumulent sur vos éléments.
+
+<img width="800" alt="Des confettis tombent sur un écran-titre et s’accumulent sur les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_confetti.png?raw=true">
+
+- **Canons dans les coins** active ou désactive les canons.
+- **Explosion au clic** déclenche une petite explosion de confettis à l’endroit où vous cliquez.
+- **Mode mélange de couleurs** utilise des couleurs aléatoires. Désactivez cette option pour utiliser **Couleur des confettis [HEX]** pour tous les confettis.
+- **Limite de particules au sol** définit le nombre de confettis pouvant rester au sol en même temps.
+- **Quantité (%)**, **Taille** et **Vitesse de chute des confettis** modifient les confettis.
+
+### Feux d’artifice
+
+Des fusées s’élèvent et explosent en feux d’artifice.
+
+<img width="800" alt="Des feux d’artifice éclatent au-dessus d’un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_fireworks.png?raw=true">
+
+- **Afficher le vol des fusées** affiche les fusées pendant leur ascension.
+- **Quantité (%)**, **Taille** et **Taille des explosions** modifient les feux d’artifice.
+
+### Guirlandes lumineuses
+
+Des guirlandes lumineuses sont suspendues dans votre menu et se balancent au gré du vent.
+
+<img width="800" alt="Des guirlandes lumineuses sont suspendues dans un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_string_lights.png?raw=true">
+
+- **Style** permet de choisir entre des guirlandes **Simples** et **Détaillées**. **Guirlande de pin** remplace le fil par des aiguilles de pin et des boules.
+- **Programme lumineux** définit le comportement des lumières et leur clignotement (voir ci-dessous).
+- **Échelle des guirlandes**, **Force du vent** et **Vitesse de scintillement** modifient toutes les guirlandes.
+- **Guirlandes** propose un menu pour chacun des huit emplacements où une guirlande peut être suspendue. Activez-en une avec **Afficher la guirlande lumineuse**.
+
+Chaque guirlande possède les paramètres suivants :
+
+- **Nombre de lumières** définit le nombre de lumières suspendues. La valeur `0` remplit la guirlande sur toute sa longueur.
+- **Couleur des lumières [HEX]** définit la couleur des lumières. **Mode lumières de Noël** leur donne plutôt plusieurs couleurs.
+- **Couleur de la guirlande [HEX]** définit la couleur du fil. Utilisez le canal alpha pour le rendre transparent ou le masquer.
+- **Couleurs individuelles des lumières** et **Tailles individuelles des lumières** attribuent une couleur ou une taille à chaque lumière, sous forme de liste séparée par des virgules. Si la guirlande compte plus de lumières que la liste, celle-ci recommence au début :
+
+```
+#FF0000, #00FF00, #0000FF
+```
+
+| Programme lumineux | Effet sur les lumières |
+|---|---|
+| **Allumé** | Toutes les lumières brillent et, de temps en temps, l’une d’elles baisse légèrement en intensité, comme de vraies lumières. |
+| **Pleine intensité** | Toutes les lumières brillent à pleine intensité. |
+| **Demi-intensité** | Toutes les lumières brillent à mi-intensité. |
+| **Éteint** | Toutes les lumières sont éteintes. |
+| **Cycle** | Enchaîne Scintillement, Poursuite, Alternance et Respiration, en changeant toutes les 7 secondes. |
+| **Scintillement** | Les lumières clignotent de façon aléatoire. |
+| **Poursuite** | Une lumière vive parcourt la guirlande. |
+| **Alternance** | Une lumière sur deux brille, puis l’autre moitié prend le relais. |
+| **Respiration** | Toutes les lumières s’intensifient et s’atténuent ensemble, lentement. |
+
+## Épouvante
+
+### Toiles d’araignée
+
+Des toiles d’araignée poussiéreuses pendent dans les coins supérieurs, et de petites araignées descendent le long de leurs fils.
+
+<img width="800" alt="Des toiles d’araignée dans les coins supérieurs d’un écran-titre, avec une araignée suspendue" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_cobwebs.png?raw=true">
+
+- **Toile gauche** et **Toile droite** affichent ou masquent chaque toile et son araignée.
+- **Araignées** permet aux araignées de descendre, de rester suspendues et de remonter. Elles s’éloignent de la souris.
+- **Bord fermé** relie les extrémités des fils par une bordure, afin qu’aucun fil ne s’arrête brusquement à l’écran.
+
+### Braises
+
+Des braises lumineuses s’élèvent du bas de l’écran, tandis que de la cendre tombe et s’accumule.
+
+<img width="800" alt="Des braises s’élèvent et de la cendre s’accumule sur les boutons d’un écran-titre de nuit" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/decoration_overlay_embers.png?raw=true">
+
+- **Cendre au sol** ajoute une épaisse couche de cendre le long du bas de l’écran, avec des points incandescents et des charbons ardents.
+- **Cendre sur les éléments** permet à la cendre de s’accumuler sur vos éléments.
+
+## Personnalisé
+
+### Navigateur
+
+La superposition Navigateur affiche un site web sur tout l’écran.
 
 > [!IMPORTANT]
-> La superposition décorative Navigateur nécessite le mod **[Rinku](https://modrinth.com/mod/rinku)**.
+> La superposition Navigateur nécessite le mod [Rinku](https://modrinth.com/mod/rinku).
+
+- **URL** définit le site web à afficher.
+- **Intercepter les clics de souris**, **Intercepter le défilement de la souris** et **Intercepter les pressions sur le clavier** empêchent les entrées d’être transmises au menu situé derrière le navigateur.
+- **Traiter les clics de souris**, **Traiter le défilement de la souris** et **Traiter les pressions sur le clavier** permettent au navigateur de réagir aux entrées.
+- **Masquer les commandes vidéo**, **Lire les vidéos en boucle**, **Couper le son du navigateur** et **Volume audio/vidéo** contrôlent les vidéos et le son du site web.
+
+Les paramètres d’interception et de traitement sont activés par défaut : le navigateur fonctionne donc comme un navigateur classique, devant votre menu. Pour afficher un site web uniquement en arrière-plan, désactivez-les tous.
+
+Les sites web peuvent aussi exécuter des actions FancyMenu et lire des espaces réservés. Consultez l’[API JavaScript du navigateur](/browser-api).
+
+### Shader GLSL
+
+La superposition Shader GLSL affiche votre propre shader sur tout l’écran, pour créer des effets animés ou statiques. Collez le code de votre shader dans **Source du shader**.
+
+Consultez l’[API des shaders GLSL](/glsl-shader-api) pour apprendre à écrire des shaders pour FancyMenu.

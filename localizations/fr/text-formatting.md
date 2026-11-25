@@ -1,263 +1,321 @@
 ---
-title: Formatage du texte
+title: Mise en forme du texte
 description: >-
-  Comment formater du texte avec Markdown et les codes de formatage de
-  Minecraft.
+  Comment mettre en forme du texte avec Markdown, les codes de mise en forme
+  Minecraft et les composants de texte.
+sourceBlobSha: c6ddde5939e929b3d4c04541f0b104ee6ee795bc
 ---
+# Mise en forme du texte
 
-# Formatage du texte
+FancyMenu vous propose trois façons de mettre en forme du texte :
 
-Les [éléments de texte](./elements#text) prennent en charge Markdown. Les autres champs de texte utilisent le formatage Minecraft, et les libellés de boutons peuvent utiliser les composants de texte Minecraft.
+- **Markdown** pour les [éléments Texte et Info-bulle](/text-in-menus) : titres, listes, couleurs, images, tableaux et bien plus.
+- **Les codes de mise en forme Minecraft**, comme `&c`, pour appliquer rapidement des couleurs. Ils fonctionnent dans presque tous les champs de texte, y compris les textes Markdown.
+- **Les composants de texte Minecraft** pour les libellés des boutons et des curseurs.
+
+> [!TIP]
+> Cette page explique *comment écrire* du texte mis en forme. Pour apprendre à ajouter du texte à vos menus, à modifier son apparence ou à le faire défiler, consultez [Texte dans les menus](/text-in-menus).
+
+<img width="800" alt="Markdown dans un élément Texte" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_showcase.png?raw=true">
 
 # Markdown
 
-Les **éléments de texte** de FancyMenu prennent en charge Markdown dans son intégralité, ce qui signifie que vous pouvez formater le contenu textuel en lui ajoutant des caractères spéciaux.
+Markdown met en forme le texte en utilisant quelques caractères spéciaux autour de celui-ci. Par exemple, `**gras**` devient du texte en **gras**.
 
-Par exemple, pour mettre du texte en gras, ajoutez `**` avant et après le texte en gras, donc `**Some bold text that's very bold.**` s'affichera ainsi :
-**Some bold text that's very bold.**
+Markdown fonctionne dans les [éléments Texte](/elements#text) et les [éléments Info-bulle](/elements#tooltip). Les caractères que vous écrivez déterminent *la nature* du contenu (un titre, une liste, une citation). L'[apparence](/text-in-menus#looks-and-styles) de l'élément détermine son rendu, notamment ses couleurs et ses tailles.
 
-FancyMenu prend également en charge les extensions documentées ci-dessous.
+## Aperçu rapide
 
-> [!CAUTION]
-> Markdown fonctionne uniquement dans les **éléments de texte**. Pour les libellés de boutons et les autres champs de texte, utilisez [les codes de formatage de Minecraft](#minecraft-text-formatting).
+| Vous écrivez | Vous obtenez |
+|---|---|
+| `**gras**` ou `__gras__` | Texte en gras |
+| `*italique*` ou `_italique_` | Texte en italique |
+| `++souligné++` | Texte souligné |
+| `~~barré~~` | Texte barré |
+| `` `code` `` | Code en ligne |
+| `[Ouvrir le site](https://example.com)` | Un lien cliquable |
+| `%#ff5555%texte rouge%#%` | Texte coloré |
+| `# Titre` | Un titre |
+| `- Élément` | Une liste à puces |
+| `1. Élément` | Une liste numérotée |
+| `> Texte` | Une citation |
+| `> [!TIP]` | Un encadré d’information |
+| `---` | Une ligne de séparation |
 
-## Polices
+## Styles de texte
 
-Vous pouvez afficher du texte dans une police personnalisée chargée via un pack de ressources en ajoutant `%!!<nom_de_police>%` avant le texte et `%!!%` après.
+| Style | Syntaxe |
+|---|---|
+| **Gras** | `**texte**` ou `__texte__` |
+| **Italique** | `*texte*` ou `_texte_` |
+| **Souligné** | `++texte++` |
+| **Barré** | `~~texte~~` (un seul `~` de chaque côté fonctionne aussi) |
 
-Une police valide incluse dans le jeu de base est `uniform`. Pour afficher du texte dans la police `uniform`, faites ceci :
-`%!!uniform%this is a custom font%!!%`
+Vous pouvez combiner les styles, par exemple avec `***gras et italique***`.
 
-Cela affichera `this is a custom font` dans la police `uniform`.
+Les traits de soulignement simples à l’intérieur des mots restent tels quels : `mon_layout_génial` ne devient donc pas italique. Les noms comme `C++` restent également inchangés.
+
+> [!TIP]
+> Dans l’éditeur de texte, sélectionnez du texte et appuyez sur `Ctrl + B`, `Ctrl + I` ou `Ctrl + U` (`Cmd` sur macOS) pour le mettre en gras, en italique ou le souligner. Consultez [Raccourcis de mise en forme](/text-in-menus#formatting-shortcuts).
 
 ## Couleur du texte (HEX)
 
-Il est possible d'afficher du texte dans une couleur HEX spécifique en ajoutant `%<couleur_HEX>%` avant le texte et `%#%` après.
-
-Une couleur HEX valide pour le vert est `#77fc03`. Pour afficher du texte dans cette couleur, faites ceci :
-`%#77fc03%this text is green!%#%`
-
-Cela affichera `this text is green!` en `#77fc03` (vert).
-
-Assurez-vous que la couleur HEX commence bien par `#` !
-
-Les noms de couleurs courants de type HTML sont pris en charge dans le même code de formatage de couleur :
+Placez `%<couleur HEX>%` avant le texte et `%#%` après celui-ci :
 
 ```
-%#red%This text is red!%#%
+%#77fc03%Ce texte est vert !%#%
+```
+
+Le code couleur HEX doit commencer par `#`. Vous pouvez également utiliser des noms de couleur :
+
+```
+%#red%Ce texte est rouge !%#%
 ```
 
 Noms pris en charge : `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan` et `transparent`.
 
+## Polices
+
+Pour afficher du texte dans une autre police, placez `%!!<nom de la police>%` avant celui-ci et `%!!%` après. La police peut provenir de Minecraft ou d’un pack de ressources.
+
+```
+%!!uniform%Ce texte utilise la police uniform%!!%
+```
+
 ## Alignement du texte
 
-Vous pouvez aligner des lignes de texte en commençant une ligne par le code de formatage d’alignement spécifique, sans rien d’autre, puis les lignes de texte que vous souhaitez afficher avec cet alignement, et enfin en répétant le code d’alignement sur une ligne supplémentaire.
+Par défaut, le texte est aligné à gauche. Pour centrer des lignes ou les aligner à droite, placez le code d’alignement sur sa propre ligne, avant et après celles-ci :
 
-Tout le contenu textuel est **aligné à gauche par défaut**, il n’existe donc que des codes de formatage pour le **centré** et l’**alignement à droite**.
+- `^^^` centre les lignes.
+- `|||` les aligne à droite.
 
-### Centré
-
-Pour centrer des lignes de texte, utilisez le code de formatage `^^^`.
-
-Exemple :
 ```
-This text is not centered.
+Cette ligne est alignée à gauche.
 
 ^^^
-This text is centered.
-This text is also centered.
+Cette ligne est centrée.
+Celle-ci aussi.
 ^^^
 
-This text is not centered anymore.
-```
-
-### Aligné à droite
-
-Pour afficher des lignes de texte alignées à droite, utilisez le code de formatage `|||`.
-
-Exemple :
-```
-This text is not right-aligned.
-
 |||
-This text is right-aligned.
-This text is also right-aligned.
+Cette ligne est alignée à droite.
 |||
-
-This text is not right-aligned anymore.
 ```
+
+> [!TIP]
+> Dans l’éditeur de texte, les raccourcis `Ctrl + L`, `Ctrl + E` et `Ctrl + R` (`Cmd` sur macOS) alignent les lignes sélectionnées à gauche, au centre ou à droite.
 
 ## Titres
 
-Pour afficher **une ligne de texte** comme titre (plus grand et souligné), ajoutez `# ` (très grand), `## ` (grand) ou `### ` (petit) avant la ligne de texte.
+Commencez une ligne par `# ` (le plus grand), `## ` (grand) ou `### ` (petit) :
 
-Exemple :
-`## Big Headline`
+```
+# Bienvenue !
+## Actualités
+### Petit titre
+```
 
-## Gras
+## Listes
 
-Ajoutez `**` avant et après le texte pour le mettre en **gras**.
+<img width="460" alt="Listes Markdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_lists.png?raw=true">
 
-Exemple :
-`**bold text content**`
+### Listes à puces
 
-## Italique
+Commencez une ligne par `- `. Ajoutez deux espaces devant chaque niveau d’imbrication :
 
-Ajoutez `_` OU `*` avant et après le texte pour le mettre en *italique*.
+```
+- Premier élément
+- Deuxième élément
+  - Élément imbriqué
+    - Niveau encore plus profond
+```
 
-Exemple :
-`*italic text content*`
+### Listes numérotées
 
-## Barré
+Commencez une ligne par un nombre suivi d’un point ou d’une parenthèse :
 
-Ajoutez `~` avant et après le texte pour le rendre ~~barré~~.
+```
+1. Ouvrez la barre de menu
+2. Cliquez sur Personnalisation
+3) Cette syntaxe fonctionne aussi
+```
 
-Exemple :
-`~strikethrough text content~`
+### Marqueurs de notes de mise à jour
 
-## Liens hypertextes
+Les lignes peuvent également commencer par `+`, `-`, `~` ou `*`. Chacun possède son propre marqueur, ce qui est idéal pour les notes de mise à jour et les journaux des modifications :
 
-Vous pouvez ajouter des liens hypertextes au contenu textuel, qui ouvrent un site web lorsqu’on clique dessus.
+```
++ Ajout d’un nouveau menu principal
+- Suppression de l’ancien logo
+~ Modification des couleurs des boutons
+* Correction d’un plantage au démarrage
+```
 
-Le texte à afficher comme [lien hypertexte](https://google.com) doit être entouré de `[ ]`, suivi du lien réel entouré de `( )`.
+| Marqueur | Signification |
+|---|---|
+| `+` | Un élément a été ajouté |
+| `-` | Un élément a été supprimé |
+| `~` | Un élément a été modifié |
+| `*` | Un élément mérite d’être mis en évidence |
 
-Donc, si vous voulez rendre `example text content` cliquable et ouvrir `https://example-website.net`, faites ceci :
-`[example text content](https://example-website.net)`
+Un élément `-` n’affiche le marqueur « supprimé » que si sa liste contient aussi un élément `+`. Sinon, il s’agit d’un élément normal d’une liste à puces. Vous pouvez modifier ce comportement dans **Markdown -> Lists -> Extra Markers (+ - ~ \*) -> - Marker Used**.
+
+> [!NOTE]
+> Les nouveaux éléments Texte et Info-bulle activent par défaut les listes numérotées, les marqueurs de notes de mise à jour et les [encadrés d’information](#callouts). Ces options sont désactivées dans les éléments des anciennes mises en page afin que leur texte ne change pas soudainement. Activez-les dans le menu **Markdown** de l’élément : **Lists -> Numbered Lists**, **Lists -> Extra Markers (+ - ~ \*)** et **Callouts**.
+
+## Citations
+
+Commencez une ligne par `> ` pour en faire une citation. Celle-ci se poursuit jusqu’à la prochaine ligne vide :
+
+```
+> Ceci est une citation.
+Cette ligne en fait aussi partie.
+
+Cette ligne redevient du texte normal.
+```
+
+Les lignes à l’intérieur d’une citation peuvent également commencer par `>`. Une ligne contenant uniquement `>` ajoute une ligne vide à la citation :
+
+```
+> Premier paragraphe de la citation.
+>
+> Deuxième paragraphe de la citation.
+```
+
+## Encadrés d’information
+
+Les encadrés d’information sont des blocs colorés avec une icône et un libellé, parfaits pour afficher des conseils et des avertissements. Écrivez une citation dont la première ligne indique le type d’encadré :
+
+```
+> [!WARNING]
+> N’oubliez pas d’enregistrer votre mise en page !
+```
+
+<img width="640" alt="Encadrés d’information Markdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_callouts.png?raw=true">
+
+Il existe cinq types : `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` et `[!CAUTION]`.
+
+## Liens hypertexte
+
+Placez le texte entre `[ ]`, puis ajoutez le lien entre `( )` :
+
+```
+[Visitez notre site](https://example.com)
+```
+
+Les liens peuvent contenir des parenthèses, comme `https://en.wikipedia.org/wiki/Minecraft_(video_game)`. Pour afficher des crochets dans le texte du lien, placez un `\` devant ceux-ci : `[Cliquez \[ici\]](https://example.com)`.
 
 ## Événements de clic et de survol
 
-Les événements Markdown de clic et de survol sont disponibles pour les [éléments de texte](./elements#text) et les autres textes Markdown. Utilisez [**On Markdown Text Clicked**](./listeners#on-markdown-text-clicked-text_clicked) et [**On Markdown Text Hovered**](./listeners#on-markdown-text-hovered-text_hovered) pour y réagir.
-
-Les événements de clic utilisent le préfixe `click:` :
+Le texte peut également déclencher des [écouteurs](/listeners) au lieu d’ouvrir un site Web. Utilisez le préfixe `click:` ou `hover:` suivi d’un identifiant de votre choix :
 
 ```
-[some clickable text](click:unique_text_click_event_id)
+[texte cliquable](click:unique_text_click_event_id)
+[texte survolable](hover:unique_text_hover_event_id)
 ```
 
-Les événements de survol utilisent le préfixe `hover:` :
-
-```
-[some hoverable text](hover:unique_text_hover_event_id)
-```
-
-Les deux écouteurs exposent l’ID de l’événement sous la forme `$$text_event_id`.
+Réagissez à ces événements avec les écouteurs [**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked) et [**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered). Tous deux fournissent l’identifiant sous la forme `$$text_event_id`.
 
 ## Images
 
-Markdown prend en charge l’affichage d’images dans le contenu textuel.
+Placez une image sur sa propre ligne avec `![](` + la source de l’image + `)` :
 
-FancyMenu prend en charge les ressources Minecraft, les ressources locales et les ressources web dans Markdown.
-
-Pour ajouter une image, commencez une ligne de texte par `![](`, puis ajoutez [l’URL, l’emplacement de ressource ou le chemin vers la ressource](./resources), puis `)`.
-
-Donc, pour afficher la ressource web `https://example-website.net/image.png`, faites ceci :
-`![](https://example-website.net/image.png)`
-
-Les images peuvent également être des **liens hypertextes** en enveloppant toute la ligne de l’image dans un **lien hypertexte** comme ceci :
-`[![](https://example-website.net/image.png)](https://example-website.net)`
-
-> [!WARNING]
-> Les ressources locales doivent se trouver dans `<répertoire_du_jeu>/config/fancymenu/assets/` !
-
-## Citation
-
-Pour formater du texte comme une citation, commencez une ligne de texte par `> `.
-Cela formatera toutes les lignes suivantes comme une citation jusqu’à ce qu’il trouve une ligne **vide**.
-
-Exemple :
 ```
-This will not look like a quote.
-
-> This will look like a quote.
-This will also look like a quote.
-
-This will not look like a quote anymore.
+![](https://example.com/image.png)
 ```
 
-## Listes à puces
+La source peut être une URL Web, un fichier local comme `/config/fancymenu/assets/image.png` ou une image d’un pack de ressources. Consultez [Ressources](/resources) pour découvrir tous les types de sources.
 
-Pour afficher du texte sous forme de liste à puces comme ceci :
-- Entry 1
-- Entry 2
-  - Sub-Entry
+Le texte entre crochets devient la légende de l’image :
 
-Il vous suffit de commencer une ligne par `- `.
-
-Exemple :
 ```
-- Entry 1
-- Entry 2
-  - Sub-Entry
+![Ma capture d’écran géniale](/config/fancymenu/assets/screenshot.png)
 ```
 
-## Ligne de séparation
+La légende s’affiche sous l’image si l’option **Markdown -> Images -> Caption** de l’élément est activée.
 
-Pour ajouter une ligne de séparation à votre texte, de la largeur d’une ligne entière de texte, commencez simplement une ligne par `---` sans rien ajouter d’autre.
+Pour rendre une image cliquable, placez-la dans un lien :
 
-Elle ressemblera alors à ceci :
+```
+[![](https://example.com/image.png)](https://example.com)
+```
 
----
+## Tableaux
 
-## Blocs de code
+Séparez les cellules avec `|`. La première ligne correspond à l’en-tête et la deuxième contient `---` pour chaque colonne :
 
-Les blocs de code peuvent vous aider à afficher du texte en tant que `texte brut` sans que Markdown tente de le formater, ou simplement à afficher du texte dans un style de type code sans retour automatique à la ligne.
+```
+| Objet | Prix |
+|:---|---:|
+| Épée en diamant | 10 |
+| Pomme dorée | 5 |
+```
 
-Un bloc de code sur une seule ligne (au milieu d’un autre texte) commence et se termine par \` , ce qui est en fait assez difficile à montrer dans un texte Markdown.
+Les deux-points de la deuxième ligne définissent l’alignement de la colonne : `:---` à gauche, `:---:` au centre et `---:` à droite. Pour afficher un `|` dans une cellule, écrivez `\|`.
 
-Une ligne de texte contenant un bloc de code sur une seule ligne ressemble à ceci :
+<img width="640" alt="Tableau et code Markdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_table_code.png?raw=true">
 
-![single_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/e78fd38b-7b1a-4f00-9b11-797d964b3b43)
+## Séparateurs
 
-Les blocs de code multilignes enveloppent plusieurs lignes dans un grand bloc de code et commencent par une ligne ne contenant que \`\`\`, puis le contenu du texte, puis \`\`\` à nouveau :
+Une ligne contenant uniquement `---` trace un séparateur sur toute la largeur du texte.
 
-![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+## Code
+
+Le code affiche le texte tel quel, sans le mettre en forme.
+
+- **Code en ligne :** encadrez une partie de ligne avec `` ` ``, par exemple `` `/spawn` ``.
+- **Blocs de code :** ajoutez une ligne contenant `` ``` `` avant et après les lignes. Les lignes des blocs de code ne sont pas renvoyées à la ligne.
+
+````
+```
+/give @p minecraft:diamond 64
+```
+````
+
+Vous pouvez ajouter le nom d’un langage après le premier `` ``` ``, par exemple `` ```json ``. FancyMenu l’accepte, mais cela ne change pas l’apparence du code.
+
+Les [espaces réservés](/placeholders) sont tout de même remplacés dans le code.
 
 ## Texte brut
 
-Le code de formatage de texte brut contournera tous les autres codes de formatage qu’il contient.
-
-Il fonctionne un peu comme les blocs de code, mais ne le formate pas comme un bloc de code. Il s’affiche plutôt comme du texte normal, mais sans aucune mise en forme.
-
-Pour envelopper une partie de texte dans une ligne avec un code de formatage de texte brut, vous devez ajouter `;;` avant et après la partie du texte que vous souhaitez afficher en texte brut, comme ceci :
+Le texte brut affiche les caractères de mise en forme tels quels, sans adopter l’apparence du code. Encadrez une partie de ligne avec `;;` :
 
 ```
-This is a line of text with ;;**this part**;; showing as unformatted text with visible ** (bold) formatting code and _this part_ as normal formatted italic text.
+Ceci affiche ;;**des astérisques**;; au lieu d’un texte en gras.
 ```
 
-Le texte brut fonctionne aussi comme un code d’encadrement multilignes. Pour envelopper des lignes entières, ajoutez `;;;` avant et après la ou les lignes que vous souhaitez afficher en texte brut, comme ceci :
+Pour appliquer ce comportement à des lignes entières, placez `;;;` sur sa propre ligne avant et après celles-ci :
 
 ```
 ;;;
-This line will show **unformatted** with visible ** (bold) formatting codes.
-This line will also show _unformatted_ with visible _ (italic) formatting codes.
+**Pas en gras**, _pas en italique_.
 ;;;
-
-This line will look **normal** again with the "normal" formatted as bold text.
 ```
 
-# Formatage du texte Minecraft
+## Caractères d’échappement
 
-Les codes de formatage Minecraft fonctionnent dans les champs de texte formatés pris en charge dans FancyMenu. Utilisez `&` à la place du préfixe `§` de Minecraft ; par exemple, `&cWarning` affiche du texte rouge.
+Pour afficher un caractère de mise en forme comme du texte normal, placez un `\` devant. Par exemple, `\*pas en italique\*` affiche `*pas en italique*`.
 
-Consultez la [référence des codes de formatage du Minecraft Wiki](https://minecraft.wiki/w/Formatting_codes) pour connaître les couleurs et styles disponibles.
+Cela fonctionne pour `\` `` ` `` `*` `_` `{` `}` `[` `]` `(` `)` `#` `+` `-` `.` `!` `|` `>` `~` et `^`.
 
-> [!CAUTION]
-> Les codes de formatage Minecraft sont peu fiables dans les **éléments de texte**, car ces éléments analysent Markdown. Utilisez plutôt le formatage Markdown décrit ci-dessus.
+# Mise en forme du texte Minecraft
+
+Les codes de mise en forme Minecraft fonctionnent dans la plupart des champs de texte de FancyMenu. Utilisez `&` à la place de `§`, le caractère utilisé par Minecraft. Par exemple, `&cAvertissement` affiche du texte rouge et `&l` met le texte en gras. `&r` réinitialise la mise en forme.
+
+Consultez le [Wiki Minecraft](https://minecraft.wiki/w/Formatting_codes) pour découvrir tous les codes.
+
+Les codes de mise en forme fonctionnent également dans les textes Markdown, sauf à l’intérieur du code et du texte brut. Pour les styles comme le gras et l’italique, Markdown est généralement plus lisible, mais les codes sont pratiques pour appliquer rapidement des couleurs.
 
 # Composants de texte Minecraft (système de composants bruts)
 
-Le système de composants de texte de Minecraft est très puissant pour le contenu textuel **sur une seule ligne**, comme les **libellés de boutons**.
+Les composants de texte Minecraft sont des textes mis en forme au format JSON. Ils fonctionnent pour les textes **sur une seule ligne**, comme les **libellés des boutons et des curseurs**, mais pas dans les éléments Texte.
 
-Dans Minecraft Vanilla, vous pouvez l’utiliser dans les commandes `/tellraw` et `/title` (et probablement à d’autres endroits).
-Il s’agit de texte formaté sérialisé en JSON, vous pouvez donc ajouter des attributs de formatage au contenu textuel.
+Pour en utiliser un, définissez le composant comme seul contenu du libellé :
 
-Pour en savoir plus sur les composants de texte en détail, veuillez consulter [cette page du wiki Minecraft](https://minecraft.wiki/w/Raw_JSON_text_format).
-Pour en savoir plus sur les polices dans Minecraft, consultez [cette page du wiki Minecraft](https://minecraft.wiki/w/Resource_pack#Fonts).
+```
+{"text":"Texte du libellé du bouton","font":"uniform"}
+```
 
-Pour que FancyMenu détecte un libellé de bouton comme un **composant de texte**, ne mettez rien d’autre que le texte sérialisé du composant comme libellé, comme ceci :
-`{"text":"Button Label Text","font":"uniform"}`
+Le texte `Texte du libellé du bouton` s’affiche avec la police `uniform`. Vous pouvez utiliser des [espaces réservés](/placeholders) dans la valeur `text`.
 
-L’exemple ci-dessus affichera le libellé du bouton `Button Label Text` dans la police `uniform`.
-
-> [!NOTE]
-> Vous pouvez utiliser les espaces réservés de FancyMenu dans la valeur `text` des composants.
+Pour en savoir plus, consultez les pages du Wiki Minecraft consacrées au [format des composants de texte](https://minecraft.wiki/w/Raw_JSON_text_format) et aux [polices](https://minecraft.wiki/w/Resource_pack#Fonts).

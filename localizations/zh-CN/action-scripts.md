@@ -1,621 +1,874 @@
 ---
 title: 动作脚本
-description: 如何将动作脚本与按钮、滑块、计数器等一起使用。
+description: 使用动作脚本让按钮和菜单执行操作，并了解 FancyMenu 提供的所有动作。
+sourceBlobSha: 07ed5af6f189a91c518131cf3a7ab7a1e0a8305d
 ---
+
 # 动作脚本
 
-当 [Button](./elements#button) 被点击、[Ticker](./elements#ticker) 更新、[Slider](./elements#slider) 变化、屏幕打开或关闭，或发生其他受支持的事件时，动作脚本会运行已配置的任务。诸如 **if**、**else-if**、**else** 和 **while** 之类的语句可添加条件控制。
+动作脚本是一系列操作，FancyMenu 会在发生某些事件时执行这些操作，例如点击按钮或打开菜单。每一项都是一个动作：打开菜单、加入服务器、显示消息、播放声音等。IF 和 WHILE 等语句则决定运行哪些动作以及运行多少次。
 
 > [!CAUTION]
-> 导入的动作脚本可能会修改文件、连接服务器、打开链接或运行命令。请仅使用你信任的来源。
+> 动作脚本可以修改文件、连接服务器、打开链接和运行命令。请只使用来自可信布局的脚本。
 
-<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="动作脚本编辑器" style="max-width:800px;width:100%;height:auto;">
+<img width="800" alt="在布局编辑器中创建按钮的动作脚本：编辑动作脚本、包含显示 Toast 的动作选择器，以及 Toast 的标题和消息" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/action_script_make.gif?raw=true">
 
-# 什么是动作？
+# 创建动作脚本
 
-**动作**是 FancyMenu 在触发时执行的任务或操作。例如，某个动作可以打开一个新界面、发送聊天消息，或调整 [Audio element](./elements#audio) 的音量。在 FancyMenu 的编辑器中，动作可以配合一个值进行配置（如需要），以提供更多细节——例如 URL 或服务器地址。
+1. 在布局编辑器中右键点击按钮，然后点击 **编辑动作脚本**。
+2. 按 `A` 打开动作选择器。
+3. 搜索所需动作，点击它，然后点击 **下一步**。
+4. 在弹出的窗口中设置动作，然后点击 **完成**。没有设置项的动作只需在选择器中点击 **完成**。
+5. 在脚本编辑器中点击 **完成**，然后保存布局。
 
-# 语句
+退出编辑器后，点击按钮时就会运行其脚本：
 
-为了创建更复杂的行为，FancyMenu 在动作脚本中支持控制语句：
+<img width="800" alt="在标题屏幕上点击“新内容？”按钮，会显示包含更新标题和消息的 Toast" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/action_script_use.gif?raw=true">
 
-| 语句 | 行为 |
-|---|---|
-| **If** | 仅当其 [条件](./conditions) 满足时才运行其动作。 |
-| **Else-If** | 当前面的 **If** 或 **Else-If** 没有运行时，检查另一组 [条件](./conditions)。 |
-| **Else** | 当前面所有 **If** 或 **Else-If** 的条件都不满足时运行。 |
-| **While** | 在其 [条件](./conditions) 仍为真时重复执行其动作。为防止无限循环，它会在三秒后停止；不要把它当作计时器使用。 |
+> [!TIP]
+> 右键点击脚本区域，然后打开 **添加动作**，即可查看所有动作。右键点击列表中的动作可将其设为收藏，这样它就会显示在列表顶部。
 
-# 块
+# 可使用动作脚本的位置
 
-脚本中可以添加块，以便更好地控制脚本执行流程/时机，并提供一些实用的易用性功能：
+| 位置 | 运行时机 | 编辑位置 |
+|---|---|---|
+| [按钮](/elements#button) | 点击按钮时。 | 右键点击按钮 -> **编辑动作脚本** |
+| [滑块](/elements#slider) | 滑块数值发生变化时。`$$value` 是新数值。 | 右键点击滑块 -> **编辑动作脚本** |
+| [复选框](/elements#checkbox) | 勾选或取消勾选复选框时。`$$value` 是其新状态：`true` 或 `false`。 | 右键点击复选框 -> **编辑动作脚本** |
+| [计时器](/elements#ticker) | 按其 **计时模式** 设置运行：反复运行、每个游戏会话运行一次，或菜单加载时运行一次。 | 右键点击计时器 -> **编辑动作脚本** |
+| 打开菜单 | 布局的菜单打开时。 | 右键点击编辑器背景 -> **编辑“打开屏幕”动作脚本** |
+| 关闭菜单 | 布局的菜单关闭时。 | 右键点击编辑器背景 -> **编辑“关闭屏幕”动作脚本** |
+| [监听器](/listeners) | 发生相应事件时，例如按键或聊天消息。 | **菜单栏 -> 自定义 -> 管理监听器** |
+| [调度器](/schedulers) | 到达设定时间时，即使当前没有打开菜单也会运行。 | **菜单栏 -> 自定义 -> 管理调度器** |
 
-| 块 | 行为 |
-|---|---|
-| **Delay** | 开始倒计时，但不会停止脚本其余部分。其嵌套动作会在延迟结束后变为可执行；屏幕重新初始化会重置倒计时。 |
-| **Execute Later** | 每次到达该块时，都会在延迟结束后安排一次新的嵌套动作执行。 |
-| **Comment** | 在脚本中添加备注用于整理，不会执行任何动作。 |
+打开和关闭脚本也可以在编辑器的 **布局 -> 布局属性** 菜单中找到。
 
-# 脚本执行
+# 脚本编辑器
 
-动作按从上到下的顺序运行。失败的动作会被记录，然后脚本继续执行。
-
-下载、ZIP 解压和 HTTP 请求会稍后完成；下一个动作不会等待它们完成。若后续工作依赖结果，请使用 [**On File Downloaded via Action**](./listeners#on-file-downloaded-via-action-file_downloaded_via_action)、[**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) 或 HTTP 响应变量。
-
-# 在哪里可以使用动作脚本？
-
-动作脚本用途广泛，可用于布局中的多个位置。你可以将它们分配给，例如：
-
-- [**Buttons**](./elements#button)：点击按钮时执行一个动作。
-- [**Tickers**](./elements#ticker)：持续运行动作脚本，以更新布局中的屏幕信息。
-- [**Sliders**](./elements#slider)：当滑块值变化时触发动作脚本。
-- **Screen Events：** 当屏幕打开或关闭时运行脚本（例如，菜单出现时播放声音）。
-- [**Listeners**](./listeners)：当监听器接收到其配置的事件时，它会运行其动作脚本。
-- [**Schedulers**](./schedulers)：按时间计划执行动作，即使没有打开任何屏幕。
-
-# 在动作中使用占位符
-
-动作值支持通过 **占位符** 提供动态内容。大多数情况下，这些占位符使用类似 JSON 的语法，并会在动作运行时替换为实时数据。
-
-## 类 JSON 占位符
-
-这些是常规的 [占位符](./placeholders)，可在布局中的许多位置使用。
-
-它们遵循以下语法：
-
-```json
-{"placeholder": "placeholder_id", "values": {"key1": "value1", "key2": "value2"}}
-```
-
-它们可以获取游戏数据，例如玩家名称、屏幕尺寸，或使用 [**Calculator** 占位符](./placeholders#calculator-calc) 计算出的值。你也可以嵌套占位符以实现更高级的用法。
-
-## `$$` 占位符（变量）
-
-`$$` 值是由运行特定动作脚本的功能提供的只读值。
-
-例如，[Slider](./elements#slider) 会将其当前值作为 `$$value` 提供。
-
-每个 [listener](./listeners) 都会说明它提供了哪些 `$$` 值，例如按下的鼠标按钮或输入的结构。
-
-`$$` 名称区分大小写，并且仅在提供它们的脚本中可用。请参见 [Listeners](./listeners#listener-variables)。
-
-## 动作值分隔符
-
-请使用每个动作中显示的精确分隔符：`:`, `||` 或 `|||`。字段内部没有转义分隔符的语法。
-
-在按分隔符拆分值之前，会先替换占位符。对于 `set_variable`，只有第一个冒号用于分隔名称和值，后续的冒号仍会保留在值中。
-
-## 文本值
-
-[FancyMenu 格式化代码](./text-formatting#minecraft-text-formatting) 在任何接受格式化文本的动作中，都使用 `&` 代替 Minecraft 的 `§` 字符。
-
-- [**Send Chat Message/Command**](#send-chat-messagecommand-sendmessage) 和 [**Paste to Chat**](#paste-to-chat-paste_to_chat) 支持这些格式化代码。
-- [**Display In Chat [Client-Side]**](#display-in-chat-client-side-display_in_chat_client_side) 接受纯文本或序列化的 Minecraft 文本组件 JSON。
-- [**Open URL in Browser**](#open-url-in-browser-openlink) 在将 URL 传递给操作系统之前，会应用相同的格式化代码转换。
-
-# 如何设置和编辑动作
-
-要编辑元素的动作和语句块，请**右键点击该元素**并选择 **Manage Action Script**。在编辑器中，你可以：
-
-- **添加新的动作或语句：** 插入新的动作条目或控制语句（if、else-if、else、while）来构建脚本。
-- **编辑现有动作或语句：** 修改动作值或更改控制逻辑。
-- **移除动作或语句：** 从脚本中删除不需要的动作。
-
-通过 [**Customization -> Manage Listeners**](./listeners#using-listeners) 创建和编辑监听器脚本。
-
-# 动作脚本编辑器快捷键
+- 动作按从上到下的顺序运行。语句或文件夹中的条目会缩进显示在其下方。
+- 新条目会添加到选中条目的下方。如果选中的是语句或文件夹，则会添加到其开头。
+- 双击某个值可直接在列表中编辑。显示简短摘要的值则会打开对应窗口。
+- 拖动条目即可移动。IF 链、循环和文件夹可通过其前方的小型切换按钮折叠。这只会改变显示方式。
+- 右侧的栏显示整个脚本的概览。点击它即可跳转到脚本的相应部分。
+- 右键点击脚本区域可访问其他功能，例如添加语句和 **为 AI 导出动作脚本**（请参阅[为 AI 导出](/export-for-ai)）。
+- 点击 **取消** 或关闭窗口会丢弃更改。如果有未保存的更改，编辑器会先询问你。
 
 ## 快捷键
 
-- `DEL` : 快速删除所选条目
-- `ENTER` : 开始对所选条目进行行内编辑（如果所选条目没有行内编辑，则打开编辑界面）
-- `Ctrl/Command + C` : 复制所选动作（目前仅对动作有效）
-- `Ctrl/Command + V` : 粘贴之前复制的动作
-- `Ctrl/Command + Z` : 撤销一步
-- `Ctrl/Command + Y` : 重做一步
-- `ARROW UP` : 从当前所选条目向上移动一项
-- `ARROW DOWN` : 从当前所选条目向下移动一项
-- `SHIFT + ARROW UP` : 将所选条目上移一项
-- `SHIFT + ARROW DOWN` : 将所选条目下移一项
-- `A` : 快速打开 Action Chooser 界面以添加新动作
-- `Ctrl/Command + S` : 在编辑器窗口中完成/保存
+在 macOS 上，`Ctrl` 对应 `Cmd`。
 
-## 编辑
+| 快捷键 | 功能 |
+|---|---|
+| `A` | 打开动作选择器。 |
+| `Enter` | 编辑选中的条目。 |
+| `Delete` | 删除选中的条目。 |
+| `Up` / `Down` | 选中上方或下方的条目。 |
+| `Shift + Up` / `Shift + Down` | 将选中的条目上移或下移。 |
+| `Ctrl + C` / `Ctrl + V` | 复制和粘贴动作。语句和代码块无法复制。 |
+| `Ctrl + Z` | 撤销。 |
+| `Ctrl + Y` 或 `Ctrl + Shift + Z` | 重做。 |
+| `Ctrl + S` | 保存脚本并关闭编辑器，效果与点击 **完成** 相同。 |
 
-- 双击动作的值可直接编辑该值，而无需进入完整的值编辑界面。
-- IF 语句链（附加 ELSE/ELSE-IF 语句）、WHILE 循环和文件夹都可以折叠（仅视觉效果，不影响脚本逻辑）。
-- 编辑器总是在所选条目下方添加新动作（或嵌套到所选链/循环/文件夹中）。
-- 右键点击深灰色脚本区域背景会打开上下文菜单，其中包含添加动作、语句以及其他重要内容的选项。
+# 语句
 
-# 动作详解
+语句决定运行哪些动作以及运行多少次。右键点击脚本区域即可添加语句。
 
-本节列出 FancyMenu 内置的动作。
+## If、Else-If 和 Else
 
-## 下一曲目 (`audio_next_track`)
+**添加 IF 语句** 会要求你设置[条件](/conditions)。只有满足条件时，IF 中的动作才会运行。
 
-**用途：** 切换到 [Audio element](./elements#audio) 的下一曲目
+右键点击 IF 可在其语句链中添加更多语句：
 
-**值：** 必需 — `audio_element_identifier`（要控制的音频元素 ID）
+- **追加 ELSE-IF 语句**：仅当上方的 IF 未运行时，才检查自己的条件。
+- **追加 ELSE 语句**：当语句链中上方的语句都未运行时，运行此语句。
 
-## 上一曲目 (`audio_previous_track`)
+例如，使用 **布局已启用** 条件的 IF 可以仅在冬季布局启用时显示 Toast，而 ELSE 则会在其他情况下播放声音。
 
-**用途：** 切换到 [Audio element](./elements#audio) 的上一曲目
+## While 循环
 
-**值：** 必需 — `audio_element_identifier`（要控制的音频元素 ID）
+**添加 WHILE 循环** 会在满足其[条件](/conditions)期间重复运行其中的动作。
 
-## 设置曲目音量 (`set_audio_element_volume`)
+每次运行都会在 3 秒后停止，因此不会因无限循环而冻结游戏。WHILE 不是计时器：若要稍后运行或反复运行操作，请使用[稍后执行](#execute-later)、[计时器](/elements#ticker)或[调度器](/schedulers)。
 
-**用途：** 设置 [Audio element](./elements#audio) 的音量（`0.0` 到 `1.0`）
+## For Each 循环
 
-**值：** 必需 — `element_identifier:volume`
+**添加 FOR EACH 循环** 会针对[列表变量](/variables#text-and-list-variables)中的每个条目运行一次其中的动作，从第一个条目开始，直到最后一个条目。
 
-## 切换曲目播放/暂停 (`audio_toggle_play`)
+- `$$list_entry` 表示当前条目，`$$list_index` 表示其索引。第一个条目的索引为 0。
+- 在循环内的动作值和条件中都可以使用这两个变量。
+- 输入列表名称时不要加 `$$`，例如 `quest_log`。名称中也可以包含占位符。
+- 循环开始时会读取一次列表，因此循环中的动作可以安全地修改列表。
+- 和 WHILE 循环一样，每次运行都会在 3 秒后停止。
 
-**用途：** 在 [Audio element](./elements#audio) 的当前曲目播放与暂停之间切换
+示例请参阅[遍历列表](/variables#going-through-a-list)。
 
-**值：** 必需 — `audio_element_identifier`
+# 代码块
 
-## 播放音频 (`play_audio`)
+代码块可以改变动作的运行时机，也能让脚本更整洁。右键点击脚本区域即可添加代码块。
 
-**用途：** 播放一次音频资源。此动作启动的音频之后可通过 [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios) 停止。
+## 延迟门控
 
-**值：** 必需 — 包含 `audioSource`、`soundChannel` 和 `baseVolume` 的 JSON 配置
+**添加 DELAY GATE 代码块** 会让其中的动作延迟一段时间，时间以毫秒为单位（`1000` 毫秒为 1 秒）。
 
-**示例：** `{"audioSource":"[source:local]/config/fancymenu/assets/example.ogg","soundChannel":"master","baseVolume":1.0}`
+- 脚本第一次执行到门控时，会启动计时器并跳过其中的动作。脚本会立即继续运行后续内容。
+- 在计时结束前，每次脚本再次执行到门控时，都会再次跳过其中的动作。
+- 此后，每次脚本执行到门控时，都会运行其中的动作。
+- 对于元素脚本，菜单再次打开或调整大小时，计时器会重新开始。
 
-**行为：**
+因此，它适用于[计时器](/elements#ticker)，例如在菜单打开几秒后才显示内容。它不会自行运行任何操作；需要这种效果时请使用“稍后执行”。
 
-- `baseVolume` 会被限制在 `0.0`–`1.0`。
-- 未知的音效通道将使用主通道（Master）。
-- 该动作不能从异步 [Ticker](./elements#ticker) 中运行；FancyMenu 会改为显示错误。
-- FancyMenu 最多等待十秒，直到音频资源准备就绪。
-- 成功启动的曲目可通过 [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios) 停止。
+## 稍后执行
 
-## 停止所有动作音频 (`stop_all_action_audios`)
+**添加 EXECUTE LATER 代码块** 会在指定的毫秒数后运行其中的动作。脚本会立即继续运行后续内容。
 
-**用途：** 停止所有由 [**Play Audio** 动作](#play-audio-play_audio) 启动的音轨。这不会停止 [Audio elements](./elements#audio)、菜单打开/关闭声音、按钮声音或其他音频系统。
+每次脚本执行到此代码块时，都会开始新的倒计时。因此，它适用于只运行一次的脚本，例如按钮点击或打开菜单时运行的脚本。
 
-**值：** 不需要
+## 文件夹
 
-## 设置视频元素音量 (`set_video_element_volume`)
+**添加文件夹** 会用一个名称将动作归组。它会运行其中的所有内容，作用只是让较长的脚本更整洁。双击文件夹名称即可重命名。
 
-**用途：** 设置 [Video element](./video) 的音量（`0.0` 到 `1.0`）
+## 注释
 
-**值：** 必需 — `video_element_identifier:volume`
+**添加注释** 可为自己添加备注。注释不会执行任何操作。双击注释即可编辑。
 
-## 设置视频元素播放时间 (`set_video_element_play_time`)
+# 脚本的运行方式
 
-**用途：** 将 [Video element](./video) 定位到指定的毫秒时间戳
+- 动作按从上到下的顺序运行。动作失败时会在游戏日志中记录错误，但脚本仍会继续运行其余内容。
+- 动作值中的占位符会在动作运行时替换为当下的值，因此动作能读取之前的动作所做的更改。
+- 下载、ZIP 文件解压和网络请求会在后台完成，后续动作不会等待它们完成。若要在这些操作完成后运行动作，请使用监听器 [**通过动作下载文件时**](/listeners#on-file-downloaded-via-action) 和 [**通过动作解压 ZIP 时**](/listeners#on-zip-extracted-via-action)，或使用 [**发送 HTTP 请求**](#send-http-request)的响应变量。
 
-**值：** 必需 — `video_element_identifier:timestamp_ms`
+# 动作值
 
-## 切换视频元素暂停状态 (`toggle_video_element_pause_state`)
+大多数动作都需要一个值，例如服务器地址。简单的值是你输入的文本。设置项较多的动作则有自己的窗口。
 
-**用途：** 切换 [Video element](./video) 的暂停状态
+## 占位符
 
-**值：** 必需 — `video_element_identifier`
+值中可以包含[占位符](/placeholders)，例如玩家名称。动作运行时，系统会替换占位符：
 
-## 设置视频背景音量 (`set_video_menu_background_volume`)
+```
+/say 欢迎回来，{"placeholder":"playername"}！
+```
 
-**用途：** 设置 [Video menu background](./video) 的音量（`0.0` 到 `1.0`）
+## $$ 变量
 
-**值：** 必需 — `background_identifier:volume`
+输入 `$$` 和变量名称，即可在动作或条件中使用变量值。变量名称区分大小写。以下两类变量都支持这种用法：
+
+### 自定义变量
+
+在 **菜单栏 -> 自定义 -> 管理变量** 中创建的变量都可以使用 `$$` 和变量名称来引用。名为 `coins` 的变量在所有脚本中都写作 `$$coins`。例如，将以下值用于 **在聊天栏显示 [客户端]**，即可告知玩家拥有多少金币：
+
+```
+&6你有 $$coins 枚金币！
+```
+
+请参阅[变量](/variables)，了解如何创建和更改变量。
+
+### 脚本变量
+
+某些功能会为脚本提供专属变量：
+
+- [滑块](/elements#slider)会提供 `$$value`，即其新数值。
+- [复选框](/elements#checkbox)会提供 `$$value`，即其新状态：`true` 或 `false`。
+- [For Each 循环](#for-each-loop)会提供 `$$list_entry` 和 `$$list_index`。
+- 每个[监听器](/listeners#listener-variables)都会列出它提供的变量，例如被按下的按键。
+
+这些变量只在脚本运行期间存在。如果某个脚本变量与自定义变量同名，那么 `$$name` 指的是脚本变量。
+
+# 所有动作
+
+FancyMenu 提供的所有动作，按功能分类排列。
+
+## 屏幕和菜单
+
+### 打开屏幕或自定义 GUI
+
+**标识符：** `opengui`
+
+打开游戏、模组或[自定义 GUI](/custom-guis)中的菜单。
+
+**值：** [屏幕标识符](/screen-identifiers)，例如 `options_screen`
+
+标识符区分大小写。某些模组菜单无法通过此方式打开。遇到这种情况，请在能打开该菜单的按钮上使用[**模拟原版/模组按钮**](#模拟原版模组按钮)。
+
+### 关闭屏幕
+
+**标识符：** `closegui`
+
+关闭当前打开的菜单。在未进入世界时，会打开标题屏幕。
+
+**值：** 无
+
+### 更新屏幕
+
+**标识符：** `update_screen`
+
+重新构建当前打开的菜单，效果类似调整窗口大小。更改 GUI 缩放或其他选项后，此动作很有用。
+
+**值：** 无
+
+### 返回上一个屏幕
+
+**标识符：** `back_to_last_screen`
+
+返回之前打开的菜单。对于[自定义 GUI](/custom-guis)，会返回打开它之前所在的菜单。
+
+**值：** 无
+
+### 显示 Toast
+
+**标识符：** `show_toast`
+
+在右上角显示 Toast 通知。可在其窗口中进行设置：
+
+- **Toast 宽度**：120 到 320 像素。
+- **持续时间（毫秒）**：显示时长，范围从 1 秒（`1000` 毫秒）到 10 分钟。
+- **标题**和**消息**：支持[格式代码](/text-formatting#minecraft-text-formatting)的文本，或 Minecraft 文本组件 JSON。
+- **图标纹理来源**和**背景纹理来源**：可选的[图像](/resources)。图标使用 20x20 像素效果最佳；背景高度应为 32 像素，宽度与 Toast 相同。
+
+### 模拟原版/模组按钮
+
+**标识符：** `mimicbutton`
+
+模拟玩家点击游戏或模组中的按钮。
+
+**值：** 按钮的[控件定位符](/widget-locators)，例如 `title_screen:mc_titlescreen_options_button`
+
+要获取定位符，请在编辑器中右键点击按钮，然后点击 **复制控件定位符**。
+
+## 布局和元素
+
+### 切换布局
+
+**标识符：** `toggle_layout`
+
+如果布局已启用，则将其关闭；如果已关闭，则将其启用。
+
+**值：** 布局名称，不带 `.txt`，例如 `winter_title_screen`
+
+### 启用布局
+
+**标识符：** `enable_layout`
+
+启用布局。
+
+**值：** 布局名称，不带 `.txt`
+
+### 禁用布局
+
+**标识符：** `disable_layout`
+
+禁用布局。
+
+**值：** 布局名称，不带 `.txt`
+
+这三个布局动作都会保存更改，并立即更新当前打开的菜单。布局名称区分大小写。
+
+### 切换元素动画器
+
+**标识符：** `toggle_element_animator`
+
+如果[元素动画器](/element-animator)已关闭，则将其启用；如果已启用，则将其关闭。动画会从头开始播放。此状态会保存。
+
+**值：** 元素动画器的标识符
+
+### 启用元素动画器
+
+**标识符：** `enable_element_animator`
+
+启用[元素动画器](/element-animator)。如果它之前处于关闭状态，动画会从头开始播放。
+
+**值：** 元素动画器的标识符
+
+### 禁用元素动画器
+
+**标识符：** `disable_element_animator`
+
+禁用[元素动画器](/element-animator)并重置其动画。
+
+**值：** 元素动画器的标识符
+
+### 重置元素动画器
+
+**标识符：** `reset_element_animator`
+
+让[元素动画器](/element-animator)的动画从头开始播放，但不启用或禁用它。
+
+**值：** 元素动画器的标识符
+
+### 设置文本输入框的值
+
+**标识符：** `set_text_input_field_value`
+
+设置 FancyMenu 或游戏中[文本输入框](/elements#text-input-field)的文本。
+
+**值：** `element_identifier|||text|||force`
+
+将 `force` 设为 `true` 时，即使输入框已禁用（处于非活动状态），文本也会更改。
+
+### 滚动元素
+
+**标识符：** `scroll_scroll_area`
+
+滚动[可滚动区域](/scrollable-areas)或[文本](/elements#text)元素。可在其窗口中进行设置：
+
+- **要滚动的元素的标识符**：要滚动的区域或文本。
+- **滚动到**：
+  - **开头**或**结尾**。
+  - **位置**：以像素为单位的**水平位置**和**垂直位置**。留空其中一项即可保持该方向的位置不变。
+  - **元素**（仅限区域）：滚动至指定的**要滚动到的元素的标识符**，使其位于开头。
+  - **行号**（仅限文本）：第一行为 `1`。
+  - **包含文本的行**（仅限文本）：滚动到第一条包含**行中的文本**的行。不区分大小写。
+- **平滑滚动**：平滑滚动到目标位置，而不是直接跳转。此元素需要启用平滑滚动。
+
+如果找不到指定元素，则不会执行任何操作。
+
+## 音频和视频
+
+### 下一首曲目
+
+**标识符：** `audio_next_track`
+
+跳转到[音频元素](/elements#audio)的下一首曲目。
+
+**值：** 音频元素的标识符，例如 `menu_music`
+
+### 上一首曲目
+
+**标识符：** `audio_previous_track`
+
+返回[音频元素](/elements#audio)的上一首曲目。
+
+**值：** 音频元素的标识符
+
+### 设置曲目音量
+
+**标识符：** `set_audio_element_volume`
+
+设置[音频元素](/elements#audio)的音量，范围为 `0.0`（0%）到 `1.0`（100%）。
+
+**值：** `element_identifier:volume`，例如 `menu_music:0.5`
+
+### 切换曲目播放/暂停状态
+
+**标识符：** `audio_toggle_play`
+
+暂停正在播放的[音频元素](/elements#audio)，或播放已暂停的音频元素。
+
+**值：** 音频元素的标识符
+
+### 播放音频
+
+**标识符：** `play_audio`
+
+播放一次音频文件。可在其窗口中设置**音频来源**、**声音通道**和**基础音量**（最高 100%）。
+
+- FancyMenu 最多会等待 10 秒来加载音频。
+- 在后台运行（异步）的[计时器](/elements#ticker)中无法使用此动作。FancyMenu 会显示错误。
+
+[**停止所有动作音频**](#停止所有动作音频)可停止通过此动作播放的音频。
+
+### 停止所有动作音频
+
+**标识符：** `stop_all_action_audios`
+
+停止通过[**播放音频**](#播放音频)启动的所有音频。音频元素、菜单音效和按钮音效会继续播放。
+
+**值：** 无
+
+### 设置视频元素音量
+
+**标识符：** `set_video_element_volume`
+
+设置[视频元素](/video)的音量，范围为 `0.0`（0%）到 `1.0`（100%）。
+
+**值：** `video_element_identifier:volume`
+
+### 设置视频元素播放时间
+
+**标识符：** `set_video_element_play_time`
+
+跳转到[视频元素](/video)的指定时间，时间以毫秒为单位。
+
+**值：** `video_element_identifier:time_in_ms`，例如 `intro_video:30000`
+
+### 切换视频元素的暂停状态
+
+**标识符：** `toggle_video_element_pause_state`
+
+暂停正在播放的[视频元素](/video)，或播放已暂停的视频元素。
+
+**值：** 视频元素的标识符
+
+### 设置视频背景音量
+
+**标识符：** `set_video_menu_background_volume`
+
+设置[视频菜单背景](/video)的音量，范围为 `0.0`（0%）到 `1.0`（100%）。
+
+**值：** `background_identifier:volume`
 
 > [!NOTE]
-> 要获取背景的标识符，请右键点击编辑器背景，然后点击“Copy Background Identifier”。
+> 要获取菜单背景的标识符，请右键点击编辑器背景，然后点击 **复制背景标识符**。
 
-## 设置视频背景播放时间 (`set_video_menu_background_play_time`)
+### 设置视频背景播放时间
 
-**用途：** 将 [Video menu background](./video) 定位到指定的毫秒时间戳
+**标识符：** `set_video_menu_background_play_time`
 
-**值：** 必需 — `background_identifier:timestamp_ms`
+跳转到[视频菜单背景](/video)的指定时间，时间以毫秒为单位。
 
-> [!NOTE]
-> 要获取背景的标识符，请右键点击编辑器背景，然后点击“Copy Background Identifier”。
+**值：** `background_identifier:time_in_ms`
 
-## 切换视频背景暂停状态 (`toggle_video_menu_background_pause_state`)
+### 切换视频背景的暂停状态
 
-**用途：** 切换 [Video menu background](./video) 的暂停状态
+**标识符：** `toggle_video_menu_background_pause_state`
 
-**值：** 必需 — `background_identifier`
+暂停正在播放的[视频菜单背景](/video)，或播放已暂停的视频菜单背景。
 
-> [!NOTE]
-> 要获取背景的标识符，请右键点击编辑器背景，然后点击“Copy Background Identifier”。
+**值：** 菜单背景的标识符
 
-## 切换布局 (`toggle_layout`)
+## 世界和服务器
 
-**用途：** 通过布局文件名（不含 `.txt`）切换布局的启用/禁用状态
+### 加入服务器
 
-**值：** 必需 — `layout_name`
+**标识符：** `joinserver`
 
-## 启用布局 (`enable_layout`)
+连接到 Minecraft 服务器。
 
-**用途：** 通过布局文件名（不含 `.txt`）启用并保存布局
+**值：** `address` 或 `address:port`，例如 `play.example.net`
 
-**值：** 必需 — `layout_name`
+如果没有指定端口，则使用 `25565`。如果当前已加载世界或服务器，此动作会显示错误。未在服务器列表中的服务器会被添加到列表中。
 
-## 禁用布局 (`disable_layout`)
+### 进入世界
 
-**用途：** 通过布局文件名（不含 `.txt`）禁用并保存布局
+**标识符：** `loadworld`
 
-**值：** 必需 — `layout_name`
+加载单人游戏世界。
 
-这三个布局动作都会将状态保存到布局文件中，并立即更新当前屏幕。请使用区分大小写、且不带 `.txt` 的文件名。
+**值：** `saves` 文件夹中的世界文件夹名称，例如 `Survival Island`
 
-## 打开屏幕或自定义 GUI (`opengui`)
+如果找不到该世界，则不会执行任何操作。如果当前已加载世界或服务器，此动作会显示错误。
 
-**用途：** 通过其标识符打开一个屏幕（原版、模组或自定义 GUI）
+### 进入/加入上次游玩的世界/服务器
 
-**值：** 必需 — `screen_identifier`
+**标识符：** `join_last_world`
 
-请从 [Screen Identifiers](./screen-identifiers) 调试覆盖层中复制准确的、区分大小写的标识符。
+加载玩家上次游玩的世界，或加入玩家上次进入的服务器。
 
-某些模组界面无法直接创建。如果打开失败，请在通常会打开该界面的控件上使用 [**Mimic Vanilla/Mod Button**](#mimic-vanillamod-button-mimicbutton)。
+**值：** 无
 
-## 关闭屏幕 (`closegui`)
+如果当前已加载世界或服务器，此动作会显示错误。未在服务器列表中的服务器会被添加到列表中。
 
-**用途：** 关闭当前活动屏幕
+### 离开世界或服务器
 
-**值：** 不需要
+**标识符：** `disconnect_server_or_world`
 
-## 更新屏幕 (`update_screen`)
+离开当前世界或服务器，并打开一个菜单。
 
-**用途：** 重新初始化当前屏幕
+**值：** 要打开的菜单的[屏幕标识符](/screen-identifiers)，例如 `title_screen`
 
-**值：** 不需要
+仅在已加载世界时有效。[自定义 GUI](/custom-guis)也可以使用。如果无法打开指定菜单，则会打开标题屏幕。
 
-## 返回上一个屏幕 (`back_to_last_screen`)
+## 聊天和命令
 
-**用途：** 返回到 [Custom GUI](./custom-guis) 的父级，或返回到最近关闭的屏幕实例
+### 发送聊天消息/命令
 
-**值：** 不需要
+**标识符：** `sendmessage`
 
-## 加入服务器 (`joinserver`)
+像玩家手动输入一样发送聊天消息或运行命令。
 
-**用途：** 让玩家连接到 Minecraft 服务器
+**值：** 消息，或以 `/` 开头的命令，例如 `/spawn`
 
-**值：** 必需 — `server_ip` 或 `server_ip:port`
+### 以集成服务器身份执行命令
 
-当世界或服务器已经加载时，此动作无法运行。若省略端口，则使用 `25565`。如果地址不在 Minecraft 已保存的服务器列表中，FancyMenu 会将其添加并保存。
+**标识符：** `execute_command_as_integrated_server`
 
-## 进入世界 (`loadworld`)
+在单人游戏中以服务器身份运行命令，不受玩家权限或作弊设置影响。
 
-**用途：** 进入一个 Minecraft 世界
-
-**值：** 必需 — `world_folder_name`
-
-该值是存档文件夹名称。如果该存档不存在，或已加载了其他世界/服务器，则此动作不会执行任何操作。
-
-## 进入/加入上一个世界/服务器 (`join_last_world`)
-
-**用途：** 进入/加入玩家上次所在的世界或服务器
-
-**值：** 不需要
-
-当已加载其他世界/服务器时，此动作无法运行。若记住的服务器不在 Minecraft 已保存的服务器列表中，会先添加并保存，然后再连接。
-
-## 离开世界或服务器 (`disconnect_server_or_world`)
-
-**用途：** 离开一个世界或服务器，并打开指定屏幕
-
-**值：** 必需 — `screen_identifier`
-
-此动作仅在已加载世界和玩家时运行。目标可以是 [Custom GUI](./custom-guis) 标识符，或 FancyMenu 能够构建的 [screen identifier](./screen-identifiers)。如果目标无法打开，FancyMenu 会返回标题屏幕。
-
-## 退出 Minecraft (`quitgame`)
-
-**用途：** 完全退出 Minecraft
-
-**值：** 不需要
-
-## 发送聊天消息/命令 (`sendmessage`)
-
-**用途：** 发送聊天消息或执行聊天命令。消息文本支持 [FancyMenu 格式化代码](./text-formatting#minecraft-text-formatting)。
-
-**值：** 必需 — `message_text` 或 `/command_text`
-
-## 以集成服务器执行命令 (`execute_command_as_integrated_server`)
-
-**用途：** 在单人游戏中以集成服务器身份强制执行命令，忽略权限和作弊设置。
-
-**值：** 必需 — 命令文本，例如 `/give @p minecraft:diamond 1`
+**值：** 命令，例如 `/give @p minecraft:diamond 1`
 
 > [!WARNING]
-> 此动作仅在单人游戏且世界**未对局域网开放**时有效。当不存在集成服务器，或集成服务器已发布到局域网时，它会刻意不执行任何操作。
+> 仅在单人游戏且世界未对局域网开放时有效。其他情况下不会执行任何操作。
 
-## 粘贴到聊天 (`paste_to_chat`)
+### 粘贴到聊天栏
 
-**用途：** 在玩家/世界已加载时，将格式化文本粘贴到聊天输入框
+**标识符：** `paste_to_chat`
 
-**值：** 必需 — `true:文本` 或 `false:文本`
+在已加载世界时将文本填入聊天输入框。如果聊天栏尚未打开，则会打开并填入文本。
 
-当聊天尚未打开时，FancyMenu 会打开聊天并设置输入文本。当聊天已经打开时，`true` 会追加到现有输入中，`false` 会替换它。
+**值：** `true:text` 会将文本添加到已有输入内容的末尾；`false:text` 会替换已有内容
 
-## 在聊天中显示 [客户端] (`display_in_chat_client_side`)
+### 在聊天栏显示 [客户端]
 
-**用途：** 在世界或服务器已加载时显示一条客户端聊天消息。它不会向服务器发送任何内容。
+**标识符：** `display_in_chat_client_side`
 
-**值：** 必需 — `text_or_json`
+显示只有当前玩家能看到的聊天消息。消息不会发送到服务器。
 
-该值可以是纯文本，也可以是序列化的 Minecraft 文本组件。若未加载世界，此动作不会执行任何操作。
+**值：** 支持[格式代码](/text-formatting#minecraft-text-formatting)的文本，或 Minecraft 文本组件 JSON，例如 `&a欢迎回来！`
 
-## 向服务器发送 FM 数据 (`send_fm_data_to_server`)
+如果没有加载世界，则不会执行任何操作。
 
-**用途：** 向当前 FancyMenu 服务器发送 [FM Data](./fm-data)。
+## 变量和列表
 
-**值：** 必需 — `data_identifier||data`
+### 设置变量值（FM 变量）
 
-## 连接到远程服务器 (`connect_to_remote_server`)
+**标识符：** `set_variable`
 
-**用途：** 打开或复用一个由客户端发起的 WebSocket 连接，连接到外部远程服务器。
+设置[变量](/variables)。
 
-**值：** 必需 — 远程服务器 URL，例如 `wss://example.com/ws`
+**值：** `variable_name:value`，例如 `coins:100`
 
-可接受的 URL 形式请参见 [Remote Server Communication](./remote-server-communication#url-modes)。
+- 只有第一个 `:` 用于分隔名称和值。
+- [列表变量](/variables#text-and-list-variables)会保留为列表：JSON 数组（例如 `["a","b"]`）会成为列表中的条目；其他文本会成为唯一条目；空文本会清空列表。
 
-## 向远程服务器发送数据 (`send_data_to_remote_server`)
+### 删除变量（FM 变量）
 
-**用途：** 打开或复用远程服务器连接，并向其发送文本数据。
+**标识符：** `delete_variable`
 
-**值：** 必需 — `remote_server_url||data`
+彻底删除[变量](/variables)，其他变量不会受到影响。若只想清空变量，请使用[**设置变量值（FM 变量）**](#设置变量值fm-变量)。
 
-## 关闭远程服务器连接 (`close_remote_server_connection`)
+**值：** 变量名称
 
-**用途：** 通过请求 ID 关闭一个指定的远程服务器连接。
+### 清除所有变量（FM 变量）
 
-**值：** 必需 — 请求 ID，通常为 [**On Remote Server Connected**](./listeners#on-remote-server-connected-remote_server_connected) 中的 `$$request_id`
+**标识符：** `clear_variables`
 
-## 关闭所有远程服务器连接 (`close_all_remote_server_connections`)
+删除所有[变量](/variables)，包括文本变量和列表变量。
 
-**用途：** 关闭所有由 FancyMenu 打开的活动远程服务器连接。
+**值：** 无
 
-**值：** 不需要
+### 添加到列表（FM 变量）
 
-## 在浏览器中打开 URL (`openlink`)
+**标识符：** `add_to_list`
 
-**用途：** 将 URL 交给操作系统的默认处理程序，不显示 FancyMenu 确认提示
+向[列表变量](/variables#list-actions)添加一个条目。
 
-**值：** 必需 — `https://example.com`
+- **列表变量**：列表名称。如果该名称对应的变量不存在，此动作会创建列表。
+- **新条目**：条目的文本。
+- **索引（可选）**：条目的插入位置。留空则添加到末尾。此位置之后的条目会向后移动一位。
+- **如果已在列表中则跳过**：如果列表中已有文本相同的条目，则不添加。启用**忽略大小写**后，`Apple` 和 `apple` 会被视为相同。
 
-请使用受信任的 `https://` 链接。FancyMenu 在将 URL 传递给操作系统之前不会显示确认提示。
+### 设置列表条目（FM 变量）
 
-## 复制文本到剪贴板 (`copytoclipboard`)
+**标识符：** `set_list_entry`
 
-**用途：** 将文本复制到剪贴板
+将[列表变量](/variables#list-actions)指定**索引**处的条目替换为**新值**。如果该位置没有条目，则不会执行任何操作。
 
-**值：** 必需 — `text_to_copy`
+### 从列表中移除（FM 变量）
 
-## 输出到游戏日志 (`print_to_log`)
+**标识符：** `remove_from_list`
 
-**用途：** 向游戏日志写入一行内容
+从[列表变量](/variables#list-actions)中移除条目。通过**移除方式**选择要移除的内容：
 
-**值：** 必需 — `text_to_log`
+- **指定索引处的条目**：移除指定索引处的条目。
+- **第一个匹配项**：移除第一个与**要移除的值**完全相同的条目。
+- **所有匹配项**：移除所有与该值相同的条目。
 
-## 设置变量值（FM 变量）(`set_variable`)
+启用**忽略大小写**后，`Apple` 和 `apple` 会被视为相同。
 
-**用途：** 将文本内容存储到 [FancyMenu 变量](./variables) 中
+### 清空列表（FM 变量）
 
-**值：** 必需 — `variable_name:variable_value`
+**标识符：** `clear_list`
 
-第一个冒号用于分隔名称和值。后续的冒号仍会保留在值中。更改会立即保存。
+移除[列表变量](/variables#list-actions)中的所有条目。空列表仍会保留。
 
-## 清除所有变量（FM 变量）(`clear_variables`)
+### 设置列表（FM 变量）
 
-**用途：** 清除所有已存储的 [FancyMenu 变量](./variables) 值
+**标识符：** `set_list`
 
-**值：** 不需要
+替换[列表变量](/variables#list-actions)中的所有条目。通过**条目来源**选择条目的来源：
 
-## 发送 HTTP 请求 (`send_http_request`)
+- **拆分文本**：在指定的**分隔符**处拆分**要拆分的文本**，例如 `,`。分隔符留空时会按换行符拆分。启用**去除条目首尾空格**可移除条目开头和结尾的空格；启用**跳过空条目**可忽略空条目。
+- **JSON 数组**：使用类似 `["Diamonds","Emeralds"]` 的数组中的条目，也可以使用 `$$other_list` 复制另一个列表。其他文本会成为唯一条目；空文本会清空列表。
 
-**用途：** 在后台发起 HTTP/HTTPS 请求；可记录和/或将响应存储到变量中
+窗口中会显示条目预览。
 
-**值：** 必需 — HTTP 请求配置
+### 排列列表（FM 变量）
 
-| 设置 | 行为 |
+**标识符：** `arrange_list`
+
+更改[列表变量](/variables#list-actions)中条目的顺序。**排列方式**：
+
+- **按 A–Z 排序**和**按 Z–A 排序**：按字母顺序排序。
+- **数字从小到大**和**数字从大到小**：按数字排序。非数字条目会排在末尾。
+- **反转顺序**：将最后一个条目移到第一个位置。
+- **随机打乱**：随机排列。
+- **移除重复项**：每个值只保留第一个条目。
+
+在所有列表动作中，第一个条目的索引为 `0`，`-1` 表示最后一个条目。列表名称可以包含占位符；在名称前加上 `$$` 时，此动作会将该变量的值用作列表名称。文本变量若已有值则会保持不变，并在游戏日志中记录警告。
+
+## 网络和联网
+
+### 在浏览器中打开 URL
+
+**标识符：** `openlink`
+
+在默认浏览器中打开链接，不会事先询问。
+
+**值：** 链接，例如 `https://discord.gg/example`
+
+请只打开可信链接。
+
+### 发送 HTTP 请求
+
+**标识符：** `send_http_request`
+
+在后台发送网络请求。可以将响应写入游戏日志或存储到变量中。
+
+| 设置 | 功能 |
 |---|---|
-| URL | HTTP 或 HTTPS 端点 |
-| Method | `GET`、`POST`、`PUT`、`DELETE`、`PATCH`、`HEAD` 或 `OPTIONS` |
-| Body | 对 `GET` 和 `HEAD` 之外的方法发送 |
-| Content type | 请求的 `Content-Type` 值 |
-| Timeout | 用于连接和响应读取的秒数 |
-| Log response | 读取并将响应写入日志 |
-| Response variable | 在请求完成后读取响应并将其存储 |
-| Single-line response | 存储前移除响应中的换行 |
-| Authentication | None、Basic、Bearer 或 API key |
-| Headers | 可选的自定义请求头 |
+| URL | HTTP 或 HTTPS 地址。 |
+| 方法 | `GET`、`POST`、`PUT`、`DELETE`、`PATCH`、`HEAD` 或 `OPTIONS`。 |
+| 请求正文 | 要发送的数据。`GET` 和 `HEAD` 请求不会发送正文。 |
+| 内容类型 | 正文的 `Content-Type`，例如 `application/json`。 |
+| 超时 | 等待连接和响应的秒数。 |
+| 记录响应 | 将响应写入游戏日志。 |
+| 响应变量 | 收到响应时将其存储到此变量中。 |
+| 单行响应 | 存储前移除响应中的换行符。 |
+| 身份验证 | 无、Basic、Bearer 或 API 密钥。 |
+| 请求头 | 额外的请求标头。 |
 
-请求会异步运行，因此下一个动作不会等待。仅当启用日志记录或配置了响应变量时才会读取响应体；非成功响应体会从错误响应中读取。不要在动作配置中存储密码或访问令牌。
+后续动作不会等待响应。错误响应也会被记录并存储。请勿在动作中填写密码或访问令牌：任何能访问布局的人都可以读取这些信息。
 
-## 管理资源包 (`manage_resource_pack`)
+### 向服务器发送 FM 数据
 
-**用途：** 启用、禁用或切换资源包，并可选择重新加载
+**标识符：** `send_fm_data_to_server`
 
-**值：** 必需 — `pack_name_or_id|||MODE|||reload_bool`
+向服务器发送 [FM 数据](/fm-data)，服务器也需要安装 FancyMenu。
 
-显示名称和内部包 ID 会以不区分大小写的方式匹配。标记为必需的资源包不能被禁用。
+**值：** `data_identifier||data`
 
-## 重新加载资源包 (`reload_resource_packs`)
+### 连接到远程服务器
 
-**用途：** 重新加载 Minecraft 的资源包。内置的五秒冷却会忽略这段时间内的重复触发，以防止频繁重载。
+**标识符：** `connect_to_remote_server`
 
-**值：** 不需要
+连接到远程服务器，或使用已经建立的连接。
 
-## 重新加载 FancyMenu (`reloadmenu`)
+**值：** 服务器地址，例如 `wss://example.com/ws`
 
-**用途：** 重新加载布局、[Custom GUIs](./custom-guis)、[panoramas](./panoramas)、[slideshows](./slideshows)、设置以及 FancyMenu 管理的资源
+请参阅[远程服务器通信](/remote-server-communication#url-modes)，了解支持的地址格式。
 
-**值：** 不需要
+### 向远程服务器发送数据
 
-这不会重新加载 Minecraft 资源包。若要重新加载资源包，请使用 [**Reload Resource Packs**](#reload-resource-packs-reload_resource_packs)。
+**标识符：** `send_data_to_remote_server`
+
+向远程服务器发送文本；如有需要，会先建立连接。
+
+**值：** `server_address||data`
+
+### 关闭远程服务器连接
+
+**标识符：** `close_remote_server_connection`
+
+关闭一个远程服务器连接。
+
+**值：** 其请求 ID，通常是[**远程服务器已连接时**](/listeners#on-remote-server-connected)提供的 `$$request_id`
+
+### 关闭所有远程服务器连接
+
+**标识符：** `close_all_remote_server_connections`
+
+关闭 FancyMenu 打开的所有远程服务器连接。
+
+**值：** 无
+
+## 文件
+
+### 在游戏目录中创建文件
+
+**标识符：** `create_file_in_game_dir`
+
+创建一个空文件。缺少的文件夹也会一并创建。已存在的文件不会更改。
+
+**值：** 文件路径，例如 `config/mymodpack/first_start.txt`
+
+所有文件动作都只能在游戏文件夹（实例文件夹）中使用。以 `.minecraft/` 开头的路径会使用默认的 `.minecraft` 文件夹，该文件夹可能位于其他位置。
+
+### 删除游戏目录中的文件/文件夹
+
+**标识符：** `delete_file_in_game_dir`
+
+删除文件，或连同文件夹中的所有内容一起删除文件夹。
+
+**值：** 路径，例如 `config/mymodpack/cache.txt`
+
+如果路径以 `*` 结尾，例如 `config/downloads/*`，则会删除该文件夹中的所有直接子文件，但会保留该文件夹及其中的其他文件夹。
+
+### 复制游戏目录中的文件/文件夹
+
+**标识符：** `copy_file_in_game_dir`
+
+复制文件，或连同文件夹中的所有内容一起复制文件夹。
+
+**值：** `source||destination`，例如 `config/presets/default.json||config/mymod/settings.json`
+
+- 如果源路径以 `*` 结尾，例如 `config/presets/*||config/mymod/`，则会复制该文件夹中的所有直接子文件，但不会复制文件夹。此时目标路径是一个文件夹，必要时会自动创建。
+- 不会覆盖任何内容：如果目标路径已存在，此动作会失败。
+
+### 移动游戏目录中的文件/文件夹
+
+**标识符：** `move_file_in_game_dir`
+
+移动文件，或连同文件夹中的所有内容一起移动文件夹。
+
+**值：** `source||destination`
+
+源路径末尾的 `*` 用法与[**复制游戏目录中的文件/文件夹**](#复制游戏目录中的文件文件夹)相同。不会覆盖任何内容。
+
+### 重命名游戏目录中的文件/文件夹
+
+**标识符：** `rename_file_in_game_dir`
+
+重命名文件或文件夹。如果新名称已被占用，此动作会失败。
+
+**值：** `path||new_name`，例如 `config/mymod/old_name.txt||new_name.txt`
+
+### 将文件下载到游戏目录
+
+**标识符：** `download_file_to_game_dir`
+
+在后台将文件下载到文件夹中。
+
+**值：** `url||target_folder`，例如 `https://example.com/pack.zip||downloads`
+
+- 第二部分是文件夹，而不是文件名。FancyMenu 会从下载内容或链接中获取文件名。
+- 如果已有同名文件，该文件会被覆盖。
+- 下载完成或失败时，会运行[**通过动作下载文件时**](/listeners#on-file-downloaded-via-action)。下载成功时，其 `$$target_file_path` 是保存的文件路径。
+
+### 在游戏目录中解压 ZIP 文件
+
+**标识符：** `extract_zip_file_in_game_dir`
+
+在后台将 ZIP 文件解压到文件夹中。
+
+**值：** `zip_path||target_folder`，例如 `downloads/pack.zip||resourcepacks/MyPack`
+
+同名文件会被替换，也不会额外创建一个以 ZIP 文件命名的文件夹。解压完成时，会运行[**通过动作解压 ZIP 时**](/listeners#on-zip-extracted-via-action)。请只解压可信的 ZIP 文件。
+
+### 打开游戏目录中的文件/文件夹
+
+**标识符：** `open_file_folder_in_game_dir`
+
+使用系统默认程序打开文件或文件夹。
+
+**值：** 路径，例如 `screenshots`
+
+### 在游戏目录中写入文件
+
+**标识符：** `write_file_in_game_dir`
+
+将文本写入文件。必要时会创建文件及其所在文件夹。
+
+**值：** `path|||text|||append`，例如 `config/mymodpack/log.txt|||已加入服务器\n|||true`
+
+`\n` 表示换行。将 `append` 设为 `true` 会将文本添加到文件末尾；设为 `false` 则会替换文件现有内容。
+
+### 从系统中选择文件
+
+**标识符：** `select_file_to_game_dir`
+
+打开系统文件选择器，并将选中的文件复制到游戏文件夹中。
+
+**值：** `target_path|||filter_name|||extensions|||overwrite`，例如 `config/fancymenu/assets/background.png|||图像|||png;jpg|||true`
+
+- `target_path` 是复制文件的完整路径，包含文件名。
+- 使用 `;` 或 `,` 分隔扩展名。不指定扩展名时，可以选择所有文件。
+- 将 `overwrite` 设为 `false` 时，如果文件已存在，此动作会失败。
+
+文件复制完成、文件选择器被取消或发生错误时，会运行[**选择文件时**](/listeners#on-file-selected)。
+
+## 游戏和 FancyMenu
+
+### 退出 Minecraft
+
+**标识符：** `quitgame`
+
+关闭游戏。
+
+**值：** 无
+
+### 设置 Minecraft 选项
+
+**标识符：** `edit_minecraft_option`
+
+更改 Minecraft 选项，例如渲染距离或 GUI 缩放。
+
+**值：** `option_name:value`，例如 `renderDistance:12`
+
+请参阅 [Minecraft 选项](/minecraft-options)，了解选项名称。
+
+### 模拟按键绑定
+
+**标识符：** `mimic_keybind`
+
+按下 Minecraft 的按键绑定，例如跳跃或潜行，也可以让按键保持按下状态。
+
+**值：** `keybind|||hold|||duration_ms`，例如 `key.jump|||false|||1000`
+
+| 部分 | 含义 |
+|---|---|
+| `keybind` | 按键绑定的 ID，例如 `key.jump` 或 `key.sneak`。 |
+| `hold` | `true` 表示持续按住，`false` 表示按下一次。 |
+| `duration_ms` | 按住的时长，单位为毫秒。不填写时默认为 `1000`。 |
+
+### 管理资源包
+
+**标识符：** `manage_resource_pack`
+
+启用或禁用资源包。可在其窗口中进行设置：
+
+- **目标资源包**：资源包的名称，与“资源包”界面中显示的名称相同。不区分大小写。
+- **操作模式**：**启用**、**禁用**或**切换**。
+- **重新加载资源**：更改后立即重新加载资源包。关闭此选项可稍后重新加载，例如使用[**重新加载资源包**](#重新加载资源包)。
+
+游戏必需的资源包无法禁用。
+
+### 重新加载资源包
+
+**标识符：** `reload_resource_packs`
+
+重新加载资源包，效果类似 `F3 + T`。重新加载后的 5 秒内，此动作不会执行，以防止反复重新加载。
+
+**值：** 无
+
+### 重新加载 FancyMenu
+
+**标识符：** `reloadmenu`
+
+重新加载 FancyMenu 的布局、[自定义 GUI](/custom-guis)、[全景图](/panoramas)、[幻灯片](/slideshows)、设置和文件。资源包不会重新加载。
+
+**值：** 无
 
 > [!WARNING]
-> 重新加载开销很大。请从有意触发的按钮动作中调用它，而不是通过 [Ticker](./elements#ticker) 或频繁触发的 [listener](./listeners)。
+> 重新加载需要一些时间。请将此动作放在按钮上使用，切勿放在[计时器](/elements#ticker)或经常运行的[监听器](/listeners)中。
 
-## 切换元素动画器 (`toggle_element_animator`)
+### 启动调度器
 
-**用途：** 切换已保存的播放状态，并重置匹配的活动 Animator 时间线
+**标识符：** `start_scheduler`
 
-**值：** 必需 — `animator_identifier`
+启动[调度器](/schedulers)。
 
-有关设置和标识符详情，请参见 [Element Animator](./element-animator)。
+**值：** 调度器的标识符
 
-## 启用元素动画器 (`enable_element_animator`)
+### 停止调度器
 
-**用途：** 启用播放；只有当状态从禁用变为启用时，活动 Animator 时间线才会重置
+**标识符：** `stop_scheduler`
 
-**值：** 必需 — `animator_identifier`
+停止[调度器](/schedulers)。
 
-## 禁用元素动画器 (`disable_element_animator`)
+**值：** 调度器的标识符
 
-**用途：** 禁用播放并重置匹配的活动 Animator 时间线
+### 复制文本到剪贴板
 
-**值：** 必需 — `animator_identifier`
+**标识符：** `copytoclipboard`
 
-## 重置元素动画器 (`reset_element_animator`)
+将文本复制到剪贴板。
 
-**用途：** 在不改变播放启用状态的情况下，重置匹配的活动 Animator 时间线
+**值：** 文本，例如 `play.example.net`
 
-**值：** 必需 — `animator_identifier`
+### 输出到游戏日志
 
-## 模拟原版/模组按钮 (`mimicbutton`)
+**标识符：** `print_to_log`
 
-**用途：** 模拟原版或模组按钮的点击动作
+向游戏日志写入一行内容。可用于了解脚本执行的操作。
 
-**值：** 必需 — 完整的 [widget locator](./widget-locators)，例如 `example.menu.identifier:505280`
-
-## 模拟按键绑定 (`mimic_keybind`)
-
-**用途：** 执行 Minecraft 键盘或鼠标按键绑定，可选择是否持续按住
-
-**值：** 必需 — `keybind_id|||keep_pressed_bool|||duration_ms`
-
-| 字段 | 含义 |
-|---|---|
-| `keybind_id` | Minecraft 按键绑定标识符，例如 `key.jump` |
-| `keep_pressed_bool` | `true` 表示按住该键；`false` 表示普通按下 |
-| `duration_ms` | 当 `keep_pressed_bool` 为 `true` 时的按住时长；默认 `1000` |
-
-## 设置文本输入框值 (`set_text_input_field_value`)
-
-**用途：** 通过元素标识符设置自定义或原版 [Text Input Field](./elements#text-input-field) 的值。
-
-**值：** 必需 — `element_identifier|||new_value|||force_set_when_inactive`
-
-这三个字段必须使用三竖线分隔符 `|||` 分隔。将 `force_set_when_inactive` 设为 `true` 可在输入框禁用时也进行更新；当它为 `false` 时，非活动输入框保持不变。
-
-## 在游戏目录中创建文件 (`create_file_in_game_dir`)
-
-**用途：** 在当前游戏目录下创建一个空文件。支持 `.minecraft/` 前缀以指向常规 Minecraft 目录（该目录可能与当前实例不同）。
-
-**值：** 必需 — `file_path`
-
-示例：`config/some_mod_folder/new_file.txt`。缺失的父目录会被创建；已存在的文件保持不变。
-
-## 删除游戏目录中的文件/文件夹 (`delete_file_in_game_dir`)
-
-**用途：** 删除当前游戏目录下的文件，或递归删除文件夹。支持使用 `.minecraft/` 指向常规 Minecraft 目录。给路径附加 `*` 可删除文件夹内**所有直接包含的文件**（忽略子目录并保留文件夹）。
-
-**值：** 必需 — `target_path`
-
-例如，`config/downloads/*` 会删除 `config/downloads/` 中直接包含的文件，但不会遍历或删除其子目录。
-
-## 复制游戏目录中的文件/文件夹 (`copy_file_in_game_dir`)
-
-**用途：** 在当前游戏目录内复制；`.minecraft/` 指向常规 Minecraft 目录。命名目录会递归复制。给**源**路径附加 `*` 可仅复制所有直接子文件；目标必须是目录，且不能使用 `*`。
-
-**值：** 必需 — `source||destination`
-
-例如，`config/source/*||config/destination/` 只会复制 `config/source/` 中直接包含的文件。对于带通配符的源路径，FancyMenu 会在需要时创建目标目录，但不会复制任何源子目录。复制时会拒绝任何已存在的目标/冲突文件，而不是覆盖它。
-
-## 移动游戏目录中的文件/文件夹 (`move_file_in_game_dir`)
-
-**用途：** 在当前游戏目录内移动；`.minecraft/` 指向常规 Minecraft 目录。给**源**路径附加 `*` 可仅移动所有直接子文件；目标必须是目录，且不能使用 `*`。
-
-**值：** 必需 — `source||destination`
-
-例如，`config/source/*||config/destination/` 只会移动 `config/source/` 中直接包含的文件。对于带通配符的源路径，FancyMenu 会在需要时创建目标目录，但会保留源子目录。移动时会拒绝已存在的目标/冲突文件，而不是覆盖它。
-
-## 重命名游戏目录中的文件/文件夹 (`rename_file_in_game_dir`)
-
-**用途：** 在当前父目录内重命名文件或文件夹；`.minecraft/` 指向常规 Minecraft 目录。保留内容不变，并拒绝已存在的目标名称。
-
-**值：** 必需 — `path||new_name`
-
-## 下载文件到游戏目录 (`download_file_to_game_dir`)
-
-**用途：** 在后台将文件下载到当前游戏目录下的某个目录；`.minecraft/` 指向常规 Minecraft 目录。
-
-**值：** 必需 — `url||target_folder`
-
-第二个字段是**目标目录**，不是完整的目标文件路径。FancyMenu 会在需要时创建该目录，并从响应的 `Content-Disposition` 标头中确定文件名，然后回退到 URL 路径。解析出的名称在使用前会经过 URL 解码和清理；如果两者都没有提供可用名称，FancyMenu 会生成一个名称。同名现有文件会被覆盖。
-
-[**On File Downloaded via Action** 监听器](./listeners#on-file-downloaded-via-action-file_downloaded_via_action) 会在成功和失败的下载尝试后触发，并提供 URL、解析后的目标路径以及成功状态。
-
-成功时，`$$target_file_path` 是已保存文件的路径。失败时，它可能只包含目标目录，因为未能解析出最终文件名。
-
-## 在游戏目录中解压 ZIP 文件 (`extract_zip_file_in_game_dir`)
-
-**用途：** 将 ZIP 解压到当前游戏目录或常规 `.minecraft` 目录内的目标文件夹。完成时触发 [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action)。
-
-**值：** 必需 — `source_zip_path||target_folder_path`
-
-同名的现有文件会被替换。仅解压可信的 ZIP 文件。
-
-## 在游戏目录中打开文件/文件夹 (`open_file_folder_in_game_dir`)
-
-**用途：** 使用操作系统的默认应用打开文件或文件夹。出于安全原因，目标必须位于游戏目录或默认的 `.minecraft` 目录内。
-
-**值：** 必需 — `target_path`
-
-## 在游戏目录中写入文件 (`write_file_in_game_dir`)
-
-**用途：** 相对于当前游戏目录写入或追加文本；`.minecraft/` 指向常规 Minecraft 目录。若文件或父目录缺失则会创建它们。`\n` 可插入换行；`append_bool=false` 会替换现有文件。
-
-**值：** 必需 — `path|||content|||append_bool`
-
-## 从系统中选择文件 (`select_file_to_game_dir`)
-
-**用途：** 打开原生文件选择器，并将所选文件复制到当前游戏目录内，或者在带有前缀时复制到常规 `.minecraft/`。支持扩展名筛选、自定义筛选标签，以及覆盖开关。
-
-**值：** 必需 — `target_path|||filter_description|||extensions|||overwrite_bool`
-
-`target_path` 是完整的目标文件路径。多个扩展名请用 `;` 或 `,` 分隔，例如 `png;jpg`；空扩展名列表表示允许所有文件。如果 `overwrite_bool` 为 `false`，当目标文件已存在时，动作会失败而不是替换它。
-
-[**On File Selected** 监听器](./listeners#on-file-selected-file_selected_via_action) 会在文件被复制、选择器被取消或选择失败时触发。它会提供所选路径、解析后的目标路径、成功/取消状态以及失败原因。
-
-## 显示 Toast (`show_toast`)
-
-**用途：** 显示一个可配置的 toast 通知
-
-**值：** 必需 — JSON toast 配置
-
-编辑器会将此动作以 JSON 形式保存。请优先使用其配置窗口，而不是手动编辑值。
-
-| 字段 | 含义 |
-|---|---|
-| `width` | 限制在 `120`–`320` 像素 |
-| `durationMs` | 限制在 `1000`–`600000` 毫秒 |
-| `title` | 纯文本、序列化的 Minecraft 文本组件，或为空 |
-| `message` | 纯文本、序列化的文本组件，或为空 |
-| `iconSource` | 可选的 [图像源](./resources) |
-| `backgroundSource` | 可选的 [图像源](./resources) |
-
-## 启动调度器 (`start_scheduler`)
-
-**用途：** 通过调度器 ID 启动一个调度器。
-
-**值：** 必需 — `scheduler_id`
-
-有关创建和管理调度器 ID，请参见 [Schedulers](./schedulers)。
-
-## 停止调度器 (`stop_scheduler`)
-
-**用途：** 通过调度器 ID 停止一个调度器。
-
-**值：** 必需 — `scheduler_id`
-
-## 设置 Minecraft 选项 (`edit_minecraft_option`)
-
-**用途：** 编辑一个 Minecraft 配置选项
-
-**值：** 必需 — `option_name:set_to_value`
+**值：** 文本

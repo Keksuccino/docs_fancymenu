@@ -1,20 +1,21 @@
 ---
 title: 화면 식별자
-description: 화면 식별자와 화면의 식별자를 찾는 방법에 대해 설명합니다.
+description: 화면 식별자와 화면의 식별자를 찾는 방법에 관한 안내입니다.
+sourceBlobSha: 64414e10bf5f532e075373a6a753e2f667448ceb
 ---
 # 화면 식별자
 
-FancyMenu는 레이아웃, 바닐라 위젯, [화면 동작](./action-scripts#open-screen-or-custom-gui-opengui), 그리고 [사용자 지정 GUI 재정의](./custom-guis#overriding-an-existing-screen)에 화면 식별자를 사용합니다. 식별자는 대소문자를 구분하므로, 디버그 오버레이에서 그대로 정확히 복사해야 합니다.
+FancyMenu는 레이아웃, 바닐라 위젯, [화면 동작](/action-scripts#open-screen-or-custom-gui), [사용자 지정 GUI 재정의](/custom-guis#overriding-an-existing-screen)에 화면 식별자를 사용합니다. 식별자는 대소문자를 구분하므로 디버그 오버레이에 표시된 값을 정확히 복사하세요.
 
-내장 화면은 보통 `title_screen` 같은 짧고 공통적인 식별자를 사용합니다. 다른 모드의 화면은 해당 Java 클래스 이름을 사용할 수 있습니다. 사용자 지정 GUI는 관리자에서 입력한 식별자를 사용합니다. 이는 Minecraft 리소스 위치가 아니라 FancyMenu 화면 식별자입니다.
+기본 제공 화면에는 보통 `title_screen`과 같은 짧고 보편적인 식별자가 사용됩니다. 다른 모드의 화면에는 Java 클래스 이름이 사용될 수 있습니다. 사용자 지정 GUI에는 해당 GUI 관리자에서 입력한 식별자가 사용됩니다. 이 식별자는 FancyMenu 화면 식별자이며, Minecraft 리소스 위치가 아닙니다.
 
-# 화면의 식별자 찾기
+# 화면 식별자 찾기
 
-**디버그 오버레이**를 사용하면 현재 활성 메뉴의 식별자를 확인할 수 있습니다.
-이 오버레이에는 현재 화면의 식별자가 표시되며, 왼쪽 클릭으로 클립보드에 복사할 수 있습니다.
+**디버그 오버레이**를 사용하면 현재 활성화된 메뉴의 식별자를 확인할 수 있습니다.
+디버그 오버레이에는 현재 화면의 식별자가 표시되며, 해당 식별자를 마우스 왼쪽 버튼으로 클릭하면 클립보드에 복사할 수 있습니다.
 
 >[!TIP]
->**레이아웃 편집기**에 있지 않을 때 **CTRL + ALT + D**를 누르면 **디버그 오버레이**를 활성화할 수 있습니다.
+>레이아웃 편집기를 사용하고 있지 않을 때 **CTRL + ALT + D**를 눌러 **디버그 오버레이**를 활성화할 수 있습니다.
 
 <br>
 
@@ -26,6 +27,6 @@ FancyMenu는 레이아웃, 바닐라 위젯, [화면 동작](./action-scripts#op
 
 # 화면 열기
 
-[**Open Screen or Custom GUI** 동작](./action-scripts#open-screen-or-custom-gui-opengui)은 현재 게임 상태에서 FancyMenu가 구성할 수 있는 화면만 열 수 있습니다. 일부 화면은 월드 로드, 연결, 플레이어, 또는 원래 상위 화면이 필요합니다.
+[**화면 또는 사용자 지정 GUI 열기** 동작](/action-scripts#open-screen-or-custom-gui)은 현재 게임 상태에서 FancyMenu가 구성할 수 있는 화면만 열 수 있습니다. 일부 화면은 월드, 연결, 플레이어 또는 원래 상위 화면이 로드되어 있어야 합니다.
 
-FancyMenu가 해당 식별자의 화면을 구성할 수 없으면 오류가 표시됩니다. 일반적으로 해당 화면을 여는 위젯에 [**Mimic Vanilla/Mod Button**](./action-scripts#mimic-vanillamod-button-mimicbutton)을 사용하세요.
+FancyMenu가 해당 식별자의 화면을 구성할 수 없으면 오류가 표시됩니다. 해당 화면을 평소에 여는 위젯에 [**바닐라/모드 버튼 모방**](/action-scripts#mimic-vanillamod-button)을 사용하세요.

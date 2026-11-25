@@ -1,29 +1,30 @@
 ---
 title: JavaScript API ของเบราว์เซอร์
 description: >-
-  วิธีใช้ JavaScript API ของ FancyMenu ในฟีเจอร์ที่ใช้ Rinku เช่น องค์ประกอบ
+  วิธีใช้ JavaScript API ของ FancyMenu ในฟีเจอร์ม็อดที่ใช้ Rinku เช่นองค์ประกอบ
   Browser
+sourceBlobSha: 1dff260c0c5337037200dbf9033300a6bba56ca1
 ---
 # JavaScript API ของ FancyMenu
 
-FancyMenu จะแทรกบริดจ์ JavaScript ลงในฟีเจอร์ทุกอย่างที่ทำงานอยู่บน [Rinku](https://modrinth.com/mod/rinku) (เช่น องค์ประกอบ **Browser**) บริดจ์นี้ช่วยให้เนื้อหาเว็บสามารถ:
+FancyMenu ฉีด JavaScript bridge เข้าไปในทุกฟีเจอร์ที่ทำงานด้วย [Rinku](https://modrinth.com/mod/rinku) (เช่นองค์ประกอบ **Browser**) bridge นี้ช่วยให้เนื้อหาบนเว็บทำสิ่งต่อไปนี้ได้:
 
-- เรียกใช้ [แอ็กชัน](./action-scripts) ของ FancyMenu ได้โดยตรงจาก JavaScript
+- เรียกใช้ [action](/action-scripts) ของ FancyMenu จาก JavaScript ได้โดยตรง
 - อ่านค่า [placeholder](/placeholders) ของ FancyMenu แบบอะซิงโครนัส
 
-ตัวแปรโกลบอลสองตัวใช้เปิดเผย API นี้:
-- `window.fancymenu` – เนมสเปซหลัก
-- `window.FancyMenu` – ชื่อเรียกแทน (มีโครงสร้างเหมือนกับ `fancymenu` ทุกประการ)
+API นี้เปิดให้ใช้งานผ่าน global สองตัว:
+- `window.fancymenu` – namespace หลัก
+- `window.FancyMenu` – alias (มีโครงสร้างเหมือนกับ `fancymenu` ทุกประการ)
 
-ใช้เหตุการณ์ `fancymenu-ready` หรือตรวจสอบฟีเจอร์เพื่อให้แน่ใจว่าบริดจ์พร้อมใช้งานก่อนเรียกใช้
+ใช้ event `fancymenu-ready` หรือตรวจสอบว่ามี API หรือไม่ก่อนเรียกใช้งาน เพื่อให้แน่ใจว่า bridge พร้อมใช้งานแล้ว
 
-## 1. เนมสเปซและโครงสร้าง
+## 1. Namespace และโครงสร้าง
 
-- `fancymenu.actions` – เรียกใช้แอ็กชันของ FancyMenu จากเบราว์เซอร์
+- `fancymenu.actions` – เรียกใช้ action ของ FancyMenu จากเบราว์เซอร์
 - `fancymenu.placeholders` – อ่านค่าของ placeholder ของ FancyMenu แบบอะซิงโครนัส
-- `FancyMenu` เป็นชื่อเรียกแทน `fancymenu` ดังนั้นทั้งสองตัวจึงมีซับเนมสเปซเหมือนกัน
+- `FancyMenu` มีโครงสร้างเหมือน `fancymenu` ดังนั้นทั้งสองตัวจึงมี namespace ย่อยเหมือนกัน
 
-แอ็กชันมีตัวช่วยสองรายการ:
+มี helper สำหรับ action สองตัว:
 - `fancymenu.actions.execute(actionType, actionValue?)`
 - `fancymenu.actions.executeWithCallback(actionType, actionValue?, onSuccess?, onFailure?)`
 
@@ -31,7 +32,7 @@ FancyMenu จะแทรกบริดจ์ JavaScript ลงในฟีเ�
 
 ```javascript
 if (typeof fancymenu !== 'undefined') {
-    // สามารถใช้งานได้อย่างปลอดภัย
+    // ใช้งานได้อย่างปลอดภัย
 }
 
 window.addEventListener('fancymenu-ready', () => {
@@ -39,67 +40,67 @@ window.addEventListener('fancymenu-ready', () => {
 });
 ```
 
-นอกจากนี้ยังสามารถโฮสต์เนื้อหาไว้ในเครื่องได้ โดยวางไฟล์ HTML ไว้ใน `<game-directory>/config/fancymenu/assets/` แล้วโหลดผ่าน URL รูปแบบ `file:///config/fancymenu/assets/<name>.html`
+นอกจากนี้ยังสามารถโฮสต์เนื้อหาไว้ในเครื่องได้ โดยวางไฟล์ HTML ไว้ใน `<game-directory>/config/fancymenu/assets/` แล้วโหลดผ่าน URL ในรูปแบบ `file:///config/fancymenu/assets/<name>.html`
 
-## 3. การเรียกใช้แอ็กชัน
+## 3. การเรียกใช้ Action
 
-ใช้เนมสเปซ `fancymenu.actions` การเรียกใช้แต่ละครั้งจะสอดคล้องกับสตริงแอ็กชันที่ใช้ในสคริปต์ FancyMenu
+ใช้ namespace `fancymenu.actions` การเรียกแต่ละครั้งจะใช้รูปแบบเดียวกับสตริง action ในสคริปต์ FancyMenu
 
-### การเรียกใช้แบบรวดเร็ว
+### เรียกใช้แบบรวดเร็ว
 
 ```javascript
-fancymenu.actions.execute('quitgame');                // แอ็กชันที่ไม่มีค่า
-fancymenu.actions.execute('opengui', 'title_screen'); // แอ็กชันที่มีค่า
+fancymenu.actions.execute('quitgame');                // action ที่ไม่มีค่า
+fancymenu.actions.execute('opengui', 'title_screen'); // action ที่มีค่า
 fancymenu.actions.execute('set_variable', 'hp:20');   // ค่าใช้รูปแบบ name:value
 ```
 
-### การเรียกใช้พร้อม Callback
+### ใช้ Callback
 
 ```javascript
 fancymenu.actions.executeWithCallback(
     'opengui',
     'title_screen',
-    result => console.log('เปิดหน้าจอชื่อเรื่องแล้ว'),
+    result => console.log('เปิดหน้าจอไตเติลแล้ว'),
     error  => console.error('เปิดไม่สำเร็จ:', error)
 );
 
-// พารามิเตอร์ value เป็นตัวเลือก เมื่อไม่ระบุ ให้ส่ง callback ต่อจาก actionType ได้โดยตรง
+// พารามิเตอร์ value เป็นตัวเลือก หากไม่ระบุ ให้ส่ง callback ต่อจาก actionType โดยตรง
 fancymenu.actions.executeWithCallback(
     'quitgame',
-    result => console.log('เรียกใช้การออกจากเกมแล้ว'),
+    result => console.log('สั่งออกจากเกมแล้ว'),
     error  => console.error('ออกจากเกมไม่สำเร็จ:', error)
 );
 ```
 
-ตัวช่วยรุ่นเก่า `fancymenu.execute(...)` และ `fancymenu.executeWithCallback(...)` ยังคงทำงานโดยส่งต่อไปยังเนมสเปซ `actions`
+helper รุ่นเก่า `fancymenu.execute(...)` และ `fancymenu.executeWithCallback(...)` ยังคงใช้งานได้ โดยจะส่งต่อการเรียกไปยัง namespace `actions`
 
-### ประเภทแอ็กชันที่ใช้บ่อย
+### ประเภท Action ที่ใช้บ่อย
 
 - `quitgame` – ออกจากเกมทันที (ไม่มีค่า)
 - `back_to_last_screen` – กลับไปยัง GUI ก่อนหน้า (ไม่มีค่า)
-- `opengui` – เปิดหน้าจอของ FancyMenu หรือหน้าจอ vanilla (ค่า: ตัวระบุหน้าจอ)
+- `opengui` – เปิดหน้าจอของ FancyMenu หรือ vanilla (ค่า: ตัวระบุหน้าจอ)
 - `openlink` – เปิดเบราว์เซอร์ (ค่า: URL)
-- `sendmessage` – ส่งข้อความแชต (ค่า: ข้อความ)
-- `set_variable` – กำหนดตัวแปร FancyMenu (ค่า: `name:value`)
+- `sendmessage` – ส่งข้อความในแชต (ค่า: ข้อความ)
+- `set_variable` – กำหนดค่าให้ตัวแปร FancyMenu (ค่า: `name:value`)
 - `joinserver` – เชื่อมต่อกับเซิร์ฟเวอร์ (ค่า: ที่อยู่)
 - `disconnect_server_or_world` – ตัดการเชื่อมต่อและไปยังหน้าจอเป้าหมาย (ค่า: ตัวระบุหน้าจอ)
 
-แอ็กชันทุกอย่างที่มีอยู่ใน FancyMenu สามารถเรียกใช้ผ่านบริดจ์นี้ได้ ดู [สคริปต์แอ็กชัน](./action-scripts) สำหรับรายการทั้งหมด
+Action ทุกตัวที่มีอยู่ใน FancyMenu สามารถเรียกใช้ผ่าน bridge นี้ได้ ดู [สคริปต์ action](/action-scripts) เพื่อดูรายการทั้งหมด
 
 ## 4. การอ่าน Placeholder
 
-ระบบ [placeholder](/placeholders) ของ FancyMenu เปิดให้ใช้งานผ่าน `fancymenu.placeholders` (และ `FancyMenu.placeholders`) เมธอดตัวช่วยทั้งสองรายการจะคืนค่าเป็น `Promise<string>`:
+ระบบ [placeholder](/placeholders) ของ FancyMenu เปิดให้ใช้งานผ่าน `fancymenu.placeholders` (และ `FancyMenu.placeholders`) เมธอด helper ทั้งสองตัวจะคืนค่าเป็น `Promise<string>`:
 
 ```ts
 fancymenu.placeholders.get(identifier: string): Promise<string>
 fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promise<string>
 ```
 
-### การส่งตัวแปร
+### การระบุตัวแปร
 
-- ตัวแปรเป็นสตริงในรูปแบบ `name:value` บริดจ์จะแยกที่โคลอนตัวแรกเท่านั้น ดังนั้นค่าจึงสามารถมีโคลอนเพิ่มเติมได้
-- ชื่อและค่าจะถูกตัดช่องว่าง ห้ามใช้ชื่อว่าง
-- ส่งตัวแปรให้ครบตามที่ placeholder ต้องการ และละเว้นตัวแปรที่เป็นตัวเลือกได้
+- ตัวแปรเป็นสตริงในรูปแบบ `name:value` bridge จะแยกที่เครื่องหมายโคลอนตัว **แรก** เท่านั้น ดังนั้นค่าอาจมีเครื่องหมายโคลอนเพิ่มเติมได้
+- ระบบจะตัดช่องว่างหัวท้ายของชื่อและค่า และจะปฏิเสธชื่อที่ว่างเปล่า
+- ระบุตัวแปรให้ครบตามที่ placeholder ต้องการ และไม่ต้องระบุตัวแปรที่เป็นตัวเลือก
 
 ### ตัวอย่าง
 
@@ -108,11 +109,11 @@ fancymenu.placeholders.getWithVars(identifier: string, ...vars: string[]): Promi
 fancymenu.placeholders.get('playername')
     .then(name => console.log('ผู้เล่น:', name));
 
-// ตัวแปรหนึ่งรายการ
+// มีตัวแปรหนึ่งตัว
 fancymenu.placeholders.getWithVars('uptime_duration', 'output_as_millis:false')
-    .then(seconds => console.log('เวลาทำงาน (วินาที):', seconds));
+    .then(seconds => console.log('เวลาเล่น (วินาที):', seconds));
 
-// หลายตัวแปร
+// มีตัวแปรหลายตัว
 fancymenu.placeholders.getWithVars(
     'split_text',
     'input:apple|banana|carrot',
@@ -124,7 +125,7 @@ fancymenu.placeholders.getWithVars(
 
 ### รูปแบบข้อผิดพลาด
 
-Promise ที่ถูกปฏิเสธจะมีข้อผิดพลาดแบบมีโครงสร้าง:
+Promise ที่ถูกปฏิเสธจะมีข้อมูลข้อผิดพลาดแบบมีโครงสร้าง:
 
 ```ts
 interface PlaceholderError {
@@ -134,14 +135,14 @@ interface PlaceholderError {
 }
 ```
 
-ตัวอย่างการจัดการ:
+ตัวอย่างการจัดการข้อผิดพลาด:
 
 ```javascript
 fancymenu.placeholders.get('unknown')
     .catch(error => console.warn(error.code, error.message));
 ```
 
-## 5. ตัวอย่างแบบสมบูรณ์
+## 5. ตัวอย่างฉบับสมบูรณ์
 
 ```html
 <!DOCTYPE html>
@@ -153,9 +154,9 @@ fancymenu.placeholders.get('unknown')
     <h1>การควบคุมเกม</h1>
     
     <button onclick="quitGame()">ออกจากเกม</button>
-    <button onclick="openTitleScreen()">หน้าจอชื่อเรื่อง</button>
+    <button onclick="openTitleScreen()">หน้าจอไตเติล</button>
     <button onclick="disconnectFromServer()">ตัดการเชื่อมต่อ</button>
-    <button onclick="setVariable()">กำหนดตัวแปร</button>
+    <button onclick="setVariable()">ตั้งค่าตัวแปร</button>
     <button onclick="loadPlaceholders()">โหลด Placeholder</button>
 
     <div id="placeholderOutput" style="margin-top:16px;font-family:monospace"></div>
@@ -181,7 +182,7 @@ fancymenu.placeholders.get('unknown')
             actions.executeWithCallback(
                 'opengui',
                 'title_screen',
-                () => console.log('เปิดหน้าจอชื่อเรื่องแล้ว!'),
+                () => console.log('เปิดหน้าจอไตเติลแล้ว!'),
                 err => console.error('ข้อผิดพลาด:', err)
             );
         }
@@ -221,7 +222,7 @@ fancymenu.placeholders.get('unknown')
             ]).then(([playerName, uptimeSeconds, secondFruit]) => {
                 document.getElementById('placeholderOutput').textContent =
                     'ผู้เล่น: ' + playerName + '\n' +
-                    'เวลาทำงาน (วินาที): ' + uptimeSeconds + '\n' +
+                    'เวลาเล่น (วินาที): ' + uptimeSeconds + '\n' +
                     'ผลไม้ลำดับที่สอง: ' + secondFruit;
             }).catch(error => {
                 console.error('คำขอ Placeholder ล้มเหลว:', error);
@@ -234,15 +235,15 @@ fancymenu.placeholders.get('unknown')
 
 ## 6. แนวทางปฏิบัติที่ดีและหมายเหตุ
 
-- **ตรวจสอบบริดจ์** ก่อนใช้งาน หรือรอรับเหตุการณ์ `fancymenu-ready`
-- **จัดการข้อผิดพลาด** (ใช้ callback สำหรับ [แอ็กชัน](/action-scripts) และ `.catch` สำหรับ [placeholder](/placeholders)) เพื่อแสดงข้อมูลที่เป็นประโยชน์
-- **ตรวจสอบข้อมูลนำเข้า** ก่อนส่งให้แอ็กชันหรือตัวแปรของ [placeholder](/placeholders)
-- **จำกัดความถี่ของคำขอ** หลีกเลี่ยงการเรียกใช้บริดจ์ถี่เกินไป โดยเฉพาะลูปรีเฟรช placeholder
-- **ความปลอดภัย:** เนื้อหาเบราว์เซอร์สามารถเรียกใช้แอ็กชัน FancyMenu ที่ลงทะเบียนไว้ได้ทุกอย่าง รวมถึงแอ็กชันเกี่ยวกับไฟล์ เครือข่าย คำสั่ง คลิปบอร์ด รีซอร์สแพ็ก ลิงก์ และการออกจากเกม ควรโหลดเฉพาะหน้าที่เชื่อถือได้ และตรวจสอบข้อมูลทั้งหมดที่ได้รับจากเนื้อหาเว็บ
+- **ตรวจสอบ bridge** ก่อนใช้งาน หรือรอฟัง event `fancymenu-ready`
+- **จัดการข้อผิดพลาด** (ใช้ callback สำหรับ [action](/action-scripts) และ `.catch` สำหรับ [placeholder](/placeholders)) เพื่อแสดงคำแนะนำที่เป็นประโยชน์
+- **ตรวจสอบข้อมูลที่ป้อน** ก่อนส่งให้ action หรือตัวแปรของ [placeholder](/placeholders)
+- **จำกัดความถี่ของคำขอ** หลีกเลี่ยงการเรียก bridge ถี่เกินไป (โดยเฉพาะการวนลูปเพื่อรีเฟรช placeholder)
+- **ความปลอดภัย:** เนื้อหาในเบราว์เซอร์สามารถเรียกใช้ action ของ FancyMenu ที่ลงทะเบียนไว้ได้ทุกตัว รวมถึง action สำหรับไฟล์ เครือข่าย คำสั่ง คลิปบอร์ด ชุดทรัพยากร ลิงก์ และการออกจากเกม ให้โหลดเฉพาะหน้าที่เชื่อถือได้ และตรวจสอบข้อมูลทั้งหมดที่ได้รับจากเนื้อหาบนเว็บ
 
 ## 7. การแก้ไขปัญหา
 
-1. ตรวจสอบว่าหน้านั้นโหลดอยู่ในเบราว์เซอร์ Rinku ที่ควบคุมโดย FancyMenu
-2. ตรวจสอบคอนโซลเบราว์เซอร์เพื่อค้นหาข้อผิดพลาด JavaScript
-3. ตรวจสอบว่าตัวระบุ [placeholder](/placeholders) หรือประเภท [แอ็กชัน](/action-scripts) ถูกต้อง และมีการส่งค่าที่จำเป็นครบถ้วน
-4. หากการทำงานล้มเหลวโดยไม่คาดคิด ให้ตรวจสอบล็อก Minecraft (`latest.log`) เพื่อค้นหาข้อความข้อผิดพลาดของ FancyMenu
+1. ตรวจสอบว่าหน้านี้โหลดอยู่ในเบราว์เซอร์ Rinku ที่ FancyMenu ควบคุม
+2. ตรวจดูข้อผิดพลาด JavaScript ในคอนโซลของเบราว์เซอร์
+3. ตรวจสอบว่าตัวระบุ [placeholder](/placeholders) หรือประเภท [action](/action-scripts) ถูกต้อง และระบุค่าที่จำเป็นครบถ้วน
+4. หากการทำงานล้มเหลวโดยไม่คาดคิด ให้ตรวจดูข้อความผิดพลาดของ FancyMenu ในบันทึก Minecraft (`latest.log`)

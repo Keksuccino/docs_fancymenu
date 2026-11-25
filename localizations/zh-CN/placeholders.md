@@ -1,2756 +1,2425 @@
 ---
 title: 占位符
-description: 如何使用占位符。
+description: 在文本中显示玩家名称、时间或服务器玩家数等实时值，以及 FancyMenu 提供的所有占位符。
+sourceBlobSha: 951d7772d640bc6b19d6f4dcc2fef4adcd1f13aa
 ---
+
 # 占位符
 
-占位符会将实时值插入到文本、按钮、需求以及其他受支持的字段中。
+占位符是一些短代码，FancyMenu 会将它们替换为实时值，例如玩家名称、时间或服务器玩家数。它们可用于元素文本、按钮标签、工具提示、操作和条件的值，以及大多数其他可输入文本的地方。
 
-# 一般信息
+<img width="800" alt="在布局编辑器的文本元素中添加玩家名称占位符：文本编辑器中的占位符、玩家类别，以及按名称问候玩家的文本" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_add.gif?raw=true">
 
-## 基本语法
-FancyMenu 中的占位符使用类似 JSON 的语法：
+> [!TIP]
+> 你自己的[变量](/variables)也可以在相同的文本中使用，写成 `$$` 加变量名称的形式，例如 `$$coins`。
+
+# 添加占位符
+
+1. 在文本编辑器中打开文本，例如[文本元素](/text-in-menus)的**文本内容**。窗口中的文本字段（例如操作的值）旁边有一个**在编辑器中打开**按钮。
+2. 点击要插入占位符的位置。
+3. 点击文本编辑器右上角的**占位符**。
+4. 点击一个类别，或按名称、标识符或说明搜索。点击**返回**可回到类别列表。没有类别的占位符列在类别下方。
+5. 将鼠标悬停在占位符上可查看其作用，点击即可添加。
+6. 替换占位符中的示例值，例如**模组版本**中的模组 ID。
+
+文本编辑器中没有**占位符**按钮的文本不支持占位符。
+
+# 占位符的工作方式
+
+占位符的格式如下：
+
+```
+{"placeholder":"playername"}
+```
+
+带设置项的占位符会将设置放在 `values` 中：
+
 ```
 {"placeholder":"modversion","values":{"modid":"fancymenu"}}
 ```
 
-例如，要显示玩家名称：
-```
-{"placeholder":"playername"}
-```
+- 标识符（例如 `playername`）区分大小写。下方列出的每个占位符都包含其标识符和值。
+- 值的顺序无关紧要。标记为可选的值可以省略。
+- 如果 FancyMenu 无法替换某个占位符（例如其中有拼写错误），它会保留在文本中，显示为你输入的内容。
+- 占位符始终返回文本。如果没有可显示的内容，则会返回备用值，例如 `0`、`0.0`、`---` 或空文本。
+- 占位符周围可以使用[格式代码](/text-formatting)：`&6{"placeholder":"playername"}` 会以金色显示名称。
 
-## 嵌套占位符
-你可以在一个占位符的值中使用另一个占位符。
+> [!IMPORTANT]
+> 占位符看起来像 JSON，但它们并不是 JSON。不要使用 JSON 格式化工具或验证器处理占位符，因为占位符中包含的其他占位符并不是有效的 JSON。
 
-嵌套占位符示例：
+## 占位符中的占位符
+
+值中可以包含其他占位符和[变量](/variables#showing-variables-in-text)。FancyMenu 会先替换内部的占位符。值中的引号无需转义。
+
+以下示例将最大内存从 MB 换算为 GB：
+
 ```
 {"placeholder":"calc","values":{"decimal":"true","expression":"{"placeholder":"maxram"} / 1024"}}
 ```
-这个示例会取最大内存值并除以 1024，以便从 MB 转换为 GB。
 
-> [!IMPORTANT]
-> 这不是标准 JSON，而是 FancyMenu 语法。嵌套占位符必须使用上面显示的未转义原始形式，因此 JSON 格式化工具会拒绝或重写它们。占位符名称区分大小写；格式错误或未知的占位符仍会作为文本显示，并会被记录。
+以下示例将变量 `rank` 转换为大写：
 
-# 使用占位符
-
-大多数带有文本输入的元素都支持占位符。编辑时你可以查看该文本输入是否支持占位符。如果编辑文本时会打开全屏的 **文本编辑器**，就表示它支持占位符。
-
-要查看 **所有占位符的列表**，只需点击 **文本编辑器** 右上角的 **占位符** 按钮。
-
-占位符列表顶部有一个 **搜索栏**，可用于搜索占位符。
-
-在占位符列表中点击某个占位符，会将其粘贴到文本内容中。
-
-# 占位符详解
-
-本节列出了 FancyMenu 的内置占位符。
-
-## 不可用结果
-
-占位符的输出始终是文本。当数据不可用时，结果取决于具体占位符：常见回退值为空字符串、`0`、`0.0`、`00:00`、`false`、`UNKNOWN` 或 `ERROR`。带有特定回退值的条目会直接注明；在将依赖环境的输出用于 [需求](./conditions)、路径、命令或 URL 之前，请先测试其回退行为。
-
-## 玩家名称 (`playername`)
-
-**用途：** 返回当前玩家的用户名。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"playername"}
-```
-
-**输出：** `Steve`
-
-## 玩家 UUID (`playeruuid`)
-
-**用途：** 返回玩家的唯一标识符。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"playeruuid"}
-```
-
-**输出：** `c8cde7fe-7ced-11eb-9439-0242ac130002`
-
-## Minecraft 版本 (`mcversion`)
-
-**用途：** 返回当前 Minecraft 版本。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"mcversion"}
-```
-
-**输出：** `1.21.1`
-
-## 模组加载器版本 (`loaderver`)
-
-**用途：** 返回模组加载器（Fabric/NeoForge）的版本。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"loaderver"}
-```
-
-**输出：** `0.16.14`
-
-## 模组加载器名称 (`loadername`)
-
-**用途：** 返回模组加载器的名称。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"loadername"}
-```
-
-**输出：** `Fabric`
-
-## 模组版本 (`modversion`)
-
-**用途：** 返回某个特定模组的版本。
-
-**值：** `modid`
-
-**示例：**
-
-```
-{"placeholder":"modversion","values":{"modid":"example_mod"}}
-```
-
-**输出：** `1.2.3`
-
-## 模组总数 (`totalmods`)
-
-**用途：** 根据 `mods` 目录和已加载模组数量返回一个大致的模组文件计数。它不能可靠地统计每一个被禁用的模组。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"totalmods"}
-```
-
-**输出：** `45`
-
-## 活动模组数量 (`loadedmods`)
-
-**用途：** 返回当前已加载的模组数量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"loadedmods"}
-```
-
-**输出：** `43`
-
-## 世界加载进度 (`world_load_progress`)
-
-**用途：** 返回当前世界加载进度百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"world_load_progress"}
-```
-
-**输出：** `75`
-
-## Minecraft 选项值 (`minecraft_option_value`)
-
-**用途：** 返回某个 Minecraft 选项的值。
-
-**值：** `name`
-
-**示例：**
-
-```
-{"placeholder":"minecraft_option_value","values":{"name":"fov"}}
-```
-
-**输出：** `70`
-
-## 上一个世界或服务器 (`last_world_server`)
-
-**用途：** 返回最近访问的世界或服务器的信息。
-
-**值：** `type`, `full_world_path`
-
-**示例：**
-
-```
-{"placeholder":"last_world_server","values":{"type":"both","full_world_path":"true"}}
-```
-参数：
-- `type`：决定返回哪种类型的信息
-  - `"both"`：返回最近访问的世界或服务器（默认）
-  - `"server"`：仅当最近访问的是服务器时返回
-  - `"world"`：仅当最近访问的是世界时返回
-- `full_world_path`：控制世界路径的显示方式
-  - `"true"`：返回完整世界路径（默认）
-  - `"false"`：仅返回世界名称，不包含路径（不影响服务器）
-
-示例：
-- 服务器：`mc.hypixel.net`
-- 带完整路径的世界：`saves/New World`
-- 不带完整路径的世界：`New World`
-
-## 屏幕宽度 (`guiwidth`)
-
-**用途：** 返回当前屏幕宽度，单位为 GUI 缩放后的像素，而不是物理显示器像素。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"guiwidth"}
-```
-
-**输出：** `960`
-
-## 屏幕高度 (`guiheight`)
-
-**用途：** 返回当前屏幕高度，单位为 GUI 缩放后的像素，而不是物理显示器像素。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"guiheight"}
-```
-
-**输出：** `540`
-
-## 当前屏幕标识符 (`screenid`)
-
-**用途：** 返回当前屏幕的标识符。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"screenid"}
-```
-
-**输出：** `title_screen`
-
-## 元素宽度 (`elementwidth`)
-
-**用途：** 返回某个特定元素的宽度。
-
-**值：** `id`
-
-**示例：**
-
-```
-{"placeholder":"elementwidth","values":{"id":"my_button"}}
-```
-
-**输出：** `200`
-
-## 元素高度 (`elementheight`)
-
-**用途：** 返回某个特定元素的高度。
-
-**值：** `id`
-
-**示例：**
-
-```
-{"placeholder":"elementheight","values":{"id":"my_button"}}
-```
-
-**输出：** `20`
-
-## 元素 X 坐标 (`elementposx`)
-
-**用途：** 返回某个特定元素的 X 坐标。
-
-**值：** `id`
-
-**示例：**
-
-```
-{"placeholder":"elementposx","values":{"id":"my_button"}}
-```
-
-**输出：** `150`
-
-## 元素 Y 坐标 (`elementposy`)
-
-**用途：** 返回某个特定元素的 Y 坐标。
-
-**值：** `id`
-
-**示例：**
-
-```
-{"placeholder":"elementposy","values":{"id":"my_button"}}
-```
-
-**输出：** `100`
-
-## 鼠标 X 坐标 (`mouseposx`)
-
-**用途：** 返回当前鼠标的 X 坐标。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"mouseposx"}
-```
-
-**输出：** `960`
-
-## 鼠标 Y 坐标 (`mouseposy`)
-
-**用途：** 返回当前鼠标的 Y 坐标。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"mouseposy"}
-```
-
-**输出：** `540`
-
-## 每秒点击次数 (`clicks_per_second`)
-
-**用途：** 返回鼠标按键当前的每秒点击次数。
-
-**值：** `mouse_button`
-
-**示例：**
-
-```
-{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
-```
-参数：
-- `mouse_button`：`left` 或 `right`
-
-**输出：** `8`
-
-## GUI 缩放 (`guiscale`)
-
-**用途：** 返回当前 GUI 缩放。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"guiscale"}
-```
-
-**输出：** `2`
-
-## 原版控件标签/文本 (`vanillabuttonlabel`)
-
-**用途：** 返回原版控件/按钮的标签或文本。
-
-**值：** `locator`
-
-**示例：**
-
-```
-{"placeholder":"vanillabuttonlabel","values":{"locator":"some.menu.identifier:505280"}}
-```
-
-**输出：** `Options...`
-
-## 文本输入字段值 (`text_input_field_value`)
-
-**用途：** 通过元素标识符返回自定义或原版文本输入字段的当前值。
-
-**值：** `element_identifier`
-
-**示例：**
-
-```
-{"placeholder":"text_input_field_value","values":{"element_identifier":"my_input"}}
-```
-
-**输出：** `Hello World`
-
-## 当前玩家生命值 (`current_player_health`)
-
-**用途：** 返回玩家当前生命值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_health"}
-```
-
-**输出：** `20.0`
-
-## 玩家最大生命值 (`max_player_health`)
-
-**用途：** 返回玩家的最大生命值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"max_player_health"}
-```
-
-**输出：** `20.0`
-
-## 当前玩家生命值（百分比） (`current_player_health_percent`)
-
-**用途：** 返回玩家当前生命值的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_health_percent"}
-```
-
-**输出：** `100`
-
-## 当前玩家吸收生命值 (`current_player_absorption_health`)
-
-**用途：** 返回玩家的吸收生命值（金色心）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_absorption_health"}
-```
-
-**输出：** `4.0`
-
-## 玩家最大吸收生命值 (`max_player_absorption_health`)
-
-**用途：** 返回最大吸收生命值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"max_player_absorption_health"}
-```
-
-**输出：** `4.0`
-
-## 当前玩家吸收生命值（百分比） (`current_player_absorption_health_percent`)
-
-**用途：** 返回玩家吸收生命值的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_absorption_health_percent"}
-```
-
-**输出：** `100`
-
-## 当前玩家饥饿值 (`current_player_hunger`)
-
-**用途：** 返回玩家当前饥饿值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_hunger"}
-```
-
-**输出：** `20`
-
-## 玩家最大饥饿值 (`max_player_hunger`)
-
-**用途：** 返回最大饥饿值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"max_player_hunger"}
-```
-
-**输出：** `20`
-
-## 当前玩家饥饿值（百分比） (`current_player_hunger_percent`)
-
-**用途：** 返回玩家饥饿值的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_hunger_percent"}
-```
-
-**输出：** `100`
-
-## 当前玩家饥饿饱和度 (`current_player_hunger_saturation`)
-
-**用途：** 返回玩家当前饥饿饱和度值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_hunger_saturation"}
-```
-
-**输出：** `5.0`
-
-## 当前玩家护甲值 (`current_player_armor`)
-
-**用途：** 返回玩家当前护甲值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_armor"}
-```
-
-**输出：** `20`
-
-## 玩家护甲韧性 (`player_armor_toughness`)
-
-**用途：** 返回玩家总护甲韧性值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_armor_toughness"}
-```
-
-**输出：** `8.0`
-
-## 玩家最大护甲值 (`max_player_armor`)
-
-**用途：** 返回最大护甲值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"max_player_armor"}
-```
-
-**输出：** `20`
-
-## 当前玩家护甲值（百分比） (`current_player_armor_percent`)
-
-**用途：** 返回玩家护甲值的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_armor_percent"}
-```
-
-**输出：** `100`
-
-## 当前玩家氧气值 (`current_player_oxygen`)
-
-**用途：** 返回玩家当前氧气值（气泡数）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_oxygen"}
-```
-
-**输出：** `300`
-
-## 玩家最大氧气值 (`max_player_oxygen`)
-
-**用途：** 返回最大氧气值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"max_player_oxygen"}
-```
-
-**输出：** `300`
-
-## 当前玩家氧气值（百分比） (`current_player_oxygen_percent`)
-
-**用途：** 返回玩家氧气值的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_oxygen_percent"}
-```
-
-**输出：** `100`
-
-## 当前玩家等级 (`current_player_level`)
-
-**用途：** 返回玩家当前经验等级。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_level"}
-```
-
-**输出：** `30`
-
-## 当前玩家经验值 (`current_player_exp`)
-
-**用途：** 返回玩家总经验值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_exp"}
-```
-
-**输出：** `1250`
-
-## 玩家经验进度（百分比） (`current_player_exp_progress`)
-
-**用途：** 返回玩家到下一等级的经验进度百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_player_exp_progress"}
-```
-
-**输出：** `75`
-
-## 玩家攻击强度（百分比） (`player_attack_strength`)
-
-**用途：** 返回玩家攻击冷却进度的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_attack_strength"}
-```
-
-**输出：** `100`
-
-## 玩家游戏模式 (`player_gamemode`)
-
-**用途：** 返回玩家当前游戏模式。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_gamemode"}
-```
-
-**输出：** `survival`
-
-## 玩家视线方向 (`player_view_direction`)
-
-**用途：** 返回玩家当前面朝的方向。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_view_direction"}
-```
-
-**输出：** `north`
-
-## 玩家 X 坐标 (`player_x_coordinate`)
-
-**用途：** 返回玩家在世界中的 X 坐标。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_x_coordinate"}
-```
-
-**输出：** `125`
-
-## 玩家 Y 坐标 (`player_y_coordinate`)
-
-**用途：** 返回玩家在世界中的 Y 坐标。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_y_coordinate"}
-```
-
-**输出：** `64`
-
-## 玩家 Z 坐标 (`player_z_coordinate`)
-
-**用途：** 返回玩家在世界中的 Z 坐标。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_z_coordinate"}
-```
-
-**输出：** `-250`
-
-## 当前坐骑生命值 (`current_mount_health`)
-
-**用途：** 返回玩家所骑乘实体的当前生命值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_mount_health"}
-```
-
-**输出：** `30.0`
-
-## 坐骑最大生命值 (`max_mount_health`)
-
-**用途：** 返回玩家所骑乘实体的最大生命值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"max_mount_health"}
-```
-
-**输出：** `30.0`
-
-## 当前坐骑生命值（百分比） (`current_mount_health_percent`)
-
-**用途：** 返回坐骑生命值的百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_mount_health_percent"}
-```
-
-**输出：** `100`
-
-## 当前坐骑跳跃条（百分比） (`current_mount_jump_meter`)
-
-**用途：** 返回坐骑跳跃能量条的值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_mount_jump_meter"}
-```
-
-**输出：** `75`
-
-## 当前 Boss 生命值（百分比） (`current_boss_health`)
-
-**用途：** 返回选中的活动 Boss 的生命值，整数百分比范围为 `0` 到 `100`。`boss_index` 从 0 开始；`0` 选择第一个 Boss 生命条。
-
-**值：** `boss_index`
-
-**示例：**
-
-```
-{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
-```
-
-**输出：** `75`
-
-## Boss 名称 (`boss_name`)
-
-**用途：** 返回活动 Boss 的名称。
-
-**值：** `boss_index`, `as_json`
-
-**示例：**
-
-```
-{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
-```
-
-**输出：** `Ender Dragon`
-
-## Boss 数量 (`boss_count`)
-
-**用途：** 返回当前活动 Boss 的数量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"boss_count"}
-```
-
-**输出：** `1`
-
-## 活动效果数量 (`effects_count`)
-
-**用途：** 返回当前活跃药水效果数量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"effects_count"}
-```
-
-**输出：** `3`
-
-## 活动效果 (`active_effect`)
-
-**用途：** 返回某个特定活动效果的信息。
-
-**值：** `effect_index`
-
-**示例：**
-
-```
-{"placeholder":"active_effect","values":{"effect_index":"0"}}
-```
-
-**输出：** `minecraft:speed`
-
-## 选中的快捷栏槽位 (`active_hotbar_slot`)
-
-**用途：** 返回当前选中的快捷栏槽位（0-8）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"active_hotbar_slot"}
-```
-
-**输出：** `4`
-
-## 槽位物品 (`slot_item`)
-
-**用途：** 返回某个特定库存槽位中的物品信息。
-
-**值：** `slot`
-
-**示例：**
-
-```
-{"placeholder":"slot_item","values":{"slot":"0"}}
-```
-
-**输出：** `minecraft:diamond_sword`
-
-## 槽位物品数量 (`slot_item_count`)
-
-**用途：** 返回玩家库存特定槽位中物品的堆叠数量。
-
-**值：** `slot`
-
-**示例：**
-
-```
-{"placeholder":"slot_item_count","values":{"slot":"0"}}
-```
-
-**输出：** `64`
-
-## 槽位物品耐久度 (`slot_item_durability`)
-
-**用途：** 返回玩家库存特定槽位中物品的耐久信息。
-
-**值：** `slot`, `format`
-
-**示例：**
-
-```
-{"placeholder":"slot_item_durability","values":{"slot":"0","format":"percentage"}}
-```
-参数：
-- `slot`：玩家库存槽位编号。
-- `format`：`current`、`remaining`、`max`、`damage`、`percentage` 或 `percent`。
-
-**输出：** `87`
-
-## 槽位物品显示名称 (`slot_item_display_name_fm`)
-
-**用途：** 以 JSON 文本组件的形式返回特定槽位中物品的显示名称。在旁观者模式下，快捷栏槽位可能会解析为旁观者菜单物品名称，除非 `ignore_spectator` 为 `true`。
-
-**值：** `slot`, `ignore_spectator`
-
-**示例：**
-
-```
-{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
-```
-
-**输出：** `{"text":"Diamond Sword","color":"aqua"}`
-
-## 库存物品数量 (`inventory_item_count`)
-
-**用途：** 返回玩家库存中所有匹配物品的总数。当 `item` 为空时，它会汇总所有已占用库存槽位的堆叠数量。
-
-**值：** `item`
-
-**示例：**
-
-```
-{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
-```
-
-**输出：** `12`
-
-## 库存槽位食物恢复量 (`inventory_slot_food_point_restore_amount`)
-
-**用途：** 返回指定玩家库存槽位中的食物物品能恢复的饥饿值。
-
-**值：** `slot`
-
-**示例：**
-
-```
-{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
-```
-
-**输出：** `4.0`
-
-## 鼠标悬停的库存物品 (`hovered_inventory_item`)
-
-**用途：** 返回当前在库存界面中鼠标悬停的物品键值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"hovered_inventory_item"}
-```
-
-**输出：** `minecraft:apple`
-
-## 世界游戏时间 (`game_time`)
-
-**用途：** 返回当前游戏内时间刻计数。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"game_time"}
-```
-
-**输出：** `18000`
-
-## 世界日间时间 (`world_daytime`)
-
-**用途：** 返回当前世界日间时间。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"world_daytime"}
-```
-
-**输出：** `13000`
-
-## 世界日间时间小时 (`world_daytime_hour`)
-
-**用途：** 返回世界时间的小时部分。默认使用 24 小时制；将 `twelve_hour_format` 设为 `"true"` 可使用 12 小时制。
-
-**值：** `twelve_hour_format`
-
-**示例：**
-
-```
-{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
-```
-
-**输出：** `12`
-
-## 世界日间时间分钟 (`world_daytime_minute`)
-
-**用途：** 返回世界时间的分钟部分（00-59）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"world_daytime_minute"}
-```
-
-**输出：** `30`
-
-## 世界难度 (`world_difficulty`)
-
-**用途：** 返回当前世界难度。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"world_difficulty"}
-```
-
-**输出：** `normal`
-
-## 当前世界种子 (`current_world_seed`)
-
-**用途：** 返回当前单人世界的种子。当种子不可用时，返回空值。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_world_seed"}
-```
-
-**输出：** `123456789`
-
-## 当前生物群系 (`current_biome`)
-
-**用途：** 返回玩家当前所在的生物群系。将 `as_key` 设为 `"false"` 可在可用时返回翻译后的/显示名称。
-
-**值：** `as_key`
-
-**示例：**
-
-```
-{"placeholder":"current_biome","values":{"as_key":"true"}}
-```
-
-**输出：** `minecraft:plains`
-
-## 当前维度 (`current_dimension`)
-
-**用途：** 返回玩家当前所在的维度。将 `as_key` 设为 `"false"` 可在可用时返回翻译后的/显示名称。
-
-**值：** `as_key`
-
-**示例：**
-
-```
-{"placeholder":"current_dimension","values":{"as_key":"true"}}
-```
-
-**输出：** `minecraft:overworld`
-
-## Gamerule 值 (`gamerule_value`)
-
-**用途：** 返回已加载世界/服务器中某个 gamerule 的当前值。服务器世界需要服务器端安装 FancyMenu。
-
-**值：** `name`
-
-**示例：**
-
-```
-{"placeholder":"gamerule_value","values":{"name":"doDaylightCycle"}}
-```
-
-**输出：** `true`
-
-## 物品分类 (`item_category`)
-
-**用途：** 返回物品所在的创造模式标签分类。将 `as_key` 设为 `"true"` 可返回分类键，而不是显示名称。
-
-**值：** `item`, `as_key`
-
-**示例：**
-
-```
-{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
-```
-
-**输出：** `Combat`
-
-## 当前 HUD 标题/副标题 (`current_title`)
-
-**用途：** 返回当前显示的标题文本。
-
-**值：** `is_subtitle`, `as_json`
-
-**示例：**
-
-```
-{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
-```
-
-**输出：** `Game Over!`
-
-## 动作栏消息 (`action_bar_message_fm`)
-
-**用途：** 以序列化的 Minecraft 文本组件形式返回当前原版动作栏消息。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"action_bar_message_fm"}
-```
-
-**输出：** `{"text":"You may not rest now","color":"red"}`
-
-## 动作栏消息剩余时间 (`action_bar_message_time_fm`)
-
-**用途：** 返回当前原版动作栏消息还会显示多少刻。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"action_bar_message_time_fm"}
-```
-
-**输出：** `42`
-
-## 摄像机旋转 X (`camera_rotation_x_fm`)
-
-**用途：** 返回当前摄像机俯仰角（度）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"camera_rotation_x_fm"}
-```
-
-**输出：** `12.5`
-
-## 摄像机旋转 Y (`camera_rotation_y_fm`)
-
-**用途：** 返回当前摄像机偏航角（度）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"camera_rotation_y_fm"}
-```
-
-**输出：** `-90.0`
-
-## 摄像机旋转变化量 X (`camera_rotation_delta_x_fm`)
-
-**用途：** 返回每刻摄像机俯仰角的变化量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"camera_rotation_delta_x_fm"}
-```
-
-**输出：** `0.4`
-
-## 摄像机旋转变化量 Y (`camera_rotation_delta_y_fm`)
-
-**用途：** 返回每刻摄像机偏航角的变化量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"camera_rotation_delta_y_fm"}
-```
-
-**输出：** `-1.2`
-
-## 高亮物品显示时间 (`highlighted_item_time_fm`)
-
-**用途：** 返回快捷栏上方高亮物品名称还会显示多少刻。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"highlighted_item_time_fm"}
-```
-
-**输出：** `30`
-
-## 玩家使用物品进度 (`player_item_use_progress_fm`)
-
-**用途：** 返回当前物品使用进度，范围为 `0.0` 到 `1.0`。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_item_use_progress_fm"}
-```
-
-**输出：** `0.65`
-
-## 玩家位置变化量 X (`player_position_delta_x_fm`)
-
-**用途：** 返回每刻玩家在 X 轴上的位置变化量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_position_delta_x_fm"}
-```
-
-**输出：** `0.0`
-
-## 玩家位置变化量 Y (`player_position_delta_y_fm`)
-
-**用途：** 返回每刻玩家在 Y 轴上的位置变化量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_position_delta_y_fm"}
-```
-
-**输出：** `-0.08`
-
-## 玩家位置变化量 Z (`player_position_delta_z_fm`)
-
-**用途：** 返回每刻玩家在 Z 轴上的位置变化量。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"player_position_delta_z_fm"}
 ```
-
-**输出：** `0.12`
-
-## 当前服务器 IP (`current_server_ip`)
-
-**用途：** 返回已连接服务器的 IP。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"current_server_ip"}
-```
-
-**输出：** `mc.hypixel.net`
-
-## 世界玩家列表 (`world_players_list`)
-
-**用途：** 返回当前世界中所有玩家的列表。
-
-**值：** `separator`
-
-**示例：**
-
-```
-{"placeholder":"world_players_list","values":{"separator":", "}}
-```
-
-**输出：** `Steve, Alex, Notch`
-
-## 服务器 MOTD (`servermotd`)
-
-**用途：** 返回服务器的每日信息（Message of the Day）。
-
-**值：** `ip`, `line`
-
-**示例：**
-
-```
-{"placeholder":"servermotd","values":{"ip":"mc.hypixel.net","line":"1"}}
-```
-
-**输出：** `Welcome to Hypixel!`
-
-## 服务器 PING (`serverping`)
-
-**用途：** 返回服务器的延迟，单位毫秒。
-
-**值：** `ip`
-
-**示例：**
-
-```
-{"placeholder":"serverping","values":{"ip":"mc.hypixel.net"}}
-```
-
-**输出：** `54`
-
-## 服务器玩家数量 (`serverplayercount`)
-
-**用途：** 返回服务器的玩家数量。
-
-**值：** `ip`
-
-**示例：**
-
-```
-{"placeholder":"serverplayercount","values":{"ip":"mc.hypixel.net"}}
-```
-
-**输出：** `25000/30000`
-
-## 服务器状态 (`serverstatus`)
-
-**用途：** 返回服务器在线/离线状态。
-
-**值：** `ip`
-
-**示例：**
-
-```
-{"placeholder":"serverstatus","values":{"ip":"mc.hypixel.net"}}
-```
-
-**输出：** `§aOnline` 或 `§cOffline`
-
-## 服务器版本 (`serverversion`)
-
-**用途：** 返回服务器的 Minecraft 版本。
-
-**值：** `ip`
-
-**示例：**
-
-```
-{"placeholder":"serverversion","values":{"ip":"mc.hypixel.net"}}
-```
-
-**输出：** `1.21.1`
-
-> [!NOTE]
-> 下面的实时占位符接受 `timezone` 值。请使用 Java 时区 ID，例如 `UTC`、`Europe/Berlin` 或 `America/New_York`；也可以省略，或使用 `system` 表示系统时区。`unix_time` 始终返回 Unix 时间戳，并且没有 `timezone` 值。
-
-## 年 (`realtimeyear`)
-
-**用途：** 返回当前年份。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"realtimeyear"}
-```
-
-**输出：** `2024`
-
-## 月 (`realtimemonth`)
-
-**用途：** 返回当前月份（01-12）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"realtimemonth"}
-```
-
-**输出：** `01`
-
-## 日 (`realtimeday`)
-
-**用途：** 返回当前月中的日期（01-31）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"realtimeday"}
-```
-
-**输出：** `27`
-
-## 小时 (`realtimehour`)
-
-**用途：** 返回当前小时。默认使用 24 小时制；将 `twelve_hour_format` 设为 `"true"` 可使用 12 小时制。
-
-**值：** `twelve_hour_format`, `timezone`
-
-**示例：**
-
-```
-{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"system"}}
-```
-
-**输出：** `14`
-
-## 分钟 (`realtimeminute`)
-
-**用途：** 返回当前分钟（00-59）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"realtimeminute"}
-```
-
-**输出：** `30`
-
-## 秒 (`realtimesecond`)
-
-**用途：** 返回当前秒数（00-59）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"realtimesecond"}
-```
-
-**输出：** `45`
-
-## 当前时间毫秒数（Unix 时间戳） (`unix_time`)
-
-**用途：** 返回当前 Unix 时间戳，单位毫秒。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"unix_time"}
-```
-
-**输出：** `1716552478123`
-
-## CPU 信息 (`cpuinfo`)
-
-**用途：** 返回 CPU 信息。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"cpuinfo"}
-```
-
-**输出：** `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`
-
-## CPU 使用率（JVM） (`jvmcpu`)
-
-**用途：** 返回 JVM 的 CPU 使用率百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"jvmcpu"}
+{"placeholder":"uppercase_text","values":{"text":"$$rank"}}
 ```
 
-**输出：** `25.5`
+如果占位符返回的文本中包含其他占位符（例如通过[**文件文本**](#file-text)读取的文件内容），FancyMenu 也会替换这些占位符。
 
-## CPU 使用率（OS） (`oscpu`)
+# 须知
 
-**用途：** 返回操作系统的 CPU 使用率百分比。
+- 占位符会自动更新。FancyMenu 会保留替换后的文本 30 毫秒，然后再次替换其中的占位符。可以在**菜单栏 -> 自定义 -> 设置**中调整**占位符缓存时长 [MS]**。设置为 `0` 会在每帧替换一次，占用更多性能。
+- 读取网站、文件或服务器的占位符（例如**网页文本**或**服务器状态**）会在后台加载。在加载完成前，它们会返回空文本或备用值。
+- 在[操作](/action-scripts)中，占位符会在操作运行时获取当前值。
+- 关于世界、屏幕和元素的占位符只能在游戏主线程中使用。在后台（异步）运行的[计时器](/elements#ticker)中使用时，FancyMenu 会显示错误。
+- **随机数**每次文本更新时都会生成新数字。要保留该数字，可使用[**设置变量值 (FM Variable)**](/action-scripts#set-variable-value-fm-variable)将其保存到[变量](/variables)中。
 
-**值：** 无
+> [!CAUTION]
+> **JSON 解析器**、**文件文本**和**剪贴板内容**等占位符可以读取游戏文件夹中的文件和你的剪贴板。如果与会联系网站的操作配合使用，布局可能会将这些数据发送出去。请只使用你信任的布局。
 
-**示例：**
+# 示例
 
-```
-{"placeholder":"oscpu"}
-```
-
-**输出：** `42.8`
-
-## GPU 信息 (`gpuinfo`)
-
-**用途：** 返回 Minecraft 当前渲染设备报告的名称。这并不保证能唯一识别某块物理 GPU。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"gpuinfo"}
-```
-
-**输出：** `NVIDIA GeForce RTX 3080`
-
-## Java 版本 (`javaver`)
-
-**用途：** 返回 Java 版本。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"javaver"}
-```
-
-**输出：** `17.0.2`
-
-## Java 虚拟机 (`jvmname`)
-
-**用途：** 返回 Java 虚拟机的名称。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"jvmname"}
-```
-
-**输出：** `OpenJDK 64-Bit Server VM`
-
-## OpenGL 版本 (`glver`)
-
-**用途：** 返回 Minecraft 当前渲染设备的驱动信息。尽管名称沿用了旧的 `glver`，其值并不保证只是一个 OpenGL 版本字符串。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"glver"}
-```
-
-**输出：** `4.6.0 NVIDIA 516.94`
-
-## 操作系统名称 (`osname`)
-
-**用途：** 返回操作系统名称。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"osname"}
-```
-
-**输出：** `Windows 10`
-
-## FPS（每秒帧数） (`fps`)
-
-**用途：** 返回当前每秒帧数。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"fps"}
-```
-
-**输出：** `120`
-
-## 已用 RAM（MB） (`usedram`)
-
-**用途：** 返回当前正在使用的内存量（MB）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"usedram"}
-```
-
-**输出：** `4096`
-
-## 最大 RAM（MB） (`maxram`)
-
-**用途：** 返回分配的最大内存量（MB）。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"maxram"}
-```
-
-**输出：** `8192`
-
-## 已用 RAM（%%） (`percentram`)
-
-**用途：** 返回当前已使用的 RAM 百分比。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"percentram"}
-```
-
-**输出：** `50`
-
-## 音频元素音量 (`audio_element_vol`)
-
-**用途：** 返回一个音频元素的音量。
-
-**值：** `element_identifier`
-
-**示例：**
-
-```
-{"placeholder":"audio_element_vol","values":{"element_identifier":"background_music"}}
-```
-
-**输出：** `0.5`
-
-## 当前音频曲目 (`audio_element_current_track`)
-
-**用途：** 返回一个音频元素的曲目名称。
-
-**值：** `element_identifier`, `display_name_mappings`
-
-**示例：**
-
-```
-{"placeholder":"audio_element_current_track","values":{"element_identifier":"background_music","display_name_mappings":"track1.ogg=>Menu Theme%:%track2.ogg=>Credits Theme"}}
-```
-
-在 `display_name_mappings` 中，`=>` 用于分隔文件名和显示名称，`%:%` 用于分隔各个映射。
-
-**输出：** `Menu Theme`
-
-## 音频时长 (`audio_duration`)
-
-**用途：** 以 `MM:SS` 格式返回 [音频元素](./elements#audio) 当前已加载曲目的时长。曲目可以正在播放、暂停或停止。
-
-**值：** `element_identifier`
-
-**示例：**
+## 欢迎面板
 
-```
-{"placeholder":"audio_duration","values":{"element_identifier":"background_music"}}
-```
-
-**输出：** `03:45`
-
-## 音频播放时间 (`audio_playtime`)
+<img width="800" alt="文本元素按玩家名称问候玩家，并显示 Minecraft 版本、模组数量和时间" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/placeholders_welcome.png?raw=true">
 
-**用途：** 返回音频曲目的当前播放时间。将 `show_percentage` 设为 `"true"` 可获得 0-100 的进度值，而不是 `MM:SS`。
-
-**值：** `element_identifier`, `show_percentage`
-
-**示例：**
-
 ```
-{"placeholder":"audio_playtime","values":{"element_identifier":"background_music","show_percentage":"false"}}
+### 欢迎回来，{"placeholder":"playername"}！
+Minecraft {"placeholder":"mcversion"}，已加载 {"placeholder":"loadedmods"} 个模组
+现在是 {"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
-
-**输出：** `01:30`（或在 `show_percentage` 为 `"true"` 时显示 `45`）
 
-**不可用结果：** `00:00`，或在百分比模式下为 `0`。当前值在曲目播放或暂停时可用；已停止、缺失或尚未就绪的曲目会使用不可用结果。
+## 服务器状态和玩家
 
-## 音频播放状态 (`audio_playing_state`)
-
-**用途：** 返回音频元素是否正在播放（true/false）。
-
-**值：** `element_identifier`
-
-**示例：**
-
 ```
-{"placeholder":"audio_playing_state","values":{"element_identifier":"background_music"}}
+生存模式：{"placeholder":"serverstatus","values":{"ip":"play.example.net"}}&r，{"placeholder":"serverplayercount","values":{"ip":"play.example.net"}} 名玩家
 ```
-
-**输出：** `true`
-
-## 视频元素音量 (`video_element_vol`)
-
-**用途：** 返回视频元素的音量级别（0.0 到 1.0）。
-
-**值：** `element_identifier`
 
-**示例：**
+## 日期和时间
 
 ```
-{"placeholder":"video_element_vol","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"realtimeyear"}年{"placeholder":"realtimemonth"}月{"placeholder":"realtimeday"}日，{"placeholder":"realtimehour"}:{"placeholder":"realtimeminute"}
 ```
 
-**输出：** `0.5`
+## RAM 使用情况
 
-## 视频元素时长 (`video_element_duration`)
-
-**用途：** 以 `MM:SS` 格式返回视频元素的总时长。将 `output_as_timestamp` 设为 `"true"` 可返回毫秒时间戳。
-
-**值：** `element_identifier`, `output_as_timestamp`
-
-**示例：**
-
 ```
-{"placeholder":"video_element_duration","values":{"element_identifier":"my_video_element","output_as_timestamp":"false"}}
+RAM：{"placeholder":"usedram"} / {"placeholder":"maxram"} MB（{"placeholder":"percentram"}%）
 ```
 
-**输出：** `02:00`（或在 `output_as_timestamp` 为 `"true"` 时显示 `120000`）
+# 所有占位符
 
-## 视频元素播放时间 (`video_element_playtime`)
+以下是 FancyMenu 提供的所有占位符。占位符菜单中较大的**高级**和**世界**类别在此拆分为更小的组。
 
-**用途：** 以 `MM:SS` 格式返回视频元素的当前播放时间（进度）。将 `show_percentage` 设为 `"true"` 可返回 0-100 的进度值，或将 `output_as_timestamp` 设为 `"true"` 返回毫秒值。
-
-**值：** `element_identifier`, `show_percentage`, `output_as_timestamp`
-
-**示例：**
-
-```
-{"placeholder":"video_element_playtime","values":{"element_identifier":"my_video_element","show_percentage":"false","output_as_timestamp":"false"}}
-```
+## 变量和列表
 
-**输出：** `00:45`（或百分比 `38`，或时间戳 `45200`）
+这些占位符位于**高级**类别中。请参阅[变量](/variables)，了解如何创建变量和列表。
 
-## 视频元素暂停状态 (`video_element_paused_state`)
+### 获取变量值 (FM Variable)
 
-**用途：** 返回视频元素是否处于暂停状态（true/false）。
+**标识符：** `getvariable`
 
-**值：** `element_identifier`
+获取一个变量的值。变量为空或不存在时返回 `0`，因此适合用于数字。列表会以 JSON 数组的形式返回所有条目，例如 `["Steve","Alex"]`。
 
-**示例：**
+- `name`：变量名称，不包含 `$$`
 
 ```
-{"placeholder":"video_element_paused_state","values":{"element_identifier":"my_video_element"}}
+{"placeholder":"getvariable","values":{"name":"clicks"}}
 ```
-
-**输出：** `false`
 
-## 视频背景音量 (`video_background_vol`)
+### 获取列表条目 (FM Variable)
 
-**用途：** 返回视频菜单背景的音量级别（0.0 到 1.0）。
+**标识符：** `list_get`
 
-**值：** `background_identifier`
+获取列表变量中的一个条目。
 
-**示例：**
+- `name`：列表名称
+- `index`：条目的位置。第一个条目的索引为 `0`；负数从末尾开始计数，因此 `-1` 表示最后一个条目。
+- `fallback`（可选）：指定索引没有条目或不存在该名称的列表时返回的内容。默认为空。
 
 ```
-{"placeholder":"video_background_vol","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}
 ```
 
-**输出：** `0.7`
+### 列表大小 (FM Variable)
 
-## 视频背景时长 (`video_background_duration`)
+**标识符：** `list_size`
 
-**用途：** 以 `MM:SS` 格式返回视频菜单背景的总时长。将 `output_as_timestamp` 设为 `"true"` 可返回毫秒时间戳。
+获取列表中的条目数。不存在该名称的列表时返回 `0`。
 
-**值：** `background_identifier`, `output_as_timestamp`
+- `name`：列表名称
 
-**示例：**
-
 ```
-{"placeholder":"video_background_duration","values":{"background_identifier":"main_menu_video","output_as_timestamp":"false"}}
+{"placeholder":"list_size","values":{"name":"tips"}}
 ```
-
-**输出：** `03:00`（或在 `output_as_timestamp` 为 `"true"` 时显示 `180000`）
 
-## 视频背景播放时间 (`video_background_playtime`)
+### 列表条目索引 (FM Variable)
 
-**用途：** 以 `MM:SS` 格式返回视频菜单背景的当前播放时间（进度）。将 `show_percentage` 设为 `"true"` 可返回 0-100 的进度值，或将 `output_as_timestamp` 设为 `"true"` 返回毫秒值。
+**标识符：** `list_index_of`
 
-**值：** `background_identifier`, `show_percentage`, `output_as_timestamp`
+获取第一个与整个 `value` 完全匹配的条目的索引。如果列表中没有该条目，则返回 `-1`。
 
-**示例：**
+- `name`：列表名称
+- `value`：要查找的条目
+- `ignore_case`（可选）：设为 `true` 时，`Apple` 和 `apple` 也会匹配。默认为 `false`。
 
 ```
-{"placeholder":"video_background_playtime","values":{"background_identifier":"main_menu_video","show_percentage":"false","output_as_timestamp":"false"}}
+{"placeholder":"list_index_of","values":{"name":"read_news","value":"news_42","ignore_case":"false"}}
 ```
 
-**输出：** `01:00`（或百分比 `33`，或时间戳 `60500`）
+### 合并列表条目 (FM Variable)
 
-## 视频背景暂停状态 (`video_background_paused_state`)
+**标识符：** `list_join`
 
-**用途：** 返回视频菜单背景是否处于暂停状态（true/false）。
+将列表中的所有条目合并为一段文本。不存在该名称的列表时返回空文本。
 
-**值：** `background_identifier`
+- `name`：列表名称
+- `separator`（可选）：条目之间的文本。`\n` 表示换行。默认为 `, `。
 
-**示例：**
-
 ```
-{"placeholder":"video_background_paused_state","values":{"background_identifier":"main_menu_video"}}
+{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}
 ```
 
-**输出：** `true`
+## 数学
 
-## 计算器 (`calc`)
+这些占位符位于**高级**类别中。小数使用点号，例如 `2.5`。
 
-**用途：** 计算器占位符是一个强大的工具，可让你在布局中执行数学计算。它支持多种数学运算，并且可以同时处理小数和整数。
+### 计算器
 
-**值：** `decimal`, `expression`
+**标识符：** `calc`
 
-### 基本语法
+计算数学表达式，例如 `2 + 3 * 4`。
 
-**示例：**
+- `expression`：要计算的表达式
+- `decimal`（可选）：设为 `false` 时将结果四舍五入为整数。默认为 `true`，结果可能类似 `14.0`。
 
 ```
-{"placeholder":"calc","values":{"decimal":"true/false","expression":"your_expression"}}
+{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeholder":"usedram"} * 100 / {"placeholder":"maxram"}"}}
 ```
-
-计算器有两个主要参数：
-- `decimal`：决定结果是否保留小数位（`true`）或四舍五入为整数（`false`）
-- `expression`：要计算的数学表达式
 
-### 支持的运算
-计算器支持以下数学运算：
-- 基础运算：`+`（加）、`-`（减）、`*`（乘）、`/`（除）
-- 括号：使用 `( )` 对运算进行分组
-- 幂：`^` 表示指数
-- 平方根：`sqrt()`
-- 三角函数：`sin()`、`cos()`、`tan()`
-- 数学常量：`pi`、`e`
-- 绝对值：`abs()`
-- 对数：`log()`、`ln()`
+| 表达式中的内容 | 作用 |
+|---|---|
+| `+` `-` `*` `/` | 加、减、乘、除 |
+| `^` | 幂运算，例如 `2 ^ 3` 得到 8 |
+| `%` | 取余，例如 `7 % 3` 得到 1 |
+| `( )` | 对表达式分组，例如 `(2 + 3) * 4` |
+| `pi`, `e` | 数字 π 和 e |
+| `abs(x)` | 去掉数字的负号 |
+| `sqrt(x)`, `cbrt(x)` | 平方根、立方根 |
+| `pow(x, y)` | x 的 y 次方 |
+| `floor(x)`, `ceil(x)` | 向下取整、向上取整 |
+| `sin(x)`, `cos(x)`, `tan(x)`, `cot(x)` | 三角函数，角度使用弧度 |
+| `asin(x)`, `acos(x)`, `atan(x)` | 反三角函数 |
+| `sinh(x)`, `cosh(x)`, `tanh(x)` | 双曲函数 |
+| `log(x)`, `log2(x)`, `log10(x)` | 以 e、2 和 10 为底的对数 |
+| `exp(x)` | e 的 x 次方 |
+| `signum(x)` | 返回 `1`、`-1` 或 `0`，类似[**符号 (Math)**](#sign-math) |
 
-## 随机数 (`random_number`)
+### 随机数
 
-**用途：** 在指定范围内生成一个随机数。
+**标识符：** `random_number`
 
-**值：** `min`, `max`
+生成介于 `min` 和 `max` 之间的随机整数。每次文本更新时都会改变。
 
-**示例：**
+- `min`、`max`：最小值和最大值
 
 ```
-{"placeholder":"random_number","values":{"min":"1","max":"100"}}
+{"placeholder":"random_number","values":{"min":"1","max":"6"}}
 ```
 
-**输出：** `42`
+### 最大值
 
-## 最大值 (`maxnum`)
+**标识符：** `maxnum`
 
-**用途：** 返回两个数中较大的一个。
+返回两个数字中较大的一个。
 
-**值：** `first`, `second`
+- `first`、`second`：要比较的数字
 
-**示例：**
-
 ```
-{"placeholder":"maxnum","values":{"first":"10","second":"20"}}
+{"placeholder":"maxnum","values":{"first":"$$score","second":"$$best_score"}}
 ```
 
-**输出：** `20`
+### 最小值
 
-## 最小值 (`minnum`)
+**标识符：** `minnum`
 
-**用途：** 返回两个数中较小的一个。
+返回两个数字中较小的一个。
 
-**值：** `first`, `second`
+- `first`、`second`：要比较的数字
 
-**示例：**
-
 ```
-{"placeholder":"minnum","values":{"first":"10","second":"20"}}
+{"placeholder":"minnum","values":{"first":"10","second":"15"}}
 ```
-
-**输出：** `10`
 
-## 绝对值 (`absnum`)
+### 绝对值
 
-**用途：** 返回一个数的绝对值。
+**标识符：** `absnum`
 
-**值：** `num`
+去掉数字的负号，例如 `-10.5` 会得到 `10.5`。
 
-**示例：**
+- `num`：要处理的数字
 
 ```
 {"placeholder":"absnum","values":{"num":"-10.5"}}
 ```
 
-**输出：** `10.5`
+### 数字取反
 
-## 转为负数 (`negnum`)
+**标识符：** `negnum`
 
-**用途：** 将一个正数变为负数。零和已经为负的值保持不变。
+将正数变为负数，例如 `10.5` 会得到 `-10.5`。零和负数保持不变。
 
-**值：** `num`
-
-**示例：**
+- `num`：要处理的数字
 
 ```
 {"placeholder":"negnum","values":{"num":"10.5"}}
 ```
 
-**输出：** `-10.5`
+### 四舍五入 (Math)
 
-## *pi*（数学） (`math_pi`)
+**标识符：** `math_round`
 
-**用途：** 返回 π 的值。
+对数字进行四舍五入。`2.5` 会向上取整为 `3`。
 
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"math_pi"}
-```
-
-**输出：** `3.141592653589793`
-
-## 三角正弦（数学） (`math_sin`)
-
-**用途：** 返回弧度角的正弦值。请先将角度值转换为弧度。
-
-**值：** `angle`
-
-**示例：**
-
-```
-{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
-```
-
-**输出：** `1.0`
-
-## 三角余弦（数学） (`math_cos`)
-
-**用途：** 返回弧度角的余弦值。请先将角度值转换为弧度。
-
-**值：** `angle`
-
-**示例：**
-
-```
-{"placeholder":"math_cos","values":{"angle":"0"}}
-```
-
-**输出：** `1.0`
-
-## 三角正切（数学） (`math_tan`)
-
-**用途：** 返回弧度角的正切值。请先将角度值转换为弧度。
-
-**值：** `angle`
-
-**示例：**
-
-```
-{"placeholder":"math_tan","values":{"angle":"0"}}
-```
-
-**输出：** `0.0`
-
-## 向下取整（数学） (`math_floor`)
-
-**用途：** 返回数值的数学向下取整结果，格式化为带 `.0` 的小数后缀。
-
-**值：** `num`
-
-**示例：**
-
-```
-{"placeholder":"math_floor","values":{"num":"3.14"}}
-```
-
-**输出：** `3.0`
-
-## 向上取整（数学） (`math_ceil`)
-
-**用途：** 返回数值的数学向上取整结果，格式化为带 `.0` 的小数后缀。
-
-**值：** `num`
-
-**示例：**
-
-```
-{"placeholder":"math_ceil","values":{"num":"3.14"}}
-```
-
-**输出：** `4.0`
-
-当你需要不带 `.0` 的整数文本时，请使用 [**四舍五入**](#round-math-math_round) 或在关闭小数输出的情况下使用 [**计算器**](#计算器-calc)。
-
-## 四舍五入（数学） (`math_round`)
-
-**用途：** 对数字进行四舍五入。默认四舍五入到最接近的整数；将 `decimals` 设为非负数可保留对应的小数位数。
-
-**值：** `num`, `decimals`
-
-**示例：**
+- `num`：要处理的数字
+- `decimals`（可选）：保留的小数位数，例如 `2` 会将 `3.14159` 转换为 `3.14`。设为 `0`、`-1` 或留空时，会取整为整数。
 
 ```
 {"placeholder":"math_round","values":{"num":"3.14159","decimals":"2"}}
 ```
 
-**输出：** `3.14`（若 `decimals:-1` 或未填写 → `3`）
+### 向下取整 (Math)
 
-## 符号（数学） (`math_sign`)
+**标识符：** `math_floor`
 
-**用途：** 返回数字的符号（正数为 1，负数为 -1，零为 0）。
+将数字向下取整为整数，例如 `3.7` 得到 `3`，`-3.2` 得到 `-4`。
 
-**值：** `num`
+- `num`：要处理的数字
 
-**示例：**
+```
+{"placeholder":"math_floor","values":{"num":"3.7"}}
+```
+
+### 向上取整 (Math)
+
+**标识符：** `math_ceil`
+
+将数字向上取整为整数，例如 `3.2` 得到 `4`，`-3.7` 得到 `-3`。
+
+- `num`：要处理的数字
+
+```
+{"placeholder":"math_ceil","values":{"num":"3.2"}}
+```
+
+### 符号 (Math)
+
+**标识符：** `math_sign`
+
+正数返回 `1`，负数返回 `-1`，零返回 `0`。
+
+- `num`：要处理的数字
 
 ```
 {"placeholder":"math_sign","values":{"num":"-3.14"}}
 ```
 
-**输出：** `-1`
+### *pi* (Math)
 
-## 双曲正弦（数学） (`math_sinh`)
+**标识符：** `math_pi`
 
-**用途：** 返回数字的双曲正弦值。
+数字 π：`3.141592653589793`。
 
-**值：** `num`
+```
+{"placeholder":"math_pi"}
+```
 
-**示例：**
+### 正弦 (Math)
+
+**标识符：** `math_sin`
+
+计算以弧度表示的角度的正弦值。若使用角度制，请先用计算器将角度乘以 π / 180。
+
+- `angle`：以弧度表示的角度
+
+```
+{"placeholder":"math_sin","values":{"angle":"1.5707963267948966"}}
+```
+
+### 余弦 (Math)
+
+**标识符：** `math_cos`
+
+计算以弧度表示的角度的余弦值。
+
+- `angle`：以弧度表示的角度
+
+```
+{"placeholder":"math_cos","values":{"angle":"0"}}
+```
+
+### 正切 (Math)
+
+**标识符：** `math_tan`
+
+计算以弧度表示的角度的正切值。
+
+- `angle`：以弧度表示的角度
+
+```
+{"placeholder":"math_tan","values":{"angle":"0.7853981633974483"}}
+```
+
+### 双曲正弦 (Math)
+
+**标识符：** `math_sinh`
+
+计算数字的双曲正弦值。
+
+- `num`：要处理的数字
 
 ```
 {"placeholder":"math_sinh","values":{"num":"1"}}
 ```
 
-**输出：** `1.1752011936438014`
+### 双曲余弦 (Math)
 
-## 双曲余弦（数学） (`math_cosh`)
+**标识符：** `math_cosh`
 
-**用途：** 返回数字的双曲余弦值。
+计算数字的双曲余弦值。
 
-**值：** `num`
-
-**示例：**
+- `num`：要处理的数字
 
 ```
 {"placeholder":"math_cosh","values":{"num":"1"}}
 ```
 
-**输出：** `1.5430806348152437`
+### 双曲正切 (Math)
 
-## 双曲正切（数学） (`math_tanh`)
+**标识符：** `math_tanh`
 
-**用途：** 返回数字的双曲正切值。
+计算数字的双曲正切值。
 
-**值：** `num`
-
-**示例：**
+- `num`：要处理的数字
 
 ```
 {"placeholder":"math_tanh","values":{"num":"1"}}
 ```
 
-**输出：** `0.7615941559557649`
+### 数字进制转换
 
-## 拆分文本 (`split_text`)
+**标识符：** `number_base_convert`
 
-**用途：** 使用指定分隔符拆分文本。
+将数字转换为其他进制，例如从十进制转换为二进制或十六进制。也支持小数，小数点后最多 16 位。结果中的字母为大写，例如 `FF`。
 
-**值：** `input`, `regex`, `max_parts`, `split_index`
-
-**示例：**
-
-```
-{"placeholder":"split_text","values":{"input":"hello,world","regex":",","max_parts":"2","split_index":"1"}}
-```
-
-**输出：** `world`
-
-## 去除首尾空白 (`trim_text`)
-
-**用途：** 去除首尾空白字符。
-
-**值：** `text`
-
-**示例：**
+- `input`：要转换的数字
+- `from_base`（可选）：`input` 的进制，范围为 `2` 到 `36`。默认为 `10`。
+- `to_base`（可选）：结果的进制，范围为 `2` 到 `36`。默认为 `10`。
 
 ```
-{"placeholder":"trim_text","values":{"text":"  hello world  "}}
+{"placeholder":"number_base_convert","values":{"input":"255","from_base":"10","to_base":"16"}}
 ```
 
-**输出：** `hello world`
+## 文本
 
-## 裁剪文本 (`crop_text`)
+这些占位符位于**高级**类别中。
 
-**用途：** 从文本开头和结尾移除指定数量的字符。
+### 转换为大写
 
-**值：** `text`, `remove_from_start`, `remove_from_end`
+**标识符：** `uppercase_text`
 
-**示例：**
+将文本转换为大写：`Hello World` 会得到 `HELLO WORLD`。[格式代码](/text-formatting)（例如 `&a`）会保持不变。
 
-```
-{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
-```
-
-**输出：** `ello worl`
-
-## 转义字符串 (`stringify`)
-
-**用途：** 通过转义所有语法字符，将文本转换为字符串。
-
-**值：** `text`
-
-**示例：**
-
-```
-{"placeholder":"stringify","values":{"text":"text with {special} \"characters\""}}
-```
-
-**输出：** `text with \{special\} \"characters\"`
-
-## 本地化文本 (`local`)
-
-**用途：** 获取某个键对应的本地化文本。
-
-**值：** `key`
-
-**示例：**
-
-```
-{"placeholder":"local","values":{"key":"menu.singleplayer"}}
-```
-
-**输出：** `Singleplayer`
-
-## Web 文本 (`webtext`)
-
-**用途：** 从网页 URL 获取文本内容。
-
-**值：** `link`
-
-**示例：**
-
-```
-{"placeholder":"webtext","values":{"link":"http://somewebsite.com/textfile.txt"}}
-```
-
-**输出：** `Welcome to the server!`
-
-## 随机文本 (`randomtext`)
-
-**用途：** 从文本文件、URL 或直接输入的纯文本中返回一行随机文本。文本会按指定间隔变化。文件和 URL 内容大约每 30 秒刷新一次；直接纯文本内容会被缓存，因为它不需要重新加载。
-
-**值：** `source`, `interval`
-
-在占位符值中，`/config/...` 表示 `<game-directory>/config/...`；它不是文件系统根路径。参见 [资源](./resources#local-resources)。
-
-**示例：**
-
-```
-{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/<file_name.txt>","interval":"10"}}
-```
-参数：
-- `source`：文本行的来源（替代旧的 `path` 参数）
-  - 文件路径：`/config/fancymenu/assets/quotes.txt`
-  - URL：`https://example.com/quotes.txt`
-  - 纯文本：`Line 1\nLine 2\nLine 3`
-- `interval`：文本变化之间的时间（秒）
-
-该占位符现在支持三种来源类型：
-1. **本地文件**：来自游戏目录中的文本文件
-   ```
-   {"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/quotes.txt","interval":"10"}}
-   ```
-2. **URL**：来自互联网的远程文本文件
-   ```
-   {"placeholder":"randomtext","values":{"source":"https://example.com/quotes.txt","interval":"10"}}
-   ```
-3. **纯文本**：直接输入的文本，使用 `\n` 分隔行
-   ```
-   {"placeholder":"randomtext","values":{"source":"First line\nSecond line\nThird line","interval":"5"}}
-   ```
-
-注意：使用 `path` 而不是 `source` 的旧占位符仍然有效。
-
-## JSON 解析器 (`json`)
-
-**用途：** 从文件、URL 或直接 JSON 内容中解析 JSON 数据，并使用 JSON Path 表达式提取值。
-
-**值：** `source`, `json_path`
-
-**示例：**
-
-```
-{"placeholder":"json","values":{"source":"path_or_link_or_json_content","json_path":"$.some.json.path"}}
-```
-参数：
-- `source`：JSON 数据来源
-  - 文件路径：`/config/fancymenu/assets/data.json`
-  - URL：`https://api.example.com/data.json`
-  - 直接 JSON：`{"name":"Steve","level":42}`
-- `json_path`：用于提取数据的 JSON Path 表达式
-
-该占位符现在支持三种来源类型：
-1. **本地文件**：来自游戏目录中的 JSON 文件
-   ```
-   {"placeholder":"json","values":{"source":"/config/fancymenu/assets/playerdata.json","json_path":"$.player.name"}}
-   ```
-2. **URL**：来自 API 或网络服务的远程 JSON 数据
-   ```
-   {"placeholder":"json","values":{"source":"https://api.minecraft.com/server/status","json_path":"$.online"}}
-   ```
-3. **直接 JSON**：内联 JSON 内容
-   ```
-   {"placeholder":"json","values":{"source":"{"name":"Steve","score":42,"rank":"Diamond"}","json_path":"$.rank"}}
-   ```
-
-JSON Path 示例：
-- `$.name` - 从根节点获取“name”字段
-- `$.player.level` - 获取“player”内部嵌套的“level”字段
-- `$.items[0].id` - 获取数组中第一个项的“id”
-- `$.scores.*` - 获取“scores”对象中的所有值
-
-## 绝对文件/文件夹路径 (`absolute_path`)
-
-**用途：** 返回文件的绝对路径。
-
-**值：** `short_path`
-
-**示例：**
-
-```
-{"placeholder":"absolute_path","values":{"short_path":"relative/path/to/file.txt"}}
-```
-
-**输出：** `C:/Games/PrismLauncher/instances/My Pack/relative/path/to/file.txt`
-
-## 文本字符数 (`text_character_count`)
-
-**用途：** 返回给定文本中的字符数量。
-
-**值：** `text`
-
-**示例：**
-
-```
-{"placeholder":"text_character_count","values":{"text":"Hello World!"}}
-```
-
-**输出：** `12`
-
-## 文本宽度 (`text_width`)
-
-**用途：** 返回给定文本渲染后的像素宽度。
-
-**值：** `text`
-
-**示例：**
-
-```
-{"placeholder":"text_width","values":{"text":"Hello World!"}}
-```
-
-**输出：** `66`
-
-## 转为大写 (`uppercase_text`)
-
-**用途：** 将输入文本转换为全大写字母。
-
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"uppercase_text","values":{"text":"Hello World"}}
 ```
 
-**输出：** `HELLO WORLD`
+### 转换为小写
 
-## 转为小写 (`lowercase_text`)
+**标识符：** `lowercase_text`
 
-**用途：** 将输入文本转换为全小写字母。
+将文本转换为小写：`HELLO WORLD` 会得到 `hello world`。格式代码会保持不变。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
-{"placeholder":"lowercase_text","values":{"text":"Hello World"}}
+{"placeholder":"lowercase_text","values":{"text":"HELLO WORLD"}}
 ```
 
-**输出：** `hello world`
+### 转换为标题格式
 
-## 标题式大小写文本 (`title_case_text`)
+**标识符：** `title_case_text`
 
-**用途：** 将输入文本转换为标题式大小写。
+将每个单词的首字母大写：`hello world` 会得到 `Hello World`。格式代码会保持不变。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"title_case_text","values":{"text":"hello world"}}
 ```
 
-**输出：** `Hello World`
+### 转换为句子格式
 
-## 句首大写文本 (`sentence_case_text`)
+**标识符：** `sentence_case_text`
 
-**用途：** 将输入文本转换为句首大写。
+将每句话的首字母大写：`hello world. this is fancymenu!` 会得到 `Hello world. This is fancymenu!`。格式代码会保持不变。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"sentence_case_text","values":{"text":"hello world. this is fancymenu!"}}
 ```
 
-**输出：** `Hello world. This is fancymenu!`
+### 转换为蛇形命名
 
-## 蛇形命名文本 (`snake_case_text`)
+**标识符：** `snake_case_text`
 
-**用途：** 将输入文本转换为 `snake_case`。
+将文本转换为小写，并在单词之间加上 `_`：`Hello World` 会得到 `hello_world`。格式代码会被移除。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"snake_case_text","values":{"text":"Hello World"}}
 ```
 
-**输出：** `hello_world`
+### 转换为烤串命名
 
-## 连字符命名文本 (`kebab_case_text`)
+**标识符：** `kebab_case_text`
 
-**用途：** 将输入文本转换为 `kebab-case`。
+将文本转换为小写，并在单词之间加上 `-`：`Hello World` 会得到 `hello-world`。格式代码会被移除。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"kebab_case_text","values":{"text":"Hello World"}}
 ```
 
-**输出：** `hello-world`
+### 转换为交替大小写
 
-## 交替大小写文本 (`alternating_case_text`)
+**标识符：** `alternating_case_text`
 
-**用途：** 将输入文本转换为交替大小写。
+让大小写字母交替出现：`alternating case` 会得到 `aLtErNaTiNg CaSe`。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"alternating_case_text","values":{"text":"alternating case"}}
 ```
 
-**输出：** `aLtErNaTiNg CaSe`
+### 切换大小写
 
-## 切换大小写文本 (`toggle_case_text`)
+**标识符：** `toggle_case_text`
 
-**用途：** 切换输入文本中每个字母的大小写。
+将小写字母变为大写，将大写字母变为小写：`Toggle Case` 会得到 `tOGGLE cASE`。
 
-**值：** `text`
-
-**示例：**
+- `text`：要处理的文本
 
 ```
 {"placeholder":"toggle_case_text","values":{"text":"Toggle Case"}}
 ```
 
-**输出：** `tOGGLE cASE`
+### 去除文本首尾空格
 
-## 编码为 Base64 (`base64_encode`)
+**标识符：** `trim_text`
 
-**用途：** 将给定文本编码为 Base64。
+移除文本开头和末尾的空格。文本中间的空格会保留。
 
-**值：** `text`
+- `text`：要处理的文本
 
-**示例：**
+```
+{"placeholder":"trim_text","values":{"text":"  Welcome!  "}}
+```
+
+### 截取文本
+
+**标识符：** `crop_text`
+
+从文本开头和末尾移除指定数量的字符。例如，`hello world` 两端各移除 1 个字符后会得到 `ello worl`。
+
+- `text`：要处理的文本
+- `remove_from_start`：从开头移除的字符数
+- `remove_from_end`：从末尾移除的字符数
+
+```
+{"placeholder":"crop_text","values":{"text":"hello world","remove_from_start":"1","remove_from_end":"1"}}
+```
+
+### 拆分文本
+
+**标识符：** `split_text`
+
+拆分文本并返回其中一部分。`Steve,Alex,Notch` 按 `,` 拆分后，第 `1` 部分为 `Alex`。
+
+- `input`：要拆分的文本
+- `regex`：用于拆分的正则表达式。`.`、`|` 和 `?` 等字符前面需要加上 `\`，例如 `\.`。
+- `max_parts`（可选）：最多拆分成多少部分。默认值 `-1` 表示在每个匹配处都进行拆分。
+- `split_index`：要返回的部分。第一部分的索引为 `0`。
+
+```
+{"placeholder":"split_text","values":{"input":"Steve,Alex,Notch","regex":",","max_parts":"-1","split_index":"1"}}
+```
+
+### 替换文本
+
+**标识符：** `replace_text`
+
+替换文本中的部分内容：将 `Hello World!` 中的 `World` 替换为 `FancyMenu`，会得到 `Hello FancyMenu!`。
+
+- `text`：要处理的文本
+- `search`：要查找的内容
+- `replacement`（可选）：用于替换的内容。默认为空，即移除找到的内容。
+- `use_regex`（可选）：设为 `true` 时，`search` 会被视为正则表达式。此时，`replacement` 中的 `$1`、`$2` 等表示匹配到的分组。默认为 `false`。
+- `replace_all`（可选）：设为 `false` 时只替换第一个匹配项。默认为 `true`。
+
+```
+{"placeholder":"replace_text","values":{"text":"Hello World!","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
+```
+
+### 条件分支
+
+**标识符：** `switch_case`
+
+返回与某个值匹配的分支结果。当变量 `difficulty_level` 的值为 `2` 时，以下示例会返回 `Hard Mode`。
+
+- `value`：要检查的值
+- `cases`：值与结果组成的配对，例如 `1:Easy Mode,2:Hard Mode`。值和结果中不能包含 `,` 或 `:`。
+- `default`（可选）：没有匹配分支时返回的结果。若未指定默认值，此时占位符会原样保留。
+
+```
+{"placeholder":"switch_case","values":{"value":"$$difficulty_level","cases":"1:Easy Mode,2:Hard Mode","default":"Normal Mode"}}
+```
+
+### 本地化文本
+
+**标识符：** `local`
+
+返回当前游戏语言中某个本地化键对应的文本，例如 `menu.singleplayer` 对应的 `Singleplayer`。支持 Minecraft、模组和你自己创建的键（参见[本地化](/localization)）。
+
+- `key`：本地化键
+
+```
+{"placeholder":"local","values":{"key":"menu.singleplayer"}}
+```
+
+### 转义为字符串
+
+**标识符：** `stringify`
+
+先替换文本中的占位符，然后在每个 `"`、`{` 和 `}` 前添加 `\`。这样一来，来自外部的文本（例如网站内容）就无法变成占位符。
+
+- `text`：要处理的文本
+
+```
+{"placeholder":"stringify","values":{"text":"{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}"}}
+```
+
+## 数据和文件
+
+这些占位符位于**高级**类别中。本地路径从游戏文件夹开始，例如 `/config/fancymenu/assets/news.txt`，且不能离开该文件夹（参见[资源](/resources#local-resources)）。
+
+### JSON 解析器
+
+**标识符：** `json`
+
+从 JSON 中读取一个值。若有多个结果，则每个结果单独占一行。
+
+- `source`：JSON 文本、游戏文件夹中的 JSON 文件，或 JSON 文件的 URL
+- `json_path`：值的路径，例如 `$.name` 或 `$.players[0].name`。有关 JSON 路径的更多信息，请参阅 [json.fancymenu.net](https://json.fancymenu.net)。
+
+```
+{"placeholder":"json","values":{"source":"https://example.com/server_info.json","json_path":"$.news.title"}}
+```
+
+网页上的 JSON 只会加载一次，并会在 FancyMenu 重新加载时再次加载。文件发生更改时会立即显示。
+
+| 路径 | 返回内容 |
+|---|---|
+| `$.name` | 顶层的 `name` 值 |
+| `$.player.level` | `player` 中的 `level` 值 |
+| `$.items[0].id` | `items` 中第一个条目的 `id` 值 |
+| `$.scores.*` | `scores` 中的所有值 |
+
+### 文件文本
+
+**标识符：** `file_text`
+
+读取文件或 URL 的文本。文件每秒重新读取一次，URL 每 10 秒重新加载一次。加载期间或无法读取时返回空文本。
+
+- `path_or_url`：游戏文件夹中的文件或一个 URL。以 `.minecraft/` 开头的路径指向默认的 Minecraft 文件夹。
+- `mode`（可选）：`all` 表示读取完整文本，`last` 表示读取最后几行。默认为 `all`。
+- `separator`（可选）：行与行之间的文本。默认为 `\n`（换行）。
+- `last_lines`（可选）：`last` 模式读取的行数。默认为 `1`。
+
+```
+{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/changelog.txt","mode":"all","separator":"\n","last_lines":"1"}}
+```
+
+### 文件大小
+
+**标识符：** `file_size`
+
+以字节为单位返回文件大小。文件不存在时返回 `0`。以 `.minecraft/` 开头的路径指向默认的 Minecraft 文件夹。
+
+- `path`：文件路径
+
+```
+{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/news.txt"}}
+```
+
+### 文件 MD5
+
+**标识符：** `file_md5`
+
+返回文件的 MD5 哈希值，例如 `d41d8cd98f00b204e9800998ecf8427e`。文件不存在时返回空文本。以 `.minecraft/` 开头的路径指向默认的 Minecraft 文件夹。
+
+- `path`：文件路径
+
+```
+{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/menu_music.ogg"}}
+```
+
+### 编码为 Base64
+
+**标识符：** `base64_encode`
+
+将文本转换为 Base64：`Hello World` 会得到 `SGVsbG8gV29ybGQ=`。
+
+- `text`：要处理的文本
 
 ```
 {"placeholder":"base64_encode","values":{"text":"Hello World"}}
 ```
 
-**输出：** `SGVsbG8gV29ybGQ=`
+### 从 Base64 解码
 
-## 从 Base64 解码 (`base64_decode`)
+**标识符：** `base64_decode`
 
-**用途：** 将 Base64 字符串解码回纯文本。
+将 Base64 转换回文本：`SGVsbG8gV29ybGQ=` 会得到 `Hello World`。
 
-**值：** `text`
-
-**示例：**
+- `text`：Base64 文本
 
 ```
 {"placeholder":"base64_decode","values":{"text":"SGVsbG8gV29ybGQ="}}
 ```
 
-**输出：** `Hello World`
+### 获取 NBT 数据（客户端）
 
-## 文件文本 (`file_text`)
+**标识符：** `nbt_data_get`
 
-**用途：** 返回来自文件或 URL 的文本行。可以返回所有行，或仅返回最后 X 行。
+读取游戏客户端已知的世界信息中的 NBT 数据，效果类似 `/data get`。速度很快，但服务器不会向玩家发送所有数据。
 
-**值：** `path_or_url`, `mode`, `separator`, `last_lines`
-
-**示例：**
-
-```
-{"placeholder":"file_text","values":{"path_or_url":"/config/fancymenu/assets/some_file.txt","mode":"all","separator":"\n","last_lines":"1"}}
-```
-参数：
-- `path_or_url`：要读取的文件路径或 URL
-- `mode`：`"all"`（返回所有行）或 `"last"`（只返回最后 X 行）
-- `separator`：行之间使用的文本（默认：`"\n"`）
-- `last_lines`：当模式为 `"last"` 时返回的行数（默认：`"1"`）
-
-**输出：**
-
-```text
-First line
-Second line
-```
-
-## 剪贴板内容 (`clipboard_content`)
-
-**用途：** 返回系统剪贴板中当前存储的文本内容。
-
-**值：** 无
-
-**示例：**
-
-```
-{"placeholder":"clipboard_content"}
-```
-
-**输出：** `Hello from the clipboard`
-
-## 替换文本 (`replace_text`)
-
-**用途：** 使用字面文本或正则表达式替换字符串中的文本。
-
-**值：** `text`, `search`, `replacement`, `use_regex`, `replace_all`
-
-**示例：**
-
-```
-{"placeholder":"replace_text","values":{"text":"Hello World! This is a test.","search":"World","replacement":"FancyMenu","use_regex":"false","replace_all":"true"}}
-```
-参数：
-- `text`：要处理的输入文本
-- `search`：要搜索的文本或正则表达式模式
-- `replacement`：替换文本
-- `use_regex`：是否使用正则表达式（`"true"`）或字面匹配（`"false"`）
-- `replace_all`：替换所有匹配项（`"true"`）还是仅替换第一个（`"false"`）
-
-**输出：** `Hello FancyMenu! This is a test.`
-
-## 条件切换 (`switch_case`)
-
-**用途：** 根据某个值执行 switch-case 操作。
-
-**值：** `value`, `cases`, `default`
-
-**示例：**
-
-```
-{"placeholder":"switch_case","values":{"value":"1","cases":"1:first case,2:second case,3:third case","default":"default case"}}
-```
-
-**输出：** `first case`（如果值为 1）
-
-## 获取变量值（FM 变量） (`getvariable`)
-
-**用途：** 检索之前保存的变量值。
-
-**值：** `name`
-
-**示例：**
-
-```
-{"placeholder":"getvariable","values":{"name":"some_variable"}}
-```
-
-**输出：** `42`
-
-## 获取 NBT 数据 (`nbt_data_get`)
-
-**用途：** 在客户端检索 NBT 数据（类似 `/data get` 命令）。当连接到服务器且需要服务器端权威值时，请使用服务器版本 `nbt_data_get_server`。
-
-**值：** `source_type`, `entity_selector`, `nbt_path`, `scale`, `return_type`
-
-**示例：**
+- `source_type`：`entity` 或 `block`
+- `entity_selector`：当 `source_type` 为 `entity` 时使用的实体选择器，例如 `@s`（你自己）、`@p`、`@e[type=minecraft:horse,limit=1,sort=nearest]`，或者实体名称或 UUID。选择器可以包含 `type`、`name`、`tag`、`limit`、`sort`、`distance`、`x`、`y`、`z`、`dx`、`dy` 和 `dz`。只使用第一个匹配结果。
+- `block_pos`：当 `source_type` 为 `block` 时，填写方块实体（例如箱子）的位置：`120 64 -35`
+- `nbt_path`：NBT 路径，例如 `foodLevel` 或 `Inventory[0].id`
+- `scale`（可选）：数字的乘数。默认为 `1.0`。
+- `return_type`（可选）：`value`（数字和文本保持原样）、`string`、`snbt` 或 `json`。默认为 `value`。
 
 ```
 {"placeholder":"nbt_data_get","values":{"source_type":"entity","entity_selector":"@s","nbt_path":"foodLevel","scale":"1.0","return_type":"value"}}
 ```
-参数：
-- `source_type`：`"entity"` 或 `"block"`
-- `entity_selector`：实体选择器，如 `@s`、`@p`、`@e`，或 UUID/名称（用于实体）
-- `block_pos`：方块坐标，格式为 `"x y z"`（用于方块）
-- `nbt_path`：要检索的 NBT 路径
-- `scale`：数值的可选缩放因子（默认：`"1.0"`）
-- `return_type`：返回数据的方式：
-  - `"value"`：默认，返回值（数值可按需缩放）
-  - `"string"`：以字符串形式返回实际 NBT 数据
-  - `"snbt"`：以 SNBT（格式化 NBT）返回
-  - `"json"`：以 JSON 格式的组件返回（用于复合标签）
 
-**输出：** `20`（饥饿值）
+### 获取 NBT 数据（服务器）
 
-## 获取 NBT 数据（服务器端） (`nbt_data_get_server`)
+**标识符：** `nbt_data_get_server`
 
-**用途：** 通过数据包查询服务器端的 NBT 数据，并短暂缓存结果。值与客户端占位符一致。
+从服务器读取 NBT 数据，效果与 `/data get` 完全相同。服务器上需要安装 FancyMenu。在单人游戏中始终可用。在服务器响应前返回空文本，之后约每 100 毫秒更新一次。
 
-**值：** `source_type`, `entity_selector`, `block_pos`, `storage_id`, `nbt_path`, `scale`, `return_type`
-
-**示例：**
+- `source_type`：`entity`、`block` 或 `storage`
+- `entity_selector`：当 `source_type` 为 `entity` 时，填写 `/data get` 可用且能选中一个实体的任意选择器，例如 `@s` 或 `@e[type=minecraft:villager,limit=1,sort=nearest]`
+- `block_pos`：当 `source_type` 为 `block` 时，填写位置，例如 `120 64 -35`、`~ ~-1 ~` 或 `^ ^ ^1`
+- `storage_id`：当 `source_type` 为 `storage` 时，填写命令存储的 ID，例如 `mypack:quests`
+- `nbt_path`（可选）：NBT 路径。不填写时返回所有数据。
+- `scale`（可选）：数字的乘数。默认为 `1.0`。
+- `return_type`（可选）：`value`、`string`、`snbt` 或 `json`。默认为 `value`。
 
 ```
-{"placeholder":"nbt_data_get_server","values":{"source_type":"entity","entity_selector":"@s","block_pos":"","storage_id":"minecraft:storage_key","nbt_path":"SelectedItem.id","scale":"1.0","return_type":"value"}}
+{"placeholder":"nbt_data_get_server","values":{"source_type":"storage","storage_id":"mypack:quests","nbt_path":"completed","return_type":"value"}}
 ```
 
-**输出：** `minecraft:diamond_sword`
+## 音频
 
-## 上一次死亡消息 (`lastdeathmessage`)
+这些占位符读取已打开菜单中的[音频元素](/elements#audio)。在布局编辑器中右键点击音频元素，然后点击**复制元素 ID**，即可获取其 ID。
 
-**用途：** 返回客户端玩家最近记录的死亡消息。将 `as_json_component` 设为 `"true"` 可获取原始 JSON 文本组件。
+### 音频元素音量
 
-**值：** `as_json_component`
+**标识符：** `audio_element_vol`
 
-**示例：**
+音频元素的音量，范围为 `0.0`（0%）到 `1.0`（100%）。
+
+- `element_identifier`：音频元素的 ID
+
+```
+{"placeholder":"audio_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 当前音轨
+
+**标识符：** `audio_element_current_track`
+
+当前播放音轨的文件名，例如 `menu_theme.ogg`。没有音轨播放时返回 `---`。
+
+- `element_identifier`：音频元素的 ID
+- `display_name_mappings`（可选）：用于替代文件名显示的名称。文件名和显示名称之间用 `=>` 分隔，不同映射对之间用 `%:%` 分隔。
+
+```
+{"placeholder":"audio_element_current_track","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","display_name_mappings":"menu_theme.ogg=>Menu Theme%:%credits.ogg=>Credits Theme"}}
+```
+
+### 音频时长
+
+**标识符：** `audio_duration`
+
+当前音轨的时长，例如 `03:45`。加载期间为 `00:00`。
+
+- `element_identifier`：音频元素的 ID
+
+```
+{"placeholder":"audio_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 音频播放进度
+
+**标识符：** `audio_playtime`
+
+当前音轨已播放的时长，例如 `01:30`。停止播放时为 `00:00`（或 `0`）。
+
+- `element_identifier`：音频元素的 ID
+- `show_percentage`（可选）：设为 `true` 时，改为返回 `0` 到 `100` 之间的进度。默认为 `false`。
+
+```
+{"placeholder":"audio_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false"}}
+```
+
+### 音频播放状态
+
+**标识符：** `audio_playing_state`
+
+音频元素正在播放时返回 `true`，暂停或停止时返回 `false`。
+
+- `element_identifier`：音频元素的 ID
+
+```
+{"placeholder":"audio_playing_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+## 客户端
+
+这些占位符用于获取游戏及其模组的信息。
+
+### Minecraft 版本
+
+**标识符：** `mcversion`
+
+Minecraft 的版本，例如 `1.21.1`。
+
+```
+{"placeholder":"mcversion"}
+```
+
+### 模组加载器名称
+
+**标识符：** `loadername`
+
+模组加载器的名称，例如 `Fabric` 或 `NeoForge`。
+
+```
+{"placeholder":"loadername"}
+```
+
+### 模组加载器版本
+
+**标识符：** `loaderver`
+
+模组加载器的版本，例如 `0.16.14`。
+
+```
+{"placeholder":"loaderver"}
+```
+
+### 模组版本
+
+**标识符：** `modversion`
+
+已安装模组的版本，例如 `3.11.0`。未安装该模组时返回 `0.0.0`。
+
+- `modid`：模组的 ID，例如 `fancymenu`
+
+```
+{"placeholder":"modversion","values":{"modid":"fancymenu"}}
+```
+
+### 已加载模组数量
+
+**标识符：** `loadedmods`
+
+已加载的模组数量。库和其他模组中包含的模组也会计入，因此通常会多于模组文件的数量。
+
+```
+{"placeholder":"loadedmods"}
+```
+
+### 模组总数
+
+**标识符：** `totalmods`
+
+根据每次游戏启动时 `mods` 文件夹中的 `.jar` 文件估算已安装的模组数量。该数量不会小于**已加载模组数量**。
+
+```
+{"placeholder":"totalmods"}
+```
+
+### 世界加载进度
+
+**标识符：** `world_load_progress`
+
+世界加载屏幕显示时，返回世界加载进度，范围为 `0` 到 `100`。适合用于加载进度条。其他屏幕上返回 `0`。
+
+```
+{"placeholder":"world_load_progress"}
+```
+
+### Minecraft 选项值
+
+**标识符：** `minecraft_option_value`
+
+返回游戏文件夹中 `options.txt` 文件保存的 Minecraft 选项值，例如 `renderDistance` 的值 `12`。不存在该名称的选项时返回空文本。
+
+- `name`：`options.txt` 中的选项名称
+
+```
+{"placeholder":"minecraft_option_value","values":{"name":"renderDistance"}}
+```
+
+### 按键绑定
+
+**标识符：** `keybind_key`
+
+返回按键绑定当前使用的按键，与控制设置界面中的显示一致，例如跳跃对应的 `Space`。不存在该名称的按键绑定时返回空文本。
+
+- `keybind`：按键绑定的名称，例如 `key.jump` 或 `key.inventory`。名称可在 `options.txt` 中找到，但不包含开头的 `key_`：`key_key.jump` 对应 `key.jump`。
+
+```
+按下 {"placeholder":"keybind_key","values":{"keybind":"key.inventory"}} 打开物品栏！
+```
+
+### 上一个世界或服务器
+
+**标识符：** `last_world_server`
+
+玩家最近加入的世界或服务器。服务器显示为 `play.example.net:25565`。
+
+- `type`：`both` 表示世界和服务器，`world` 表示仅世界，`server` 表示仅服务器。设为 `world` 或 `server` 时，如果最近加入的是另一种类型，则返回空文本。
+- `full_world_path`（可选）：设为 `false` 时仅返回世界名称，例如 `New World`；设为 `true` 时返回世界文件夹的路径。默认为 `true`。
+
+```
+{"placeholder":"last_world_server","values":{"type":"world","full_world_path":"false"}}
+```
+
+## GUI
+
+这些占位符用于获取当前打开的屏幕及其元素的信息。元素占位符需要元素 ID：在布局编辑器中右键点击该元素，然后点击**复制元素 ID**。
+
+### 屏幕宽度
+
+**标识符：** `guiwidth`
+
+以 GUI 像素为单位的屏幕宽度。这是元素使用的尺寸，并非显示器的像素数。
+
+```
+{"placeholder":"guiwidth"}
+```
+
+### 屏幕高度
+
+**标识符：** `guiheight`
+
+以 GUI 像素为单位的屏幕高度。
+
+```
+{"placeholder":"guiheight"}
+```
+
+### GUI 缩放比例
+
+**标识符：** `guiscale`
+
+游戏的 GUI 缩放比例，例如 `2`。
+
+```
+{"placeholder":"guiscale"}
+```
+
+### 当前屏幕标识符
+
+**标识符：** `screenid`
+
+当前打开屏幕的[标识符](/screen-identifiers)，例如 `title_screen`。没有打开屏幕时返回空文本。
+
+```
+{"placeholder":"screenid"}
+```
+
+### 元素宽度
+
+**标识符：** `elementwidth`
+
+元素的宽度，以 GUI 像素为单位。不存在该 ID 的元素时返回 `1`。
+
+- `id`：元素的 ID
+
+```
+{"placeholder":"elementwidth","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 元素高度
+
+**标识符：** `elementheight`
+
+元素的高度，以 GUI 像素为单位。不存在该 ID 的元素时返回 `1`。
+
+- `id`：元素的 ID
+
+```
+{"placeholder":"elementheight","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 元素 X 坐标
+
+**标识符：** `elementposx`
+
+元素左边缘相对于屏幕左侧的位置，以 GUI 像素为单位。不存在该 ID 的元素时返回 `1`。
+
+- `id`：元素的 ID
+
+```
+{"placeholder":"elementposx","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 元素 Y 坐标
+
+**标识符：** `elementposy`
+
+元素上边缘相对于屏幕顶部的位置，以 GUI 像素为单位。不存在该 ID 的元素时返回 `1`。
+
+- `id`：元素的 ID
+
+```
+{"placeholder":"elementposy","values":{"id":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 文本元素内容高度
+
+**标识符：** `text_element_content_height`
+
+[文本元素](/text-in-menus)要完整显示所有文本所需的高度，以 GUI 像素为单位。计算时会考虑自动换行、文本缩放和行间距，因此适合用于贴合文本的背景。元素不是文本元素时返回 `0`。
+
+- `element_identifier`：文本元素的 ID
+
+```
+{"placeholder":"text_element_content_height","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 元素滚动位置
+
+**标识符：** `scroll_area_scroll_position`
+
+[可滚动区域](/scrollable-areas)或文本元素的内容相对于起点的滚动距离，以 GUI 像素为单位。用于其他元素时返回 `0`。
+
+- `element_identifier`：元素的 ID
+- `axis`：`vertical` 或 `horizontal`。其他值均表示元素的滚动方向。
+
+```
+{"placeholder":"scroll_area_scroll_position","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### 元素滚动百分比
+
+**标识符：** `scroll_area_scroll_percent`
+
+可滚动区域或文本元素的内容滚动进度，范围为 `0`（起点）到 `100`（终点）。用于其他元素或没有可滚动内容时返回 `0`。
+
+- `element_identifier`：元素的 ID
+- `axis`：`vertical` 或 `horizontal`。其他值均表示元素的滚动方向。
+
+```
+{"placeholder":"scroll_area_scroll_percent","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### 元素滚动内容尺寸
+
+**标识符：** `scroll_area_content_size`
+
+可滚动区域或文本元素的内容尺寸：`vertical` 表示高度，`horizontal` 表示宽度。用于其他元素时返回 `0`。
+
+- `element_identifier`：元素的 ID
+- `axis`：`vertical` 或 `horizontal`。其他值均表示元素的滚动方向。
+
+```
+{"placeholder":"scroll_area_content_size","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","axis":"vertical"}}
+```
+
+### 文本输入框的值
+
+**标识符：** `text_input_field_value`
+
+返回[文本输入框](/elements#text-input-field)或原始屏幕文本字段中输入的内容。元素不是文本字段时返回空文本。
+
+- `element_identifier`：元素的 ID
+
+```
+{"placeholder":"text_input_field_value","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 原版控件标签/文本
+
+**标识符：** `vanillabuttonlabel`
+
+返回原始屏幕中按钮或其他控件的标签，例如 `Options...`。在布局编辑器中右键点击该控件，然后点击**复制控件定位符**即可获取其定位符。
+
+- `locator`：控件的定位符
+
+```
+{"placeholder":"vanillabuttonlabel","values":{"locator":"title_screen:mc_titlescreen_options_button"}}
+```
+
+### 鼠标 X 坐标
+
+**标识符：** `mouseposx`
+
+鼠标相对于屏幕左侧的位置，以 GUI 像素为单位。在布局编辑器中始终为 `10`，因此跟随鼠标的元素会保持在可编辑的位置。
+
+```
+{"placeholder":"mouseposx"}
+```
+
+### 鼠标 Y 坐标
+
+**标识符：** `mouseposy`
+
+鼠标相对于屏幕顶部的位置，以 GUI 像素为单位。在布局编辑器中始终为 `10`。
+
+```
+{"placeholder":"mouseposy"}
+```
+
+### 每秒点击次数
+
+**标识符：** `clicks_per_second`
+
+返回最近一秒内鼠标按钮被点击的次数。
+
+- `mouse_button`（可选）：`left` 或 `right`。默认为 `left`。
+
+```
+{"placeholder":"clicks_per_second","values":{"mouse_button":"left"}}
+```
+
+## 玩家
+
+### 玩家名称
+
+**标识符：** `playername`
+
+玩家名称，例如 `Steve`。
+
+```
+{"placeholder":"playername"}
+```
+
+### 玩家 UUID
+
+**标识符：** `playeruuid`
+
+玩家的 UUID，例如 `c8cde7fe-7ced-11eb-9439-0242ac130002`。
+
+```
+{"placeholder":"playeruuid"}
+```
+
+### 上次死亡消息
+
+**标识符：** `lastdeathmessage`
+
+自游戏启动以来玩家最近一次死亡时的消息，例如 `Steve was slain by Zombie`。首次死亡前返回空文本。
+
+- `as_json_component`（可选）：设为 `true` 时，以带颜色的 JSON 文本组件形式返回。默认为 `false`。
 
 ```
 {"placeholder":"lastdeathmessage","values":{"as_json_component":"false"}}
 ```
 
-**输出：** `Steve was slain by Zombie`
+## 实时时间
 
-## 运行时长 (`uptime_duration`)
+这些占位符获取电脑上的时间。日期和时间相关占位符可选设置 `timezone`：`system` 表示电脑的时区（默认值），也可以使用 `UTC`、`Europe/Berlin` 或 `America/New_York` 等 ID。所有 ID 请参阅 [nodatime.org/TimeZones](https://nodatime.org/TimeZones)。
 
-**用途：** 返回 FancyMenu 已加载的时长。默认单位为秒；将 `output_as_millis` 设为 `"true"` 可返回毫秒。
+### 实时年份
 
-**值：** `output_as_millis`
+**标识符：** `realtimeyear`
 
-**示例：**
+年份，例如 `2026`。
 
 ```
-{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+{"placeholder":"realtimeyear","values":{"timezone":"system"}}
 ```
 
-**输出：** `742`（加载后的秒数）
+### 实时月份
 
-## 世界存档名称 (`level_save_names`)
+**标识符：** `realtimemonth`
 
-**用途：** 使用所选分隔符列出所有本地世界存档名称。运行于客户端线程。
+月份，范围为 `01` 到 `12`。
 
-**值：** `separator`
+```
+{"placeholder":"realtimemonth","values":{"timezone":"system"}}
+```
 
-**示例：**
+### 实时日期
+
+**标识符：** `realtimeday`
+
+一个月中的日期，范围为 `01` 到 `31`。
+
+```
+{"placeholder":"realtimeday","values":{"timezone":"system"}}
+```
+
+### 实时小时
+
+**标识符：** `realtimehour`
+
+小时，范围为 `00` 到 `23`。
+
+- `twelve_hour_format`（可选）：设为 `true` 时改为返回 `01` 到 `12`。默认为 `false`。
+
+```
+{"placeholder":"realtimehour","values":{"twelve_hour_format":"false","timezone":"Europe/Berlin"}}
+```
+
+### 实时分钟
+
+**标识符：** `realtimeminute`
+
+分钟，范围为 `00` 到 `59`。
+
+```
+{"placeholder":"realtimeminute","values":{"timezone":"system"}}
+```
+
+### 实时秒数
+
+**标识符：** `realtimesecond`
+
+秒数，范围为 `00` 到 `59`。
+
+```
+{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+```
+
+### 当前时间（毫秒，Unix 时间戳）
+
+**标识符：** `unix_time`
+
+自 1970 年 1 月 1 日（UTC）以来经过的毫秒数，例如 `1732456789012`。适合用于计时器：将其保存到变量中，再用计算器从稍后的时间戳中减去该值。
+
+```
+{"placeholder":"unix_time"}
+```
+
+## 服务器
+
+这些占位符会向服务器查询状态，类似服务器列表的工作方式。自定义屏幕打开期间，FancyMenu 每 30 秒查询一次。服务器首次响应前会被视为离线。
+
+- `ip`：服务器地址。如果端口不是默认端口，也要填写端口，例如 `play.example.net` 或 `play.example.net:25566`
+
+### 服务器状态
+
+**标识符：** `serverstatus`
+
+在线时以绿色显示 `Online`，离线时以红色显示 `Offline`。
+
+```
+{"placeholder":"serverstatus","values":{"ip":"play.example.net"}}
+```
+
+### 服务器玩家数量
+
+**标识符：** `serverplayercount`
+
+返回在线玩家数和玩家上限，例如 `12/100`。服务器响应前为 `0/0`。
+
+```
+{"placeholder":"serverplayercount","values":{"ip":"play.example.net"}}
+```
+
+### 服务器 MOTD
+
+**标识符：** `servermotd`
+
+返回服务器每日消息中的一行。
+
+- `line`：`1` 或 `2`
+
+```
+{"placeholder":"servermotd","values":{"ip":"play.example.net","line":"1"}}
+```
+
+### 服务器延迟
+
+**标识符：** `serverping`
+
+返回到服务器的延迟，单位为毫秒，例如 `54`。服务器离线时为 `-1`。
+
+```
+{"placeholder":"serverping","values":{"ip":"play.example.net"}}
+```
+
+### 服务器版本
+
+**标识符：** `serverversion`
+
+服务器的 Minecraft 版本，例如 `1.21.1`。有些服务器会在此处显示自定义文本。服务器响应前为 `---`。
+
+```
+{"placeholder":"serverversion","values":{"ip":"play.example.net"}}
+```
+
+## 视频
+
+这些占位符读取已打开菜单中的[视频元素和视频菜单背景](/video)。对于视频元素，在布局编辑器中右键点击元素，然后点击**复制元素 ID**。对于背景，在编辑器背景上右键点击，然后点击**复制背景标识符**。
+
+### 视频元素音量
+
+**标识符：** `video_element_vol`
+
+视频元素的音量，范围为 `0.0`（0%）到 `1.0`（100%）。
+
+- `element_identifier`：视频元素的 ID
+
+```
+{"placeholder":"video_element_vol","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 视频元素时长
+
+**标识符：** `video_element_duration`
+
+视频元素中视频的时长，例如 `02:00`。加载期间为 `00:00`（或 `0`）。
+
+- `element_identifier`：视频元素的 ID
+- `output_as_timestamp`（可选）：设为 `true` 时改为返回毫秒，例如 `120000`。默认为 `false`。
+
+```
+{"placeholder":"video_element_duration","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","output_as_timestamp":"false"}}
+```
+
+### 视频元素播放进度
+
+**标识符：** `video_element_playtime`
+
+视频元素中视频的播放进度，例如 `00:45`。加载期间为 `00:00`（或 `0`）。
+
+- `element_identifier`：视频元素的 ID
+- `show_percentage`（可选）：设为 `true` 时返回 `0` 到 `100` 之间的进度。默认为 `false`。
+- `output_as_timestamp`（可选）：设为 `true` 时返回毫秒。如果两者都设为 `true`，则优先使用 `show_percentage`。默认为 `false`。
+
+```
+{"placeholder":"video_element_playtime","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012","show_percentage":"false","output_as_timestamp":"false"}}
+```
+
+### 视频元素暂停状态
+
+**标识符：** `video_element_paused_state`
+
+视频元素暂停时返回 `true`，否则返回 `false`。
+
+- `element_identifier`：视频元素的 ID
+
+```
+{"placeholder":"video_element_paused_state","values":{"element_identifier":"5f1c2a9e-7b3d-4c8e-9a21-6d0f4e8b3c17-1732456789012"}}
+```
+
+### 视频背景音量
+
+**标识符：** `video_background_vol`
+
+视频菜单背景的音量，范围为 `0.0`（0%）到 `1.0`（100%）。
+
+- `background_identifier`：菜单背景的标识符
+
+```
+{"placeholder":"video_background_vol","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+### 视频背景时长
+
+**标识符：** `video_background_duration`
+
+菜单背景视频的时长，例如 `03:00`。加载期间为 `00:00`（或 `0`）。
+
+- `background_identifier`：菜单背景的标识符
+- `output_as_timestamp`（可选）：设为 `true` 时改为返回毫秒。默认为 `false`。
+
+```
+{"placeholder":"video_background_duration","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","output_as_timestamp":"false"}}
+```
+
+### 视频背景播放进度
+
+**标识符：** `video_background_playtime`
+
+菜单背景视频的播放进度，例如 `01:00`。加载期间为 `00:00`（或 `0`）。
+
+- `background_identifier`：菜单背景的标识符
+- `show_percentage`（可选）：设为 `true` 时返回 `0` 到 `100` 之间的进度。默认为 `false`。
+- `output_as_timestamp`（可选）：设为 `true` 时返回毫秒。如果两者都设为 `true`，则优先使用 `show_percentage`。默认为 `false`。
+
+```
+{"placeholder":"video_background_playtime","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012","show_percentage":"true","output_as_timestamp":"false"}}
+```
+
+### 视频背景暂停状态
+
+**标识符：** `video_background_paused_state`
+
+视频菜单背景暂停时返回 `true`，否则返回 `false`。
+
+- `background_identifier`：菜单背景的标识符
+
+```
+{"placeholder":"video_background_paused_state","values":{"background_identifier":"8c2e4f6a-1b3d-4e5f-8a7b-9c0d1e2f3a4b-1732456789012"}}
+```
+
+## 世界：玩家属性
+
+**世界**类别中的占位符用于获取你当前游玩的世界信息。大多数占位符需要已加载的世界。在世界之外使用时，它们会返回 `0`、`0.0` 或空文本。
+
+### 当前玩家生命值
+
+**标识符：** `current_player_health`
+
+玩家当前的生命值，例如 `20.0`。每颗心相当于 `2.0`。
+
+```
+{"placeholder":"current_player_health"}
+```
+
+### 玩家最大生命值
+
+**标识符：** `max_player_health`
+
+玩家的最大生命值，例如 `20.0`。
+
+```
+{"placeholder":"max_player_health"}
+```
+
+### 当前玩家生命值（百分比）
+
+**标识符：** `current_player_health_percent`
+
+玩家当前生命值的百分比，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_player_health_percent"}
+```
+
+### 当前玩家吸收生命值
+
+**标识符：** `current_player_absorption_health`
+
+玩家当前的吸收生命值（金色心形），例如 `4.0`。
+
+```
+{"placeholder":"current_player_absorption_health"}
+```
+
+### 玩家最大吸收生命值
+
+**标识符：** `max_player_absorption_health`
+
+玩家的最大吸收生命值，例如 `4.0`。
+
+```
+{"placeholder":"max_player_absorption_health"}
+```
+
+### 当前玩家吸收生命值（百分比）
+
+**标识符：** `current_player_absorption_health_percent`
+
+玩家当前吸收生命值的百分比，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_player_absorption_health_percent"}
+```
+
+### 当前玩家饥饿值
+
+**标识符：** `current_player_hunger`
+
+玩家当前的饥饿值，范围为 `0.0` 到 `20.0`。
+
+```
+{"placeholder":"current_player_hunger"}
+```
+
+### 玩家最大饥饿值
+
+**标识符：** `max_player_hunger`
+
+玩家的最大饥饿值，始终为 `20.0`。
+
+```
+{"placeholder":"max_player_hunger"}
+```
+
+### 当前玩家饥饿值（百分比）
+
+**标识符：** `current_player_hunger_percent`
+
+玩家当前饥饿值的百分比，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_player_hunger_percent"}
+```
+
+### 当前玩家饱和度
+
+**标识符：** `current_player_hunger_saturation`
+
+玩家当前的饱和度，例如 `5.0`。饱和度耗尽后，饥饿值才会开始下降。
+
+```
+{"placeholder":"current_player_hunger_saturation"}
+```
+
+### 当前玩家护甲值
+
+**标识符：** `current_player_armor`
+
+玩家当前的护甲值，范围为 `0.0` 到 `20.0`。
+
+```
+{"placeholder":"current_player_armor"}
+```
+
+### 玩家最大护甲值
+
+**标识符：** `max_player_armor`
+
+护甲栏的最大护甲值，始终为 `20.0`。
+
+```
+{"placeholder":"max_player_armor"}
+```
+
+### 当前玩家护甲值（百分比）
+
+**标识符：** `current_player_armor_percent`
+
+玩家当前护甲值的百分比，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_player_armor_percent"}
+```
+
+### 玩家盔甲韧性
+
+**标识符：** `player_armor_toughness`
+
+玩家的盔甲韧性，例如穿满钻石盔甲时为 `8.0`。
+
+```
+{"placeholder":"player_armor_toughness"}
+```
+
+### 当前玩家氧气值
+
+**标识符：** `current_player_oxygen`
+
+玩家在水下的空气值，范围为 `0.0` 到 `300.0`。
+
+```
+{"placeholder":"current_player_oxygen"}
+```
+
+### 玩家最大氧气值
+
+**标识符：** `max_player_oxygen`
+
+玩家的最大空气值，例如 `300.0`。
+
+```
+{"placeholder":"max_player_oxygen"}
+```
+
+### 当前玩家氧气值（百分比）
+
+**标识符：** `current_player_oxygen_percent`
+
+玩家当前空气值的百分比，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_player_oxygen_percent"}
+```
+
+### 当前玩家等级
+
+**标识符：** `current_player_level`
+
+玩家的经验等级，例如 `30`。
+
+```
+{"placeholder":"current_player_level"}
+```
+
+### 当前玩家经验值
+
+**标识符：** `current_player_exp`
+
+玩家的经验点数总和，例如 `1395.0`。这不是经验等级。
+
+```
+{"placeholder":"current_player_exp"}
+```
+
+### 玩家经验进度（百分比）
+
+**标识符：** `current_player_exp_progress`
+
+经验条的填充程度，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_player_exp_progress"}
+```
+
+### 玩家攻击蓄力（百分比）
+
+**标识符：** `player_attack_strength`
+
+下一次攻击的蓄力程度，范围为 `0` 到 `100`，与攻击指示器一致。
+
+```
+{"placeholder":"player_attack_strength"}
+```
+
+### 玩家游戏模式
+
+**标识符：** `player_gamemode`
+
+返回 `survival`、`creative`、`adventure` 或 `spectator`。
+
+```
+{"placeholder":"player_gamemode"}
+```
+
+### 玩家物品使用进度 (FM)
+
+**标识符：** `player_item_use_progress_fm`
+
+玩家使用物品（例如吃东西、喝东西或拉弓）的进度，范围为 `0.0` 到 `1.0`。
+
+```
+{"placeholder":"player_item_use_progress_fm"}
+```
+
+### 当前坐骑生命值
+
+**标识符：** `current_mount_health`
+
+玩家所骑乘生物（例如马）的当前生命值，例如 `30.0`。
+
+```
+{"placeholder":"current_mount_health"}
+```
+
+### 坐骑最大生命值
+
+**标识符：** `max_mount_health`
+
+玩家所骑乘生物的最大生命值。
+
+```
+{"placeholder":"max_mount_health"}
+```
+
+### 当前坐骑生命值（百分比）
+
+**标识符：** `current_mount_health_percent`
+
+玩家所骑乘生物当前生命值的百分比，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_mount_health_percent"}
+```
+
+### 当前坐骑跳跃蓄力（百分比）
+
+**标识符：** `current_mount_jump_meter`
+
+马匹的跳跃蓄力程度，范围为 `0` 到 `100`。
+
+```
+{"placeholder":"current_mount_jump_meter"}
+```
+
+### 活跃效果数量
+
+**标识符：** `effects_count`
+
+玩家当前拥有的效果数量。
+
+```
+{"placeholder":"effects_count"}
+```
+
+### 活跃效果
+
+**标识符：** `active_effect`
+
+按照屏幕右上角效果图标的顺序，返回玩家某个效果的 ID，例如 `minecraft:speed`。指定索引处没有效果时返回空文本。
+
+- `effect_index`：效果的位置。第一个效果的索引为 `0`。
+
+```
+{"placeholder":"active_effect","values":{"effect_index":"0"}}
+```
+
+## 世界：物品栏和物品
+
+这些占位符位于**世界**类别中。槽位编号：`0` 到 `8` 为快捷栏，`9` 到 `35` 为物品栏其余部分，`36` 到 `39` 为从靴子到头盔的盔甲槽，`40` 为副手槽。
+
+### 当前快捷栏槽位
+
+**标识符：** `active_hotbar_slot`
+
+当前选中的快捷栏槽位，范围为 `0` 到 `8`。
+
+```
+{"placeholder":"active_hotbar_slot"}
+```
+
+### 槽位物品
+
+**标识符：** `slot_item`
+
+返回槽位中物品的 ID，例如 `minecraft:diamond_sword`。空槽位返回 `minecraft:air`。
+
+- `slot`：槽位编号
+
+```
+{"placeholder":"slot_item","values":{"slot":"0"}}
+```
+
+### 槽位物品数量
+
+**标识符：** `slot_item_count`
+
+返回槽位中的物品数量，例如 `64`。
+
+- `slot`：槽位编号
+
+```
+{"placeholder":"slot_item_count","values":{"slot":"0"}}
+```
+
+### 槽位物品耐久度
+
+**标识符：** `slot_item_durability`
+
+返回槽位中物品的耐久度。没有耐久度的物品返回 `0`。
+
+- `slot`：槽位编号
+- `format`（可选）：`current`（剩余耐久度）、`max`、`damage`（已损失的耐久度）或 `percentage`（剩余百分比，范围为 `0` 到 `100`）。默认为 `current`。
+
+```
+{"placeholder":"slot_item_durability","values":{"slot":"39","format":"percentage"}}
+```
+
+### 槽位物品显示名称 (FM)
+
+**标识符：** `slot_item_display_name_fm`
+
+以带有稀有度颜色的 JSON 文本组件形式返回槽位中物品的名称，例如 `{"text":"Diamond Sword","color":"aqua"}`。旁观模式下，快捷栏槽位返回旁观者菜单的名称。
+
+- `slot`：槽位编号
+- `ignore_spectator`（可选）：设为 `true` 时，旁观模式下也返回物品名称。默认为 `false`。
+
+```
+{"placeholder":"slot_item_display_name_fm","values":{"slot":"0","ignore_spectator":"false"}}
+```
+
+### 物品栏物品数量
+
+**标识符：** `inventory_item_count`
+
+返回玩家整个物品栏中某种物品的数量。
+
+- `item`：物品的 ID，例如 `minecraft:diamond`。留空时统计所有物品。
+
+```
+{"placeholder":"inventory_item_count","values":{"item":"minecraft:diamond"}}
+```
+
+### 物品栏槽位食物恢复量
+
+**标识符：** `inventory_slot_food_point_restore_amount`
+
+返回槽位中的物品食用后恢复的饥饿值，例如苹果为 `4.0`。非食物物品返回 `0.0`。
+
+- `slot`：槽位编号
+
+```
+{"placeholder":"inventory_slot_food_point_restore_amount","values":{"slot":"0"}}
+```
+
+### 物品类别
+
+**标识符：** `item_category`
+
+返回物品所属的创造模式物品栏标签页，例如 `Combat`。没有所属标签页的物品返回 `UNKNOWN`。
+
+- `item`：物品的 ID
+- `as_key`（可选）：设为 `true` 时返回标签页 ID，例如 `minecraft:combat`。默认为 `false`。
+
+```
+{"placeholder":"item_category","values":{"item":"minecraft:diamond_sword","as_key":"false"}}
+```
+
+### 鼠标悬停的物品
+
+**标识符：** `hovered_inventory_item`
+
+在物品栏屏幕中，返回鼠标指向物品的 ID，例如 `minecraft:apple`。没有指向物品时返回空文本。
+
+```
+{"placeholder":"hovered_inventory_item"}
+```
+
+## 世界：HUD 和 Boss
+
+这些占位符位于**世界**类别中。袭击相关占位符读取屏幕顶部显示进度条的袭击，并且需要在服务器上安装 FancyMenu。在单人游戏中始终可用。没有袭击时返回 `0` 或空文本。
+
+### 操作栏消息 (FM)
+
+**标识符：** `action_bar_message_fm`
+
+以 JSON 文本组件形式返回快捷栏上方的消息，例如 `{"text":"You may not rest now","color":"red"}`。没有消息时返回空文本。
+
+```
+{"placeholder":"action_bar_message_fm"}
+```
+
+### 操作栏消息剩余时间 (FM)
+
+**标识符：** `action_bar_message_time_fm`
+
+返回快捷栏上方的消息还会显示多少刻。20 刻为 1 秒。
+
+```
+{"placeholder":"action_bar_message_time_fm"}
+```
+
+### 高亮物品显示时间 (FM)
+
+**标识符：** `highlighted_item_time_fm`
+
+返回所选物品的名称还会在快捷栏上方显示多少刻。
+
+```
+{"placeholder":"highlighted_item_time_fm"}
+```
+
+### 当前 HUD 标题/副标题
+
+**标识符：** `current_title`
+
+返回当前显示的标题或副标题，例如 `/title` 命令显示的内容。没有内容时返回空文本。
+
+- `is_subtitle`（可选）：设为 `true` 时返回副标题。默认为 `false`。
+- `as_json`（可选）：设为 `true` 时以 JSON 文本组件形式返回。默认为 `false`。
+
+```
+{"placeholder":"current_title","values":{"is_subtitle":"false","as_json":"false"}}
+```
+
+### Boss 数量
+
+**标识符：** `boss_count`
+
+当前显示的 Boss 血条数量。
+
+```
+{"placeholder":"boss_count"}
+```
+
+### Boss 名称
+
+**标识符：** `boss_name`
+
+返回 Boss 血条的名称，例如 `Ender Dragon`。指定索引处没有 Boss 血条时返回空文本。
+
+- `boss_index`：Boss 血条的位置。最上方的血条索引为 `0`。
+- `as_json`（可选）：设为 `true` 时以 JSON 文本组件形式返回。默认为 `false`。
+
+```
+{"placeholder":"boss_name","values":{"boss_index":"0","as_json":"false"}}
+```
+
+### 当前 Boss 生命值（百分比）
+
+**标识符：** `current_boss_health`
+
+Boss 血条的填充程度，范围为 `0` 到 `100`。
+
+- `boss_index`：Boss 血条的位置。最上方的血条索引为 `0`。
+
+```
+{"placeholder":"current_boss_health","values":{"boss_index":"0"}}
+```
+
+### 袭击总波数
+
+**标识符：** `active_raid_total_waves`
+
+袭击的总波数，包括奖励波次。
+
+```
+{"placeholder":"active_raid_total_waves"}
+```
+
+### 袭击剩余波数
+
+**标识符：** `active_raid_remaining_waves`
+
+袭击中尚未到来的波数。
+
+```
+{"placeholder":"active_raid_remaining_waves"}
+```
+
+### 当前袭击波次
+
+**标识符：** `active_raid_current_wave`
+
+返回最近一波的波次编号，例如第一波开始攻击时为 `1`。第一波开始前为 `0`。
+
+```
+第 {"placeholder":"active_raid_current_wave"} 波，共 {"placeholder":"active_raid_total_waves"} 波
+```
+
+### 袭击中存活的袭击者数量
+
+**标识符：** `active_raid_alive_raiders_count`
+
+当前袭击中仍然存活的袭击者数量。
+
+```
+{"placeholder":"active_raid_alive_raiders_count"}
+```
+
+### 袭击中存活的袭击者列表
+
+**标识符：** `active_raid_alive_raiders_list`
+
+返回所有仍然存活的袭击者，以逗号分隔。每个条目由生物 ID 和袭击者 UUID 组成，例如 `minecraft:pillager#0d9a4b2e-5f1c-4a8e-9b3d-6c2f1e7a8b90`。
+
+```
+{"placeholder":"active_raid_alive_raiders_list"}
+```
+
+## 世界：位置和摄像机
+
+这些占位符位于**世界**类别中。
+
+### 玩家 X 坐标
+
+**标识符：** `player_x_coordinate`
+
+玩家所在方块的 X 坐标，例如 `125`。
+
+```
+{"placeholder":"player_x_coordinate"}
+```
+
+### 玩家 Y 坐标
+
+**标识符：** `player_y_coordinate`
+
+玩家所在方块的 Y 坐标，例如 `64`。
+
+```
+{"placeholder":"player_y_coordinate"}
+```
+
+### 玩家 Z 坐标
+
+**标识符：** `player_z_coordinate`
+
+玩家所在方块的 Z 坐标，例如 `-250`。
+
+```
+{"placeholder":"player_z_coordinate"}
+```
+
+### 玩家视线方向
+
+**标识符：** `player_view_direction`
+
+玩家面朝的方向：`north`、`east`、`south` 或 `west`。
+
+```
+{"placeholder":"player_view_direction"}
+```
+
+### 玩家 X 轴位置变化量 (FM)
+
+**标识符：** `player_position_delta_x_fm`
+
+玩家自上一刻以来沿 X 轴移动的距离，单位为方块，例如 `0.12`。向相反方向移动时为负数。
+
+```
+{"placeholder":"player_position_delta_x_fm"}
+```
+
+### 玩家 Y 轴位置变化量 (FM)
+
+**标识符：** `player_position_delta_y_fm`
+
+玩家自上一刻以来沿 Y 轴移动的距离，例如下落时为 `-0.08`。
+
+```
+{"placeholder":"player_position_delta_y_fm"}
+```
+
+### 玩家 Z 轴位置变化量 (FM)
+
+**标识符：** `player_position_delta_z_fm`
+
+玩家自上一刻以来沿 Z 轴移动的距离。
+
+```
+{"placeholder":"player_position_delta_z_fm"}
+```
+
+### 摄像机 X 轴旋转 (FM)
+
+**标识符：** `camera_rotation_x_fm`
+
+摄像机向上或向下看的角度，单位为度，范围为 `-90.0`（垂直向上）到 `90.0`（垂直向下）。
+
+```
+{"placeholder":"camera_rotation_x_fm"}
+```
+
+### 摄像机 Y 轴旋转 (FM)
+
+**标识符：** `camera_rotation_y_fm`
+
+摄像机面朝的方向，单位为度，范围为 `-180.0` 到 `180.0`。`0.0` 表示朝南。
+
+```
+{"placeholder":"camera_rotation_y_fm"}
+```
+
+### 摄像机 X 轴旋转变化量 (FM)
+
+**标识符：** `camera_rotation_delta_x_fm`
+
+摄像机自上一刻以来向上或向下转动的角度，单位为度。
+
+```
+{"placeholder":"camera_rotation_delta_x_fm"}
+```
+
+### 摄像机 Y 轴旋转变化量 (FM)
+
+**标识符：** `camera_rotation_delta_y_fm`
+
+摄像机自上一刻以来向左或向右转动的角度，单位为度。
+
+```
+{"placeholder":"camera_rotation_delta_y_fm"}
+```
+
+## 世界：世界信息
+
+这些占位符位于**世界**类别中。
+
+### 世界日间时间
+
+**标识符：** `world_daytime`
+
+以刻为单位返回世界的日间时间。一天有 24000 刻，并从早上 6:00 开始。该值会跨天持续累加，因此在计算器中使用 `{"placeholder":"world_daytime"} % 24000` 可获得当天的时间。
+
+```
+{"placeholder":"world_daytime"}
+```
+
+### 世界日间小时
+
+**标识符：** `world_daytime_hour`
+
+世界日间时间的小时数，范围为 `00` 到 `23`。
+
+- `twelve_hour_format`（可选）：设为 `true` 时改为返回 `01` 到 `12`。默认为 `false`。
+
+```
+{"placeholder":"world_daytime_hour","values":{"twelve_hour_format":"false"}}
+```
+
+### 世界日间分钟
+
+**标识符：** `world_daytime_minute`
+
+世界日间时间的分钟数，范围为 `00` 到 `59`。
+
+```
+{"placeholder":"world_daytime_hour"}:{"placeholder":"world_daytime_minute"}
+```
+
+### 世界游戏时间
+
+**标识符：** `game_time`
+
+世界运行的总刻数。与日间时间不同，`/time set` 等命令不会改变此值。
+
+```
+{"placeholder":"game_time"}
+```
+
+### 世界难度
+
+**标识符：** `world_difficulty`
+
+返回 `peaceful`、`easy`、`normal` 或 `hard`。
+
+```
+{"placeholder":"world_difficulty"}
+```
+
+### 当前维度
+
+**标识符：** `current_dimension`
+
+玩家所在的维度，例如 `minecraft:overworld`。
+
+- `as_key`（可选）：设为 `false` 时返回维度名称，例如 `Overworld`。没有名称的维度会返回其 ID。默认为 `true`。
+
+```
+{"placeholder":"current_dimension","values":{"as_key":"false"}}
+```
+
+### 当前生物群系
+
+**标识符：** `current_biome`
+
+玩家所在的生物群系，例如 `minecraft:plains`。
+
+- `as_key`（可选）：设为 `false` 时返回生物群系名称，例如 `Plains`。默认为 `true`。
+
+```
+{"placeholder":"current_biome","values":{"as_key":"false"}}
+```
+
+### 当前世界种子
+
+**标识符：** `current_world_seed`
+
+单人游戏世界的种子，例如 `-4172144997902289642`。在服务器中返回空文本。
+
+```
+{"placeholder":"current_world_seed"}
+```
+
+### 游戏规则值
+
+**标识符：** `gamerule_value`
+
+返回游戏规则的值，例如 `true` 或 `3`。在单人游戏中始终可用。在服务器上需要服务器端安装 FancyMenu。不存在该名称的游戏规则时返回空文本。
+
+- `name`：游戏规则名称，例如 `keep_inventory`。在 Minecraft 1.21.10 及更早版本中，游戏规则名称类似 `keepInventory`；这些旧名称在新版本中也可用。
+
+```
+{"placeholder":"gamerule_value","values":{"name":"keep_inventory"}}
+```
+
+### 当前服务器 IP
+
+**标识符：** `current_server_ip`
+
+玩家所在服务器的地址，例如 `play.example.net`。在单人游戏中返回空文本。
+
+```
+{"placeholder":"current_server_ip"}
+```
+
+### 世界玩家列表
+
+**标识符：** `world_players_list`
+
+返回游戏已知的世界中玩家名称，并按字母顺序排列，例如 `Alex, Notch, Steve`。
+
+- `separator`（可选）：名称之间的文本。默认为 `, `。
+
+```
+{"placeholder":"world_players_list","values":{"separator":", "}}
+```
+
+## 世界：世界存档
+
+这些占位符位于**世界**类别中，在所有菜单中都可用，无需加载世界。
+
+### 世界存档数量
+
+**标识符：** `level_save_count`
+
+单人游戏世界的数量。
+
+```
+{"placeholder":"level_save_count"}
+```
+
+### 世界存档名称
+
+**标识符：** `level_save_names`
+
+按世界列表中的顺序返回所有单人游戏世界的名称，例如 `Survival World, Creative Test`。
+
+- `separator`（可选）：名称之间的文本。默认为 `, `。
 
 ```
 {"placeholder":"level_save_names","values":{"separator":", "}}
 ```
 
-**输出：** `Creative Test, Survival World, Hardcore`
+### 世界存档数据
 
-## 世界存档数据 (`level_save_data`)
+**标识符：** `level_save_data`
 
-**用途：** 返回指定世界名称的序列化世界数据（必须与存档列表中显示的名称匹配）。
+以 JSON 形式返回单人游戏世界的所有数据，例如 `{"file_name":"Survival World","game_type":"survival","difficulty":"normal",...}`。数据包含 `file_name`、`display_name`、`game_type`、`difficulty`、`allow_commands`、`last_played`（Unix 时间戳）、`minecraft_version_name` 等。可使用[**JSON 解析器**](#json-parser)读取单个值。
 
-**值：** `level_name`
-
-**示例：**
+- `level_name`：世界名称，必须与世界列表中的名称完全一致
 
 ```
-{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}
+{"placeholder":"json","values":{"source":"{"placeholder":"level_save_data","values":{"level_name":"Survival World"}}","json_path":"$.game_type"}}
 ```
 
-**输出：** `{"name":"Survival World","gameMode":"survival",...}`
+## 其他
 
-## 数字进制转换器 (`number_base_convert`)
+这些占位符没有类别，因此会列在占位符菜单的类别列表下方。
 
-**用途：** 将一个数字（整数或小数）从一种进制转换为另一种进制（2–36）。如果未提供进制，默认使用十进制。
+### FPS（每秒帧数）
 
-**值：** `input`, `from_base`, `to_base`
+**标识符：** `fps`
 
-**示例：**
-
-```
-{"placeholder":"number_base_convert","values":{"input":"67.5","from_base":"10","to_base":"16"}}
-```
-
-**输出：** `43.8`
-
-## 文件大小 (`file_size`)
-
-**用途：** 返回本地文件的大小，单位字节。仅允许本地路径。
-
-**值：** `path`
-
-**示例：**
+每秒帧数，例如 `120`。
 
 ```
-{"placeholder":"file_size","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"fps"}
 ```
 
-**输出：** `1284`
+### 已用 RAM（MB）
 
-## 文件 MD5 (`file_md5`)
+**标识符：** `usedram`
 
-**用途：** 返回本地文件的 MD5 哈希，格式为小写十六进制字符串。
-
-**值：** `path`
-
-**示例：**
+游戏当前使用的 RAM，单位为 MB，例如 `4096`。
 
 ```
-{"placeholder":"file_md5","values":{"path":"/config/fancymenu/assets/notes.txt"}}
+{"placeholder":"usedram"}
 ```
 
-**输出：** `d41d8cd98f00b204e9800998ecf8427e`
+### 最大 RAM（MB）
 
-# 实际示例
+**标识符：** `maxram`
 
-## 创建动态内存显示
-```
-已用内存：{"placeholder":"usedram"}MB / {"placeholder":"maxram"}MB（{"placeholder":"percentram"}%）
-```
+游戏最多可使用的 RAM，单位为 MB，例如 `8192`。
 
-## 制作实时时钟
 ```
-{"placeholder":"realtimehour","values":{"timezone":"system"}}:{"placeholder":"realtimeminute","values":{"timezone":"system"}}:{"placeholder":"realtimesecond","values":{"timezone":"system"}}
+{"placeholder":"maxram"}
 ```
 
-## 创建系统信息显示
-```
-操作系统：{"placeholder":"osname"}
-CPU：{"placeholder":"cpuinfo"}
-GPU：{"placeholder":"gpuinfo"}
-Java：{"placeholder":"javaver"}
-```
+### 已用 RAM（%）
 
-## 玩家状态 HUD
+**标识符：** `percentram`
+
+游戏已用 RAM 占最大 RAM 的百分比，例如 `50`。
+
 ```
-生命值：{"placeholder":"current_player_health"} / {"placeholder":"max_player_health"}（{"placeholder":"current_player_health_percent"}%）
-护甲：{"placeholder":"current_player_armor"} / {"placeholder":"max_player_armor"}
-经验等级：{"placeholder":"current_player_level"}
+{"placeholder":"percentram"}
 ```
 
-## 使用嵌套占位符进行复杂计算
-```
-{"placeholder":"calc","values":{"decimal":"true","expression":"({"placeholder":"usedram"} / {"placeholder":"maxram"}) * 100"}}
-```
+### CPU 使用率（JVM）
 
-## 带四舍五入的坐标显示
+**标识符：** `jvmcpu`
+
+游戏使用的 CPU 百分比，例如 `25.5`。
+
 ```
-X: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_x_coordinate"}"}}
-Y: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_y_coordinate"}"}}
-Z: {"placeholder":"math_round","values":{"num":"{"placeholder":"player_z_coordinate"}"}}
+{"placeholder":"jvmcpu"}
 ```
 
-# 最佳实践
+### CPU 使用率（操作系统）
 
-1. **缓存开销较大的操作**：某些占位符（例如读取系统信息的占位符）可能比较耗资源。如果需要多次使用，建议将其值存储到变量中。
+**标识符：** `oscpu`
 
-2. **使用合适的小数设置**：在进行计算时，请恰当地使用 `decimal` 参数。当你需要整数时设为 `false`，当你需要精确的小数值时设为 `true`。
+整台电脑的 CPU 使用率，例如 `42.8`。
 
-3. **处理缺失值**：始终考虑占位符没有返回值时应该如何处理。在这种情况下，你可能需要提供默认值。
+```
+{"placeholder":"oscpu"}
+```
 
-4. **测试性能**：当使用大量占位符或复杂的嵌套结构时，请测试性能影响，尤其是在较低配置的系统上。
+### CPU 信息
 
-5. **使用高级尺寸/定位**：对于动态 UI 元素，将占位符与高级尺寸和定位结合使用，以创建响应式布局。
+**标识符：** `cpuinfo`
 
-6. **与变量结合使用**：将占位符与变量一起使用，可以创建更动态、可通过动作更新的内容。
+CPU 名称，例如 `Intel(R) Core(TM) i7-10700K CPU @ 3.80GHz`。
 
-# 常见问题与解决方案
+```
+{"placeholder":"cpuinfo"}
+```
 
-## 占位符未更新
-如果占位符的值没有按预期更新，请检查：
-- 占位符格式是否正确
-- 是否使用了正确的占位符 ID 大小写
-- 占位符是否需要特定条件才会更新
+### GPU 信息
 
-## 嵌套占位符无法工作
-在嵌套占位符时：
-- 确保引号已正确转义
-- 验证每个嵌套占位符本身是否有效
+**标识符：** `gpuinfo`
 
-## 性能问题
-如果你注意到性能问题：
-- 减少占位符的使用数量
-- 避免不必要的嵌套
-- 考虑对常用值使用变量
-- 根据需求使用合适的占位符（例如，静态值足够时不要使用实时占位符）
+游戏使用的图形设备名称，例如 `NVIDIA GeForce RTX 3080`。
+
+```
+{"placeholder":"gpuinfo"}
+```
+
+### OpenGL 版本
+
+**标识符：** `glver`
+
+游戏使用的图形设备驱动信息，例如 `4.6.0 NVIDIA 566.36`。
+
+```
+{"placeholder":"glver"}
+```
+
+### Java 版本
+
+**标识符：** `javaver`
+
+游戏运行所用的 Java 版本，例如 `21.0.5`。
+
+```
+{"placeholder":"javaver"}
+```
+
+### Java 虚拟机
+
+**标识符：** `jvmname`
+
+Java 虚拟机名称，例如 `OpenJDK 64-Bit Server VM`。
+
+```
+{"placeholder":"jvmname"}
+```
+
+### 操作系统名称
+
+**标识符：** `osname`
+
+操作系统名称，例如 `Windows 11`。
+
+```
+{"placeholder":"osname"}
+```
+
+### 运行时长
+
+**标识符：** `uptime_duration`
+
+游戏已运行的时间，单位为秒，例如 `742`。
+
+- `output_as_millis`（可选）：设为 `true` 时改为返回毫秒。默认为 `false`。
+
+```
+{"placeholder":"uptime_duration","values":{"output_as_millis":"false"}}
+```
+
+### 随机文本
+
+**标识符：** `randomtext`
+
+从文本文件、URL 或你输入的文本中随机返回一行，例如随机提示。文件和 URL 每 30 秒重新读取一次。
+
+- `source`：游戏文件夹中的 `.txt` 文件、URL，或用 `\n` 分隔的多行文本，例如 `Tip 1\nTip 2\nTip 3`
+- `interval`（可选）：选择新行的间隔秒数。设为 `0` 时，每次游戏会话只选择一次。默认为 `10`。
+
+```
+{"placeholder":"randomtext","values":{"source":"/config/fancymenu/assets/tips.txt","interval":"10"}}
+```
+
+### 网页文本
+
+**标识符：** `webtext`
+
+返回网页文本的第一行，例如网站上的文本文件。只会加载一次，并会在 FancyMenu 重新加载时再次加载。加载期间返回空文本。
+
+- `link`：网页 URL
+
+```
+{"placeholder":"webtext","values":{"link":"https://example.com/motd.txt"}}
+```
+
+### 文件/文件夹绝对路径
+
+**标识符：** `absolute_path`
+
+返回游戏文件夹中某个文件或文件夹的完整路径，例如 `C:/Users/Steve/AppData/Roaming/.minecraft/config/fancymenu`。
+
+- `short_path`：游戏文件夹中的相对路径
+
+```
+{"placeholder":"absolute_path","values":{"short_path":"config/fancymenu"}}
+```
+
+### 文本字符数
+
+**标识符：** `text_character_count`
+
+返回文本的字符数：`Hello World!` 包含 `12` 个字符。
+
+- `text`：要处理的文本
+
+```
+{"placeholder":"text_character_count","values":{"text":"$$player_nickname"}}
+```
+
+### 文本宽度
+
+**标识符：** `text_width`
+
+返回文本的宽度，单位为 GUI 像素：`Hello World!` 的宽度为 `57`。`&l` 等格式代码的计算方式与游戏中相同，因此粗体文本会更宽。
+
+- `text`：要处理的文本
+
+```
+{"placeholder":"text_width","values":{"text":"Hello World!"}}
+```
+
+### 文本高度
+
+**标识符：** `text_height`
+
+返回文本所有行的总高度，单位为 GUI 像素。换行符为 `\n`。若要让内容适配文本元素，请使用[**文本元素内容高度**](#text-element-content-height)，它还会考虑文本缩放、行间距和自动换行。
+
+- `text`：要处理的文本
+
+```
+{"placeholder":"text_height","values":{"text":"First line\nSecond line"}}
+```
+
+### 剪贴板内容
+
+**标识符：** `clipboard_content`
+
+返回电脑剪贴板中的文本。剪贴板为空时返回空文本。
+
+```
+{"placeholder":"clipboard_content"}
+```

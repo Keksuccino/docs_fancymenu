@@ -1,110 +1,162 @@
 ---
-title: Commencer
+title: Premiers pas
 description: >-
-  Le monde de FancyMenu vous attend ! C'est le début de quelque chose de
-  magnifique !
+  Vos premiers pas avec FancyMenu. La barre de menu, votre première disposition
+  de A à Z et les étapes suivantes.
+sourceBlobSha: 0a9f8343e6964d75860fb6143e9b6fdecb6cf0ea
 ---
 
-# Pour les développeurs
+# Premiers pas
 
-Si vous êtes développeur et que vous souhaitez créer un addon pour FancyMenu ou intégrer FancyMenu à votre mod, vous devriez consulter la [documentation pour les développeurs](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).
+FancyMenu vous permet de modifier tous les menus de Minecraft, comme l'écran titre, le menu de pause et les menus d'autres mods. Ajoutez vos propres arrière-plans, logos, boutons, textes, sons et animations, déplacez ou masquez les éléments existants, attribuez de nouvelles actions aux boutons ou créez des menus entièrement nouveaux. Tout se fait dans le jeu, sans écrire de code.
 
-# Commencer
+<img width="800" alt="Écran titre d'un modpack appelé Wildwood, créé avec FancyMenu : une vallée en pixel art au crépuscule, avec une cabane, un lac et le soleil couchant, dont les couches bougent avec la souris, un logo doré, des boutons en bois qui brillent au survol et des lucioles" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_hero.gif?raw=true">
 
-La première utilisation de FancyMenu peut sembler un peu intimidante, mais ne vous inquiétez pas : la plupart des choses deviennent en fait assez simples une fois que vous commencez à l'utiliser !
+Cette page vous présente les bases pas à pas. Vous allez créer une version plus simple de cet écran titre, et la section [Comment l'exemple a été créé](#comment-lexemple-a-ete-cree) explique ce qu'apporte la version complète.
 
-> Veuillez **garder à l'esprit** que cette page sert uniquement à découvrir FancyMenu et à vous aider pour vos **tout premiers pas**.
-Assurez-vous également de consulter le reste de la documentation pour obtenir des informations plus détaillées sur les fonctionnalités de FancyMenu !
-{.is-info}
+> [!TIP]
+> Vous pouvez utiliser cet écran titre dans votre jeu : téléchargez [wildwood_title_screen.fmp](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/wildwood_title_screen.fmp?raw=true), puis [importez](/profiles#importing) et [chargez](/profiles#loading-a-profile) le fichier dans **menu bar -> Customization -> Profiles**. Son utilisation est gratuite, que ce soit pour essayer FancyMenu, apprendre à l'utiliser ou l'intégrer à votre modpack, avec ou sans modifications. Aucune attribution n'est nécessaire.
 
 # La barre de menu
 
-L'une des premières choses que vous remarquerez en lançant le jeu est la **barre de menu** en haut de chaque menu.
+La barre de menu située en haut de chaque menu donne accès à toutes les fonctionnalités de FancyMenu.
 
-La **barre de menu** est votre point d'entrée vers pratiquement toutes les fonctionnalités de FancyMenu, comme **créer des layouts** pour **personnaliser les menus**, modifier le **titre et l'icône de la fenêtre**, et bien plus encore.
+<img width="800" alt="La barre de menu en haut de l'écran titre, avec le menu Customization ouvert" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_menu_bar.png?raw=true">
 
-> Si vous avez appuyé accidentellement sur certaines touches et que la **barre de menu a disparu**, vous pouvez la faire réapparaître en appuyant sur **CTRL + ALT + C**.
-{.is-warning}
+- **Customization** : les dispositions du menu dans lequel vous vous trouvez et tous les paramètres de votre configuration, comme les [personnalisations globales](/global-customizations), les [interfaces personnalisées](/custom-guis), les [variables](/variables), les [listeners](/listeners), les [planificateurs](/schedulers), les [profils](/profiles) et les paramètres de FancyMenu.
+- **Tools** : des outils pratiques comme [Dummy Screen Instances](/dummy-screen-instances), le [créateur AFMA](/animations#fma-and-afma), **Browse Game Resources** et **Open FancyMenu Directory**, qui ouvre le dossier de votre configuration (voir [Emplacements de stockage des données](/data-storage-locations)).
+- **Help** : cette documentation, le serveur Discord, **Report a Bug** et [Export for AI](/export-for-ai).
+- L'icône de porte à droite ferme le menu actuel, pour les menus qui ne proposent aucun moyen de le quitter.
+- Les deux flèches tout à droite replient la barre de menu en un petit bouton, et permettent de la réafficher.
 
-<img width="650" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
+Les joueurs de votre modpack n'ont pas besoin de la barre de menu. Consultez la section [Modpacks](/modpacks#disabling-the-menu-bar-and-hotkeys) pour savoir comment la désactiver.
 
-# Votre premier layout
+## Raccourcis de la barre de menu
 
-Comme vous souhaitez probablement personnaliser les menus de Minecraft, laissez-moi vous parler des **layouts** !
+Ces raccourcis fonctionnent dans tous les menus, mais pas dans l'éditeur de disposition ni lorsque Modpack Mode est activé. Sur macOS, utilisez `Cmd + Option` au lieu de `Ctrl + Alt`.
 
-Les layouts sont comme des couches de personnalisation pour les menus, et ils vous permettent d'ajouter de nouveaux éléments et de personnaliser ceux qui existent déjà.
+| Raccourci | Action |
+|---|---|
+| `Ctrl + Alt + C` | Afficher ou masquer la barre de menu. Si elle a disparu, ce raccourci la fait réapparaître. |
+| `Ctrl + Alt + R` | Recharger FancyMenu, comme avec **menu bar -> Customization -> Reload FancyMenu** |
+| `Ctrl + Alt + D` | Afficher ou masquer la **Debug Overlay**, qui indique l'[identifiant](/screen-identifiers) du menu et d'autres informations |
+| `Ctrl + Alt + L` | Ouvrir l'[éditeur de disposition](/layout-editor) avec la dernière disposition modifiée |
 
-Pour créer un nouveau layout pour un **menu spécifique** :
-1. Ouvrez le menu pour lequel vous souhaitez créer un layout (l'écran titre, par exemple)
-2. Ouvrez l'onglet **Personnalisation** de la **barre de menu**
+# Votre première disposition
 
-Les personnalisations sont désactivées par défaut pour tous les menus, et vous devez les activer pour chaque menu que vous souhaitez personnaliser. Cliquez donc d'abord sur l'entrée **"Personnalisation de l'écran actuel : désactivée"**, ce qui basculera l'option sur **Activée**.
+Une disposition regroupe les modifications apportées à un menu : son arrière-plan, les éléments que vous ajoutez et les changements apportés aux boutons et aux textes déjà présents. Un menu peut avoir plusieurs dispositions, que vous pouvez activer ou désactiver individuellement.
 
-<img width="475" alt="toggle_customizations" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true">
+## Créer une disposition
 
-Ensuite, cliquez sur **Layouts -> New -> For Current Screen**.
+<img width="800" alt="Ouverture de Customization dans la barre de menu de l'écran titre, activation de Current Screen Customization, réouverture de Customization et clic sur Layouts, New, For Current Screen, ce qui ouvre l'éditeur de disposition" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_new_layout.gif?raw=true">
 
-Cela ouvrira l'**éditeur de layout**, où vous pourrez ajouter des éléments au layout et personnaliser les éléments Vanilla et ceux des mods (comme les boutons).
+1. Ouvrez le menu que vous souhaitez modifier, par exemple l'écran titre.
+2. Cliquez sur **menu bar -> Customization -> Current Screen Customization** pour afficher **Enabled**. FancyMenu ne modifie que les menus pour lesquels cette option est activée.
+3. Cliquez sur **menu bar -> Customization -> Layouts -> New -> For Current Screen**.
 
-<img width="550" alt="new_layout_current" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true">
+L'éditeur de disposition s'ouvre. Il affiche le menu tel que les joueurs le voient, ce qui vous permet de constater immédiatement chaque modification. Consultez la page [Éditeur de disposition](/layout-editor) pour tout savoir, notamment sur le déplacement, le redimensionnement et la copie des éléments.
 
-## Modifier le layout
+**For All Screens [Universal]** crée plutôt une [disposition universelle](/universal-layouts), qui s'affiche dans tous les menus.
 
-La plupart des options de personnalisation sont accessibles en **cliquant avec le bouton droit sur l'arrière-plan de l'éditeur**.
-Cela ouvrira un menu contextuel contenant de nombreuses options, comme la personnalisation de l'**arrière-plan du menu** ou l'**ajout d'éléments** au layout.
+## Définir un arrière-plan
 
-<br>
-<img width="350" alt="context_menu" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/context_menu.png?raw=true">
+Commencez par placer vos images dans le dossier `config/fancymenu/assets` de votre jeu. **menu bar -> Tools -> Open FancyMenu Directory** ouvre le dossier `config/fancymenu`.
 
-## Ajouter des éléments aux layouts
+<img width="800" alt="Clic droit sur l'arrière-plan de l'éditeur, ouverture de Menu Backgrounds, Image, activation de Show Background, puis Choose Image, sélection de Local comme Source Type et choix de background.png dans le dossier wildwood ; la vallée apparaît derrière les boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_background.gif?raw=true">
 
-Pour ajouter un nouvel élément à votre layout, **cliquez avec le bouton droit** sur l'arrière-plan de l'éditeur.
+1. Faites un clic droit sur l'arrière-plan de l'éditeur, puis ouvrez **Menu Backgrounds -> Image**.
+2. Cliquez sur **Show Background** pour afficher **Enabled**.
+3. Cliquez sur **Choose Image**, réglez **Source Type** sur **Local**, puis cliquez sur **Choose Local Resource File**.
+4. Cliquez sur votre image, puis sur **OK**. Double-cliquez pour ouvrir les dossiers.
 
-Dans le menu contextuel qui s'ouvre, cliquez sur **New Element** et choisissez l'un des nombreux types d'éléments.
+Vous pouvez aussi utiliser des panoramas, des diaporamas, des vidéos, des couleurs et bien d'autres types d'arrière-plan. Consultez la page [Arrière-plans des menus](/menu-backgrounds).
 
-<img width="525" alt="add_element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true">
+## Ajouter un logo
 
-## Personnaliser des éléments
+<img width="800" alt="Suppression du logo Minecraft et du texte jaune, ajout d'un élément Image via Element, New, Image, puis choix de logo.png comme Image Source ; le logo apparaît écrasé dans un carré" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_logo_add.gif?raw=true">
 
-Pour personnaliser un élément, **cliquez dessus avec le bouton droit**, ce qui ouvrira un menu contextuel contenant tout ce que vous pouvez modifier pour ce type d'élément.
+1. Cliquez sur le logo Minecraft et appuyez sur `Delete`. Faites de même avec le texte jaune.
+2. Dans la barre de menu de l'éditeur, cliquez sur **Element -> New -> Image**.
+3. Faites un clic droit sur le nouvel élément, cliquez sur **Image Source** et choisissez votre logo, comme pour l'arrière-plan.
 
-En plus des éléments que vous avez ajoutés, vous pouvez également personnaliser les éléments vanilla (même s'ils offrent parfois moins d'options)
+Les éléments vanilla supprimés sont simplement masqués. Vous pouvez les rétablir avec **Element -> Deleted Vanilla Elements**.
 
-<img width="525" alt="element_customization" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true">
+<img width="800" alt="Clic sur Restore Aspect Ratio dans le menu contextuel du logo, qui retrouve ainsi sa largeur réelle ; fermeture du menu avec Échap et déplacement du logo Wildwood au-dessus des boutons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_logo_place.gif?raw=true">
 
-> [!IMPORTANT]
-> Certains menus contextuels comme celui-ci sont **défilables** !
+4. Faites de nouveau un clic droit sur le logo, puis cliquez sur **Restore Aspect Ratio** pour qu'il ne soit plus écrasé. Appuyez sur `Esc` pour fermer le menu.
+5. Faites-le glisser à l'emplacement souhaité.
 
-## Positionner les éléments
+Vous pouvez ajouter bien d'autres éléments, comme des boutons, des textes, des vidéos et des joueurs. Consultez la page [Éléments](/elements).
 
-Chaque élément dans FancyMenu est lié à un **point d'ancrage**.
+## Modifier les boutons
 
-Les points d'ancrage sont nécessaires pour calculer la position d'un élément et, s'ils sont utilisés correctement, ils empêchent les éléments de se chevaucher, de sortir de l'écran ou de se déplacer au mauvais endroit lors du redimensionnement de la fenêtre.
+<img width="800" alt="Clic sur le bouton Singleplayer, puis Ctrl-clic sur les quatre autres boutons ; attribution d'une texture en bois aux cinq boutons d'un seul coup via Button Textures, Set, Normal Background" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_buttons_normal.gif?raw=true">
 
-Ils constituent le point d'origine à partir duquel la position de l'élément est calculée.
+1. Cliquez sur le premier bouton, puis maintenez `Ctrl` (`Cmd` sur macOS) enfoncé et cliquez sur les autres pour tous les sélectionner. Un clic droit sur l'un d'eux modifie tous les éléments sélectionnés en même temps.
+2. Faites un clic droit sur l'un des boutons, cliquez sur **Button Textures -> Set -> Normal Background**, puis choisissez votre texture, comme pour l'arrière-plan.
 
-Par défaut, les éléments sont reliés au point d'ancrage **"Center of Screen"**, qui correspond en gros au centre exact de l'écran, quelle que soit la taille de la fenêtre.
-Supposons donc qu'un élément se trouve à 2 centimètres du centre de l'écran tout en étant relié à l'ancre **"Center of Screen"**. Dans ce cas, l'élément sera **toujours** à 2 centimètres du centre de l'écran, quelle que soit la taille de la fenêtre.
+<img width="800" alt="Définition d'une texture lumineuse via Button Textures, Set, Hover Background, activation de Nine-Slice Custom Background, qui préserve la netteté des bords du bois, puis survol du bouton Multiplayer, qui s'illumine" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_buttons_hover.gif?raw=true">
 
-Vous pouvez voir le point d'ancrage auquel un élément est lié lorsque vous le faites glisser. Cela affichera également, par défaut, tous les autres points d'ancrage. Vous pouvez survoler un point d'ancrage en faisant glisser un élément afin de modifier l'ancre de cet élément vers le point survolé.
+3. Faites de même avec **Hover Background**, la texture affichée lorsque le pointeur se trouve sur un bouton.
+4. Cliquez sur **Button Textures -> Nine-Slice Custom Background** pour afficher **Enabled**. Les bords de la texture restent nets, quelle que soit la largeur des boutons. Consultez la page [Découpage en neuf zones](/nine-slicing-and-tiling).
 
-Vous pouvez même utiliser un élément comme point d'ancrage pour d'autres éléments ! Il suffit de survoler un élément tout en en faisant glisser un autre, et le point d'ancrage de l'élément déplacé sera modifié pour correspondre à l'élément survolé.
+Le menu contextuel de plusieurs éléments ne contient que les paramètres communs à tous. Sélectionnez donc uniquement des boutons. Faites un clic droit sur un seul bouton pour accéder à tous ses paramètres, comme son libellé, ses sons, l'action exécutée au clic ([scripts d'action](/action-scripts)) et les conditions d'affichage ([visibilité des éléments](/element-visibility)). Consultez la page [Éléments vanilla et de mods](/vanilla-elements).
 
-**[En savoir plus sur la façon de positionner vos éléments.](/positioning-elements)**
+## Enregistrer
 
-<img width="650" alt="anchor_points" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true">
+<img width="800" alt="Appui sur Ctrl + S, clic sur Save dans la fenêtre Save File, fermeture de l'éditeur avec le X et affichage de l'écran titre terminé avec la vallée, le logo Wildwood et les boutons en bois" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_save.gif?raw=true">
 
-## Enregistrer votre travail
+1. Appuyez sur `Ctrl + S` (`Cmd + S` sur macOS), ou cliquez sur **Layout -> Save**.
+2. La première fois, FancyMenu vous demande un nom de fichier. Gardez celui proposé ou saisissez-en un nouveau, puis cliquez sur **Save**.
+3. Fermez l'éditeur en cliquant sur le X à droite de sa barre de menu.
 
-N'oubliez pas d'enregistrer votre chef-d'œuvre !
+Votre disposition s'affiche immédiatement dans le menu. Pour la modifier plus tard, survolez-la dans **menu bar -> Customization -> Layouts**, puis cliquez sur **Edit Layout**, ou appuyez sur `Ctrl + Alt + L`.
 
-Vous verrez un indicateur "Unsaved Changes" en haut à droite de l'éditeur si vous devez enregistrer vos modifications avant de le fermer.
+# Comment l'exemple a été créé
 
-Enregistrez votre travail en cliquant sur **Layout -> Save** !
+L'écran titre présenté en haut de cette page ajoute quelques éléments à celui que vous avez créé :
 
-<img width="375" alt="save_your_work" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/save_your_work.png?raw=true">
+- Le ciel, les collines et les arbres sont trois images qui bougent avec la souris, les arbres se déplaçant le plus. Consultez la page [Effet de parallaxe](/parallax).
+- Les collines et les arbres sont des éléments Image aussi grands que l'écran. Pour qu'ils restent derrière les boutons et les textes, l'option **Custom Elements Behind Vanilla** est activée dans le menu contextuel de l'arrière-plan de l'éditeur.
+- Les lucioles sont une [superposition décorative](/decoration-overlays#fireflies).
+- La taille des collines, des arbres et du logo s'adapte à celle de l'écran grâce au [positionnement et au dimensionnement avancés](/advanced-positioning-sizing) avec des espaces réservés. Le menu s'adapte ainsi à toutes les tailles de fenêtre. Le logo rétrécit sur les écrans peu hauts pour ne jamais masquer les boutons.
 
-> [!TIP]
-> Vous pouvez également enregistrer votre travail à l'aide du raccourci clavier **CTRL + S**
+Pour examiner tous ces éléments dans l'éditeur de disposition, chargez le [profil d'exemple](#premiers-pas), puis modifiez sa disposition.
 
-*Félicitations ! Vous pouvez maintenant rendre les menus de Minecraft beaucoup plus beaux !*
+# Pour aller plus loin
+
+**Soigner l'apparence**
+
+- [Éléments](/elements) : tout ce que vous pouvez ajouter aux menus.
+- [Positionnement des éléments](/positioning-elements) : garder les éléments à leur place, quelle que soit la taille de la fenêtre.
+- [Arrière-plans des menus](/menu-backgrounds), [Animations](/animations), [Vidéos](/video), [Superpositions décoratives](/decoration-overlays) et [Musique d'arrière-plan](/background-music).
+
+**Ajouter des fonctionnalités**
+
+- [Scripts d'action](/action-scripts) : les actions effectuées par les boutons et les autres éléments.
+- [Visibilité des éléments](/element-visibility) et [Conditions](/conditions) : n'afficher certains éléments que dans des cas précis.
+- [Espaces réservés](/placeholders) : afficher des informations dynamiques dans les textes, comme le nom du joueur.
+- [Variables](/variables), [Listeners](/listeners) et [Planificateurs](/schedulers) : mémoriser des informations, réagir au jeu et exécuter des actions à intervalles réguliers.
+
+**Créer davantage**
+
+- [Interfaces personnalisées](/custom-guis) : créer des menus entièrement nouveaux.
+- [Dispositions universelles](/universal-layouts) : appliquer des modifications à tous les menus.
+- [Personnalisations globales](/global-customizations) : ajuster l'ensemble du jeu, par exemple le titre de la fenêtre.
+- [Écran de chargement](/loading-screen) et [Introduction du jeu](/game-intro).
+
+**Partager votre création**
+
+- [Modpacks](/modpacks) : intégrer votre configuration à un modpack.
+- [Profils](/profiles) : passer d'une configuration à une autre et les exporter.
+
+# Obtenir de l'aide
+
+- La [FAQ](/faq) répond aux questions les plus fréquentes.
+- **menu bar -> Help -> Join the Discord** vous permet de rejoindre le serveur Discord de FancyMenu.
+- [Export for AI](/export-for-ai) convertit votre configuration en texte à utiliser dans des conversations avec une IA, par exemple avec le bot d'assistance du serveur Discord.
+- Cliquez sur **menu bar -> Help -> Report a Bug** si quelque chose ne fonctionne pas comme prévu.
+
+# Pour les développeurs
+
+Pour créer un module complémentaire pour FancyMenu ou l'utiliser dans votre mod, consultez la [documentation pour les développeurs](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).

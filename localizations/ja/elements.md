@@ -1,324 +1,379 @@
 ---
 title: 要素
-description: FancyMenuの要素タイプについて知っておくべきすべての情報。
+description: FancyMenuで使えるすべての要素タイプとその用途、レイアウトへの追加方法を紹介します。
+sourceBlobSha: 0e457baa99cbf7103634385145b27f07c22e6e51
 ---
+
 # 要素
 
-要素は、FancyMenuでカスタムレイアウトを作成するための基本構成要素です。どのレイアウトにも追加でき、情報の表示やインタラクティブ機能の追加、美しい視覚効果の作成などに利用できます。
+要素とは、ボタン、テキスト、画像、スライダー、音楽など、レイアウトを構成するパーツです。このページでは、すべての要素タイプと主な設定を紹介します。
 
-# レイアウトへの要素の追加
+> [!TIP]
+> ボタンなど、画面にデフォルトで表示されるパーツは[バニラ要素](/vanilla-elements)です。これらも移動、変更、非表示にできます。
 
-新しい要素は、**レイアウトエディター**からレイアウトに追加できます。
+# 要素の追加
 
-1.  エディターの背景を**右クリック**してコンテキストメニューを開きます。
-2.  **新しい要素**にカーソルを合わせます。
-3.  利用可能なすべての要素タイプの一覧が表示されます。追加したい要素をクリックします。
+1. レイアウトエディターで何もない場所を右クリックし、**New Element**をクリックします。メニューバーの**Element -> New**からも同じ一覧を開けます。
+2. 要素タイプをクリックします。タイプにカーソルを合わせると、用途が表示されます。
 
-![add_element](https://github.com/Keksuccino/FancyMenu/assets/35544624/865a66c5-76a6-404d-b746-d57802b1c12f)
+右クリックした場所に要素が表示されます。ドラッグして移動し、端をドラッグしてサイズを変更します。設定を開くには、要素を右クリックします。
 
-要素を追加したら、その要素を**右クリック**して専用のコンテキストメニューを開き、移動、サイズ変更、カスタマイズを行えます。要素の配置方法について詳しくは、[要素の位置指定](./positioning-elements)と[要素識別子](./element-identifiers)を参照してください。
+<img width="800" alt="レイアウトエディターを右クリックし、New ElementからButtonを追加して、移動と幅の調整を行い、ラベルにJoin Serverと入力する様子" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_add_element.gif?raw=true">
 
-# 要素の詳細
+要素の選択、移動、コピー、削除の方法と、エディターのショートカット一覧については、[レイアウトエディター](/layout-editor)を参照してください。どのウィンドウサイズでも要素の位置を保つ方法は、[要素の配置](/positioning-elements)を参照してください。要素を前面または背面に配置する方法は、[レイヤーとグループ](/layout-editor#layers-and-groups)を参照してください。
 
-このセクションでは、FancyMenuに組み込まれている要素を一覧します。[レイヤーとグループ](./layers-and-groups)を使って、描画順を整理できます。
+# すべての要素に共通する設定
 
-## ボタン
-さまざまなアクションを実行できる、クリック可能なボタンです。インタラクティブなメニューを作成するうえで、最も強力かつ柔軟な要素の一つです。
+各要素の右クリックメニューには、要素タイプ固有の設定に加えて、次の設定があります。
 
-*   **使用例:**
-    *   「Discordに参加」や「ウェブサイトを開く」ボタンの作成。
-    *   特定のサーバーにすばやく参加するためのボタンの追加。
-    *   異なるメニュー間を移動するカスタムナビゲーションの構築。
-    *   他のレイアウトをオンまたはオフに切り替えるボタンの作成。
-*   **主な機能:**
-    *   **アクション:** URLを開く、サーバーに参加する、チャットコマンドを送信する、別のボタンの機能を再現する、変数を操作するなど、一連の[アクション](./action-scripts)を実行できます。
-    *   **外観のカスタマイズ:** 通常、ホバー時、非アクティブ時のテクスチャを完全にカスタマイズできます。透明な背景、9スライス、カスタムラベルカラー、ホバー時のラベルカラー、ラベルの拡大率、ラベルの影の切り替え、ボタンアイコンのテクスチャに対応しています。
-    *   **サウンド:** クリック時、ホバー時、ホバー解除時のサウンドをカスタマイズできます。
-    *   **テンプレートモード:** VanillaまたはModのボタンに外観とプロパティを適用できます。[ボタンとスライダーのテンプレート](./button-slider-templates)を参照してください。
-    *   **Vanilla/Modウィジェットの自動クリック:** 既存のVanillaおよびModのウィジェットには**自動クリック**プロパティがあり、画面の読み込み時に元のクリック動作を指定した回数だけ実行できます。詳しくは[Vanilla要素](./vanilla-elements#automated-clicks)を参照してください。
+| 設定 | 機能 |
+|---|---|
+| **Anchor Point** | 要素を画面の隅や別の要素など、どこに固定するかを設定します。[要素の配置](/positioning-elements)を参照してください。 |
+| **Advanced Positioning** と **Advanced Sizing** | [プレースホルダー](/placeholders)などを使って、位置とサイズを計算します。[高度な位置指定とサイズ設定](/advanced-positioning-sizing)を参照してください。 |
+| **Loading Requirements** と **Load Once Per Session** | [条件](/conditions)を満たしたときだけ要素を表示するか、ゲームの起動ごとに一度だけ表示します。[要素の表示設定](/element-visibility)を参照してください。 |
+| **Delay Appearance** と **Delay Disappearance** | 要素が表示または非表示になるまで、指定した秒数だけ待機します。[要素の表示設定](/element-visibility#delaying-elements)を参照してください。 |
+| **Fading In/Out** と **Opacity** | 要素をフェードイン／フェードアウトさせたり、半透明にしたりします。[要素の表示設定](/element-visibility#fading-in-and-out)を参照してください。 |
+| **Rotation**、**Vertical Tilt**、**Horizontal Tilt** | 要素を回転させたり、傾けたりします。[要素の回転と傾き](/rotating-elements)を参照してください。 |
+| **Parallax Effect** | マウスの動きに合わせて要素を少し動かします。[視差効果](/parallax)を参照してください。 |
+| **Copy Element ID** | アクション、プレースホルダー、ほかの要素がこの要素を識別するためのIDをコピーします。[要素ID](/element-identifiers)を参照してください。 |
+| **In-Editor Display Name** | レイヤー一覧に表示する要素名です。 |
+| **Export for AI** | 要素を[AIアシスタント](/export-for-ai)向けのテキストに変換します。 |
 
-## スライダー
-ユーザーがドラッグして、リストまたは範囲から値を選択できるスライダーです。値が変更されるたびにアクションを実行できます。
+# すべての要素
 
-*   **使用例:**
-    *   カスタム音量コントロールの作成。
-    *   異なるテーマや背景画像を切り替えるスライダー（「リスト」タイプを使用）。
-    *   明るさや描画距離など、特定のMinecraftオプションの調整。
-*   **主な機能:**
-    *   **タイプ:** `値リスト`（例: 「簡単」、「普通」、「難しい」）、`整数範囲`（例: 1～100）、`小数範囲`（例: 0.0～1.0）を選択できます。
-    *   **動的アクション:** 値が変更されたときにアクションを実行します。現在の値は[変数](./variables)で使用できます。
-    *   **カスタマイズ:** スライダーのラベルに現在の値を動的に表示できます。ハンドルと背景のテクスチャを完全にカスタマイズでき、透明な背景、ラベルの色や拡大率、テキストの影の切り替え、クリック時およびホバー解除時のカスタムサウンドに対応しています。
+FancyMenuで使用できる要素を、用途別に紹介します。
 
-## チェックボックス
-オンまたはオフに切り替えられる標準的なチェックボックスです。切り替え時にアクションを実行できます。
+## ボタンと入力欄
 
-*   **使用例:**
-    *   「ルールに同意します」チェックボックス。
-    *   カスタムメニューの特定の機能を有効または無効にする設定。
-    *   レイアウトや変数のオン/オフの切り替え。
-*   **主な機能:**
-    *   **切り替え時のアクション:** 状態が変化したときに[アクションスクリプト](./action-scripts)を実行します。現在の状態（`true`または`false`）をアクションから利用できます。
-    *   **変数モード:** FancyMenuの変数に直接リンクでき、チェックボックスの状態をその変数から読み取り、変数へ書き込めます。
-    *   **状態の永続化:** 変数モードが無効の場合、チェックボックスは要素識別子ごとに状態を自動保存し、ゲームの再起動後に復元します。状態は`<game-directory>/checkbox_states.json`に保存されます。変数モードでは、リンクされたFancyMenu変数がチェックボックスの状態の参照元になります。
-    *   **外観のカスタマイズ:** 背景（通常、ホバー時、非アクティブ時）とチェックマーク自体のカスタムテクスチャに対応しています。
+### ボタン
 
-## テキスト入力フィールド
-ユーザーがテキストを入力できるフィールドです。内容をFancyMenuの変数にリンクできるため、ユーザー入力を取得して利用できます。
+クリックすると[アクションスクリプト](/action-scripts)を実行するボタンです。サーバーへの接続、ウェブサイトや別のメニューを開く操作などを設定できます。
 
-*   **使用例:**
-    *   「サーバーに参加」ボタンと連携する「サーバーIP」入力フィールド。
-    *   カスタムスキンプレビュー用のプレイヤー名入力フィールド。
-    *   基本的なログイン画面のようなインターフェースの作成。
-*   **主な機能:**
-    *   **変数とのリンク:** 入力したテキストを指定した[変数](./variables)に保存します。
-    *   **入力検証:** 数字、URL、プレーンテキストなど、特定の文字種だけを受け付けるよう設定できます。
-    *   **最大長:** 入力できる文字数の上限を設定できます。
-    *   **外観とサウンド:** 背景色、枠線の色、枠線の丸み、テキストの色、ヒント/プレースホルダーテキスト、ヒントの色、ホバー時、ホバー解除時、クリック時のサウンドをカスタマイズできます。
+<img width="396" alt="Join ServerとOpen Wikiというラベルの付いた2つのボタン" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_button.png?raw=true">
 
-## ツールチップ
-固定位置に表示したり、マウスカーソルに追従させたりできるテキストボックスです。通常、表示状態は[読み込み条件](./conditions)で制御します。
+- **Edit Action Script**: ボタンをクリックしたときに実行する処理です。
+- **Label** と **Hover Label**: 通常時と、マウスカーソルを合わせたときに表示するテキストです。どちらも[プレースホルダー](/placeholders)と[テキスト書式](/text-formatting)に対応しています。
+- **Label Alignment**: ボタンのラベルを**Left**（左）、**Centered**（中央）、**Right**（右）に配置します。ボタンの幅に収まらないラベルは、配置位置にかかわらず左右にスクロールします。
+- **Label Scale**、**Label Base Color**、**Label Hover Color**、**Label Shadow**、**Underline Label On Hover**: ラベルのサイズ、色、影を設定します。
+- **Button Textures** と **Button Icon Textures**: 通常時、マウスオーバー時、無効時のボタン画像や、ボタン上に表示するアイコン画像を設定します。きれいに拡大縮小できるテクスチャについては、[ナインスライスとタイル表示](/nine-slicing-and-tiling)を参照してください。
+- **Hover Sound**、**Unhover Sound**、**Click Sound**: ボタンから再生するサウンドです。
+- **Tooltip**: マウスカーソルをボタンに合わせたときに表示するテキストです。
+- **Control Active State**: ボタンをクリック可能にするための[条件](/conditions)です。条件を満たしていない場合、ボタンはグレーアウトします。
+- **Template Mode**: 画面内のほかのボタンやスライダーに、このボタンの外観を適用します。[ボタンとスライダーのテンプレート](/button-slider-templates)を参照してください。
 
-*   **使用例:**
-    *   ボタンや画像にカーソルを合わせたときの詳細情報の表示。
-    *   特定の条件で表示される、状況に応じたヘルプヒントの作成。
-    *   カーソルの隣に動的な情報（サーバーの状態など）を表示。
-*   **主な機能:**
-    *   **マウス追従:** マウスポインターに追従するよう設定できます。
-    *   **Markdown対応:** ツールチップの内容ではMarkdownの完全な書式を使用できます。
-    *   **背景のカスタマイズ:** 背景には単色またはカスタム9スライステクスチャを使用でき、完全にテーマに合わせた外観にできます。
+### スライダー
 
-## アイテム
-VanillaまたはModのMinecraftアイテムを1つ表示します。
+プレイヤーがドラッグして値を選ぶスライダーです。値が変わるたびにアクションスクリプトを実行します。
 
-*   **使用例:**
-    *   ボタンやメニュー項目のアイコンとしてアイテムを使用。
-    *   ショップやキット選択GUIの作成。
-    *   プレイヤーが手に持っているアイテムや防具の表示。
-*   **主な機能:**
-    *   **カスタムデータ:** カスタム名、説明文、個数、エンチャントの輝き、NBTデータに対応しています。[NBTデータプレースホルダー](./nbt-data-placeholder)を参照してください。
-    *   **ツールチップ表示:** ホバー時にアイテム標準のツールチップを表示するよう設定できます。
+<img width="436" alt="70%に設定されたMusic Volumeスライダーと、Normalに設定されたDifficultyスライダー" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_slider.png?raw=true">
 
-## ブロック/アイテムJSONモデル
-Minecraftのリソースまたは外部ソースから、ブロックまたはアイテムのJSONモデルを描画します。
+- **Slider Type**:
+  - **Value List**: **List Values**に1行ずつ入力したテキストから選択します。**Values From List Variable**を使うと、代わりに[リスト変数](/variables#text-and-list-variables)から値を取得します。
+  - **Integer Range**: **Minimum Range Value**から**Maximum Range Value**までの整数を選択します。
+  - **Decimal Range**: 小数を含む範囲を選択します。**Rounding Decimal Place**で小数点以下の桁数を設定します。`-1`の場合は丸めません。
+- **Slider Label**: スライダーのラベルです。`$$value`で現在の値を表示できます。
+- **Edit Action Script**: 値が変わったときに実行します。`$$value`は変更後の値です。
+- **Pre-Selected Value**: スライダーの初期値です。スライダーが変更する値を指定すると、画面を開いたときに正しい値が表示されます。
 
-*   **使用例:**
-    *   メニューに3Dリソースパックモデルを表示。
-    *   カスタムテクスチャを使ったアイテム/ブロックのプレビュー表示。
-    *   モデルを利用した装飾的なUI要素の構築。
-*   **主な機能:**
-    *   **モデルソース:** Minecraftのリソースまたは外部ソースからモデルJSONを読み込めます。
-    *   **テクスチャの上書き:** カスタムテクスチャを設定できます。
-    *   **描画設定:** モデルのオフセット、拡大率、3軸回転、半透明描画、モデルGUI変換に対応しています。
-    *   **ライティング:** 色相と回転を個別に設定できる、設定可能なライトを2つ使用できます。
+たとえば、**Integer Range**タイプで範囲を`0`～`100`にした音量スライダーの場合、ラベルを`Music Volume: $$value%`に設定し、次の値を使って[**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable)アクションを設定します。
 
-## 画像
-ローカルファイル、ウェブURL、またはMinecraftのリソース場所から静止画を表示します。
+```
+music_volume:$$value
+```
 
-*   **使用例:**
-    *   サーバーロゴやModパックのブランドの追加。
-    *   装飾用の枠線やUIフレームの作成。
-    *   より複雑なUIデザインの一部として画像を使用。
-*   **主な機能:**
-    *   **9スライス:** 角を歪めずに枠線やパネルを拡大縮小できます。[9スライスとタイリング](./nine-slicing-and-tiling)を参照してください。
-    *   **テクスチャの繰り返し:** 画像をタイル状に繰り返して要素の領域を埋められます。
-    *   **色合い:** 画像に色合いを適用できます。
-    *   **角の丸み:** 9スライスおよび繰り返しを使用していない画像では、角を丸くできます。
-    *   **視差効果:** マウスに合わせて画像を動かし、奥行きを演出します。[視差効果](./parallax)を参照してください。
+**Pre-Selected Value**には`$$music_volume`を指定します。これにより、プレイヤーが前回選んだ値が初期値になります。
 
-## テキスト
-テキスト表示に適した、非常に柔軟な要素です。1行のラベルから、複数ページにわたるスクロール可能な文書まで、さまざまな用途に使用できます。
+スライダーにはボタンと同じラベル、テクスチャ、サウンド、ツールチップ、**Control Active State**の設定があります。**Label Alignment**を使ってラベルを左または右に配置することもできます。
 
-*   **使用例:**
-    *   サーバーのルール、パッチノート、ウェルカムメッセージの表示。
-    *   [プレースホルダー](./placeholders)を使った動的な情報パネルの作成。例: `Welcome, {"placeholder":"playername"}!`。
-    *   UIへのラベルや説明の追加。
-*   **主な機能:**
-    *   **コンテンツソース:** テキストを直接入力したり、ローカルファイルから読み込んだり、ウェブURLから取得したりできます。
-    *   **Markdown対応:** 見出し、リスト、コードブロック、表など、その他のMarkdown書式に対応しています。[テキストの書式設定](./text-formatting)を参照してください。
-    *   **スクロール:** 内容が要素の領域より大きい場合、自動的にスクロール可能になります。スクロールバーはカスタマイズまたは無効化できます。
-    *   **スタイル:** テキストの色、拡大率、配置、影、行間を完全に制御できます。
+### チェックボックス
 
-## 動画
-動画ファイルを再生します。映画のようなイントロや装飾的なループ背景に最適です。
+プレイヤーがチェックを付けたり外したりするためのボックスです。状態が変わるたびにアクションスクリプトを実行します。
 
-> [!WARNING]
-> 標準の動画要素には**Watermedia V3**と**Watermedia Binaries V3**が必要です。旧**Video [Rinku]**要素は非推奨です。
+<img width="588" alt="タイトル画面にヒントを表示するテキストの横にある、チェック済みのチェックボックス" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_checkbox.png?raw=true">
 
-*   **使用例:**
-    *   アニメーション付きのModパックまたはサーバーのトレーラー。
-    *   メニューに彩りを加える、ループ再生される環境動画。
-    *   ゲーム内チュートリアル動画。
-*   **主な機能:**
-    *   **ソース:** ローカル動画ファイルとウェブURLに対応しています。[動画](./video)を参照してください。
-    *   **再生制御:** 自動的にループ再生するよう設定できます。音量、サウンドチャンネル、アスペクト比を維持する動作を調整できます。
-    *   **インタラクティブ制御:** ボタンアクションから動画の再生、一時点への移動、音量を制御できます。
+- アクションスクリプトと**Control Active State**の条件では、`$$value`は`true`または`false`になります。
+- **Variable Mode** と **Link To Variable**: チェックボックスに[変数](/variables)の値を表示し、チェックボックスの状態に応じて変数に`true`または`false`を書き込みます。リスト変数にリンクした場合、リストの唯一の項目として`true`または`false`が設定されます。
+- Variable Modeを使わない場合、チェックボックスは状態を個別に記憶します。この状態は[プロファイル](/profiles)ごとに保存されます。
+- **Textures**: ボックスとチェックマークに使う画像を設定します。
 
-## GLSLシェーダー
-要素内にカスタムGLSLシェーダーを描画します。
+チェックボックスには、ボタンと同じツールチップ、サウンド、**Navigable**の設定があります。
 
-*   **使用例:**
-    *   アニメーションするシェーダーパネル。
-    *   プロシージャルな視覚効果。
-    *   要素の矩形内にクリップされたShadertoy風のメニュー効果。
-*   **主な機能:**
-    *   **シェーダーランタイム:** シングルパスおよびマルチパスシェーダーに対応しています。
-    *   **Shadertoy対応:** Shadertoy形式の`mainImage`シェーダーを使用できます。
-    *   **Uniform:** FancyMenuおよび入力用のUniformを利用できます。[GLSLシェーダーAPI](./glsl-shader-api)を参照してください。
+### テキスト入力欄
 
-## スライドショー
-一連の画像を表示します。画像と`properties.txt`設定ファイルは、`<game-directory>/config/fancymenu/slideshows/`内にある、スライドショー専用のサブディレクトリに保存されます。
+サーバーアドレスや名前などをプレイヤーが入力するための欄です。
 
-*   **使用例:**
-    *   ゲーム内スクリーンショットを切り替えて表示するギャラリー。
-    *   Modパックの主な機能の紹介。
-    *   異なるシーンを順番に表示する動的な背景。
-*   **主な機能:**
-    *   事前設定された[スライドショー](./slideshows)を読み込みます。
-    *   画像のアスペクト比を維持するよう設定できます。
+<img width="456" alt="play.example.netが入力されたテキスト欄と、灰色のヒントYour player nameが表示された空のテキスト欄" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_input_field.png?raw=true">
 
-## 矩形図形
-単純な単色の矩形です。
+- **Link To Variable**: 入力された内容を[変数](/variables)に保存し、欄にはその値を表示します。リスト変数にリンクした場合、入力したテキストでリスト全体が置き換えられます。
+- **Input Type**: **Text**、**Only Numbers**、**Only Decimal Numbers**、**URL**から選択します。指定したタイプ以外の文字は入力できません。
+- **Hint Text** と **Hint Text Color**: 入力欄が空のときに表示するテキストと、その色です。
+- **Max Text Length**: 入力できる最大文字数です。
+- **Background Color**、**Border Color**、**Border Rounding Radius**、**Text Color**: 入力欄の外観を設定します。
 
-*   **使用例:**
-    *   テキストの可読性を高めるため、その背後に半透明の背景を作成。
-    *   シンプルなUIパネルや区切り線のデザイン。
-    *   レイアウト設計中の色付きプレースホルダー。
-*   **主な機能:**
-    *   HEX RGBAカラー、角の丸み、任意のぼかしに対応しており、シンプルなパネル、色合い、ぼかし背景として使用できます。
+たとえば、`server_address`にリンクした入力欄と、[**Join Server**](/action-scripts#join-server)アクションを設定したボタンを用意します。ボタンの値に`$$server_address`を指定すると、プレイヤーが任意のサーバーに参加できるようになります。
 
-## 円形図形
-単純な単色の円/楕円図形です。
+変数を使わない場合は、[**Text Input Field Value**](/placeholders#text-input-field-value)プレースホルダーで入力内容を取得し、[**Set Text Input Field Value**](/action-scripts#set-text-input-field-value)アクションで内容を変更できます。
 
-*   **使用例:**
-    *   円形のアクセント、インジケーター、柔らかなUI領域の作成。
-    *   テクスチャファイルを使わずに、テーマに合ったUI装飾を構築。
-*   **主な機能:**
-    *   色、ぼかし、設定可能な丸み/指数値に対応しています。
+## テキストとツールチップ
 
-## スプラッシュテキスト
-タイトル画面に表示される、Minecraftを象徴する黄色く跳ねるスプラッシュテキストを再現します。
+### テキスト
 
-*   **使用例:**
-    *   Vanillaのスプラッシュテキストを独自のカスタムメッセージに置き換える。
-    *   目を引くアニメーションメッセージを任意のメニューに追加。
-*   **主な機能:**
-    *   **コンテンツソース:** デフォルトのVanillaスプラッシュ、直接入力したカスタムテキストのリスト、ローカルファイルのテキストを使用できます。
-    *   **カスタマイズ:** 跳ねる効果の切り替え、テキストの色、拡大率、回転、影のカスタマイズが可能です。
+短いラベルから、スクロールできるルールや更新履歴まで、あらゆる長さのテキストを表示できます。[Markdown](/text-formatting)と[プレースホルダー](/placeholders)に対応しています。
 
-## プレイヤーエンティティ
-メニュー内にプレイヤーモデルを描画します。
+<img width="636" alt="見出しと一部が太字のリストを含む、パッチノートのText要素" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_text.png?raw=true">
 
-*   **使用例:**
-    *   メインメニューに現在のプレイヤーのキャラクターを表示。
-    *   チーム選択やクラスプレビュー画面の作成。
-    *   プレイヤーのスキンと名前を表示する「プロフィール」セクション。
-*   **主な機能:**
-    *   **動的な外観:** 現在のプレイヤーのスキン、マント、名前をコピーできます。[プレイヤーヘッド](./player-heads)を参照してください。
-    *   **カスタムポーズ:** 頭、胴体、腕、脚の回転を細かく制御できます。頭と胴体をマウスカーソルに追従させることもできます。
-    *   **属性:** 子ども状態、しゃがみ状態、スリムモデルを設定できます。
+- **Source Mode**: テキストを直接入力するか、ファイルまたはウェブサイトから読み込みます。
+- 表示スタイルのベースを選択できます。テキストが要素より大きい場合はスクロールできます。
+- **Background**: テキストの背後に暗いパネルを表示します。**Show Background**でオフにするか、独自のテクスチャを使うこともできます。
 
-## ブラウザー
-ゲーム内に実際のウェブページを表示する要素です。
+詳しくは[メニュー内のテキスト](/text-in-menus)を参照してください。
 
-この要素を使用するには、**[Rinku](https://modrinth.com/mod/rinku)** Modがインストールされ、正常に動作している必要があります。
+### ツールチップ
 
-Rinkuは、公式プロジェクトページの[CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku)または[Modrinth](https://modrinth.com/mod/rinku)からダウンロードできます。
+ゲーム内のツールチップのようなテキストボックスです。[Markdown](/text-formatting)と[プレースホルダー](/placeholders)に対応しています。
 
-*   **使用例:**
-    *   サーバーのライブDynmapの表示。
-    *   YouTube動画プレイヤーの埋め込み。
-    *   Wikiやドキュメントページをゲーム内に直接表示。
-*   **主な機能:**
-    *   **インタラクティブ機能:** 完全に操作可能にでき、リンクのクリック、スクロール、文字入力などが行えます。
-    *   **メディア制御:** メディアのミュート、動画のループ再生、読み込んだページ上の動画コントロールの非表示などを設定できます。
+<img width="712" alt="Need Help?ボタンと、その横に表示されたツールチップ" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_tooltip.png?raw=true">
 
-### ローカルHTMLファイルの読み込み
-ブラウザー要素では、`<game-directory>/config/fancymenu/assets/`からローカルHTMLドキュメントを読み込めます。
+- 配置した場所に表示するか、**Follow Mouse**を使ってマウスカーソルに追従させます。
+- **Loading Requirements**で表示条件を設定します。たとえばボタンに対する[**Is Element Hovered**](/conditions#is-element-hovered)を指定できます。
+- **Tooltip Background**: 暗いボックスの代わりに使う独自のテクスチャです。
 
-ローカルHTMLファイルを読み込むには、URLの先頭に`file:///`を付け、その後に**短いファイルパス**を続けます。例として`/config/fancymenu/assets/cool_changelog.html`を指定すると、URLは`file:///config/fancymenu/assets/cool_changelog.html`になります。
+詳しくは[メニュー内のテキスト](/text-in-menus)を参照してください。
 
-**Linux**では、インスタンス固有の絶対パスを直接指定する代わりに、[**絶対ファイル/フォルダパス**プレースホルダー](./placeholders#absolute-filefolder-path-absolute_path)を使用してください: `file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/cool_changelog.html"}}`。
+### スプラッシュテキスト
 
-Linuxの短いパスは、例に示されているように`/`で始める必要があります。
+タイトル画面に黄色で表示されるテキストに、独自の文章を設定できます。
 
-## 要素アニメーター
-複雑なキーフレームベースのアニメーションを作成するための強力なツールです。1つまたは複数の他の要素の位置、サイズ、アンカーポイントをアニメーションさせられます。
+<img width="392" alt="Season 3 is live!と書かれた黄色のスプラッシュテキスト" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_splash_text.png?raw=true">
 
-*   **使用例:**
-    *   要素を画面内にスライドイン、または画面外へスライドアウト。
-    *   パネルや通知のサイズ変更。
-    *   位置オフセットやアンカー遷移のアニメーション。
-*   **主な機能:**
-    *   **キーフレームエディター:** タイムライン上でキーフレームを追加、編集、並べ替えする専用エディター。
-    *   **複数ターゲット:** 1つのアニメーターで複数の「ターゲット」要素を同時に制御できます。
-    *   **制御:** アニメーションをループさせられます。また、位置またはサイズのみをアニメーションさせることもできます。
-    *   **タイミングオフセット:** ターゲット要素ごとに個別またはランダムな開始タイミングオフセットを設定できます。
-    *   設定方法とキーフレーム編集については、[要素アニメーター](./element-animator)を参照してください。
+- **Source Mode**: バニラのスプラッシュテキスト、独自のテキスト、テキストファイルからランダムに選んだ1行から設定します。
+- **Bouncing**、**Scale**、**Rotation**、**Text Color**、**Shadow**: 表示スタイルを設定します。
+- **Refresh On Screen Load**: 画面を開くたびに新しいスプラッシュテキストを選びます。
 
-## ティッカー
-一定間隔（毎「tick」）でアクションのリストを実行する、不可視の要素です。
+詳しくは[スプラッシュテキスト](/splash-text)を参照してください。
 
-> [!NOTE]
-> バックグラウンドでの自動処理には、[スケジューラー](./schedulers)の使用を検討してください。スケジューラーはグローバルに動作し、特定の画面から独立して実行できます。
+## 画像とメディア
 
-*   **使用例:**
-    *   サーバーのオンライン状態を定期的に確認し、テキスト要素を更新。
-    *   テキストラベルを更新するカウントダウンタイマーの作成。
-    *   スクリプトを繰り返し実行してカスタム動作を作成。
-*   **主な機能:**
-    *   **時間制御:** ティック間の遅延をミリ秒単位で設定できます。
-    *   **ティックモード:** 継続的に実行する、ゲームセッションごとに1回だけ実行する、メニューが読み込まれるたびに1回実行する、のいずれかに設定できます。
-    *   **非同期:** [アクション](./action-scripts)を個別に実行できます。ただし、このオプションが有効な場合、一部のアクションは実行できません。
+### 画像
 
-## オーディオ
-音声ファイルを再生する、不可視の要素です。複数のトラックからなるプレイリストを管理でき、さまざまな再生制御機能を備えています。
+ファイル、ウェブサイト、ゲームのリソースから画像を表示します。アニメーション画像も再生できます。
 
-*   **使用例:**
-    *   メニューにカスタムBGMを追加。
-    *   再生を制御するボタン（次/前のトラック、音量）を備えた音楽プレイヤーの作成。
-    *   環境音の再生。
-*   **主な機能:**
-    *   **プレイリスト:** 複数の音声トラックを管理できます。
-    *   **再生モード:** トラックを順番に再生したり、シャッフル再生したりできます（一部のトラックを他より頻繁に再生する重み付けにも対応）。
-    *   **制御:** ループ再生、音量調整、サウンドチャンネルの選択に対応しています。[メニューBGM](./background-music)を参照してください。
+<img width="608" alt="Minecraftのロゴを表示するImage要素" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_image.png?raw=true">
 
-## 音楽コントローラー
-特定のメニュー内で、Minecraftのデフォルト音楽の再生を制御するための不可視の要素です。
+- **Image Source**: 表示する画像です。対応ファイルについては[画像](/images)を参照してください。
+- **Restore Aspect Ratio**: 画像が引き伸ばされないよう、幅を調整します。
+- **Nine-Slice Texture** と **Repeat Texture**: 枠を引き伸ばさずに拡大縮小するか、画像をタイル状に並べます。[ナインスライスとタイル表示](/nine-slicing-and-tiling)を参照してください。
+- **Image Tint [HEX]**: 画像に色を付けます。
+- **Corner Rounding Radius**: 角を丸くします。
 
-*   **使用例:**
-    *   [**オーディオ**要素](#audio)で独自の音楽を再生したい画面で、デフォルトのメニュー音楽を無効化。
-    *   ゲーム内でメニューを開いたとき、ワールド内の音楽が再生され続けるのを停止。
-*   **主な機能:**
-    *   Vanillaの「メニュー音楽」と「ワールド音楽」を個別に制御する切り替え設定。
+### スライドショー
 
-## プログレスバー
-数値を視覚的に表す、カスタマイズ可能なバーです。
+スライドショーの画像を順番に表示します。スライドショーは`config/fancymenu/slideshows/`で作成できます。詳しくは[スライドショー](/slideshows)を参照してください。
 
-*   **使用例:**
-    *   `{"placeholder":"world_load_progress"}`を使ってワールドの読み込み進行状況を追跡するローディングバー。
-    *   ゲーム内HUD用の体力、満腹度、経験値バー。
-    *   [**スライダー**要素](#slider)で制御する音量インジケーター。
-*   **主な機能:**
-    *   **動的な値:** 進行値（0～100または0.0～1.0）は、[プレースホルダー](./placeholders)に対応したテキストフィールドで設定します。
-    *   **外観:** バーの方向（上、下、左、右）、色、テクスチャ、バー/背景テクスチャの9スライスをすべてカスタマイズできます。
-    *   **アニメーション:** 進行状況の変化を滑らかに見せる、スムーズな塗りつぶしアニメーションを備えています。
-    *   **進行状況に基づく要素アンカー:** 別の要素がプログレスバーを**要素**アンカーとして使用する場合、**要素アンカーに進行状況を使用**を有効にすると、アンカーが塗りつぶされた領域の現在の端へ移動します。アンカーされた要素はプログレスバーの固定された範囲に留まらず、バーの進行状況に合わせて移動します。
+- **Slideshow**: 表示するスライドショーを選択します。
+- **Restore Aspect Ratio**: 画像が引き伸ばされないよう、幅を調整します。
 
-## ドラッガー
-ユーザーがクリックしてドラッグすることで移動できる、不可視の要素です。他の要素をアンカーして、移動可能なウィジェットを作成できます。
+### 動画
 
-*   **使用例:**
-    *   ドラッグ可能な時計や情報パネルの作成。
-    *   UI要素の位置をユーザーの好みに合わせて変更できるようにする。
-*   **主な機能:**
-    *   **任意の位置保存:** **ユーザーのドラッグオフセットを保存**を有効にすると、画面を開き直したときやゲームを再起動した後も、ユーザーがドラッグした位置を維持できます。無効にするとオフセットがリセットされます。
-    *   **アンカーポイント:** 他の要素の移動可能なアンカーとして機能します。これは[要素の位置指定](./positioning-elements)の重要な部分です。
+トレーラーや動く背景などの動画ファイルを再生します。
 
-## カーソル
-レイアウトが有効な間、デフォルトのシステムカーソルをカスタム画像に置き換える不可視の要素です。
+> [!IMPORTANT]
+> 動画の再生には、Watermedia V3とWatermedia Binaries V3のmodが必要です。詳しくは[動画](/video)を参照してください。
 
-*   **使用例:**
-    *   Modパックのデザインに合った、テーマを統一したUIの作成。
-*   **主な機能:**
-    *   **カスタムテクスチャ:** カーソルに任意の画像を使用できます。
-    *   **ホットスポット:** クリック位置として使用する画像内の正確なピクセルを設定します。[カスタムカーソル](./custom-cursor)を参照してください。
+- **Video Source**: 動画ファイル、ウェブリンク、ゲームのリソースを指定します。
+- **Loop Video**、**Volume**、**Sound Channel**: 再生方法を設定します。
+- **Play Video In Layout Editor**: 編集中にも動画を再生するかどうかを設定します。
+- [**Toggle Video Element Paused State**](/action-scripts#toggle-video-element-paused-state)などのアクションで、一時停止、再生位置への移動、音量の変更ができます。
+
+**Video [Rinku]**は、Rinku modが必要な旧式の動画要素です。古いレイアウトでは引き続き動作しますが、**New Element**には表示されません。
+
+### GLSLシェーダー
+
+要素内で独自のGLSLシェーダーを実行します。アニメーションカラーやShadertoyのエフェクトなどを作成できます。
+
+<img width="576" alt="色鮮やかなグラデーションを表示するGLSL Shader要素" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_glsl_shader.png?raw=true">
+
+- **Shader Source**: シェーダーコードです。`mainImage`を使うShadertoyシェーダーは、そのまま動作します。
+- **Compile Mode**: **Auto**、**Shadertoy**、**Direct Fragment**から選択します。
+- **Buffer A Source**から**Buffer D Source**: バッファを使うシェーダー用の追加パスです。
+
+作成方法については、[GLSL Shader API](/glsl-shader-api)を参照してください。
+
+### ブラウザー
+
+サーバーマップやWikiのページなど、ウェブサイトをリアルタイムで表示します。
+
+> [!IMPORTANT]
+> ブラウザーを使うには、[Rinku](https://modrinth.com/mod/rinku) ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/rinku)) modが必要です。
+
+- **URL**: 表示するウェブサイトです。
+- **Interactable**: プレイヤーがクリック、スクロール、文字入力できるようにします。レイアウトエディター内では操作できません。
+- **Mute Browser**、**Audio/Video Volume**、**Loop Videos**、**Hide Video Controls**: ページ内のメディアを設定します。
+
+`config/fancymenu/assets/`のHTMLファイルを読み込むには、URLの先頭に`file:///`を付けます。
+
+```
+file:///config/fancymenu/assets/changelog.html
+```
+
+Linuxでは、代わりに[**Absolute File/Folder Path**](/placeholders#absolute-filefolder-path)プレースホルダーを使います。
+
+```
+file:///{"placeholder":"absolute_path","values":{"short_path":"/config/fancymenu/assets/changelog.html"}}
+```
+
+ウェブサイトからアクションを実行したり、プレースホルダーを読み取ったりできます。[ブラウザーJavaScript API](/browser-api)を参照してください。
+
+## 図形、アイテム、モデル
+
+### 長方形
+
+テキストの背後に置くパネルなど、単色の長方形を表示します。
+
+<img width="536" alt="サーバールールを表示した、角丸で半透明かつぼかしのかかったパネル" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_rectangle_shape.png?raw=true">
+
+- **Color**: HEX形式の色です。末尾に2桁を追加すると、`#101828C8`のように半透明になります。
+- **Corner Rounding Radius**: すべての角、または角ごとに丸みを設定します。
+- **Blur** と **Blur Intensity**: 背後にあるものをぼかします。
+
+### 円
+
+ステータスランプなどに使える、単色の円または楕円を表示します。
+
+<img width="428" alt="Survival: onlineの横にある緑の点と、Creative: offlineの横にある赤い点" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_circle_shape.png?raw=true">
+
+- **Color**、**Blur**、**Blur Intensity**: 長方形と同じ設定です。
+- **Roundness**: `2`で円になります。数値を大きくすると四角に近づき、小さくすると先が尖ります。
+
+### アイテム
+
+インベントリのように、Minecraftやmodのアイテムを表示します。
+
+<img width="460" alt="エンチャント付きダイヤモンドの剣、リンゴ16個、金のリンゴ、トーテム" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_item.png?raw=true">
+
+- **Item Key**: `minecraft:diamond_sword`のように、表示するアイテムを指定します。
+- **Item Count**、**Item Name**、**Item Lore**、**Enchanted**: 実際のアイテムと同じように設定します。
+- **Show Item Tooltip**: マウスカーソルをアイテムに合わせたとき、ツールチップを表示します。
+- **Custom NBT Data**: アイテムの追加データです。`/give`コマンドでアイテム名の直後に続く部分と同じ形式で記述します。
+
+### ブロック／アイテムJSONモデル
+
+ゲームのリソースまたは独自のJSONファイルから、ブロックやアイテムのモデルを3Dで表示します。
+
+<img width="296" alt="3Dの作業台" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_json_model.png?raw=true">
+
+- **Model**: `minecraft:models/block/crafting_table.json`のように、**Model Source**を指定します。
+- **Texture**: モデルのテクスチャを独自のものに置き換えます。
+- **Transform**: モデルの拡大縮小、回転、移動を設定します。
+- **Lighting**: **Light Hue [HEX]**でモデルに当たる光の色を設定します。
+
+### プレイヤーエンティティ
+
+タイトル画面にプレイヤー自身のキャラクターを表示するように、プレイヤーを3Dで表示します。
+
+<img width="360" alt="右を向いたデフォルトスキンの新しいPlayer Entity" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_player_entity.png?raw=true">
+
+> [!IMPORTANT]
+> プレイヤーエンティティにはFancy Entity Renderer modが必要です（[CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer)、[Modrinth](https://modrinth.com/mod/fancy-entity-renderer)）。このmodがない場合、プレイヤーの代わりにエラーが表示されます。
+
+- **Copy Client Player**: プレイヤー自身のスキンと名前を表示します。
+- **Player Name**、**Skin Texture**、**Cape Texture**: 別のプレイヤーやスキンを指定します。
+- **Entity Pose**、**Head Follows Mouse**、**Body Follows Mouse**: ポーズや視線を設定します。
+- **Armor and Tools**、**Parrot**、**Is Baby**、**Show Player Name**: 装備や表示内容を設定します。
+
+詳しくは[プレイヤーエンティティ](/player-entities)を参照してください。頭だけを表示する場合は、[プレイヤーヘッド](/player-heads)を参照してください。
+
+### プログレスバー
+
+ロードバーのように、値に応じて伸びるバーを表示します。
+
+<img width="496" alt="Loading world... 65%というテキストの下にある、65%まで進んだプログレスバー" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/elements_progress_bar.png?raw=true">
+
+- **Progress Value Source**: 進行状況を指定します。[プレースホルダー](/placeholders)を使えます。たとえば、ワールドのロード画面では[**World Loading Progress**](/placeholders#world-loading-progress)を使います。
+- **Progress Value Mode**: **PERCENTAGE (0-100)**または**FLOATING POINT (0.0-1.0)**を選択します。
+- **Direction**: バーが伸びる方向を設定します。
+- **Bar Color** と **Background Color**、または **Bar Texture** と **Background Texture**: バーと背景の色またはテクスチャを設定します。
+- **Smooth Filling Animation**: 値が変わったときに、瞬時に切り替えず滑らかに移動させます。
+- **Use Progress for Element Anchor**: このバーを基準に配置された要素を、バーの進行状況に合わせて動かします。
+
+## レイアウト補助
+
+### スクロール領域
+
+サーバー一覧や長い情報ページのように、ほかの要素を入れてスクロールできる領域です。
+
+<img width="800" alt="ボタンやアイテムを、縦積み、グリッド、フロー形式に配置した3つのScroll Area" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/scroll_area_modes.png?raw=true">
+
+- レイアウトエディターで要素を領域内にドラッグします。バニラ要素は入れられず、独自要素のみ追加できます。
+- **Arrangement**: 要素を自分で配置するか、縦積み、グリッド、フロー形式で自動整列させます。
+- **Background**: 領域の背後に暗いパネルを表示します。**Show Background**でオフにするか、独自のテクスチャを使うこともできます。
+
+詳しくは[スクロール領域](/scrollable-areas)を参照してください。
+
+### ドラッガー
+
+エディター外でプレイヤーがつかんで移動できる領域です。ここに固定された要素も一緒に移動するため、移動可能な情報パネルなどを作成できます。エディター外では表示されません。
+
+**Save User Drag Offset**を有効にすると、画面を閉じたりゲームを再起動したりしても、移動後の位置が保持されます。詳しくは[ドラッガー](/dragger)を参照してください。
+
+### 要素アニメーター
+
+キーフレームを使ってほかの要素を移動・サイズ変更します。パネルを画面内に滑り込ませるような演出を作成できます。エディター外では表示されません。
+
+- **Manage Target Elements**: アニメーションさせる要素を管理します。
+- **Edit Keyframes**: キーフレームエディターを開きます。
+- **Loop Animation**: 最後まで再生したあと、最初から繰り返します。
+
+詳しくは[要素アニメーター](/element-animator)を参照してください。
+
+## エディター内のみ表示される要素
+
+これらの要素はレイアウトエディター内でのみ表示されます。
+
+### ティッカー
+
+画面が開いている間、アクションスクリプトを繰り返し実行します。
+
+> [!IMPORTANT]
+> 繰り返し実行する処理や、指定した時間後に実行する処理には、[スケジューラー](/schedulers)の使用を推奨します。可能な限りティッカーの代わりに使ってください。スケジューラーはすべての画面で、画面が開いていないときにも動作し、すべてのアクションを実行できます。また、アクションから開始・停止できます。
+
+ティッカーでできる処理をスケジューラーで実行する方法は次のとおりです。
+
+- 画面を開いている間ずっと実行する: **Tick Delay (ms)**を設定したスケジューラーを使います。レイアウトの**Edit 'Open Screen' Action Script**で[**Start Scheduler**](/action-scripts#start-scheduler)を実行して開始し、**Edit 'Close Screen' Action Script**で[**Stop Scheduler**](/action-scripts#stop-scheduler)を実行して停止します。どちらもエディターの背景を右クリックすると表示されます。
+- ゲーム起動ごとに一度実行する: **Start on Launch**を有効にし、**Ticks to Run**を`1`にしたスケジューラーを使います。
+- 画面を開くたびに一度実行する: ティッカーもスケジューラーも必要ありません。アクションを**Edit 'Open Screen' Action Script**に追加します。
+
+ティッカーの設定:
+
+- **Tick Delay [ms]**: 実行間隔をミリ秒で指定します。`0`の場合は毎ティック、つまり1秒に20回実行します。
+- **Tick Mode**: **Normal**は常に実行します。**Session**はゲームを再起動するまで一度だけ実行します。**On Load Screen**は画面を開くたびに実行し、ウィンドウのサイズ変更時にも実行します。
+- **Async**: バックグラウンドで実行します。この方法では実行できないアクションが多く、エラーが表示されます。
+
+### オーディオ
+
+画面を開いている間、音楽やサウンドを1トラックずつ再生します。
+
+- **Manage Tracks**: 音声ファイル、その再生順、シャッフル時に使う**Track Weight**を管理します。
+- **Play Mode**: **Normal**は順番に、**Shuffle**はランダムな順番で再生します。
+- **Loop Tracks**、**Volume**、**Sound Channel**: 再生方法を設定します。
+
+画面を切り替えても音楽を再生し続けるには、オーディオ要素を[ユニバーサルレイアウト](/universal-layouts)に配置します。詳しくは[メニューのBGM](/background-music)を参照してください。
+
+### ミュージックコントローラー
+
+この画面でゲーム本来の音楽を停止します。
+
+- **Play Menu Music**: タイトル画面のように、ワールドが読み込まれていないときにメニューで流れる音楽です。
+- **Play World Music**: インベントリ画面のように、メニューを開いている間も流れ続けるワールドの音楽です。
+
+画面が開いている間だけ動作します。
+
+### カーソル
+
+画面を開いている間、マウスカーソルを独自の画像に置き換えます。
+
+- **Cursor Texture**: 32×32ピクセルなどのPNG画像を指定します。
+- **Hotspot X-Coordinate** と **Hotspot Y-Coordinate**: 矢印の先端のように、クリック判定に使う画像上のピクセルを指定します。
+- **Editor Preview Mode**: マウスカーソルが要素上にあるとき、エディター内でカーソルを表示します。
+
+詳しくは[カスタムカーソル](/custom-cursor)を参照してください。

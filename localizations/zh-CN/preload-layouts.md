@@ -1,11 +1,12 @@
 ---
 title: 预加载资源
-description: 如何预先加载资源，以便在游戏完成加载后即可直接使用。
+description: 了解如何预加载资源，以便游戏加载完成后立即使用。
+sourceBlobSha: 8eca400e05987468c1fd0dc29faa5267083e38d0
 ---
 
 # 预加载资源
 
-预加载会在菜单需要某些资源之前，提前准备好这些资源。请将其用于那些否则会闪烁、首次帧显示黑屏，或者启动较晚的资源。
+预加载会在菜单需要使用资源之前提前准备好选定的资源。对于可能出现闪烁、首帧为黑屏或启动较晚的资源，可以使用此功能。
 
 # 将资源添加到预加载器
 
@@ -13,22 +14,22 @@ description: 如何预先加载资源，以便在游戏完成加载后即可直�
 
 <br>
 
-<img width="350" alt="截图_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
+<img width="350" alt="Screenshot_1" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/3265da80-1bbc-4634-bd94-ba2795d7e3f2">
 
-列表支持来自本地文件、网页 URL 或资源包的受支持图像、动画、音频、视频和文本资源。它不会预加载实时的 [浏览器](./elements#browser) 页面。
+列表支持来自本地文件、网络 URL 或资源包的图像、动画、音频、视频和文本资源。它不会预加载实时的 [浏览器](/elements#browser) 页面。
 
-预加载器会在游戏启动和 Minecraft 资源重新加载时开始运行。它会等待每个条目完成或失败后再继续，单个条目的最长等待时间为两分钟。
+预加载器会在游戏启动和 Minecraft 资源重载时运行。它会等待每个条目加载完成或失败后再继续，每个条目的等待时间最长为两分钟。
 
-已加载的资源会一直保留在缓存中，直到 FancyMenu 在重新加载或客户端关闭时释放资源为止。**自定义 -> 重新加载 FancyMenu** 会释放缓存，但不会再次运行预加载器。
+已加载的资源会一直保留在缓存中，直到 FancyMenu 在重载或客户端关闭期间释放资源。**自定义 -> 重载 FancyMenu** 会释放缓存，但不会再次运行预加载器。
 
-预加载会增加加载时间以及 RAM/VRAM 使用量。只添加那些必须立即就绪的资源；如果客户端内存不足，请移除较大的条目。
+预加载会增加加载时间，并占用更多 RAM/VRAM。请仅添加必须立即就绪的资源；如果客户端内存不足，请移除较大的条目。
 
 <br>
 
-<img width="731" alt="截图_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
+<img width="731" alt="Screenshot_2" src="https://github.com/Keksuccino/FancyMenu/assets/35544624/04632d52-c2a9-4f70-9d0a-e88c4cacc4c1">
 
-# 预加载幻灯片与全景图
+# 预加载幻灯片和全景图
 
-添加一个[幻灯片](./slideshows)会加载其所有图片以及可选的覆盖层。添加一个[全景图](./panoramas)会加载全部六个面以及可选的覆盖层。
+添加[幻灯片](/slideshows)后，会加载其中的所有图像和可选叠加层。添加[全景图](/panoramas)后，会加载全部六个面和可选叠加层。
 
-**自定义 -> 重新加载 FancyMenu** 不会运行预加载器。修改预加载列表后，请使用 Minecraft 资源重新加载或重启游戏。
+**自定义 -> 重载 FancyMenu** 不会运行预加载器。更改预加载列表后，请重载 Minecraft 资源或重启游戏。

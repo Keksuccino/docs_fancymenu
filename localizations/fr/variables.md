@@ -1,85 +1,190 @@
 ---
 title: Variables
-description: Comment créer et utiliser des variables.
+description: >-
+  Comment stocker du texte et des listes dans des variables, et les utiliser
+  dans des textes, des actions et des conditions.
+sourceBlobSha: 2f0d48fd6cc100f976d4fdf1bceb28fe1a540a52
 ---
-# Variables dans FancyMenu
 
-Les variables stockent des valeurs textuelles que les mises en page, actions, espaces réservés, conditions, écouteurs, planificateurs et interfaces graphiques personnalisées peuvent réutiliser.
+# Variables
 
-## Créer des variables
+Les variables sont des valeurs que FancyMenu mémorise, même après la fermeture du jeu. Utilisez-les pour compter les clics, mémoriser des choix, suivre la progression ou conserver des listes, comme des astuces de chargement. Les textes, les actions, les conditions, les écouteurs et certains éléments peuvent les lire et les modifier.
 
-Pour créer une variable dans FancyMenu :
+> [!TIP]
+> Les actions liées aux variables sont répertoriées dans les [scripts d’action](/action-scripts), les conditions dans les [conditions](/conditions) et l’écouteur dans les [écouteurs](/listeners#on-variable-updated-fm-variable).
 
-1. Assurez-vous de ne pas être actuellement dans l'Éditeur de mise en page.
-2. Cliquez sur la barre de menu en haut de l'écran.
-3. Allez dans **Personnalisation -> Variables -> Gérer les variables**.
-4. Dans l'écran "Gérer les variables" qui apparaît, cliquez sur le bouton **Ajouter une variable**.
-5. Saisissez un nom pour votre nouvelle variable et cliquez sur **OK**.
+# Variables de texte et de liste
 
-C'est tout ! Votre variable est prête à être utilisée. Vous pouvez la voir répertoriée dans l'écran "Gérer les variables".
+Il existe deux types de variables :
 
-La fenêtre Gérer les variables prend en charge un menu contextuel au clic droit, la navigation au clavier, copier/coller, annuler/rétablir, la recherche à la saisie, **Suppr** pour supprimer, et **Ctrl/Commande + S** pour enregistrer.
+- Les variables de texte contiennent un seul texte, comme `dark`, `5` ou `true`.
+- Les variables de liste contiennent une liste d’entrées, comme des astuces de chargement ou des noms de serveurs. Chaque entrée est un texte distinct.
 
-## Définir les valeurs des variables
+La position d’une entrée dans une liste est son index. La première entrée a l’index `0`, la deuxième `1`, et ainsi de suite. Les index négatifs comptent à partir de la fin : `-1` correspond donc à la dernière entrée.
 
-Une variable vide n'est pas très utile en soi. Pour exploiter les variables, vous devez y placer des données. Dans FancyMenu, cela s'appelle "définir la valeur de la variable".
+Les éléments qui ne prennent en charge que le texte, comme `$$name` ou **Is Variable Value (FM Variable)**, obtiennent une liste sous forme de tableau JSON contenant ses entrées, par exemple `["Craft a bed before your first night.","Torches keep most mobs away."]`.
 
-Il existe deux façons principales de définir la valeur d'une variable :
+# Gérer les variables
 
-1. Dans l'écran "Gérer les variables", trouvez la variable dans la liste, cliquez dessus, puis cliquez sur **Définir la valeur**. Saisissez les données que vous souhaitez stocker.
+Ouvrez **barre de menus -> Personnalisation -> Gérer les variables**. Cette option n’est disponible dans la barre de menus qu’en dehors de l’éditeur de disposition.
 
-2. Pendant la personnalisation de votre menu, utilisez l'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable) sur un élément [Bouton](./elements#button), [Curseur](./elements#slider) ou [Ticker](./elements#ticker).
+<img width="800" alt="Ajout de la variable de texte menu_theme avec la valeur dark et de la variable de liste tips avec trois astuces dans le menu Gérer les variables" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_manage.gif?raw=true">
 
-Par exemple, créez une variable nommée `clicks` et ajoutez l'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable) à un bouton :
+## Ajouter des variables
+
+1. Faites un clic droit sur la liste, puis cliquez sur **Ajouter une variable de texte** ou **Ajouter une variable de liste**.
+2. Saisissez un nom, puis cliquez sur **Terminé**.
+
+Les noms peuvent contenir des lettres minuscules, des chiffres, `.`, `_` et `-`. Chaque nom ne peut être utilisé qu’une seule fois.
+
+## Modifier des variables
+
+Faites un clic droit sur une variable pour accéder aux options suivantes :
+
+| Option | Description |
+|---|---|
+| **Définir la valeur** | Définit le texte d’une variable de texte. |
+| **Modifier la liste** | Ouvre l’éditeur de liste d’une variable de liste (voir ci-dessous). |
+| **Convertir en liste…** | Convertit une variable de texte en liste. Le **Séparateur** divise le texte en entrées : saisissez `\n` pour séparer les lignes. **Supprimer les espaces autour des entrées** enlève les espaces autour de chaque entrée et **Ignorer les entrées vides** exclut les entrées vides. Un texte qui est déjà un tableau JSON, comme `["a","b"]`, est lu comme tel (**Lire comme un tableau JSON**). |
+| **Convertir en texte…** | Convertit une liste en variable de texte. Le **Séparateur** est placé entre les entrées, ou **Conserver le texte JSON** conserve la liste sous forme de tableau JSON. |
+| **Vider la variable au démarrage du jeu** | Vide la variable chaque fois que le jeu démarre. Utile pour les valeurs qui ne doivent durer qu’une session. |
+| **Supprimer la variable** | Supprime la variable. |
+| **Copier** et **Coller** | Créent une copie d’une variable. |
+| **Exporter la variable pour l’IA** | Exporte la variable pour les [conversations avec l’IA](/export-for-ai). |
+
+Les modifications sont appliquées immédiatement. Annulez-les avec `Ctrl + Z` et rétablissez-les avec `Ctrl + Y` (`Cmd` sur macOS). Commencez à taper pour effectuer une recherche, appuyez sur `Enter` pour modifier la variable sélectionnée ou sur `Delete` pour la supprimer.
+
+## Modifier des listes
+
+L’éditeur de liste affiche chaque entrée avec son index.
+
+- Pour ajouter des entrées, cliquez sur **Ajouter une entrée** sous la liste, saisissez l’entrée et appuyez sur `Enter`. La saisie de l’entrée suivante commence immédiatement. Appuyez sur `Enter` sur une entrée vide ou sur `Esc` pour arrêter l’ajout.
+- Pour modifier une entrée, double-cliquez dessus. `Shift + Enter` l’ouvre dans l’éditeur de texte, où vous pouvez ajouter des sauts de ligne.
+- Pour réorganiser les entrées, faites-les glisser ou appuyez sur `Alt + Up` et `Alt + Down`.
+- Faites un clic droit sur une entrée pour accéder à **Dupliquer l’entrée** (`Ctrl + D`), **Supprimer l’entrée** (`Delete`), **Copier**, **Coller**, **Déplacer vers le haut** et **Déplacer vers le bas**.
+- **Modifier comme du texte** permet de modifier toutes les entrées à la fois, à raison d’une par ligne.
+
+**Terminé** enregistre la liste. **Annuler** abandonne toutes les modifications apportées dans l’éditeur de liste.
+
+# Afficher des variables dans du texte
+
+Saisissez `$$` suivi du nom d’une variable pour afficher sa valeur : une variable nommée `menu_theme` s’écrit `$$menu_theme`. Cela fonctionne dans tous les textes compatibles avec les [espaces réservés](/placeholders), comme les [éléments de texte](/text-in-menus), les libellés de boutons, les info-bulles et les valeurs des actions et des conditions. Le texte est automatiquement mis à jour lorsque la variable change.
 
 ```
-clicks:{"placeholder":"calc","values":{"expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
+Thème actuel : $$menu_theme
 ```
 
-Voici comment cela fonctionne :
-1. L'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) récupère la valeur actuelle de la variable `clicks`.
-2. L'[**espace réservé Calculatrice**](./placeholders#calculator-calc) prend cette valeur et lui ajoute 1.
-3. Le résultat est réenregistré dans `clicks` à l'aide de l'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable).
+- `$$name` reste inchangé si la variable n’existe pas.
+- Lorsque plusieurs noms commencent de la même façon, comme `coins` et `coins_record`, `$$coins_record` correspond toujours au nom le plus long.
+- Une liste s’affiche sous forme de tableau JSON. Ces espaces réservés permettent d’afficher les listes de manière plus lisible :
 
-Ainsi, chaque fois que le bouton est cliqué, la variable `clicks` augmente de 1, comptant ainsi le nombre total de clics.
+| Espace réservé | Exemple | Résultat |
+|---|---|---|
+| **Get Variable Value (FM Variable)** | `{"placeholder":"getvariable","values":{"name":"clicks"}}` | La valeur, ou `0` si la variable est vide ou n’existe pas. Idéal pour les nombres. |
+| **Get List Entry (FM Variable)** | `{"placeholder":"list_get","values":{"name":"tips","index":"0","fallback":"No tips yet"}}` | L’entrée à l’index indiqué, ou la valeur `fallback` s’il n’y en a pas. |
+| **List Size (FM Variable)** | `{"placeholder":"list_size","values":{"name":"tips"}}` | Le nombre d’entrées de la liste. |
+| **Index of List Entry (FM Variable)** | `{"placeholder":"list_index_of","values":{"name":"tips","value":"Torches keep most mobs away.","ignore_case":"false"}}` | L’index de la première entrée correspondant exactement à `value`, ou `-1`. |
+| **Join List Entries (FM Variable)** | `{"placeholder":"list_join","values":{"name":"tips","separator":"\n"}}` | Toutes les entrées réunies dans un texte, avec `separator` entre elles (`, ` si ce paramètre est omis). `\n` correspond à un saut de ligne. |
 
-## Utiliser les variables
+# Modifier des variables avec des actions
 
-Maintenant que vos variables contiennent des données, vous pouvez utiliser ces données dans différentes parties de la personnalisation de votre menu :
+Les [scripts d’action](/action-scripts) modifient les variables lorsqu’on clique sur un bouton, qu’un minuteur s’exécute, qu’un écouteur se déclenche, et ainsi de suite.
 
-* [**Conditions de chargement**](./conditions) : vérifiez la valeur d'une variable pour contrôler quand des éléments apparaissent. Par exemple, affichez un élément lorsque `clicks` est supérieur à 5 en combinant [**Est un nombre**](./conditions#is-number-fancymenu_visibility_requirement_is_number) avec l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable).
+## Variables de texte
 
-* **Espaces réservés** : insérez une variable dans du texte avec l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable), par exemple `{"placeholder":"getvariable","values":{"name":"clicks"}}`.
+[**Set Variable Value (FM Variable)**](/action-scripts#set-variable-value-fm-variable) prend le nom et la nouvelle valeur, séparés par `:`. Si la variable n’existe pas encore, elle est créée.
 
-* **Espaces réservés imbriqués** : vous pouvez utiliser l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) à l'intérieur de l'[**espace réservé Calculatrice**](./placeholders#calculator-calc).
+```
+menu_theme:dark
+```
 
-* **Actions** : les variables peuvent créer un comportement dynamique :
-  - Utilisez une instruction **IF** dans un [script d'action](./action-scripts#what-are-statements) avec [**Est un nombre**](./conditions#is-number-fancymenu_visibility_requirement_is_number) et l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable).
-  - Combinez l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) avec [**Copier le texte dans le presse-papiers**](./action-scripts#copy-text-to-clipboard-copytoclipboard).
-  - Utilisez des variables dans [**Ouvrir un écran ou une interface graphique personnalisée**](./action-scripts#open-screen-or-custom-gui-opengui) pour sélectionner un écran à partir de la progression ou des préférences enregistrées.
+Seul le premier `:` sépare le nom de la valeur. La valeur peut donc en contenir d’autres, comme dans `last_server:play.example.net:25565`.
 
-## Exemples de variables
+Pour compter les clics sur un bouton, ajoutez 1 à l’ancienne valeur :
 
-Voici quelques exemples pour vous inspirer dans l'utilisation des variables :
+```
+clicks:{"placeholder":"calc","values":{"decimal":"false","expression":"{"placeholder":"getvariable","values":{"name":"clicks"}} + 1"}}
+```
 
-1. **Score maximal** : créez une variable `highscore` et un bouton qui la définit sur le score actuel du joueur s'il est supérieur à la valeur existante. Affichez-la avec l'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable).
+**Get Variable Value (FM Variable)** renvoie `0` tant que `clicks` est vide. Le premier clic lui attribue donc la valeur `1`.
 
-2. **Sélecteur de difficulté** : créez des variables pour différentes difficultés de jeu, comme `easy`, `medium` et `hard`. Utilisez des boutons pour définir la variable de difficulté et afficher/masquer des éléments selon la difficulté sélectionnée.
+Set Variable Value ne convertit jamais une liste en texte. Un tableau JSON devient les entrées de la liste, un texte vide la vide et tout autre texte devient son unique entrée.
 
-3. **Progression du tutoriel** : ajoutez des variables pour suivre la progression du joueur dans un tutoriel, comme `tutorial_step`. Incrémentez la variable à chaque étape terminée, puis utilisez les conditions de chargement pour révéler progressivement davantage de l'interface.
+[**Delete Variable (FM Variable)**](/action-scripts#delete-variable-fm-variable) supprime une variable, tandis que [**Clear All Variables (FM Variable)**](/action-scripts#clear-all-variables-fm-variable) les supprime toutes.
 
-## Persistance, portée et stockage
+## Actions de liste
 
-Les variables sont partagées à travers l'instance Minecraft actuelle. Elles ne sont pas séparées par mise en page, monde, serveur ou joueur.
+Chaque action de liste possède sa propre fenêtre. Tous ses champs acceptent les espaces réservés.
 
-Les valeurs sont enregistrées immédiatement dans `<game-directory>/config/fancymenu/user_variables.db` et persistent après les redémarrages.
+| Action | Description |
+|---|---|
+| [**Add to List (FM Variable)**](/action-scripts#add-to-list-fm-variable) | Ajoute une entrée à la fin ou à un index donné. **Ignorer si déjà dans la liste** n’ajoute rien si la liste contient déjà cette entrée. |
+| [**Set List Entry (FM Variable)**](/action-scripts#set-list-entry-fm-variable) | Remplace l’entrée à un index donné. |
+| [**Remove from List (FM Variable)**](/action-scripts#remove-from-list-fm-variable) | Supprime l’**entrée à l’index**, la **première correspondance** d’une valeur ou **toutes les correspondances**. |
+| [**Clear List (FM Variable)**](/action-scripts#clear-list-fm-variable) | Supprime toutes les entrées. La liste est conservée, mais reste vide. |
+| [**Set List (FM Variable)**](/action-scripts#set-list-fm-variable) | Remplace toutes les entrées par les parties d’un **texte à séparer** ou par les entrées d’un **tableau JSON**. `$$other_list` au format tableau JSON copie une autre liste. |
+| [**Arrange List (FM Variable)**](/action-scripts#arrange-list-fm-variable) | **Trier de A à Z**, **Trier de Z à A**, **Nombres, du plus petit au plus grand**, **Nombres, du plus grand au plus petit**, **Inverser l’ordre**, **Mélanger** ou **Supprimer les doublons**. |
 
-- **Réinitialiser au lancement** vide cette variable au prochain démarrage du jeu.
-- [**Effacer toutes les variables**](./action-scripts#clear-all-variables-fm-variable-clear_variables) supprime toutes les valeurs de variables stockées.
-- Les noms sont sensibles à la casse. Utilisez des noms simples et uniques comme `tutorial_step`.
+- Les actions de liste créent une liste si elle n’existe pas encore et convertissent les variables de texte vides en listes. Elles ne modifient jamais une variable de texte qui contient une valeur : [convertissez-la](#changing-variables) d’abord.
+- Saisissez le nom de la liste sans `$$`. Avec `$$`, l’action utilise la valeur de cette variable comme nom.
 
-L'[**espace réservé Obtenir la variable stockée**](./placeholders#get-variable-value-fm-variable-getvariable) renvoie `0` lorsque la variable nommée n'existe pas ou lorsque sa valeur stockée est vide. Cette valeur de secours est importante dans les comparaisons et les expressions de calculatrice.
+Par exemple, un élément de texte affiche la première entrée de la liste `tips` :
 
-L'[**action Définir la valeur de la variable**](./action-scripts#set-variable-value-fm-variable-set_variable) utilise `nom_de_variable:valeur_de_variable` et se découpe au premier deux-points, donc la valeur peut contenir plusieurs deux-points.
+```
+{"placeholder":"list_get","values":{"name":"tips","index":"0"}}
+```
 
-Ne stockez pas de mots de passe, jetons ou autres secrets dans les variables FancyMenu. Ce sont des données de configuration lisibles.
+Un bouton Astuce suivante placé en dessous utilise l’action **Arrange List (FM Variable)** avec l’option **Mélanger** dans son script d’action :
+
+<img width="800" alt="Ajout de l’action Arrange List avec la liste tips et l’option Shuffle au script d’action d’un bouton Astuce suivante dans l’éditeur de disposition" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_next_tip_script.gif?raw=true">
+
+À chaque clic, la liste est mélangée et le texte affiche donc une astuce aléatoire :
+
+<img width="800" alt="Un clic sur le bouton Astuce suivante affiche une autre astuce du jour" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/variables_next_tip_result.gif?raw=true">
+
+## Parcourir une liste
+
+La [boucle FOR EACH](/action-scripts#for-each-loop) exécute les actions qu’elle contient une fois pour chaque entrée d’une liste, de la première à la dernière.
+
+1. Faites un clic droit dans la zone de script de l’éditeur de scripts d’action, puis cliquez sur **Ajouter une boucle FOR EACH**.
+2. Saisissez le nom de la variable de liste, sans `$$`, puis cliquez sur **Terminé**.
+3. Ajoutez des actions dans la boucle. Dans leurs valeurs, `$$list_entry` correspond à l’entrée actuelle et `$$list_index` à son index.
+
+Par exemple, une liste `starter_commands` contenant les entrées `/time set day` et `/weather clear`, avec une action [**Send Chat Message/Command**](/action-scripts#send-chat-messagecommand) dans la boucle et cette valeur, exécute les deux commandes :
+
+```
+$$list_entry
+```
+
+- La boucle lit la liste une seule fois, au démarrage. Les actions qu’elle contient peuvent modifier la liste sans changer les entrées parcourues par la boucle.
+- Une variable de texte ou une liste inexistante fait que la boucle ne s’exécute aucune fois.
+- Comme les boucles WHILE, elle s’arrête au bout de 3 secondes afin d’éviter de bloquer le jeu.
+
+# Vérifier des variables
+
+Les [conditions](/conditions) affichent des éléments ou exécutent certaines parties des scripts d’action uniquement lorsqu’une variable a une valeur précise.
+
+- [**Is Variable Value (FM Variable)**](/conditions#is-variable-value-fm-variable) vérifie la valeur complète. Pour les listes, la comparaison porte sur le tableau JSON de toutes les entrées.
+- [**List Contains Entry (FM Variable)**](/conditions#list-contains-entry-fm-variable) vérifie si une liste contient une entrée. La correspondance doit porter sur l’entrée entière. **Ignorer la casse** permet à `Apple` de correspondre à `apple`.
+- [**Is Number**](/conditions#is-number) compare des nombres, par exemple pour vérifier si `$$clicks` est supérieur à `5`.
+
+Par exemple, un bouton ouvre le dernier article d’actualité et ajoute `news_42` à une liste `read_news` à l’aide de **Add to List (FM Variable)**. Un badge « Nouveau ! » à côté du bouton utilise la condition **List Contains Entry (FM Variable)** pour `news_42`, avec le **mode de condition** réglé sur l’option opposée. Le badge disparaît donc une fois que le joueur a lu l’article.
+
+# Lier des variables à des éléments
+
+- [Champ de saisie de texte](/elements#text-input-field) : **Lier à une variable** enregistre dans la variable le texte saisi par le joueur et le champ affiche la valeur de cette variable. Si le champ est lié à une liste, le texte saisi remplace toute la liste.
+- [Case à cocher](/elements#checkbox) : activez le **mode variable** et définissez **Lier à une variable**. La case à cocher écrit `true` ou `false` dans la variable.
+- [Curseur](/elements#slider) de type **Liste de valeurs** : **Valeurs depuis une variable de liste** récupère les valeurs du curseur depuis une liste. Les entrées ajoutées à la liste ou supprimées de celle-ci sont immédiatement prises en compte.
+
+# Réagir aux modifications
+
+- L’écouteur [**On Variable Updated [FM Variable]**](/listeners#on-variable-updated-fm-variable) exécute un script d’action chaque fois qu’une variable est définie.
+- La [commande `/fmvariable`](/commands#fmvariable) permet de définir et de lire des variables depuis le chat, les blocs de commande et d’autres mods.
+
+# Où les variables sont-elles enregistrées ?
+
+FancyMenu enregistre immédiatement les variables dans `<game-directory>/config/fancymenu/user_variables.db`. Elles sont donc conservées après le redémarrage du jeu.
+
+- Les variables sont communes à toute l’instance Minecraft et à son [profil](/profiles) actif. Elles ne sont pas séparées par disposition, monde, serveur ou joueur.
+- Les noms sont sensibles à la casse.
+- Ne stockez pas de mots de passe, de jetons ni d’autres secrets dans des variables. Toute personne ayant accès au dossier du jeu peut les lire.
