@@ -33,6 +33,13 @@ The intro fills the whole screen and keeps its proportions, so parts of it get c
 > [!TIP]
 > Players see the intro at every game start, so keep it short, about 5 to 10 seconds.
 
+## Free Example Intro
+
+The Skyhaven intro from the GIFs on this page is free to use, for testing and in your modpacks:
+
+- [skyhaven_intro.apng](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/skyhaven_intro.apng?raw=true): the intro, 1280x720, 5.4 seconds long. It plays once.
+- [skyhaven_menu.png](https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/skyhaven_menu.png?raw=true): its last scene without the logo, 1280x720. Make it the [image background](/menu-backgrounds#image) of a Title screen layout, and the intro fades into a matching menu, like in the first GIF.
+
 # Settings
 
 All settings are in **menu bar -> Customization -> Global Customizations -> Game Intro**:
