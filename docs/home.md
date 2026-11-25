@@ -1,29 +1,29 @@
 ---
 title: Getting Started
-description: >-
-  The world of FancyMenu awaits you! This is the beginning of something
-  beautiful!
+description: Your first steps with FancyMenu. The menu bar, your first layout from start to finish, and where to go from there.
 ---
-
-# For Developers
-
-If your are a developer and want to make an addon for FancyMenu or integrate FancyMenu in your mod, you should take a look at the [developer documentation](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).
 
 # Getting Started
 
-The first time using FancyMenu can be a bit overwhelming, but don't worry, most of it is actually pretty self-explanitory once you start working with it!
+FancyMenu lets you change every menu of Minecraft, like the title screen, the pause menu and the menus of other mods. Give them your own backgrounds, logos, buttons, texts, sounds and animations, move or hide what's already there, make buttons do new things, or build whole new menus. All of it happens in the game, without code.
 
-> Please **keep in mind** that this page is just to get into FancyMenu and help you with your **very first steps**.
-Make sure to also check out the rest of the documentation for more in-detail information about FancyMenu's features!
-{.is-info}
+<img width="800" alt="The title screen of a modpack called Wildwood, made with FancyMenu: a pixel art valley at dusk with a cabin, a lake and the setting sun, whose layers move with the mouse, a golden logo, wooden buttons that glow when hovered, and fireflies" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_hero.gif?raw=true">
+
+This page shows you the basics, step by step, and turns the normal title screen into this one.
 
 # The Menu Bar
 
-One of the first things you will notice when starting the game is the **menu bar** at the top of every menu.
+The menu bar at the top of every menu is where all of FancyMenu's features are.
 
-The **menu bar** is your entry point to basically all of FancyMenu's features like **creating layouts** to **customize menus**, changing the **window title and icon** and much more.
+<img width="800" alt="The menu bar at the top of the title screen, with its Customization menu open" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_menu_bar.png?raw=true">
 
-<img width="650" alt="menu_bar" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/menu_bar.png?raw=true">
+- **Customization**: the layouts of the menu you're in, and everything for your whole setup, like [Global Customizations](/global-customizations), [Custom GUIs](/custom-guis), [Variables](/variables), [Listeners](/listeners), [Schedulers](/schedulers), [Profiles](/profiles) and FancyMenu's settings.
+- **Tools**: helpers like [Dummy Screen Instances](/dummy-screen-instances), the [AFMA Creator](/animations#fma-and-afma), **Browse Game Resources** and **Open FancyMenu Directory**, which opens the folder of your setup (see [Data Storage Locations](/data-storage-locations)).
+- **Help**: these docs, the Discord server, **Report a Bug** and [Export for AI](/export-for-ai).
+- The door icon at the right closes the menu you're in, for menus that have no way out.
+- The double arrows at the far right fold the menu bar up to a small button, and back.
+
+Players of your modpack don't need the menu bar. See [Modpacks](/modpacks#disabling-the-menu-bar-and-hotkeys) for how to turn it off.
 
 ## Menu Bar Shortcuts
 
@@ -38,83 +38,107 @@ These work in every menu, but not in the layout editor and not while Modpack Mod
 
 # Your First Layout
 
-Since you probably want to customize Minecraft's menus, let me tell you something about **layouts**!
+A layout holds your changes to a menu: its background, the elements you add, and what you change about the buttons and texts that are already there. A menu can have several layouts, and you can turn each of them on and off.
 
-Layouts are like customization layers for menus and they allow you to add new elements and customize existing ones.
+## Making a Layout
 
-To make a new layout for a **specific menu**:
-1. Open the menu you want to create a layout for (the Title Screen for example)
-2. Open the **Customization** tab of the **menu bar**
+<img width="800" alt="Opening Customization in the menu bar of the title screen, turning on Current Screen Customization, opening Customization again and clicking Layouts, New, For Current Screen, which opens the layout editor" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_new_layout.gif?raw=true">
 
-Customizations are disabled for all menus by default and you need to activate them for every menu you want to customize, so let's click on the **"Current Screen Customization: Disabled"** entry first, which will switch the toggle to **Enabled**.
+1. Open the menu you want to change, like the title screen.
+2. Click **menu bar -> Customization -> Current Screen Customization**, so it shows **Enabled**. FancyMenu only changes menus where it's on.
+3. Click **menu bar -> Customization -> Layouts -> New -> For Current Screen**.
 
-<img width="475" alt="toggle_customizations" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/toggle_customizations.png?raw=true">
+The layout editor opens. It shows the menu like players see it, so you see every change right away. See [Layout Editor](/layout-editor) for everything about it, like moving, resizing and copying elements.
 
-After doing that, click on **Layouts -> New -> For Current Screen**.
+**For All Screens [Universal]** makes a [Universal Layout](/universal-layouts) instead, which shows in every menu.
 
-This will open the **layout editor** where you can add elements to the layout and customize Vanilla and mod elements (like buttons).
+## Setting a Background
 
-<img width="550" alt="new_layout_current" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/new_layout_current.png?raw=true">
+Put your images into the `config/fancymenu/assets` folder of your game first. **menu bar -> Tools -> Open FancyMenu Directory** opens `config/fancymenu`.
 
-## Editing the Layout
+<img width="800" alt="Right-clicking the editor background, opening Menu Backgrounds, Image, turning on Show Background, then Choose Image, switching Source Type to Local and picking background.png from the wildwood folder, and the valley shows behind the buttons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_background.gif?raw=true">
 
-Most customization options can be accessed by **right-clicking the editor background**.
-Doing that will open a context menu with lots of options, like customizing the **menu backround** or **adding elements** to the layout.
+1. Right-click the background of the editor and open **Menu Backgrounds -> Image**.
+2. Click **Show Background**, so it shows **Enabled**.
+3. Click **Choose Image**, set **Source Type** to **Local** and click **Choose Local Resource File**.
+4. Click your image and click **OK**. A double-click opens folders.
 
-Everything about the editor, like selecting, moving and copying elements and its shortcuts, is on the [Layout Editor](/layout-editor) page.
+Backgrounds can also be panoramas, slideshows, videos, colors and more. See [Menu Backgrounds](/menu-backgrounds).
 
-<br>
-<img width="350" alt="context_menu" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/context_menu.png?raw=true">
+## Adding a Logo
 
-## Adding Elements to Layouts
+<img width="800" alt="Deleting the Minecraft logo and the splash text, adding an Image element through Element, New, Image, and picking logo.png as its Image Source, which shows the logo squished into a square" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_logo_add.gif?raw=true">
 
-To add a new element to your layout, **right-click** the background of the editor.
+1. Click the Minecraft logo and press `Delete`. Do the same with the yellow splash text.
+2. In the menu bar of the editor, click **Element -> New -> Image**.
+3. Right-click the new element, click **Image Source** and pick your logo, like the background.
 
-In the context menu that opens, click on **New Element** and choose one of the many types of elements.
+Deleted vanilla elements only get hidden. **Element -> Deleted Vanilla Elements** brings them back.
 
-<img width="525" alt="add_element" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/add_element.png?raw=true">
+<img width="800" alt="Clicking Restore Aspect Ratio in the right-click menu of the logo, which gets its real width, closing the menu with Esc and dragging the Wildwood logo above the buttons" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_logo_place.gif?raw=true">
 
-## Customizing Elements
+4. Right-click it again and click **Restore Aspect Ratio**, so it isn't squished. `Esc` closes the menu.
+5. Drag it to its place.
 
-To customize an element, **right-click** it, which will open a context menu with everything you can customize for that element type.
+There's a lot more you can add, like buttons, texts, videos and players. See [Elements](/elements).
 
-As well as elements you've added, you can also customize vanilla elements (however there are sometimes less options with those)
+## Changing the Buttons
 
-<img width="525" alt="element_customization" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/element_customization.png?raw=true">
+Right-click a button for its settings: its label, its textures, its sounds, what it does when clicked ([Action Scripts](/action-scripts)) and when it shows ([Element Visibility](/element-visibility)). Drag it to move it and drag its edges to resize it. See [Vanilla/Mod Elements](/vanilla-elements).
 
-> [!IMPORTANT]
-> Some context menus like this are **scrollable**!
+## Saving
 
-## Positioning Elements
+<img width="800" alt="Pressing Ctrl + S, clicking Save in the Save File window, closing the editor with the X and the finished title screen with the valley and the Wildwood logo" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/getting_started_save.gif?raw=true">
 
-Every element in FancyMenu is connected to an **anchor point**.
+1. Press `Ctrl + S` (`Cmd + S` on macOS), or click **Layout -> Save**.
+2. The first time, FancyMenu asks for a file name. Keep it or type a new one, and click **Save**.
+3. Close the editor with the X at the right of its menu bar.
 
-Anchor points are necessary for calculating an element's position and if used correctly, they prevent elements from overlapping each other, going out-of-screen or move to the wrong place when resizing the window.
+The menu shows your layout right away. To change it later, hover it in **menu bar -> Customization -> Layouts** and click **Edit Layout**, or press `Ctrl + Alt + L`.
 
-They are the origin point from where the element's position is getting calculated.
+# How the Example Is Made
 
-By default, elements are connected to the **"Center of Screen"** anchor point, which is basically just the exact center of the screen, no matter the window size.
-So lets say an element is 2 centimetres away from the center of the screen while being connected to the **"Center of Screen"** anchor. In that case, the element will **always** be 2 centimetres away from the screen's center, no matter the window size.
+The title screen at the top of this page goes a few steps further:
 
-You can see the anchor point an element is connected to when dragging it. This will (by default) also show all other anchor points. You can hover an anchor point while dragging an element to change the element's anchor to the hovered anchor point.
+- The sky, the hills and the trees are three images that move with the mouse, the trees the most. See [Parallax Effect](/parallax).
+- The hills and the trees are Image elements as big as the screen. So they stay behind the buttons and texts, the right-click menu of the editor background has **Custom Elements Behind Vanilla** turned on.
+- The buttons have wooden textures in their **Button Textures -> Set -> Normal Background**, and glowing ones in **Hover Background**. **Button Textures -> Nine-Slice Custom Background** keeps their corners sharp on every width. See [Nine-Slicing](/nine-slicing-and-tiling).
+- The fireflies are a [Decoration Overlay](/decoration-overlays#fireflies).
 
-You can even use an element as an anchor point for other elements! Just hover an element while dragging another and the dragged element's anchor point will get changed to the hovered element.
+# Where to Go Next
 
-**[Learn more about how to position your elements.](/positioning-elements)**
+**Make it look great**
 
-<img width="650" alt="anchor_points" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/anchor_points.png?raw=true">
+- [Elements](/elements): everything you can add to menus.
+- [Positioning Elements](/positioning-elements): keep elements in place on every window size.
+- [Menu Backgrounds](/menu-backgrounds), [Animations](/animations), [Videos](/video), [Decoration Overlays](/decoration-overlays) and [Background Music](/background-music).
 
-## Saving Your Work
+**Make it do things**
 
-Don't forget to save your masterpiece!
+- [Action Scripts](/action-scripts): what buttons and other elements do.
+- [Element Visibility](/element-visibility) and [Requirements](/conditions): show things only sometimes.
+- [Placeholders](/placeholders): live info in texts, like the player's name.
+- [Variables](/variables), [Listeners](/listeners) and [Schedulers](/schedulers): remember things, react to the game and run things on a timer.
 
-You will see an "Unsaved Changes" indicator in the top-right corner of the editor if you need to save your changes before closing.
+**Build more**
 
-Save your work by clicking on **Layout -> Save**!
+- [Custom GUIs](/custom-guis): whole new menus.
+- [Universal Layouts](/universal-layouts): changes for every menu.
+- [Global Customizations](/global-customizations): tweaks for the whole game, like the window title.
+- [Loading Screen](/loading-screen) and [Game Intro](/game-intro).
 
-<img width="375" alt="save_your_work" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/save_your_work.png?raw=true">
+**Share it**
 
-> [!TIP]
-> You can also save your work using the keyboard shortcut **CTRL + S**
+- [Modpacks](/modpacks): put your setup into a modpack.
+- [Profiles](/profiles): switch between setups, and export them.
 
-*Congratulations! You can now make Minecraft's menus look a lot more beautiful!*
+# Getting Help
+
+- The [FAQ](/faq) answers the most common questions.
+- **menu bar -> Help -> Join the Discord** brings you to the FancyMenu Discord server.
+- [Export for AI](/export-for-ai) turns your setup into text for AI chats, like the support bot on the Discord server.
+- **menu bar -> Help -> Report a Bug** if something doesn't work like it should.
+
+# For Developers
+
+To make an add-on for FancyMenu or use it in your mod, see the [developer documentation](https://github.com/Keksuccino/FancyMenu-Dev-Docs/wiki).
