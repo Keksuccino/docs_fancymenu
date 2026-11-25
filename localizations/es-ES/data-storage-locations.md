@@ -1,55 +1,83 @@
 ---
 title: Ubicaciones de almacenamiento de datos
 description: >-
-  Dónde FancyMenu almacena diseños, recursos, configuración y estado persistente
-  en tiempo de ejecución.
+  Dónde guarda FancyMenu los diseños, recursos, ajustes y todo lo demás, y qué
+  archivos pertenecen a los perfiles.
+sourceBlobSha: 30dd81ed90e08184e3063892870e3325d7d7c5cb
 ---
 
 # Ubicaciones de almacenamiento de datos
 
-`<game-directory>` significa la carpeta activa de la instancia de Minecraft, que puede diferir de `.minecraft`.
+FancyMenu guarda todo en dos carpetas del directorio del juego. Se trata de la carpeta de la instancia de tu launcher, que puede ser distinta de `.minecraft`.
 
-Los directorios y archivos suelen crearse solo después de que la función relacionada se inicializa o se utiliza. Cierra Minecraft antes de editar manualmente archivos de estado generados y conserva una copia de seguridad al migrar o restablecer datos.
+- `config/fancymenu/` contiene tu configuración: diseños, recursos, variables, ajustes y mucho más. Es el [perfil](/profiles) cargado, por lo que los modpacks incluyen esta carpeta.
+- `fancymenu_data/` contiene datos de esta instancia del juego, como las posiciones de Dragger y las descargas. Es la misma para todos los perfiles.
 
-# Diseños, recursos y configuración
+**barra de menú -> Herramientas -> Abrir directorio de FancyMenu** abre `config/fancymenu/`.
 
-Algunas entradas son configuración o recursos creados por el autor; otras son estado que FancyMenu actualiza en tiempo de ejecución.
+La mayoría de los archivos y carpetas solo aparecen cuando utilizas la función correspondiente. Cierra el juego antes de modificar o eliminar archivos de estas carpetas.
 
-| Sistema / Función | Archivo o directorio |
+> [!TIP]
+> Para compartir estas carpetas entre instancias, puedes moverlas a otro sitio y dejar en su lugar un enlace simbólico (una unión en Windows).
+
+# Tu configuración
+
+Todo lo que hay en `<game-directory>/config/fancymenu/`. Todo pertenece al [perfil](/profiles) cargado.
+
+| Qué | Ubicación |
 | --- | --- |
-| Pantallas personalizables | `<game-directory>/config/fancymenu/customizablemenus.txt` |
-| [GUI personalizadas](./custom-guis) y reglas de anulación de pantallas | `<game-directory>/config/fancymenu/custom_gui_screens.txt` |
-| Diseños | `<game-directory>/config/fancymenu/customization/` |
-| [Recursos locales](./resources#local-resources) | `<game-directory>/config/fancymenu/assets/` |
-| [Archivos de localización personalizados](./localization#fancymenu-custom-localization-files) | `<game-directory>/config/fancymenu/custom_locals/` |
-| [Panorámicas](./panoramas) | `<game-directory>/config/fancymenu/panoramas/` |
-| [Presentaciones](./slideshows) | `<game-directory>/config/fancymenu/slideshows/` |
-| [Variables de FancyMenu](./variables) | `<game-directory>/config/fancymenu/user_variables.db` |
-| Metadatos del controlador del [elemento de vídeo](./elements#video) | `<game-directory>/config/fancymenu/video_element_controller_metas.json` |
-| Metadatos del controlador del [elemento de audio](./elements#audio) | `<game-directory>/config/fancymenu/audio_element_controller_metas.json` |
-| Oyentes del servidor de [FM Data](./fm-data) | `<game-directory>/config/fancymenu/fmdata_server_listeners.json` |
-| Datos de bienvenida de [FM Data](./fm-data) | `<game-directory>/config/fancymenu/fmdata_welcome_data.json` |
-| Instancias de [oyentes](./listeners) y scripts de acción | `<game-directory>/config/fancymenu/listener_instances.txt` |
-| [Programadores](./schedulers) | `<game-directory>/config/fancymenu/scheduler_instances.txt` |
+| Diseños, en archivos `.txt`, también en subcarpetas | `customization/` |
+| [Recursos locales](/resources#local-resources), como imágenes y sonidos | `assets/` |
+| Ajustes de FancyMenu | `options.txt` |
+| Pantallas con **Personalización de la pantalla actual** activada | `customizablemenus.txt` |
+| [Interfaces personalizadas](/custom-guis) y las pantallas que sustituyen | `custom_gui_screens.txt` |
+| [Variables](/variables) | `user_variables.db` |
+| [Listeners](/listeners) | `listener_instances.txt` |
+| [Programadores](/schedulers) | `scheduler_instances.txt` |
+| [Panoramas](/panoramas) | `panoramas/` |
+| [Presentaciones](/slideshows) | `slideshows/` |
+| [Localizaciones personalizadas](/localization#fancymenu-custom-localization-files) | `custom_locals/` |
+| Temas de la propia interfaz de FancyMenu (**barra de menú -> Personalización -> Ajustes -> Interfaz de FancyMenu -> Tema de la interfaz**) | `ui_themes/` |
+| Estados de los [elementos de casilla](/elements#checkbox) que no utilizan una variable | `checkbox_states.json` |
+| Volumen y estado de pausa que las acciones asignaron a los [elementos de vídeo](/video) | `video_element_controller_metas.json` |
+| Volumen que las acciones asignaron a los [elementos de audio](/elements#audio) | `audio_element_controller_metas.json` |
+| Estado de activación y desactivación que las acciones asignaron a los [animadores de elementos](/element-animator) | `animation_controller_states.json` |
+| Pantallas con **Mostrar el contenido del área desplazable de la pantalla actual** activado (consulta [Personalizar pantallas desplazables](/customizing-scrollable-screens)) | `normalized_scroll_screens.json` |
+| Listeners del servidor de [FM Data](/fm-data) | `fmdata_server_listeners.json` |
+| Datos de bienvenida de [FM Data](/fm-data) | `fmdata_welcome_data.json` |
+| Posición, tamaño y visibilidad de los widgets del editor de diseños | `layout_editor/widgets/` |
+| Nombre, icono y detalles del perfil cargado | `profile.json` y `profile_icon.png` |
+| Todos los demás [perfiles](/profiles#where-profiles-are-stored) | `profiles/` |
+| Actualizaciones de archivos antiguos que FancyMenu ya ha aplicado | `legacy_checklist.txt` |
 
-`customizablemenus.txt` está gestionado por el interruptor **Personalización de pantalla actual** y almacena identificadores concretos de clase de pantalla. No añadas identificadores de [Diseño universal](./universal-layouts); FancyMenu los ignora al cargar el archivo.
+`customizablemenus.txt` enumera las pantallas por el nombre de su clase Java. En este archivo se omiten los [identificadores de pantalla](/screen-identifiers) cortos, como `title_screen`.
 
-En un servidor dedicado, los dos archivos de FM Data son relativos a la raíz del juego de ese servidor. El resto de la configuración y los recursos propiedad del cliente pertenecen a la instancia de cada jugador.
+En un servidor dedicado, FancyMenu solo utiliza los dos archivos de [FM Data](/fm-data), en la carpeta `config/fancymenu/` del servidor.
 
-# Estado persistente en tiempo de ejecución
+# Datos de la instancia
 
-FancyMenu guarda estado adicional generado por instancia fuera de `config/fancymenu/`. Incluye estas rutas en una copia de seguridad solo cuando quieras conservar el estado de usuario/ejecución relacionado; no son definiciones de diseño ni recursos de origen.
+Todo lo que hay en `<game-directory>/fancymenu_data/`. No forma parte de los perfiles, así que se conserva al cambiar de uno a otro.
 
-| Sistema / Función | Archivo o directorio |
+| Qué | Ubicación |
 | --- | --- |
-| Estados no variables de [Checkbox](./elements#checkbox) | `<game-directory>/checkbox_states.json` |
-| Posiciones/metadatos del elemento [Dragger](./dragger) | `<game-directory>/fancymenu_data/dragger_metas.json` |
-| Último estado del mundo | `<game-directory>/fancymenu_data/last_world.fmdata` |
-| Estado de [Seamless World Loading](./seamless-world-loading) | `<game-directory>/fancymenu_data/seamless_world_loading/` |
-| Guardados de la mascota Buddy y de niveles | `<game-directory>/fancymenu_data/buddy/` |
-| Posiciones y visibilidad de los widgets del editor de diseños | `<game-directory>/config/fancymenu/layout_editor/widgets/` |
-| Marcador de inicialización de la escala de GUI predeterminada | `<game-directory>/fancymenu_data/default_scale_set.fm` |
+| Posiciones de los [elementos Dragger](/dragger) | `dragger_metas.json` |
+| El último mundo o servidor, para la acción **Entrar/Unirse al último mundo/servidor** y el marcador de posición **Último mundo o servidor** | `last_world.fmdata` |
+| Capturas de pantalla de [Carga continua del mundo](/seamless-world-loading) | `seamless_world_loading/` |
+| Guardados de [Buddy](/decoration-overlays#buddy), dos archivos por cada superposición de Buddy | `buddy/` |
+| Archivos de [Exportar para IA](/export-for-ai) | `ai_exports/` |
+| Tus acciones favoritas en el selector de acciones | `action_favorites.json` |
+| El volumen de las vistas previas de audio y vídeo en los selectores de archivos | `browser_audio_settings.json` y `browser_video_settings.json` |
+| El fotograma que muestra un [fondo de vídeo](/video) cuando está en pausa | `video_thumbnails/` |
+| FFmpeg, que FancyMenu descarga para el [creador de AFMA](/animations#fma-and-afma) | `ffmpeg_cache/` |
+| Una nota que indica que FancyMenu ya ha establecido la [**Escala de interfaz predeterminada**](/global-customizations) | `default_scale_set.fm` |
+| Archivos temporales, que se eliminan cada vez que se inicia el juego | `fancymenu_temp/` |
 
-Buddy guarda el estado de la mascota y el estado de niveles/logros en archivos JSON separados dentro de su directorio. Cada instancia de superposición de Buddy usa su propio par de archivos.
+- FancyMenu establece la **Escala de interfaz predeterminada** una sola vez. Elimina `default_scale_set.fm` para que vuelva a establecerla en el siguiente inicio.
+- Las capturas de Carga continua del mundo muestran todo lo que había en pantalla dentro del mundo. Elimínalas con el juego cerrado si no quieres conservarlas.
 
-Los archivos de widgets del editor de diseños almacenan la posición, el tamaño, la visibilidad, el estado expandido y el lado de ajuste de cada widget. Eliminar `default_scale_set.fm` hace que FancyMenu trate la escala de GUI predeterminada configurada como no aplicada todavía en el siguiente inicio.
+# Archivos de versiones anteriores
+
+Las versiones anteriores de FancyMenu guardaban algunos archivos en otras ubicaciones. FancyMenu los traslada al iniciar el juego la próxima vez:
+
+- `checkbox_states.json` y `normalized_scroll_screens.json`, desde el propio directorio del juego a `config/fancymenu/`.
+- `dragger_metas.json`, desde `config/fancymenu/` a `fancymenu_data/`.

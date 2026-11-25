@@ -1,42 +1,27 @@
 ---
 title: Imagens
-description: Tudo o que é importante sobre recursos de imagem no FancyMenu.
+description: Quais arquivos de imagem o FancyMenu aceita e como converter outros formatos.
+sourceBlobSha: 382f9ed2d99b0df29018dc4abf0b9b842ff01dec
 ---
 # Imagens
 
-O FancyMenu oferece suporte a recursos de imagem em vários lugares, como planos de fundo de menus, texturas de botões e muito mais.
+O FancyMenu exibe imagens em vários lugares, como elementos de imagem, planos de fundo de menus e texturas de botões. Ele aceita estes arquivos:
 
-Você pode usar arquivos de imagem PNG, JPEG, GIF e APNG no FancyMenu, mas é recomendável usar PNG para imagens estáticas sempre que possível. Para animações, em vez de usar GIF e APNG, é melhor usar [um arquivo AFMA](/fma), o próprio tipo de imagem animada do FancyMenu, pois os arquivos AFMA são muito mais otimizados do que GIF/APNG, usam menos RAM e têm um impacto menor no desempenho.
+- PNG (`.png`): a melhor opção para imagens estáticas com transparência.
+- JPEG (`.jpg` ou `.jpeg`): arquivos menores para fotos, mas sem transparência.
+- APNG (`.apng`) e GIF (`.gif`): imagens animadas. Consulte [Animações](/animations).
 
-# Convertendo imagens para formatos compatíveis
+O FancyMenu identifica os tipos de imagem pela extensão do arquivo, então o nome do arquivo precisa terminar com a extensão correta.
 
-Quando precisar converter imagens para um dos formatos compatíveis com o FancyMenu, ou simplesmente quiser converter um formato compatível para outro por vários motivos, confira a lista a seguir de sites que funcionam bem para converter imagens online, sem a necessidade de baixar nenhum software.
+> [!TIP]
+> O FancyMenu usa suas imagens exatamente como elas são. Para mantê-las nítidas e com carregamento rápido, consulte [Otimizando texturas](/optimizing-textures).
 
-## GIF para APNG
-Para converter uma imagem GIF para APNG, use este site: https://ezgif.com/gif-to-apng.
+# Convertendo imagens
 
-## APNG para GIF
-Para converter um APNG para GIF, é disso que você precisa: https://ezgif.com/apng-to-gif.
+Outros formatos, como WebP, não funcionam no FancyMenu. Converta-os primeiro, por exemplo, usando estes serviços online:
 
-## MP4 para APNG
-Caso precise converter uma sequência curta de vídeo para APNG, experimente este site: https://ezgif.com/video-to-apng
+- [WebP para PNG](https://convertio.co/webp-png/)
+- [JPEG para PNG](https://jpg2png.com/)
+- [PNG para JPEG](https://www.freeconvert.com/png-to-jpeg): reduz o tamanho de imagens grandes, mas remove a transparência.
 
-## PNG para JPEG
-Às vezes, usar JPEG pode tornar os recursos menores. Nesse caso, pode ser uma boa ideia usar JPEG em vez de PNG: https://www.freeconvert.com/png-to-jpeg. Lembre-se de que arquivos JPEG não oferecem suporte a transparência.
-
-## JPEG para PNG
-Para o caso comum de converter JPEG para PNG, experimente este site: https://jpg2png.com/
-
-## WebP para PNG
-Arquivos WebP não são compatíveis com o FancyMenu, então você precisa convertê-los para PNG: https://convertio.co/webp-png/
-
-# Limitações de texturas animadas
-
-O FancyMenu usa seu próprio [formato AFMA](/fma) para animações otimizadas, permitindo que [arquivos AFMA](/fma) tenham muitos quadros em alta resolução. No entanto, para formatos de arquivo animado mais antigos, como GIF e APNG, você deve seguir os limites recomendados abaixo para não encher demais a sua RAM nem prejudicar excessivamente o desempenho do jogo:
-
-- Use no máximo **200 quadros** por animação.
-- Use uma resolução máxima de **1080p** para os seus quadros.
-- Você não deve ultrapassar um total de **1000 quadros para TODAS as animações combinadas**, pois, mesmo que use apenas 200 quadros por animação, todos eles serão carregados na memória. Portanto, usar muitas animações ao mesmo tempo ainda pode esgotar a sua RAM.
-
-> [!IMPORTANT]
-> Esses limites NÃO se aplicam a [arquivos AFMA](/fma), pois os arquivos AFMA não carregam todos os seus quadros na memória e são muito mais otimizados. Portanto, eles não causarão um impacto tão grande no desempenho quanto os formatos de animação mais antigos.
+Para criar ou converter animações, consulte [Criando animações](/animations#making-animations).

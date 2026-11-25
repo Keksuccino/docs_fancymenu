@@ -1,19 +1,21 @@
 ---
-title: Corrigir Arquivos de Áudio
+title: Corrigir arquivos de áudio
 description: >-
   Solucione problemas com arquivos de áudio que o FancyMenu não consegue
   reproduzir.
+sourceBlobSha: ca4c2e0bf2c12f28f0f74b5b3011a949e1a99413
 ---
-# Corrigindo Arquivos de Áudio
 
-Se um arquivo de áudio toca em outros lugares, mas não no FancyMenu, reencode-o como OGG ou WAV PCM. Para WAV, tente áudio de 48 kHz, 16 bits.
+# Corrigindo arquivos de áudio
 
-Você pode usar o FFmpeg ou outro conversor de áudio confiável. Reencodar é útil mesmo quando a extensão atual do arquivo e as configurações informadas já parecem corretas.
+Se um arquivo de áudio é reproduzido em outros programas, mas não no FancyMenu, converta-o novamente para OGG ou WAV PCM. Para WAV, experimente áudio de 48 kHz e 16 bits.
+
+Você pode usar o FFmpeg ou outro conversor de áudio confiável. A conversão é útil mesmo quando a extensão atual do arquivo e as configurações informadas parecem corretas.
 
 # Verificações
 
-- Confirme que o arquivo reencodado toca em outro reprodutor de áudio.
-- Mantenha arquivos de áudio muito grandes fora de telas sensíveis ao uso de memória.
-- Verifique o canal de som selecionado pelo [elemento de Áudio](./elements#audio) ou pela ação.
-- Verifique o volume Master do Minecraft e o volume do canal selecionado.
-- Se o áudio ainda falhar, teste sem outros mods que substituam ou processem o áudio do Minecraft.
+- Confirme se o arquivo convertido é reproduzido em outro reprodutor de áudio.
+- Evite usar arquivos de áudio muito grandes em telas com pouca memória disponível.
+- Verifique o canal de som selecionado pelo [elemento de áudio](/elements#audio) ou pela ação.
+- Confira o volume principal do Minecraft e o volume do canal selecionado.
+- Se o áudio ainda não funcionar, faça um teste sem outros mods que substituem ou processam o áudio do Minecraft.

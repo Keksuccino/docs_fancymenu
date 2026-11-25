@@ -1,46 +1,56 @@
 ---
 title: Elementos Vanilla
-description: Como personalizar elementos que fazem parte das telas por padrão.
+description: Como personalizar elementos que já fazem parte das telas por padrão.
+sourceBlobSha: 3943106d1e4f0722aad0d1578908262b7c8d92ec
 ---
+
 # Elementos Vanilla
 
-O FancyMenu não apenas permite adicionar novos elementos às telas, como também possibilita personalizar elementos existentes do jogo base (Vanilla) e até de outros mods.
+O FancyMenu não permite apenas adicionar novos elementos às telas: ele também possibilita personalizar elementos existentes do jogo base (Vanilla) e até mesmo de outros mods.
 
-## Botões e Sliders Vanilla (Widgets)
+## Botões e controles deslizantes Vanilla (widgets)
 
-Para personalizar widgets Vanilla/mod existentes, basta criar um novo layout **"para a tela atual"** (NÃO universal!) e **clicar com o botão direito** nos elementos no editor, assim como você faria com elementos personalizados.
+Para personalizar os botões e controles deslizantes de uma tela, crie um layout para a tela atual (não um [layout universal](/universal-layouts)) e clique neles com o botão direito no editor.
 
-Você pode personalizar seus **rótulos e texturas** da mesma forma que faria com botões e sliders personalizados.
+Eles têm as mesmas configurações que seus próprios [botões](/elements#button) e [controles deslizantes](/elements#slider), como texturas, sons e dicas de ferramentas. Apenas o script de ação deles não pode ser alterado: eles continuam fazendo o que faziam antes.
 
-A única coisa que você **não pode** fazer com widgets Vanilla/mod é personalizar o **script de ação** deles (como alterar o que eles fazem ao interagir com eles). Isso só é possível com botões e sliders personalizados.
+Elementos Vanilla não podem ser colocados em [Áreas Roláveis](/scrollable-areas), pois pertencem ao próprio menu.
 
-## Cliques Automatizados
+### Rótulos
 
-Widgets Vanilla e de mods têm a propriedade **Cliques Automatizados**. Defina-a como um inteiro maior que `0` para acionar o comportamento original de clique com o botão esquerdo do widget esse número de vezes quando a tela carregar. Por exemplo, definir como `2` clica no widget duas vezes durante a primeira atualização de cada tela recém-aberta. O valor padrão `0` desativa os cliques automatizados.
+- **Label** e **Hover Label** substituem o texto de um botão. Em outros widgets, como controles deslizantes, eles são chamados de **Widget Text** e **Hover Widget Text**. Sem eles, o widget mantém o próprio texto.
+- **Label Alignment** posiciona o rótulo à **Left** (esquerda), **Centered** (centralizado) ou à **Right** (direita) do widget. Rótulos largos demais para o widget rolam de um lado para o outro, independentemente do alinhamento.
+- **Label Scale**, **Label Base Color**, **Label Hover Color**, **Label Shadow** e **Underline Label On Hover** alteram o tamanho, as cores e a sombra do rótulo.
 
-Esses são cliques reais em widgets: cada clique pode alterar o valor de um slider ou de um botão de ciclo, executar o callback normal do widget ou até abrir outra tela. Teste o resultado com cuidado, especialmente ao configurar mais de um clique.
+Para alinhar os rótulos de vários botões de uma só vez, selecione-os usando `Ctrl` + clique (consulte [Seleção](/layout-editor#selecting)), clique com o botão direito em um deles e defina **Label Alignment** para todos. Para os rótulos de todos os menus, use **Label Alignment** em [Personalizações Globais](/global-customizations#labels). Um [modelo](/button-slider-templates) também pode aplicar o estilo de rótulo a todos os botões de uma tela.
 
-Para **mover** e **redimensionar** widgets Vanilla/mod, primeiro você precisa definir um ponto de ancoragem para eles. Para isso, **clique com o botão direito** neles e clique em **Ponto de Ancoragem**. Defina qualquer opção diferente de **Original**, pois esse é o âncora padrão dos elementos Vanilla/mod.
+## Cliques automatizados
 
-Você também pode **ocultar** widgets Vanilla/mod simplesmente **clicando com o botão direito** neles e clicando em **Delete**. Eles não são realmente excluídos, mas ficam ocultos, e você pode restaurá-los clicando em **barra de menu -> Elemento -> Elementos Vanilla Excluídos** e **clicando com o botão esquerdo** no(s) elemento(s) que deseja tornar visível(is) novamente.
+Widgets Vanilla e de mods têm a propriedade **Automated Clicks**. Defina-a como um número inteiro maior que `0` para acionar o comportamento original de clique com o botão esquerdo do widget esse número de vezes quando a tela carregar. Por exemplo, definir o valor como `2` clica no widget duas vezes durante a primeira atualização de cada tela recém-aberta. O valor padrão `0` desativa os cliques automatizados.
+
+Esses são cliques reais no widget: cada clique pode alterar o valor de um controle deslizante ou botão de alternância, executar a função de retorno de chamada normal do widget ou até abrir outra tela. Teste o resultado com atenção, especialmente ao configurar mais de um clique.
+
+Para **mover** e **redimensionar** widgets Vanilla/de mods, primeiro é necessário atribuir um ponto de ancoragem a eles. Para isso, clique neles com o **botão direito** e selecione **Anchor Point**. Defina qualquer opção diferente de **Original**, pois essa é a âncora padrão dos elementos Vanilla/de mods.
+
+Você também pode **ocultar** widgets Vanilla/de mods: basta clicar neles com o **botão direito** e selecionar **Delete**. Eles não são realmente excluídos, apenas ocultados. Para restaurá-los, clique em **barra de menu -> Element -> Deleted Vanilla Elements** e clique com o **botão esquerdo** nos elementos que deseja tornar visíveis novamente.
 
 > [!WARNING]
-> O widget **Copyright** na tela de Título é o único que você **NÃO PODE** ocultar/excluir. Isso é intencional. Por favor, não remova avisos de direitos autorais.
+> O widget **Copyright** na tela de título é o único que **NÃO PODE** ser ocultado/excluído. Isso é intencional. Não remova avisos de direitos autorais.
 
-## Elementos da Tela de Título
+## Elementos da tela de título
 
-A tela de Título tem elementos que não são widgets normais (como o logo, o texto aleatório, etc.) e que não podem ser movidos ou personalizados. Eles foram feitos para serem excluídos e substituídos por elementos personalizados (como um elemento de Imagem para o logo ou um elemento personalizado de Texto Aleatório para o texto aleatório Vanilla).
+A tela de título tem elementos que não são widgets comuns (como o logotipo, o texto de abertura etc.) e que não podem ser movidos nem personalizados. A ideia é excluí-los e substituí-los por elementos personalizados (como um elemento Image para o logotipo ou um elemento Splash Text personalizado para o texto de abertura Vanilla).
 
-Para excluí-los, basta clicar com o botão direito neles. Se quiser restaurá-los depois, basta clicar em **barra de menu -> Elemento -> Elementos Vanilla Excluídos** e **clicar com o botão esquerdo** no elemento que deseja tornar visível novamente.
+Para excluí-los, basta clicar neles com o botão direito. Se quiser restaurá-los mais tarde, clique em **barra de menu -> Element -> Deleted Vanilla Elements** e clique com o **botão esquerdo** no elemento que deseja tornar visível novamente.
 
-## Solução de problemas: Elementos Vanilla não ficam visíveis no editor
+## Solução de problemas: elementos Vanilla não aparecem no editor
 
-Se você não consegue ver os elementos Vanilla no editor, provavelmente isso é causado pelo uso de um **layout universal** em vez de um **para a tela atual**. Certifique-se de criar um layout para a tela atual. Você só pode criar layouts para a tela atual quando as personalizações estiverem ativadas para essa tela.
+Se você não consegue ver elementos Vanilla no editor, provavelmente está usando um **layout universal** em vez de um layout **para a tela atual**. Crie um layout para a tela atual. Só é possível criar layouts para a tela atual quando as personalizações estão habilitadas para essa tela.
 
-## Solução de problemas: As personalizações não são aplicadas
+## Solução de problemas: as personalizações não são aplicadas
 
-Se as personalizações em elementos Vanilla não forem aplicadas fora do editor, isso geralmente é causado por outro mod sobrescrevendo ou alterando o menu pai dos elementos Vanilla.
+Se as personalizações de elementos Vanilla não forem aplicadas fora do editor, geralmente isso acontece porque outro mod substitui ou altera o menu pai dos elementos Vanilla.
 
-Um bom exemplo de mod que sobrescreve uma tela/menu é **Ice and Fire**, que substitui a tela de Título.
+Um bom exemplo de mod que substitui uma tela/menu é o **Ice and Fire**, que substitui a tela de título.
 
-Personalizações que não são aplicadas aos menus não se limitam apenas a elementos Vanilla. Elementos personalizados adicionados às telas provavelmente também não serão aplicados aos menus se um mod estiver sobrescrevendo ou alterando-os.
+O problema de as personalizações não serem aplicadas aos menus não se limita aos elementos Vanilla. Elementos personalizados adicionados às telas provavelmente também não serão aplicados aos menus se um mod os estiver substituindo ou alterando.

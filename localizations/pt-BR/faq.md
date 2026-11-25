@@ -1,155 +1,165 @@
 ---
 title: Perguntas frequentes
 description: Perguntas frequentes.
-sourceBlobSha: 405be9869106a7871195d6e03828f428cc20b4a1
+sourceBlobSha: 4ae872e8e4a54fc6a89de7c87c8a137a89292455
 ---
 # Perguntas frequentes
 
-### Preciso de ajuda com um problema. Quais informações devo fornecer?
+### Preciso de ajuda com um problema. Que informações devo fornecer?
 
-Para obter a melhor ajuda possível, forneça o máximo de contexto:
+Para receber a melhor ajuda possível, forneça o máximo de contexto que puder:
 1.  **Uma descrição clara do problema:** O que você esperava que acontecesse e o que aconteceu de fato?
-2.  **Seu arquivo `latest.log`:** Encontre-o em `<game-directory>/logs/latest.log`. **Não envie um log de crash** a menos que isso seja solicitado especificamente; o `latest.log` geralmente contém o contexto necessário. Use um site como https://gist.github.com ao publicá-lo.
+2.  **Seu arquivo `latest.log`:** Encontre-o em `<game-directory>/logs/latest.log`. **Não envie um log de falha**, a menos que isso seja solicitado especificamente; geralmente, o `latest.log` contém o contexto necessário. Use um site como https://gist.github.com para compartilhá-lo.
 3.  **Sua versão do Minecraft:** (por exemplo, 1.20.1)
-4.  **Seu carregador de mods e sua versão:** (por exemplo, Forge 47.2.0, Fabric 0.15.7)
+4.  **Seu carregador de mods e a versão dele:** (por exemplo, Forge 47.2.0, Fabric 0.15.7)
 5.  **Sua versão do FancyMenu:** (por exemplo, 3.5.2)
-6.  **Capturas de tela ou vídeos** do problema também podem ser muito úteis.
+6.  **Capturas de tela ou vídeos** do problema também podem ajudar bastante.
 
-### Como altero a camada dos elementos (mover algo para frente ou para trás de outro elemento)?
+> [!TIP]
+> Vai pedir ajuda à Alice ou a outra IA? Adicione uma [Exportação para IA](/export-for-ai) do que não está funcionando. Ela mostra à IA exatamente como tudo está configurado e já inclui as versões do Minecraft, do carregador de mods e do FancyMenu.
 
-*   **Personalizado vs. Personalizado:** Abra **Window -> Editor Widgets -> Layers** e arraste os elementos na hierarquia. Você também pode clicar com o botão direito em um elemento e usar **Move One Layer Up/Down**. Consulte [Camadas e grupos](./layers-and-groups).
-*   **Personalizado vs. Vanilla:** Para renderizar todos os seus elementos personalizados atrás de todos os elementos vanilla (por exemplo, para colocar uma imagem de fundo atrás dos botões padrão), **clique com o botão direito no plano de fundo do editor** e ative a opção **"Render Custom Elements Behind Vanilla"**.
+### Como altero a ordem das camadas dos elementos (movo algo para a frente ou para trás de outro elemento)?
+
+- **Seus próprios elementos:** arraste as camadas no widget Camadas do editor de layouts ou clique com o botão direito em um elemento e escolha **Mover uma camada para cima** ou **Mover uma camada para baixo**. Consulte [Camadas e grupos](/layout-editor#layers-and-groups).
+- **Seus elementos e os elementos do Minecraft:** não é possível alterar a ordem dos elementos do Minecraft. Para colocar todos os seus elementos atrás deles, como uma imagem de fundo atrás dos botões padrão, clique com o botão direito no fundo do editor e defina **Elementos personalizados atrás dos elementos do Minecraft** como **Ativado**.
 
 ### Posso excluir determinados botões de um modelo universal de botões?
 
-**Não. Se um botão de modelo tiver texturas personalizadas definidas, essas texturas serão sempre compartilhadas com todos os elementos afetados. Não é possível excluir botões individuais.**
+**Não. Se um botão do modelo tiver texturas personalizadas definidas, essas texturas serão sempre compartilhadas com todos os elementos afetados. Não é possível excluir botões individuais.**
 
 ### Como faço um botão executar uma ação quando clicado?
 
-Use um [**Script de ação**](./action-scripts).
-1.  Clique com o botão direito no botão dentro do editor.
-2.  Selecione **Edit Action Script**.
-3. Clique em **Add Action** e escolha uma ação, como [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui), [**Join Server**](./action-scripts#join-server-joinserver) ou [**Set Variable Value**](./action-scripts#set-variable-value-fm-variable-set_variable).
+Use um [**Script de ação**](/action-scripts).
+1.  Clique com o botão direito no botão no editor.
+2.  Selecione **Editar script de ação**.
+3. Clique em **Adicionar ação** e escolha uma ação, como [**Abrir tela ou GUI personalizada**](/action-scripts#open-screen-or-custom-gui), [**Entrar no servidor**](/action-scripts#join-server) ou [**Definir valor da variável**](/action-scripts#set-variable-value-fm-variable).
 
-### Posso criar uma tela de menu completamente nova do zero?
+### Posso criar uma tela de menu totalmente nova do zero?
 
-Use uma [**GUI personalizada**](./custom-guis).
-1.  Na barra de menu, acesse **Customization -> Custom GUIs -> Manage Custom GUIs**.
-2.  Clique em **"New GUI"** e atribua um identificador exclusivo.
-3.  Em seguida, você poderá abrir essa nova tela vazia e criar um layout para ela, adicionando os elementos que quiser.
-4. Abra a GUI personalizada com a ação [**Open Screen or Custom GUI**](./action-scripts#open-screen-or-custom-gui-opengui).
+Sim, com uma [GUI personalizada](/custom-guis):
+
+1. Abra **Barra de menus -> Personalização -> GUIs personalizadas -> Gerenciar GUIs personalizadas** e clique em **Nova GUI**.
+2. Dê a ela um identificador, como `modpack_info`, e clique em **Concluído**.
+3. Abra-a com **Abrir GUI** e crie um layout para ela, como faria para qualquer outro menu.
+4. Abra-a por meio de um botão com a ação [**Abrir tela ou GUI personalizada**](/action-scripts#open-screen-or-custom-gui) e o identificador dela.
 
 ### Meu jogo está demorando muito para carregar depois que ativei o pré-carregamento.
 
-Esse comportamento é esperado. O pré-carregamento de recursos grandes, como animações ou sons de alta resolução, durante a inicialização aumentará naturalmente o tempo de carregamento do jogo.
+Esse comportamento é esperado. Pré-carregar recursos grandes, como animações em alta resolução ou sons, durante a inicialização aumenta naturalmente o tempo de carregamento do jogo.
 
-### Minha animação FMA está usando RAM demais!
+### Minha animação usa muita RAM ou deixa o jogo lento!
 
-As [animações FMA](./fma) clássicas podem consumir muita memória quando contêm muitos quadros de alta resolução. AFMA é mais adequada para texturas animadas grandes ou complexas. Mantenha as animações FMA clássicas curtas; use [Vídeo](./video) para reproduzir vídeos completos.
+Quadros grandes e taxas de quadros altas consomem memória e afetam o desempenho. Use quadros com dimensões próximas às que terão na tela e menos quadros por segundo. Consulte [Animações](/animations#performance). Para clipes longos com som, use um [vídeo](/video).
 
 ### O FancyMenu funciona com o OptiFine?
 
-Não. O OptiFine **não é compatível** e é conhecido por quebrar muitos mods, incluindo o FancyMenu. É altamente recomendável usar alternativas modernas, como Sodium/Embeddium + Iris/Oculus.
-Consulte [Alternativas ao OptiFine](./optifine-alternatives).
+Não. O OptiFine **não é compatível** e é conhecido por causar problemas em muitos mods, inclusive no FancyMenu. É altamente recomendável usar alternativas modernas, como Sodium/Embeddium + Iris/Oculus.
+Consulte [Alternativas ao OptiFine](/optifine-alternatives).
 
-### Meu jogo está travando. Como descubro se é um conflito entre mods?
+### Meu jogo está travando. Como descubro se há um conflito entre mods?
 
-A melhor maneira de verificar se há um conflito entre mods é **executar o jogo apenas com o FancyMenu e suas dependências** (Konkrete, Melody). Se o crash não ocorrer mais, adicione os outros mods novamente em pequenos grupos até que o crash volte a acontecer, identificando assim o mod em conflito.
+A melhor maneira de verificar se há um conflito entre mods é **executar o jogo somente com o FancyMenu e suas dependências** (Konkrete, Melody). Se o travamento não acontecer mais, adicione os outros mods em pequenos grupos até que o problema volte, para identificar o mod em conflito.
 
 ### Um botão de outro mod desaparece ou não funciona quando tento editá-lo.
 
-Alguns mods adicionam widgets de maneiras que o FancyMenu não consegue detectar ou personalizar. Consulte [Elementos Vanilla/Mod](./vanilla-elements) e, para telas baseadas em listas, [Personalizando telas roláveis](./customizing-scrollable-screens). Se o widget ainda não aparecer, o mod que o adiciona precisa disponibilizá-lo como um widget de tela compatível.
+Alguns mods adicionam widgets de uma forma que o FancyMenu não consegue detectar ou personalizar. Consulte [Elementos do Minecraft/mods](/vanilla-elements) e, para telas com listas, [Personalizar telas com rolagem](/customizing-scrollable-screens). Se o widget ainda não aparecer, o mod que o adiciona precisa expô-lo como um widget de tela compatível.
 
 ### Posso usar layouts do FancyMenu em um servidor?
 
-Os layouts e as personalizações visuais são armazenados no cliente do jogador; um servidor não pode impô-los a um cliente não configurado. Distribua-os como parte de um modpack. Instale o FancyMenu no servidor quando precisar de [comandos do servidor](./commands), [FM Data](./fm-data), [acesso a NBT no lado do servidor](./nbt-data-placeholder#server-side-placeholder), regras do jogo, estruturas ou listeners do servidor.
+Os layouts e as personalizações visuais ficam armazenados no cliente do jogador; um servidor não pode aplicá-los à força em um cliente sem configuração. Distribua-os como parte de um modpack. Instale o FancyMenu no servidor quando precisar de [comandos de servidor](/commands), [dados do FM](/fm-data), [acesso ao NBT no servidor](/nbt-data-placeholder#server-side-placeholder), regras de jogo, estruturas ou listeners do servidor.
 
-### Qual é a diferença entre o FancyMenu v2 (para versões antigas do MC) e o v3?
+### Qual é a diferença entre o FancyMenu v2 (para versões antigas do Minecraft) e o v3?
 
-O FancyMenu v3 é uma reescrita completa, com muitos recursos novos, uma arquitetura mais estável e melhor desempenho. A v2 está desatualizada, não recebe mais suporte e não conta com muitos recursos, como placeholders avançados e scripts. É altamente recomendável usar a v3 em uma versão moderna do Minecraft (1.18.2+). Os layouts da v2 podem ser convertidos automaticamente para a v3 quando carregados, mas talvez seja necessário fazer alguns ajustes manuais.
+O FancyMenu v3 foi completamente reescrito e tem muitos recursos novos, uma arquitetura mais estável e melhor desempenho. O v2 está desatualizado, não é mais compatível e não tem muitos recursos, como placeholders avançados e scripts. É altamente recomendável usar o v3 em uma versão moderna do Minecraft (1.18.2+). Os layouts do v2 podem ser convertidos automaticamente para o v3 ao serem carregados, mas talvez seja necessário fazer alguns ajustes manualmente.
 
-### Onde posso encontrar layouts e modelos prontos?
+### Onde encontro layouts e modelos prontos?
 
-A comunidade do FancyMenu compartilha layouts no canal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) do servidor oficial do Discord Keksuccino's Mods ("Kekscord").
+A comunidade do FancyMenu compartilha configurações completas no canal [`#layout-templates`](https://discord.com/channels/704163135787106365/1234093433795383316) do servidor oficial do Discord ("Kekscord"). Instale-os como um perfil separado; consulte [Modelos de layout](/profiles#layout-templates).
 
-### Como faço a entidade do jogador ser renderizada atrás de outros elementos?
+### Como faço a entidade do jogador ser renderizada atrás dos outros elementos?
 
-Geralmente, não é possível forçar um [elemento Entidade do jogador](./elements#player-entity) a ficar atrás de elementos 2D normais por meio do [widget Camadas](./layers-and-groups). O renderizador da entidade pode ignorar a ordem normal das camadas da GUI. Planeje o layout levando essa limitação em consideração ou use uma imagem pré-renderizada quando for necessário manter uma ordem rígida entre as camadas.
+Em geral, não é possível forçar um [elemento Entidade do jogador](/elements#player-entity) a ficar atrás de elementos 2D comuns usando o [widget Camadas](/layout-editor#layers-and-groups). O renderizador desse elemento pode ignorar a ordem normal das camadas da GUI. Crie o layout levando essa limitação em conta ou use uma imagem pré-renderizada quando for essencial controlar a ordem das camadas.
 
-### Minha entidade do jogador tem apenas uma perna! O que aconteceu?
+### Minha entidade do jogador só tem uma perna! O que aconteceu?
 
-Isso é um erro visual, provavelmente causado por um conflito com outro mod que altera as animações ou os modelos do jogador. Verifique as configurações de pose da entidade do jogador para ver se as pernas foram giradas ou movidas acidentalmente.
+Isso é uma falha visual, provavelmente causada por um conflito com outro mod que altera as animações ou os modelos dos jogadores. Confira as configurações de Pose da entidade do jogador para ver se as pernas foram giradas ou movidas por acidente.
 
-### Como crio um atraso entre ações em um script?
+### Como crio um intervalo entre ações em um script?
 
-Use os blocos [**Delay** ou **Execute Later**](./action-scripts#what-are-statements) para criar uma lógica de ações atrasadas. Para uma lógica repetitiva executada em segundo plano, use [Agendadores](./schedulers).
+Clique com o botão direito na área do script do editor de scripts de ação, clique em **Adicionar bloco EXECUTAR MAIS TARDE** e coloque dentro dele as ações que devem aguardar. Elas serão executadas uma vez, após o tempo definido em milissegundos, e o restante do script continuará imediatamente. Consulte [Executar mais tarde](/action-scripts#execute-later).
 
-### Posso personalizar menus do mod Create?
+Para ações que devem se repetir, use [Agendadores](/schedulers).
 
-Não. A personalização é intencionalmente desativada para as telas do Create. Consulte [Telas nas quais a personalização está intencionalmente desativada](./incompatibility-list#screens-where-customization-is-intentionally-disabled).
+### Posso personalizar os menus do mod Create?
+
+Não. A personalização das telas do Create está desativada intencionalmente. Consulte [Telas cuja personalização está intencionalmente desativada](/incompatibility-list#screens-where-customization-is-intentionally-disabled).
 
 ### Qual é a resolução recomendada para imagens de fundo e texturas de botões?
 
-Planos de fundo: uma imagem padrão de 1920x1080 (1080p) é um ótimo ponto de partida e será redimensionada adequadamente para a maioria dos usuários.
-Botões: a maioria dos botões vanilla tem cerca de 150–200 pixels de largura e 20 pixels de altura. Usar esse tamanho para texturas personalizadas é uma boa prática para manter a consistência.
+Planos de fundo: uma imagem padrão de 1920x1080 (1080p) é um ótimo ponto de partida e será redimensionada corretamente para a maioria dos usuários.
+Botões: a maioria dos botões padrão tem cerca de 150 a 200 pixels de largura e 20 pixels de altura. Usar esse tamanho para texturas personalizadas é uma boa prática para manter a consistência.
 
-### Existe uma maneira de abrir automaticamente um menu ou executar um comando quando um jogador conclui um objetivo no jogo (como uma missão)?
-O FancyMenu possui muitos [listeners de eventos do jogo integrados](./listeners), mas não há um listener genérico para todos os sistemas de missões de terceiros. Se o mod de missões for compatível com recompensas de comandos, use uma delas para executar [`/openguiscreen`](./commands#openguiscreen), [`/fmvariable`](./commands#fmvariable) ou outro [comando adequado do FancyMenu](./commands).
+### Existe uma maneira de abrir um menu ou executar um comando automaticamente quando um jogador conclui um objetivo do jogo (como uma missão)?
+O FancyMenu tem vários [listeners de eventos do jogo integrados](/listeners), mas não há um listener genérico para todos os sistemas de missões de terceiros. Se o mod de missões aceitar recompensas em forma de comandos, use um para executar [`/openguiscreen`](/commands#openguiscreen), [`/fmvariable`](/commands#fmvariable) ou outro [comando do FancyMenu](/commands) apropriado.
 
-### Como faço um botão ficar inativo ou "acinzentado"?
+### Como desativo um botão ou faço com que ele fique "acinzentado"?
 
-Você pode controlar o estado ativo de um botão usando [Requisitos de carregamento](./conditions).
-Clique com o botão direito no botão dentro do editor e selecione **Control Active State**.
-Adicione um requisito que precise ser atendido para que o botão fique ativo. Para desativá-lo permanentemente, use [**Is Number**](./conditions#is-number-fancymenu_visibility_requirement_is_number) para verificar se 0 é igual a 1.
-O botão passará a usar sua textura de "Inactive Background" e não poderá ser clicado.
+Você pode controlar o estado ativo de um botão usando [requisitos](/conditions).
+Clique com o botão direito no botão no editor e selecione **Controlar estado ativo**.
+Adicione um requisito que precise ser atendido para que o botão fique ativo. Para desativá-lo permanentemente, use [**É número**](/conditions#is-number) para verificar se 0 é igual a 1.
+O botão passará a usar a textura de "fundo inativo" e não poderá ser clicado.
 
-### Como removo o cabeçalho e o rodapé (as barras com textura de terra) das telas roláveis?
+### Como removo o cabeçalho e o rodapé (as barras com textura de terra) das telas com rolagem?
 
-No editor de layout, abra **Layout Properties -> Header/Footer Customizations**. Defina as texturas como transparentes. Essa opção pode não estar disponível em algumas telas modificadas.
+No editor de layouts, abra **Propriedades do layout -> Personalizações de cabeçalho/rodapé**. Defina as texturas como transparentes. Essa opção pode não estar disponível em algumas telas modificadas.
 
 ### Não consigo criar um layout "para a tela atual". O botão está acinzentado.
 
-Primeiro, é necessário ativar as personalizações para essa tela em **menu bar -> Customization -> Current Screen Customizations -> Enabled**.
+Ative primeiro as personalizações dessa tela: clique em **Barra de menus -> Personalização -> Personalização da tela atual** e confira se aparece **Ativado**.
 
-### Não consigo personalizar nenhum elemento de uma tela quando a abro no editor. Ela aparece apenas como uma tela vazia.
+### Não consigo personalizar nenhum elemento de uma tela quando a abro no editor. Ela fica vazia.
 
-Isso pode significar que você criou um [Layout universal](./universal-layouts) em vez de um layout **para a tela atual**.
+Talvez você tenha criado um [Layout universal](/universal-layouts) em vez de um layout **para a tela atual**.
 
-Também pode ser uma [tela rolável](./customizing-scrollable-screens), que o FancyMenu não consegue personalizar por padrão.
+Também pode ser uma [tela com rolagem](/customizing-scrollable-screens), que o FancyMenu não consegue personalizar por padrão.
 
-A terceira possibilidade é que seja uma tela de um mod que adiciona elementos de uma maneira diferente da Vanilla, impedindo o FancyMenu de personalizá-los.
+Outra possibilidade é que seja uma tela de um mod que adiciona elementos de uma forma diferente da padrão, impedindo que o FancyMenu os personalize.
 
-### Há caixas cinzas estranhas no meu elemento de texto.
+### Há umas caixas cinzas estranhas no meu elemento de texto.
 
-Essas caixas translúcidas são as alças de rolagem do [elemento de texto](./elements#text), não um erro de renderização.
+São as barras de rolagem do [elemento de texto](/elements#text). Elas aparecem quando o texto não cabe no elemento, permitindo que os jogadores rolem o conteúdo.
 
-Se você não quiser que essas caixas fiquem visíveis, pode clicar com o botão direito no elemento e desativar completamente a rolagem OU definir as texturas das alças como completamente transparentes no mesmo menu do botão direito, caso ainda queira que o elemento possa ser rolado.
+- Aumente o tamanho do elemento ou encurte o texto para que elas desapareçam.
+- Clique com o botão direito no elemento e abra **Barras de rolagem**. **Exibir** define quando elas aparecem: **Sempre**, apenas **Durante a rolagem** ou **Nunca**. Mesmo com **Nunca**, ainda é possível rolar usando a roda do mouse.
+- No mesmo menu, as opções **Estilo do controle deslizante**, **Texturas do controle deslizante** e **Cor do controle deslizante [HEX]** alteram a aparência.
 
-### Como posso mostrar o changelog mais recente do Minecraft nos meus menus?
+Consulte [Texto nos menus](/text-in-menus#scroll-bars) para ver todas as configurações das barras de rolagem.
 
-Existe um excelente [projeto no GitHub](https://github.com/ClaytonTDM/minecraft-changelogs-markdown) que converte os changelogs do Minecraft para Markdown compatível com o FancyMenu, permitindo mostrar o changelog mais recente do MC nos seus menus! Ele é atualizado diariamente para buscar novos changelogs.
+### Como exibo nos meus menus as notas de atualização mais recentes do Minecraft?
 
-Para mostrá-lo em um [elemento de texto](./elements#text), defina **Source Mode** como **Resource** e a fonte do recurso como **Web**. Use `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
+Há um ótimo [projeto no GitHub](https://github.com/ClaytonTDM/minecraft-changelogs-markdown) que converte as notas de atualização do Minecraft para Markdown compatível com o FancyMenu, permitindo exibir as notas de atualização mais recentes do MC nos seus menus! Ele é atualizado diariamente para buscar novas notas.
 
-### Qual é a maneira mais fácil de redimensionar qualquer elemento para o tamanho da tela?
+Para exibi-las em um [elemento de texto](/elements#text), defina **Modo de origem** como **Recurso** e a origem do recurso como **Web**. Use `https://clay.is-a.dev/minecraft-changelogs-markdown/{"placeholder":"mcversion"}/fancymenu.md`.
 
-A maioria dos elementos possui, no menu de contexto do botão direito, uma opção para redimensioná-los horizontal e verticalmente. Ativá-la fará com que eles sempre ocupem toda a largura e/ou altura da tela. O redimensionamento horizontal e vertical pode ser ativado de forma independente.
+### Qual é a maneira mais fácil de redimensionar qualquer elemento para ocupar a tela inteira?
 
-### Não consigo clicar nos botões nem interagir com os controles deslizantes quando eles estão atrás ou na frente de um elemento de texto.
+A maioria dos elementos tem uma opção nos menus de contexto, abertos com o botão direito, para esticá-los horizontal e verticalmente. Ao ativá-la, o elemento sempre será esticado para ocupar toda a largura e/ou altura da tela. O esticamento horizontal e o vertical podem ser ativados separadamente.
 
-Isso acontece porque os elementos de texto são interativos por padrão (para permitir pegar a alça de rolagem ou clicar em hiperlinks Markdown), o que faz com que consumam cliques do mouse e eventos de rolagem. O ideal é simplesmente não mover botões para trás ou para a frente de elementos de texto, mas, se não houver outra opção, você pode tornar o elemento de texto não interativo **clicando nele com o botão direito** e definindo **Interactable** como **Disabled**. Lembre-se de que isso transforma o elemento de texto em um texto estático e não interativo, portanto não será mais possível rolá-lo nem clicar em hiperlinks.
+### Não consigo clicar nos botões nem interagir com os controles deslizantes quando eles ficam atrás ou na frente de um elemento de texto.
 
-### Como faço para que botões e controles deslizantes não sejam mais selecionados ou focados ao navegar pelas telas com as teclas de seta e Tab?
+Isso acontece porque os elementos de texto são interativos por padrão (para permitir arrastar o controle deslizante ou clicar em links Markdown), então eles consomem cliques do mouse e eventos de rolagem. O melhor é simplesmente não colocar botões atrás ou na frente de elementos de texto. Se não houver outra opção, você pode desativar a interação do elemento de texto: **clique com o botão direito nele** e defina **Interativo** como **Desativado**. Tenha em mente que isso transforma o elemento de texto em um texto estático e não interativo, que não poderá mais ser rolado nem terá links clicáveis.
 
-Para impedir que botões e controles deslizantes sejam navegáveis, **clique neles com o botão direito** e defina **Navigable** como **Disabled**. O botão ou controle deslizante continuará podendo ser clicado, mas não será mais possível focá-lo usando a navegação pelas teclas de seta ou Tab.
+### Como faço para que botões e controles deslizantes não sejam mais selecionados ou recebam foco ao navegar pelas telas com as teclas de seta e Tab?
 
-Isso também é útil se você quiser adicionar botões ou controles deslizantes à tela de bate-papo, pois ainda poderá usar a tecla Seta para cima para percorrer mensagens antigas sem selecionar acidentalmente esses elementos.
+Para que não seja possível navegar até botões e controles deslizantes, **clique com o botão direito** neles e defina **Navegável** como **Desativado**. Ainda será possível clicar no botão ou controle deslizante, mas não será possível focá-lo usando as teclas de seta ou Tab.
 
-### Está faltando uma opção que deveria existir em um dos menus de contexto do FancyMenu.
+Isso também é útil se você quiser adicionar botões ou controles deslizantes à tela de bate-papo, pois ainda poderá usar a tecla de seta para cima para percorrer mensagens antigas sem selecionar esses elementos por acidente.
 
-Os menus de contexto do FancyMenu (os menus que são abertos ao clicar com o botão direito em algum lugar ou ao interagir com barras de menu) são ROLÁVEIS. Isso significa que você pode usar a roda do mouse enquanto o cursor estiver sobre o menu para rolar para cima ou para baixo e ver mais opções que antes não estavam visíveis.
+### Está faltando uma opção em um dos menus de contexto do FancyMenu.
 
-### Não consigo personalizar a tela de título; quando saio do editor, a tela original continua aparecendo.
+Os menus de contexto do FancyMenu (os menus que aparecem quando você clica com o botão direito em algum lugar ou interage com as barras de menu) têm rolagem. Isso significa que você pode usar a roda do mouse sobre o menu para rolar para cima ou para baixo e ver mais opções que antes não estavam visíveis.
+
+### Não consigo personalizar a tela de título; ela continua mostrando a original quando saio do editor.
 
 Outro mod está substituindo a `title_screen` original. Desative a tela de título personalizada desse mod nas configurações dele. Se não houver essa opção, o FancyMenu não poderá aplicar o layout à tela substituta.
 
@@ -157,6 +167,6 @@ Outro mod está substituindo a `title_screen` original. Desative a tela de títu
 
 Isso é esperado. O FancyMenu não oferece suporte à edição do contêiner em si de nenhum tipo de tela de inventário (inventário do jogador, baú, bancada de trabalho etc.), pois seria muito difícil adicionar esse suporte.
 
-Ainda é possível adicionar novos elementos a essas telas; apenas não é possível editar os contêineres.
+Ainda é possível adicionar novos elementos a essas telas; só não é possível editar os contêineres.
 
-O SpiffyHUD também não ajudará nesse caso, pois ele serve para editar a HUD (por exemplo, a barra de itens), mas não pode editar telas (como telas de inventário).
+Aliás, o SpiffyHUD também não ajudará nesse caso, pois serve para editar o HUD (por exemplo, a barra de itens), mas não pode editar telas (como as telas de inventário).

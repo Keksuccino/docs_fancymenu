@@ -1,43 +1,45 @@
 ---
-title: Música de Fundo do Menu
-description: Personalize a música tocada nos menus.
+title: Música de fundo dos menus
+description: Personalize a música que toca nos menus.
+sourceBlobSha: 46d219f5573b915991f23082cfbc42e6ed11d132
 ---
-# Música de Fundo do Menu
 
-O FancyMenu pode desativar a música de menu da Vanilla, reproduzir uma lista global de faixas ou usar [elementos de Áudio](./elements#audio) para música específica de cada layout.
+# Música de fundo dos menus
 
-# Música Global do Menu
+O FancyMenu pode desativar a música dos menus do Vanilla, reproduzir uma lista global de faixas ou usar [elementos de áudio](/elements#audio) para reproduzir músicas específicas de cada layout.
 
-Abra [**Personalizações Globais**](./global-customizations) em **Customização -> Personalizações Globais** fora do editor de layout.
+# Música global dos menus
 
-Use estas configurações:
+Abra [**Personalizações globais**](/global-customizations) em **Personalização -> Personalizações globais**, fora do editor de layout.
 
-- **Reproduzir Música de Menu da Vanilla** ativa ou desativa globalmente a música de menu da Vanilla.
-- **Faixas de Música Personalizada do Menu** gerencia a lista global de faixas substitutas.
+Use estas opções:
+
+- **Reproduzir música dos menus do Vanilla** ativa ou desativa globalmente a música dos menus do Vanilla.
+- **Faixas de música personalizadas dos menus** gerencia a lista global de faixas substitutas.
 
 > [!IMPORTANT]
-> As faixas personalizadas globais do menu só tocam quando nenhum mundo está carregado, como na tela de título. Use um elemento [**Áudio**](./elements#audio) para áudio de menu dentro do mundo.
+> As faixas personalizadas globais só tocam quando nenhum mundo está carregado, como na tela inicial. Para reproduzir áudio nos menus dentro de um mundo, use um elemento [**Áudio**](/elements#audio).
 
-As faixas globais usam o canal de som Music. A primeira faixa começa após cerca de cinco segundos; as faixas seguintes usam um atraso aleatório de cerca de um a trinta segundos. A seleção é aleatória e evita repetir imediatamente a faixa anterior quando há mais de uma faixa configurada.
+As faixas globais usam o canal de som Música. A primeira faixa começa a tocar após cerca de cinco segundos; as seguintes começam após um intervalo aleatório de aproximadamente um a trinta segundos. A seleção é aleatória e evita repetir imediatamente a faixa anterior quando há mais de uma faixa configurada.
 
-# Controle de Música por Tela
+# Controle de música por tela
 
-Adicione um elemento [**Controlador de Música**](./elements#music-controller) a um layout para controlar a música da Vanilla para aquela tela:
+Adicione um elemento [**Controlador de música**](/elements#music-controller) a um layout para controlar a música do Vanilla naquela tela:
 
-1. Clique com o botão direito no fundo do editor.
-2. Selecione **Novo Elemento -> Controlador de Música**.
-3. Configure separadamente Música do Menu e Música do Mundo.
+1. Clique com o botão direito no plano de fundo do editor.
+2. Selecione **Novo elemento -> Controlador de música**.
+3. Configure separadamente a música dos menus e a música do mundo.
 
-O elemento suporta [requisitos de carregamento](./conditions).
+O elemento oferece suporte a [requisitos de carregamento](/conditions).
 
-Desativar a música do menu com um Controlador de Música também impede que a lista global de faixas personalizadas do menu toque naquela tela.
+Desativar a música dos menus com um Controlador de música também impede que a lista global de faixas personalizadas toque nessa tela.
 
-# Música Personalizada com Elementos de Áudio
+# Música personalizada com elementos de áudio
 
-Use um elemento [**Áudio**](./elements#audio) quando você precisar de:
+Use um elemento [**Áudio**](/elements#audio) quando precisar de:
 
-- Música diferente em telas diferentes.
-- Música em telas dentro do mundo.
-- Requisitos de layout, playlists ordenadas, configurações de embaralhamento, volume ou controle de canal.
+- Músicas diferentes em telas diferentes.
+- Música em telas dentro de um mundo.
+- Requisitos de layout, listas de reprodução ordenadas, opções de reprodução aleatória, controle de volume ou de canal.
 
-Coloque um elemento [Áudio](./elements#audio) em um [Layout Universal](./universal-layouts) para manter o mesmo player ativo entre as telas suportadas que carregam esse layout. A personalização de tela deve estar ativada em cada tela comum na qual o layout universal deve ser aplicado.
+Coloque um [elemento Áudio](/elements#audio) em um [Layout universal](/universal-layouts) para manter o mesmo reprodutor ativo nas telas compatíveis que carregam esse layout. A personalização de tela precisa estar ativada em cada tela comum em que o layout universal deve ser aplicado.

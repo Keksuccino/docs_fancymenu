@@ -1,603 +1,823 @@
 ---
-title: Condições (Requisitos)
-description: Como usar requisitos de carregamento.
+title: Requisitos
+description: >-
+  Exiba elementos e layouts, deixe botões clicáveis ou execute ações somente
+  quando algo for verdadeiro, como o horário, o tamanho da janela ou uma
+  variável.
+sourceBlobSha: 8d7cc9e0182f8478f3a7ab86391e90cae12c626b
 ---
+
 # Requisitos
 
-Os requisitos (chamados de **Requisitos de Carregamento** em alguns menus) mostram ou ocultam conteúdo com base em condições como o estado de foco do mouse, o tamanho da janela ou se há um mundo carregado.
+Requisitos são condições, como "o mouse está sobre este botão", "estamos em dezembro" ou "um mundo está carregado". Use-os para:
 
-Você pode usá-los em [elementos](./elements), layouts inteiros e [scripts de ação](./action-scripts).
+- exibir um [elemento](/elements) apenas em certas ocasiões,
+- carregar um layout inteiro apenas em certas ocasiões,
+- deixar botões, controles deslizantes e caixas de seleção clicáveis apenas em certas ocasiões,
+- executar partes de um [script de ações](/action-scripts) apenas em certas ocasiões.
 
-# Adicionando Requisitos a Elementos
+O FancyMenu verifica os requisitos o tempo todo enquanto um menu está aberto, então os elementos aparecem, desaparecem ou mudam imediatamente. Esta caixa de informações só aparece quando o mouse está sobre "Multiplayer":
 
-Para adicionar requisitos a um elemento, clique nele com o botão direito e selecione **Requisitos de Carregamento**.
+<img width="800" alt="Passar o mouse sobre o botão Multiplayer da tela de título exibe uma caixa de informações com o endereço de um servidor ao lado" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_hover.gif?raw=true">
 
-Os requisitos são verificados enquanto o menu está aberto, portanto os elementos são atualizados quando uma condição muda.
+# Onde encontrá-los
 
-# Requisitos para Todo o Layout
+| Onde | O que os requisitos fazem |
+|---|---|
+| Clique com o botão direito em um elemento -> **Loading Requirements** | O elemento só aparece enquanto os requisitos são atendidos. Também funciona com [elementos Vanilla](/vanilla-elements). |
+| Clique com o botão direito no plano de fundo do editor -> **Loading Requirements [Layout-Wide]** | O layout inteiro só é carregado enquanto os requisitos são atendidos. Consulte [Requisitos para todo o layout](#requisitos-para-todo-o-layout). |
+| Clique com o botão direito em um botão, controle deslizante ou caixa de seleção -> **Control Active State** | O controle só fica clicável enquanto os requisitos são atendidos. Caso contrário, ele fica esmaecido. Botões Vanilla também têm essa opção. |
+| IF, ELSE-IF e WHILE em [scripts de ações](/action-scripts#statements) | As ações dentro deles só são executadas enquanto os requisitos são atendidos. |
 
-Você também pode alterar a visibilidade de layouts inteiros clicando com o botão direito no **plano de fundo do editor** e, em seguida, em **Requisitos de Carregamento [Todo o Layout]**.
+No editor de layout, os elementos sempre aparecem para que você ainda possa editá-los. Os requisitos dos elementos funcionam fora do editor.
 
-Quando o resultado de um requisito para todo o layout muda, o FancyMenu reconstrói a tela atual e aplica os layouts cujos requisitos agora são atendidos.
+> [!TIP]
+> [Visibilidade de elementos](/element-visibility) mostra outras formas de exibir e ocultar elementos, como usar atrasos, efeitos de desvanecimento e alterná-los com um botão.
 
-# Scripts de Ação
+# Adicionar um requisito
 
-Os requisitos também podem ser usados em scripts de ação.
-Você pode adicioná-los na tela do editor de scripts de ação e usá-los para executar ações específicas somente se a condição do requisito for atendida.
+<img width="800" alt="Copiando o ID do botão Multiplayer e, em seguida, definindo o requisito Is Element Hovered para a caixa de informações, com esse ID em Manage Requirements" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_add.gif?raw=true">
 
-# Combinando Requisitos
+1. Clique com o botão direito no elemento e clique em **Loading Requirements**. A janela **Manage Requirements** será aberta.
+2. Clique com o botão direito na lista vazia e clique em **Add Requirement**, ou pressione `A`.
+3. Clique em uma categoria em **Available Requirements** ou comece a digitar para pesquisar nomes e descrições. **Requirement Description** explica o requisito selecionado.
+4. Clique em **Next Step** para definir o valor. Para requisitos sem valor, a opção exibida será **Done**. Um clique duplo em um requisito faz a mesma coisa.
+5. Preencha o valor e clique em **Done**. Por exemplo, **Is Element Hovered** precisa do ID do elemento. Clique com o botão direito em um elemento e clique em **Copy Element ID** para obtê-lo.
+6. Clique em **Done** na janela **Manage Requirements**.
 
-- Requisitos fora de grupos usam **E**, portanto todos devem ser atendidos.
-- Dentro de um grupo, escolha **E** ou **OU**.
-- Use **SE NÃO** para inverter um requisito.
+## Modo do requisito
 
-Essas regras são iguais para elementos, layouts e scripts de ação.
+O botão **Requirement Mode** no seletor de requisitos alterna entre:
 
-# Valores dos Requisitos
+- **Normal**: atendido quando a condição é verdadeira.
+- **Opposite**: atendido quando a condição NÃO é verdadeira. Por exemplo, **Is World Loaded** no modo Opposite só é atendido nos menus principais.
 
-Para requisitos que precisam de um valor, use **Editar Valor do Requisito** e siga a descrição exibida no editor. Alguns campos são compatíveis com a conclusão usando **TAB**.
+A janela **Manage Requirements** mostra o modo e o valor de cada requisito.
 
-Se um requisito importado parar de funcionar após a alteração do FancyMenu ou de complementos, edite-o na tela de requisitos e verifique `logs/latest.log` em busca de erros.
+## Valores
 
-O editor de requisitos oferece um menu de contexto acessível com o botão direito, navegação pelo teclado, pesquisa, desfazer/refazer (`Ctrl/Command + Z` / `Ctrl/Command + Y`) e `Ctrl/Command + S` para salvar.
+- Os valores aceitam [espaços reservados](/placeholders) e suas [variáveis](/variables#showing-variables-in-text), como `$$coins`. O FancyMenu os substitui sempre que verifica o requisito.
+- Muitos campos de valor sugerem opções enquanto você digita, como biomas, IDs de mods, idiomas ou nomes das suas variáveis. Clique em uma sugestão ou pressione `Tab`.
+- Requisitos com um valor simples abrem um editor de texto de uma linha. O título indica o que digitar, como **Target Element ID**.
 
-# Requisitos em Detalhes
+## Gerenciar requisitos
 
-Esta seção lista os requisitos integrados do FancyMenu.
+Clique com o botão direito na lista, em um requisito ou em um grupo na janela **Manage Requirements** para acessar estas opções:
 
-## Elemento Está Sob o Cursor (`fancymenu_visibility_requirement_is_element_hovered`)
+| Opção | Atalho | O que faz |
+|---|---|---|
+| **Add Requirement** | `A` | Adiciona um requisito. |
+| **Add Group** | `G` | Adiciona um grupo (veja abaixo). |
+| **Edit Requirement** | `Enter` ou clique duplo | Abre o seletor de requisitos com o tipo, o modo e o valor do requisito. |
+| **Remove Requirement** / **Remove Group** | `Delete` | Remove o requisito ou grupo. |
+| **Undo** / **Redo** | `Ctrl + Z` / `Ctrl + Y` | Desfaz e refaz alterações nesta janela. |
+| **Export Requirements for AI** | | Exporta todos os requisitos da janela para um [chat de IA](/export-for-ai), incluindo as alterações não salvas. |
 
-**Finalidade:** Verifica se um elemento específico está sob o cursor do mouse.
+`Up` e `Down` selecionam o requisito acima ou abaixo. **Done** (`Ctrl + S`) salva, e **Cancel** descarta todas as alterações feitas na janela. No macOS, use `Cmd` no lugar de `Ctrl`.
 
-**Valor:** Obrigatório — [Identificador do elemento](./element-identifiers) do elemento-alvo (por exemplo, `some_element_ID`).
+Quando vários elementos estão selecionados, **Loading Requirements** altera os requisitos de todos eles. Se eles tiverem requisitos diferentes, o FancyMenu pergunta antes, pois todos serão substituídos.
 
-## Elemento Está Focado (`is_element_focused`)
+# Combinar requisitos
 
-**Finalidade:** Verifica se um elemento específico está atualmente com o foco do teclado (por exemplo, um campo de texto ou botão focado).
+Todos os requisitos em **Manage Requirements** precisam ser atendidos. Para dizer "isto OU aquilo", use um grupo.
 
-**Valor:** Obrigatório — ID do elemento-alvo (o mesmo ID exibido no editor)
+Um grupo funciona como um único requisito:
 
-> [!NOTE]
-> Foco e estado sob o cursor são diferentes. Um elemento pode manter sua aparência de focado depois que o ponteiro sai dele; clicar ou navegar pelo teclado pode dar foco a ele.
+- Modo **And**: tudo no grupo precisa ser atendido. Os grupos novos começam neste modo.
+- Modo **Or**: basta que um requisito do grupo seja atendido.
 
-## Algum Elemento Está Sob o Cursor (`fancymenu_visibility_requirement_is_any_element_hovered`)
+1. Clique com o botão direito na lista e clique em **Add Group**, ou pressione `G`. O grupo recebe um nome como `group_1`.
+2. Clique com o botão direito no grupo e clique em **Group Mode** para alternar entre **And** e **Or**.
+3. Clique em **Edit Group Requirements** ou dê um clique duplo no grupo. Uma janela semelhante a **Manage Requirements** será aberta para o grupo.
+4. Adicione os requisitos do grupo e clique em **Done**.
 
-**Finalidade:** Verifica os elementos visíveis/renderizáveis na camada de personalização ativa atual, incluindo elementos fornecidos por layouts empilhados.
+Por exemplo, para exibir uma saudação de Natal em dezembro ou sempre que o jogador ativar `xmas_lights`: use um grupo Or com **Is Real Time Month** `12` e **Is Variable Value (FM Variable)** para a variável `xmas_lights`, com o valor `on`.
 
-**Valor:** Não obrigatório
+<img width="800" alt="Adicionando um grupo em Manage Requirements, mudando seu modo para Or e adicionando Is Real Time Month e Is Variable Value (FM Variable) a ele" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/requirements_group.gif?raw=true">
 
-## Algum Botão Está Sob o Cursor (`fancymenu_visibility_requirement_is_any_button_hovered`)
+- Os grupos podem conter outros grupos, para expressar condições como "(A e B) ou (C e D)". O título da janela mostra onde você está, como `Edit Group: group_1 › group_2`.
+- **Edit Group Identifier** renomeia um grupo. Cada nome só pode ser usado uma vez, inclusive dentro de grupos.
+- Um grupo vazio no modo **Or** nunca é atendido.
 
-**Finalidade:** Verifica se algum botão vanilla ou personalizado visível/renderizável na camada de personalização ativa atual está sob o cursor, incluindo botões fornecidos por layouts empilhados.
+# Requisitos para todo o layout
 
-**Valor:** Não obrigatório
+Os requisitos para todo o layout determinam se um layout inteiro será carregado. Use-os para criar uma versão noturna da tela de título, um layout para cada idioma ou um layout que só apareça no modo para um jogador.
 
-## Layout Está Ativado (`fancymenu_visibility_requirement_is_layout_enabled`)
+Clique com o botão direito no plano de fundo do editor e clique em **Loading Requirements [Layout-Wide]**. A opção também está em **menu bar -> Layout -> Layout Properties**.
 
-**Finalidade:** Verifica se um layout específico está ativado no momento.
+- Se o resultado mudar enquanto o menu estiver aberto, o FancyMenu monta a tela novamente com os layouts cujos requisitos são atendidos naquele momento.
+- Eles também funcionam com [layouts universais](/universal-layouts).
+- Para ativar e desativar um layout com um botão, coloque o botão em outro layout. Consulte [Ativar e desativar layouts](/element-visibility#turning-layouts-on-and-off).
 
-**Valor:** Obrigatório — Nome do layout (por exemplo, `my_cool_main_menu_layout`)
+# Informações úteis
 
-## Agendador Está em Execução (`fancymenu_visibility_requirement_is_scheduler_running`)
+- Requisitos de mundo e de jogador nunca são atendidos quando nenhum mundo está carregado, como nos menus principais.
+- Requisitos relacionados a elementos, ao cursor do mouse, a inventários, ao jogador e ao mundo não funcionam em um [Ticker](/elements#ticker) com **Async** ativado. Nesse caso, o FancyMenu exibe um erro com o nome do requisito.
+- Requisitos de complementos que você removeu são ignorados. Salvar o layout no editor os remove permanentemente.
+- **menu bar -> Customization -> Settings -> Requirement Caching Duration [MS]** reutiliza os resultados dos requisitos por alguns milissegundos, o que deixa layouts grandes mais rápidos. O valor `0` desativa essa opção e é o padrão. O cache pode fazer com que scripts de ações e alterações rápidas tenham resultados inesperados.
 
-**Finalidade:** Verifica se um [agendador](./schedulers) está em execução no momento.
+# Todos os requisitos
 
-**Valor:** Obrigatório — ID do agendador (por exemplo, `my_scheduler`)
+Os requisitos estão organizados como no seletor de requisitos: primeiro por categoria e depois por nome. Requisitos sem categoria ficam no fim do seletor e na seção [Outros](#outros) desta página.
 
-## Escala da Interface é (`fancymenu_loading_requirement_is_gui_scale`)
+## Interface
 
-**Finalidade:** Verifica se a escala atual da interface corresponde a determinadas condições.
+### Is Active Cursor Type
 
-**Valor:** Obrigatório — Use um número para igualdade, `>` para maior que ou `<` para menor que.
+**Identificador:** `is_active_cursor_type`
 
-Várias condições separadas por vírgulas são combinadas com E. Por exemplo, `>1,<4` será atendido somente quando a escala da interface for maior que `1` e menor que `4`.
+É atendido quando o cursor do mouse tem um formato específico, como **Pointing Hand** sobre um link ou **Writing Cursor** sobre um campo de texto.
 
-## Botão Está Ativo (`fancymenu_visibility_requirement_is_button_active`)
+- Valor: clique em **Cursor Type** para escolher **Normal**, **Writing Cursor**, **Crosshair**, **Pointing Hand**, **Resize Horizontal**, **Resize Vertical**, **Resize NWSE**, **Resize NESW**, **Resize All** ou **Not Allowed**.
 
-**Finalidade:** Verifica se um botão específico está ativo (pode ser clicado).
+### Is Any Button Hovered
 
-**Valor:** Obrigatório — ID do elemento do botão-alvo (por exemplo, "some_element_ID")
+**Identificador:** `fancymenu_visibility_requirement_is_any_button_hovered`
 
-## Título da Tela é (`is_menu_title`)
+É atendido quando o mouse está sobre qualquer botão visível, Vanilla ou personalizado.
 
-**Finalidade:** Verifica se o título EXIBIDO da tela corresponde a um texto específico ou a uma chave de localização. Isso verifica somente o nome/título exibido da tela, como "Opções" ou "Pausar". Ele NÃO verifica o identificador do menu/tela (como `title_screen`)!
+### Is Any Element Hovered
 
-**Valor:** Obrigatório — Texto exato do título ou chave de localização da tela
+**Identificador:** `fancymenu_visibility_requirement_is_any_element_hovered`
 
-## Tecla Está Pressionada (`is_key_pressed`)
+É atendido quando o mouse está sobre qualquer elemento visível, não apenas botões.
 
-**Finalidade:** Verifica se uma tecla específica do teclado está sendo pressionada no momento.
+### Is Any Screen Open
 
-**Valor:** Obrigatório — Código da tecla-alvo. Selecionado por uma interface ao editar o valor do requisito.
+**Identificador:** `is_any_screen_open`
 
-## Alguma Tela Está Aberta (`is_any_screen_open`)
+É atendido quando qualquer menu está aberto, como o menu de pausa ou o inventário. Não é atendido quando você está jogando sem um menu aberto.
 
-**Finalidade:** Verifica se alguma tela/menu está aberto no momento (retorna falso se nenhuma tela estiver sendo exibida).
+### Is Button Active
 
-**Valor:** Não obrigatório
+**Identificador:** `fancymenu_visibility_requirement_is_button_active`
 
-## Sobreposição de Depuração do MC Está Ativada (`is_debug_overlay_enabled`)
+É atendido quando um botão está clicável.
 
-**Finalidade:** Verifica se a sobreposição de depuração do F3 está visível no momento.
+- Valor: o [ID do elemento](/element-identifiers) do botão. Clique com o botão direito nele no editor e clique em **Copy Element ID**.
 
-**Valor:** Não obrigatório
+### Is Customization Menu Bar Visible
 
-## Tipo de Cursor Ativo é (`is_active_cursor_type`)
+**Identificador:** `is_customization_menu_bar_visible`
 
-**Finalidade:** Verifica se o tipo de cursor atualmente ativo do FancyMenu corresponde a um tipo de cursor padrão específico.
+É atendido quando a barra de menus do FancyMenu está visível. Não é atendido no Modpack Mode ou quando a barra de menus está desativada.
 
-**Valor:** Obrigatório — Tipo de cursor: `normal`, `writing`, `crosshair`, `pointing_hand`, `resize_horizontal`, `resize_vertical`, `resize_nwse`, `resize_nesw`, `resize_all` ou `not_allowed`
+### Is Element Focused
 
-## Barra de Menu de Personalização Está Visível (`is_customization_menu_bar_visible`)
+**Identificador:** `is_element_focused`
 
-**Finalidade:** Verifica se a barra de menu de personalização do FancyMenu está visível no momento.
+É atendido quando um elemento está em foco. Botões e controles deslizantes recebem foco quando você clica neles ou navega até eles com as setas ou `Tab`. Navegar até um elemento com o teclado não conta como passar o mouse sobre ele, então coloque este requisito e **Is Element Hovered** em um [grupo Or](#combinar-requisitos) para jogadores que usam o teclado.
 
-**Valor:** Não obrigatório
+- Valor: o [ID do elemento](/element-identifiers), como `mc_titlescreen_multiplayer_button`.
 
-## Modo de Modpack Está Ativado (`is_modpack_mode_enabled`)
+### Is Element Hovered
 
-**Finalidade:** Verifica se o Modo de Modpack do FancyMenu está ativado.
+**Identificador:** `fancymenu_visibility_requirement_is_element_hovered`
 
-**Valor:** Não obrigatório
+É atendido quando o mouse está sobre um elemento. O elemento precisa estar visível.
 
-## Botão do Mouse Está Pressionado (`mouse_click`)
+- Valor: o [ID do elemento](/element-identifiers), como `mc_titlescreen_multiplayer_button` para o botão Multiplayer da tela de título. Clique com o botão direito em um elemento no editor e clique em **Copy Element ID** para obtê-lo.
 
-**Finalidade:** Retorna verdadeiro enquanto um botão específico do mouse estiver pressionado. Este não é um evento de clique único; use o [listener **Ao Clicar em um Botão do Mouse**](./listeners#on-mouse-button-clicked-mouse_button_clicked) quando uma ação precisar ser executada uma vez por clique.
+### Is Element Scrolled to End
 
-**Valor:** Obrigatório — `left` ou `right` para indicar qual botão do mouse verificar
+**Identificador:** `is_scroll_area_scrolled_to_end`
 
-## Está em Tela Cheia (`fancymenu_loading_requirement_is_fullscreen`)
+É atendido quando uma [área rolável](/scrollable-areas) ou um elemento de texto está totalmente rolado até o fim. Um elemento sem conteúdo para rolar é considerado como estando no fim. Útil para um botão **Accept** que só funciona depois que o jogador rolar pelas regras.
 
-**Finalidade:** Verifica se o jogo está no modo de tela cheia.
+- Valor: o [ID do elemento](/element-identifiers) da área rolável ou do elemento de texto.
 
-**Valor:** Não obrigatório
+### Is GUI Scale
 
-## Largura da Janela é (`fancymenu_loading_requirement_is_window_width`)
+**Identificador:** `fancymenu_loading_requirement_is_gui_scale`
 
-**Finalidade:** Verifica se a largura da janela do jogo corresponde a valores específicos.
+É atendido quando a escala da interface do Minecraft corresponde ao valor definido.
 
-**Valor:** Obrigatório — Largura da janela em pixels (por exemplo, "1920"). Vários valores podem ser fornecidos separando-os por vírgulas.
+- Valor: um número, como `2` para corresponder exatamente a essa escala, `>2` para uma escala maior que 2 ou `<4` para uma escala menor que 4. Também são aceitos decimais, como `<3.5`.
+- Separe várias condições com vírgulas. Para números simples, uma delas precisa corresponder, como `2,3`. Todas as condições `>` e `<` precisam corresponder, como `>1,<4`.
 
-## Altura da Janela é (`fancymenu_loading_requirement_is_window_height`)
+### Is Key Pressed
 
-**Finalidade:** Verifica se a altura da janela do jogo corresponde a valores específicos.
+**Identificador:** `is_key_pressed`
 
-**Valor:** Obrigatório — Altura da janela em pixels (por exemplo, "1080"). Vários valores podem ser fornecidos separando-os por vírgulas.
+É atendido enquanto uma tecla está pressionada. Para executar ações uma vez a cada pressionamento, use o listener [**On Keyboard Key Pressed**](/listeners#on-keyboard-key-pressed).
 
-## Largura da Janela é Maior que (`fancymenu_loading_requirement_is_window_width_bigger_than`)
+- Valor: clique em **Change Key** em **Key Selection** e pressione a tecla.
 
-**Finalidade:** Verifica se a largura da janela do jogo é maior que um valor específico.
+### Is Layout Enabled
 
-**Valor:** Obrigatório — Largura da janela em pixels (por exemplo, "1920")
+**Identificador:** `fancymenu_visibility_requirement_is_layout_enabled`
 
-## Altura da Janela é Maior que (`fancymenu_loading_requirement_is_window_height_bigger_than`)
+É atendido enquanto um layout está ativado.
 
-**Finalidade:** Verifica se a altura da janela do jogo é maior que um valor específico.
+- Valor: o nome do layout, como `winter_title_screen`.
 
-**Valor:** Obrigatório — Altura da janela em pixels (por exemplo, "1080")
+### Is MC Debug Overlay Enabled
 
-## É Multijogador (`fancymenu_loading_requirement_is_multiplayer`)
+**Identificador:** `is_debug_overlay_enabled`
 
-**Finalidade:** Verifica se o jogador está em um mundo multijogador no momento.
+É atendido quando a tela de depuração F3 está visível. Não é atendido quando a interface está oculta com F1.
 
-**Valor:** Não obrigatório
+### Is Modpack Mode Enabled
 
-## É Um Jogador (`fancymenu_loading_requirement_is_singpleplayer`)
+**Identificador:** `is_modpack_mode_enabled`
 
-**Finalidade:** Verifica se o jogador está em um mundo para um jogador no momento.
+É atendido quando o Modpack Mode do FancyMenu está ativado.
 
-**Valor:** Não obrigatório
+### Is Screen Title
 
-## Mundo Está Carregado (`fancymenu_loading_requirement_is_world_loaded`)
+**Identificador:** `is_menu_title`
 
-**Finalidade:** Verifica se há algum mundo carregado no momento.
+É atendido quando o título da tela aberta corresponde ao valor, como "Options" ou "Game Menu". Este é o título que os jogadores veem, não o [identificador da tela](/screen-identifiers).
 
-**Valor:** Não obrigatório
+- Valor: o texto do título ou sua chave de localização, como `options.title`. A janela de valores exibe ambos para a tela que você está editando e sugere chaves de localização.
+- As chaves de localização funcionam em todos os idiomas. O texto do título precisa corresponder exatamente.
 
-## Está no Modo Aventura (`fancymenu_visibility_requirement_is_adventure`)
+## Tempo real
 
-**Finalidade:** Verifica se o jogador está no modo de jogo aventura.
+Estes requisitos verificam o relógio do computador do jogador. Separe vários valores com vírgulas: um deles precisa corresponder.
 
-**Valor:** Não obrigatório
+### Is Real Time Day
 
-## Está no Modo Criativo (`fancymenu_visibility_requirement_is_creative`)
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_day`
 
-**Finalidade:** Verifica se o jogador está no modo de jogo criativo.
+É atendido em determinados dias do mês.
 
-**Valor:** Não obrigatório
+- Valor: de `1` a `31`, como `24,25,26`.
 
-## Está no Modo Espectador (`fancymenu_visibility_requirement_is_spectator`)
+### Is Real Time Hour
 
-**Finalidade:** Verifica se o jogador está no modo de jogo espectador.
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_hour`
 
-**Valor:** Não obrigatório
+É atendido em determinados horários.
 
-## Está no Modo Sobrevivência (`fancymenu_visibility_requirement_is_survival`)
+- Valor: de `0` a `23`, como `20,21,22,23` para o período da noite.
 
-**Finalidade:** Verifica se o jogador está no modo de jogo sobrevivência.
+### Is Real Time Minute
 
-**Valor:** Não obrigatório
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_minute`
 
-## É um Modo de Jogo (`is_gamemode`)
+É atendido em determinados minutos da hora.
 
-**Finalidade:** Verifica se o jogador está em um modo de jogo específico.
+- Valor: de `0` a `59`.
 
-**Valor:** Obrigatório — Nome do modo de jogo (por exemplo, "creative", "survival", "adventure", "spectator")
+### Is Real Time Month
 
-## É uma Dificuldade (`is_difficulty`)
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_month`
 
-**Finalidade:** Verifica se a dificuldade atual do jogo corresponde a um valor específico.
+É atendido em determinados meses.
 
-**Valor:** Obrigatório — Nome da dificuldade (por exemplo, "peaceful", "easy", "normal", "hard")
+- Valor: de `1` (janeiro) a `12` (dezembro), como `12` para o Natal.
 
-## É Hardcore (`is_hardcore`)
+### Is Real Time Second
 
-**Finalidade:** Verifica se o mundo carregado está no modo hardcore.
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_second`
 
-**Valor:** Não obrigatório
+É atendido em determinados segundos do minuto.
 
-## Perspectiva da Câmera é (`is_camera_perspective`)
+- Valor: de `0` a `59`.
 
-**Finalidade:** Verifica se a perspectiva atual da câmera corresponde a uma perspectiva específica.
+### Is Real Time Week Day
 
-**Valor:** Obrigatório — `first_person`, `third_person_back` ou `third_person_front`
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_week_day`
 
-## Está Chovendo (`is_raining`)
+É atendido em determinados dias da semana.
 
-**Finalidade:** Verifica se está chovendo no local do jogador.
+- Valor: de `1` (domingo) a `7` (sábado), como `1,7` para os fins de semana.
 
-**Valor:** Não obrigatório
+### Is Real Time Year
 
-## Está Trovejando (`is_thundering`)
+**Identificador:** `fancymenu_visibility_requirement_is_realtime_year`
 
-**Finalidade:** Verifica se há uma tempestade no mundo do jogador.
+É atendido em determinados anos.
 
-**Valor:** Não obrigatório
+- Valor: o ano completo, como `2027`.
 
-## O Clima Está Limpo (`is_clear_weather`)
+## Sistema
 
-**Finalidade:** Verifica se o clima está limpo (sem chuva ou trovoadas).
+### File/Folder Exists
 
-**Valor:** Não obrigatório
+**Identificador:** `fancymenu_loading_requirement_file_exists`
 
-## Está Nevando (`is_snowing`)
+É atendido quando um arquivo ou uma pasta existe.
 
-**Finalidade:** Verifica se está nevando no local do jogador.
+- Valor: um caminho na pasta do jogo, como `config/mymodpack/welcome_seen.txt`. Caminhos que começam com `.minecraft/` apontam para a pasta `.minecraft` padrão.
 
-**Valor:** Não obrigatório
+### Is Internet Connection Available
 
-## O Jogador Está Correndo (`is_player_running`)
+**Identificador:** `is_internet_connection_available`
 
-**Finalidade:** Verifica se o jogador está correndo no momento.
+É atendido quando o computador está conectado à internet. O FancyMenu verifica isso em segundo plano de tempos em tempos.
 
-**Valor:** Não obrigatório
+### Is OS Linux
 
-## O Jogador Está Agachado (`is_player_sneaking`)
+**Identificador:** `fancymenu_loading_requirement_is_os_linux`
 
-**Finalidade:** Verifica se o jogador está se esgueirando/agachado no momento.
+É atendido no Linux. Tecnicamente, em qualquer sistema que não seja Windows nem macOS.
 
-**Valor:** Não obrigatório
+### Is OS macOS
 
-## O Jogador Está Usando um Item (`is_player_using_item`)
+**Identificador:** `fancymenu_loading_requirement_is_os_macos`
 
-**Finalidade:** Verifica se o jogador está usando um item no momento.
+É atendido no macOS.
 
-**Valor:** Não obrigatório
+### Is OS Windows
 
-## O Jogador Está Nadando (`is_player_swimming`)
+**Identificador:** `fancymenu_loading_requirement_is_os_windows`
 
-**Finalidade:** Verifica se o jogador está nadando no momento.
+É atendido no Windows.
 
-**Valor:** Não obrigatório
+### Scheduler Is Running
 
-## O Jogador Está Pulando ou Caindo (`is_player_jumping`)
+**Identificador:** `fancymenu_visibility_requirement_is_scheduler_running`
 
-**Finalidade:** Retorna verdadeiro enquanto o jogador estiver no ar em um estado normal de salto ou queda. Natação, fluidos, voo com élitros, sono, natação visual e rastejamento são excluídos.
+É atendido enquanto um [agendador](/schedulers) está em execução.
 
-**Valor:** Não obrigatório
+- Valor: o identificador do agendador, como `my_scheduler`.
 
-## O Jogador Está Debaixo d'Água (`is_player_under_water`)
+## Janela
 
-**Finalidade:** Verifica se o jogador está completamente debaixo d'água.
+Os tamanhos da janela são medidos em pixels reais da janela do jogo, não em pixels da interface. A descrição do requisito mostra o tamanho atual.
 
-**Valor:** Não obrigatório
+### Is Fullscreen
 
-## O Jogador Está na Água (`is_player_in_water`)
+**Identificador:** `fancymenu_loading_requirement_is_fullscreen`
 
-**Finalidade:** Verifica se o jogador está na água (ele pode estar parcialmente submerso).
+É atendido enquanto o jogo está em tela cheia.
 
-**Valor:** Não obrigatório
+### Is Window Height
 
-## O Jogador Está na Lava (`is_player_in_lava`)
+**Identificador:** `fancymenu_loading_requirement_is_window_height`
 
-**Finalidade:** Verifica se o jogador está na lava.
+É atendido quando a janela tem uma determinada altura.
 
-**Valor:** Não obrigatório
+- Valor: a altura, como `1080`. Separe várias alturas com vírgulas: uma delas precisa corresponder.
 
-## O Jogador Está em um Fluido (`is_player_in_fluid`)
+### Is Window Height Bigger Than
 
-**Finalidade:** Verifica se o jogador está em qualquer fluido (água, lava etc.).
+**Identificador:** `fancymenu_loading_requirement_is_window_height_bigger_than`
 
-**Valor:** Não obrigatório
+É atendido enquanto a janela é mais alta que o valor definido.
 
-## O Jogador Está Montado em uma Entidade/Veículo (`is_player_riding_entity`)
+- Valor: a altura, como `1080`.
 
-**Finalidade:** Verifica se o jogador está montado em alguma entidade.
+### Is Window Width
 
-**Valor:** Não obrigatório
+**Identificador:** `fancymenu_loading_requirement_is_window_width`
 
-## O Jogador Está Montado em uma Entidade que Pode Pular (`is_player_riding_jumpable_entity`)
+É atendido quando a janela tem uma determinada largura.
 
-**Finalidade:** Verifica se o jogador está montado em uma entidade que pode pular (como um cavalo).
+- Valor: a largura, como `1920`. Separe várias larguras com vírgulas: uma delas precisa corresponder.
 
-**Valor:** Não obrigatório
+### Is Window Width Bigger Than
 
-## O Jogador Está Montado em uma Entidade com Vida (`is_player_riding_entity_with_health`)
+**Identificador:** `fancymenu_loading_requirement_is_window_width_bigger_than`
 
-**Finalidade:** Verifica se o jogador está montado em uma entidade viva com vida (como animais, mas não barcos).
+É atendido enquanto a janela é mais larga que o valor definido.
 
-**Valor:** Não obrigatório
+- Valor: a largura, como `1920`.
 
-## O Jogador Está na Neve Fofa (`is_player_in_powder_snow`)
+## Mundo
 
-**Finalidade:** Verifica se o jogador está na neve fofa no momento.
+Estes requisitos nunca são atendidos quando nenhum mundo está carregado. **Is Player In Structure** e **Is In Active Raid Area** precisam do FancyMenu no servidor. No modo para um jogador, eles sempre funcionam.
 
-**Valor:** Não obrigatório
+### Has Player Absorption Hearts
 
-## O Jogador Estava na Neve Fofa (`was_player_in_powder_snow`)
+**Identificador:** `has_player_absorption_hearts`
 
-**Finalidade:** Verifica se o jogador estava na neve fofa (usado para efeitos que persistem depois que ele sai dela).
+É atendido enquanto o jogador tem corações dourados de absorção.
 
-**Valor:** Não obrigatório
+### Has Player Permission Level
 
-## O Jogador Está Usando uma Abóbora (`is_player_wearing_pumpkin`)
+**Identificador:** `fancymenu_loading_requirement_has_player_permission_level`
 
-**Finalidade:** Verifica se o jogador está usando uma abóbora esculpida na cabeça.
+É atendido enquanto o jogador tem, no mundo ou no servidor, pelo menos um determinado nível de permissão, como o de operador.
 
-**Valor:** Não obrigatório
+- Valor: de `0` a `4`. O nível `0` é sempre atendido, `2` é suficiente para comandos como `/gamemode`, e `4` é o nível concedido pelo comando `/op`.
 
-## O Jogador Está Voando com um Élitra (`is_player_flying_with_elytra`)
+### Is Adventure
 
-**Finalidade:** Verifica se o jogador está voando com um élitra.
+**Identificador:** `fancymenu_visibility_requirement_is_adventure`
 
-**Valor:** Não obrigatório
+É atendido enquanto o jogador está no modo Aventura.
 
-## O Jogador Está Voando no Modo Criativo (`is_player_creative_flying`)
+### Is Any Effect Active
 
-**Finalidade:** Verifica se o jogador está voando no modo criativo.
+**Identificador:** `is_any_effect_active`
 
-**Valor:** Não obrigatório
+É atendido enquanto o jogador tem qualquer efeito, como Velocidade ou Veneno.
 
-## O Jogador Tem Corações de Absorção (`has_player_absorption_hearts`)
+### Is Attack Strength Weakened
 
-**Finalidade:** Verifica se o jogador tem corações de absorção (corações dourados).
+**Identificador:** `is_attack_strength_weakened`
 
-**Valor:** Não obrigatório
+É atendido enquanto o ataque do jogador não está totalmente carregado. Isso acontece quando o indicador de ataque é exibido.
 
-## O Jogador Está Sob o Efeito Wither (`is_player_withered`)
+### Is Block/Item In Tag
 
-**Finalidade:** Verifica se o jogador está afetado pelo efeito Wither.
+**Identificador:** `is_in_tag`
 
-**Valor:** Não obrigatório
+É atendido quando um bloco ou item pertence a uma tag, como `minecraft:logs` ou `c:tools`. As tags só existem enquanto um mundo está carregado.
 
-## O Jogador Está Completamente Congelado (`is_player_fully_frozen`)
+- Valor: clique em **Tag Type** para escolher **Block** ou **Item** e, em seguida, informe a **Block/Item Key** e a **Tag**. Ambos os campos sugerem valores. O `#` antes da tag é opcional.
+- A chave funciona muito bem com variáveis de listener, como `$$block_key`. Por exemplo, uma instrução IF no script do listener [**On Block Broke**](/listeners#on-block-broke) pode exibir uma notificação somente para troncos.
 
-**Finalidade:** Verifica se o jogador está completamente congelado (geralmente devido à neve fofa).
+### Is Camera Perspective
 
-**Valor:** Não obrigatório
+**Identificador:** `is_camera_perspective`
 
-## O Jogador Está Envenenado (`is_player_poisoned`)
+É atendido enquanto a câmera está em uma determinada perspectiva (F5).
 
-**Finalidade:** Verifica se o jogador está afetado pelo efeito de veneno.
+- Valor: clique no botão para escolher **First Person**, **Third Person** ou **Front View**.
 
-**Valor:** Não obrigatório
+### Is Clear Weather
 
-## O Jogador Está em um Bioma (`is_player_in_biome`)
+**Identificador:** `is_clear_weather`
 
-**Finalidade:** Verifica se o jogador está em um bioma específico.
+É atendido quando não está chovendo nem trovejando.
 
-**Valor:** Obrigatório — Identificador do bioma (por exemplo, `minecraft:birch_forest`)
+### Is Creative
 
-## O Jogador Está em uma Dimensão (`is_player_in_dimension`)
+**Identificador:** `fancymenu_visibility_requirement_is_creative`
 
-**Finalidade:** Verifica se o jogador está em uma dimensão específica.
+É atendido enquanto o jogador está no modo Criativo.
 
-**Valor:** Obrigatório — Identificador da dimensão (por exemplo, `minecraft:overworld`, `minecraft:the_nether`, `minecraft:the_end`)
+### Is Cursor Holding Inventory Item
 
-## O Jogador Está em uma Estrutura (`is_player_in_structure`)
+**Identificador:** `is_cursor_holding_inventory_item`
 
-**Finalidade:** Verifica se o jogador está dentro de uma estrutura específica. Requer o FancyMenu no servidor para mundos de servidor.
+É atendido enquanto o cursor do mouse está carregando um item em uma tela de inventário.
 
-**Valor:** Obrigatório — Identificador da estrutura (por exemplo, `minecraft:village`)
+### Is Difficulty
 
-## Há uma Entidade Próxima (`is_entity_nearby`)
+**Identificador:** `is_difficulty`
 
-**Finalidade:** Verifica se um tipo específico de entidade está dentro de determinado raio do jogador.
+É atendido quando o mundo está em uma determinada dificuldade.
 
-**Valor:** Obrigatório — Formato: "raio:identificador_da_entidade" (por exemplo, `10:minecraft:pig` — verifica se há porcos em até 10 blocos)
+- Valor: `peaceful`, `easy`, `normal` ou `hard`.
 
-## Efeito Está Ativo (`is_effect_active`)
+### Is Effect Active
 
-**Finalidade:** Verifica se um efeito de poção específico está ativo no jogador.
+**Identificador:** `is_effect_active`
 
-**Valor:** Obrigatório — Identificador do efeito (por exemplo, `minecraft:speed`, `minecraft:strength`)
+É atendido enquanto o jogador tem um determinado efeito.
 
-## Algum Efeito Está Ativo (`is_any_effect_active`)
+- Valor: a chave do efeito, como `minecraft:speed`. O campo sugere efeitos enquanto você está em um mundo.
 
-**Finalidade:** Verifica se o jogador tem algum efeito de poção ativo.
+### Is Entity Nearby
 
-**Valor:** Não obrigatório
+**Identificador:** `is_entity_nearby`
 
-## O Jogador é Canhoto (`is_left_handed`)
+É atendido enquanto há uma entidade de um determinado tipo perto do jogador.
 
-**Finalidade:** Verifica se o jogador está configurado para o modo canhoto nas opções do jogo.
+- Valor: a **Entity Registry Key**, como `minecraft:creeper`, e o **Check Radius In Blocks**, como `10`. O campo da chave sugere entidades enquanto você está em um mundo.
 
-**Valor:** Não obrigatório
+### Is Game Mode
 
-## Slot do Inventário Está Preenchido (`is_inventory_slot_filled`)
+**Identificador:** `is_gamemode`
 
-**Finalidade:** Verifica se um slot específico do inventário contém um item.
+É atendido enquanto o jogador está em um determinado modo de jogo.
 
-**Valor:** Obrigatório — Número do slot (0–35 para o inventário principal; os slots 0–8 são a barra rápida)
+- Valor: `survival`, `creative`, `adventure` ou `spectator`.
 
-## Há um Item sob o Cursor no Inventário (`is_item_hovered_in_inventory`)
+### Is Hardcore
 
-**Finalidade:** Verifica se o cursor está sobre algum item em uma tela de inventário.
+**Identificador:** `is_hardcore`
 
-**Valor:** Não obrigatório
+É atendido em mundos Hardcore.
 
-## O Cursor Está Segurando um Item do Inventário (`is_cursor_holding_inventory_item`)
+### Is Hotbar Slot Selected
 
-**Finalidade:** Verifica se o cursor está segurando uma pilha de itens do inventário.
+**Identificador:** `is_hotbar_slot_active`
 
-**Valor:** Não obrigatório
+É atendido enquanto um determinado espaço da barra de atalhos está selecionado.
 
-## Slot da Barra Rápida Está Selecionado (`is_hotbar_slot_active`)
+- Valor: de `0` (o espaço à esquerda) a `8`.
 
-**Finalidade:** Verifica se um slot específico da barra rápida está selecionado no momento.
+### Is In Active Raid Area
 
-**Valor:** Obrigatório — Número do slot da barra rápida (0–8)
+**Identificador:** `is_in_active_raid_area`
 
-## O Jogador Tem Nível de Permissão (`fancymenu_loading_requirement_has_player_permission_level`)
+É atendido enquanto o jogador está na área de uma invasão, onde a barra da invasão é exibida. Precisa do FancyMenu no servidor.
 
-**Finalidade:** Verifica se o jogador tem pelo menos o nível de permissão/OP especificado no mundo ou servidor atual.
+### Is Inventory Slot Filled
 
-**Valor:** Obrigatório — Número do nível de permissão (0–4, sendo 4 o nível de operador do servidor)
+**Identificador:** `is_inventory_slot_filled`
 
-## Força do Ataque Está Enfraquecida (`is_attack_strength_weakened`)
+É atendido enquanto um espaço do inventário do jogador contém um item.
 
-**Finalidade:** Verifica se a força de ataque do jogador está enfraquecida no momento (não está totalmente carregada).
+- Valor: o número do espaço. De `0` a `8` correspondem à barra de atalhos; de `9` a `35`, ao restante do inventário.
 
-**Valor:** Não obrigatório
+### Is Item Hovered In Inventory
 
-## É Dia no Horário Real (`fancymenu_visibility_requirement_is_realtime_day`)
+**Identificador:** `is_item_hovered_in_inventory`
 
-**Finalidade:** Verifica se o dia atual do mês no mundo real corresponde a um valor específico.
+É atendido enquanto o mouse está sobre um item em uma tela de inventário, como o inventário do jogador ou um baú.
 
-**Valor:** Obrigatório — Número do dia (1–31). Vários valores podem ser fornecidos separando-os por vírgulas.
+### Is Multiplayer
 
-## É uma Hora no Horário Real (`fancymenu_visibility_requirement_is_realtime_hour`)
+**Identificador:** `fancymenu_loading_requirement_is_multiplayer`
 
-**Finalidade:** Verifica se a hora atual no mundo real corresponde a um valor específico.
+É atendido enquanto o jogador está em um servidor.
 
-**Valor:** Obrigatório — Hora no formato de 24 horas (0–23). Vários valores podem ser fornecidos separando-os por vírgulas.
+### Is Player Creative Flying
 
-## É um Minuto no Horário Real (`fancymenu_visibility_requirement_is_realtime_minute`)
+**Identificador:** `is_player_creative_flying`
 
-**Finalidade:** Verifica se o minuto atual no mundo real corresponde a um valor específico.
+É atendido enquanto o jogador voa no modo Criativo.
 
-**Valor:** Obrigatório — Minuto (0–59). Vários valores podem ser fornecidos separando-os por vírgulas.
+### Is Player Flying With Elytra
 
-## É um Mês no Horário Real (`fancymenu_visibility_requirement_is_realtime_month`)
+**Identificador:** `is_player_flying_with_elytra`
 
-**Finalidade:** Verifica se o mês atual no mundo real corresponde a um valor específico.
+É atendido enquanto o jogador plana com uma elytra.
 
-**Valor:** Obrigatório — Número do mês (1–12, sendo 1 janeiro). Vários valores podem ser fornecidos separando-os por vírgulas.
+### Is Player Fully Frozen
 
-## É um Segundo no Horário Real (`fancymenu_visibility_requirement_is_realtime_second`)
+**Identificador:** `is_player_fully_frozen`
 
-**Finalidade:** Verifica se o segundo atual no mundo real corresponde a um valor específico.
+É atendido enquanto o jogador está completamente congelado pela neve fofa, com corações congelados na barra de vida.
 
-**Valor:** Obrigatório — Segundo (0–59). Vários valores podem ser fornecidos separando-os por vírgulas.
+### Is Player In Biome
 
-## É um Dia da Semana no Horário Real (`fancymenu_visibility_requirement_is_realtime_week_day`)
+**Identificador:** `is_player_in_biome`
 
-**Finalidade:** Verifica se o dia atual da semana no mundo real corresponde a um valor específico.
+É atendido enquanto o jogador está em um determinado bioma.
 
-**Valor:** Obrigatório — Dia da semana como número (1–7, sendo 1 domingo). Vários valores podem ser fornecidos separando-os por vírgulas.
+- Valor: a chave do bioma, como `minecraft:birch_forest`. O campo sugere biomas enquanto você está em um mundo.
 
-## É um Ano no Horário Real (`fancymenu_visibility_requirement_is_realtime_year`)
+### Is Player In Dimension
 
-**Finalidade:** Verifica se o ano atual no mundo real corresponde a um valor específico.
+**Identificador:** `is_player_in_dimension`
 
-**Valor:** Obrigatório — Ano completo (por exemplo, "2023"). Vários valores podem ser fornecidos separando-os por vírgulas.
+É atendido enquanto o jogador está em uma determinada dimensão.
 
-## Arquivo/Pasta Existe (`fancymenu_loading_requirement_file_exists`)
+- Valor: a chave da dimensão: `minecraft:overworld`, `minecraft:the_nether`, `minecraft:the_end` ou uma dimensão de um mod. O campo sugere dimensões enquanto você está em um mundo.
 
-**Finalidade:** Verifica se um arquivo ou diretório existe.
+### Is Player In Fluid
 
-**Valor:** Obrigatório — Um caminho relativo ao diretório ativo do jogo ou um caminho que comece com `.minecraft/`, referente ao diretório convencional do Minecraft. Arquivos e diretórios são considerados existentes.
+**Identificador:** `is_player_in_fluid`
 
-## O Sistema Operacional é Linux (`fancymenu_loading_requirement_is_os_linux`)
+É atendido enquanto o jogador está em qualquer fluido, como água ou lava.
 
-**Finalidade:** Verifica se a plataforma atual não é Windows nem macOS. Normalmente, isso corresponde a ambientes Linux.
+### Is Player In Lava
 
-**Valor:** Não obrigatório
+**Identificador:** `is_player_in_lava`
 
-## O Sistema Operacional é macOS (`fancymenu_loading_requirement_is_os_macos`)
+É atendido enquanto o jogador está na lava.
 
-**Finalidade:** Verifica se o sistema operacional é macOS.
+### Is Player In Powder Snow
 
-**Valor:** Não obrigatório
+**Identificador:** `is_player_in_powder_snow`
 
-## O Sistema Operacional é Windows (`fancymenu_loading_requirement_is_os_windows`)
+É atendido enquanto o jogador está na neve fofa.
 
-**Finalidade:** Verifica se o sistema operacional é Windows.
+### Is Player In Structure
 
-**Valor:** Não obrigatório
+**Identificador:** `is_player_in_structure`
 
-## Há uma Conexão com a Internet (`is_internet_connection_available`)
+É atendido enquanto o jogador está dentro de uma determinada estrutura. Precisa do FancyMenu no servidor.
 
-**Finalidade:** Verifica se há uma conexão ativa com a internet.
+- Valor: a chave da estrutura, como `minecraft:village_plains`. O campo sugere estruturas enquanto você está em um mundo.
 
-**Valor:** Não obrigatório
+### Is Player In Water
 
-## O Idioma do Jogo é (`fancymenu_loading_requirement_is_language`)
+**Identificador:** `is_player_in_water`
 
-**Finalidade:** Verifica se o idioma atual do jogo corresponde a um valor específico.
+É atendido enquanto o jogador está na água, mesmo que parcialmente.
 
-**Valor:** Obrigatório — Código do idioma (por exemplo, `en_us` para inglês)
+### Is Player Jumping or Falling
 
-## Mod Está Carregado (`fancymenu_loading_requirement_is_mod_loaded`)
+**Identificador:** `is_player_jumping`
 
-**Finalidade:** Verifica se um mod específico está carregado.
+É atendido enquanto o jogador está no ar. Nadar, estar em fluidos, voar com elytra, dormir e rastejar não contam.
 
-**Valor:** Obrigatório — ID do mod (por exemplo, `fancymenu`, `jei`). Você também pode verificar o OptiFine com `optifine`. Vários IDs de mods separados por vírgulas são compatíveis; todos os mods listados devem estar carregados.
+### Is Player Left-Handed
 
-## Rinku Está Carregado (`is_rinku_loaded`)
+**Identificador:** `is_left_handed`
 
-**Finalidade:** Verifica se o [Rinku](https://modrinth.com/mod/rinku) está instalado e inicializado. O [Rinku](https://modrinth.com/mod/rinku) é necessário para o [elemento Navegador](./elements#browser) e para os [tipos de vídeo baseados no Rinku e obsoletos](./video#requirements); os recursos de [vídeo nativos](./video) usam o Watermedia.
+É atendido quando a opção "Main Hand" em Personalização da Skin do Minecraft está definida como "Left".
 
-**Valor:** Não obrigatório
+### Is Player Poisoned
 
-## É um Número (`fancymenu_visibility_requirement_is_number`)
+**Identificador:** `is_player_poisoned`
 
-**Finalidade:** Oferece uma comparação avançada de números com diferentes modos de comparação.
+É atendido enquanto o jogador está sob o efeito de Veneno, com corações envenenados na barra de vida.
 
-**Valor:** Obrigatório — Formato complexo: `["mode":"comparison_mode","number":"value1","compare_with":"value2"]$`, em que `comparison_mode` pode ser `equals`, `bigger-than`, `smaller-than`, `bigger-than-or-equals` ou `smaller-than-or-equals`
+### Is Player Riding Entity With Health
 
-## É um Texto (`fancymenu_visibility_requirement_is_text`)
+**Identificador:** `is_player_riding_entity_with_health`
 
-**Finalidade:** Oferece uma comparação avançada de textos com diferentes modos de comparação.
+É atendido enquanto o jogador monta uma entidade viva, como um cavalo ou porco. Barcos e carrinhos de mina não contam.
 
-**Valor:** Obrigatório — Formato complexo: `["mode":"comparison_mode","text":"text1","compare_with":"text2"]$`, em que `comparison_mode` pode ser `equals`, `contains`, `starts-with` ou `ends-with`
+### Is Player Riding Entity/Vehicle
 
-## IP do Servidor é (`fancymenu_visibility_requirement_is_server_ip`)
+**Identificador:** `is_player_riding_entity`
 
-**Finalidade:** Verifica se o IP do servidor atual corresponde a um valor específico.
+É atendido enquanto o jogador está montado em qualquer coisa, como um cavalo, barco ou carrinho de mina.
 
-**Valor:** Obrigatório — Endereço IP do servidor (com ou sem porta)
+### Is Player Riding Jumpable Entity
 
-## Servidor Está Online (`fancymenu_loading_requirement_is_server_online`)
+**Identificador:** `is_player_riding_jumpable_entity`
 
-**Finalidade:** Verifica se um servidor específico está online e acessível.
+É atendido enquanto o jogador monta uma entidade que pode pular, como um cavalo.
 
-**Valor:** Obrigatório — Endereço IP do servidor (com ou sem porta)
+### Is Player Running
 
-## Pacote de Recursos Está Ativado (`is_resource_pack_enabled`)
+**Identificador:** `is_player_running`
 
-**Finalidade:** Verifica se um pacote de recursos específico está selecionado/ativo no momento.
+É atendido enquanto o jogador corre.
 
-**Valor:** Obrigatório — Título do pacote de recursos ou ID do pacote (por exemplo, `Programmer Art` ou o ID do pacote)
+### Is Player Sneaking
 
-## Valor da Variável (Variável do FM) (`fancymenu_visibility_requirement_is_variable_value`)
+**Identificador:** `is_player_sneaking`
 
-**Finalidade:** Verifica se uma variável do FancyMenu tem um valor específico.
+É atendido enquanto o jogador se esgueira.
 
-**Valor:** Obrigatório — Formato: "nome_da_variável:valor_esperado"
+### Is Player Swimming
 
-## Apenas Uma Vez por Sessão (`once_per_session`)
+**Identificador:** `is_player_swimming`
 
-**Finalidade:** Cada instância configurada retorna verdadeiro uma vez por sessão de jogo. Instâncias diferentes são acompanhadas de forma independente.
+É atendido enquanto o jogador nada.
 
-**Valor:** Não obrigatório
+### Is Player Under Water
+
+**Identificador:** `is_player_under_water`
+
+É atendido enquanto a cabeça do jogador está submersa.
+
+### Is Player Using Item
+
+**Identificador:** `is_player_using_item`
+
+É atendido enquanto o jogador usa um item, como ao comer, beber uma poção ou puxar um arco.
+
+### Is Player Wearing Pumpkin
+
+**Identificador:** `is_player_wearing_pumpkin`
+
+É atendido enquanto o jogador usa uma abóbora esculpida na cabeça.
+
+### Is Player Withered
+
+**Identificador:** `is_player_withered`
+
+É atendido enquanto o jogador está sob o efeito de Murchamento, com corações murchos na barra de vida.
+
+### Is Raining
+
+**Identificador:** `is_raining`
+
+É atendido enquanto está chovendo onde o jogador está.
+
+### Is Singleplayer
+
+**Identificador:** `fancymenu_loading_requirement_is_singpleplayer`
+
+É atendido enquanto o jogador está em um mundo para um jogador.
+
+### Is Snowing
+
+**Identificador:** `is_snowing`
+
+É atendido enquanto está nevando onde o jogador está.
+
+### Is Spectator
+
+**Identificador:** `fancymenu_visibility_requirement_is_spectator`
+
+É atendido enquanto o jogador está no modo Espectador.
+
+### Is Survival
+
+**Identificador:** `fancymenu_visibility_requirement_is_survival`
+
+É atendido enquanto o jogador está no modo Sobrevivência.
+
+### Is Thundering
+
+**Identificador:** `is_thundering`
+
+É atendido durante uma tempestade com trovões.
+
+### Is World Loaded
+
+**Identificador:** `fancymenu_loading_requirement_is_world_loaded`
+
+É atendido enquanto o jogador está em um mundo, no modo para um jogador ou multijogador.
+
+### Was Player In Powder Snow
+
+**Identificador:** `was_player_in_powder_snow`
+
+É atendido enquanto o jogador esteve na neve fofa há pouco.
+
+## Outros
+
+### Is Game Language
+
+**Identificador:** `fancymenu_loading_requirement_is_language`
+
+É atendido quando o Minecraft usa um determinado idioma.
+
+- Valor: o código do idioma, como `en_us` ou `de_de`. O campo sugere todos os idiomas.
+
+### Is Mod Loaded
+
+**Identificador:** `fancymenu_loading_requirement_is_mod_loaded`
+
+É atendido quando determinados mods estão instalados.
+
+- Valor: o ID do mod, como `jei`. O campo sugere os IDs dos seus mods. Separe vários IDs com vírgulas: todos precisam estar instalados. `optifine` verifica se o OptiFine está instalado.
+
+### Is Number
+
+**Identificador:** `fancymenu_visibility_requirement_is_number`
+
+Compara dois números. Insira espaços reservados ou variáveis nos campos, como `$$coins`.
+
+- **Compare Mode**: **Equals**, **Bigger Than**, **Smaller Than**, **Bigger Than Or Equals** ou **Smaller Than Or Equals**.
+- **Number**: o número a verificar, como `$$coins`.
+- **Compare to Number**: o número com o qual comparar, como `100`.
+
+São aceitos números decimais, como `2.5`. Se um campo não contiver um número, o requisito nunca será atendido.
+
+### Is Resource Pack Enabled
+
+**Identificador:** `is_resource_pack_enabled`
+
+É atendido enquanto um pacote de recursos está ativado.
+
+- Valor: o nome do pacote como aparece na tela de Pacotes de Recursos, como `Programmer Art`, ou seu ID. Não diferencia maiúsculas de minúsculas.
+
+### Is Rinku Loaded
+
+**Identificador:** `is_rinku_loaded`
+
+É atendido quando o mod [Rinku](https://modrinth.com/mod/rinku) está instalado. O [elemento Navegador](/elements#browser) e os antigos [tipos de vídeo baseados no Rinku](/video#requirements) precisam dele.
+
+### Is Server IP
+
+**Identificador:** `fancymenu_visibility_requirement_is_server_ip`
+
+É atendido enquanto o jogador está em um servidor específico.
+
+- Valor: o endereço do servidor, como `play.example.net`. Se houver uma porta, como em `play.example.net:25566`, ela também precisa corresponder.
+
+### Is Server Online
+
+**Identificador:** `fancymenu_loading_requirement_is_server_online`
+
+É atendido enquanto um servidor está online. O FancyMenu envia pings em segundo plano a cada 30 segundos, aproximadamente, então pode levar um momento após o jogo iniciar.
+
+- Valor: o endereço do servidor, como `play.example.net`.
+
+### Is Text
+
+**Identificador:** `fancymenu_visibility_requirement_is_text`
+
+Compara dois textos. Insira espaços reservados ou variáveis nos campos, como `$$key_name`.
+
+- **Compare Mode**: **Equals**, **Contains**, **Starts With** ou **Ends With**.
+- **Text**: o texto a verificar.
+- **Compare to Text**: o texto com o qual comparar.
+
+Maiúsculas e minúsculas fazem diferença.
+
+### Is Variable Value (FM Variable)
+
+**Identificador:** `fancymenu_visibility_requirement_is_variable_value`
+
+É atendido quando uma das suas [variáveis](/variables) tem determinado valor.
+
+- **Variable Name**: o nome da variável, sem `$$`. O campo sugere suas variáveis.
+- **Variable Value to Check For**: o valor, como `on`. Ele precisa corresponder ao valor inteiro, incluindo maiúsculas e minúsculas.
+
+Nunca é atendido se a variável não existir. Para uma variável de lista, o requisito compara a matriz JSON de todas as entradas, como `["apple","banana"]`. Para verificar uma única entrada, use **List Contains Entry (FM Variable)**.
+
+### List Contains Entry (FM Variable)
+
+**Identificador:** `list_contains_entry`
+
+É atendido quando uma [variável de lista](/variables#text-and-list-variables) contém determinada entrada.
+
+- **List Variable Name**: o nome da lista, sem `$$`. O campo sugere suas variáveis de lista e avisa quando você digita o nome de uma variável de texto.
+- **Entry to Look For**: a entrada. Ela precisa corresponder a uma entrada inteira, não apenas a parte dela.
+- **Ignore Case**: quando ativado, `Apple` também corresponde a `apple`.
+
+Nunca é atendido se a lista não existir.
+
+### Mouse Button Is Pressed
+
+**Identificador:** `mouse_click`
+
+É atendido enquanto um botão do mouse está pressionado. Para executar ações uma vez a cada clique, use o listener [**On Mouse Button Clicked**](/listeners#on-mouse-button-clicked).
+
+- Valor: `left` ou `right`.
+
+### Only Once Per Session
+
+**Identificador:** `once_per_session`
+
+É atendido na primeira vez que é verificado e nunca mais até o jogo ser reiniciado. Cada cópia desse requisito funciona de forma independente.
+
+Para elementos que devem aparecer apenas uma vez por sessão de jogo, é mais fácil usar a opção [**Load Once Per Session**](/element-visibility#load-once-per-session) dos elementos: eles permanecem até uma nova tela ser aberta.

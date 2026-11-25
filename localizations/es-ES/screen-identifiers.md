@@ -1,22 +1,23 @@
 ---
 title: Identificadores de pantalla
 description: >-
-  Acerca de los identificadores de pantalla y cómo encontrar el identificador de
-  una pantalla.
+  Información sobre los identificadores de pantalla y cómo encontrar el
+  identificador de una pantalla.
+sourceBlobSha: 64414e10bf5f532e075373a6a753e2f667448ceb
 ---
 # Identificadores de pantalla
 
-FancyMenu usa identificadores de pantalla para los diseños, los widgets de Vanilla, las [acciones de pantalla](./action-scripts#open-screen-or-custom-gui-opengui) y las [anulaciones de GUIs personalizadas](./custom-guis#overriding-an-existing-screen). Los identificadores distinguen entre mayúsculas y minúsculas, así que cópialos exactamente desde la superposición de depuración.
+FancyMenu usa identificadores de pantalla para los diseños, los widgets de Vanilla, las [acciones de pantalla](/action-scripts#open-screen-or-custom-gui) y las [sobrescrituras de GUI personalizadas](/custom-guis#overriding-an-existing-screen). Los identificadores distinguen entre mayúsculas y minúsculas, así que cópialos exactamente desde la superposición de depuración.
 
-Las pantallas integradas suelen usar un identificador universal corto, como `title_screen`. Otras pantallas de mods pueden usar el nombre de su clase Java. Las GUIs personalizadas usan el identificador introducido en su gestor. Estos son identificadores de pantalla de FancyMenu, no ubicaciones de recursos de Minecraft.
+Las pantallas integradas suelen usar un identificador universal corto, como `title_screen`. Otras pantallas de mods pueden usar el nombre de su clase Java. Las GUI personalizadas usan el identificador introducido en su gestor. Estos son identificadores de pantalla de FancyMenu, no ubicaciones de recursos de Minecraft.
 
-# Encontrar el identificador de una pantalla
+# Cómo encontrar el identificador de una pantalla
 
-Puedes ver el identificador del menú activo actualmente usando la **superposición de depuración**.
-Contiene el identificador de la pantalla actual y te permite copiarlo al portapapeles haciendo clic izquierdo sobre él.
+Puedes ver el identificador del menú activo en ese momento mediante la **superposición de depuración**.
+Incluye el identificador de la pantalla actual y permite copiarlo al portapapeles haciendo clic izquierdo sobre él.
 
 >[!TIP]
->Puedes activar la **superposición de depuración** pulsando **CTRL + ALT + D** mientras **no** estés en el editor de diseños.
+>Puedes activar la **superposición de depuración** pulsando **CTRL + ALT + D** cuando **no** estés en el editor de diseños.
 
 <br>
 
@@ -28,6 +29,6 @@ Contiene el identificador de la pantalla actual y te permite copiarlo al portapa
 
 # Abrir pantallas
 
-La [**acción Abrir pantalla o GUI personalizada**](./action-scripts#open-screen-or-custom-gui-opengui) solo puede abrir pantallas que FancyMenu pueda construir en el estado actual del juego. Algunas pantallas requieren un mundo cargado, una conexión, un jugador o la pantalla principal original.
+La acción [**Abrir pantalla o GUI personalizada**](/action-scripts#open-screen-or-custom-gui) solo puede abrir pantallas que FancyMenu pueda construir en el estado actual del juego. Algunas pantallas requieren que haya un mundo cargado, una conexión, un jugador o una pantalla original de origen.
 
-Si FancyMenu no puede construir el identificador, mostrará un error. Usa [**Imitar botón de Vanilla/Mod**](./action-scripts#mimic-vanillamod-button-mimicbutton) en el widget que normalmente abre la pantalla.
+Si FancyMenu no puede construir la pantalla a partir del identificador, muestra un error. Usa [**Imitar botón de Vanilla/mod**](/action-scripts#mimic-vanillamod-button) en el widget que normalmente abre la pantalla.

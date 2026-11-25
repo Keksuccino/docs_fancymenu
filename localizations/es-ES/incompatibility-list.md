@@ -3,13 +3,13 @@ title: Lista de incompatibilidades
 description: >-
   Pantallas bloqueadas por FancyMenu e incompatibilidades notificadas por la
   comunidad.
-sourceBlobSha: f5f938751a166796106f5074dc55137bcd40f203
+sourceBlobSha: 2f89775eade27d0a90dd3805b5c58d779676bdbd
 ---
-# Pantallas en las que la personalización está desactivada intencionadamente
+# Pantallas cuya personalización está desactivada intencionadamente
 
-FancyMenu bloquea las pantallas que coinciden con ciertas rutas de paquetes de mods para evitar cierres inesperados o comportamientos incorrectos. El interruptor de personalización, la superposición y los diseños no están disponibles en las pantallas coincidentes.
+FancyMenu bloquea las pantallas que coinciden con ciertas rutas de paquetes de mods para evitar cierres inesperados o comportamientos incorrectos. En las pantallas coincidentes no están disponibles el botón de personalización, la superposición ni los diseños.
 
-Estos bloqueos utilizan el paquete Java de la clase de la pantalla en lugar de una lista específica de pantallas individuales. Por tanto, una regla puede afectar a varias pantallas del mismo mod o de paquetes relacionados.
+Estos bloqueos se basan en el paquete Java de la clase de la pantalla, no en una lista seleccionada manualmente de pantallas concretas. Por lo tanto, una regla puede afectar a varias pantallas del mismo mod o de paquetes relacionados.
 
 Los grupos de pantallas bloqueados incluyen:
 
@@ -19,7 +19,7 @@ Los grupos de pantallas bloqueados incluyen:
 - Screenshot Viewer
 - Twilight Forest
 - Supplementaries
-- OptiFine; utiliza [Alternativas a OptiFine](./optifine-alternatives)
+- OptiFine; utiliza [Alternativas a OptiFine](/optifine-alternatives)
 - SlimeKnights y Tinkers' Construct
 - Mods de MidnightDust
 - SkinSwapper
@@ -32,61 +32,61 @@ Los grupos de pantallas bloqueados incluyen:
 
 # Incompatibilidades notificadas por la comunidad
 
-Las entradas siguientes son informes de la comunidad, no pantallas bloqueadas por el propio FancyMenu. La compatibilidad puede cambiar según las versiones de FancyMenu, Minecraft, el cargador y los mods del modpack.
+Las siguientes entradas son informes de la comunidad, no pantallas bloqueadas por FancyMenu. La compatibilidad puede variar según las versiones de FancyMenu, Minecraft, el cargador y los mods del modpack.
 
-* [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Hace que los menús parezcan estar dañados)
-* [Animated Mojang Logo](https://www.curseforge.com/minecraft/mc-mods/animated-mojang-logo) (A veces los diseños no se cargan; también rompe Drippy Loading Screen)
-* [Bedrockify](https://www.curseforge.com/minecraft/mc-mods/bedrockify) (Es compatible si desactivas todas las modificaciones de menús del mod, al menos en los menús que quieras personalizar)
+* [Animated Loading Screen](https://modrinth.com/mod/animated-loading-screen) (Hace que los menús parezcan tener errores)
+* [Animated Mojang Logo](https://www.curseforge.com/minecraft/mc-mods/animated-mojang-logo) (A veces los diseños no se cargan; también interfiere con Drippy Loading Screen)
+* [Bedrockify](https://www.curseforge.com/minecraft/mc-mods/bedrockify) (Es compatible si desactivas todas las modificaciones de los menús del mod, al menos en los menús que quieras personalizar)
 * [BetterFPS](https://www.curseforge.com/minecraft/mc-mods/betterfps) (Los botones y menús de este mod no se pueden personalizar)
-* [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Cierre inesperado al iniciar)
-* [Chloride](https://modrinth.com/mod/chloride) (El marcador de FPS no funciona cuando este mod está instalado)
-* [Colormatic](https://www.curseforge.com/minecraft/mc-mods/colormatic) (Provoca mucho lag al iniciar Minecraft y rompe los elementos de audio de FM)
-* [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Los botones personalizados añadidos a los menús con FancyMenu no se pueden pulsar mediante la función «Ratón virtual» de Controllable)
-* [Controlify](https://modrinth.com/mod/controlify) (Se ha informado de cierres inesperados; consulta [el issue n.º 1144](https://github.com/Keksuccino/FancyMenu/issues/1144))
+* [Chat Colors](https://www.curseforge.com/minecraft/mc-mods/chat-colours) (Provoca un cierre inesperado al iniciar)
+* [Chloride](https://modrinth.com/mod/chloride) (El marcador de FPS no funciona si este mod está instalado)
+* [Colormatic](https://www.curseforge.com/minecraft/mc-mods/colormatic) (Provoca mucho lag al iniciar Minecraft e interfiere con las funciones de audio de FancyMenu)
+* [Controllable](https://www.curseforge.com/minecraft/mc-mods/controllable) (Los botones personalizados que FancyMenu añade a los menús no se pueden pulsar con la función «Virtual Mouse» de Controllable)
+* [Controlify](https://modrinth.com/mod/controlify) (Se ha notificado un cierre inesperado; consulta el [problema n.º 1144](https://github.com/Keksuccino/FancyMenu/issues/1144))
 * [Crash To Main Menu](https://www.curseforge.com/minecraft/mc-mods/crash-to-main-menu)
 * [Custom Loading Screen](https://www.curseforge.com/minecraft/mc-mods/better-loading-screen)
 * [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
 * [Debugify](https://www.curseforge.com/minecraft/mc-mods/debugify) (Utiliza [Modern Debugify](https://www.curseforge.com/minecraft/mc-mods/modern-debugify) en su lugar)
-* [Dynamic Surroundings](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings) (Se ha informado de que rompe los elementos de audio)
+* [Dynamic Surroundings](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings) (Se ha notificado que interfiere con los elementos de audio)
 * [EnhancedVisuals](https://www.curseforge.com/minecraft/mc-mods/enhancedvisuals) (Se han notificado problemas con las animaciones y los fondos translúcidos)
-* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Se ha informado de un cierre inesperado; consulta [el issue n.º 1115](https://github.com/Keksuccino/FancyMenu/issues/1115))
-* [Fossils and Archeology Revival](https://www.curseforge.com/minecraft/mc-mods/fossils) (Funciona dentro del juego, pero no se admite el menú principal personalizado; se puede desactivar en su configuración)
-* [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Cierre inesperado al iniciar)
+* [Entity Model Features](https://modrinth.com/mod/entity-model-features) (Se ha notificado un cierre inesperado; consulta el [problema n.º 1115](https://github.com/Keksuccino/FancyMenu/issues/1115))
+* [Fossils and Archeology Revival](https://www.curseforge.com/minecraft/mc-mods/fossils) (Funciona dentro del juego, pero no es compatible con el menú principal personalizado; se puede desactivar en su configuración)
+* [Holographic Renderers](https://www.curseforge.com/minecraft/mc-mods/holographic-renderers) (Provoca un cierre inesperado al iniciar)
 * [Ice and Fire](https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons) (Funciona si se desactiva el menú principal personalizado en su configuración)
-* [Jurassicraft](https://www.curseforge.com/minecraft/mc-mods/jurassicraft) (Se cierra al iniciar al activar las personalizaciones de sus interfaces; elimínalas de `<game-directory>/config/fancymenu/customizablemenus.txt`)
-* [Legacy4J](https://www.curseforge.com/minecraft/mc-mods/legacy-minecraft) (Cierra el juego inesperadamente)
-* [MalisisCore](https://www.curseforge.com/minecraft/mc-mods/malisiscore) (Rompe la personalización del menú principal)
+* [Jurassicraft](https://www.curseforge.com/minecraft/mc-mods/jurassicraft) (El juego se cierra al iniciarse si se activan las personalizaciones de sus interfaces; elimínalas de `<game-directory>/config/fancymenu/customizablemenus.txt`)
+* [Legacy4J](https://www.curseforge.com/minecraft/mc-mods/legacy-minecraft) (Provoca el cierre del juego)
+* [MalisisCore](https://www.curseforge.com/minecraft/mc-mods/malisiscore) (Impide personalizar el menú principal)
 * [Main Menu Scale Mod](https://www.curseforge.com/minecraft/mc-mods/main-menu-scale)
-* [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Funciona, pero algunos de sus menús rompen la barra de menús de FM o no se pueden personalizar)
-* [Minecraft Comes Alive](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-mca) (Se ha informado de que es compatible, pero sus menús no se pueden personalizar)
-* [MineTogether](https://www.curseforge.com/minecraft/mc-mods/creeperhost-minetogether) (Se han notificado problemas con los diseños por encima de una escala de interfaz de 2)
-* [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (Normalmente es compatible; si el botón Mods aparece duplicado o no se puede personalizar, establece **Menú principal -> Mods -> Mod Menu -> Botón Mods** en **Adyacente**)
-* [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Cierre inesperado; consulta [este issue](https://github.com/Keksuccino/FancyMenu/issues/776))
-* [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) (Se ha informado de que es compatible en 1.16 o versiones posteriores e incompatible en 1.12)
-* [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Rompe la interfaz de FancyMenu; no se puede hacer clic en los botones)
+* [MCA Reborn](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-reborn) (Funciona, pero algunos de sus menús interfieren con la barra de menús de FancyMenu o no se pueden personalizar)
+* [Minecraft Comes Alive](https://www.curseforge.com/minecraft/mc-mods/minecraft-comes-alive-mca) (Se ha notificado que es compatible, pero sus menús no se pueden personalizar)
+* [MineTogether](https://www.curseforge.com/minecraft/mc-mods/creeperhost-minetogether) (Se han notificado problemas con los diseños con una escala de interfaz superior a 2)
+* [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu) (Normalmente es compatible; si el botón Mods aparece duplicado o no se puede personalizar, ve a **Menú principal -> Mods -> Mod Menu -> Botón Mods** y selecciona **Adyacente**)
+* [Modern Online Picture Frames](https://www.curseforge.com/minecraft/mc-mods/online-picture-frame) (Provoca un cierre inesperado; consulta [este problema](https://github.com/Keksuccino/FancyMenu/issues/776))
+* [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) (Se ha notificado que es compatible en la versión 1.16 o posterior e incompatible en la 1.12)
+* [Optiscale](https://www.curseforge.com/minecraft/mc-mods/optiscale) (Interfiere con la interfaz de FancyMenu; no se pueden pulsar los botones)
 * [Pack Menu](https://www.curseforge.com/minecraft/mc-mods/packmenu)
-* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Se ha informado de un conflicto entre los sistemas de personalización de menús)
-* [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (El juego no se puede cargar)
-* [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-forge) (Funciona si `patchMinecraftClass = false` está configurado en su configuración)
-* [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Se ha informado de que rompe FancyMenu y Drippy Loading Screen)
-* [Replay Mod](https://www.replaymod.com/download/) (Funciona si estableces `mainMenuButton` en **BIG** en `<game-directory>/config/replaymod.json`)
-* [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Cierra el juego inesperadamente)
+* [Panorama Screens](https://modrinth.com/mod/panorama-screens) (Se ha notificado un conflicto entre los sistemas de personalización de menús)
+* [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) (El juego no se inicia)
+* [RandomPatches](https://www.curseforge.com/minecraft/mc-mods/randompatches-forge) (Funciona si configuras `patchMinecraftClass = false` en sus ajustes)
+* [Remove Reloading Screen](https://www.curseforge.com/minecraft/mc-mods/rrls) (Se ha notificado que interfiere con FancyMenu y Drippy Loading Screen)
+* [Replay Mod](https://www.replaymod.com/download/) (Funciona si configuras `mainMenuButton` como **BIG** en `<game-directory>/config/replaymod.json`)
+* [Seamless Loading Screen](https://www.curseforge.com/minecraft/mc-mods/seamless-loading-screen) (Provoca el cierre del juego)
 * [Slight Gui Modifications](https://www.curseforge.com/minecraft/mc-mods/slight-gui-modifications)
-* [Skin Layers 3D](https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d) (Se ha informado de que es compatible en 1.16 o versiones posteriores e incompatible en 1.12)
+* [Skin Layers 3D](https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d) (Se ha notificado que es compatible en la versión 1.16 o posterior e incompatible en la 1.12)
 * [Smooth Scrolling Everywhere](https://www.curseforge.com/minecraft/mc-mods/smooth-scrolling-everywhere)
 * [Sound Filters](https://www.curseforge.com/minecraft/mc-mods/sound-filters) (La extensión de audio no funcionará si este mod está instalado)
 * [Sound Physics Remastered](https://www.curseforge.com/minecraft/mc-mods/sound-physics-remastered) (La extensión de audio no funcionará si este mod está instalado)
 * [Stylish Effects](https://www.curseforge.com/minecraft/mc-mods/stylish-effects) (La primera vez que se muestra, el menú principal no carga los diseños)
-* [Supplementaries](https://www.curseforge.com/minecraft/mc-mods/supplementaries) (A veces se cierra inesperadamente al personalizar su pantalla de configuración; elimina el diseño problemático de `<game-directory>/config/fancymenu/customization/`)
+* [Supplementaries](https://www.curseforge.com/minecraft/mc-mods/supplementaries) (A veces provoca un cierre inesperado al personalizar su pantalla de configuración; elimina el diseño problemático de `<game-directory>/config/fancymenu/customization/`)
 * [Terraria Craft](https://www.curseforge.com/minecraft/mc-mods/terraria-craft)
 * [The Dalek Mod](https://www.curseforge.com/minecraft/mc-mods/the-dalek-mod) (Funciona si se desactiva su menú principal personalizado en la configuración)
-* [ThonkUtil](https://www.curseforge.com/minecraft/mc-mods/thonkutil) (Funciona, pero actualmente añade un texto que no se puede eliminar del menú principal)
-* [Trade Uses](https://modrinth.com/mod/trade-uses) (Provoca cierres inesperados en el menú de comercio con aldeanos, posiblemente solo cuando también está instalado «Easy Villagers»)
-* [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Se puede utilizar, pero algunos usuarios han informado de problemas con la pantalla de cierre inesperado de VanillaFix)
-* [FireplaceMode](https://www.curseforge.com/minecraft/mc-mods/fireplacemode) (La pantalla de pausa restablece sus personalizaciones en ocasiones cuando este mod está instalado)
+* [ThonkUtil](https://www.curseforge.com/minecraft/mc-mods/thonkutil) (Funciona, pero actualmente añade un texto al menú principal que no se puede eliminar)
+* [Trade Uses](https://modrinth.com/mod/trade-uses) (Provoca cierres inesperados en el menú de comercio con aldeanos; puede que solo ocurra si también está instalado «Easy Villagers»)
+* [VanillaFix](https://www.curseforge.com/minecraft/mc-mods/vanillafix) (Se puede usar, pero algunos usuarios han notificado problemas con la pantalla de cierre inesperado de VanillaFix)
+* [FireplaceMode](https://www.curseforge.com/minecraft/mc-mods/fireplacemode) (La pantalla de pausa a veces restablece sus personalizaciones si este mod está instalado)
 * [Respackopts](https://www.curseforge.com/minecraft/mc-mods/respackopts) (Funciona, pero solo si desactivas las personalizaciones de la pantalla de paquetes de recursos)
-* [Bind Pizzeria](https://modrinth.com/mod/jjpizza) (Rompe la representación del texto en los menús contextuales de FancyMenu)
-* [EnhancedTooltips](https://www.curseforge.com/minecraft/mc-mods/enhancedtooltips) (Rompe las descripciones emergentes de FancyMenu)
-* [Skin Shuffle](https://modrinth.com/mod/skinshuffle) (La entidad del jugador que este mod añade a los menús no se puede personalizar mediante FancyMenu
-* [Wakes](https://modrinth.com/mod/wakes) (Cierra el juego al iniciar debido a un `IncompatibleClassChangeError`: no puede sobrescribir el método final `AbstractSliderButton.getSprite()`, que solo es final porque Wakes modifica su visibilidad. Consulta los issues de GitHub para obtener más información: [Goby56/wakes #215](https://github.com/Goby56/wakes/issues/215), [Keksuccino/FancyMenu #1733](https://github.com/Keksuccino/FancyMenu/issues/1733))
-* [Essential](https://www.curseforge.com/minecraft/mc-mods/essential-mod) (Consulta [esta página](/essential) para obtener más información)
+* [Bind Pizzeria](https://modrinth.com/mod/jjpizza) (Interfiere con la representación del texto en los menús contextuales de FancyMenu)
+* [EnhancedTooltips](https://www.curseforge.com/minecraft/mc-mods/enhancedtooltips) (Interfiere con la información sobre herramientas de FancyMenu)
+* [Skin Shuffle](https://modrinth.com/mod/skinshuffle) (La entidad del jugador que este mod añade a los menús no se puede personalizar con FancyMenu)
+* [Wakes](https://modrinth.com/mod/wakes) (El juego se cierra al iniciarse debido a un `IncompatibleClassChangeError`: no se puede sobrescribir el método final `AbstractSliderButton.getSprite()`, que solo es final porque Wakes modifica su visibilidad. Consulta los problemas de GitHub para obtener más información: [Goby56/wakes #215](https://github.com/Goby56/wakes/issues/215), [Keksuccino/FancyMenu #1733](https://github.com/Keksuccino/FancyMenu/issues/1733))
+* [Essential](https://www.curseforge.com/minecraft/mc-mods/essential) (Consulta [esta página](/essential) para obtener más información)

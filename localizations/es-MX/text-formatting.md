@@ -1,45 +1,72 @@
 ---
 title: Formato de texto
-description: Cómo dar formato al texto con Markdown y los códigos de formato de Minecraft.
+description: >-
+  Cómo dar formato al texto con Markdown, códigos de formato de Minecraft y
+  componentes de texto.
+sourceBlobSha: c6ddde5939e929b3d4c04541f0b104ee6ee795bc
 ---
-
 # Formato de texto
 
-[Los elementos de texto](./elements#text) admiten Markdown. Otros campos de texto usan el formato de Minecraft, y las etiquetas de botones pueden usar componentes de texto de Minecraft.
+FancyMenu te ofrece tres formas de dar formato al texto:
+
+- **Markdown** para [elementos de texto e información sobre herramientas](/text-in-menus): encabezados, listas, colores, imágenes, tablas y más.
+- **Códigos de formato de Minecraft**, como `&c`, para aplicar colores rápidamente. Funcionan en casi todos los campos de texto, incluso en el texto Markdown.
+- **Componentes de texto de Minecraft** para las etiquetas de botones y controles deslizantes.
+
+> [!TIP]
+> Esta página trata sobre *cómo escribir* texto con formato. Para aprender a agregar texto a tus menús, cambiar su apariencia o hacer que se desplace, consulta [Texto en los menús](/text-in-menus).
+
+<img width="800" alt="Markdown en un elemento de texto" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_showcase.png?raw=true">
 
 # Markdown
 
-Los **elementos de texto** de FancyMenu tienen compatibilidad completa con Markdown, lo que significa que puedes dar formato al contenido del texto agregándole caracteres especiales.
+Markdown da formato al texto con unos cuantos caracteres especiales a su alrededor. Por ejemplo, `**negritas**` se convierte en texto **en negritas**.
 
-Por ejemplo, para que el texto se vea en negritas, agrega `**` antes y después del texto en negritas, así `**Algo de texto en negritas que se ve muy en negritas.**` se verá así:
-**Algo de texto en negritas que se ve muy en negritas.**
+Markdown funciona en los [elementos de texto](/elements#text) y los [elementos de información sobre herramientas](/elements#tooltip). Los caracteres que escribes determinan *qué* es algo (un encabezado, una lista o una cita). La [apariencia](/text-in-menus#looks-and-styles) del elemento determina cómo se ve, por ejemplo, sus colores y tamaños.
 
-FancyMenu también admite las extensiones documentadas abajo.
+## Resumen rápido
 
-> [!CAUTION]
-> Markdown solo funciona en **elementos de texto**. Para etiquetas de botones y otros campos de texto, usa [los códigos de formato de Minecraft](#minecraft-text-formatting).
+| Escribes | Obtienes |
+|---|---|
+| `**negritas**` o `__negritas__` | Texto en negritas |
+| `*cursiva*` o `_cursiva_` | Texto en cursiva |
+| `++subrayado++` | Texto subrayado |
+| `~~tachado~~` | Texto tachado |
+| `` `código` `` | Código en línea |
+| `[Abrir sitio web](https://example.com)` | Un enlace en el que se puede hacer clic |
+| `%#ff5555%texto rojo%#%` | Texto de color |
+| `# Encabezado` | Un encabezado |
+| `- Elemento` | Una lista con viñetas |
+| `1. Elemento` | Una lista numerada |
+| `> Texto` | Una cita |
+| `> [!TIP]` | Un recuadro informativo |
+| `---` | Una línea separadora |
 
-## Fuentes
+## Estilos de texto
 
-Puedes mostrar texto con una fuente personalizada cargada mediante un paquete de recursos agregando `%!!<font_name>%` antes del texto y `%!!%` después.
+| Estilo | Cómo escribirlo |
+|---|---|
+| **Negritas** | `**texto**` o `__texto__` |
+| **Cursiva** | `*texto*` o `_texto_` |
+| **Subrayado** | `++texto++` |
+| **Tachado** | `~~texto~~` (también puedes usar un solo `~` a cada lado) |
 
-Una fuente válida incluida en el juego base es `uniform`, así que para mostrar texto con la fuente `uniform`, haz esto:
-`%!!uniform%este es un tipo de letra personalizado%!!%`
+Puedes combinar estilos, por ejemplo: `***negritas y cursiva***`.
 
-Esto mostrará `este es un tipo de letra personalizado` con la fuente `uniform`.
+Los guiones bajos individuales dentro de las palabras se mantienen como guiones bajos normales, así que `mi_diseño_genial` no se convierte en cursiva. Nombres como `C++` también se conservan tal cual.
+
+> [!TIP]
+> En el editor de texto, selecciona un texto y presiona `Ctrl + B`, `Ctrl + I` o `Ctrl + U` (`Cmd` en macOS) para ponerlo en negritas, cursiva o subrayarlo. Consulta [Atajos de formato](/text-in-menus#formatting-shortcuts).
 
 ## Color del texto (HEX)
 
-Es posible mostrar texto en un color HEX específico agregando `%<HEX_color>%` antes del texto y `%#%` después.
+Coloca `%<color HEX>%` antes del texto y `%#%` después:
 
-Un color HEX válido para verde es `#77fc03`, así que para mostrar texto con este color, haz esto:
-`%#77fc03%¡este texto es verde!%#%`
+```
+%#77fc03%¡Este texto es verde!%#%
+```
 
-Esto mostrará `¡este texto es verde!` como `#77fc03` (verde).
-
-¡Asegúrate de que el color HEX empiece con `#`!
-
-Los nombres de color comunes tipo HTML son compatibles con el mismo código de formato de color:
+El color HEX debe comenzar con `#`. También puedes usar nombres de colores:
 
 ```
 %#red%¡Este texto es rojo!%#%
@@ -47,215 +74,248 @@ Los nombres de color comunes tipo HTML son compatibles con el mismo código de f
 
 Nombres compatibles: `black`, `silver`, `gray`, `grey`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `magenta`, `green`, `lime`, `olive`, `yellow`, `navy`, `blue`, `teal`, `aqua`, `cyan` y `transparent`.
 
+## Fuentes
+
+Para mostrar texto con otra fuente, coloca `%!!<nombre de la fuente>%` antes del texto y `%!!%` después. La fuente puede ser de Minecraft o de un paquete de recursos.
+
+```
+%!!uniform%Este texto usa la fuente uniform%!!%
+```
+
 ## Alineación del texto
 
-Puedes alinear líneas de texto empezando una línea con el código de formato de alineación específico, sin nada más, luego las líneas de texto que quieras mostrar con esa alineación y después el código de alineación otra vez en una línea adicional.
+De forma predeterminada, el texto se alinea a la izquierda. Para centrar líneas o alinearlas a la derecha, coloca el código de alineación en una línea aparte, antes y después de ellas:
 
-Todo el contenido de texto está **alineado a la izquierda por defecto**, así que solo existen códigos de formato para **centrado** y **alineación a la derecha**.
+- `^^^` centra las líneas.
+- `|||` las alinea a la derecha.
 
-### Centrado
-
-Para centrar líneas de texto, usa el código de formato `^^^`.
-
-Ejemplo:
 ```
-Este texto no está centrado.
+Esta línea está alineada a la izquierda.
 
 ^^^
-Este texto está centrado.
-Este texto también está centrado.
+Esta línea está centrada.
+Esta también.
 ^^^
 
-Este texto ya no está centrado.
-```
-
-### Alineado a la derecha
-
-Para mostrar líneas de texto alineadas a la derecha, usa el código de formato `|||`.
-
-Ejemplo:
-```
-Este texto no está alineado a la derecha.
-
 |||
-Este texto está alineado a la derecha.
-Este texto también está alineado a la derecha.
+Esta línea está alineada a la derecha.
 |||
-
-Este texto ya no está alineado a la derecha.
 ```
+
+> [!TIP]
+> En el editor de texto, `Ctrl + L`, `Ctrl + E` y `Ctrl + R` (`Cmd` en macOS) alinean las líneas seleccionadas a la izquierda, al centro o a la derecha.
 
 ## Encabezados
 
-Para mostrar **una línea de texto** como encabezado (más grande y subrayado), agrega `# ` (muy grande), `## ` (grande) o `### ` (pequeño) antes de la línea de texto.
+Comienza una línea con `# ` (el más grande), `## ` (grande) o `### ` (pequeño):
 
-Ejemplo:
-`## Encabezado grande`
+```
+# ¡Te damos la bienvenida!
+## Noticias
+### Encabezado pequeño
+```
 
-## Negritas
+## Listas
 
-Agrega `**` antes y después del texto para que se vea en **negritas**.
+<img width="460" alt="Listas en Markdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_lists.png?raw=true">
 
-Ejemplo:
-`**contenido de texto en negritas**`
+### Listas con viñetas
 
-## Cursiva
+Comienza una línea con `- `. Agrega dos espacios delante por cada nivel de anidación:
 
-Agrega `_` O `*` antes y después del texto para que se vea en *cursiva*.
+```
+- Primer elemento
+- Segundo elemento
+  - Elemento anidado
+    - Uno más profundo
+```
 
-Ejemplo:
-`*contenido de texto en cursiva*`
+### Listas numeradas
 
-## Tachado
+Comienza una línea con un número y un punto o un paréntesis:
 
-Agrega `~` antes y después del texto para que se vea ~~tachado~~.
+```
+1. Abre la barra de menús
+2. Haz clic en Personalización
+3) Esta opción también funciona
+```
 
-Ejemplo:
-`~contenido de texto tachado~`
+### Marcadores de notas de actualización
+
+Las líneas también pueden comenzar con `+`, `-`, `~` o `*`. Cada uno tiene su propio marcador, ideal para notas de actualización y registros de cambios:
+
+```
++ Se agregó un nuevo menú principal
+- Se eliminó el logotipo anterior
+~ Se cambiaron los colores de los botones
+* Se corrigió un cierre inesperado al iniciar
+```
+
+| Marcador | Significado |
+|---|---|
+| `+` | Se agregó algo |
+| `-` | Se eliminó algo |
+| `~` | Se cambió algo |
+| `*` | Algo que vale la pena destacar |
+
+Un elemento con `-` solo recibe el marcador de «eliminado» cuando su lista también tiene un elemento con `+`. De lo contrario, es un elemento normal de una lista con viñetas. Puedes cambiar este comportamiento en **Markdown -> Lists -> Extra Markers (+ - ~ \*) -> - Marker Used**.
+
+> [!NOTE]
+> Los nuevos elementos de texto e información sobre herramientas tienen activadas las listas numeradas, los marcadores de notas de actualización y las [llamadas destacadas](#callouts). Estos están desactivados en los elementos de diseños anteriores para que su texto no cambie de repente. Actívalos en el menú **Markdown** del elemento: **Lists -> Numbered Lists**, **Lists -> Extra Markers (+ - ~ \*)** y **Callouts**.
+
+## Citas
+
+Comienza una línea con `> ` para convertirla en una cita. La cita continúa hasta la siguiente línea vacía:
+
+```
+> Esto es una cita.
+Y esta línea también forma parte de ella.
+
+Esta línea vuelve a ser texto normal.
+```
+
+Las líneas dentro de una cita también pueden comenzar con `>`. Además, una línea que solo contiene `>` agrega una línea vacía a la cita:
+
+```
+> Primer párrafo de la cita.
+>
+> Segundo párrafo de la cita.
+```
+
+## Llamadas destacadas
+
+Las llamadas destacadas son recuadros de colores con un ícono y una etiqueta, ideales para consejos y advertencias. Escribe una cita cuya primera línea indique el tipo de llamada:
+
+```
+> [!WARNING]
+> ¡No olvides guardar tu diseño!
+```
+
+<img width="640" alt="Llamadas destacadas en Markdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_callouts.png?raw=true">
+
+Hay cinco tipos: `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` y `[!CAUTION]`.
 
 ## Hipervínculos
 
-Puedes agregar hipervínculos al contenido de texto para que abran un sitio web al hacer clic.
-
-El texto que debe aparecer como [hipervínculo](https://google.com) necesita ir entre `[ ]`, seguido del enlace real entre `( )`.
-
-Así que, si quieres que `texto de ejemplo` sea clickable y abra `https://example-website.net`, haz esto:
-`[texto de ejemplo](https://example-website.net)`
-
-## Eventos de clic y de hover
-
-Los eventos de clic y hover de Markdown están disponibles para [elementos de texto](./elements#text) y otro texto Markdown. Usa [**Al hacer clic en texto Markdown**](./listeners#on-markdown-text-clicked-text_clicked) y [**Al pasar el cursor sobre texto Markdown**](./listeners#on-markdown-text-hovered-text_hovered) para reaccionar a ellos.
-
-Los eventos de clic usan el prefijo `click:`:
+Encierra el texto entre `[ ]` y coloca el enlace detrás, entre `( )`:
 
 ```
-[algún texto clickable](click:unique_text_click_event_id)
+[Visita nuestro sitio web](https://example.com)
 ```
 
-Los eventos de hover usan el prefijo `hover:`:
+Los enlaces pueden incluir paréntesis, como `https://en.wikipedia.org/wiki/Minecraft_(video_game)`. Para mostrar corchetes en el texto del enlace, coloca `\` delante de ellos: `[Haz clic \[aquí\]](https://example.com)`.
+
+## Eventos al hacer clic y al pasar el cursor
+
+El texto también puede activar [escuchas](/listeners) en lugar de abrir un sitio web. Usa el prefijo `click:` o `hover:` con el ID que prefieras:
 
 ```
-[algún texto con hover](hover:unique_text_hover_event_id)
+[texto en el que se puede hacer clic](click:unique_text_click_event_id)
+[texto sobre el que se puede pasar el cursor](hover:unique_text_hover_event_id)
 ```
 
-Ambos listeners exponen el ID del evento como `$$text_event_id`.
+Reacciona a ellos con las escuchas [**On Markdown Text Clicked**](/listeners#on-markdown-text-clicked) y [**On Markdown Text Hovered**](/listeners#on-markdown-text-hovered). Ambas proporcionan el ID como `$$text_event_id`.
 
 ## Imágenes
 
-Markdown admite mostrar imágenes en el contenido de texto.
+Coloca una imagen en su propia línea con `![](` + la fuente de la imagen + `)`:
 
-FancyMenu admite recursos de Minecraft, recursos locales y recursos web en Markdown.
-
-Para agregar una imagen, empieza una línea de texto con `![](`, luego la [URL, ubicación del recurso o ruta al recurso](./resources) y después `)`.
-
-Así que, para mostrar el recurso web `https://example-website.net/image.png`, haz esto:
-`![](https://example-website.net/image.png)`
-
-Las imágenes también pueden ser **hipervínculos** envolviendo toda la línea de texto de la imagen en un **hipervínculo** así:
-`[![](https://example-website.net/image.png)](https://example-website.net)`
-
-> [!WARNING]
-> ¡Los recursos locales deben estar en `<game-directory>/config/fancymenu/assets/`!
-
-## Cita
-
-Para dar formato al texto como una cita, empieza una línea de texto con `> `.
-Esto formateará todas las líneas siguientes como cita hasta que encuentre una línea **vacía**.
-
-Ejemplo:
 ```
-Esto no se verá como una cita.
-
-> Esto se verá como una cita.
-Este también se verá como una cita.
-
-Esto ya no se verá como una cita.
+![](https://example.com/image.png)
 ```
 
-## Listas con viñetas
+La fuente puede ser una URL web, un archivo local como `/config/fancymenu/assets/image.png` o una imagen de un paquete de recursos. Consulta [Recursos](/resources) para ver todos los tipos de fuentes.
 
-Para mostrar texto como una lista con viñetas como esta:
-- Entrada 1
-- Entrada 2
-  - Subentrada
+El texto entre corchetes se convierte en el pie de foto de la imagen:
 
-Solo necesitas empezar una línea con `- `.
-
-Ejemplo:
 ```
-- Entrada 1
-- Entrada 2
-  - Subentrada
+![Mi captura de pantalla genial](/config/fancymenu/assets/screenshot.png)
 ```
 
-## Línea de separación
+Los pies de foto aparecen debajo de la imagen si la opción **Markdown -> Images -> Caption** del elemento está activada.
 
-Para agregar una línea de separación a tu texto que tenga el ancho de toda una línea de texto, simplemente empieza una línea con `---` y no agregues nada más.
+Para hacer que se pueda hacer clic en una imagen, envuélvela en un enlace:
 
-Entonces se verá algo así:
+```
+[![](https://example.com/image.png)](https://example.com)
+```
 
----
+## Tablas
 
-## Bloques de código
+Separa las celdas con `|`. La primera fila es el encabezado y la segunda contiene `---` para cada columna:
 
-Los bloques de código pueden ayudarte a mostrar texto como `texto plano` sin que Markdown intente darle formato, o simplemente para mostrar texto con un estilo tipo código sin ajuste automático de las líneas de texto.
+```
+| Objeto | Precio |
+|:---|---:|
+| Espada de diamante | 10 |
+| Manzana dorada | 5 |
+```
 
-Un bloque de código de una sola línea (entre otro texto) empieza y termina con \` , lo cual en realidad es bastante difícil de mostrar en texto Markdown..
+Los dos puntos de la segunda fila alinean la columna: `:---` a la izquierda, `:---:` al centro y `---:` a la derecha. Para mostrar un `|` dentro de una celda, escribe `\|`.
 
-Una línea de texto que contiene un bloque de código de una sola línea se ve así:
+<img width="640" alt="Tabla y código en Markdown" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/markdown_table_code.png?raw=true">
 
-![single_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/e78fd38b-7b1a-4f00-9b11-797d964b3b43)
+## Separadores
 
-Los bloques de código de varias líneas abarcan múltiples líneas en un solo bloque de código grande y empiezan con una línea que solo contiene \`\`\` y luego el contenido del texto y después \`\`\` otra vez:
+Una línea que solo contiene `---` dibuja un separador a lo ancho del texto.
 
-![multi_line_code_block](https://github.com/Keksuccino/FancyMenu/assets/35544624/bf8c77eb-a97e-48cd-9270-8302c2995856) 
+## Código
+
+El código muestra el texto tal cual, sin darle formato.
+
+- **Código en línea:** encierra una parte de la línea entre `` ` ``, como `` `/spawn` ``.
+- **Bloques de código:** coloca una línea con `` ``` `` antes y después del texto. Las líneas de los bloques de código no se ajustan automáticamente.
+
+````
+```
+/give @p minecraft:diamond 64
+```
+````
+
+Puedes escribir el nombre de un lenguaje después del primer `` ``` ``, por ejemplo, `` ```json ``. FancyMenu lo acepta, pero no cambia la apariencia del código.
+
+Los [marcadores de posición](/placeholders) se siguen reemplazando dentro del código.
 
 ## Texto sin formato
 
-El código de formato de texto sin formato omitirá todos los demás códigos de formato dentro de él.
-
-Funciona de manera similar a los bloques de código, pero no lo formateará como un bloque de código. En su lugar, se mostrará como texto normal, pero sin ningún formato.
-
-Para envolver una parte del texto dentro de una línea en un código de formato de texto sin formato, necesitas agregar `;;` antes y después de la parte del texto que quieres mostrar como texto sin formato, así:
+El texto sin formato muestra los caracteres de formato tal cual, pero sin la apariencia del código. Encierra una parte de la línea entre `;;`:
 
 ```
-Esta es una línea de texto con ;;**esta parte**;; mostrándose como texto sin formato con el código visible de formato ** (negritas) y _esta parte_ como texto cursiva con formato normal.
+Esto muestra ;;**asteriscos**;; en lugar de texto en negritas.
 ```
 
-El texto sin formato también funciona como un código envolvente de varias líneas. Para envolver líneas completas, agrega `;;;` antes y después de la(s) línea(s) que quieras mostrar como texto sin formato, así:
+Para hacerlo con líneas completas, coloca `;;;` en una línea aparte antes y después de ellas:
 
 ```
 ;;;
-Esta línea se mostrará **sin formato** con los códigos visibles de formato ** (negritas).
-Esta línea también se mostrará _sin formato_ con los códigos visibles de formato _ (cursiva).
+**Sin negritas**, _sin cursiva_.
 ;;;
-
-Esta línea volverá a verse **normal** con "normal" formateado como texto en negritas.
 ```
+
+## Escapar caracteres
+
+Para mostrar un carácter de formato como texto normal, coloca `\` delante. Por ejemplo, `\*sin cursiva\*` muestra `*sin cursiva*`.
+
+Esto funciona con `\` `` ` `` `*` `_` `{` `}` `[` `]` `(` `)` `#` `+` `-` `.` `!` `|` `>` `~` y `^`.
 
 # Formato de texto de Minecraft
 
-Los códigos de formato de Minecraft funcionan en los campos de texto con formato compatibles en FancyMenu. Usa `&` en lugar del prefijo `§` de Minecraft; por ejemplo, `&cWarning` muestra texto rojo.
+Los códigos de formato de Minecraft funcionan en la mayoría de los campos de texto de FancyMenu. Usa `&` en lugar de `§`, que es el carácter de Minecraft. Por ejemplo, `&cAdvertencia` muestra texto rojo y `&l` pone el texto en negritas. `&r` restablece el formato.
 
-Consulta la [referencia de códigos de formato de Minecraft en el Wiki de Minecraft](https://minecraft.wiki/w/Formatting_codes) para ver los colores y estilos disponibles.
+Consulta la [wiki de Minecraft](https://minecraft.wiki/w/Formatting_codes) para ver todos los códigos.
 
-> [!CAUTION]
-> Los códigos de formato de Minecraft no son confiables en los **elementos de texto** porque esos elementos analizan Markdown. En su lugar, usa el formato Markdown descrito arriba.
+Los códigos de formato también funcionan en el texto Markdown, excepto dentro del código y del texto sin formato. Para estilos como las negritas y la cursiva, Markdown suele ser más fácil de leer, pero los códigos son útiles para aplicar colores rápidamente.
 
-# Componentes de texto de Minecraft (Sistema de componentes sin procesar)
+# Componentes de texto de Minecraft (sistema de componentes sin procesar)
 
-El sistema de componentes de texto de Minecraft es bastante potente para contenido de texto de **una sola línea** como las **etiquetas de botones**.
+Los componentes de texto de Minecraft son texto con formato escrito en JSON. Funcionan con texto de **una sola línea**, como las **etiquetas de botones y controles deslizantes**, pero no con los elementos de texto.
 
-En Minecraft Vanilla puedes usarlo en los comandos `/tellraw` y `/title` (y probablemente en otros lugares).
-Es texto con formato serializado a JSON, así que puedes agregar atributos de formato al contenido del texto.
+Para usar uno, configura la etiqueta únicamente con el componente:
 
-Para aprender más sobre los componentes de texto en detalle, por favor revisa [esta página del wiki de Minecraft](https://minecraft.wiki/w/Raw_JSON_text_format).
-Para aprender más sobre las fuentes en Minecraft, revisa [esta página del wiki de Minecraft](https://minecraft.wiki/w/Resource_pack#Fonts).
+```
+{"text":"Texto de la etiqueta del botón","font":"uniform"}
+```
 
-Para hacer que FancyMenu detecte una etiqueta de botón como **componente de texto**, no pongas nada más que el texto serializado del componente como etiqueta, así:
-`{"text":"Texto de la etiqueta del botón","font":"uniform"}`
+Esto muestra `Texto de la etiqueta del botón` con la fuente `uniform`. Puedes usar [marcadores de posición](/placeholders) en el valor de `text`.
 
-El ejemplo anterior mostrará la etiqueta del botón `Texto de la etiqueta del botón` con la fuente `uniform`.
-
-> [!NOTE]
-> Puedes usar los placeholders de FancyMenu en el valor `text` de los componentes.
+Para obtener más información, consulta las páginas de la wiki de Minecraft sobre el [formato de componentes de texto](https://minecraft.wiki/w/Raw_JSON_text_format) y las [fuentes](https://minecraft.wiki/w/Resource_pack#Fonts).

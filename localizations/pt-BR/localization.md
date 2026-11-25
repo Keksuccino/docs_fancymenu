@@ -1,27 +1,28 @@
 ---
-title: Localizando Layouts
-description: Localize textos e outros conteúdos do layout.
+title: Localizando layouts
+description: Localize textos e outros conteúdos de layout.
+sourceBlobSha: f4883414b07e0c024de7bef4f131b878ca4f5f37
 ---
 
-# Localizando Layouts
+# Localizando layouts
 
-Use o [placeholder **Localize Text**](./placeholders#localize-text-local) para textos traduzíveis:
+Use o [espaço reservado **Localizar texto**](/placeholders#localize-text) para textos traduzíveis:
 
 ```text
 {"placeholder":"local","values":{"key":"modpack.menu.play"}}
 ```
 
-O FancyMenu primeiro verifica os dados de idioma ativos do Minecraft. Se a chave não estiver presente lá, ele verifica os arquivos de localização personalizados do FancyMenu. Se nenhuma das fontes contiver a chave, a própria chave será exibida.
+O FancyMenu verifica primeiro os dados de idioma ativos do Minecraft. Se a chave não estiver presente, ele verifica os arquivos de localização personalizados do FancyMenu. Se a chave não estiver em nenhuma das fontes, ela será exibida como está.
 
-# Arquivos de Localização Personalizados do FancyMenu
+# Arquivos de localização personalizados do FancyMenu
 
-Coloque os arquivos abaixo:
+Coloque os arquivos em:
 
 ```text
 <game-directory>/config/fancymenu/custom_locals/
 ```
 
-Crie um subdiretório para os seus arquivos de localização:
+Crie um subdiretório para seus arquivos de localização:
 
 ```text
 custom_locals/
@@ -29,17 +30,17 @@ custom_locals/
     └── text.json
 ```
 
-Coloque os arquivos de localização dentro de pelo menos um subdiretório de `custom_locals`; arquivos colocados diretamente na raiz de `custom_locals` não são carregados. Subdiretórios aninhados são suportados.
+Coloque os arquivos de localização em pelo menos um subdiretório de `custom_locals`; arquivos colocados diretamente na raiz de `custom_locals` não são carregados. Subdiretórios aninhados são aceitos.
 
-Formatos UTF-8 suportados:
+Formatos UTF-8 compatíveis:
 
 | Extensão | Formato |
 |---|---|
-| `.json` | Objeto JSON; objetos aninhados se tornam chaves separadas por ponto |
-| `.lang` | Linhas `key=value` |
-| `.properties` | Sintaxe de propriedades Java |
+| `.json` | Objeto JSON; objetos aninhados se tornam chaves separadas por pontos |
+| `.lang` | Linhas no formato `chave=valor` |
+| `.properties` | Sintaxe de propriedades do Java |
 
-Exemplo em JSON:
+Exemplo de JSON:
 
 ```json
 {
@@ -53,21 +54,21 @@ Exemplo em JSON:
 
 Isso define `modpack.menu.play`.
 
-O FancyMenu combina os arquivos suportados dessas subpastas em um único dicionário de localização personalizado. Use cada chave em apenas um arquivo. Os arquivos de localização personalizados não mudam com o idioma selecionado no Minecraft; use o método de pacote de recursos abaixo quando precisar de troca automática de idioma.
+O FancyMenu combina os arquivos compatíveis desses subdiretórios em um único dicionário de localização personalizado. Use cada chave em apenas um arquivo. Os arquivos de localização personalizados não alternam de acordo com o idioma selecionado no Minecraft; use o método de pacote de recursos abaixo quando precisar de alternância automática de idioma.
 
-Reinicie o cliente após editar os arquivos de localização personalizados.
+Reinicie o cliente depois de editar os arquivos de localização personalizados.
 
-# Texto Específico por Idioma
+# Texto específico por idioma
 
-Para alternância automática com o idioma selecionado no Minecraft, forneça arquivos de idioma normais do Minecraft por meio de um [pacote de recursos](./resources#minecraft-resources-resource-packs):
+Para alternar automaticamente de acordo com o idioma selecionado no Minecraft, forneça arquivos de idioma padrão do Minecraft por meio de um [pacote de recursos](/resources#minecraft-resources-resource-packs):
 
 ```text
 assets/<namespace>/lang/en_us.json
 assets/<namespace>/lang/de_de.json
 ```
 
-Use as mesmas chaves em cada arquivo de idioma, ative o pacote de recursos e então leia-as com o [placeholder **Localize Text**](./placeholders#localize-text-local).
+Use as mesmas chaves em cada arquivo de idioma, ative o pacote de recursos e, em seguida, acesse-as com o [espaço reservado **Localizar texto**](/placeholders#localize-text).
 
-# Localizando Imagens e Elementos
+# Localizando imagens e elementos
 
-Use a [requirement **Is Game Language**](./conditions#is-game-language-fancymenu_loading_requirement_is_language) para mostrar elementos ou layouts diferentes para códigos de idioma diferentes, como `en_us` e `de_de`.
+Use o [requisito **O idioma do jogo é**](/conditions#is-game-language) para exibir elementos ou layouts diferentes de acordo com o código do idioma, como `en_us` e `de_de`.

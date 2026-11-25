@@ -1,43 +1,62 @@
 ---
-title: Entidades do Jogador
+title: Entidades de jogador
 description: >-
-  Como o elemento "Entidade do Jogador" do FancyMenu funciona e como usá-lo
-  corretamente.
+  Exiba jogadores nos seus menus com o elemento Entidade de jogador, incluindo
+  skin, nome, pose, armadura e muito mais.
+sourceBlobSha: b8f8d4340ca3a87e1c55c86f95f36786ab840644
 ---
-# Entidades do Jogador
 
-O FancyMenu permite adicionar entidades de jogador às telas, para que você possa exibir o jogador do cliente ou outros jogadores, incluindo entidades personalizadas que não representam um jogador real de forma alguma, com skin, nome, capa e muito mais personalizados.
+# Entidades de jogador
 
-# Jogador do Cliente
+O elemento Entidade de jogador exibe um jogador em 3D, como o personagem do próprio jogador ao lado dos botões da tela inicial. Ele pode copiar quem está jogando, exibir qualquer outro jogador ou representar um personagem próprio, com skin, capa e nome próprios.
 
-Para mostrar um "espelho" do jogador do cliente, basta clicar com o botão direito no elemento Entidade do Jogador e ativar **Copiar Jogador do Cliente**. Isso copiará a skin, a capa e o nome do jogador do cliente.
+<img width="800" alt="Cinco entidades de jogador: um jogador real com skin e capa, um com armadura de diamante encantada, espada e escudo, um agachado, um acenando e um bebê" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_showcase.png?raw=true">
 
-# Outros Jogadores
+> [!IMPORTANT]
+> No Minecraft 1.20.1 e versões mais recentes, as Entidades de jogador precisam do mod Fancy Entity Renderer ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer), [Modrinth](https://modrinth.com/mod/fancy-entity-renderer)). Sem ele, elas aparecem como um quadrado vermelho. Se ainda não houver uma versão do mod para a sua versão do Minecraft, não será possível exibir Entidades de jogador nela.
 
-Se você quiser mostrar outro jogador existente, basta clicar com o botão direito no elemento e definir **Nome do Jogador** para o nome de um jogador existente. Isso mostrará automaticamente a skin, a capa e o nome desse jogador existente, desde que você não tenha uma skin ou capa personalizada definida e **Copiar Jogador do Cliente** esteja **desativado**.
+# Adicionar uma Entidade de jogador
 
-# Entidades de Jogador Personalizadas
+Clique com o botão direito no fundo do editor e selecione **Novo elemento -> Entidade de jogador**. Arraste as alças para alterar o tamanho. O tamanho do jogador acompanha a altura do elemento.
 
-Se você não quiser mostrar um jogador real e, em vez disso, quiser personalizar totalmente a skin, a capa e o nome da entidade, você pode clicar com o botão direito no elemento. Há opções para definir uma textura personalizada de skin e capa. Se uma skin e capa personalizadas estiverem ativas, você também pode definir qualquer nome de jogador que quiser sem que a skin do nome do jogador seja copiada, caso o jogador exista.
+Todas as configurações abaixo ficam no menu aberto ao clicar com o botão direito no elemento.
 
-# Pose da Entidade
+# Quem ela exibe
 
-O elemento Entidade do Jogador tem suporte completo para personalizar sua pose, ou seja, você pode mover livremente todos os seus membros, partes do corpo etc.
+- **Copiar jogador do cliente** exibe quem está jogando, com o nome, a skin e a capa dessa pessoa. Enquanto essa opção estiver ativada, as configurações de nome, skin e capa ficarão bloqueadas.
+- **Nome do jogador** pode ser qualquer nome; não precisa pertencer a um jogador real. Aceita [placeholders](/placeholders).
+- **Exibir nome do jogador** mostra a etiqueta de nome acima da cabeça. Com **Rotação da etiqueta de nome** desativada, a etiqueta não gira junto com o jogador.
 
-Para fazer isso, clique com o botão direito no elemento e clique em **Pose do Jogador**. Isso abrirá uma tela com controles deslizantes para configurar a rotação X/Y/Z de todas as partes do corpo.
+## Skin e capa
 
-As configurações de pose do jogador têm um modo normal, em que você pode personalizar as rotações com controles deslizantes, e também há um modo avançado que permite inserir texto para todas as rotações com suporte completo a placeholders, o que torna possível até animar a entidade com um elemento Ticker que define variáveis de rotação!
+- **Skin automática** e **Capa automática** carregam a skin e a capa do jogador indicado em **Nome do jogador**. É necessária uma conexão com a internet.
+- **Textura da skin** e **Textura da capa** usam seus próprios arquivos de skin e capa, como uma skin dos seus [recursos](/resources). As skins são os arquivos de skin normais do Minecraft.
+- **Skin slim** é para skins com braços finos, como a da Alex. **Skin automática** e **Copiar jogador do cliente** detectam isso automaticamente.
 
-# Alterando o Tamanho da Entidade
+# Pose e movimento
 
-No Minecraft 1.20.1+, você pode simplesmente usar os manipuladores normais de redimensionamento do elemento para escalar a entidade.
+<img width="800" alt="Duas Entidades de jogador acompanham o ponteiro do mouse enquanto ele se move: a da esquerda vira apenas a cabeça; a da direita vira a cabeça e o corpo" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_follow_mouse.gif?raw=true">
 
-Para versões mais antigas (1.19.2 e anteriores), os elementos Entidade do Jogador não suportam redimensionamento direto pelos manipuladores de redimensionamento. Em vez disso, você precisa clicar com o botão direito no elemento e clicar em **Escala**. Isso permite definir uma escala para o elemento. O padrão deve ser `30`; então, defini-lo como `60`, por exemplo, faz o jogador ficar duas vezes maior do que o normal, definir como `15` mostra-o com metade do tamanho e assim por diante.
+- **Cabeça acompanha o mouse** e **Corpo acompanha o mouse** fazem o jogador olhar para o ponteiro do mouse. As duas opções vêm ativadas nas novas Entidades de jogador.
+- **Pose** define a pose do corpo: **Em pé**, **Agachado**, **Dormindo**, **Nadando**, **Morrendo** ou **Ataque giratório**.
+- **Movimento do corpo** anima a pose.
 
-# Dependência: Fancy Entity Renderer (FER)
+## Pose da entidade
 
-Para o **Minecraft 1.20.1+**, é necessário um **mod extra** para fazer os elementos Entidade do Jogador funcionarem. O mod se chama **Fancy Entity Renderer** e está disponível no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fancy-entity-renderer) e no [Modrinth](https://modrinth.com/mod/fancy-entity-renderer).
+**Pose da entidade** abre uma janela com as rotações X, Y e Z da **Cabeça**, do **Corpo**, do **Braço esquerdo**, do **Braço direito**, da **Perna esquerda** e da **Perna direita**, de `-180` a `180`.
 
-Se ainda não houver uma build disponível para a versão do Minecraft que você está usando, é muito provável que ela seja lançada mais tarde.
+<img width="800" alt="A janela Pose da entidade, com controles deslizantes de rotação para a cabeça e o corpo do jogador" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/player_entities_pose_window.png?raw=true">
 
-Lembre-se de que o FER não é desenvolvido por Keksuccino, então ele não tem controle sobre quando as builds são lançadas.
+**Modo avançado**, ao lado de um controle deslizante, transforma o valor em um campo de texto que aceita [placeholders](/placeholders). Se o campo contiver uma [variável](/variables), como `$$arm_angle`, um [Scheduler](/schedulers) poderá animar o jogador alterando essa variável.
+
+# Armadura, itens e mais
+
+- **Armadura e ferramentas** equipa itens no jogador: **Armadura da cabeça**, **Armadura do peito**, **Armadura das pernas**, **Armadura dos pés**, **Item da mão esquerda** e **Item da mão direita**. Defina cada opção com um ID de item, como `minecraft:diamond_sword`. Os IDs de item aceitam placeholders. **Encantar armadura da cabeça** e as outras opções de encantamento adicionam o brilho de encantamento.
+- **É bebê** deixa o jogador pequeno, como um bebê.
+- **Papagaio** coloca um papagaio no ombro direito ou, com **Papagaio no ombro esquerdo**, no ombro esquerdo.
+
+# É bom saber
+
+- Não é possível girar, inclinar, esmaecer nem deixar as Entidades de jogador transparentes.
+- Para exibir apenas a cabeça de um jogador, consulte [Cabeças de jogador](/player-heads).
+- No Minecraft 1.19.2, as Entidades de jogador não precisam do Fancy Entity Renderer, mas têm menos configurações: **Agachado** no lugar de **Pose**, e não há **Rotação da etiqueta de nome**, **Movimento do corpo** nem **Armadura e ferramentas**. O tamanho é definido por **Escala da entidade** (padrão `30`; portanto, `60` é o dobro do tamanho), em vez de acompanhar o tamanho do elemento.

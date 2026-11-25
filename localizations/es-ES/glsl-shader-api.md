@@ -1,38 +1,39 @@
 ---
-title: API de Shaders GLSL
+title: API de sombreadores GLSL
 description: >-
-  Escribe shaders GLSL de FancyMenu para fondos, elementos y superposiciones
-  decorativas.
+  Escribe sombreadores GLSL de FancyMenu para fondos, elementos y
+  superposiciones decorativas.
+sourceBlobSha: f3da9c3fe83444dab5c59f74f5011e2d6e8cf9e6
 ---
 
-# API de Shaders GLSL de FancyMenu
+# API de sombreadores GLSL de FancyMenu
 
-Este documento describe el entorno de ejecución GLSL utilizado por:
+Este documento describe el entorno de ejecución GLSL que utiliza FancyMenu para:
 
 - el fondo de menú `GLSL`
-- el elemento `GLSL`
-- la superposición decorativa `GLSL`
+- los elementos `GLSL`
+- las superposiciones decorativas `GLSL`
 
-Cubre los modos de compilación, el enrutado multipaso, las uniformes compatibles y patrones prácticos para crear shaders.
+Incluye los modos de compilación, el enrutamiento multipaso, los uniformes disponibles y patrones prácticos para crear sombreadores.
 
-## 1. Visión general del entorno de ejecución
+## 1. Descripción general del entorno de ejecución
 
-FancyMenu renderiza shaders con una canalización interna de OpenGL (`#version 150`) y admite:
+FancyMenu renderiza los sombreadores mediante una canalización interna de OpenGL (`#version 150`) y admite:
 
-- shaders de un solo pase (`Image` únicamente)
-- shaders multipaso (`Buffer A` / `B` / `C` / `D` + `Image`)
-- puntos de entrada al estilo Shadertoy (`mainImage`)
+- sombreadores de un solo paso (solo el paso `Image`)
+- sombreadores multipaso (`Buffer A` / `B` / `C` / `D` + `Image`)
+- puntos de entrada al estilo de Shadertoy (`mainImage`)
 - puntos de entrada directos de fragmento (`main`)
 
-Las fuentes de shader son campos de texto en línea:
+El código fuente de los sombreadores se introduce en campos de texto:
 
-- `Shader Source` (pase `Image`, necesario para renderizar)
+- `Shader Source` (paso Image, necesario para renderizar)
 - `Buffer A Source` (opcional)
 - `Buffer B Source` (opcional)
 - `Buffer C Source` (opcional)
 - `Buffer D Source` (opcional)
 
-Si la fuente de `Image` está vacía, el renderizado falla con un error de "no source".
+Si el código fuente de Image está vacío, el renderizado falla con un error «no source».
 
 ## 2. Modos de compilación
 
@@ -50,13 +51,13 @@ Punto de entrada esperado:
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 ```
 
-FancyMenu lo envuelve en `main()` y pasa las coordenadas del área local:
+FancyMenu lo integra en `main()` y le pasa las coordenadas locales del área:
 
 ```glsl
 mainImage(fmColor_FancyMenu, gl_FragCoord.xy - fmAreaOffset);
 ```
 
-El envoltorio multiplica la alfa de salida por `fmOpacity`.
+El envoltorio multiplica automáticamente la alfa de salida por `fmOpacity`.
 
 ### 2.2 Modo directo
 
@@ -69,56 +70,56 @@ void main()
 Comportamiento de compatibilidad:
 
 - Se intenta una variante compatible con `gl_FragColor`.
-- También se intenta una variante sin compatibilidad (para shaders modernos con `out vec4` explícito).
+- También se intenta una variante sin compatibilidad (para sombreadores modernos con `out vec4` explícito).
 
-En el modo directo, `fmOpacity` no se aplica automáticamente a la salida. Aplícalo manualmente si hace falta.
+En el modo directo, `fmOpacity` no se aplica automáticamente a la salida. Aplícalo manualmente si es necesario.
 
 ### 2.3 Modo automático
 
-Auto prueba variantes compatibles en secuencia (Shadertoy/directo) y usa la primera que compile.
+El modo automático prueba las variantes compatibles en secuencia (Shadertoy/directo) y utiliza la primera que se compila correctamente.
 
-## 3. Preprocesado de fuentes y macros integradas
+## 3. Preprocesamiento del código fuente y macros integradas
 
-Antes de compilar, FancyMenu normaliza la fuente:
+Antes de compilar, FancyMenu normaliza el código fuente:
 
-- elimina el BOM UTF-8
-- convierte CRLF/CR a LF
-- elimina líneas `#version ...`
-- elimina líneas `precision ...;`
+- elimina la marca BOM de UTF-8
+- convierte CRLF/CR en LF
+- elimina las líneas `#version ...`
+- elimina las líneas `precision ...;`
 
-El preámbulo inyectado en tiempo de ejecución incluye:
+El preámbulo que se inyecta en tiempo de ejecución incluye:
 
 - `#version 150`
-- `in vec2 fmUv_FancyMenu` (UV a pantalla completa en `[0,1]`, origen en la esquina inferior izquierda)
+- `in vec2 fmUv_FancyMenu` (UV de pantalla completa en `[0,1]`, con origen abajo a la izquierda)
 - `#define iGlobalTime iTime`
 - `#define texture2D texture`
 - `#define textureCube texture`
 
 Nota:
 
-- Si tu fuente ya declara un nombre de uniforme conocido (por ejemplo, `iTime`), FancyMenu evita inyectar una declaración duplicada.
-- Aun así, FancyMenu intenta subir valores a ese nombre en tiempo de ejecución.
-- `textureCube` aquí solo es una macro alias; `iChannel0..3` son uniformes `sampler2D`.
+- Si el código fuente ya declara un nombre de uniforme conocido (por ejemplo, `iTime`), FancyMenu evita inyectar una declaración duplicada.
+- FancyMenu sigue intentando asignar valores a ese nombre en tiempo de ejecución.
+- Aquí, `textureCube` solo es una macro de alias; `iChannel0..3` son uniformes `sampler2D`.
 
-## 4. Sistema de pases (`Image` + `Buffer A-D`)
+## 4. Sistema de pasos (Image + Buffer A-D)
 
-FancyMenu tiene 5 ranuras de pase:
+FancyMenu tiene 5 pasos disponibles:
 
 - `Buffer A`
 - `Buffer B`
 - `Buffer C`
 - `Buffer D`
-- `Image` (pase final en pantalla)
+- `Image` (paso final que se muestra en pantalla)
 
 Comportamiento:
 
-- Los pases de buffer solo se ejecutan si su fuente no está vacía.
-- El pase `Image` debe estar presente para renderizar salida.
-- Los buffers se renderizan a texturas en coma flotante (`GL_RGBA16F`) y luego usan ping-pong (intercambio lectura/escritura en cada frame).
+- Los pasos de búfer solo se ejecutan si su código fuente no está vacío.
+- Es necesario que exista el paso Image para renderizar la salida.
+- Los búferes se renderizan en texturas de coma flotante (`GL_RGBA16F`) y, después, se alternan mediante doble búfer (se intercambian las texturas de lectura y escritura en cada fotograma).
 
-### 4.1 Enrutado de canales por pase
+### 4.1 Enrutamiento de canales por paso
 
-Cada pase expone enrutado para `iChannel0..3`. Por canal puedes seleccionar:
+Cada paso permite configurar el enrutamiento de `iChannel0..3`. Para cada canal puedes seleccionar:
 
 - `None`
 - `Resource 0`
@@ -130,111 +131,111 @@ Cada pase expone enrutado para `iChannel0..3`. Por canal puedes seleccionar:
 - `Buffer C`
 - `Buffer D`
 
-Los canales de recurso provienen de los ajustes `iChannel# Resource`.
+Los canales de recurso proceden de los ajustes `iChannel# Resource`.
 
 Valores predeterminados:
 
-- todos los enrutados de `iChannel` empiezan en `None`
-- ningún pase de buffer está activo hasta que la fuente de ese buffer no esté vacía
+- todos los enrutamientos de `iChannel` se establecen en `None`
+- ningún paso de búfer está activo hasta que se introduce código fuente en ese búfer
 
 Importante:
 
-- Enrutar al mismo pase de buffer (feedback) lee datos del frame anterior (textura de lectura ping-pong).
-- Si la fuente enrutada falta o está inactiva, se enlaza una textura de respaldo y `iChannelResolution[n].z` pasa a ser `0.0`.
+- Si se enruta un paso hacia sí mismo (retroalimentación), se leen los datos del fotograma anterior (la textura de lectura del doble búfer).
+- Si el origen enrutado no existe o está inactivo, se asigna una textura alternativa y `iChannelResolution[n].z` pasa a ser `0.0`.
 
 ## 5. Coordenadas y semántica del área
 
-Los shaders se ejecutan en un rectángulo de área:
+Los sombreadores se ejecutan dentro de un área rectangular:
 
-- Fondo del menú: área de pantalla completa
+- Fondo de menú: área de pantalla completa
 - Elemento GLSL: rectángulo del elemento
 
 Convenciones de coordenadas:
 
-- Las uniformes de píxel están en píxeles locales del área.
-- El origen Y está en la esquina inferior izquierda para las coordenadas de píxel que ve el shader.
-- Las coordenadas del ratón no se recortan; los valores pueden quedar fuera del área si el cursor está fuera.
+- Los uniformes de píxel se expresan en píxeles locales al área.
+- El origen de las coordenadas de píxel que utilizan los sombreadores está abajo a la izquierda.
+- Las coordenadas del ratón no se limitan; pueden quedar fuera del área si el cursor está fuera de ella.
 
 Campos especiales:
 
-- `fmAreaOffset`: posición de la esquina inferior izquierda del área en espacio de píxeles de pantalla
-- `fmAreaTopLeft`: posición de la esquina superior izquierda del área en espacio de píxeles de pantalla
+- `fmAreaOffset`: posición de la esquina inferior izquierda del área en el espacio de píxeles de la pantalla
+- `fmAreaTopLeft`: posición de la esquina superior izquierda del área en el espacio de píxeles de la pantalla
 - `fmAreaSize`: tamaño del área en píxeles
 
 ## 6. Referencia de la API de uniformes
 
-Todas las uniformes siguientes están disponibles tanto para shaders de fondo como para shaders de elementos.
+Todos los uniformes siguientes están disponibles tanto para los sombreadores de fondo como para los de elementos.
 
 ## 6.1 Uniformes compatibles con Shadertoy
 
 | Uniforme | Tipo | Significado |
 |---|---|---|
-| `iResolution` | `vec3` | `(anchuraDelÁreaPx, alturaDelÁreaPx, 1.0)` |
-| `iTime` | `float` | Tiempo acumulado del shader en segundos |
-| `iTimeDelta` | `float` | Delta de tiempo del último render, afectado por congelación/escala de tiempo |
-| `iFrameRate` | `float` | FPS de reserva del runtime respecto a Minecraft |
-| `iFrame` | `int` | Contador de frames de este runtime |
-| `iMouse` | `vec4` | Ver detalles más abajo |
+| `iResolution` | `vec3` | `(areaWidthPx, areaHeightPx, 1.0)` |
+| `iTime` | `float` | Tiempo acumulado del sombreador en segundos |
+| `iTimeDelta` | `float` | Tiempo transcurrido desde el último renderizado; puede verse afectado por la pausa o la escala de tiempo |
+| `iFrameRate` | `float` | FPS del entorno de ejecución; usa los FPS de Minecraft como valor alternativo |
+| `iFrame` | `int` | Contador de fotogramas del entorno de ejecución |
+| `iMouse` | `vec4` | Consulta los detalles a continuación |
 | `iDate` | `vec4` | `(año, mes, día, segundosDelDíaConFracción)` |
 | `iSampleRate` | `float` | Constante `44100.0` |
-| `iChannelTime[4]` | `float[4]` | Actualmente todas están ajustadas a `iTime` |
-| `iChannelResolution[4]` | `vec3[4]` | `(ancho, alto, marcaDeValidez)` por canal |
+| `iChannelTime[4]` | `float[4]` | Actualmente, todos se establecen en `iTime` |
+| `iChannelResolution[4]` | `vec3[4]` | `(ancho, alto, indicadorDeValidez)` para cada canal |
 | `iChannel0..3` | `sampler2D` | Entradas de textura enrutadas |
 
 ### Detalles de `iMouse`
 
 `iMouse = vec4(x, y, z, w)`
 
-- `x`, `y`: posición actual del ratón en píxeles locales del área, o comportamiento de mantenimiento/congelación si el interruptor está activado
-- `z`, `w`: origen del clic izquierdo
-  - positivo mientras el botón izquierdo está pulsado
-  - negativo tras soltarlo
+- `x`, `y`: posición actual del ratón en píxeles locales al área, o posición retenida/congelada si la opción está activada
+- `z`, `w`: posición de origen del clic izquierdo
+  - positiva mientras el botón izquierdo del ratón está pulsado
+  - negativa después de soltarlo
 
-Comportamiento controlado por interruptor:
+Comportamiento controlado por el ajuste:
 
 - `Update iMouse Position Only While Holding LMB = Off`:
-  - `iMouse.xy` se actualiza de forma continua
+  - `iMouse.xy` se actualiza continuamente
 - `... = On`:
-  - `iMouse.xy` solo se actualiza mientras el botón izquierdo está pulsado y luego permanece en la última posición mantenida
+  - `iMouse.xy` solo se actualiza mientras se mantiene pulsado el botón izquierdo; después conserva la última posición registrada mientras estaba pulsado
 
 Valor predeterminado:
 
-- `Off` (actualizaciones continuas)
+- `Off` (actualización continua)
 
 ## 6.2 Uniformes específicos de FancyMenu
 
 | Uniforme | Tipo | Significado |
 |---|---|---|
-| `fmAreaOffset` | `vec2` | Desplazamiento en píxeles de la esquina inferior izquierda del área en espacio de pantalla |
+| `fmAreaOffset` | `vec2` | Desplazamiento en píxeles de la esquina inferior izquierda del área en el espacio de pantalla |
 | `fmAreaSize` | `vec2` | Tamaño del área en píxeles |
 | `fmAreaPosition` | `vec2` | Igual que `fmAreaOffset` |
-| `fmAreaTopLeft` | `vec2` | Desplazamiento en píxeles de la esquina superior izquierda del área en espacio de pantalla |
-| `fmScreenSize` | `vec2` | Tamaño total de la pantalla en píxeles |
+| `fmAreaTopLeft` | `vec2` | Desplazamiento en píxeles de la esquina superior izquierda del área en el espacio de pantalla |
+| `fmScreenSize` | `vec2` | Tamaño completo de la pantalla en píxeles |
 | `fmGuiScale` | `float` | Escala actual de la interfaz |
 | `fmMouse` | `vec4` | `(localPxX, localPxYBottom, localNormX, localNormY)` |
-| `fmMouseDelta` | `vec2` | Delta del ratón en píxeles del área (Y está invertido hacia arriba para el shader) |
+| `fmMouseDelta` | `vec2` | Desplazamiento del ratón en píxeles del área (Y se invierte para que apunte hacia arriba en el sombreador) |
 | `fmMouseButtons` | `ivec4` | Estados de pulsación de los botones `0..3` |
-| `fmMouseClickCount` | `ivec4` | Conteos acumulados de pulsaciones para los botones `0..3` |
-| `fmMouseReleaseCount` | `ivec4` | Conteos acumulados de liberaciones para los botones `0..3` |
-| `fmMouseScroll` | `vec2` | Delta de desplazamiento desde el render anterior de este runtime |
-| `fmMouseScrollTotal` | `vec2` | Totales acumulados de desplazamiento |
-| `fmKeyEvent` | `ivec4` | `(últimoKeyCode, últimoScanCode, últimosModificadores, últimaAcción)` |
+| `fmMouseClickCount` | `ivec4` | Número acumulado de pulsaciones de los botones `0..3` |
+| `fmMouseReleaseCount` | `ivec4` | Número acumulado de liberaciones de los botones `0..3` |
+| `fmMouseScroll` | `vec2` | Desplazamiento de la rueda desde el renderizado anterior de este entorno de ejecución |
+| `fmMouseScrollTotal` | `vec2` | Desplazamiento acumulado de la rueda |
+| `fmKeyEvent` | `ivec4` | `(últimoCódigoDeTecla, últimoCódigoDeEscaneo, últimosModificadores, últimaAcción)` |
 | `fmKeyEventCount` | `int` | Contador acumulado de eventos de teclado |
-| `fmCharEvent` | `ivec4` | `(últimoCodePoint, últimosModificadores, 0, 0)` |
+| `fmCharEvent` | `ivec4` | `(últimoPuntoDeCódigo, últimosModificadores, 0, 0)` |
 | `fmCharEventCount` | `int` | Contador acumulado de eventos de caracteres escritos |
-| `fmDateParts` | `ivec4` | `(año, mes, día, díaDeLaSemanaIso1A7)` |
-| `fmTimeParts` | `ivec4` | `(hora, minuto, segundo, parteMilisegundos0A999)` |
+| `fmDateParts` | `ivec4` | `(año, mes, día, díaDeLaSemanaISO1A7)` |
+| `fmTimeParts` | `ivec4` | `(hora, minuto, segundo, parteDeMilisegundo0A999)` |
 | `fmDayOfYear` | `int` | Día del año |
 | `fmWeekOfYear` | `int` | Semana ISO del año |
 | `fmUnixTimeSeconds` | `int` | Segundos desde la época Unix |
-| `fmUnixTimeMilliseconds` | `int` | Parte de milisegundos de la hora actual (`0..999`) |
+| `fmUnixTimeMilliseconds` | `int` | Parte de milisegundo de la hora actual (`0..999`) |
 | `fmPartialTick` | `float` | Tick parcial actual |
-| `fmGameDeltaTicks` | `float` | Delta ticks del juego de Minecraft |
-| `fmRealtimeDeltaTicks` | `float` | Delta ticks en tiempo real de Minecraft |
-| `fmInWorld` | `int` | `1` cuando se está en un mundo, si no `0` |
-| `fmIsPaused` | `int` | `1` cuando está en pausa, si no `0` |
-| `fmOpacity` | `float` | Multiplicador efectivo de opacidad (`0..1`) |
-| `fmVariableCount` | `int` | Cantidad actual de variables de FancyMenu |
+| `fmGameDeltaTicks` | `float` | Ticks de delta del juego de Minecraft |
+| `fmRealtimeDeltaTicks` | `float` | Ticks de delta en tiempo real de Minecraft |
+| `fmInWorld` | `int` | `1` si estás en un mundo; de lo contrario, `0` |
+| `fmIsPaused` | `int` | `1` si el juego está pausado; de lo contrario, `0` |
+| `fmOpacity` | `float` | Multiplicador de opacidad efectivo (`0..1`) |
+| `fmVariableCount` | `int` | Número actual de variables de FancyMenu |
 
 Valores de acción de tecla (`fmKeyEvent.w`):
 
@@ -244,9 +245,9 @@ Valores de acción de tecla (`fmKeyEvent.w`):
 
 ## 6.3 API de uniformes de variables de FancyMenu
 
-Las variables de FancyMenu se exponen directamente como uniformes en tiempo de ejecución (para shaders de fondo, elementos y superposiciones decorativas) sin recompilar el shader cuando cambian los valores.
+Las variables de FancyMenu se exponen directamente como uniformes en tiempo de ejecución (para los sombreadores de fondo, elementos y superposiciones decorativas), sin necesidad de recompilar los sombreadores cuando cambian sus valores.
 
-### Nomenclatura
+### Nombres
 
 Para cada variable `<name>`, FancyMenu expone:
 
@@ -256,9 +257,9 @@ Para cada variable `<name>`, FancyMenu expone:
 - `fmVarVec2_<name>`
 - `fmVarVec3_<name>`
 - `fmVarVec4_<name>`
-- `fmVarExists_<name>` (`1` = la variable existe actualmente, `0` = ausente/eliminada)
+- `fmVarExists_<name>` (`1` = la variable existe actualmente, `0` = no está presente o se ha eliminado)
 
-Sanitización del sufijo del uniforme para `<name>`:
+Normalización del sufijo del uniforme para `<name>`:
 
 - los caracteres permitidos son `[A-Za-z0-9_]`
 - todos los demás caracteres se convierten en `_`
@@ -272,27 +273,33 @@ Ejemplos:
 
 Importante:
 
-- estos uniformes dinámicos de variables **no se declaran automáticamente** en la fuente del shader (declara manualmente los que vayas a usar)
-- evita nombres de variables que se saniticen al mismo sufijo, porque se asignan al mismo nombre de uniforme GLSL
+- estos uniformes dinámicos de variables **no se declaran automáticamente** en el código fuente del sombreador (declara manualmente los que utilices)
+- evita los nombres de variable que se normalicen al mismo sufijo, ya que se asignan al mismo nombre de uniforme GLSL
 
 ### Conversión de valores
 
-Dado el valor de texto de la variable `v`:
+Dado un valor de texto de variable `v`:
 
-- `fmVarFloat_*`: float analizado (`0.0` como respaldo)
-- `fmVarInt_*`: int analizado (`0` como respaldo)
-- `fmVarBool_*`: interpretación booleana/int (`true/yes/on/enabled` => `1`, `false/no/off/disabled` => `0`, en otro caso numérico distinto de cero => `1`)
-- el análisis de vectores acepta separadores: espacios en blanco, `,`, `;`, `|`
-  - `fmVarVec2_*`: primeras 2 componentes analizadas
-  - `fmVarVec3_*`: primeras 3 componentes analizadas
-  - `fmVarVec4_*`: primeras 4 componentes analizadas
-  - si hay menos componentes, la última componente analizada se repite para los huecos faltantes
-  - si no hay componentes numéricas, todas las componentes del vector usan el valor de respaldo escalar
+- `fmVarFloat_*`: número decimal analizado (valor alternativo `0.0`)
+- `fmVarInt_*`: entero analizado (valor alternativo `0`)
+- `fmVarBool_*`: interpretación como booleano/entero (`true/yes/on/enabled` => `1`, `false/no/off/disabled` => `0`; en cualquier otro caso, un valor numérico distinto de cero => `1`)
+- el análisis de vectores admite estos separadores: espacios en blanco, `,`, `;`, `|`
+  - `fmVarVec2_*`: los 2 primeros componentes analizados
+  - `fmVarVec3_*`: los 3 primeros componentes analizados
+  - `fmVarVec4_*`: los 4 primeros componentes analizados
+  - si hay menos componentes, se repite el último componente analizado en los espacios que faltan
+  - si no hay componentes numéricos, todos los componentes del vector utilizan el valor escalar alternativo
 
-Si una variable se elimina:
+Las [variables de lista](/variables#text-and-list-variables) devuelven el número de elementos en lugar del texto:
 
-- `fmVarExists_*` pasa a `0`
-- todos los valores correspondientes `fmVar*_*` se restablecen a `0`
+- `fmVarFloat_*` y `fmVarInt_*`: número de elementos, por ejemplo, `3` para una lista con 3 elementos
+- `fmVarBool_*`: `1` si la lista tiene elementos, `0` si está vacía
+- `fmVarVec2_*`, `fmVarVec3_*` y `fmVarVec4_*`: número de elementos en cada componente
+
+Si se elimina una variable:
+
+- `fmVarExists_*` pasa a ser `0`
+- todos los valores correspondientes a `fmVar*_*` se restablecen a `0`
 
 ### Ejemplo de declaración y uso
 
@@ -322,50 +329,50 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 ## 7. Modelo de seguimiento de entradas
 
-FancyMenu sigue las entradas globalmente y toma una instantánea por render:
+FancyMenu realiza un seguimiento global de las entradas y captura su estado para cada renderizado:
 
-- movimiento/arrastre del ratón
-- pulsación/soltado del ratón
-- desplazamiento
-- pulsación/soltado/repetición de teclas
-- caracteres escritos
+- movimiento y arrastre del ratón
+- pulsación y liberación del ratón
+- desplazamiento de la rueda
+- pulsación, liberación y repetición de teclas
+- escritura de caracteres
 
-Robustez del ratón:
+Fiabilidad del ratón:
 
-- El runtime reconcilia los estados de los botones con el sondeo de GLFW en cada frame para evitar estados de botón atascado.
+- El entorno de ejecución sincroniza cada fotograma el estado de los botones con las consultas de GLFW para evitar que queden atascados.
 
 Si `Pass Input Events To Shader` está desactivado:
 
-- las uniformes de entrada se restablecen a valores neutros en cada frame
-- los contadores y eventos se ponen a cero en los datos visibles para el shader
+- los uniformes de entrada se restablecen a valores neutros en cada fotograma
+- los contadores y eventos se ponen a cero en los datos visibles para el sombreador
 
-## 8. Detalles de entrada de texturas
+## 8. Detalles de las entradas de textura
 
 Los canales de recurso (`iChannel# Resource`) esperan texturas 2D.
 
 Estado de la textura por canal:
 
-- recurso válido: textura enlazada, ancho/alto reales, `iChannelResolution[n].z = 1.0`
-- ausente/inactivo/None: textura de respaldo, `iChannelResolution[n].xyz = (0,0,0)`
+- recurso válido: textura asignada, ancho y alto reales, `iChannelResolution[n].z = 1.0`
+- recurso inexistente, inactivo o `None`: textura alternativa, `iChannelResolution[n].xyz = (0,0,0)`
 
-Texturas de buffer:
+Texturas de búfer:
 
 - formato interno: `RGBA16F` (coma flotante)
 - filtrado: lineal
-- wrap: clamp-to-edge
+- ajuste de bordes: limitar al borde
 
-Esto es adecuado para datos multipaso (incluidos valores fuera de `[0,1]`).
+Es adecuado para datos multipaso (incluidos valores fuera de `[0,1]`).
 
-## 9. Notas sobre renderizado y mezcla
+## 9. Notas sobre el renderizado y la mezcla
 
-- Los pases de buffer se renderizan fuera de pantalla sin mezcla.
-- El pase final `Image` usa el ajuste `Enable Blending` para la composición.
-- El envoltorio de Shadertoy aplica `fmOpacity` a la alfa automáticamente.
-- Los shaders directos deben aplicar `fmOpacity` manualmente si es necesario.
+- Los pasos de búfer se renderizan fuera de pantalla, sin mezcla.
+- El paso Image final utiliza el ajuste `Enable Blending` para la composición.
+- El envoltorio de Shadertoy aplica automáticamente `fmOpacity` a la alfa.
+- Los sombreadores directos deben aplicar `fmOpacity` manualmente si es necesario.
 
 ## 10. Plantillas prácticas
 
-## 10.1 Shader mínimo al estilo Shadertoy
+## 10.1 Sombreador mínimo al estilo de Shadertoy
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -375,7 +382,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-## 10.2 Shader de fragmento directo mínimo
+## 10.2 Sombreador mínimo de fragmento directo
 
 ```glsl
 out vec4 FragColor;
@@ -389,11 +396,11 @@ void main() {
 }
 ```
 
-## 10.3 Multipaso de feedback mínimo
+## 10.3 Retroalimentación multipaso mínima
 
-### Fuente de Buffer A
+### Código fuente de Buffer A
 
-Ruta: `Buffer A iChannel0 Input -> Buffer A`
+Enrutamiento: `Buffer A iChannel0 Input -> Buffer A`
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -404,9 +411,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-### Fuente de Image
+### Código fuente de Image
 
-Ruta: `Image iChannel0 Input -> Buffer A`
+Enrutamiento: `Image iChannel0 Input -> Buffer A`
 
 ```glsl
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -415,17 +422,17 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 }
 ```
 
-## 11. Lista de comprobación para solución de problemas
+## 11. Lista de comprobación para resolver problemas
 
-- Sin salida:
-  - comprueba que la fuente de `Image` no esté vacía
-  - comprueba que el modo de compilación coincida con tu punto de entrada (`mainImage` frente a `main`)
+- No hay salida:
+  - comprueba que el código fuente de Image no esté vacío
+  - comprueba que el modo de compilación coincida con el punto de entrada (`mainImage` o `main`)
 - Texturas moradas o no válidas:
-  - verifica los enlaces de recursos y el enrutado de canales
-  - comprueba `iChannelResolution[n].z` (`0.0` significa inválido/no disponible)
-- Coordenadas incorrectas en un shader directo:
-  - usa `gl_FragCoord.xy - fmAreaOffset` para coordenadas locales del área
-- El comportamiento del arrastre es incorrecto:
-  - usa el interruptor `Update iMouse Position Only While Holding LMB`
-- La opacidad no se aplica en un shader directo:
-  - multiplica la alfa por `fmOpacity` tú mismo
+  - comprueba las asignaciones de recursos y el enrutamiento de canales
+  - consulta `iChannelResolution[n].z` (`0.0` significa que el recurso no es válido o no está disponible)
+- Coordenadas incorrectas en un sombreador directo:
+  - utiliza `gl_FragCoord.xy - fmAreaOffset` para obtener las coordenadas locales al área
+- El arrastre no funciona como se espera:
+  - utiliza el ajuste `Update iMouse Position Only While Holding LMB`
+- La opacidad no se aplica en un sombreador directo:
+  - multiplica la alfa por `fmOpacity` manualmente

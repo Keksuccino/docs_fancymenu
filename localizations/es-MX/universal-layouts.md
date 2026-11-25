@@ -1,33 +1,35 @@
 ---
 title: Diseños universales
-description: Aplica un solo diseño a varias pantallas compatibles.
+description: Aplica un diseño a varias pantallas compatibles.
+sourceBlobSha: 2179fed92c6598b6e5c3ecfea354a4c853bc394b
 ---
+
 # Diseños universales
 
-Un Diseño universal se toma en cuenta para cada pantalla compatible que tenga habilitada la personalización de pantalla. No se aplica a pantallas [bloqueadas](./incompatibility-list#screens-where-customization-is-intentionally-disabled) ni a otras pantallas excluidas.
+Un diseño universal se considera para todas las pantallas compatibles que tengan habilitada la personalización de pantalla. No se aplica a las pantallas [bloqueadas](/incompatibility-list#screens-where-customization-is-intentionally-disabled) ni a las que se hayan excluido de alguna otra forma.
 
-Usa Diseños universales para elementos compartidos como logotipos, navegación, superposiciones o [elementos de audio](./elements#audio) que deban mantenerse en varias pantallas.
+Usa los diseños universales para elementos compartidos, como logotipos, navegación, superposiciones o [elementos de audio](/elements#audio), que deban aparecer en varias pantallas.
 
-# Cómo crear uno
+# Crear un diseño universal
 
 1. Abre una pantalla compatible y muestra la barra de menú de FancyMenu.
-2. Selecciona **Layouts -> New -> For All Screens [Universal]**.
-3. Agrega y configura elementos.
+2. Selecciona **Diseños -> Nuevo -> Para todas las pantallas [Universal]**.
+3. Agrega y configura los elementos.
 4. Guarda el diseño.
 
-Las pantallas normales todavía requieren que **Current Screen Customization** esté habilitado. No existe un interruptor global para habilitar todo porque las pantallas no compatibles de los mods pueden fallar cuando se personalizan.
+Las pantallas normales aún requieren que esté habilitada la **Personalización de la pantalla actual**. No hay una opción global para habilitar la personalización en todas las pantallas, ya que personalizar pantallas de mods no compatibles puede causar problemas.
 
-# Limitar pantallas
+# Limitar las pantallas
 
-Abre la configuración del Diseño universal desde el menú contextual del fondo del editor.
+Abre la configuración del diseño universal desde el menú contextual del fondo del editor.
 
-- **Whitelist:** el diseño se aplica solo a los identificadores de pantalla listados.
-- **Blacklist:** el diseño se aplica a todas las pantallas elegibles excepto a los identificadores listados.
+- **Lista de permitidos:** el diseño se aplica solo a los identificadores de pantalla incluidos en la lista.
+- **Lista de bloqueados:** el diseño se aplica a todas las pantallas aptas, excepto a los identificadores incluidos en la lista.
 
-Usa **Customization -> Copy Identifier of Current Screen** para copiar el [identificador de pantalla](./screen-identifiers).
+Usa **Personalización -> Copiar identificador de la pantalla actual** para copiar un [identificador de pantalla](/screen-identifiers).
 
-También puedes agregar [requisitos a nivel de diseño](./conditions#layout-wide-requirements) para controlar cuándo se aplica el diseño.
+También puedes agregar [requisitos para todo el diseño](/conditions#layout-wide-requirements) para controlar cuándo se aplica.
 
 # Orden de los diseños
 
-Los Diseños universales elegibles y los diseños específicos de pantalla se combinan y apilan según el **Layout Index**. Los índices más bajos se aplican primero; después, las opciones apilables posteriores pueden sobrescribir las anteriores. En el mismo índice, los Diseños universales se recopilan antes que los diseños específicos de pantalla.
+Los diseños universales aptos y los diseños específicos de cada pantalla se combinan y se apilan según el **Índice del diseño**. Los índices más bajos se aplican primero; los ajustes apilables posteriores pueden sobrescribir los anteriores. Si tienen el mismo índice, los diseños universales se recopilan antes que los específicos de cada pantalla.

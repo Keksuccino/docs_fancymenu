@@ -1,621 +1,876 @@
 ---
-title: Scripts de acción
-description: 'Cómo usar scripts de acción con botones, deslizadores, ticker y más.'
+title: Scripts de acciones
+description: >-
+  Haz que los botones y menús hagan cosas con scripts de acciones y descubre
+  todas las acciones de FancyMenu.
+sourceBlobSha: 07ed5af6f189a91c518131cf3a7ab7a1e0a8305d
 ---
-# Scripts de acción
 
-Los scripts de acción ejecutan tareas configuradas cuando se hace clic en un [Botón](./elements#button), se actualiza un [Ticker](./elements#ticker), cambia un [Deslizador](./elements#slider), se abre o cierra una pantalla, o cuando ocurre otro evento compatible. Instrucciones como **if**, **else-if**, **else** y **while** añaden control condicional.
+# Scripts de acciones
+
+Un script de acciones es una lista de cosas que hace FancyMenu cuando ocurre algo, como al hacer clic en un botón o al abrirse un menú. Cada elemento es una acción: abrir un menú, conectarse a un servidor, mostrar un mensaje, reproducir un sonido y mucho más. Las instrucciones como IF y WHILE determinan qué acciones se ejecutan y con qué frecuencia.
 
 > [!CAUTION]
-> Los scripts de acción importados pueden modificar archivos, contactar con servidores, abrir enlaces o ejecutar comandos. Usa solo fuentes en las que confíes.
+> Los scripts de acciones pueden modificar archivos, ponerse en contacto con servidores, abrir enlaces y ejecutar comandos. Usa únicamente scripts de diseños en los que confíes.
 
-<img src="https://github.com/Keksuccino/FancyMenu/blob/master/assets/docs/action_script_editor.png?raw=true" alt="Editor de scripts de acción" style="max-width:800px;width:100%;height:auto;">
+<img width="800" alt="El script de acciones de un botón se crea en el editor de diseños: Edit Action Script, el selector de acciones con Show Toast y el título y mensaje del aviso" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/action_script_make.gif?raw=true">
 
-# ¿Qué son las acciones?
+# Crear un script de acciones
 
-Una **acción** es una tarea o trabajo que FancyMenu ejecuta cuando se activa. Por ejemplo, una acción puede abrir una nueva pantalla, enviar un mensaje al chat o ajustar el volumen de un [elemento de audio](./elements#audio). En el editor de FancyMenu, las acciones se configuran con un valor (si es necesario) que proporciona detalles adicionales, como una URL o una dirección de servidor.
+1. En el editor de diseños, haz clic derecho en un botón y selecciona **Editar script de acciones**.
+2. Pulsa `A` para abrir el selector de acciones.
+3. Busca la acción, haz clic en ella y selecciona **Siguiente paso**.
+4. Configura la acción en su ventana y selecciona **Listo**. Para las acciones sin ajustes, solo tienes que seleccionar **Listo** en el selector.
+5. Selecciona **Listo** en el editor de scripts y guarda el diseño.
 
-# Instrucciones
+Fuera del editor, el botón ejecuta su script cuando haces clic en él:
 
-Para crear un comportamiento más complejo, FancyMenu admite instrucciones de control en los scripts de acción:
+<img width="800" alt="Al hacer clic en el botón What's New? de la pantalla del título, aparece un aviso con el título y el mensaje de la actualización" src="https://raw.githubusercontent.com/Keksuccino/docs_fancymenu/refs/heads/wiki-2026/assets/action_script_use.gif?raw=true">
 
-| Instrucción | Comportamiento |
-|---|---|
-| **If** | Ejecuta sus acciones solo cuando se cumplen sus [requisitos](./conditions). |
-| **Else-If** | Comprueba otro conjunto de [requisitos](./conditions) cuando el **If** o **Else-If** anterior no se ejecutó. |
-| **Else** | Se ejecuta cuando ninguno de los **If** o **Else-If** anteriores cumple los requisitos. |
-| **While** | Repite sus acciones mientras se mantengan verdaderos sus [requisitos](./conditions). Se detiene tras tres segundos para evitar bucles infinitos; no lo uses como temporizador. |
+> [!TIP]
+> Haz clic derecho en el área del script y abre **Añadir acción** para ver una lista de todas las acciones. Haz clic derecho en una acción de la lista para añadirla a favoritos y que aparezca en la parte superior.
 
-# Bloques
+# Dónde puedes usar scripts de acciones
 
-Se pueden añadir bloques a los scripts, y ofrecen funciones útiles para tener más control sobre el flujo/tiempo de ejecución del script, además de algunas mejoras de comodidad:
+| Dónde | Se ejecuta cuando | Dónde editarlo |
+|---|---|---|
+| [Botón](/elements#button) | Se hace clic en el botón. | Haz clic derecho en el botón -> **Editar script de acciones** |
+| [Control deslizante](/elements#slider) | Cambia el valor del control deslizante. `$$value` es el nuevo valor. | Haz clic derecho en el control deslizante -> **Editar script de acciones** |
+| [Casilla](/elements#checkbox) | Se marca o desmarca la casilla. `$$value` es su nuevo estado: `true` o `false`. | Haz clic derecho en la casilla -> **Editar script de acciones** |
+| [Temporizador](/elements#ticker) | Según indique su **Modo de temporizador**: repetidamente, una vez por sesión de juego o una vez al cargar el menú. | Haz clic derecho en el temporizador -> **Editar script de acciones** |
+| Al abrir un menú | Se abre el menú del diseño. | Haz clic derecho en el fondo del editor -> **Editar script de acciones «Abrir pantalla»** |
+| Al cerrar un menú | Se cierra el menú del diseño. | Haz clic derecho en el fondo del editor -> **Editar script de acciones «Cerrar pantalla»** |
+| [Escuchas](/listeners) | Se produce el evento que detectan, como pulsar una tecla o recibir un mensaje en el chat. | **Barra de menú -> Personalización -> Gestionar escuchas** |
+| [Programadores](/schedulers) | Cuando se cumple su temporizador, incluso si no hay ningún menú abierto. | **Barra de menú -> Personalización -> Gestionar programadores** |
 
-| Bloque | Comportamiento |
-|---|---|
-| **Delay** | Inicia una cuenta atrás sin detener el resto del script. Sus acciones anidadas pasan a poder ejecutarse tras el retraso; la reinicialización de la pantalla reinicia la cuenta atrás. |
-| **Execute Later** | Programa una nueva ejecución de sus acciones anidadas después del retraso cada vez que se alcanza el bloque. |
-| **Comment** | Añade una nota dentro del script para organizarlo y no ejecuta ninguna acción. |
+También puedes acceder a los scripts de apertura y cierre desde el menú **Diseño -> Propiedades del diseño** del editor.
 
-# Ejecución del script
+# El editor de scripts
 
-Las acciones se ejecutan de arriba abajo. Si una acción falla, se registra y el script continúa.
-
-Las descargas, la extracción de ZIP y las solicitudes HTTP finalizan más tarde; la siguiente acción no espera. Usa [**On File Downloaded via Action**](./listeners#on-file-downloaded-via-action-file_downloaded_via_action), [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) o una variable de respuesta HTTP cuando el trabajo posterior dependa del resultado.
-
-# ¿Dónde puedes usar scripts de acción?
-
-Los scripts de acción son versátiles y se pueden usar en toda tu interfaz. Puedes asignarlos, por ejemplo, a:
-
-- [**Buttons**](./elements#button): ejecutan una acción cuando se hace clic en el botón.
-- [**Tickers**](./elements#ticker): ejecutan continuamente un script de acción para actualizar la información en pantalla dentro de un diseño.
-- [**Sliders**](./elements#slider): activan un script de acción cada vez que cambia el valor del deslizador.
-- **Eventos de pantalla:** ejecutan scripts cuando una pantalla se abre o se cierra (por ejemplo, reproducir un sonido cuando aparece un menú).
-- [**Listeners**](./listeners): cuando un listener recibe su evento configurado, ejecuta su script de acción.
-- [**Schedulers**](./schedulers): ejecutan acciones de forma programada, incluso cuando no hay ninguna pantalla abierta.
-
-# Uso de marcadores de posición en acciones
-
-Los valores de las acciones admiten contenido dinámico mediante **marcadores de posición**. La mayoría de las veces, estos marcadores usan una sintaxis parecida a JSON y se reemplazan por datos en tiempo real cuando se ejecuta la acción.
-
-## Marcadores de posición tipo JSON
-
-Estos son los [marcadores de posición](./placeholders) normales que se pueden usar en muchos lugares dentro de los diseños.
-
-Siguen esta sintaxis:
-
-```json
-{"placeholder": "placeholder_id", "values": {"key1": "value1", "key2": "value2"}}
-```
-
-Pueden obtener datos del juego, como el nombre del jugador, las dimensiones de la pantalla o valores calculados mediante el [marcador de posición **Calculator**](./placeholders#calculator-calc). También puedes anidar marcadores de posición para usos más avanzados.
-
-## Marcadores de posición `$$` (variables)
-
-Los valores `$$` son valores de solo lectura proporcionados a un script de acción concreto por la función que lo ejecuta.
-
-Por ejemplo, un [Slider](./elements#slider) proporciona su valor actual como `$$value`.
-
-Cada [listener](./listeners) documenta los valores `$$` que proporciona, como el botón del ratón pulsado o la estructura introducida.
-
-Los nombres `$$` distinguen entre mayúsculas y minúsculas y solo funcionan en el script que los proporciona. Consulta [Listeners](./listeners#listener-variables).
-
-## Delimitadores de valores de acción
-
-Usa el delimitador exacto que se muestra para cada acción: `:`, `||` o `|||`. No existe sintaxis de escape para delimitadores dentro de un campo.
-
-Los marcadores de posición se reemplazan antes de dividir el valor. Para `set_variable`, solo los dos puntos primeros separan el nombre del valor, por lo que los demás dos puntos siguen formando parte del valor.
-
-## Valores de texto
-
-Los [códigos de formato de FancyMenu](./text-formatting#minecraft-text-formatting) usan `&` en lugar del carácter `§` de Minecraft dondequiera que una acción acepte texto con formato.
-
-- [**Send Chat Message/Command**](#send-chat-messagecommand-sendmessage) y [**Paste to Chat**](#paste-to-chat-paste_to_chat) admiten estos códigos de formato.
-- [**Display In Chat [Client-Side]**](#display-in-chat-client-side-display_in_chat_client_side) acepta texto plano o JSON serializado de componentes de texto de Minecraft.
-- [**Open URL in Browser**](#open-url-in-browser-openlink) aplica la misma conversión de códigos de formato antes de pasar la URL al sistema operativo.
-
-# Cómo configurar y editar acciones
-
-Para editar las acciones de un elemento y los bloques de instrucciones, **haz clic derecho sobre el elemento** y selecciona **Manage Action Script**. En el editor, puedes:
-
-- **Añadir nuevas acciones o instrucciones:** inserta nuevas entradas de acción o instrucciones de control (if, else-if, else, while) para construir tu script.
-- **Editar acciones o instrucciones existentes:** modifica el valor de la acción o cambia la lógica de control.
-- **Eliminar acciones o instrucciones:** borra del script las acciones que no quieras.
-
-Crea y edita scripts de listeners a través de [**Customization -> Manage Listeners**](./listeners#using-listeners).
-
-# Atajos del editor de scripts de acción
+- Las acciones se ejecutan de arriba abajo. Las entradas de una instrucción o carpeta aparecen sangradas debajo de esta.
+- Las nuevas entradas se añaden debajo de la entrada seleccionada. Si seleccionas una instrucción o carpeta, se añaden al principio de esta.
+- Haz doble clic en un valor para editarlo directamente en la lista. Si un valor muestra un breve resumen, se abrirá su ventana.
+- Arrastra las entradas para moverlas. Las cadenas IF, los bucles y las carpetas se pueden contraer con el pequeño botón que tienen delante. Esto solo cambia la vista.
+- La barra de la derecha es un mapa de todo el script. Haz clic en ella para saltar a una parte.
+- Haz clic derecho en el área del script para ver el resto de opciones, como añadir instrucciones y **Exportar script de acciones para IA** (consulta [Exportar para IA](/export-for-ai)).
+- Si seleccionas **Cancelar** o cierras la ventana, se descartan los cambios. Si hay cambios, el editor te lo pregunta antes.
 
 ## Atajos
 
-- `DEL` : Elimina rápidamente la entrada seleccionada
-- `ENTER` : Inicia la edición en línea de la entrada seleccionada (o abre la pantalla de edición si no hay edición en línea para la entrada seleccionada)
-- `Ctrl/Command + C` : Copia la acción seleccionada (por ahora solo funciona con acciones)
-- `Ctrl/Command + V` : Pega la acción copiada previamente
-- `Ctrl/Command + Z` : Un paso atrás (deshacer)
-- `Ctrl/Command + Y` : Un paso adelante (rehacer)
-- `ARROW UP` : Navega una entrada hacia arriba desde la seleccionada actualmente
-- `ARROW DOWN` : Navega una entrada hacia abajo desde la seleccionada actualmente
-- `SHIFT + ARROW UP` : Mueve la entrada seleccionada una posición arriba
-- `SHIFT + ARROW DOWN` : Mueve la entrada seleccionada una posición abajo
-- `A` : Abre rápidamente la pantalla Action Chooser para añadir una nueva acción
-- `Ctrl/Command + S` : Termina/guarda desde la ventana del editor
+En macOS, `Ctrl` equivale a `Cmd`.
 
-## Edición
+| Atajo | Qué hace |
+|---|---|
+| `A` | Abre el selector de acciones. |
+| `Enter` | Edita la entrada seleccionada. |
+| `Delete` | Elimina la entrada seleccionada. |
+| `Arriba` / `Abajo` | Selecciona la entrada anterior o siguiente. |
+| `Shift + Arriba` / `Shift + Abajo` | Mueve la entrada seleccionada hacia arriba o abajo. |
+| `Ctrl + C` / `Ctrl + V` | Copia y pega una acción. No se pueden copiar instrucciones ni bloques. |
+| `Ctrl + Z` | Deshacer. |
+| `Ctrl + Y` o `Ctrl + Shift + Z` | Rehacer. |
+| `Ctrl + S` | Guarda el script y cierra el editor, igual que **Listo**. |
 
-- Hacer doble clic en el valor de una acción te permite editarlo sin pasar por la pantalla completa de edición del valor.
-- Las cadenas de instrucciones IF (con declaraciones ELSE/ELSE-IF añadidas), los bucles WHILE y las carpetas se pueden contraer (solo visualmente, no afecta a la lógica del script).
-- El editor siempre añade las nuevas acciones debajo de la entrada seleccionada (o dentro de la cadena/bucle/carpeta seleccionada).
-- Hacer clic derecho sobre el fondo gris oscuro del área del script abre un menú contextual con opciones para añadir acciones, instrucciones y todo lo demás importante.
+# Instrucciones
 
-# Acciones en detalle
+Las instrucciones determinan qué acciones se ejecutan y con qué frecuencia. Añádelas haciendo clic derecho en el área del script.
 
-Esta sección enumera las acciones integradas de FancyMenu.
+## If, Else-If y Else
 
-## Next Track (`audio_next_track`)
+**Añadir instrucción IF** solicita [requisitos](/conditions). Las acciones de IF solo se ejecutan si se cumplen.
 
-**Propósito:** Pasa a la siguiente pista en un [elemento de audio](./elements#audio)
+Haz clic derecho en una instrucción IF para añadir más elementos a su cadena:
 
-**Valor:** Obligatorio — `audio_element_identifier` (el ID del elemento de audio a controlar)
+- **Añadir instrucción ELSE-IF**: comprueba sus propios requisitos si no se ha ejecutado la instrucción IF anterior.
+- **Añadir instrucción ELSE**: se ejecuta si no se ha ejecutado nada de lo anterior en la cadena.
 
-## Previous Track (`audio_previous_track`)
+Por ejemplo, una instrucción IF con **El diseño está activado** puede mostrar un aviso únicamente mientras esté activo el diseño de invierno, y una instrucción ELSE puede reproducir un sonido en caso contrario.
 
-**Propósito:** Pasa a la pista anterior en un [elemento de audio](./elements#audio)
+## Bucle While
 
-**Valor:** Obligatorio — `audio_element_identifier` (el ID del elemento de audio a controlar)
+**Añadir bucle WHILE** repite sus acciones mientras se cumplan sus [requisitos](/conditions).
 
-## Set Track Volume (`set_audio_element_volume`)
+Cada ejecución se detiene después de 3 segundos, así que un bucle infinito no puede bloquear el juego. No es un temporizador: para ejecutar cosas más tarde o repetidamente, usa [Ejecutar más tarde](#execute-later), un [temporizador](/elements#ticker) o un [programador](/schedulers).
 
-**Propósito:** Establece el volumen de un [elemento de audio](./elements#audio) (`0.0` a `1.0`)
+## Bucle For Each
 
-**Valor:** Obligatorio — `element_identifier:volume`
+**Añadir bucle FOR EACH** ejecuta sus acciones una vez por cada elemento de una [variable de lista](/variables#text-and-list-variables), desde el primero hasta el último.
 
-## Toggle Play/Pause Track (`audio_toggle_play`)
+- `$$list_entry` es el elemento actual y `$$list_index` su índice. El índice del primer elemento es 0.
+- Ambos funcionan en los valores de las acciones y en los requisitos del bucle.
+- Escribe el nombre de la lista sin `$$`, por ejemplo, `quest_log`. También puedes usar marcadores de posición en el nombre.
+- El bucle lee la lista una sola vez al empezar, así que las acciones que contiene pueden modificarla sin problemas.
+- Al igual que los bucles WHILE, cada ejecución se detiene después de 3 segundos.
 
-**Propósito:** Alterna la pista actual de un [elemento de audio](./elements#audio) entre reproducción y pausa
+Consulta [Recorrer una lista](/variables#going-through-a-list) para ver ejemplos.
 
-**Valor:** Obligatorio — `audio_element_identifier`
+# Bloques
 
-## Play Audio (`play_audio`)
+Los bloques cambian cuándo se ejecutan las acciones o ayudan a mantener ordenado el script. Añádelos haciendo clic derecho en el área del script.
 
-**Propósito:** Reproduce un recurso de audio una vez. El audio iniciado por esta acción se puede detener más tarde con [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios).
+## Bloque de retardo
 
-**Valor:** Obligatorio — configuración JSON con `audioSource`, `soundChannel` y `baseVolume`
+**Añadir bloque DELAY GATE** retrasa sus acciones durante un tiempo en milisegundos (`1000` equivale a un segundo).
 
-**Ejemplo:** `{"audioSource":"[source:local]/config/fancymenu/assets/example.ogg","soundChannel":"master","baseVolume":1.0}`
+- La primera vez que el script llega al bloque, inicia el temporizador y omite sus acciones. El resto del script continúa de inmediato.
+- Cada vez que el script vuelve a llegar al bloque antes de que termine el tiempo, vuelve a omitir esas acciones.
+- A partir de entonces, sus acciones se ejecutan cada vez que el script llega al bloque.
+- En los scripts de elementos, el temporizador vuelve a empezar al abrirse de nuevo el menú o al cambiar su tamaño.
 
-**Comportamiento:**
+Es una buena opción para los [temporizadores](/elements#ticker), por ejemplo, para mostrar algo solo cuando el menú lleve abierto unos segundos. No ejecuta nada por sí solo: para eso, usa Ejecutar más tarde.
 
-- `baseVolume` se limita entre `0.0` y `1.0`.
-- Un canal de sonido desconocido usa el canal Master.
-- La acción no puede ejecutarse desde un [Ticker](./elements#ticker) asíncrono; FancyMenu muestra un error en su lugar.
-- FancyMenu espera hasta diez segundos a que el recurso de audio esté listo.
-- Las pistas iniciadas correctamente se pueden detener con [**Stop All Action Audios**](#stop-all-action-audios-stop_all_action_audios).
+## Ejecutar más tarde
 
-## Stop All Action Audios (`stop_all_action_audios`)
+**Añadir bloque EXECUTE LATER** ejecuta sus acciones una vez, tras un tiempo en milisegundos. El resto del script continúa de inmediato.
 
-**Propósito:** Detiene todas las pistas de audio que se iniciaron mediante la [acción **Play Audio**](#play-audio-play_audio). Esto no detiene [elementos de audio](./elements#audio), sonidos de apertura/cierre de menú, sonidos de botones ni otros sistemas de audio.
+Cada vez que el script llega al bloque, se inicia una nueva cuenta atrás. Es útil para scripts que solo se ejecutan una vez, como al hacer clic en un botón o al abrir un menú.
 
-**Valor:** No obligatorio
+## Carpeta
 
-## Set Video Element Volume (`set_video_element_volume`)
+**Añadir carpeta** agrupa acciones bajo un nombre. Ejecuta todo lo que contiene y sirve únicamente para mantener ordenados los scripts largos. Haz doble clic en el nombre para cambiarlo.
 
-**Propósito:** Establece el volumen de un [elemento de vídeo](./video) (`0.0` a `1.0`)
+## Comentario
 
-**Valor:** Obligatorio — `video_element_identifier:volume`
+**Añadir comentario** añade una nota para ti. No hace nada. Haz doble clic para editarla.
 
-## Set Video Element Play Time (`set_video_element_play_time`)
+# Cómo se ejecutan los scripts
 
-**Propósito:** Sitúa un [elemento de vídeo](./video) en una marca de tiempo en milisegundos
+- Las acciones se ejecutan de arriba abajo. Si una acción falla, se escribe un error en el registro del juego, pero el resto del script sigue ejecutándose.
+- Los marcadores de posición de los valores se sustituyen por su valor actual justo cuando se ejecuta la acción, así que esta ve los cambios realizados por las acciones anteriores.
+- Las descargas, la extracción de archivos ZIP y las solicitudes web se completan en segundo plano. La acción siguiente no espera a que terminen. Para ejecutar acciones cuando hayan terminado, usa las escuchas [**Al descargar un archivo mediante una acción**](/listeners#on-file-downloaded-via-action) y [**Al extraer un ZIP mediante una acción**](/listeners#on-zip-extracted-via-action), o una variable de respuesta de [**Enviar solicitud HTTP**](#send-http-request).
 
-**Valor:** Obligatorio — `video_element_identifier:timestamp_ms`
+# Valores de las acciones
 
-## Toggle Video Element Paused State (`toggle_video_element_pause_state`)
+La mayoría de las acciones necesitan un valor, como la dirección de un servidor. Los valores sencillos son texto que escribes. Las acciones con más ajustes tienen su propia ventana.
 
-**Propósito:** Alterna el estado de pausa de un [elemento de vídeo](./video)
+## Marcadores de posición
 
-**Valor:** Obligatorio — `video_element_identifier`
+Los valores pueden contener [marcadores de posición](/placeholders), como el nombre del jugador. Se sustituyen cuando se ejecuta la acción:
 
-## Set Video Background Volume (`set_video_menu_background_volume`)
+```
+/say Welcome back, {"placeholder":"playername"}!
+```
 
-**Propósito:** Establece el volumen de un [fondo de vídeo del menú](./video) (`0.0` a `1.0`)
+## Variables $$
 
-**Valor:** Obligatorio — `background_identifier:volume`
+Escribe `$$` seguido del nombre de una variable para usar su valor en una acción o un requisito. Se distingue entre mayúsculas y minúsculas. Esto funciona con dos tipos de variables:
+
+### Tus propias variables
+
+Todas las variables que crees en **Barra de menú -> Personalización -> Gestionar variables** funcionan con `$$` y su nombre. Una variable llamada `coins` se escribe `$$coins` en cualquier script. Por ejemplo, con este valor, **Mostrar en el chat [del lado del cliente]** le indica al jugador cuántas monedas tiene:
+
+```
+&6Tienes $$coins monedas.
+```
+
+Consulta [Variables](/variables) para aprender a crearlas y modificarlas.
+
+### Variables del script
+
+Algunas funciones proporcionan variables propias al script:
+
+- Un [control deslizante](/elements#slider) proporciona `$$value`, su nuevo valor.
+- Una [casilla](/elements#checkbox) proporciona `$$value`, su nuevo estado: `true` o `false`.
+- Un [bucle For Each](#for-each-loop) proporciona `$$list_entry` y `$$list_index`.
+- Cada [escucha](/listeners#listener-variables) indica las variables que proporciona, como la tecla que se ha pulsado.
+
+Solo existen mientras se ejecuta el script. Si una variable del script tiene el mismo nombre que una de tus variables, `$$name` hace referencia a la variable del script.
+
+# Todas las acciones
+
+Todas las acciones de FancyMenu, agrupadas según lo que hacen.
+
+## Pantallas y menús
+
+### Abrir pantalla o interfaz gráfica personalizada
+
+**Identificador:** `opengui`
+
+Abre un menú del juego, de un mod o una [interfaz gráfica personalizada](/custom-guis).
+
+**Valor:** el [identificador de pantalla](/screen-identifiers), por ejemplo, `options_screen`
+
+Se distingue entre mayúsculas y minúsculas. Algunos menús de mods no se pueden abrir de esta forma. En ese caso, usa [**Imitar botón vanilla/mod**](#mimic-vanillamod-button) en un botón que lo abra.
+
+### Cerrar pantalla
+
+**Identificador:** `closegui`
+
+Cierra el menú abierto. Si no estás en un mundo, se abre la pantalla del título.
+
+**Valor:** ninguno
+
+### Actualizar pantalla
+
+**Identificador:** `update_screen`
+
+Vuelve a crear el menú abierto, como cuando se cambia el tamaño de la ventana. Es útil después de cambiar la escala de la interfaz u otras opciones.
+
+**Valor:** ninguno
+
+### Volver a la pantalla anterior
+
+**Identificador:** `back_to_last_screen`
+
+Vuelve al menú que estaba abierto anteriormente. Si se trata de una [interfaz gráfica personalizada](/custom-guis), vuelve al menú desde el que se abrió.
+
+**Valor:** ninguno
+
+### Mostrar aviso
+
+**Identificador:** `show_toast`
+
+Muestra una notificación en la esquina superior derecha. Se configura en su ventana:
+
+- **Ancho del aviso**: de 120 a 320 píxeles.
+- **Duración (ms)**: cuánto tiempo se muestra, desde 1 segundo (`1000`) hasta 10 minutos.
+- **Título** y **Mensaje**: texto con [códigos de formato](/text-formatting#minecraft-text-formatting) o en formato JSON de componentes de texto de Minecraft.
+- **Origen de la textura del icono** y **Origen de la textura del fondo**: [imágenes](/resources) opcionales. Los iconos quedan mejor a 20x20 píxeles y los fondos deberían tener 32 píxeles de alto y el mismo ancho que el aviso.
+
+### Imitar botón vanilla/mod
+
+**Identificador:** `mimicbutton`
+
+Hace clic en un botón del juego o de un mod, como si lo hiciera el jugador.
+
+**Valor:** el [localizador del elemento](/widget-locators) del botón, por ejemplo, `title_screen:mc_titlescreen_options_button`
+
+Para obtenerlo, haz clic derecho en el botón del editor y selecciona **Copiar localizador del elemento**.
+
+## Diseños y elementos
+
+### Alternar diseño
+
+**Identificador:** `toggle_layout`
+
+Desactiva un diseño si está activado y lo activa si está desactivado.
+
+**Valor:** el nombre del diseño, sin `.txt`, por ejemplo, `winter_title_screen`
+
+### Activar diseño
+
+**Identificador:** `enable_layout`
+
+Activa un diseño.
+
+**Valor:** el nombre del diseño, sin `.txt`
+
+### Desactivar diseño
+
+**Identificador:** `disable_layout`
+
+Desactiva un diseño.
+
+**Valor:** el nombre del diseño, sin `.txt`
+
+Las tres acciones de diseño guardan el cambio y actualizan el menú abierto de inmediato. Se distingue entre mayúsculas y minúsculas en el nombre.
+
+### Alternar animador de elementos
+
+**Identificador:** `toggle_element_animator`
+
+Activa un [animador de elementos](/element-animator) si está desactivado y lo desactiva si está activado. La animación empieza desde el principio. El estado se guarda.
+
+**Valor:** el identificador del animador de elementos
+
+### Activar animador de elementos
+
+**Identificador:** `enable_element_animator`
+
+Activa un [animador de elementos](/element-animator). Si estaba desactivado, su animación empieza desde el principio.
+
+**Valor:** el identificador del animador de elementos
+
+### Desactivar animador de elementos
+
+**Identificador:** `disable_element_animator`
+
+Desactiva un [animador de elementos](/element-animator) y reinicia su animación.
+
+**Valor:** el identificador del animador de elementos
+
+### Reiniciar animador de elementos
+
+**Identificador:** `reset_element_animator`
+
+Inicia desde el principio la animación de un [animador de elementos](/element-animator), sin activarlo ni desactivarlo.
+
+**Valor:** el identificador del animador de elementos
+
+### Establecer valor del campo de entrada de texto
+
+**Identificador:** `set_text_input_field_value`
+
+Establece el texto de un [campo de entrada de texto](/elements#text-input-field), de FancyMenu o del juego.
+
+**Valor:** `element_identifier|||text|||force`
+
+Si `force` está establecido en `true`, el texto también cambia cuando el campo está desactivado (inactivo).
+
+### Desplazar un elemento
+
+**Identificador:** `scroll_scroll_area`
+
+Desplaza un [área desplazable](/scrollable-areas) o un elemento de [texto](/elements#text). Se configura en su ventana:
+
+- **Identificador del elemento que se va a desplazar**: el área o el texto que se va a desplazar.
+- **Desplazar hasta**:
+  - **Inicio** o **Final**.
+  - **Posición**: la **Posición horizontal** y la **Posición vertical** en píxeles. Deja una sin rellenar para mantenerla.
+  - **Elemento** (solo áreas): se desplaza hasta que el elemento con el **Identificador del elemento al que se va a desplazar** quede al principio.
+  - **Número de línea** (solo textos): la primera línea es `1`.
+  - **Línea con texto** (solo textos): la primera línea que contiene el **Texto de la línea**. No se distingue entre mayúsculas y minúsculas.
+- **Desplazamiento suave**: se desplaza suavemente en lugar de saltar. El desplazamiento suave debe estar activado para el elemento.
+
+No hace nada si el elemento no existe.
+
+## Audio y vídeo
+
+### Pista siguiente
+
+**Identificador:** `audio_next_track`
+
+Pasa a la siguiente pista de un [elemento de audio](/elements#audio).
+
+**Valor:** el identificador del elemento de audio, por ejemplo, `menu_music`
+
+### Pista anterior
+
+**Identificador:** `audio_previous_track`
+
+Vuelve a la pista anterior de un [elemento de audio](/elements#audio).
+
+**Valor:** el identificador del elemento de audio
+
+### Establecer volumen de la pista
+
+**Identificador:** `set_audio_element_volume`
+
+Establece el volumen de un [elemento de audio](/elements#audio), desde `0.0` (0 %) hasta `1.0` (100 %).
+
+**Valor:** `element_identifier:volume`, por ejemplo, `menu_music:0.5`
+
+### Alternar reproducción/pausa de la pista
+
+**Identificador:** `audio_toggle_play`
+
+Pausa un [elemento de audio](/elements#audio) que se esté reproduciendo o reproduce uno que esté en pausa.
+
+**Valor:** el identificador del elemento de audio
+
+### Reproducir audio
+
+**Identificador:** `play_audio`
+
+Reproduce una vez un archivo de audio, que se configura en su ventana: el **Origen del audio**, el **Canal de sonido** y el **Volumen base** (hasta el 100 %).
+
+- FancyMenu espera hasta diez segundos a que se cargue el audio.
+- No funciona en un [temporizador](/elements#ticker) que se ejecute en segundo plano (de forma asíncrona). En su lugar, FancyMenu muestra un error.
+
+[**Detener todos los audios de acciones**](#stop-all-action-audios) detiene los audios iniciados con esta acción.
+
+### Detener todos los audios de acciones
+
+**Identificador:** `stop_all_action_audios`
+
+Detiene todos los audios iniciados con [**Reproducir audio**](#play-audio). Los elementos de audio, los sonidos de los menús y los sonidos de los botones siguen reproduciéndose.
+
+**Valor:** ninguno
+
+### Establecer volumen del elemento de vídeo
+
+**Identificador:** `set_video_element_volume`
+
+Establece el volumen de un [elemento de vídeo](/video), desde `0.0` (0 %) hasta `1.0` (100 %).
+
+**Valor:** `video_element_identifier:volume`
+
+### Establecer tiempo de reproducción del elemento de vídeo
+
+**Identificador:** `set_video_element_play_time`
+
+Salta a un momento de un [elemento de vídeo](/video), en milisegundos.
+
+**Valor:** `video_element_identifier:time_in_ms`, por ejemplo, `intro_video:30000`
+
+### Alternar estado de pausa del elemento de vídeo
+
+**Identificador:** `toggle_video_element_pause_state`
+
+Pausa un [elemento de vídeo](/video) que se esté reproduciendo o reproduce uno que esté en pausa.
+
+**Valor:** el identificador del elemento de vídeo
+
+### Establecer volumen del fondo de vídeo
+
+**Identificador:** `set_video_menu_background_volume`
+
+Establece el volumen de un [fondo de menú de vídeo](/video), desde `0.0` (0 %) hasta `1.0` (100 %).
+
+**Valor:** `background_identifier:volume`
 
 > [!NOTE]
-> Para obtener el identificador de un fondo, haz clic derecho sobre el fondo del editor y selecciona 'Copy Background Identifier'.
+> Para obtener el identificador de un fondo de menú, haz clic derecho en el fondo del editor y selecciona **Copiar identificador del fondo**.
 
-## Set Video Background Play Time (`set_video_menu_background_play_time`)
+### Establecer tiempo de reproducción del fondo de vídeo
 
-**Propósito:** Sitúa un [fondo de vídeo del menú](./video) en una marca de tiempo en milisegundos
+**Identificador:** `set_video_menu_background_play_time`
 
-**Valor:** Obligatorio — `background_identifier:timestamp_ms`
+Salta a un momento de un [fondo de menú de vídeo](/video), en milisegundos.
 
-> [!NOTE]
-> Para obtener el identificador de un fondo, haz clic derecho sobre el fondo del editor y selecciona 'Copy Background Identifier'.
+**Valor:** `background_identifier:time_in_ms`
 
-## Toggle Video Background Paused State (`toggle_video_menu_background_pause_state`)
+### Alternar estado de pausa del fondo de vídeo
 
-**Propósito:** Alterna el estado de pausa de un [fondo de vídeo del menú](./video)
+**Identificador:** `toggle_video_menu_background_pause_state`
 
-**Valor:** Obligatorio — `background_identifier`
+Pausa un [fondo de menú de vídeo](/video) que se esté reproduciendo o reproduce uno que esté en pausa.
 
-> [!NOTE]
-> Para obtener el identificador de un fondo, haz clic derecho sobre el fondo del editor y selecciona 'Copy Background Identifier'.
+**Valor:** el identificador del fondo del menú
 
-## Toggle Layout (`toggle_layout`)
+## Mundos y servidores
 
-**Propósito:** Alterna un diseño (activar/desactivar) por su nombre de archivo sin `.txt`
+### Conectarse a un servidor
 
-**Valor:** Obligatorio — `layout_name`
+**Identificador:** `joinserver`
 
-## Enable Layout (`enable_layout`)
+Se conecta a un servidor de Minecraft.
 
-**Propósito:** Activa y guarda un diseño por su nombre de archivo sin `.txt`
+**Valor:** `dirección` o `dirección:puerto`, por ejemplo, `play.example.net`
 
-**Valor:** Obligatorio — `layout_name`
+Si no se especifica un puerto, se usa `25565`. Si hay un mundo o servidor cargado, muestra un error. Los servidores que no están en la lista de servidores se añaden a ella.
 
-## Disable Layout (`disable_layout`)
+### Entrar en un mundo
 
-**Propósito:** Desactiva y guarda un diseño por su nombre de archivo sin `.txt`
+**Identificador:** `loadworld`
 
-**Valor:** Obligatorio — `layout_name`
+Carga un mundo de un jugador.
 
-Las tres acciones de diseño guardan el estado en el archivo del diseño y actualizan la pantalla actual de inmediato. Usa el nombre de archivo distinguiendo mayúsculas y minúsculas, sin `.txt`.
+**Valor:** el nombre de la carpeta del mundo en `saves`, por ejemplo, `Survival Island`
 
-## Open Screen or Custom GUI (`opengui`)
+No hace nada si el mundo no existe. Si hay un mundo o servidor cargado, muestra un error.
 
-**Propósito:** Abre una pantalla por su identificador (vanilla, mod o interfaz personalizada)
+### Entrar en el último mundo/servidor
 
-**Valor:** Obligatorio — `screen_identifier`
+**Identificador:** `join_last_world`
 
-Copia el identificador exacto, distinguiendo mayúsculas y minúsculas, desde la superposición de depuración [Screen Identifiers](./screen-identifiers).
+Carga el mundo o se conecta al servidor en el que jugó el jugador por última vez.
 
-Algunas pantallas de mods no se pueden crear directamente. Si la apertura falla, usa [**Mimic Vanilla/Mod Button**](#mimic-vanillamod-button-mimicbutton) en un widget que normalmente abriría esa pantalla.
+**Valor:** ninguno
 
-## Close Screen (`closegui`)
+Si hay un mundo o servidor cargado, muestra un error. Los servidores que no están en la lista de servidores se añaden a ella.
 
-**Propósito:** Cierra la pantalla activa
+### Salir del mundo o del servidor
 
-**Valor:** No obligatorio
+**Identificador:** `disconnect_server_or_world`
 
-## Update Screen (`update_screen`)
+Sale del mundo o del servidor y abre un menú.
 
-**Propósito:** Reinicializa la pantalla actual
+**Valor:** el [identificador de pantalla](/screen-identifiers) del menú que se va a abrir, por ejemplo, `title_screen`
 
-**Valor:** No obligatorio
+Solo funciona si hay un mundo cargado. También funciona con [interfaces gráficas personalizadas](/custom-guis). Si no se puede abrir el menú, se abre la pantalla del título.
 
-## Back to Last Screen (`back_to_last_screen`)
+## Chat y comandos
 
-**Propósito:** Vuelve al padre de una [Custom GUI](./custom-guis) o a la instancia de pantalla cerrada más reciente
+### Enviar mensaje/comando al chat
 
-**Valor:** No obligatorio
+**Identificador:** `sendmessage`
 
-## Join Server (`joinserver`)
+Envía un mensaje al chat o ejecuta un comando, como si lo hubiera escrito el jugador.
 
-**Propósito:** Conecta al jugador a un servidor de Minecraft
+**Valor:** el mensaje o un comando que empiece por `/`, por ejemplo, `/spawn`
 
-**Valor:** Obligatorio — `server_ip` o `server_ip:port`
+### Ejecutar comando como servidor integrado
 
-Esta acción no puede ejecutarse mientras ya haya un mundo o servidor cargado. Se usa el puerto `25565` cuando se omite. Si la dirección no está en la lista de servidores guardados de Minecraft, FancyMenu la añade y la guarda.
+**Identificador:** `execute_command_as_integrated_server`
 
-## Enter World (`loadworld`)
+En un mundo de un jugador, ejecuta un comando como servidor, independientemente de los permisos del jugador o de si los trucos están activados.
 
-**Propósito:** Entra en un mundo de Minecraft
-
-**Valor:** Obligatorio — `world_folder_name`
-
-El valor es el nombre de la carpeta de guardado. La acción no hace nada si ese guardado no existe o si ya hay otro mundo/servidor cargado.
-
-## Enter/Join Last World/Server (`join_last_world`)
-
-**Propósito:** Entra/conecta al último mundo o servidor en el que estuvo el jugador
-
-**Valor:** No obligatorio
-
-Esta acción no puede ejecutarse mientras haya otro mundo/servidor cargado. Un servidor recordado que no esté en la lista de servidores guardados de Minecraft se añade y se guarda antes de conectar.
-
-## Leave World or Server (`disconnect_server_or_world`)
-
-**Propósito:** Sale de un mundo o servidor y abre una pantalla especificada
-
-**Valor:** Obligatorio — `screen_identifier`
-
-Esta acción solo se ejecuta mientras haya un mundo y un jugador cargados. El destino puede ser un identificador de [Custom GUI](./custom-guis) o un [screen identifier](./screen-identifiers) que FancyMenu pueda construir. Si no se puede abrir el destino, FancyMenu vuelve a la pantalla de título.
-
-## Quit Minecraft (`quitgame`)
-
-**Propósito:** Cierra Minecraft por completo
-
-**Valor:** No obligatorio
-
-## Send Chat Message/Command (`sendmessage`)
-
-**Propósito:** Envía un mensaje de chat o ejecuta un comando de chat. El texto del mensaje admite [códigos de formato de FancyMenu](./text-formatting#minecraft-text-formatting).
-
-**Valor:** Obligatorio — `message_text` o `/command_text`
-
-## Execute Command As Integrated Server (`execute_command_as_integrated_server`)
-
-**Propósito:** Ejecuta forzosamente un comando en un jugador individual como servidor integrado, ignorando permisos y la configuración de trucos.
-
-**Valor:** Obligatorio — texto del comando, por ejemplo `/give @p minecraft:diamond 1`
+**Valor:** el comando, por ejemplo, `/give @p minecraft:diamond 1`
 
 > [!WARNING]
-> Esta acción solo funciona en un jugador individual mientras el mundo **no esté abierto a LAN**. Intencionadamente no hace nada cuando no existe un servidor integrado o cuando el servidor integrado se publica en LAN.
+> Solo funciona en un mundo de un jugador que no esté abierto a la LAN. En cualquier otro caso, no hace nada.
 
-## Paste to Chat (`paste_to_chat`)
+### Pegar en el chat
 
-**Propósito:** Pega texto con formato en el campo de entrada del chat mientras hay un jugador/mundo cargado
+**Identificador:** `paste_to_chat`
 
-**Valor:** Obligatorio — `true:Text` o `false:Text`
+Introduce texto en el campo de entrada del chat mientras hay un mundo cargado. Si el chat no está abierto, lo abre con el texto.
 
-Cuando el chat todavía no está abierto, FancyMenu lo abre y establece el texto de entrada. Cuando el chat ya está abierto, `true` añade el texto al contenido existente y `false` lo reemplaza.
+**Valor:** `true:text` añade el texto a lo que ya está escrito; `false:text` lo sustituye
 
-## Display In Chat [Client-Side] (`display_in_chat_client_side`)
+### Mostrar en el chat [del lado del cliente]
 
-**Propósito:** Muestra un mensaje de chat del lado del cliente mientras hay un mundo o servidor cargado. No envía nada al servidor.
+**Identificador:** `display_in_chat_client_side`
 
-**Valor:** Obligatorio — `text_or_json`
+Muestra un mensaje de chat que solo ve este jugador. No se envía nada al servidor.
 
-El valor puede ser texto plano o un componente de texto de Minecraft serializado. La acción no hace nada cuando no hay ningún mundo cargado.
+**Valor:** el texto, con [códigos de formato](/text-formatting#minecraft-text-formatting) o en formato JSON de componentes de texto de Minecraft, por ejemplo, `&a¡Bienvenido de nuevo!`
 
-## Send FM Data To Server (`send_fm_data_to_server`)
+No hace nada si no hay ningún mundo cargado.
 
-**Propósito:** Envía [FM Data](./fm-data) al servidor actual de FancyMenu.
+## Variables y listas
 
-**Valor:** Obligatorio — `data_identifier||data`
+### Establecer valor de variable (variable de FM)
 
-## Connect To Remote Server (`connect_to_remote_server`)
+**Identificador:** `set_variable`
 
-**Propósito:** Abre o reutiliza una conexión WebSocket iniciada por el cliente con un servidor remoto externo.
+Establece una [variable](/variables).
 
-**Valor:** Obligatorio — URL del servidor remoto, por ejemplo `wss://example.com/ws`
+**Valor:** `nombre_variable:valor`, por ejemplo, `coins:100`
 
-Consulta [Remote Server Communication](./remote-server-communication#url-modes) para ver los formatos de URL aceptados.
+- Solo el primer `:` separa el nombre del valor.
+- Las [variables de lista](/variables#text-and-list-variables) siguen siendo listas: una matriz JSON como `["a","b"]` se convierte en sus elementos; cualquier otro texto se convierte en su único elemento, y el texto vacío vacía la lista.
 
-## Send Data To Remote Server (`send_data_to_remote_server`)
+### Eliminar variable (variable de FM)
 
-**Propósito:** Abre o reutiliza una conexión con un servidor remoto y le envía datos de texto.
+**Identificador:** `delete_variable`
 
-**Valor:** Obligatorio — `remote_server_url||data`
+Elimina por completo una [variable](/variables). Las demás variables se conservan. Para vaciarla sin eliminarla, usa [**Establecer valor de variable (variable de FM)**](#set-variable-value-fm-variable).
 
-## Close Remote Server Connection (`close_remote_server_connection`)
+**Valor:** el nombre de la variable
 
-**Propósito:** Cierra una conexión específica con un servidor remoto mediante su ID de solicitud.
+### Borrar todas las variables (variable de FM)
 
-**Valor:** Obligatorio — ID de solicitud, normalmente `$$request_id` de [**On Remote Server Connected**](./listeners#on-remote-server-connected-remote_server_connected)
+**Identificador:** `clear_variables`
 
-## Close All Remote Server Connections (`close_all_remote_server_connections`)
+Elimina todas las [variables](/variables), tanto de texto como de lista.
 
-**Propósito:** Cierra todas las conexiones activas con servidores remotos abiertas por FancyMenu.
+**Valor:** ninguno
 
-**Valor:** No obligatorio
+### Añadir a la lista (variable de FM)
 
-## Open URL in Browser (`openlink`)
+**Identificador:** `add_to_list`
 
-**Propósito:** Pasa una URL al manejador predeterminado del sistema operativo sin mostrar un mensaje de confirmación de FancyMenu
+Añade un elemento a una [variable de lista](/variables#list-actions).
 
-**Valor:** Obligatorio — `https://example.com`
+- **Variable de lista**: el nombre de la lista. Si todavía no existe ninguna variable con ese nombre, la acción crea la lista.
+- **Nuevo elemento**: el texto del elemento.
+- **Índice (opcional)**: dónde se añade el elemento. Si se deja vacío, se añade al final. Los elementos a partir de esa posición se desplazan una posición.
+- **Omitir si ya está en la lista**: no añade nada si la lista ya contiene un elemento con el mismo texto. **Ignorar mayúsculas y minúsculas** hace que `Apple` coincida con `apple`.
 
-Usa enlaces `https://` de confianza. FancyMenu no muestra un mensaje de confirmación antes de pasar la URL al sistema operativo.
+### Establecer elemento de la lista (variable de FM)
 
-## Copy Text to Clipboard (`copytoclipboard`)
+**Identificador:** `set_list_entry`
 
-**Propósito:** Copia texto al portapapeles
+Sustituye el elemento del **Índice** indicado de una [variable de lista](/variables#list-actions) por un **Nuevo valor**. No hace nada si la lista no tiene ningún elemento en esa posición.
 
-**Valor:** Obligatorio — `text_to_copy`
+### Quitar de la lista (variable de FM)
 
-## Print to Game Log (`print_to_log`)
+**Identificador:** `remove_from_list`
 
-**Propósito:** Escribe una línea en el registro del juego
+Quita elementos de una [variable de lista](/variables#list-actions). **Quitar** permite elegir cuáles:
 
-**Valor:** Obligatorio — `text_to_log`
+- **Elemento en el índice**: el elemento que ocupa un índice determinado.
+- **Primera coincidencia**: el primer elemento cuyo texto coincide exactamente con el **Valor que se va a quitar**.
+- **Todas las coincidencias**: todos los elementos que coincidan.
 
-## Set Variable Value (FM Variable) (`set_variable`)
+**Ignorar mayúsculas y minúsculas** hace que `Apple` coincida con `apple`.
 
-**Propósito:** Guarda contenido de texto en una [variable de FancyMenu](./variables)
+### Vaciar lista (variable de FM)
 
-**Valor:** Obligatorio — `variable_name:variable_value`
+**Identificador:** `clear_list`
 
-Los dos puntos primeros separan el nombre del valor. Los siguientes dos puntos siguen formando parte del valor. Los cambios se guardan de inmediato.
+Quita todos los elementos de una [variable de lista](/variables#list-actions). La lista vacía se conserva.
 
-## Clear All Variables (FM Variable) (`clear_variables`)
+### Establecer lista (variable de FM)
 
-**Propósito:** Borra todos los valores almacenados de [variables de FancyMenu](./variables)
+**Identificador:** `set_list`
 
-**Valor:** No obligatorio
+Sustituye todos los elementos de una [variable de lista](/variables#list-actions). **Obtener elementos de** permite elegir de dónde proceden:
 
-## Send HTTP Request (`send_http_request`)
+- **Dividir texto**: divide el **Texto que se va a dividir** por el **Separador**, por ejemplo, `,`. Si el separador está vacío, divide el texto por saltos de línea. **Recortar elementos** elimina los espacios del principio y del final, y **Omitir elementos vacíos** excluye los elementos vacíos.
+- **Matriz JSON**: usa los elementos de una matriz como `["Diamonds","Emeralds"]` o `$$other_list` para copiar otra lista. Cualquier otro texto se convierte en el único elemento y el texto vacío vacía la lista.
 
-**Propósito:** Inicia una solicitud HTTP/HTTPS en segundo plano; puede registrar y/o almacenar la respuesta en una variable
+La ventana muestra una vista previa de los elementos.
 
-**Valor:** Obligatorio — configuración de la solicitud HTTP
+### Ordenar lista (variable de FM)
 
-| Ajuste | Comportamiento |
+**Identificador:** `arrange_list`
+
+Cambia el orden de una [variable de lista](/variables#list-actions). **Orden**:
+
+- **Orden alfabético A-Z** y **Orden alfabético Z-A**: ordena alfabéticamente.
+- **Números, de menor a mayor** y **Números, de mayor a menor**: ordena por número. Los elementos que no sean números se colocan al final.
+- **Orden inverso**: el último elemento pasa a ser el primero.
+- **Aleatorio**: establece un orden aleatorio.
+- **Eliminar duplicados**: conserva solo la primera aparición de cada valor.
+
+En todas las acciones de lista, el índice del primer elemento es `0` y `-1` corresponde al último. El nombre de la lista puede contener marcadores de posición y, si se antepone `$$`, la acción usa el valor de esa variable como nombre de la lista. Si una variable de texto tiene un valor, se conserva tal cual y la acción escribe un aviso en el registro del juego.
+
+## Web y redes
+
+### Abrir URL en el navegador
+
+**Identificador:** `openlink`
+
+Abre un enlace en el navegador predeterminado sin pedir confirmación.
+
+**Valor:** el enlace, por ejemplo, `https://discord.gg/example`
+
+Usa únicamente enlaces de confianza.
+
+### Enviar solicitud HTTP
+
+**Identificador:** `send_http_request`
+
+Envía una solicitud web en segundo plano. Puede escribir la respuesta en el registro del juego o guardarla en una variable.
+
+| Ajuste | Qué hace |
 |---|---|
-| URL | Punto final HTTP o HTTPS |
-| Method | `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD` o `OPTIONS` |
-| Body | Se envía para métodos distintos de `GET` y `HEAD` |
-| Content type | Valor `Content-Type` de la solicitud |
-| Timeout | Segundos usados tanto para la conexión como para la lectura de la respuesta |
-| Log response | Lee y escribe la respuesta en el registro |
-| Response variable | Lee la respuesta y la almacena cuando finaliza la solicitud |
-| Single-line response | Elimina los saltos de línea de la respuesta antes de almacenarla |
-| Authentication | Ninguna, Basic, Bearer o API key |
-| Headers | Encabezados personalizados opcionales de la solicitud |
+| URL | La dirección HTTP o HTTPS. |
+| Método | `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD` u `OPTIONS`. |
+| Cuerpo | Los datos que se van a enviar. No se envía con `GET` ni `HEAD`. |
+| Tipo de contenido | El `Content-Type` del cuerpo, por ejemplo, `application/json`. |
+| Tiempo de espera | El tiempo en segundos que se espera a que se establezca la conexión y llegue la respuesta. |
+| Registrar respuesta | Escribe la respuesta en el registro del juego. |
+| Variable de respuesta | Guarda la respuesta en esta variable cuando llega. |
+| Respuesta en una sola línea | Elimina los saltos de línea de la respuesta antes de guardarla. |
+| Autenticación | Ninguna, Basic, Bearer o clave de API. |
+| Cabeceras | Cabeceras adicionales de la solicitud. |
 
-Las solicitudes se ejecutan de forma asíncrona, así que la siguiente acción no espera. Los cuerpos de respuesta solo se leen cuando el registro está activado o se configura una variable de respuesta; los cuerpos de error que no son satisfactorios se leen desde la respuesta de error. No almacenes contraseñas ni tokens de acceso en la configuración de la acción.
+La acción siguiente no espera a que llegue la respuesta. Los errores de respuesta también se registran y se guardan. No incluyas contraseñas ni tokens de acceso en la acción: cualquiera que tenga el diseño podrá leerlos.
 
-## Manage Resource Pack (`manage_resource_pack`)
+### Enviar datos de FM al servidor
 
-**Propósito:** Activa, desactiva o alterna un paquete de recursos, con recarga opcional
+**Identificador:** `send_fm_data_to_server`
 
-**Valor:** Obligatorio — `pack_name_or_id|||MODE|||reload_bool`
+Envía [datos de FM](/fm-data) al servidor, que también debe tener FancyMenu.
 
-Los nombres visibles y los ID internos de los paquetes se comparan sin distinguir mayúsculas y minúsculas. Los paquetes marcados como obligatorios no se pueden desactivar.
+**Valor:** `data_identifier||data`
 
-## Reload Resource Packs (`reload_resource_packs`)
+### Conectarse a un servidor remoto
 
-**Propósito:** Recarga los paquetes de recursos de Minecraft. Un tiempo de espera integrado de cinco segundos ignora las activaciones repetidas durante ese periodo para evitar abusos de recarga.
+**Identificador:** `connect_to_remote_server`
 
-**Valor:** No obligatorio
+Se conecta a un servidor remoto o utiliza una conexión que ya esté abierta.
 
-## Reload FancyMenu (`reloadmenu`)
+**Valor:** la dirección del servidor, por ejemplo, `wss://example.com/ws`
 
-**Propósito:** Recarga diseños, [Custom GUIs](./custom-guis), [panoramas](./panoramas), [slideshows](./slideshows), ajustes y recursos gestionados por FancyMenu
+Consulta [Comunicación con servidores remotos](/remote-server-communication#url-modes) para ver las direcciones compatibles.
 
-**Valor:** No obligatorio
+### Enviar datos a un servidor remoto
 
-Esto no recarga los paquetes de recursos de Minecraft. Usa [**Reload Resource Packs**](#reload-resource-packs-reload_resource_packs) para eso.
+**Identificador:** `send_data_to_remote_server`
+
+Envía texto a un servidor remoto y se conecta primero si es necesario.
+
+**Valor:** `server_address||data`
+
+### Cerrar conexión con un servidor remoto
+
+**Identificador:** `close_remote_server_connection`
+
+Cierra una conexión con un servidor remoto.
+
+**Valor:** su ID de solicitud, que suele ser `$$request_id` de [**Al conectarse a un servidor remoto**](/listeners#on-remote-server-connected)
+
+### Cerrar todas las conexiones con servidores remotos
+
+**Identificador:** `close_all_remote_server_connections`
+
+Cierra todas las conexiones con servidores remotos que haya abierto FancyMenu.
+
+**Valor:** ninguno
+
+## Archivos
+
+### Crear archivo en la carpeta del juego
+
+**Identificador:** `create_file_in_game_dir`
+
+Crea un archivo vacío. También crea las carpetas que falten. Si el archivo ya existe, lo deja tal cual.
+
+**Valor:** la ruta del archivo, por ejemplo, `config/mymodpack/first_start.txt`
+
+Todas las acciones de archivos solo funcionan dentro de la carpeta del juego (la carpeta de la instancia). Las rutas que empiezan por `.minecraft/` utilizan la carpeta `.minecraft` predeterminada, que puede ser otra distinta.
+
+### Eliminar archivo/carpeta de la carpeta del juego
+
+**Identificador:** `delete_file_in_game_dir`
+
+Elimina un archivo o una carpeta con todo su contenido.
+
+**Valor:** la ruta, por ejemplo, `config/mymodpack/cache.txt`
+
+Si la ruta termina en `*`, por ejemplo, `config/downloads/*`, elimina todos los archivos que haya directamente en esa carpeta, pero conserva la carpeta y las subcarpetas.
+
+### Copiar archivo/carpeta en la carpeta del juego
+
+**Identificador:** `copy_file_in_game_dir`
+
+Copia un archivo o una carpeta con todo su contenido.
+
+**Valor:** `origen||destino`, por ejemplo, `config/presets/default.json||config/mymod/settings.json`
+
+- Si el origen termina en `*`, por ejemplo, `config/presets/*||config/mymod/`, copia todos los archivos que haya directamente en esa carpeta, pero no las subcarpetas. En ese caso, el destino es una carpeta y se crea si es necesario.
+- No se sobrescribe nada: si el destino ya existe, la acción falla.
+
+### Mover archivo/carpeta en la carpeta del juego
+
+**Identificador:** `move_file_in_game_dir`
+
+Mueve un archivo o una carpeta con todo su contenido.
+
+**Valor:** `origen||destino`
+
+Si el origen termina en `*`, funciona igual que en [**Copiar archivo/carpeta en la carpeta del juego**](#copy-filefolder-in-game-directory). No se sobrescribe nada.
+
+### Cambiar nombre de archivo/carpeta en la carpeta del juego
+
+**Identificador:** `rename_file_in_game_dir`
+
+Cambia el nombre de un archivo o una carpeta. La acción falla si ya existe algo con el nuevo nombre.
+
+**Valor:** `ruta||nuevo_nombre`, por ejemplo, `config/mymod/old_name.txt||new_name.txt`
+
+### Descargar archivo a la carpeta del juego
+
+**Identificador:** `download_file_to_game_dir`
+
+Descarga un archivo en una carpeta, en segundo plano.
+
+**Valor:** `url||carpeta_destino`, por ejemplo, `https://example.com/pack.zip||downloads`
+
+- La segunda parte debe ser una carpeta, no un nombre de archivo. FancyMenu obtiene el nombre de la descarga o del enlace.
+- Si ya existe un archivo con el mismo nombre, se sobrescribe.
+- [**Al descargar un archivo mediante una acción**](/listeners#on-file-downloaded-via-action) se ejecuta cuando la descarga termina o falla. Si se completa correctamente, `$$target_file_path` contiene la ruta del archivo guardado.
+
+### Extraer archivo ZIP en la carpeta del juego
+
+**Identificador:** `extract_zip_file_in_game_dir`
+
+Extrae un archivo ZIP en una carpeta, en segundo plano.
+
+**Valor:** `ruta_zip||carpeta_destino`, por ejemplo, `downloads/pack.zip||resourcepacks/MyPack`
+
+Los archivos con el mismo nombre se sustituyen y no se crea ninguna carpeta adicional con el nombre del ZIP. [**Al extraer un ZIP mediante una acción**](/listeners#on-zip-extracted-via-action) se ejecuta cuando termina. Extrae únicamente archivos ZIP de confianza.
+
+### Abrir archivo/carpeta de la carpeta del juego
+
+**Identificador:** `open_file_folder_in_game_dir`
+
+Abre un archivo o una carpeta con el programa que el sistema tenga asociado.
+
+**Valor:** la ruta, por ejemplo, `screenshots`
+
+### Escribir archivo en la carpeta del juego
+
+**Identificador:** `write_file_in_game_dir`
+
+Escribe texto en un archivo. El archivo y sus carpetas se crean si es necesario.
+
+**Valor:** `ruta|||texto|||añadir_al_final`, por ejemplo, `config/mymodpack/log.txt|||Se ha conectado al servidor\n|||true`
+
+`\n` inicia una nueva línea. Si `append` está establecido en `true`, añade el texto al final del archivo; si está establecido en `false`, sustituye su contenido.
+
+### Seleccionar archivo del sistema
+
+**Identificador:** `select_file_to_game_dir`
+
+Abre el selector de archivos del sistema y copia el archivo seleccionado en la carpeta del juego.
+
+**Valor:** `ruta_destino|||nombre_filtro|||extensiones|||sobrescribir`, por ejemplo, `config/fancymenu/assets/background.png|||Images|||png;jpg|||true`
+
+- `target_path` es la ruta completa de la copia, incluido el nombre del archivo.
+- Separa las extensiones con `;` o `,`. Si no especificas extensiones, se puede seleccionar cualquier archivo.
+- Si `overwrite` está establecido en `false`, la acción falla si el archivo ya existe.
+
+[**Al seleccionar un archivo**](/listeners#on-file-selected) se ejecuta cuando se copia el archivo, se cancela el selector o se produce algún error.
+
+## El juego y FancyMenu
+
+### Salir de Minecraft
+
+**Identificador:** `quitgame`
+
+Cierra el juego.
+
+**Valor:** ninguno
+
+### Establecer opción de Minecraft
+
+**Identificador:** `edit_minecraft_option`
+
+Cambia una opción de Minecraft, como la distancia de renderizado o la escala de la interfaz.
+
+**Valor:** `nombre_opción:valor`, por ejemplo, `renderDistance:12`
+
+Consulta [Opciones de Minecraft](/minecraft-options) para ver los nombres de las opciones.
+
+### Imitar una tecla
+
+**Identificador:** `mimic_keybind`
+
+Pulsa una tecla de Minecraft, como la de saltar o agacharse, y puede mantenerla pulsada.
+
+**Valor:** `tecla|||mantener|||duración_ms`, por ejemplo, `key.jump|||false|||1000`
+
+| Parte | Qué es |
+|---|---|
+| `keybind` | El ID de la tecla, por ejemplo, `key.jump` o `key.sneak`. |
+| `hold` | `true` mantiene la tecla pulsada; `false` la pulsa una vez. |
+| `duration_ms` | Cuánto tiempo se mantiene pulsada, en milisegundos. Si se omite, se usa `1000`. |
+
+### Gestionar paquete de recursos
+
+**Identificador:** `manage_resource_pack`
+
+Activa o desactiva un paquete de recursos. Se configura en su ventana:
+
+- **Paquete de recursos de destino**: el nombre del paquete tal como aparece en la pantalla Paquetes de recursos. No se distingue entre mayúsculas y minúsculas.
+- **Modo de acción**: **Activar**, **Desactivar** o **Alternar**.
+- **Recargar recursos**: recarga los paquetes de recursos justo después del cambio. Desactiva esta opción para recargarlos más tarde, por ejemplo, con [**Recargar paquetes de recursos**](#reload-resource-packs).
+
+No se pueden desactivar los paquetes que necesita el juego.
+
+### Recargar paquetes de recursos
+
+**Identificador:** `reload_resource_packs`
+
+Recarga los paquetes de recursos, como `F3 + T`. Durante los cinco segundos posteriores a una recarga, la acción no hace nada, para evitar que se repita una y otra vez.
+
+**Valor:** ninguno
+
+### Recargar FancyMenu
+
+**Identificador:** `reloadmenu`
+
+Vuelve a cargar los diseños, las [interfaces gráficas personalizadas](/custom-guis), los [panoramas](/panoramas), las [presentaciones](/slideshows), los ajustes y los archivos de FancyMenu. No vuelve a cargar los paquetes de recursos.
+
+**Valor:** ninguno
 
 > [!WARNING]
-> Recargar es costoso. Actívalo desde una acción de botón deliberada, no desde un [Ticker](./elements#ticker) ni desde un [listener](./listeners) que se dispare con frecuencia.
+> La recarga tarda un momento. Úsala en un botón, nunca en un [temporizador](/elements#ticker) ni en una [escucha](/listeners) que se ejecute a menudo.
 
-## Toggle Element Animator (`toggle_element_animator`)
+### Iniciar programador
 
-**Propósito:** Alterna el estado de reproducción guardado y reinicia la línea de tiempo activa coincidente del Animator
+**Identificador:** `start_scheduler`
 
-**Valor:** Obligatorio — `animator_identifier`
+Inicia un [programador](/schedulers).
 
-Consulta [Element Animator](./element-animator) para ver la configuración y los detalles del identificador.
+**Valor:** el identificador del programador
 
-## Enable Element Animator (`enable_element_animator`)
+### Detener programador
 
-**Propósito:** Activa la reproducción; la línea de tiempo activa del Animator solo se reinicia cuando el estado cambia de desactivado a activado
+**Identificador:** `stop_scheduler`
 
-**Valor:** Obligatorio — `animator_identifier`
+Detiene un [programador](/schedulers).
 
-## Disable Element Animator (`disable_element_animator`)
+**Valor:** el identificador del programador
 
-**Propósito:** Desactiva la reproducción y reinicia la línea de tiempo activa coincidente del Animator
+### Copiar texto al portapapeles
 
-**Valor:** Obligatorio — `animator_identifier`
+**Identificador:** `copytoclipboard`
 
-## Reset Element Animator (`reset_element_animator`)
+Copia texto al portapapeles.
 
-**Propósito:** Reinicia la línea de tiempo activa coincidente del Animator sin cambiar si la reproducción está activada
+**Valor:** el texto, por ejemplo, `play.example.net`
 
-**Valor:** Obligatorio — `animator_identifier`
+### Escribir en el registro del juego
 
-## Mimic Vanilla/Mod Button (`mimicbutton`)
+**Identificador:** `print_to_log`
 
-**Propósito:** Imita la acción de clic de un botón vanilla o de un mod
+Escribe una línea en el registro del juego. Es útil para averiguar qué hace un script.
 
-**Valor:** Obligatorio — el [localizador de widget](./widget-locators) completo, por ejemplo `example.menu.identifier:505280`
-
-## Mimic Keybind (`mimic_keybind`)
-
-**Propósito:** Ejecuta un atajo de teclado o ratón de Minecraft, opcionalmente manteniéndolo pulsado
-
-**Valor:** Obligatorio — `keybind_id|||keep_pressed_bool|||duration_ms`
-
-| Campo | Significado |
-|---|---|
-| `keybind_id` | Identificador del atajo de teclado de Minecraft, como `key.jump` |
-| `keep_pressed_bool` | `true` para mantener pulsada la tecla; `false` para una pulsación normal |
-| `duration_ms` | Duración de la pulsación cuando `keep_pressed_bool` es `true`; por defecto `1000` |
-
-## Set Text Input Field Value (`set_text_input_field_value`)
-
-**Propósito:** Establece el valor de un [Campo de entrada de texto](./elements#text-input-field) personalizado o vanilla mediante su identificador de elemento.
-
-**Valor:** Obligatorio — `element_identifier|||new_value|||force_set_when_inactive`
-
-Los tres campos deben separarse con el delimitador triple `|||`. Establece `force_set_when_inactive` en `true` para actualizar también un campo de entrada deshabilitado; cuando es `false`, los campos inactivos no se modifican.
-
-## Create File in Game Directory (`create_file_in_game_dir`)
-
-**Propósito:** Crea un archivo vacío relativo al directorio de juego activo. Acepta el prefijo `.minecraft/` para apuntar al directorio convencional de Minecraft (que puede diferir de la instancia actual).
-
-**Valor:** Obligatorio — `file_path`
-
-Ejemplo: `config/some_mod_folder/new_file.txt`. Se crean los directorios padre que falten; un archivo existente no se modifica.
-
-## Delete File/Folder in Game Directory (`delete_file_in_game_dir`)
-
-**Propósito:** Elimina un archivo o borra recursivamente una carpeta relativa al directorio de juego activo. Acepta `.minecraft/` para apuntar al directorio convencional de Minecraft. Añade `*` para eliminar **todos los archivos directamente dentro** de una carpeta (ignora subdirectorios y conserva la carpeta).
-
-**Valor:** Obligatorio — `target_path`
-
-Por ejemplo, `config/downloads/*` elimina los archivos directamente dentro de `config/downloads/`, pero no recorre ni elimina sus subdirectorios.
-
-## Copy File/Folder in Game Directory (`copy_file_in_game_dir`)
-
-**Propósito:** Copia dentro del directorio de juego activo; `.minecraft/` apunta al directorio convencional de Minecraft. Un directorio con nombre se copia de forma recursiva. Añade `*` a la ruta de **origen** para copiar solo cada archivo hijo directo; el destino debe ser un directorio y no puede usar `*`.
-
-**Valor:** Obligatorio — `source||destination`
-
-Por ejemplo, `config/source/*||config/destination/` copia solo los archivos directamente dentro de `config/source/`. Con un origen con comodín, FancyMenu crea el directorio de destino cuando hace falta, pero no copia ningún subdirectorio del origen. La copia rechaza cualquier destino ya existente o archivo en conflicto en lugar de sobrescribirlo.
-
-## Move File/Folder in Game Directory (`move_file_in_game_dir`)
-
-**Propósito:** Mueve dentro del directorio de juego activo; `.minecraft/` apunta al directorio convencional de Minecraft. Añade `*` a la ruta de **origen** para mover solo cada archivo hijo directo; el destino debe ser un directorio y no puede usar `*`.
-
-**Valor:** Obligatorio — `source||destination`
-
-Por ejemplo, `config/source/*||config/destination/` mueve solo los archivos directamente dentro de `config/source/`. Con un origen con comodín, FancyMenu crea el directorio de destino cuando hace falta, pero deja los subdirectorios del origen en su sitio. El movimiento rechaza un destino ya existente o un archivo en conflicto en lugar de sobrescribirlo.
-
-## Rename File/Folder in Game Directory (`rename_file_in_game_dir`)
-
-**Propósito:** Cambia el nombre de un archivo o carpeta dentro de su carpeta padre actual; `.minecraft/` apunta al directorio convencional de Minecraft. Conserva el contenido intacto y rechaza un nombre de destino ya existente.
-
-**Valor:** Obligatorio — `path||new_name`
-
-## Download File to Game Directory (`download_file_to_game_dir`)
-
-**Propósito:** Descarga un archivo en segundo plano a un directorio relativo al directorio de juego activo; `.minecraft/` apunta al directorio convencional de Minecraft.
-
-**Valor:** Obligatorio — `url||target_folder`
-
-El segundo campo es un **directorio de destino**, no una ruta completa de archivo de destino. FancyMenu crea el directorio cuando hace falta y determina el nombre del archivo a partir del encabezado `Content-Disposition` de la respuesta; si no, recurre a la ruta de la URL. El nombre resuelto se decodifica desde la URL y se sanea antes de usarse; si ninguna de las dos fuentes proporciona un nombre válido, FancyMenu genera uno. Un archivo existente con el mismo nombre se sobrescribe.
-
-El [**On File Downloaded via Action** listener](./listeners#on-file-downloaded-via-action-file_downloaded_via_action) se activa tanto tras intentos de descarga exitosos como fallidos y expone la URL, la ruta de destino resuelta y el estado de éxito.
-
-Si tiene éxito, `$$target_file_path` es la ruta del archivo guardado. Si falla, puede contener solo el directorio de destino porque no se resolvió ningún nombre final de archivo.
-
-## Extract ZIP File In Game Directory (`extract_zip_file_in_game_dir`)
-
-**Propósito:** Extrae un ZIP en una carpeta de destino dentro del directorio de juego activo o del directorio convencional `.minecraft`. Activa [**On ZIP Extracted via Action**](./listeners#on-zip-extracted-via-action-zip_extracted_via_action) al finalizar.
-
-**Valor:** Obligatorio — `source_zip_path||target_folder_path`
-
-Los archivos existentes con nombres coincidentes se reemplazan. Extrae solo archivos ZIP de confianza.
-
-## Open File/Folder In Game Directory (`open_file_folder_in_game_dir`)
-
-**Propósito:** Abre un archivo o carpeta con la aplicación predeterminada del sistema operativo. El destino debe permanecer dentro del directorio de juego o del directorio `.minecraft` predeterminado por motivos de seguridad.
-
-**Valor:** Obligatorio — `target_path`
-
-## Write File in Game Directory (`write_file_in_game_dir`)
-
-**Propósito:** Escribe o añade texto relativo al directorio de juego activo; `.minecraft/` apunta al directorio convencional de Minecraft. Crea el archivo y los directorios padre si faltan. `\n` inserta saltos de línea; `append_bool=false` reemplaza un archivo existente.
-
-**Valor:** Obligatorio — `path|||content|||append_bool`
-
-## Select File from System (`select_file_to_game_dir`)
-
-**Propósito:** Abre un selector de archivos nativo y copia el archivo seleccionado dentro del directorio de juego activo, o del `.minecraft/` convencional cuando se usa el prefijo. Admite filtros por extensión, una etiqueta personalizada para el filtro y una opción de sobrescritura.
-
-**Valor:** Obligatorio — `target_path|||filter_description|||extensions|||overwrite_bool`
-
-`target_path` es la ruta completa del archivo de destino. Separa varias extensiones con `;` o `,`, por ejemplo `png;jpg`; una lista de extensiones vacía permite todos los archivos. Si `overwrite_bool` es `false`, la acción falla en lugar de reemplazar un archivo de destino existente.
-
-El [**On File Selected** listener](./listeners#on-file-selected-file_selected_via_action) se activa cuando el archivo se copia, se cancela el selector o falla la selección. Expone la ruta seleccionada, la ruta de destino resuelta, los estados de éxito/cancelación y un motivo de fallo.
-
-## Show Toast (`show_toast`)
-
-**Propósito:** Muestra una notificación toast configurable
-
-**Valor:** Obligatorio — configuración JSON del toast
-
-El editor almacena esta acción como JSON. Prefiere su ventana de configuración en lugar de editar el valor manualmente.
-
-| Campo | Significado |
-|---|---|
-| `width` | Limitado entre `120` y `320` píxeles |
-| `durationMs` | Limitado entre `1000` y `600000` milisegundos |
-| `title` | Texto plano, un componente de texto de Minecraft serializado o vacío |
-| `message` | Texto plano, un componente de texto serializado o vacío |
-| `iconSource` | [Origen de imagen](./resources) opcional |
-| `backgroundSource` | [Origen de imagen](./resources) opcional |
-
-## Start Scheduler (`start_scheduler`)
-
-**Propósito:** Inicia un scheduler por su ID de scheduler.
-
-**Valor:** Obligatorio — `scheduler_id`
-
-Consulta [Schedulers](./schedulers) para crear y gestionar IDs de scheduler.
-
-## Stop Scheduler (`stop_scheduler`)
-
-**Propósito:** Detiene un scheduler por su ID de scheduler.
-
-**Valor:** Obligatorio — `scheduler_id`
-
-## Set Minecraft Option (`edit_minecraft_option`)
-
-**Propósito:** Edita una opción de configuración de Minecraft
-
-**Valor:** Obligatorio — `option_name:set_to_value`
+**Valor:** el texto

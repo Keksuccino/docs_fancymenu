@@ -1,131 +1,57 @@
 ---
-title: Modelos de Botão e Slider
+title: Modelos de Botões e Controles Deslizantes
 description: >-
-  Como usar modelos de botão/slider para aplicar um design específico de
-  botão/slider a TODOS os botões de uma vez.
+  Aplique a todos os botões ou controles deslizantes de uma tela as texturas, os
+  sons e o estilo de rótulo de um botão modelo.
+sourceBlobSha: 805a2ae3221a644c78cd5eafebc5579bc8d60815
 ---
-# Usando Elementos de Botão como Modelos para Botões e Sliders
 
-É possível usar um elemento de Botão como modelo para outros botões e até sliders. Fazendo isso, você pode aplicar um design específico de botão/slider a TODOS os botões/sliders em um menu ou até mesmo a todos os menus de uma vez ao usar um layout universal.
+# Modelos de Botões e Controles Deslizantes
 
-> [!IMPORTANT]
-> Prefira [Global Customizations](./global-customizations) para estilização ampla de botões e sliders Vanilla. Use Modelos de Botão/Slider quando o comportamento precisar ser específico do layout.
+Um modelo é um [elemento Botão](/elements#button) que aplica sua aparência a todos os outros botões ou controles deslizantes da tela, tanto os padrão quanto os criados por você. Altere o modelo e todos eles serão alterados junto com ele.
 
-# Importante Antes de Começar
+> [!TIP]
+> Para manter a mesma aparência em todos os menus do jogo, use [Personalizações Globais](/global-customizations). Os modelos são para uma única tela ou para todas as telas carregadas por um [layout universal](/universal-layouts).
 
-Para um único botão ou slider, **clique com o botão direito** nele no editor e edite diretamente as **Background Textures** ou as texturas do controle deslizante.
+# Criar um Modelo
 
-# O que é um Botão de Modelo?
+1. Adicione um elemento Botão ao layout.
+2. Clique nele com o botão direito, abra **Configurações do Modelo** e ative **Modo de Modelo**.
+3. Em **Compartilhar Configurações Com**, selecione **Botões** ou **Controles Deslizantes**.
+4. Defina as texturas, os sons e as configurações de rótulo desejados para o modelo, como faria com qualquer outro botão. Quando **Controles Deslizantes** estiver selecionado, as configurações de textura serão as dos controles deslizantes.
 
-Um botão de modelo é um tipo especial de botão personalizado no FancyMenu que permite controlar como outros botões e sliders parecem e se comportam. É como criar um design mestre que muitos outros elementos seguirão.
+O modelo não aparece fora do editor, então coloque-o onde não atrapalhe. No editor, um modelo para controles deslizantes tem a aparência de um controle deslizante.
 
-Quando você cria um botão de modelo, pode fazer com que muitos botões ou sliders compartilhem o mesmo:
-- Tamanho (largura e altura)
-- Posição
-- Visibilidade
-- Opacidade (o quanto são transparentes)
-- Rótulos de texto
-- **Texturas do botão** (compartilhadas automaticamente quando texturas personalizadas são definidas)
+# O Que os Modelos Compartilham
 
-Isso é muito útil quando você quer deixar seu menu consistente ou quando precisa atualizar vários botões de uma vez!
+## Sempre
 
-# Quem Pode Usar Modelos?
+- As texturas do botão (ou as texturas dos controles deslizantes), com as configurações de [divisão em nove partes](/nine-slicing-and-tiling).
+- Os sons de passar o cursor, tirar o cursor e clicar.
 
-Apenas **botões personalizados** podem funcionar como modelos. No entanto, esses modelos podem ser aplicados a:
-- Botões Vanilla (os botões padrão do Minecraft)
-- Botões personalizados (botões que você cria no FancyMenu)
-- Sliders Vanilla (como controles de volume)
-- Sliders personalizados (sliders que você cria no FancyMenu)
+Enquanto um modelo estiver ativo, os botões usarão as texturas e os sons dele, em vez dos próprios. Se o modelo não tiver texturas, os botões também não usarão as próprias texturas.
 
-# Como Criar um Botão de Modelo
+## Ao Ativar
 
-1. Abra o editor do FancyMenu para a tela que você deseja personalizar
-2. Adicione um novo elemento de botão personalizado ao seu layout
-3. Clique com o botão direito no seu novo botão
-4. Selecione "Template Settings" no menu
-5. Clique em "Is Template: ON" para ativar o modo de modelo
+Ative estas opções em **Configurações do Modelo** do modelo:
 
-Seu botão agora estará pronto para funcionar como modelo para outros botões e sliders!
+| Configuração | O que os botões recebem do modelo |
+|---|---|
+| **Compartilhar Rótulo no Modo de Modelo** | O **Rótulo** e o **Rótulo ao Passar o Cursor** do modelo, além de todo o estilo do rótulo: **Alinhamento do Rótulo**, **Escala do Rótulo**, **Cor Base do Rótulo**, **Cor do Rótulo ao Passar o Cursor**, **Sombra do Rótulo** e **Sublinhar Rótulo ao Passar o Cursor**. |
+| **Compartilhar Posição X no Modo de Modelo** e **Compartilhar Posição Y no Modo de Modelo** | A posição do modelo. Os botões padrão só se movem quando o **Ponto de Ancoragem** é diferente de **Padrão (Original)**. |
+| **Compartilhar Opacidade no Modo de Modelo** | A opacidade do modelo. |
 
-# Opções de Compartilhamento do Modelo
+## Alinhamento de Rótulo para Todos os Botões
 
-Você pode escolher quais tipos de elementos serão afetados pelo seu modelo:
-- **Buttons** - Seu modelo afetará apenas botões (tanto Vanilla quanto personalizados)
-- **Sliders** - Seu modelo afetará apenas sliders (tanto Vanilla quanto personalizados)
+Com **Compartilhar Rótulo no Modo de Modelo**, todos os botões também recebem o texto do modelo. Portanto, essa opção serve para telas em que todos os botões devem ter o mesmo texto.
 
-Para definir essa opção:
-1. Clique com o botão direito no seu botão de modelo
-2. Vá para "Template Settings"
-3. Clique em "Share With: [Current Option]" para alternar entre as opções
+Para alinhar apenas os rótulos e manter os textos:
 
-> [!WARNING]
-> **Importante**: Você pode ter dois modelos ativos ao mesmo tempo - um para botões E um para sliders. Isso significa que você pode criar designs de modelo separados para diferentes tipos de elementos na mesma tela!
+- Em uma tela, selecione os botões com `Ctrl` + clique (consulte [Selecionar](/layout-editor#selecting)), clique com o botão direito em um deles e defina **Alinhamento do Rótulo** uma única vez para todos.
+- Para todos os menus, use **Alinhamento do Rótulo** em [Personalizações Globais](/global-customizations#labels).
 
+# É Bom Saber
 
-# O que Pode Ser Modelado
-
-Você pode controlar exatamente quais propriedades o seu modelo compartilhará com outros elementos:
-
-## Propriedades que Podem Ser Ativadas/Desativadas:
-
-1. Clique com o botão direito no seu botão de modelo
-2. Vá para "Template Settings" 
-3. Ative ou desative qualquer uma destas opções:
-   - **Width** - Faz com que todos os elementos afetados tenham a mesma largura do seu modelo
-   - **Height** - Faz com que todos os elementos afetados tenham a mesma altura do seu modelo
-   - **X Position** - Coloca todos os elementos afetados na mesma coordenada X do seu modelo
-   - **Y Position** - Coloca todos os elementos afetados na mesma coordenada Y do seu modelo
-   - **Opacity** - Faz com que todos os elementos afetados tenham a mesma transparência do seu modelo
-   - **Visibility** - Controla se os elementos afetados serão mostrados ou ocultados
-   - **Label** - Faz com que todos os elementos afetados usem o mesmo texto do seu modelo
-
-## Propriedades que São Sempre Compartilhadas:
-
-- **Texturas do botão** - Quando você define texturas personalizadas no seu modelo, elas serão aplicadas automaticamente a todos os elementos afetados
-  - Diferentemente de outras propriedades, o compartilhamento de texturas não pode ser desativado
-  - As texturas só são aplicadas quando texturas personalizadas são realmente definidas no modelo
-  - Se nenhuma textura personalizada for definida, as texturas originais do elemento serão usadas
-
-# Personalizando a Aparência do Modelo
-
-Seu botão de modelo pode ser personalizado como qualquer outro botão:
-
-1. Clique com o botão direito no seu botão de modelo
-2. Você pode definir:
-   - Texturas do botão (estados normal, ao passar o mouse e inativo)
-   - Rótulos (normal e ao passar o mouse)
-   - Sons (ao passar o mouse e ao clicar)
-   - Tooltips
-
-Para botões, você pode definir texturas personalizadas para diferentes estados:
-- Fundo normal (quando não estiver interagindo)
-- Fundo ao passar o mouse (quando o mouse estiver sobre ele)
-- Fundo inativo (quando o botão estiver desativado)
-
-Para sliders, você também pode definir:
-- Texturas do controle do slider
-- Texturas do fundo do slider
-
-# Dicas Importantes
-
-1. **Botões de modelo não aparecerão no jogo** - Eles só ficam visíveis no editor, então coloque-os onde for mais conveniente.
-
-2. **Você pode ter dois modelos ativos simultaneamente** - Um modelo para botões e um modelo para sliders podem ficar ativos ao mesmo tempo.
-
-3. **Apenas um modelo por tipo fica ativo** - Se você tiver vários modelos de botão, apenas o que estiver no topo da sua lista de elementos será usado para botões. O mesmo se aplica aos modelos de slider.
-
-4. **As alterações no modelo são atualizadas instantaneamente** - Quando você editar seu modelo, todos os botões e sliders afetados serão atualizados imediatamente.
-
-5. **Use o modo de compartilhamento correto** - Lembre-se de que o modo "Buttons" não afetará sliders, e o modo "Sliders" não afetará botões.
-
-6. **Aplique propriedades de forma seletiva** - Você não precisa aplicar todas as propriedades. Por exemplo, talvez você queira modelar apenas as texturas e o tamanho, mas permitir que os elementos mantenham suas posições originais.
-
-7. **Texturas são sempre compartilhadas quando definidas** - Diferentemente de outras propriedades, quaisquer texturas personalizadas que você aplicar ao modelo serão compartilhadas automaticamente com os elementos correspondentes. Você não precisa ativar ou desativar esse recurso.
-
-# Exemplos de Uso
-
-- Criar um estilo consistente para todos os botões de uma tela
-- Fazer com que todos os sliders combinem com seu tema personalizado usando um modelo separado
-- Criar um "modo oculto" em que você pode mostrar/ocultar vários botões de uma vez
-- Alterar o tamanho de vários botões com apenas uma edição
-- Dar a todos os botões do seu menu as mesmas texturas e sons personalizados
+- Somente elementos Botão podem ser modelos, mas eles funcionam com botões e controles deslizantes padrão ou personalizados.
+- Uma tela pode ter um modelo para botões e outro para controles deslizantes ao mesmo tempo. Se houver mais de um modelo do mesmo tipo, apenas um deles funcionará.
+- Um modelo só funciona enquanto estiver visível. Com [requisitos](/element-visibility) no modelo, você pode ativá-lo e desativá-lo.
