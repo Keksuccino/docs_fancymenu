@@ -1,14 +1,15 @@
 ---
-title: Element-Identifikatoren
-description: Wie Element-Identifikatoren in FancyMenu funktionieren.
+title: Element-IDs
+description: So funktionieren Element-IDs in FancyMenu.
+sourceBlobSha: 8be9feee139d1e15feb31f95ffcedb72a360475a
 ---
 
-# Element-Identifikatoren
+# Element-IDs
 
-Jedes Element in FancyMenu hat eine eindeutige Kennung, die beim Erstellen automatisch zugewiesen wird.
+Jedes Element in FancyMenu hat eine eindeutige ID, die ihm beim Erstellen automatisch zugewiesen wird.
 
-Diese Kennungen werden verwendet, um das Element zu identifizieren, damit andere Teile von FancyMenu, wie Platzhalter, Aktionen und Ladeanforderungen, mit dem Element kommunizieren können.
+Diese IDs dienen dazu, Elemente zu identifizieren, damit andere Bereiche von FancyMenu wie Platzhalter, Aktionen und Ladebedingungen mit ihnen kommunizieren können.
 
-# Den Identifikator von Elementen erhalten
+# Element-ID abrufen
 
-Um den Identifikator eines Elements zu erhalten, wenn du ihn irgendwo anders brauchst, klicke im Editor einfach mit der **rechten Maustaste** auf das Element und anschließend auf **Element-Identifikator kopieren**. Dadurch wird der Identifikator des Elements in die Zwischenablage kopiert, sodass du ihn ganz einfach dort einfügen kannst, wo du ihn benötigst.
+Um die ID eines Elements abzurufen, klicke im Editor mit der rechten Maustaste auf das Element und wähle **Element-ID kopieren**. Dadurch wird die ID in die Zwischenablage kopiert, sodass du sie an der gewünschten Stelle einfügen kannst.
